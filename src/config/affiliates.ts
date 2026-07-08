@@ -1,0 +1,70 @@
+export type AffiliatePartner =
+  | "boatsetter"
+  | "getmyboat"
+  | "fishingbooker"
+  | "viator"
+  | "custom";
+
+export interface AffiliateLink {
+  partner: AffiliatePartner;
+  label: string;
+  url: string;
+  description: string;
+}
+
+const env = (key: string, fallback: string) =>
+  process.env[key] || fallback;
+
+export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
+  boatsetter: {
+    partner: "boatsetter",
+    label: "Boatsetter",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_BOATSETTER",
+      "https://www.boatsetter.com/boat-rentals/chicago-il?utm_source=boatingchicago&utm_medium=affiliate"
+    ),
+    description: "Browse peer-to-peer boat rentals on Lake Michigan",
+  },
+  getmyboat: {
+    partner: "getmyboat",
+    label: "GetMyBoat",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_GETMYBOAT",
+      "https://www.getmyboat.com/boat-rentals/Chicago--IL--United-States/?utm_source=boatingchicago&utm_medium=affiliate"
+    ),
+    description: "Compare captained and bareboat rentals in Chicago",
+  },
+  fishingbooker: {
+    partner: "fishingbooker",
+    label: "FishingBooker",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_FISHINGBOOKER",
+      "https://fishingbooker.com/destinations/us-il-chicago?utm_source=boatingchicago&utm_medium=affiliate"
+    ),
+    description: "Book fishing charters with local Chicago captains",
+  },
+  viator: {
+    partner: "viator",
+    label: "Viator",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_VIATOR",
+      "https://www.viator.com/Chicago/d673-ttd?utm_source=boatingchicago&utm_medium=affiliate"
+    ),
+    description: "Discover Chicago boat tours and experiences",
+  },
+  custom: {
+    partner: "custom",
+    label: "Custom Partner",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_CUSTOM",
+      "https://boatingchicago.com/#find-a-boat"
+    ),
+    description: "Book through our preferred Chicago boating partner",
+  },
+};
+
+export function getAffiliateLinksForCategory(
+  partners: AffiliatePartner[]
+): AffiliateLink[] {
+  return partners.map((p) => affiliateLinks[p]);
+}
