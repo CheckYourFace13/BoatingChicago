@@ -23,6 +23,15 @@ const categories = [
   { href: "/boat-repair-chicago", label: "Boat Repair" },
 ];
 
+const experienceLinks = [
+  { href: "/chicago-architecture-cruises", label: "Architecture Cruises" },
+  { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
+  { href: "/chicago-dining-cruises", label: "Dining Cruises" },
+  { href: "/chicago-tiki-cruises", label: "Tiki Cruises" },
+  { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
+  { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
+];
+
 const vendorLinks = [
   { href: "/vendors", label: "Browse Vendors" },
   { href: "/list-your-business", label: "List Your Business" },
@@ -64,6 +73,16 @@ export function Footer() {
             <h3 className="font-bold text-sun-yellow mb-4">Boating Categories</h3>
             <ul className="space-y-2">
               {categories.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="font-bold text-sun-yellow mb-4 mt-8">Experiences</h3>
+            <ul className="space-y-2">
+              {experienceLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
                     {link.label}

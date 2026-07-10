@@ -34,7 +34,7 @@ export const categories: CategoryPage[] = [
       { title: "Skyline cruises", description: "Sunset runs past Navy Pier and the Chicago skyline", icon: "🌆" },
       { title: "Small groups", description: "Boats for 2–12 people at every budget level", icon: "👥" },
     ],
-    affiliates: ["boatsetter", "getmyboat"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "yacht-rentals-chicago", "captains-for-hire-chicago", "chicago-playpen-boat-rentals"],
     faqs: [
       sharedFaqs.booking,
@@ -60,7 +60,7 @@ export const categories: CategoryPage[] = [
       { title: "Sunset cruises", description: "Golden-hour skyline views from the water", icon: "🌅" },
       { title: "Large groups", description: "Yachts accommodating 20–100+ guests", icon: "🛥️" },
     ],
-    affiliates: ["getmyboat", "viator", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["corporate-yacht-charters-chicago", "birthday-boat-rentals-chicago", "boat-rentals-chicago"],
     faqs: [
       sharedFaqs.booking,
@@ -86,7 +86,7 @@ export const categories: CategoryPage[] = [
       { title: "BYOB celebrations", description: "Bring your own beverages on most party boat rentals", icon: "🍻" },
       { title: "Skyline party cruises", description: "Cruise past Navy Pier and the Loop with your crew", icon: "🌃" },
     ],
-    affiliates: ["boatsetter", "getmyboat", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["bachelorette-boat-rentals-chicago", "birthday-boat-rentals-chicago", "chicago-playpen-boat-rentals"],
     faqs: [
       sharedFaqs.booking,
@@ -113,7 +113,7 @@ export const categories: CategoryPage[] = [
       { title: "BYOB friendly", description: "Bring champagne, coolers, and decorations", icon: "🥳" },
       { title: "Stress-free", description: "Captain included — just show up and celebrate", icon: "✨" },
     ],
-    affiliates: ["getmyboat", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "birthday-boat-rentals-chicago", "yacht-rentals-chicago"],
     faqs: [
       { question: "When should I book a bachelorette boat in Chicago?", answer: "Book 3–6 weeks ahead for summer weekends, especially June through August. Holiday weekends and Air & Water Show dates fill up months in advance." },
@@ -139,7 +139,7 @@ export const categories: CategoryPage[] = [
       { title: "Surprise parties", description: "Coordinate dock-side surprises with your captain", icon: "🎁" },
       { title: "Night cruises", description: "Evening skyline views for a magical birthday", icon: "🌙" },
     ],
-    affiliates: ["boatsetter", "getmyboat", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "yacht-rentals-chicago", "bachelorette-boat-rentals-chicago"],
     faqs: [
       { question: "Can I bring a birthday cake on the boat?", answer: "Yes — most operators allow cakes and food. Some yacht charters offer catering packages. Bring serving supplies and confirm refrigeration if needed." },
@@ -164,7 +164,7 @@ export const categories: CategoryPage[] = [
       { title: "Company celebrations", description: "Holiday parties, milestone events, and summer outings", icon: "🎊" },
       { title: "Brand events", description: "Product launches and media events on the water", icon: "📣" },
     ],
-    affiliates: ["custom", "viator"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["yacht-rentals-chicago", "party-boat-rentals-chicago"],
     faqs: [
       { question: "Do corporate yacht charters include catering?", answer: "Most charter companies offer catering packages from light appetizers to full plated dinners. Bar packages and branded materials can often be arranged." },
@@ -190,7 +190,7 @@ export const categories: CategoryPage[] = [
       { title: "First-timers", description: "Captains who know Playpen rules and best spots", icon: "🗺️" },
       { title: "Group parties", description: "Party boats with space, sound, and shade", icon: "🎵" },
     ],
-    affiliates: ["boatsetter", "getmyboat"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "boat-rentals-chicago"],
     faqs: [
       { question: "What is the Chicago Playpen?", answer: "The Playpen is a designated anchorage area on Lake Michigan near Oak Street Beach. On summer weekends, it's packed with boats — think floating block party with swimming, music, and skyline views." },
@@ -216,7 +216,7 @@ export const categories: CategoryPage[] = [
       { title: "Group outings", description: "Share the experience with friends and family", icon: "👨‍👩‍👧" },
       { title: "July 4th", description: "The biggest fireworks show of the year on the water", icon: "🇺🇸" },
     ],
-    affiliates: ["getmyboat", "viator", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "yacht-rentals-chicago", "air-and-water-show-boat-rentals"],
     faqs: [
       { question: "When are the Navy Pier fireworks?", answer: "Navy Pier typically hosts fireworks on select summer Wednesday and Saturday evenings, plus special shows on July 4th and other holidays. Check Navy Pier's schedule for current dates." },
@@ -242,7 +242,7 @@ export const categories: CategoryPage[] = [
       { title: "Full-day experience", description: "Make a day of it with swimming, food, and the show", icon: "🌊" },
       { title: "Group viewing", description: "Share the experience with 10–40+ friends", icon: "👥" },
     ],
-    affiliates: ["getmyboat", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["navy-pier-fireworks-boat-rentals", "party-boat-rentals-chicago", "yacht-rentals-chicago"],
     faqs: [
       { question: "When is the Chicago Air & Water Show?", answer: "The Chicago Air & Water Show is typically held over a weekend in mid-August along the lakefront. Confirm exact dates on the City of Chicago events calendar each year." },
@@ -268,7 +268,7 @@ export const categories: CategoryPage[] = [
       { title: "Corporate outings", description: "Team fishing trips with a competitive edge", icon: "🏅" },
       { title: "Beginners welcome", description: "All gear and instruction included", icon: "🎣" },
     ],
-    affiliates: ["fishingbooker", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["captains-for-hire-chicago", "boat-rentals-chicago"],
     faqs: [
       { question: "What fish can you catch in Chicago on Lake Michigan?", answer: "Lake Michigan off Chicago offers chinook and coho salmon, lake trout, steelhead, and perch depending on season. Your captain targets what's biting." },
@@ -293,7 +293,7 @@ export const categories: CategoryPage[] = [
       { title: "Events & parties", description: "Professional captains for special occasions", icon: "🎉" },
       { title: "Training", description: "Learn local waters with an experienced captain", icon: "📚" },
     ],
-    affiliates: ["getmyboat", "custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["boat-rentals-chicago", "fishing-charters-chicago"],
     faqs: [
       { question: "How much does a captain cost in Chicago?", answer: "Chicago captains typically charge $75–$150 per hour depending on vessel size and experience. Half-day and full-day rates may be available." },
@@ -318,7 +318,7 @@ export const categories: CategoryPage[] = [
       { title: "Boater services", description: "Fuel, pump-out, and maintenance access", icon: "⛽" },
       { title: "New boaters", description: "Find the right home harbor for your vessel", icon: "🗺️" },
     ],
-    affiliates: ["custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["boat-storage-chicago", "boat-repair-chicago", "boat-rentals-chicago"],
     faqs: [
       { question: "What are the main Chicago marinas?", answer: "Chicago's lakefront harbors include Montrose, Belmont, Diversey, DuSable, Monroe, Burnham, 31st Street, and 59th Street — each managed under the Chicago Harbors system." },
@@ -342,7 +342,7 @@ export const categories: CategoryPage[] = [
       { title: "Shrink wrap", description: "Professional winterization and wrapping services", icon: "📦" },
       { title: "Trailer storage", description: "Options for trailered boats and personal watercraft", icon: "🚛" },
     ],
-    affiliates: ["custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["chicago-marinas", "boat-repair-chicago", "boat-detailing-chicago"],
     faqs: [
       { question: "When should I pull my boat for winter in Chicago?", answer: "Most Chicago boaters winterize and store boats by mid-October through early November before the first hard freeze." },
@@ -366,7 +366,7 @@ export const categories: CategoryPage[] = [
       { title: "Regular maintenance", description: "Scheduled washes to protect your investment", icon: "🔄" },
       { title: "Pre-sale detailing", description: "Maximize value before listing your boat", icon: "💰" },
     ],
-    affiliates: ["custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["boat-repair-chicago", "boat-storage-chicago", "chicago-marinas"],
     faqs: [
       { question: "How much does boat detailing cost in Chicago?", answer: "Basic wash and wax runs $150–$300. Full detail packages range from $400–$800+ depending on boat size and condition." },
@@ -390,7 +390,7 @@ export const categories: CategoryPage[] = [
       { title: "Hull & fiberglass", description: "Gelcoat, fiberglass, and structural repairs", icon: "🛠️" },
       { title: "Seasonal service", description: "Commissioning, winterization, and tune-ups", icon: "📋" },
     ],
-    affiliates: ["custom"],
+    affiliates: ["getyourguide"],
     relatedSlugs: ["boat-detailing-chicago", "boat-storage-chicago", "chicago-marinas"],
     faqs: [
       { question: "Where can I get boat repair in Chicago?", answer: "Marine service is available at several Chicago harbors, nearby service yards on the North Shore and South Side, and mobile mechanics who come to your slip." },
@@ -398,6 +398,156 @@ export const categories: CategoryPage[] = [
       { question: "Should I repair or replace an older engine?", answer: "A trusted mechanic can assess whether rebuild, repower, or repair makes financial sense. Get multiple quotes for major engine work." },
     ],
     vendors: ["sample-chicago-detailing-partner"],
+  },
+  {
+    slug: "chicago-architecture-cruises",
+    title: "Chicago Architecture Cruises",
+    seoTitle: "Chicago Architecture Cruises | River Tours & Skyline Boat Tours",
+    seoDescription:
+      "Book Chicago architecture river cruises and guided skyline boat tours. Compare top architecture cruises on the Chicago River and Lake Michigan.",
+    headline: "Chicago Architecture Cruises & River Tours",
+    intro:
+      "Chicago’s architecture is best seen from the water. Architecture river cruises glide past downtown landmarks, bridges, and the skyline while guides share the stories behind the buildings. These are ticketed guided tours — not private boat rentals. Book an architecture cruise online, or use our Find a Boat form if you want a private charter with your own itinerary.",
+    bestFor: [
+      { title: "First-time visitors", description: "The classic way to see downtown from the river", icon: "🏙️" },
+      { title: "Families & couples", description: "Easy, seated sightseeing with skyline views", icon: "👨‍👩‍👧" },
+      { title: "Architecture fans", description: "Guided commentary on Chicago’s famous buildings", icon: "🏛️" },
+      { title: "Same-day plans", description: "Many cruises offer instant online booking", icon: "⚡" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["chicago-dining-cruises", "boat-rentals-chicago", "yacht-rentals-chicago"],
+    faqs: [
+      { question: "What is a Chicago architecture cruise?", answer: "An architecture cruise is a guided boat tour on the Chicago River (and sometimes Lake Michigan) focused on downtown buildings, bridges, and skyline history. It is a ticketed public tour, not a private boat rental." },
+      { question: "How long do architecture cruises last?", answer: "Most Chicago architecture river tours run about 45–90 minutes. The 75-minute guided cruise is a popular middle option." },
+      { question: "Can I book a private architecture charter instead?", answer: "Yes — if you want a private boat with your own group and schedule, use our Find a Boat form. Architecture cruises below are ready-to-book public tours." },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-fireworks-cruises",
+    title: "Chicago Fireworks Cruises",
+    seoTitle: "Chicago Fireworks Cruises | Navy Pier Fireworks Boat Tours",
+    seoDescription:
+      "Book Chicago fireworks cruises on Lake Michigan. 3D fireworks cruises, Seadog speedboat fireworks tours, and more — watch from the water.",
+    headline: "Chicago Fireworks Cruises on Lake Michigan",
+    intro:
+      "Watching fireworks from a boat is one of Chicago’s best summer nights — reflections on the lake, skyline glow, and no pier crush. Ticketed fireworks cruises (including 3D fireworks and Seadog speedboat options) let you book online. For a private fireworks charter with just your group, use the Find a Boat form.",
+    bestFor: [
+      { title: "Navy Pier fireworks nights", description: "Summer Wednesday & Saturday shows from the water", icon: "🎆" },
+      { title: "Date nights", description: "Romantic lake views without fighting pier crowds", icon: "💕" },
+      { title: "Speedboat thrills", description: "Seadog fireworks cruises for a faster ride", icon: "🚤" },
+      { title: "Groups & visitors", description: "Easy ticketed options with set departure times", icon: "🎟️" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["navy-pier-fireworks-boat-rentals", "party-boat-rentals-chicago", "boat-rentals-chicago"],
+    faqs: [
+      { question: "When are Chicago fireworks cruises available?", answer: "Most fireworks cruises align with Navy Pier’s summer fireworks schedule (often Wednesday and Saturday evenings) plus holiday shows. Always confirm the date on the booking page." },
+      { question: "Is a fireworks cruise the same as a private boat rental?", answer: "No. Fireworks cruises are ticketed public tours with set times. Private rentals and charters are arranged separately through our Find a Boat form." },
+      { question: "Where do fireworks cruises depart from?", answer: "Departure docks vary by operator — often near Navy Pier or downtown harbors. Your confirmation email includes exact boarding instructions." },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-jet-ski-rentals",
+    title: "Chicago Jet Ski Rentals",
+    seoTitle: "Chicago Jet Ski Rentals | North Avenue Beach Jet Ski on Lake Michigan",
+    seoDescription:
+      "Rent a jet ski in Chicago at North Avenue Beach with skyline views on Lake Michigan. Book jet ski rentals online through trusted partners.",
+    headline: "Chicago Jet Ski Rentals on Lake Michigan",
+    intro:
+      "Want speed and skyline views without chartering a whole boat? Chicago jet ski rentals at North Avenue Beach put you on Lake Michigan with the downtown towers as your backdrop. These are personal watercraft rentals — not private yacht or party boat charters. Book a jet ski online, or request a private boat match if you need a larger vessel.",
+    bestFor: [
+      { title: "Thrill seekers", description: "Fast rides on Lake Michigan with skyline views", icon: "💨" },
+      { title: "Couples & friends", description: "Small-group fun without a full boat charter", icon: "🤙" },
+      { title: "North Avenue Beach", description: "Prime lakefront launch with easy access", icon: "🏖️" },
+      { title: "Instant booking", description: "Reserve your jet ski rental online", icon: "📱" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["chicago-kayak-rentals", "boat-rentals-chicago", "chicago-playpen-boat-rentals"],
+    faqs: [
+      { question: "Where can I rent a jet ski in Chicago?", answer: "North Avenue Beach is a popular Lake Michigan jet ski rental location with skyline views. Availability and requirements are listed on the booking page." },
+      { question: "Do I need a license to rent a jet ski in Illinois?", answer: "Illinois has age and safety requirements for personal watercraft. Confirm operator rules, age minimums, and any required certificates before booking." },
+      { question: "Is a jet ski rental the same as a boat rental?", answer: "No. Jet ski rentals are personal watercraft. For pontoons, party boats, or yacht charters, use our Find a Boat form." },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-kayak-rentals",
+    title: "Chicago Kayak Rentals",
+    seoTitle: "Chicago Kayak Rentals | Downtown River Kayaking Near the Skyline",
+    seoDescription:
+      "Rent a kayak in downtown Chicago. 2-hour kayak rentals on the Chicago River with skyline views. Book online or find private boat options.",
+    headline: "Chicago Downtown Kayak Rentals",
+    intro:
+      "Paddle downtown Chicago at water level — bridges overhead, glass towers above, and the river winding through the Loop. A 2-hour downtown kayak rental is an active, affordable way to experience the city from the water. Kayak rentals are not motorized boat charters; for private boats and captains, use our lead form.",
+    bestFor: [
+      { title: "Active travelers", description: "Paddle your own route through downtown", icon: "🛶" },
+      { title: "Budget-friendly water time", description: "Skyline views without a full charter price", icon: "💵" },
+      { title: "Photos & sightseeing", description: "River-level angles of Chicago’s architecture", icon: "📸" },
+      { title: "Couples & small groups", description: "Easy 2-hour downtown kayak sessions", icon: "👥" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["chicago-architecture-cruises", "chicago-jet-ski-rentals", "boat-rentals-chicago"],
+    faqs: [
+      { question: "Where do downtown Chicago kayak rentals launch?", answer: "Most downtown kayak rentals launch from riverfront locations near the Loop or Riverwalk area. Exact meeting points are confirmed at booking." },
+      { question: "Do I need experience to kayak in Chicago?", answer: "Many rentals welcome beginners and provide basic instruction. Check the listing for skill level, age rules, and whether a guide is included." },
+      { question: "Can I kayak on Lake Michigan too?", answer: "Some operators offer lake paddling depending on conditions. Downtown river kayaking is the most common skyline experience." },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-dining-cruises",
+    title: "Chicago Dining Cruises",
+    seoTitle: "Chicago Dining Cruises | Brunch, Lunch & Dinner River Cruises",
+    seoDescription:
+      "Book Chicago brunch, lunch, or dinner river cruises. Dining cruises with downtown architecture views — not private yacht charters.",
+    headline: "Chicago Brunch, Lunch & Dinner River Cruises",
+    intro:
+      "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — perfect for celebrations and visitors. They are not private yacht charters. Want a private yacht with custom catering? Use the Find a Boat form.",
+    bestFor: [
+      { title: "Celebrations", description: "Birthdays, anniversaries, and special dinners", icon: "🥂" },
+      { title: "Visitors", description: "Sightseeing and a meal in one outing", icon: "🍽️" },
+      { title: "Date nights", description: "Skyline views with brunch, lunch, or dinner", icon: "🌆" },
+      { title: "Easy booking", description: "Choose a seating and reserve online", icon: "✅" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["chicago-architecture-cruises", "yacht-rentals-chicago", "corporate-yacht-charters-chicago"],
+    faqs: [
+      { question: "What is included on a Chicago dining cruise?", answer: "Most dining cruises include a meal service and the cruise itself. Drinks, upgrades, and dietary options vary — check the booking details." },
+      { question: "Is a dining cruise a private yacht rental?", answer: "No. Dining cruises are shared, ticketed experiences. Private yacht charters are arranged separately through our lead form." },
+      { question: "How long is a brunch or dinner cruise?", answer: "Typical Chicago dining cruises run about 1.5–3 hours depending on the meal service and route." },
+      sharedFaqs.booking,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-tiki-cruises",
+    title: "Chicago Tiki Cruises",
+    seoTitle: "Chicago Tiki Bar Cruise | River & Lake Michigan Party Cruise",
+    seoDescription:
+      "Book the Chicago Tiki Bar Cruise on the Chicago River or Lake Michigan. A ticketed party cruise experience — not a private party boat rental.",
+    headline: "Chicago Tiki Bar Cruises",
+    intro:
+      "Tropical vibes on the Chicago River or Lake Michigan — the Tiki Bar Cruise is a ticketed party cruise with drinks, music, and skyline scenery. It’s a ready-to-book group experience, not a private party boat you control end-to-end. For a private party boat rental, use our Find a Boat form.",
+    bestFor: [
+      { title: "Group hangouts", description: "Friends, birthdays, and casual celebrations", icon: "🍹" },
+      { title: "Bachelorette add-ons", description: "A fun ticketed cruise for the squad", icon: "💃" },
+      { title: "Visitors", description: "Party atmosphere with Chicago water views", icon: "🎉" },
+      { title: "Instant booking", description: "Reserve seats online without arranging a charter", icon: "📲" },
+    ],
+    affiliates: ["getyourguide"],
+    relatedSlugs: ["party-boat-rentals-chicago", "bachelorette-boat-rentals-chicago", "birthday-boat-rentals-chicago"],
+    faqs: [
+      { question: "Is the Tiki Bar Cruise a private party boat?", answer: "No. It is a ticketed public party cruise. Private party boat rentals are matched through our Find a Boat form." },
+      { question: "Does the cruise go on the river or the lake?", answer: "Depending on the sailing, routes may include the Chicago River and/or Lake Michigan. Confirm details on the booking page." },
+      { question: "Can we bring our own drinks?", answer: "Policies vary by operator. Most ticketed tiki cruises have onboard bars — check the listing before you book." },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
   },
 ];
 

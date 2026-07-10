@@ -15,6 +15,10 @@ function handleAffiliateClick(partner: string) {
   trackEvent("affiliate_click", { partner });
 }
 
+/**
+ * Legacy partner-button CTA. Only renders enabled partners.
+ * Prefer AffiliateOfferGrid for GetYourGuide product links.
+ */
 export function AffiliateCTA({
   partners,
   title = "Book Through Trusted Partners",
@@ -22,6 +26,8 @@ export function AffiliateCTA({
   variant = "default",
 }: AffiliateCTAProps) {
   const links = getAffiliateLinksForCategory(partners);
+
+  if (links.length === 0) return null;
 
   if (variant === "compact") {
     return (
@@ -31,7 +37,7 @@ export function AffiliateCTA({
             key={link.partner}
             href={link.url}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="sponsored nofollow noopener"
             {...trackingAttrs.affiliateClick(link.partner)}
             onClick={() => handleAffiliateClick(link.partner)}
             className="inline-flex items-center px-5 py-2.5 bg-lake-blue text-white font-bold text-sm rounded-full hover:bg-lake-blue/90 transition-colors"
@@ -53,7 +59,7 @@ export function AffiliateCTA({
             key={link.partner}
             href={link.url}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="sponsored nofollow noopener"
             {...trackingAttrs.affiliateClick(link.partner)}
             onClick={() => handleAffiliateClick(link.partner)}
             className="group flex flex-col p-5 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 transition-all hover:-translate-y-0.5"

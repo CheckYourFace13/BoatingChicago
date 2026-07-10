@@ -4,7 +4,8 @@ import type { CategoryPage } from "@/types";
 import { getCategoryBySlug } from "@/data/categories";
 import { getVendorsBySlugs } from "@/data/vendors";
 import { getCategoryImage } from "@/data/images";
-import { AffiliateCTA } from "./AffiliateCTA";
+import { getOffersForPage } from "@/data/affiliate-offers";
+import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
 import { BestForCards } from "./BestForCards";
 import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
@@ -18,12 +19,136 @@ interface CategoryLandingProps {
   category: CategoryPage;
 }
 
+/** Page-specific affiliate section copy — accurate positioning, no false claims */
+const offerSectionCopy: Record<
+  string,
+  { title: string; subtitle: string; variant?: "default" | "alternative"; beforeForm?: boolean }
+> = {
+  "boat-rentals-chicago": {
+    title: "Prefer an Instant-Booking Experience?",
+    subtitle:
+      "Looking for something you can book online today? Browse Chicago jet ski rentals, kayak rentals, speedboat fireworks cruises, and architecture tours. For private boat rentals and party boats, use the Find a Boat form below.",
+    beforeForm: false,
+  },
+  "party-boat-rentals-chicago": {
+    title: "Instant-Booking Party Cruise Option",
+    subtitle:
+      "Want a ready-to-book group experience? The Chicago Tiki Bar Cruise is a ticketed party cruise — not a private party boat charter. For a private party boat with your own captain and schedule, use the form below.",
+    beforeForm: false,
+  },
+  "chicago-playpen-boat-rentals": {
+    title: "Nearby Lake Experiences (Not Playpen Rentals)",
+    subtitle:
+      "These GetYourGuide experiences are not Playpen boat rentals. They are nearby Lake Michigan and downtown water activities you can book online while you arrange a private Playpen charter through our form.",
+    variant: "alternative",
+    beforeForm: false,
+  },
+  "navy-pier-fireworks-boat-rentals": {
+    title: "Book a Chicago Fireworks Cruise",
+    subtitle:
+      "Ticketed fireworks cruises you can book online — including 3D fireworks and Seadog speedboat lake fireworks options. Prefer a private charter for your group? Use the Find a Boat form below.",
+    beforeForm: true,
+  },
+  "air-and-water-show-boat-rentals": {
+    title: "General Lake & River Cruise Alternatives",
+    subtitle:
+      "These experiences do not include Air & Water Show seating or access. They are general Chicago architecture and kayak experiences you can book anytime. For a private boat during Air & Water Show weekend, request a match below.",
+    variant: "alternative",
+    beforeForm: false,
+  },
+  "yacht-rentals-chicago": {
+    title: "Dining Cruise Alternative (Not a Private Yacht)",
+    subtitle:
+      "A brunch, lunch, or dinner river cruise is a ticketed dining experience — not a private yacht charter. For a private yacht with your own crew and itinerary, use the form below.",
+    variant: "alternative",
+    beforeForm: false,
+  },
+  "bachelorette-boat-rentals-chicago": {
+    title: "Ticketed Party Cruise Option",
+    subtitle:
+      "The Tiki Bar Cruise is a fun group experience you can book online. For a private bachelorette boat rental, use the Find a Boat form.",
+    beforeForm: false,
+  },
+  "birthday-boat-rentals-chicago": {
+    title: "Ticketed Party Cruise Option",
+    subtitle:
+      "Prefer an instant-booking cruise for your celebration? Check the Tiki Bar Cruise — or request a private birthday boat below.",
+    beforeForm: false,
+  },
+  "corporate-yacht-charters-chicago": {
+    title: "Dining Cruise Alternative for Groups",
+    subtitle:
+      "A river dining cruise can work for smaller client outings. For a private corporate yacht charter, use the form below.",
+    variant: "alternative",
+    beforeForm: false,
+  },
+  "chicago-architecture-cruises": {
+    title: "Book a Chicago Architecture Cruise",
+    subtitle:
+      "Guided architecture river tours and cruises you can book online through GetYourGuide.",
+    beforeForm: true,
+  },
+  "chicago-fireworks-cruises": {
+    title: "Book a Chicago Fireworks Cruise",
+    subtitle:
+      "Ticketed fireworks cruises on Lake Michigan — book online and skip the pier crowds.",
+    beforeForm: true,
+  },
+  "chicago-jet-ski-rentals": {
+    title: "Book a Chicago Jet Ski Rental",
+    subtitle:
+      "North Avenue Beach jet ski rentals with skyline views — instant booking through GetYourGuide.",
+    beforeForm: true,
+  },
+  "chicago-kayak-rentals": {
+    title: "Book a Chicago Kayak Rental",
+    subtitle:
+      "Downtown kayak rentals on the Chicago River — paddle the skyline for two hours.",
+    beforeForm: true,
+  },
+  "chicago-dining-cruises": {
+    title: "Book a Chicago Dining Cruise",
+    subtitle:
+      "Brunch, lunch, or dinner river cruises with downtown architecture as your backdrop.",
+    beforeForm: true,
+  },
+  "chicago-tiki-cruises": {
+    title: "Book a Chicago Tiki Bar Cruise",
+    subtitle:
+      "A tropical-themed tiki bar cruise on the Chicago River or Lake Michigan.",
+    beforeForm: true,
+  },
+};
+
+const experienceSlugs = new Set([
+  "chicago-architecture-cruises",
+  "chicago-fireworks-cruises",
+  "chicago-jet-ski-rentals",
+  "chicago-kayak-rentals",
+  "chicago-dining-cruises",
+  "chicago-tiki-cruises",
+]);
+
 export function CategoryLanding({ category }: CategoryLandingProps) {
   const vendors = getVendorsBySlugs(category.vendors);
   const related = category.relatedSlugs
     .map((slug) => getCategoryBySlug(slug))
     .filter(Boolean);
   const heroImage = getCategoryImage(category.slug);
+  const pageOffers = getOffersForPage(category.slug);
+  const offerCopy = offerSectionCopy[category.slug];
+  const isExperiencePage = experienceSlugs.has(category.slug);
+  const showOffers = pageOffers.length > 0 && offerCopy;
+  const offersBeforeForm = showOffers && offerCopy.beforeForm !== false && (offerCopy.beforeForm || isExperiencePage);
+
+  const offerBlock = showOffers ? (
+    <AffiliateOfferGrid
+      pageSlug={category.slug}
+      title={offerCopy.title}
+      subtitle={offerCopy.subtitle}
+      variant={offerCopy.variant}
+    />
+  ) : null;
 
   return (
     <>
@@ -68,12 +193,26 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
           >
             {category.intro}
           </p>
-          <div className="mt-6 animate-fade-up" style={{ animationDelay: "220ms" }}>
+          <div className="mt-6 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "220ms" }}>
+            {isExperiencePage && pageOffers[0] ? (
+              <a
+                href={pageOffers[0].url}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md"
+              >
+                {pageOffers[0].ctaLabel} →
+              </a>
+            ) : null}
             <a
               href="#find-a-boat"
-              className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md cta-pulse"
+              className={`inline-flex items-center px-6 py-3 font-bold rounded-full transition-colors shadow-md ${
+                isExperiencePage
+                  ? "bg-white/15 border border-white/40 text-white hover:bg-white/25"
+                  : "bg-coral text-white hover:bg-coral/90 cta-pulse"
+              }`}
             >
-              Get Matched with a Boat →
+              {isExperiencePage ? "Need a Private Boat Instead?" : "Get Matched with a Boat →"}
             </a>
           </div>
         </div>
@@ -82,15 +221,24 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         <BestForCards items={category.bestFor} />
 
-        <AffiliateCTA
-          partners={category.affiliates}
-          title="Book Online — Compare Top Platforms"
-          subtitle="Browse available boats and charters through our trusted affiliate partners. Boating Chicago may earn a commission at no extra cost to you."
-        />
+        {offersBeforeForm && offerBlock}
 
         <section id="find-a-boat">
+          {isExperiencePage && (
+            <div className="mb-6">
+              <h2 className="text-2xl font-extrabold text-lake-blue mb-2">
+                Need a Private Boat, Yacht, or Captain?
+              </h2>
+              <p className="text-gray-600 max-w-2xl">
+                GetYourGuide experiences above are ticketed tours and rentals. For private boat rentals,
+                yacht charters, party boats, or captains for hire, tell us what you need and we&apos;ll match you.
+              </p>
+            </div>
+          )}
           <FindBoatForm source={category.slug} />
         </section>
+
+        {!offersBeforeForm && offerBlock}
 
         {vendors.length > 0 ? (
           <section>
@@ -112,7 +260,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               Local Vendor Listings
             </h2>
             <p className="text-gray-600 mb-4 max-w-lg mx-auto">
-              We&apos;re onboarding Chicago boating partners. Use the form above to get matched, or book through our affiliate partners.
+              We&apos;re onboarding Chicago boating partners. Use the form above to get matched for private rentals and charters.
             </p>
             <Link
               href="/list-your-business"

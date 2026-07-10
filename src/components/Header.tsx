@@ -14,8 +14,18 @@ const navLinks = [
   { href: "/list-your-business", label: "List Your Business", track: true },
 ];
 
+const experienceLinks = [
+  { href: "/chicago-architecture-cruises", label: "Architecture Cruises" },
+  { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
+  { href: "/chicago-dining-cruises", label: "Dining Cruises" },
+  { href: "/chicago-tiki-cruises", label: "Tiki Cruises" },
+  { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
+  { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
+];
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [experiencesOpen, setExperiencesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sky-blue/20 shadow-sm">
@@ -24,7 +34,46 @@ export function Header() {
           <Logo size="md" />
 
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {navLinks.slice(0, 4).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <div
+              className="relative"
+              onMouseEnter={() => setExperiencesOpen(true)}
+              onMouseLeave={() => setExperiencesOpen(false)}
+            >
+              <button
+                type="button"
+                className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
+                aria-expanded={experiencesOpen}
+              >
+                Experiences ▾
+              </button>
+              {experiencesOpen && (
+                <div className="absolute left-0 top-full pt-1 z-50">
+                  <div className="w-56 rounded-2xl border border-sky-blue/20 bg-white shadow-lg py-2">
+                    {experienceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block px-4 py-2.5 text-sm font-semibold text-lake-blue hover:bg-light-blue"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {navLinks.slice(4).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -68,6 +117,19 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 {...(link.track ? trackingAttrs.listBusinessClick : {})}
+                className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <p className="px-3 pt-3 pb-1 text-xs font-bold uppercase tracking-wide text-sky-blue">
+              Experiences
+            </p>
+            {experienceLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
                 className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
                 onClick={() => setOpen(false)}
               >

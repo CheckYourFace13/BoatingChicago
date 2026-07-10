@@ -1,4 +1,5 @@
 export type AffiliatePartner =
+  | "getyourguide"
   | "boatsetter"
   | "getmyboat"
   | "fishingbooker"
@@ -10,12 +11,26 @@ export interface AffiliateLink {
   label: string;
   url: string;
   description: string;
+  /** Only enabled partners produce booking CTAs */
+  enabled: boolean;
 }
 
 const env = (key: string, fallback: string) =>
   process.env[key] || fallback;
 
+export const GETYOURGUIDE_PARTNER_ID = "HISQ5ML";
+
 export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
+  getyourguide: {
+    partner: "getyourguide",
+    label: "GetYourGuide",
+    url: env(
+      "NEXT_PUBLIC_AFFILIATE_GETYOURGUIDE",
+      `https://www.getyourguide.com/chicago-l225/?partner_id=${GETYOURGUIDE_PARTNER_ID}&utm_medium=online_publisher&cmp=Boating`
+    ),
+    description: "Book Chicago cruises, tours, jet ski & kayak experiences",
+    enabled: true,
+  },
   boatsetter: {
     partner: "boatsetter",
     label: "Boatsetter",
@@ -24,6 +39,7 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
       "https://www.boatsetter.com/boat-rentals/chicago-il?utm_source=boatingchicago&utm_medium=affiliate"
     ),
     description: "Browse peer-to-peer boat rentals on Lake Michigan",
+    enabled: false,
   },
   getmyboat: {
     partner: "getmyboat",
@@ -33,6 +49,7 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
       "https://www.getmyboat.com/boat-rentals/Chicago--IL--United-States/?utm_source=boatingchicago&utm_medium=affiliate"
     ),
     description: "Compare captained and bareboat rentals in Chicago",
+    enabled: false,
   },
   fishingbooker: {
     partner: "fishingbooker",
@@ -42,6 +59,7 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
       "https://fishingbooker.com/destinations/us-il-chicago?utm_source=boatingchicago&utm_medium=affiliate"
     ),
     description: "Book fishing charters with local Chicago captains",
+    enabled: false,
   },
   viator: {
     partner: "viator",
@@ -51,6 +69,7 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
       "https://www.viator.com/Chicago/d673-ttd?utm_source=boatingchicago&utm_medium=affiliate"
     ),
     description: "Discover Chicago boat tours and experiences",
+    enabled: false,
   },
   custom: {
     partner: "custom",
@@ -60,11 +79,19 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
       "https://boatingchicago.com/#find-a-boat"
     ),
     description: "Book through our preferred Chicago boating partner",
+    enabled: false,
   },
 };
 
+/** Returns only enabled affiliate partners — never blank/dead CTAs */
 export function getAffiliateLinksForCategory(
   partners: AffiliatePartner[]
 ): AffiliateLink[] {
-  return partners.map((p) => affiliateLinks[p]);
+  return partners
+    .map((p) => affiliateLinks[p])
+    .filter((link) => link.enabled);
+}
+
+export function getActiveAffiliatePartners(): AffiliateLink[] {
+  return Object.values(affiliateLinks).filter((link) => link.enabled);
 }

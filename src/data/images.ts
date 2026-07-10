@@ -213,6 +213,20 @@ export const siteImages = {
     src: "/images/chicago/vendors-cta.jpg",
     alt: "Chicago marina office and docked boats for boating business partners",
   },
+
+  // —— Experience page heroes ——
+  skylineWater: {
+    src: "/images/chicago/skyline-water.jpg",
+    alt: "Downtown Chicago skyline viewed from Lake Michigan",
+  },
+  sunsetGlass: {
+    src: "/images/chicago/sunset-glass.jpg",
+    alt: "Warm sunset over Lake Michigan with the Chicago skyline in silhouette",
+  },
+  lakeCruise: {
+    src: "/images/chicago/lake-cruise.jpg",
+    alt: "Motor yacht cruising Lake Michigan toward the Chicago skyline",
+  },
 } as const satisfies Record<string, SiteImage>;
 
 export type SiteImageKey = keyof typeof siteImages;
@@ -234,6 +248,12 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "boat-storage-chicago": "boatStorage",
   "boat-detailing-chicago": "boatDetailing",
   "boat-repair-chicago": "boatRepair",
+  "chicago-architecture-cruises": "skylineWater",
+  "chicago-fireworks-cruises": "sunsetGlass",
+  "chicago-jet-ski-rentals": "lakeCruise",
+  "chicago-kayak-rentals": "heroTwilight",
+  "chicago-dining-cruises": "bandYacht",
+  "chicago-tiki-cruises": "heroParty",
 };
 
 /** Homepage popular category grid */
