@@ -14,8 +14,11 @@ export function Logo({ className = "", showText = true, size = "md", variant = "
     lg: { icon: 52, text: "text-3xl" },
   };
   const s = sizes[size];
-  const markFill = variant === "light" ? "#FFD23F" : "#0B3D6B";
-  const waveFill = variant === "light" ? "#4DA6E8" : "#4DA6E8";
+  const skyline = variant === "light" ? "#FFFFFF" : "#0B3D6B";
+  const wave = "#4DA6E8";
+  const waveDeep = variant === "light" ? "#E8F4FD" : "#0B3D6B";
+  const boat = variant === "light" ? "#FFD23F" : "#FF6B4A";
+  const sun = "#FFD23F";
 
   return (
     <Link href="/" className={`inline-flex items-center gap-2.5 ${className}`}>
@@ -27,32 +30,51 @@ export function Logo({ className = "", showText = true, size = "md", variant = "
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <circle cx="48" cy="16" r="7" fill="#FFD23F" opacity="0.95" />
+        {/* Sun */}
+        <circle cx="52" cy="12" r="6.5" fill={sun} />
+
+        {/* Chicago skyline — stepped rectangular towers (not peaks) */}
+        {/* Low left building */}
+        <rect x="6" y="30" width="7" height="16" rx="0.5" fill={skyline} />
+        {/* Mid building */}
+        <rect x="14" y="24" width="6" height="22" rx="0.5" fill={skyline} />
+        {/* Tall tower with antenna (Willis-style) */}
+        <rect x="21" y="14" width="8" height="32" rx="0.5" fill={skyline} />
+        <rect x="24" y="10" width="2" height="5" fill={skyline} />
+        <circle cx="25" cy="9" r="1.2" fill={skyline} />
+        {/* Mid-right tower */}
+        <rect x="30" y="20" width="7" height="26" rx="0.5" fill={skyline} />
+        {/* Hancock-style stepped top */}
+        <rect x="38" y="17" width="6" height="29" rx="0.5" fill={skyline} />
+        <rect x="39.5" y="14" width="3" height="4" fill={skyline} />
+        {/* Shorter right building */}
+        <rect x="45" y="26" width="6" height="20" rx="0.5" fill={skyline} />
+
+        {/* Window accents on tallest tower */}
+        <rect x="23" y="18" width="1.5" height="1.5" fill={variant === "light" ? "#0B3D6B" : "#4DA6E8"} opacity="0.55" />
+        <rect x="26" y="18" width="1.5" height="1.5" fill={variant === "light" ? "#0B3D6B" : "#4DA6E8"} opacity="0.55" />
+        <rect x="23" y="22" width="1.5" height="1.5" fill={variant === "light" ? "#0B3D6B" : "#4DA6E8"} opacity="0.55" />
+        <rect x="26" y="22" width="1.5" height="1.5" fill={variant === "light" ? "#0B3D6B" : "#4DA6E8"} opacity="0.55" />
+
+        {/* Lake Michigan waves */}
         <path
-          d="M8 34 L22 22 L32 30 L44 18 L56 28"
-          stroke={markFill}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          opacity="0.9"
+          d="M4 48 C12 44 18 50 26 46 C34 42 40 48 48 45 C54 43 58 46 60 48 L60 56 L4 56 Z"
+          fill={wave}
         />
         <path
-          d="M6 44 C16 40 24 48 34 44 C44 40 52 46 58 43 L58 50 C48 52 40 48 30 51 C20 54 12 50 6 52 Z"
-          fill={waveFill}
+          d="M4 52 C14 49 22 54 32 51 C42 48 50 52 60 50 L60 56 L4 56 Z"
+          fill={waveDeep}
+          opacity="0.35"
+        />
+
+        {/* Simple boat on the water */}
+        <path
+          d="M18 46 L28 46 L26 50 L16 50 Z"
+          fill={boat}
         />
         <path
-          d="M10 48 C20 45 28 51 38 47 C46 44 52 48 58 46"
-          stroke={variant === "light" ? "#E8F4FD" : "#0B3D6B"}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.45"
-        />
-        <path
-          d="M26 42 L32 36 L40 39 L36 45 L28 46 Z"
-          fill={variant === "light" ? "#FFFFFF" : "#FFFFFF"}
-          stroke={markFill}
-          strokeWidth="1.25"
+          d="M22 46 L22 40 L27 46 Z"
+          fill={boat}
         />
       </svg>
       {showText && (
