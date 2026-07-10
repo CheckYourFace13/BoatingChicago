@@ -73,7 +73,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
   return (
     <div className="relative overflow-hidden rounded-3xl p-8 md:p-10 text-center">
       <Image
-        src={siteImages.sunsetGlass.src}
+        src={siteImages.newsletterSunset.src}
         alt=""
         fill
         sizes="100vw"

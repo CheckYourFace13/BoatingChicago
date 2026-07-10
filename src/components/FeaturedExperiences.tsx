@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { homepageCategories } from "@/data/categories";
-import { getCategoryImage } from "@/data/images";
+import { getFeaturedImage } from "@/data/images";
 import { Reveal } from "./Reveal";
 
 export function FeaturedExperiences() {
@@ -19,7 +19,7 @@ export function FeaturedExperiences() {
       </Reveal>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {featured.map((cat, i) => {
-          const image = getCategoryImage(cat.slug);
+          const image = getFeaturedImage(cat.slug);
           return (
             <Reveal key={cat.slug} delayMs={i * 80}>
               <Link

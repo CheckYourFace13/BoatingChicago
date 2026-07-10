@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getActivePromos } from "@/data/seasonal-promos";
-import { getCategoryImage } from "@/data/images";
+import { getSeasonalImage } from "@/data/images";
 import { Reveal } from "./Reveal";
 
 export function SeasonalHighlights() {
@@ -20,8 +20,7 @@ export function SeasonalHighlights() {
       </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {promos.map((promo, i) => {
-          const slug = promo.href.replace(/^\//, "");
-          const image = getCategoryImage(slug);
+          const image = getSeasonalImage(promo.id);
           return (
             <Reveal key={promo.id} delayMs={i * 70}>
               <Link

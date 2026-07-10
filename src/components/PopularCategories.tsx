@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { homepageCategories } from "@/data/categories";
-import { getCategoryImage } from "@/data/images";
+import { getHomeCategoryImage } from "@/data/images";
 import { Reveal } from "./Reveal";
 
 export function PopularCategories() {
@@ -17,7 +17,7 @@ export function PopularCategories() {
       </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {homepageCategories.map((cat, i) => {
-          const image = getCategoryImage(cat.slug);
+          const image = getHomeCategoryImage(cat.slug);
           return (
             <Reveal key={cat.slug} delayMs={i * 60}>
               <Link

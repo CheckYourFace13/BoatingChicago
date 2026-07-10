@@ -29,8 +29,8 @@ export default function VendorsPage() {
     <>
       <section className="relative min-h-[40vh] flex items-end overflow-hidden text-white">
         <Image
-          src={siteImages.marinaSlips.src}
-          alt={siteImages.marinaSlips.alt}
+          src={siteImages.vendorsHero.src}
+          alt={siteImages.vendorsHero.alt}
           fill
           priority
           sizes="100vw"
@@ -58,7 +58,7 @@ export default function VendorsPage() {
           <div className="relative overflow-hidden rounded-3xl border border-sky-blue/20 mb-12">
             <div className="absolute inset-0">
               <Image
-                src={siteImages.partyBoat.src}
+                src={siteImages.vendorsCta.src}
                 alt=""
                 fill
                 sizes="100vw"

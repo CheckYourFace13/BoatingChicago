@@ -30,7 +30,7 @@ export function WhyBoatingChicago() {
     <section className="relative overflow-hidden rounded-3xl">
       <div className="absolute inset-0">
         <Image
-          src={siteImages.skylineWater.src}
+          src={siteImages.whyChicago.src}
           alt=""
           fill
           sizes="100vw"
