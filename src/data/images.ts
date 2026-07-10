@@ -3,55 +3,55 @@ export interface SiteImage {
   alt: string;
 }
 
-/** High-resolution Unsplash photography for Lake Michigan / Chicago boating atmosphere */
+/** Chicago / Lake Michigan scenery — local assets in /public/images/chicago */
 export const siteImages = {
   heroSunset: {
-    src: "https://images.unsplash.com/photo-1477414348463-c04d34ae63bf?auto=format&fit=crop&w=2400&q=80",
-    alt: "Chicago skyline at dusk reflecting over the water",
+    src: "/images/chicago/hero-sunset.jpg",
+    alt: "Chicago skyline at sunset viewed from a boat on Lake Michigan",
   },
   heroBoats: {
-    src: "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?auto=format&fit=crop&w=2400&q=80",
-    alt: "Navy Pier and boats along the Chicago lakefront",
+    src: "/images/chicago/hero-boats.jpg",
+    alt: "Navy Pier and recreational boats on Lake Michigan in Chicago",
   },
   partyBoat: {
-    src: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1600&q=80",
-    alt: "Friends celebrating on a yacht with city views behind them",
+    src: "/images/chicago/party-boat.jpg",
+    alt: "Friends celebrating on a party boat with the Chicago skyline behind them",
   },
   yachtDeck: {
-    src: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&w=1600&q=80",
-    alt: "Guests on a luxury yacht deck at golden hour",
+    src: "/images/chicago/yacht-deck.jpg",
+    alt: "Guests relaxing on a luxury yacht deck at golden hour on Lake Michigan",
   },
   lakeCruise: {
-    src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80",
-    alt: "Motor yacht cruising open water toward an evening sky",
+    src: "/images/chicago/lake-cruise.jpg",
+    alt: "Motor yacht cruising Lake Michigan toward the Chicago skyline",
   },
   sailLake: {
-    src: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1600&q=80",
-    alt: "Sailboat cutting across bright summer water",
+    src: "/images/chicago/sail-lake.jpg",
+    alt: "Sailboat on Lake Michigan with the Chicago skyline on the horizon",
   },
   marinaSlips: {
-    src: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1600&q=80",
-    alt: "Boats lined up in marina slips on a clear day",
+    src: "/images/chicago/marina-slips.jpg",
+    alt: "Boats docked in a Chicago marina harbor on Lake Michigan",
   },
   skylineWater: {
-    src: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&w=1600&q=80",
-    alt: "Downtown Chicago towers under a summer sky",
+    src: "/images/chicago/skyline-water.jpg",
+    alt: "Downtown Chicago skyline viewed from Lake Michigan",
   },
   fireworksGlow: {
-    src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80",
-    alt: "Fireworks bursting over dark water at night",
+    src: "/images/chicago/fireworks-glow.jpg",
+    alt: "Fireworks over Lake Michigan with the Chicago skyline and Navy Pier glowing at night",
   },
   fishingMorning: {
-    src: "https://images.unsplash.com/photo-1519709525797-0e4d9df83bbb?auto=format&fit=crop&w=1600&q=80",
-    alt: "Early morning fishing on calm lake water",
+    src: "/images/chicago/fishing-morning.jpg",
+    alt: "Early morning fishing charter on Lake Michigan near the Chicago skyline",
   },
   beachCrowd: {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
-    alt: "Sunny shoreline stretch of sand and open water",
+    src: "/images/chicago/beach-crowd.jpg",
+    alt: "Chicago lakefront beach and Playpen boats anchored on Lake Michigan",
   },
   sunsetGlass: {
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80",
-    alt: "Warm sunset light over open water",
+    src: "/images/chicago/sunset-glass.jpg",
+    alt: "Warm sunset over Lake Michigan with the Chicago skyline in silhouette",
   },
 } as const satisfies Record<string, SiteImage>;
 
@@ -84,6 +84,7 @@ export const heroSlideshow: SiteImageKey[] = [
   "heroSunset",
   "partyBoat",
   "heroBoats",
+  "fishingMorning",
   "lakeCruise",
   "sunsetGlass",
 ];
@@ -91,6 +92,6 @@ export const heroSlideshow: SiteImageKey[] = [
 export const sceneryBand: SiteImageKey[] = [
   "skylineWater",
   "partyBoat",
-  "lakeCruise",
+  "fishingMorning",
   "yachtDeck",
 ];

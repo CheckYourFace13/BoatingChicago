@@ -5,7 +5,7 @@ import { Reveal } from "./Reveal";
 const captions = [
   "Chicago skyline from the water",
   "Summer parties on Lake Michigan",
-  "Golden-hour lake cruises",
+  "Fishing charters at sunrise",
   "Yacht decks at sunset",
 ];
 
