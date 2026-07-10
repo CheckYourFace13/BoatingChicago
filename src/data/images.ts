@@ -254,6 +254,8 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "chicago-kayak-rentals": "heroTwilight",
   "chicago-dining-cruises": "bandYacht",
   "chicago-tiki-cruises": "heroParty",
+  "chicago-sailing-charters": "boatRentals",
+  "chicago-sunset-cruises": "heroSunset",
 };
 
 /** Homepage popular category grid */

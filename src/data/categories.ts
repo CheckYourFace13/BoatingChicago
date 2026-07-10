@@ -549,6 +549,97 @@ export const categories: CategoryPage[] = [
     ],
     vendors: [],
   },
+  {
+    slug: "chicago-sailing-charters",
+    title: "Chicago Sailing Charters",
+    seoTitle: "Chicago Sailing Charters | Private Sailboat & Skyline Sails on Lake Michigan",
+    seoDescription:
+      "Book Chicago sailing charters on Lake Michigan — private sailboat charters with captain, skyline sails, sunset sailing, fireworks sails, and more. Instant booking plus private charter matching.",
+    headline: "Chicago Sailing Charters on Lake Michigan",
+    intro:
+      "Sailing Lake Michigan with the Chicago skyline on the horizon is one of the city’s best on-water experiences. Options range from shared skyline sails and special sailing events to private sailboat charters with a captain. Private charters give your group the boat; shared sails are ticketed outings with set schedules. Confirm captain, passenger limits, and departure details on each booking page — and use our Find a Boat form if you want additional private charter matching beyond instant-booking listings.",
+    bestFor: [
+      { title: "Private sail charters", description: "Your group, a captain, and Lake Michigan skyline views", icon: "⛵" },
+      { title: "Sunset sails", description: "Golden-hour private or shared sailing experiences", icon: "🌅" },
+      { title: "Special events", description: "Fireworks sails and concert-series sailing outings", icon: "🎆" },
+      { title: "Visitors & locals", description: "Instant-booking sails plus custom charter matching", icon: "🏙️" },
+    ],
+    affiliates: ["getyourguide", "viator"],
+    relatedSlugs: [
+      "chicago-sunset-cruises",
+      "yacht-rentals-chicago",
+      "navy-pier-fireworks-boat-rentals",
+      "boat-rentals-chicago",
+      "captains-for-hire-chicago",
+    ],
+    faqs: [
+      {
+        question: "What is the difference between a private sailing charter and a shared skyline sail?",
+        answer:
+          "A private sailing charter is typically reserved for your group with a captain. A shared skyline sail is usually a ticketed outing with other guests and a set schedule. Always confirm inclusions on the booking page.",
+      },
+      {
+        question: "Do Chicago sailing charters include a captain?",
+        answer:
+          "Many private sailboat charter listings include a captain, but requirements vary by product. Review the Viator listing details for captain, passenger limits, and departure information before booking.",
+      },
+      {
+        question: "Can I book sailing for fireworks or special events?",
+        answer:
+          "Yes — some sailing products are fireworks sails or special event series. Availability depends on the season and schedule listed on the booking page.",
+      },
+      {
+        question: "What if I need a different private boat or yacht?",
+        answer:
+          "Use our Find a Boat form for additional private yacht, party boat, or captain matching beyond the instant-booking sailing options on this page.",
+      },
+      sharedFaqs.weather,
+    ],
+    vendors: [],
+  },
+  {
+    slug: "chicago-sunset-cruises",
+    title: "Chicago Sunset Cruises",
+    seoTitle: "Chicago Sunset Cruises & Sunset Sailing | Lake Michigan Golden Hour",
+    seoDescription:
+      "Book Chicago sunset cruises and private sunset sailing charters on Lake Michigan. Golden-hour skyline views — ticketed cruises and private charter options.",
+    headline: "Chicago Sunset Cruises & Sunset Sailing",
+    intro:
+      "Golden hour on Lake Michigan turns the Chicago skyline into a postcard — warm light, calm water, and downtown glowing as the sun drops. Sunset options include ticketed sunset cruises and private sunset sailing charters. Ticketed cruises are shared experiences with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request — use Find a Boat if you need a tailored charter.",
+    bestFor: [
+      { title: "Date nights", description: "Golden-hour skyline views from the water", icon: "💕" },
+      { title: "Visitors", description: "A classic Chicago summer evening on the lake", icon: "🌆" },
+      { title: "Private sunset sails", description: "Your group on a private sailing charter at dusk", icon: "⛵" },
+      { title: "Easy booking", description: "Ticketed sunset cruises with online reservations", icon: "🎟️" },
+    ],
+    affiliates: ["getyourguide", "viator"],
+    relatedSlugs: [
+      "chicago-sailing-charters",
+      "chicago-dining-cruises",
+      "yacht-rentals-chicago",
+      "navy-pier-fireworks-boat-rentals",
+    ],
+    faqs: [
+      {
+        question: "What is a Chicago sunset cruise?",
+        answer:
+          "A sunset cruise is typically a ticketed boat outing timed for golden hour on Lake Michigan or nearby waters. It is a shared experience unless the listing specifically says private.",
+      },
+      {
+        question: "Is a private sunset sailing charter the same as a sunset cruise?",
+        answer:
+          "No. A private sunset sailing charter is reserved for your group. A sunset cruise is usually a ticketed shared sailing or cruise. Check each product page for details.",
+      },
+      {
+        question: "When do sunset cruises run in Chicago?",
+        answer:
+          "Sunset timing changes through the season. Departure times are listed on each booking page and may sell out on peak summer weekends.",
+      },
+      sharedFaqs.weather,
+      sharedFaqs.booking,
+    ],
+    vendors: [],
+  },
 ];
 
 export function getCategoryBySlug(slug: string): CategoryPage | undefined {

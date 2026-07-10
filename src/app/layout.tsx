@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  other: {
+    "fo-verify": "7b72da17-a330-4781-882c-eace69f3b67c",
+  },
 };
 
 export default function RootLayout({

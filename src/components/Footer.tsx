@@ -28,6 +28,8 @@ const experienceLinks = [
   { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
   { href: "/chicago-dining-cruises", label: "Dining Cruises" },
   { href: "/chicago-tiki-cruises", label: "Tiki Cruises" },
+  { href: "/chicago-sailing-charters", label: "Sailing Charters" },
+  { href: "/chicago-sunset-cruises", label: "Sunset Cruises" },
   { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
   { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
 ];

@@ -31,7 +31,7 @@ export default function HomePage() {
 
         <AffiliateOfferGrid
           title="Book Chicago Boating Experiences"
-          subtitle="Ticketed cruises, jet ski rentals, and kayak adventures you can book online — architecture tours, fireworks cruises, and more. These are not private boat rentals; for private charters use Find a Boat below."
+          subtitle="Ticketed cruises, private yacht and sail charters, kayak rentals, and more you can book online through GetYourGuide and Viator. These are not the same as a custom private boat match — for private rentals and captains, use Find a Boat below."
           offers={homepageOffers}
           pageSlug="homepage"
         />
@@ -47,7 +47,7 @@ export default function HomePage() {
                 Need a Private Boat, Yacht, or Captain?
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                GetYourGuide covers ticketed cruises and water experiences. For private boat rentals, yacht charters, party boats, fishing charters, and captains, tell us what you need — we&apos;ll match you with local options, usually within 24 hours.
+                GetYourGuide and Viator cover ticketed cruises, sailing experiences, and some private charter listings. For custom private boat rentals, yacht charters, party boats, fishing charters, and captains, tell us what you need — we&apos;ll match you with local options, usually within 24 hours.
               </p>
             </div>
             <FindBoatForm source="homepage" />

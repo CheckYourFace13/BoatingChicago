@@ -25,28 +25,28 @@ const offerSectionCopy: Record<
   { title: string; subtitle: string; variant?: "default" | "alternative"; beforeForm?: boolean }
 > = {
   "boat-rentals-chicago": {
-    title: "Prefer an Instant-Booking Experience?",
+    title: "Instant-Booking Charters, Cruises and Rentals",
     subtitle:
-      "Looking for something you can book online today? Browse Chicago jet ski rentals, kayak rentals, speedboat fireworks cruises, and architecture tours. For private boat rentals and party boats, use the Find a Boat form below.",
+      "Book online for private yacht and sailboat charters, kayak rentals, speedboat architecture cruises, and more. These are instant-booking alternatives — for custom private boat rentals and party boats, use the Find a Boat form below.",
     beforeForm: false,
   },
   "party-boat-rentals-chicago": {
-    title: "Instant-Booking Party Cruise Option",
+    title: "Instant-Booking Party & Cruise Alternatives",
     subtitle:
-      "Want a ready-to-book group experience? The Chicago Tiki Bar Cruise is a ticketed party cruise — not a private party boat charter. For a private party boat with your own captain and schedule, use the form below.",
+      "Ticketed tiki cruises, concert sails, fireworks sails, and skyline sails you can book online. These are not private party boat charters. For a private party boat with your own captain and schedule, use the form below.",
     beforeForm: false,
   },
   "chicago-playpen-boat-rentals": {
     title: "Nearby Lake Experiences (Not Playpen Rentals)",
     subtitle:
-      "These GetYourGuide experiences are not Playpen boat rentals. They are nearby Lake Michigan and downtown water activities you can book online while you arrange a private Playpen charter through our form.",
+      "These experiences are not Playpen boat rentals. They are nearby Lake Michigan and downtown water activities you can book online while you arrange a private Playpen charter through our form.",
     variant: "alternative",
     beforeForm: false,
   },
   "navy-pier-fireworks-boat-rentals": {
-    title: "Book a Chicago Fireworks Cruise",
+    title: "Book a Chicago Fireworks Cruise or Sail",
     subtitle:
-      "Ticketed fireworks cruises you can book online — including 3D fireworks and Seadog speedboat lake fireworks options. Prefer a private charter for your group? Use the Find a Boat form below.",
+      "Ticketed fireworks cruises and fireworks sails you can book online — including Navy Pier marina fireworks, fireworks sails, and GetYourGuide fireworks options. Prefer a private charter for your group? Use the Find a Boat form below.",
     beforeForm: true,
   },
   "air-and-water-show-boat-rentals": {
@@ -57,10 +57,9 @@ const offerSectionCopy: Record<
     beforeForm: false,
   },
   "yacht-rentals-chicago": {
-    title: "Dining Cruise Alternative (Not a Private Yacht)",
+    title: "Instant-Booking Private Yacht & Sailing Charters",
     subtitle:
-      "A brunch, lunch, or dinner river cruise is a ticketed dining experience — not a private yacht charter. For a private yacht with your own crew and itinerary, use the form below.",
-    variant: "alternative",
+      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For custom private yacht matching, use the Find a Boat form below. Dining cruises are ticketed shared experiences, not private yachts.",
     beforeForm: false,
   },
   "bachelorette-boat-rentals-chicago": {
@@ -76,22 +75,22 @@ const offerSectionCopy: Record<
     beforeForm: false,
   },
   "corporate-yacht-charters-chicago": {
-    title: "Dining Cruise Alternative for Groups",
+    title: "Instant-Booking Charter & Dining Alternatives",
     subtitle:
-      "A river dining cruise can work for smaller client outings. For a private corporate yacht charter, use the form below.",
+      "Private yacht charter and dining cruise options for groups. For a custom corporate yacht charter, use the form below.",
     variant: "alternative",
     beforeForm: false,
   },
   "chicago-architecture-cruises": {
     title: "Book a Chicago Architecture Cruise",
     subtitle:
-      "Guided architecture river tours and cruises you can book online through GetYourGuide.",
+      "Guided architecture river tours, speedboat architecture cruises, and river sightseeing you can book online.",
     beforeForm: true,
   },
   "chicago-fireworks-cruises": {
-    title: "Book a Chicago Fireworks Cruise",
+    title: "Book a Chicago Fireworks Cruise or Sail",
     subtitle:
-      "Ticketed fireworks cruises on Lake Michigan — book online and skip the pier crowds.",
+      "Ticketed fireworks cruises and fireworks sails on Lake Michigan — book online and skip the pier crowds.",
     beforeForm: true,
   },
   "chicago-jet-ski-rentals": {
@@ -103,7 +102,7 @@ const offerSectionCopy: Record<
   "chicago-kayak-rentals": {
     title: "Book a Chicago Kayak Rental",
     subtitle:
-      "Downtown kayak rentals on the Chicago River — paddle the skyline for two hours.",
+      "Downtown river kayak rentals and Ohio Street Beach Lake Michigan kayak rentals — different locations and products. Compare and book online.",
     beforeForm: true,
   },
   "chicago-dining-cruises": {
@@ -118,6 +117,18 @@ const offerSectionCopy: Record<
       "A tropical-themed tiki bar cruise on the Chicago River or Lake Michigan.",
     beforeForm: true,
   },
+  "chicago-sailing-charters": {
+    title: "Book Chicago Sailing & Private Sail Charters",
+    subtitle:
+      "Skyline sails, private sailboat charters with captain, day sailing, sunset sailing, fireworks sails, and special sailing events — book online. For additional private charter matching, use the form below.",
+    beforeForm: true,
+  },
+  "chicago-sunset-cruises": {
+    title: "Book a Chicago Sunset Cruise or Sail",
+    subtitle:
+      "Sunset cruises and private sunset sailing charters on Lake Michigan. Ticketed and private options available — confirm details on each booking page.",
+    beforeForm: true,
+  },
 };
 
 const experienceSlugs = new Set([
@@ -127,6 +138,8 @@ const experienceSlugs = new Set([
   "chicago-kayak-rentals",
   "chicago-dining-cruises",
   "chicago-tiki-cruises",
+  "chicago-sailing-charters",
+  "chicago-sunset-cruises",
 ]);
 
 export function CategoryLanding({ category }: CategoryLandingProps) {
@@ -147,6 +160,16 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
       title={offerCopy.title}
       subtitle={offerCopy.subtitle}
       variant={offerCopy.variant}
+      footerOfferId={
+        category.slug === "chicago-architecture-cruises"
+          ? "viator-chicago-river-destination"
+          : undefined
+      }
+      footerLabel={
+        category.slug === "chicago-architecture-cruises"
+          ? "See More Chicago River Experiences"
+          : undefined
+      }
     />
   ) : null;
 

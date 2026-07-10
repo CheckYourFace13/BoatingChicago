@@ -66,10 +66,10 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
     label: "Viator",
     url: env(
       "NEXT_PUBLIC_AFFILIATE_VIATOR",
-      "https://www.viator.com/Chicago/d673-ttd?utm_source=boatingchicago&utm_medium=affiliate"
+      "https://www.viator.com/Chicago-attractions/Chicago-River/d673-a1219?pid=P00309183&mcid=42383&medium=link"
     ),
-    description: "Discover Chicago boat tours and experiences",
-    enabled: false,
+    description: "Chicago cruises, sailing charters, kayaking & experiences",
+    enabled: true,
   },
   custom: {
     partner: "custom",
