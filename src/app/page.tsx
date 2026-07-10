@@ -7,6 +7,7 @@ import { EmailSignup } from "@/components/EmailSignup";
 import { VendorSignupCTA } from "@/components/VendorSignupCTA";
 import { FindBoatForm } from "@/components/FindBoatForm";
 import { AffiliateCTA } from "@/components/AffiliateCTA";
+import { SceneryBand } from "@/components/SceneryBand";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -24,7 +25,11 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         <PopularCategories />
         <FeaturedExperiences />
+      </div>
 
+      <SceneryBand />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         <section id="find-a-boat">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>

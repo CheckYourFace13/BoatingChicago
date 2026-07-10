@@ -10,11 +10,123 @@
 }
 
 body {
-  background: #ffffff;
+  background: #f7fbff;
   color: #1a1a2e;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Page-load fade */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+/* Slow Ken Burns on hero photography */
+@keyframes ken-burns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.08) translate(-1.5%, -1%);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 6.5s ease-out forwards;
+}
+
+.animate-ken-burns-slow {
+  animation: ken-burns 18s ease-out infinite alternate;
+}
+
+/* Soft CTA pulse */
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(255, 107, 74, 0.35);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(255, 107, 74, 0.55);
+  }
+}
+
+.cta-pulse {
+  animation: cta-pulse 2.8s ease-in-out infinite;
+}
+
+/* Moving water layers at bottom of hero */
+.wave-layer {
+  background: radial-gradient(
+      ellipse 80% 50% at 20% 100%,
+      rgba(77, 166, 232, 0.35),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 70% 40% at 70% 100%,
+      rgba(255, 255, 255, 0.12),
+      transparent 55%
+    );
+}
+
+.wave-layer-a {
+  animation: wave-drift 10s ease-in-out infinite alternate;
+}
+
+.wave-layer-b {
+  animation: wave-drift 14s ease-in-out infinite alternate-reverse;
+  opacity: 0.7;
+}
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(-4%) translateY(4%);
+  }
+  to {
+    transform: translateX(4%) translateY(-2%);
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-ken-burns,
+  .animate-ken-burns-slow,
+  .cta-pulse,
+  .wave-layer-a,
+  .wave-layer-b {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

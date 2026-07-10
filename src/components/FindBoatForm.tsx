@@ -49,7 +49,7 @@ export function FindBoatForm({ source = "homepage", compact = false }: FindBoatF
         className="bg-white rounded-3xl p-8 md:p-10 text-center shadow-xl border border-sky-blue/20"
         {...trackingAttrs.findBoatSubmit}
       >
-        <div className="text-5xl mb-4">🚤</div>
+        <div className="text-sm font-bold tracking-widest uppercase text-sky-blue mb-3">Request received</div>
         <h3 className="text-2xl font-extrabold text-lake-blue mb-2">You&apos;re All Set!</h3>
         <p className="text-gray-600 mb-6">
           We received your request and will match you with the best Chicago boating options. Expect to hear back within 24 hours.

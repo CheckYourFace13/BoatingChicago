@@ -11,9 +11,11 @@ export function Logo({ className = "", showText = true, size = "md", variant = "
   const sizes = {
     sm: { icon: 32, text: "text-lg" },
     md: { icon: 40, text: "text-xl" },
-    lg: { icon: 56, text: "text-3xl" },
+    lg: { icon: 52, text: "text-3xl" },
   };
   const s = sizes[size];
+  const markFill = variant === "light" ? "#FFD23F" : "#0B3D6B";
+  const waveFill = variant === "light" ? "#4DA6E8" : "#4DA6E8";
 
   return (
     <Link href="/" className={`inline-flex items-center gap-2.5 ${className}`}>
@@ -25,35 +27,32 @@ export function Logo({ className = "", showText = true, size = "md", variant = "
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <circle cx="52" cy="12" r="8" fill="#FFD23F" />
-        <rect x="8" y="38" width="4" height="14" fill="#0B3D6B" rx="1" />
-        <rect x="14" y="34" width="4" height="18" fill="#0B3D6B" rx="1" />
-        <rect x="20" y="30" width="4" height="22" fill="#0B3D6B" rx="1" />
-        <rect x="26" y="26" width="4" height="26" fill="#0B3D6B" rx="1" />
-        <rect x="32" y="32" width="4" height="20" fill="#4DA6E8" rx="1" />
-        <rect x="38" y="28" width="4" height="24" fill="#4DA6E8" rx="1" />
-        <rect x="44" y="34" width="4" height="18" fill="#0B3D6B" rx="1" />
+        <circle cx="48" cy="16" r="7" fill="#FFD23F" opacity="0.95" />
         <path
-          d="M4 46 C16 42, 28 44, 40 42 C48 41, 56 43, 62 46 L62 52 C48 48, 32 50, 16 52 L4 52 Z"
-          fill="#4DA6E8"
+          d="M8 34 L22 22 L32 30 L44 18 L56 28"
+          stroke={markFill}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          opacity="0.9"
         />
         <path
-          d="M6 50 C18 47, 30 49, 42 47 C50 46, 58 48, 62 50 L62 54 C50 52, 34 54, 18 56 L6 56 Z"
-          fill="#0B3D6B"
-          opacity="0.3"
+          d="M6 44 C16 40 24 48 34 44 C44 40 52 46 58 43 L58 50 C48 52 40 48 30 51 C20 54 12 50 6 52 Z"
+          fill={waveFill}
         />
         <path
-          d="M28 38 L36 32 L44 36 L40 42 L32 44 L26 42 Z"
-          fill="#FFFFFF"
-          stroke="#0B3D6B"
-          strokeWidth="1.5"
-        />
-        <path d="M32 32 L32 24" stroke="#FF6B4A" strokeWidth="2" strokeLinecap="round" />
-        <path
-          d="M32 24 L28 30 M32 24 L36 30"
-          stroke="#FF6B4A"
+          d="M10 48 C20 45 28 51 38 47 C46 44 52 48 58 46"
+          stroke={variant === "light" ? "#E8F4FD" : "#0B3D6B"}
           strokeWidth="1.5"
           strokeLinecap="round"
+          opacity="0.45"
+        />
+        <path
+          d="M26 42 L32 36 L40 39 L36 45 L28 46 Z"
+          fill={variant === "light" ? "#FFFFFF" : "#FFFFFF"}
+          stroke={markFill}
+          strokeWidth="1.25"
         />
       </svg>
       {showText && (

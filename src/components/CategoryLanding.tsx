@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { CategoryPage } from "@/types";
 import { getCategoryBySlug } from "@/data/categories";
 import { getVendorsBySlugs } from "@/data/vendors";
+import { getCategoryImage } from "@/data/images";
 import { AffiliateCTA } from "./AffiliateCTA";
 import { BestForCards } from "./BestForCards";
 import { FAQ } from "./FAQ";
@@ -21,6 +23,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
   const related = category.relatedSlugs
     .map((slug) => getCategoryBySlug(slug))
     .filter(Boolean);
+  const heroImage = getCategoryImage(category.slug);
 
   return (
     <>
@@ -44,14 +47,31 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
         }}
       />
 
-      <section className="bg-gradient-to-br from-lake-blue to-sky-blue text-white py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">{category.headline}</h1>
-          <p className="text-lg text-white/90 max-w-3xl leading-relaxed">{category.intro}</p>
-          <div className="mt-6">
+      <section className="relative min-h-[52vh] md:min-h-[58vh] flex items-end overflow-hidden text-white">
+        <Image
+          src={heroImage.src}
+          alt={heroImage.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover animate-ken-burns-slow"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-lake-blue/90 via-lake-blue/65 to-lake-blue/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-lake-blue/80 via-transparent to-black/20" />
+        <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 max-w-3xl animate-fade-up">
+            {category.headline}
+          </h1>
+          <p
+            className="text-lg text-white/90 max-w-3xl leading-relaxed animate-fade-up"
+            style={{ animationDelay: "120ms" }}
+          >
+            {category.intro}
+          </p>
+          <div className="mt-6 animate-fade-up" style={{ animationDelay: "220ms" }}>
             <a
               href="#find-a-boat"
-              className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md"
+              className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md cta-pulse"
             >
               Get Matched with a Boat →
             </a>
