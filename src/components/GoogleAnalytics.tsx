@@ -1,44 +1,33 @@
-"use client";
-
 import Script from "next/script";
-import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import {
-  getGaMeasurementId,
-  isGaEnabled,
-  trackPageView,
-} from "@/lib/analytics";
+
+interface GoogleAnalyticsProps {
+  measurementId?: string;
+}
 
 /**
- * Official gtag.js GA4 loader. Renders nothing when NEXT_PUBLIC_GA_MEASUREMENT_ID is unset.
+ * Official gtag.js loader for the App Router root layout (Server Component).
+ * Returns null when NEXT_PUBLIC_GA_MEASUREMENT_ID is missing.
+ * Page views are handled separately by GoogleAnalyticsPageView.
  */
-export function GoogleAnalytics() {
-  const measurementId = getGaMeasurementId();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (!isGaEnabled() || !pathname) return;
-    const search = searchParams?.toString();
-    const path = search ? `${pathname}?${search}` : pathname;
-    trackPageView(path);
-  }, [pathname, searchParams]);
-
-  if (!measurementId) return null;
+export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+  const id = measurementId?.trim();
+  if (!id) return null;
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
         strategy="afterInteractive"
       />
       <Script id="ga4-gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          function gtag(){window.dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('config', '${measurementId}', { send_page_view: false });
+          gtag('config', '${id}', {
+            send_page_view: false
+          });
         `}
       </Script>
     </>

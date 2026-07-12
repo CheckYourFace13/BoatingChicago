@@ -4,6 +4,7 @@ import { Outfit } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { AdSenseScript } from "@/components/AdSenseScript";
 import { siteConfig } from "@/config/site";
 import {
@@ -42,6 +43,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read on the server so Hostinger runtime env is available (not only build inline).
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+
   return (
     <html lang="en" className={`${outfit.variable} h-full`}>
       <head>
@@ -73,8 +77,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <GoogleAnalytics measurementId={gaMeasurementId} />
         <Suspense fallback={null}>
-          <GoogleAnalytics />
+          <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
         </Suspense>
         <AdSenseScript />
         <Header />
