@@ -7,6 +7,7 @@ import { EmailSignup } from "@/components/EmailSignup";
 import { VendorSignupCTA } from "@/components/VendorSignupCTA";
 import { FindBoatForm } from "@/components/FindBoatForm";
 import { AffiliateOfferGrid } from "@/components/AffiliateOfferGrid";
+import { AdSenseBlock } from "@/components/AdSenseBlock";
 import { SceneryBand } from "@/components/SceneryBand";
 import { getHomepageOffers } from "@/data/affiliate-offers";
 import { buildMetadata } from "@/lib/seo";
@@ -24,6 +25,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+        <AdSenseBlock slot="homepage-top" className="mb-4" />
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         <PopularCategories />

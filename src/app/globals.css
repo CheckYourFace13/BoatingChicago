@@ -130,3 +130,9 @@ html {
     transition: none;
   }
 }
+
+/* Reserve space for AdSense units to reduce CLS when ads load */
+.adsense-block {
+  min-height: 100px;
+  max-width: 100%;
+}

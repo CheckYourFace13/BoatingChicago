@@ -174,7 +174,14 @@ export function AffiliateOfferGrid({
 
       {showDisclosure && (
         <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-          {affiliateDisclosure}
+          {affiliateDisclosure}{" "}
+          <a
+            href="/affiliate-disclosure"
+            className="underline hover:text-gray-700"
+          >
+            Learn more
+          </a>
+          .
         </p>
       )}
     </section>

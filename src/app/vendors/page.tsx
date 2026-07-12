@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPublishedVendors } from "@/data/vendors";
 import { VendorCard } from "@/components/VendorCard";
+import { TrackedLink } from "@/components/TrackedLink";
 import { buildMetadata } from "@/lib/seo";
-import { trackingAttrs } from "@/lib/tracking";
 import { siteImages } from "@/data/images";
 
 export const metadata = buildMetadata({
@@ -85,13 +85,14 @@ export default function VendorsPage() {
                   </div>
                 ))}
               </div>
-              <Link
+              <TrackedLink
                 href="/list-your-business"
-                {...trackingAttrs.listBusinessClick}
+                track="list_business_click"
+                trackParams={{ page: "vendors" }}
                 className="inline-flex items-center px-8 py-4 bg-coral text-white font-bold text-lg rounded-full hover:bg-coral/90 transition-colors shadow-md"
               >
                 List Your Business →
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         )}
@@ -101,13 +102,14 @@ export default function VendorsPage() {
           <p className="text-white/85 mb-6 max-w-lg mx-auto">
             Free basic listings, featured placements, sponsored spots, and direct lead access — built for operators who want more bookings on Lake Michigan.
           </p>
-          <Link
+          <TrackedLink
             href="/list-your-business"
-            {...trackingAttrs.listBusinessClick}
+            track="list_business_click"
+            trackParams={{ page: "vendors_bottom" }}
             className="inline-flex items-center px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors"
           >
             Get Listed on Boating Chicago →
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </>

@@ -34,7 +34,7 @@ export function FindBoatForm({ source = "homepage", compact = false }: FindBoatF
         throw new Error(err.error || "Something went wrong");
       }
 
-      trackEvent("find_boat_submit", { source });
+      trackEvent("lead_form_submit", { source });
       setStatus("success");
       form.reset();
     } catch (err) {
@@ -47,7 +47,7 @@ export function FindBoatForm({ source = "homepage", compact = false }: FindBoatF
     return (
       <div
         className="bg-white rounded-3xl p-8 md:p-10 text-center shadow-xl border border-sky-blue/20"
-        {...trackingAttrs.findBoatSubmit}
+        {...trackingAttrs.leadFormSubmit}
       >
         <div className="text-sm font-bold tracking-widest uppercase text-sky-blue mb-3">Request received</div>
         <h3 className="text-2xl font-extrabold text-lake-blue mb-2">You&apos;re All Set!</h3>
@@ -178,7 +178,7 @@ export function FindBoatForm({ source = "homepage", compact = false }: FindBoatF
       <button
         type="submit"
         disabled={status === "loading"}
-        {...trackingAttrs.findBoatSubmit}
+        {...trackingAttrs.leadFormSubmit}
         className="mt-4 w-full py-4 bg-coral text-white font-bold text-lg rounded-full hover:bg-coral/90 transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "loading" ? "Submitting..." : "Find My Boat →"}

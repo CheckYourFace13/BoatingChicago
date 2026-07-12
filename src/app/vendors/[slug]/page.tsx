@@ -4,6 +4,8 @@ import { getPublishedVendorBySlug, getPublishedVendors } from "@/data/vendors";
 import { getCategoryBySlug } from "@/data/categories";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
+import { buildLocalBusinessSchema } from "@/lib/schema";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { FindBoatForm } from "@/components/FindBoatForm";
 
 interface PageProps {
@@ -38,18 +40,25 @@ export default async function VendorDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Vendors", path: "/vendors" },
+          { name: vendor.name, path: `/vendors/${vendor.slug}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: vendor.name,
-            description: vendor.description,
-            url: `${siteConfig.url}/vendors/${vendor.slug}`,
-            areaServed: vendor.location,
-            priceRange: vendor.pricingRange,
-          }),
+          __html: JSON.stringify(
+            buildLocalBusinessSchema({
+              name: vendor.name,
+              description: vendor.description,
+              url: `${siteConfig.url}/vendors/${vendor.slug}`,
+              areaServed: vendor.location,
+              priceRange: vendor.pricingRange,
+            })
+          ),
         }}
       />
 

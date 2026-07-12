@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "./Logo";
-import { trackingAttrs } from "@/lib/tracking";
+import { TrackedLink } from "./TrackedLink";
 
 const navLinks = [
   { href: "/boat-rentals-chicago", label: "Boat Rentals" },
@@ -75,16 +75,27 @@ export function Header() {
               )}
             </div>
 
-            {navLinks.slice(4).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                {...(link.track ? trackingAttrs.listBusinessClick : {})}
-                className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.slice(4).map((link) =>
+              link.track ? (
+                <TrackedLink
+                  key={link.href}
+                  href={link.href}
+                  track="list_business_click"
+                  trackParams={{ page: "header" }}
+                  className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
+                >
+                  {link.label}
+                </TrackedLink>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -114,17 +125,29 @@ export function Header() {
 
         {open && (
           <nav className="lg:hidden pb-4 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                {...(link.track ? trackingAttrs.listBusinessClick : {})}
-                className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.track ? (
+                <TrackedLink
+                  key={link.href}
+                  href={link.href}
+                  track="list_business_click"
+                  trackParams={{ page: "header_mobile" }}
+                  className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </TrackedLink>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
             <p className="px-3 pt-3 pb-1 text-xs font-bold uppercase tracking-wide text-sky-blue">
               Experiences
             </p>
@@ -140,7 +163,7 @@ export function Header() {
             ))}
             <Link
               href="/#find-a-boat"
-              className="block mt-2 text-center px-5 py-2.5 bg-coral text-white font-bold text-sm rounded-full"
+              className="block mx-3 mt-3 text-center px-5 py-3 bg-coral text-white font-bold text-sm rounded-full"
               onClick={() => setOpen(false)}
             >
               Find a Boat

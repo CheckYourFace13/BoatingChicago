@@ -6,14 +6,17 @@ import { getVendorsBySlugs } from "@/data/vendors";
 import { getCategoryImage } from "@/data/images";
 import { getOffersForPage } from "@/data/affiliate-offers";
 import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
+import { AdSenseBlock } from "./AdSenseBlock";
 import { BestForCards } from "./BestForCards";
+import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
 import { FindBoatForm } from "./FindBoatForm";
 import { VendorCard } from "./VendorCard";
 import { EmailSignup } from "./EmailSignup";
+import { TrackedLink } from "./TrackedLink";
 import { siteConfig } from "@/config/site";
-import { trackingAttrs } from "@/lib/tracking";
+import { buildArticleSchema } from "@/lib/schema";
 
 interface CategoryLandingProps {
   category: CategoryPage;
@@ -176,6 +179,12 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
   return (
     <>
       <FAQSchema faqs={category.faqs} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: category.title, path: `/${category.slug}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -192,6 +201,18 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               url: siteConfig.url,
             },
           }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildArticleSchema({
+              title: category.seoTitle || category.title,
+              description: category.seoDescription,
+              path: `/${category.slug}`,
+            })
+          ),
         }}
       />
 
@@ -244,6 +265,8 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         <BestForCards items={category.bestFor} />
 
+        <AdSenseBlock slot="guide-mid" />
+
         {offersBeforeForm && offerBlock}
 
         <section id="find-a-boat">
@@ -285,17 +308,20 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
             <p className="text-gray-600 mb-4 max-w-lg mx-auto">
               We&apos;re onboarding Chicago boating partners. Use the form above to get matched for private rentals and charters.
             </p>
-            <Link
+            <TrackedLink
               href="/list-your-business"
-              {...trackingAttrs.listBusinessClick}
+              track="list_business_click"
+              trackParams={{ page: category.slug }}
               className="inline-flex text-sky-blue font-bold hover:underline"
             >
               List your boating business →
-            </Link>
+            </TrackedLink>
           </section>
         )}
 
         <FAQ faqs={category.faqs} />
+
+        <AdSenseBlock slot="guide-bottom" />
 
         {related.length > 0 && (
           <section>

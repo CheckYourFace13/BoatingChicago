@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { HeroSlideshow } from "./HeroSlideshow";
-import { trackingAttrs } from "@/lib/tracking";
+import { TrackedLink } from "./TrackedLink";
 
 export function Hero() {
   return (
@@ -40,13 +40,14 @@ export function Hero() {
             >
               Find a Boat →
             </Link>
-            <Link
+            <TrackedLink
               href="/list-your-business"
-              {...trackingAttrs.listBusinessClick}
+              track="list_business_click"
+              trackParams={{ page: "homepage_hero" }}
               className="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md text-white font-bold text-lg rounded-full border border-white/35 hover:bg-white/20 transition-all"
             >
               List Your Boating Business
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { trackingAttrs } from "@/lib/tracking";
+import { TrackedLink } from "./TrackedLink";
 
 export function VendorSignupCTA() {
   return (
@@ -13,13 +12,14 @@ export function VendorSignupCTA() {
         <p className="text-gray-600 mb-6 leading-relaxed">
           Get found by thousands of locals and visitors searching for Chicago boat rentals, charters, and services. We&apos;re now accepting boating partners — free basic listings, featured placements, and direct lead access available.
         </p>
-        <Link
+        <TrackedLink
           href="/list-your-business"
-          {...trackingAttrs.listBusinessClick}
+          track="list_business_click"
+          trackParams={{ page: "homepage_vendor_cta" }}
           className="inline-flex items-center px-6 py-3 bg-lake-blue text-white font-bold rounded-full hover:bg-lake-blue/90 transition-colors shadow-md"
         >
           List Your Business →
-        </Link>
+        </TrackedLink>
       </div>
     </section>
   );

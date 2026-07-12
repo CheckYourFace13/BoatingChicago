@@ -40,6 +40,14 @@ const vendorLinks = [
   { href: "/#find-a-boat", label: "Request a Quote" },
 ];
 
+const companyLinks = [
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+];
+
 export function Footer() {
   return (
     <footer className="bg-lake-blue text-white mt-auto">
@@ -98,6 +106,16 @@ export function Footer() {
             <h3 className="font-bold text-sun-yellow mb-4">For Vendors</h3>
             <ul className="space-y-2 mb-6">
               {vendorLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="font-bold text-sun-yellow mb-4">Company</h3>
+            <ul className="space-y-2 mb-6">
+              {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
                     {link.label}

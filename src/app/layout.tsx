@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Outfit } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { siteConfig } from "@/config/site";
-import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/schema";
+import {
+  buildOrganizationSchema,
+  buildPublisherLocalBusinessSchema,
+  buildWebSiteSchema,
+} from "@/lib/schema";
 import "./globals.css";
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,6 +45,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} h-full`}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -49,8 +65,18 @@ export default function RootLayout({
             __html: JSON.stringify(buildWebSiteSchema()),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildPublisherLocalBusinessSchema()),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
+        <AdSenseScript />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

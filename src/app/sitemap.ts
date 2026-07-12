@@ -10,6 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, changeFrequency: "weekly" as const, priority: 1 },
     { url: `${baseUrl}/vendors`, changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${baseUrl}/list-your-business`, changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: `${baseUrl}/about`, changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${baseUrl}/contact`, changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${baseUrl}/affiliate-disclosure`, changeFrequency: "yearly" as const, priority: 0.4 },
+    { url: `${baseUrl}/privacy`, changeFrequency: "yearly" as const, priority: 0.4 },
+    { url: `${baseUrl}/terms`, changeFrequency: "yearly" as const, priority: 0.4 },
   ];
 
   const categoryPages = getAllCategorySlugs().map((slug) => ({

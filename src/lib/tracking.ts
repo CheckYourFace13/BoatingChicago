@@ -1,27 +1,32 @@
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    dataLayer?: Record<string, unknown>[];
-  }
-}
+import {
+  trackAnalyticsEvent,
+  type AnalyticsEventName,
+} from "@/lib/analytics";
 
 export type TrackEventName =
   | "affiliate_click"
-  | "find_boat_submit"
+  | "lead_form_submit"
   | "newsletter_signup"
-  | "list_business_click";
+  | "list_business_click"
+  | "find_boat_submit"; // legacy — maps to lead_form_submit
 
+/**
+ * Site-wide event helper. Prefer this for all conversion events.
+ * Routes through the analytics layer (GA4 when configured).
+ */
 export function trackEvent(
   name: TrackEventName,
   params?: Record<string, string>
 ): void {
-  if (typeof window === "undefined") return;
+  const eventName: AnalyticsEventName =
+    name === "find_boat_submit" ? "lead_form_submit" : name;
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: name, ...params });
+  trackAnalyticsEvent(eventName, params);
 
-  if (window.gtag) {
-    window.gtag("event", name, params);
+  // Keep legacy find_boat_submit in dataLayer when callers still use it
+  if (name === "find_boat_submit" && typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "find_boat_submit", ...params });
   }
 }
 
@@ -30,7 +35,9 @@ export const trackingAttrs = {
     "data-track": "affiliate_click" as const,
     "data-partner": partner,
   }),
-  findBoatSubmit: { "data-track": "find_boat_submit" as const },
+  leadFormSubmit: { "data-track": "lead_form_submit" as const },
+  /** @deprecated Use leadFormSubmit */
+  findBoatSubmit: { "data-track": "lead_form_submit" as const },
   newsletterSignup: { "data-track": "newsletter_signup" as const },
   listBusinessClick: { "data-track": "list_business_click" as const },
 };
