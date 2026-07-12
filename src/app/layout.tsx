@@ -57,6 +57,7 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <AdSenseScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -81,7 +82,6 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
         </Suspense>
-        <AdSenseScript />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

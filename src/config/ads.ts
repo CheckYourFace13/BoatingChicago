@@ -25,8 +25,10 @@ function envFlag(key: string): string | undefined {
   return value || undefined;
 }
 
+/** AdSense publisher client (ca-pub-…). Single source for meta, script, and units. */
 export function getAdSenseClient(): string | undefined {
-  return envFlag("NEXT_PUBLIC_ADSENSE_CLIENT");
+  // Direct NEXT_PUBLIC_ access so Next can inline at build time when set.
+  return process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || undefined;
 }
 
 export function isAdSenseEnabled(): boolean {

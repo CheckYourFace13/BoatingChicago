@@ -1,22 +1,22 @@
-"use client";
-
-import Script from "next/script";
-import { getAdSenseClient, isAdSenseEnabled } from "@/config/ads";
+import { getAdSenseClient } from "@/config/ads";
 
 /**
- * Loads the AdSense script once globally when NEXT_PUBLIC_ADSENSE_CLIENT is set.
+ * Server-rendered AdSense verification + loader for the document <head>.
+ * Emits a real <meta> and <script> into raw HTML (not next/script preload-only).
+ * Returns null when NEXT_PUBLIC_ADSENSE_CLIENT is unset.
  */
 export function AdSenseScript() {
   const client = getAdSenseClient();
-  if (!isAdSenseEnabled() || !client) return null;
+  if (!client) return null;
 
   return (
-    <Script
-      id="adsense-loader"
-      async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
+    <>
+      <meta name="google-adsense-account" content={client} />
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
+        crossOrigin="anonymous"
+      />
+    </>
   );
 }
