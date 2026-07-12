@@ -123,15 +123,36 @@ npm run build
 
 ---
 
-## Deploy workflow
+## Deploy workflow (auto-deploy)
 
-1. Push code to GitHub (include `package-lock.json`, exclude `node_modules/` and `.env.local`).
-2. Connect repo in Hostinger hPanel.
-3. Set environment variables (at minimum `NEXT_PUBLIC_SITE_URL` and email vars).
-4. Click **Deploy** — Hostinger runs install → build → start.
-5. Attach custom domain and enable SSL.
+BoatingChicago.com should deploy automatically on every push to `main` — no manual Deploy click needed after GitHub is connected.
 
-After changing `NEXT_PUBLIC_*` variables, **redeploy/rebuild** — they are embedded at build time.
+### One-time Hostinger setup
+
+1. In **hPanel → Websites**, open the BoatingChicago Node.js app.
+2. Confirm it is linked to GitHub repo `CheckYourFace13/BoatingChicago`, branch **`main`**.
+   - If not connected: Dashboard **⋮** → **Connect to GitHub** → authorize Hostinger → select this repo + `main`.
+3. Keep build settings:
+   - Install: `npm ci` (or `npm install`)
+   - Build: `npm run build`
+   - Start: `npm run start`
+   - Node.js: **20**
+4. Set environment variables in hPanel (at minimum `NEXT_PUBLIC_SITE_URL` and email vars).
+5. Run one successful deploy so Hostinger has a baseline.
+
+After that, **`git push origin main` triggers install → build → start automatically.**
+
+### Day-to-day workflow
+
+```bash
+git add -A
+git commit -m "Your message"
+git push origin main
+```
+
+Wait for Hostinger to finish the build (check deploy logs in hPanel if the site looks stale).
+
+After changing `NEXT_PUBLIC_*` variables in hPanel, trigger a redeploy/rebuild — they are embedded at build time.
 
 ---
 
