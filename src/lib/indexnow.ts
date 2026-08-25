@@ -1,7 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { INDEXNOW_ENDPOINT, INDEXNOW_KEY } from "@/config/indexnow";
 import { getAllCategorySlugs } from "@/data/categories";
-import { getAllGuideSlugs } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
 import { promises as fs } from "fs";
 import path from "path";
@@ -29,7 +28,6 @@ export function getAllIndexableUrls(): string[] {
   const urls = [
     ...staticPaths.map((p) => `${base}${p}`),
     ...getAllCategorySlugs().map((slug) => `${base}/${slug}`),
-    ...getAllGuideSlugs().map((slug) => `${base}/${slug}`),
     ...getPublishedVendors().map((v) => `${base}/vendors/${v.slug}`),
   ];
 
