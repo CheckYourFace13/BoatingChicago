@@ -69,11 +69,12 @@ Verify build completes with no errors before deploying.
 
 ## Deployment notes
 
-1. **Host:** Deploy to [Hostinger Node.js Web Apps](https://www.hostinger.com/web-apps-hosting/nextjs-hosting). See **[HOSTINGER_DEPLOYMENT.md](./HOSTINGER_DEPLOYMENT.md)** for exact build/start settings.
-2. **Set all env vars** in Hostinger hPanel before going live.
-3. **Verify Resend domain:** Add and verify `boatingchicago.com` in Resend so `FROM_EMAIL` can send.
-4. **Test forms:** Submit a Find a Boat form and newsletter signup — confirm email arrives at `LEADS_TO_EMAIL`.
-5. **Vendor listings:** Sample vendors are hidden (`isPublished: false`). Set `isPublished: true` in `src/data/vendors.ts` when onboarding real partners.
+1. **Host:** Deploy to [Hostinger Node.js Web Apps](https://www.hostinger.com/web-apps-hosting/nextjs-hosting). See **[HOSTINGER_DEPLOYMENT.md](./HOSTINGER_DEPLOYMENT.md)** for build/start settings and **auto-deploy from `main`**.
+2. **Routine deploys:** `git push origin main` — Hostinger Git auto-deploy + GitHub Action **Deploy production** verify. No manual Redeploy for normal updates once GitHub is connected.
+3. **Set all env vars** in Hostinger hPanel before going live (they persist across deploys).
+4. **Verify Resend domain:** Add and verify `boatingchicago.com` in Resend so `FROM_EMAIL` can send.
+5. **Test forms:** Submit a Find a Boat form and newsletter signup — confirm email arrives at `LEADS_TO_EMAIL`.
+6. **Vendor listings:** Sample vendors are hidden (`isPublished: false`). Set `isPublished: true` in `src/data/vendors.ts` when onboarding real partners.
 
 ---
 

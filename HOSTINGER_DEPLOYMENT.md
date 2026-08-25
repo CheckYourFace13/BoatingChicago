@@ -6,6 +6,36 @@ This app uses **Next.js App Router** with standard `next build` / `next start` �
 
 ---
 
+## Cursor / day-to-day deploy workflow
+
+Production deploys from GitHub branch **`main`** via **Hostinger native Git auto-deploy** (preferred). No SSH upload. No laptop online required.
+
+1. Make changes
+2. Run `npm run build` locally (or rely on GitHub Actions build gate)
+3. Commit
+4. `git push origin main`
+5. Hostinger automatically pulls, installs, builds, and restarts
+6. GitHub Action **Deploy production** waits for `/api/deploy-info` to match the pushed SHA, then verifies live URLs and submits IndexNow
+
+**You should not need to open Hostinger hPanel for routine deploys** once Git auto-deploy shows as connected.
+
+### GitHub Actions
+
+| Workflow | File | Role |
+|---|---|---|
+| **Deploy production** | `.github/workflows/deploy-production.yml` | Build gate → wait for Hostinger SHA → verify live site → IndexNow submit |
+| **IndexNow** | `.github/workflows/indexnow.yml` | Weekly + manual reconciliation (and fallback after successful deploy) |
+
+No GitHub repository secrets are required for the default Hostinger Git auto-deploy path.
+
+Optional (not required for auto-deploy):
+
+| Secret | Purpose |
+|---|---|
+| _(none for Method A)_ | Hostinger GitHub App manages its own webhook |
+
+---
+
 ## Hostinger hPanel settings
 
 When adding the website via **Websites → Add Website → Node.js Apps → Import Git Repository**, use:
@@ -19,6 +49,7 @@ When adding the website via **Websites → Add Website → Node.js Apps → Impo
 | **Start command** | `npm run start` |
 | **Output directory** | `.next` (auto-detected for Next.js) |
 | **Entry file** | Leave blank — Next.js starts via the npm `start` script |
+| **Branch** | **`main`** |
 
 The `start` script binds to `0.0.0.0` and reads `PORT` from the Hostinger runtime:
 
@@ -34,9 +65,37 @@ npm run start -- -p $PORT -H 0.0.0.0
 
 ---
 
+## One-time: enable / repair Git auto-deploy
+
+Hostinger’s Node.js product uses a **GitHub App** (not a manual SSH deploy). Auto-deployment is on when the connection is healthy.
+
+1. In **hPanel → Websites**, open the BoatingChicago **Node.js** app.
+2. Confirm status is **Connected with GitHub** for repo `CheckYourFace13/BoatingChicago`, branch **`main`**.
+3. If status is **GitHub is not connected**, **Repository access missing**, or **Different GitHub account**:
+   - Dashboard **⋮** → **Connect to GitHub** / **Manage access**
+   - Authorize the Hostinger GitHub App
+   - Grant access to **`CheckYourFace13/BoatingChicago`**
+   - Confirm branch = **`main`**
+4. Click **Redeploy** once so production matches latest `main`.
+5. Confirm the dashboard shows an **Auto-deployment** chip.
+
+After that, every `git push origin main` should trigger install → build → start automatically.
+
+Docs: [Hostinger GitHub deployments](https://docs.hostinger.com/node.js/github)
+
+### If pushes no longer deploy
+
+1. Check hPanel connection status (table above).
+2. Check GitHub → repo **Settings → Integrations → Applications** (or account **Settings → Applications**) for the Hostinger app — re-grant repo access if revoked.
+3. Click **Redeploy** in hPanel.
+4. Watch GitHub Action **Deploy production** — it fails loudly if `/api/deploy-info` never shows the new SHA.
+
+---
+
 ## Environment variables
 
-Set these in **Hostinger hPanel → your app → Environment variables** (not committed to Git).
+Set these in **Hostinger hPanel → your app → Environment variables** (not committed to Git).  
+They **persist across deploys** — automation must not overwrite them.
 
 ### Required for production SEO
 
@@ -54,50 +113,74 @@ Set this **before** running the build on Hostinger so metadata and sitemap URLs 
 | `FROM_EMAIL` | `Boating Chicago <hello@boatingchicago.com>` |
 | `RESEND_API_KEY` | `re_xxxxxxxx` |
 
-Verify your domain in [Resend](https://resend.com) before going live.
+### Recommended / optional
 
-### Recommended
-
-| Variable | Purpose |
-|---|---|
-| `CONTACT_EMAIL` | Footer contact address |
-| `NODE_ENV` | `production` (Hostinger usually sets this automatically) |
-| `NEXT_PUBLIC_AFFILIATE_BOATSETTER` | Tracked Boatsetter URL |
-| `NEXT_PUBLIC_AFFILIATE_GETMYBOAT` | Tracked GetMyBoat URL |
-| `NEXT_PUBLIC_AFFILIATE_FISHINGBOOKER` | Tracked FishingBooker URL |
-| `NEXT_PUBLIC_AFFILIATE_VIATOR` | Tracked Viator URL |
-| `NEXT_PUBLIC_AFFILIATE_CUSTOM` | Custom partner link |
-
-### Optional
-
-| Variable | Purpose |
-|---|---|
-| `SENDGRID_API_KEY` | Use SendGrid instead of Resend |
-| `MAILCHIMP_API_KEY` | Sync newsletter signups to Mailchimp |
-| `MAILCHIMP_LIST_ID` | Mailchimp audience ID |
-| `CONVERTKIT_API_KEY` | Sync newsletter signups to ConvertKit |
-| `CONVERTKIT_FORM_ID` | ConvertKit form ID |
-
-### Boot behavior without env vars
-
-The app **does not require env vars to start**:
-
-- Missing affiliate vars → built-in fallback URLs in `src/config/affiliates.ts`
-- Missing email vars → forms still return success; leads logged server-side via `console.log`
-- Missing `NEXT_PUBLIC_SITE_URL` → defaults to `https://boatingchicago.com`
+See `.env.example` for affiliate, AdSense, GA4, IndexNow, and newsletter vars.
 
 > **Note:** Local file storage (`data/leads.json`) may not persist on Hostinger's managed runtime. Configure Resend email for reliable lead capture in production.
+
+---
+
+## Verify a deployment
+
+After a push (or after Redeploy):
+
+```bash
+# Must match the commit you just pushed (full SHA from git rev-parse HEAD)
+curl -s "https://boatingchicago.com/api/deploy-info"
+```
+
+Expect JSON like:
+
+```json
+{
+  "buildSha": "<full git sha>",
+  "nodeEnv": "production",
+  "environment": "production",
+  "indexNowKeyPath": "/525facfab7354dd3a4f44e32baa456a1.txt",
+  "time": "..."
+}
+```
+
+Also check:
+
+| URL | Expect |
+|---|---|
+| `https://boatingchicago.com/` | HTTP 200 |
+| `https://boatingchicago.com/api/deploy-info` | HTTP 200, `buildSha` = pushed commit |
+| `https://boatingchicago.com/sitemap.xml` | HTTP 200 |
+| `https://boatingchicago.com/robots.txt` | HTTP 200 |
+| `https://boatingchicago.com/525facfab7354dd3a4f44e32baa456a1.txt` | HTTP 200, body exactly `525facfab7354dd3a4f44e32baa456a1` |
+
+Local helper (same checks as CI):
+
+```bash
+EXPECTED_SHA=$(git rev-parse HEAD) bash scripts/verify-production.sh
+```
+
+GitHub → **Actions → Deploy production** shows pass/fail for each push.
+
+---
+
+## CDN / cache
+
+Hostinger may serve stale HTML via **hcdn** / Cache Manager after a deploy.
+
+- Native Node.js Git deploy does **not** document an automatic CDN purge API for this app type.
+- CI uses **cache-busting query params** (`?v=<sha>`) when verifying.
+- The IndexNow **canonical** key URL (no query) must still return 200 with the exact body.
+- If deploy-info is new but homepage/key look stale: **hPanel → Advanced → Cache Manager → Purge all**.
+
+Do not add global random `Cache-Control` hacks unless a specific path requires it.
 
 ---
 
 ## DNS setup
 
 1. In Hostinger hPanel, attach **boatingchicago.com** to your Node.js web app.
-2. Point DNS to Hostinger:
-   - If using Hostinger nameservers, the app domain is configured in hPanel.
-   - If using external DNS, add the A record or CNAME Hostinger provides for your web app.
-3. Enable **SSL** (free Let's Encrypt) in hPanel — force HTTPS.
-4. Choose one canonical host (`boatingchicago.com` or `www.boatingchicago.com`) and redirect the other.
+2. Point DNS to Hostinger (nameservers or A/CNAME Hostinger provides).
+3. Enable **SSL** (Let's Encrypt) — force HTTPS.
+4. Choose one canonical host (`boatingchicago.com` or `www`) and redirect the other.
 
 Confirm `NEXT_PUBLIC_SITE_URL=https://boatingchicago.com` matches your canonical domain.
 
@@ -109,11 +192,9 @@ Confirm `NEXT_PUBLIC_SITE_URL=https://boatingchicago.com` matches your canonical
 cd c:\Users\chris\Projects\BoatingChicago
 npm install
 npm run build
-set PORT=3000 && npm run start    # Windows
-# PORT=3000 npm run start         # macOS/Linux
+# Windows PowerShell:
+$env:PORT=3000; npx next start -H 0.0.0.0 -p 3000
 ```
-
-Open [http://localhost:3000](http://localhost:3000) and test forms.
 
 Build without any `.env` file to confirm the app compiles with defaults only:
 
@@ -123,65 +204,43 @@ npm run build
 
 ---
 
-## Deploy workflow (auto-deploy)
+## Recovery if automated deploy fails
 
-BoatingChicago.com should deploy automatically on every push to `main` — no manual Deploy click needed after GitHub is connected.
+| Symptom | Action |
+|---|---|
+| **Deploy production** times out waiting for SHA | Reconnect GitHub in hPanel → **Redeploy** |
+| Build fails in GitHub Actions | Fix TypeScript/build locally; do not expect Hostinger to succeed either |
+| Build fails only on Hostinger | Open **Deployments** log in hPanel; fix Node 20 / install / env issues |
+| `/api/deploy-info` matches but homepage stale | Purge Cache Manager; hard-refresh |
+| IndexNow key 404 | Confirm commit includes key route + rewrite; Redeploy; see IndexNow commits |
+| 503 / app won't start | Confirm `npm run start`; check Runtime Logs |
+| Wrong sitemap URLs | Set `NEXT_PUBLIC_SITE_URL` and Redeploy (embedded at build time) |
 
-### One-time Hostinger setup
+---
 
-1. In **hPanel → Websites**, open the BoatingChicago Node.js app.
-2. Confirm it is linked to GitHub repo `CheckYourFace13/BoatingChicago`, branch **`main`**.
-   - If not connected: Dashboard **⋮** → **Connect to GitHub** → authorize Hostinger → select this repo + `main`.
-3. Keep build settings:
-   - Install: `npm ci` (or `npm install`)
-   - Build: `npm run build`
-   - Start: `npm run start`
-   - Node.js: **20**
-4. Set environment variables in hPanel (at minimum `NEXT_PUBLIC_SITE_URL` and email vars).
-5. Run one successful deploy so Hostinger has a baseline.
+## Why not SSH / archive upload?
 
-After that, **`git push origin main` triggers install → build → start automatically.**
+Safer default for this repo:
 
-### Day-to-day workflow
-
-```bash
-git add -A
-git commit -m "Your message"
-git push origin main
-```
-
-Wait for Hostinger to finish the build (check deploy logs in hPanel if the site looks stale).
-
-After changing `NEXT_PUBLIC_*` variables in hPanel, trigger a redeploy/rebuild — they are embedded at build time.
+| Method | Used? | Why |
+|---|---|---|
+| **A. Native Hostinger Git auto-deploy** | **Yes (preferred)** | Official Node.js path; Hostinger builds on their servers; preserves hPanel env vars |
+| B. Hostinger webhook + GitHub Actions | Only for generic Advanced Git (static/PHP), not Node.js build pipeline | |
+| C. GitHub Actions SSH | Avoided — more secrets, risk of overwriting env / wrong root | |
+| D. Hostinger API archive upload | Avoided for routine deploys — overwrites site contents; needs API token | |
 
 ---
 
 ## Post-launch testing checklist
 
 - [ ] Homepage loads at `https://boatingchicago.com`
+- [ ] `/api/deploy-info` returns current `main` SHA
 - [ ] Category page loads (e.g. `/boat-rentals-chicago`)
-- [ ] `/vendors` shows partner onboarding (no sample vendor listings)
-- [ ] `/vendors/sample-chicago-party-boat-partner` returns 404
 - [ ] Find a Boat form submits and shows success
-- [ ] Lead email arrives at `LEADS_TO_EMAIL` (if Resend configured)
-- [ ] Newsletter signup works
-- [ ] Affiliate links open correctly (Boatsetter, GetMyBoat, etc.)
-- [ ] `https://boatingchicago.com/sitemap.xml` loads with 18 public URLs
+- [ ] `https://boatingchicago.com/sitemap.xml` loads
 - [ ] `https://boatingchicago.com/robots.txt` allows indexing
-- [ ] SSL certificate active (HTTPS, no mixed content warnings)
-- [ ] Submit sitemap in [Google Search Console](https://search.google.com/search-console)
+- [ ] IndexNow key URL returns exact key body
+- [ ] SSL active
+- [ ] Push to `main` triggers Hostinger without opening hPanel
 
----
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| 503 / app won't start | Confirm start command is `npm run start`; check Hostinger deploy logs |
-| Wrong port | Ensure start script uses `$PORT` / `-H 0.0.0.0` |
-| Build fails | Run `npm run build` locally; fix TypeScript errors first |
-| Wrong URLs in sitemap | Set `NEXT_PUBLIC_SITE_URL` and redeploy |
-| Forms succeed but no email | Add `RESEND_API_KEY`, `FROM_EMAIL`, `LEADS_TO_EMAIL`; verify domain in Resend |
-| Node version mismatch | Set Node.js **20** in hPanel to match `package.json` engines |
-
-See also: [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md) for affiliate setup and monetization next steps.
+See also: [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md).

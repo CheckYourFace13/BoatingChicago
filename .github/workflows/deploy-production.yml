@@ -1,0 +1,71 @@
+name: Deploy production
+
+# Hostinger Node.js Git integration deploys on push to main (native auto-deploy).
+# This workflow gates on a successful build, waits for Hostinger to serve the
+# pushed commit, verifies production URLs, then submits IndexNow.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Production build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://boatingchicago.com
+
+      - name: Confirm prebuild wrote BUILD_SHA
+        run: |
+          grep -E 'export const BUILD_SHA' src/generated/build-info.ts
+          echo "GITHUB_SHA=${GITHUB_SHA}"
+
+  verify:
+    name: Verify Hostinger deploy
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Wait for Hostinger + verify production
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          SITE_URL: https://boatingchicago.com
+          MAX_ATTEMPTS: "36"
+          SLEEP_SECS: "30"
+        run: bash scripts/verify-production.sh
+
+      - name: Setup Node (IndexNow)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Submit IndexNow (live sitemap)
+        run: npx --yes tsx scripts/submit-indexnow.ts --live-sitemap --force

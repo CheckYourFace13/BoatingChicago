@@ -4,9 +4,7 @@ on:
   # Weekly full reconciliation against the live sitemap
   schedule:
     - cron: "0 15 * * 1"
-  # After deploys from main, wait for Hostinger then notify
-  push:
-    branches: [main]
+  # Manual re-submit (Deploy production already submits after a successful verify)
   workflow_dispatch:
 
 concurrency:
@@ -48,4 +46,4 @@ jobs:
           exit 1
 
       - name: Submit live sitemap URLs to IndexNow
-        run: npx --yes tsx scripts/submit-indexnow.ts --live-sitemap
+        run: npx --yes tsx scripts/submit-indexnow.ts --live-sitemap --force
