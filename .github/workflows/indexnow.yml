@@ -1,0 +1,51 @@
+name: IndexNow
+
+on:
+  # Weekly full reconciliation against the live sitemap
+  schedule:
+    - cron: "0 15 * * 1"
+  # After deploys from main, wait for Hostinger then notify
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Wait for live IndexNow key file
+        run: |
+          KEY_URL="https://boatingchicago.com/525facfab7354dd3a4f44e32baa456a1.txt"
+          EXPECTED="525facfab7354dd3a4f44e32baa456a1"
+          for i in $(seq 1 24); do
+            CODE=$(curl -sS -o /tmp/indexnow-key.txt -w "%{http_code}" "$KEY_URL" || true)
+            BODY=$(tr -d '\r\n' </tmp/indexnow-key.txt || true)
+            echo "attempt $i: HTTP $CODE body=[$BODY]"
+            if [ "$CODE" = "200" ] && [ "$BODY" = "$EXPECTED" ]; then
+              echo "Key file verified."
+              exit 0
+            fi
+            sleep 25
+          done
+          echo "Key file not reachable with expected body after retries."
+          exit 1
+
+      - name: Submit live sitemap URLs to IndexNow
+        run: npx --yes tsx scripts/submit-indexnow.ts --live-sitemap

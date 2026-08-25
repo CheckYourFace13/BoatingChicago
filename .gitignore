@@ -45,3 +45,6 @@ next-env.d.ts
 # Lead and newsletter data (stored locally during development)
 data/leads.json
 data/newsletter.json
+
+# IndexNow local dedupe state
+data/indexnow-state.json

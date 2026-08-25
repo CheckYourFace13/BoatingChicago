@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import {
   getAllIndexableUrls,
   getIndexNowKeyLocation,
+  notifyIndexNowUrls,
   submitUrlsToIndexNow,
+  sweepIndexNowFromLiveSitemap,
+  verifyIndexNowKeyFile,
 } from "@/lib/indexnow";
 import { INDEXNOW_KEY } from "@/config/indexnow";
 
@@ -15,20 +18,28 @@ function isAuthorized(request: Request): boolean {
   return bearer === secret || query === secret;
 }
 
-/** Status check — confirms key file path is configured. */
+/** Status check — key file + URL counts (no secrets exposed). */
 export async function GET() {
+  const key = await verifyIndexNowKeyFile();
   return NextResponse.json({
     configured: true,
     keyFile: `/${INDEXNOW_KEY}.txt`,
     keyLocation: getIndexNowKeyLocation(),
-    urlCount: getAllIndexableUrls().length,
+    keyVerified: key.ok,
+    keyHttpStatus: key.status,
+    codebaseUrlCount: getAllIndexableUrls().length,
     submitRequiresSecret: Boolean(process.env.INDEXNOW_SUBMIT_SECRET?.trim()),
   });
 }
 
 /**
- * Submit URLs to IndexNow.
- * Body: { "urls": ["https://..."] } or { "all": true }
+ * Submit URLs to IndexNow (server-side only).
+ *
+ * Body options:
+ * - { "all": true } — submit all codebase sitemap URLs
+ * - { "sweep": true } — fetch live sitemap.xml and reconcile
+ * - { "urls": ["https://..."] } — submit specific URLs
+ *
  * Requires INDEXNOW_SUBMIT_SECRET via Authorization: Bearer … or ?secret=
  */
 export async function POST(request: Request) {
@@ -39,15 +50,24 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { urls?: string[]; all?: boolean } = {};
+  let body: { urls?: string[]; all?: boolean; sweep?: boolean } = {};
   try {
     body = await request.json();
   } catch {
     body = {};
   }
 
-  const urls = body.all ? getAllIndexableUrls() : body.urls || [];
-  const result = await submitUrlsToIndexNow(urls);
+  let result;
+  if (body.sweep) {
+    result = await sweepIndexNowFromLiveSitemap();
+  } else if (body.all) {
+    result = await submitUrlsToIndexNow(getAllIndexableUrls(), {
+      requireLiveKey: true,
+      markSweep: true,
+    });
+  } else {
+    result = await notifyIndexNowUrls(body.urls || []);
+  }
 
   return NextResponse.json(result, { status: result.ok ? 200 : 400 });
 }
