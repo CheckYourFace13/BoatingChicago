@@ -1,8 +1,6 @@
 /**
- * IndexNow ownership key — served as plain text at:
- * /525facfab7354dd3a4f44e32baa456a1.txt
- *
- * Hardcoded intentionally (public ownership proof, not a secret).
+ * Backup IndexNow key endpoint (plain text).
+ * next.config rewrites the public key URL here if needed.
  */
 export async function GET() {
   return new Response("525facfab7354dd3a4f44e32baa456a1", {
