@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "Boating Chicago",
   domain: "boatingchicago.com",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://boatingchicago.com",
-  tagline: "Chicago's #1 Local Boating Guide",
+  tagline: "Your guide to boating Chicago & southern Lake Michigan",
   description:
-    "Find the best boat rentals, yacht charters, party boats, fishing charters, and captains on Lake Michigan. Your trusted local guide for Chicago boating.",
+    "Chicago boating weather, lake conditions, marinas, boat launches, news, events, and guides for southern Lake Michigan — plus boat rentals, yacht charters, and local trip matching.",
   contactEmail: process.env.CONTACT_EMAIL || "hello@boatingchicago.com",
   social: {
     instagram: "https://instagram.com/boatingchicago",

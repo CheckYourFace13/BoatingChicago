@@ -4,15 +4,15 @@ import { ExploreRegionCards } from "./ExploreRegionCards";
 
 export function RegionalDiscovery() {
   return (
-    <section>
+    <section id="explore-regions">
       <Reveal>
         <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
           Explore Boating Around Chicago
         </h2>
         <p className="text-gray-600 mb-8 max-w-2xl">
-          Harbors, launches, and lakes within reach of the city — from the
-          Chicago lakefront to Wisconsin, Indiana, and southwest Michigan. Every
-          listing links back to the official source.
+          Boating destinations within reach of Chicago — from the lakefront to
+          inland lakes and southern Lake Michigan harbors in Wisconsin, Indiana,
+          and southwest Michigan. Every listing links back to the official source.
         </p>
       </Reveal>
 
@@ -26,7 +26,6 @@ export function RegionalDiscovery() {
           { href: "/marinas", label: "Marinas" },
           { href: "/boat-launches", label: "Boat launches" },
           { href: "/lakes", label: "Lakes & waterways" },
-          { href: "/events", label: "Events" },
         ].map((link) => (
           <Link
             key={link.href}

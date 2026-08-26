@@ -9,10 +9,11 @@ export function PopularCategories() {
     <section>
       <Reveal>
         <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
-          Popular Boating Categories
+          Ready to Get on the Water?
         </h2>
         <p className="text-gray-600 mb-8 max-w-2xl">
-          Party boats, yacht charters, fishing trips, fireworks cruises — pick a lane and get on the lake.
+          Boat rentals, yacht charters, party boats, fishing, and ticketed
+          experiences — book online or get matched with a local operator.
         </p>
       </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

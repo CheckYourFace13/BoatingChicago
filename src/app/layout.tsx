@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { AdSenseScript } from "@/components/AdSenseScript";
+import { SiteConditionsTicker } from "@/components/SiteConditionsTicker";
 import { siteConfig } from "@/config/site";
 import {
   buildOrganizationSchema,
@@ -23,7 +24,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} | Boat Rentals, Yacht Charters & Lake Michigan Experiences`,
+    default: `${siteConfig.name} | Chicago & Southern Lake Michigan Boating Guide`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -43,7 +44,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Read on the server so Hostinger runtime env is available (not only build inline).
   const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
 
   return (
@@ -83,6 +83,17 @@ export default function RootLayout({
           <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
         </Suspense>
         <Header />
+        <Suspense
+          fallback={
+            <div
+              className="border-b border-sky-blue/25 bg-lake-blue"
+              style={{ height: 36 }}
+              aria-hidden
+            />
+          }
+        >
+          <SiteConditionsTicker />
+        </Suspense>
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

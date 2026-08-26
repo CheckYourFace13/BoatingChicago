@@ -100,6 +100,31 @@ html {
   }
 }
 
+/* Live conditions ticker — seamless loop via duplicated track */
+@keyframes conditions-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.conditions-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: conditions-ticker-scroll 55s linear infinite;
+  will-change: transform;
+}
+
+.conditions-ticker-track.is-paused {
+  animation-play-state: paused;
+}
+
+.conditions-ticker:hover .conditions-ticker-track {
+  animation-play-state: paused;
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;
@@ -120,7 +145,8 @@ html {
   .animate-ken-burns-slow,
   .cta-pulse,
   .wave-layer-a,
-  .wave-layer-b {
+  .wave-layer-b,
+  .conditions-ticker-track {
     animation: none !important;
   }
 

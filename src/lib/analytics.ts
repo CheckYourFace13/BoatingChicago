@@ -21,7 +21,12 @@ export type AnalyticsEventName =
   | "weather_location_select"
   | "news_story_click"
   | "news_source_click"
-  | "boating_brief_view";
+  | "boating_brief_view"
+  | "weather_ticker_click"
+  | "homepage_weather_click"
+  | "homepage_news_click"
+  | "homepage_destination_click"
+  | "homepage_resource_click";
 
 declare global {
   interface Window {

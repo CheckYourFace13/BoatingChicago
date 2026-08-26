@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getDestinationBySlug } from "@/data/geo";
+import { HomepageTrackLink } from "@/components/HomepageTrackLink";
 
 interface RegionCard {
   title: string;
-  /** Primary destination slug — the card is hidden if it is unpublished. */
   destinationSlug: string;
   blurb: string;
   links?: { label: string; href: string }[];
@@ -35,35 +35,38 @@ const REGION_CARDS: RegionCard[] = [
     links: [{ label: "Geneva Lake", href: "/lakes/geneva-lake" }],
   },
   {
-    title: "North Shore Harbors",
+    title: "North Shore — Waukegan & Winthrop Harbor",
     destinationSlug: "waukegan",
     blurb:
-      "Waukegan and Winthrop Harbor anchor the northern Illinois shore between Chicago and the Wisconsin line.",
+      "The northern Illinois Lake Michigan shore between Chicago and the Wisconsin line.",
     links: [
       { label: "Winthrop Harbor", href: "/destinations/winthrop-harbor" },
     ],
   },
   {
-    title: "Southern Wisconsin",
+    title: "Kenosha & Racine",
     destinationSlug: "kenosha",
     blurb:
-      "Kenosha, Racine, and Milwaukee string together the western shore run with public and county-run harbors.",
-    links: [
-      { label: "Racine", href: "/destinations/racine" },
-      { label: "Milwaukee", href: "/destinations/milwaukee" },
-    ],
+      "Southeastern Wisconsin harbors on the western shore run north of the Illinois line.",
+    links: [{ label: "Racine", href: "/destinations/racine" }],
   },
   {
-    title: "Northwest Indiana",
+    title: "Milwaukee",
+    destinationSlug: "milwaukee",
+    blurb:
+      "County and municipal lakefront harbors for boaters working the Milwaukee shoreline.",
+  },
+  {
+    title: "Northwest Indiana — Michigan City",
     destinationSlug: "michigan-city",
     blurb:
-      "Michigan City's Port Authority harbors put the south shore within a fair-weather crossing of Chicago.",
+      "South-shore Port Authority harbors within a fair-weather crossing of Chicago.",
   },
   {
-    title: "Southwest Michigan",
+    title: "Southwest Michigan — New Buffalo",
     destinationSlug: "new-buffalo",
     blurb:
-      "New Buffalo's municipal transient marina opens the Harbor Country coast to visiting boaters.",
+      "Harbor Country's municipal transient marina opens the Michigan coast to visiting boaters.",
   },
 ];
 
@@ -75,30 +78,34 @@ export function ExploreRegionCards() {
   if (!cards.length) return null;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {cards.map((card) => (
         <div
           key={card.destinationSlug}
           className="rounded-2xl border border-sky-blue/20 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
         >
           <h3 className="font-extrabold text-lake-blue text-lg mb-2">
-            <Link
+            <HomepageTrackLink
               href={`/destinations/${card.destinationSlug}`}
+              event="homepage_destination_click"
+              params={{ destination: card.destinationSlug }}
               className="hover:underline"
             >
               {card.title}
-            </Link>
+            </HomepageTrackLink>
           </h3>
           <p className="text-sm text-gray-600 leading-relaxed mb-4">
             {card.blurb}
           </p>
           <div className="flex flex-wrap gap-2">
-            <Link
+            <HomepageTrackLink
               href={`/destinations/${card.destinationSlug}`}
+              event="homepage_destination_click"
+              params={{ destination: card.destinationSlug, cta: "guide" }}
               className="text-xs font-semibold px-3 py-1.5 rounded-full bg-lake-blue text-white hover:bg-lake-blue/90 transition-colors"
             >
               Destination guide
-            </Link>
+            </HomepageTrackLink>
             {card.links?.map((link) => (
               <Link
                 key={link.href}
