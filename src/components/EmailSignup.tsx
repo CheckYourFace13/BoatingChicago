@@ -10,6 +10,16 @@ interface EmailSignupProps {
   variant?: "inline" | "card";
 }
 
+const BRIEF_TOPICS = [
+  "Weekend boating forecast",
+  "Marine alerts",
+  "Lake conditions",
+  "Events",
+  "News",
+  "Fishing",
+  "Destination ideas",
+] as const;
+
 export function EmailSignup({ source = "homepage", variant = "card" }: EmailSignupProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -42,9 +52,9 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         className={variant === "card" ? "text-center py-4" : ""}
         {...trackingAttrs.newsletterSignup}
       >
-        <p className="text-sun-yellow font-bold text-lg">You&apos;re in!</p>
+        <p className="text-sun-yellow font-bold text-lg">You&apos;re on the list</p>
         <p className="text-white/80 text-sm mt-1">
-          You&apos;re on the list for the Chicago Boating Brief.
+          We&apos;ll send the Chicago Boating Brief when it launches — no email yet.
         </p>
       </div>
     );
@@ -80,17 +90,28 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         fill
         sizes="100vw"
         className="object-cover"
+        aria-hidden
       />
       <div className="absolute inset-0 bg-lake-blue/80" />
       <div className="relative z-10">
         <h3 className="text-2xl font-extrabold text-white mb-2">
           Chicago Boating Brief
         </h3>
-        <p className="text-white/85 mb-6 max-w-md mx-auto">
-          Weekend forecasts, lake conditions, marine warnings, events, and
-          destination ideas for Chicago and southern Lake Michigan — when we
-          start sending.
+        <p className="text-white/85 mb-4 max-w-lg mx-auto">
+          Join the waitlist for a practical brief built for Chicago and southern
+          Lake Michigan boaters. We are collecting signups only — we are not
+          sending email yet.
         </p>
+        <ul className="flex flex-wrap justify-center gap-2 mb-6 max-w-xl mx-auto">
+          {BRIEF_TOPICS.map((topic) => (
+            <li
+              key={topic}
+              className="px-3 py-1.5 rounded-full bg-white/15 text-white text-xs font-semibold"
+            >
+              {topic}
+            </li>
+          ))}
+        </ul>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
             name="email"
@@ -98,6 +119,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             required
             placeholder="Enter your email"
             className="flex-1 px-4 py-3 rounded-full border-0 outline-none text-gray-800"
+            aria-label="Email for Chicago Boating Brief waitlist"
           />
           <button
             type="submit"
@@ -105,7 +127,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             {...trackingAttrs.newsletterSignup}
             className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
           >
-            {status === "loading" ? "..." : "Join the Brief"}
+            {status === "loading" ? "..." : "Join the waitlist"}
           </button>
         </form>
         {status === "error" && (

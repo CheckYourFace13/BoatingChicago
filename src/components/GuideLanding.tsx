@@ -12,12 +12,58 @@ import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
 import { FindBoatForm } from "./FindBoatForm";
 import { EmailSignup } from "./EmailSignup";
+import {
+  ExploreResources,
+  type ResourceLink,
+} from "./ExploreResources";
 import { siteConfig } from "@/config/site";
 import { buildArticleSchema } from "@/lib/schema";
 
 interface GuideLandingProps {
   guide: GuidePage;
 }
+
+const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
+  "chicago-playpen-guide": [
+    { href: "/chicago-playpen-boat-rentals", label: "Playpen boat rentals" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+    { href: "/weather", label: "Lake conditions" },
+    { href: "/marinas", label: "Marinas" },
+    { href: "/party-boat-rentals-chicago", label: "Party boats" },
+  ],
+  "chicago-marina-guide": [
+    { href: "/marinas", label: "Marinas directory" },
+    { href: "/chicago-marinas", label: "Chicago marinas overview" },
+    { href: "/boat-launches", label: "Boat launches" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+    { href: "/weather", label: "Boating weather" },
+  ],
+  "lake-michigan-boating-guide": [
+    { href: "/destinations", label: "Destinations" },
+    { href: "/weather", label: "Boating weather" },
+    { href: "/boat-launches", label: "Boat launches" },
+    { href: "/news", label: "Boating news" },
+    { href: "/guides", label: "All guides" },
+  ],
+  "chicago-fishing-guide": [
+    { href: "/fishing-charters-chicago", label: "Fishing charters" },
+    { href: "/weather", label: "Lake conditions" },
+    { href: "/boat-launches", label: "Boat launches" },
+    { href: "/news", label: "Boating news" },
+  ],
+  "chicago-air-and-water-show-boats": [
+    { href: "/air-and-water-show-boat-rentals", label: "Request a show boat" },
+    { href: "/events", label: "Events" },
+    { href: "/weather", label: "Boating weather" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+  ],
+  "chicago-fireworks-cruise-guide": [
+    { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks boats" },
+    { href: "/events", label: "Events" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+    { href: "/weather", label: "Boating weather" },
+  ],
+};
 
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
@@ -41,6 +87,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
       <BreadcrumbSchema
         items={[
           { name: "Home", path: "/" },
+          { name: "Guides", path: "/guides" },
           { name: guide.title, path: `/${guide.slug}` },
         ]}
       />
@@ -210,6 +257,10 @@ export function GuideLanding({ guide }: GuideLandingProps) {
 
         {/* Main FAQs */}
         <FAQ faqs={guide.faqs} title="Frequently Asked Questions" />
+
+        {GUIDE_RESOURCE_LINKS[guide.slug] ? (
+          <ExploreResources links={GUIDE_RESOURCE_LINKS[guide.slug]} />
+        ) : null}
 
         <AdSenseBlock slot="guide-bottom" />
 

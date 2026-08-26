@@ -62,6 +62,30 @@ export default function BoatLaunchesPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
         <QualityDisclaimer />
 
+        <section className="max-w-3xl space-y-4 text-gray-700 leading-relaxed">
+          <h2 className="text-2xl font-extrabold text-lake-blue">
+            Finding a ramp near Chicago
+          </h2>
+          <p>
+            Public launches below are verified against municipal, park-district,
+            county, or state sources. We publish a launch page only when that
+            official listing exists — incomplete tips stay out of the index.
+          </p>
+          <p>
+            Before you tow: confirm fees and stickers on the linked source,
+            check{" "}
+            <Link href="/weather" className="font-semibold text-coral hover:underline">
+              marine weather
+            </Link>
+            , and read the matching{" "}
+            <Link href="/destinations" className="font-semibold text-coral hover:underline">
+              destination
+            </Link>{" "}
+            page for harbor context. Lake Michigan ramps and inland-chain ramps
+            follow different agencies and rules.
+          </p>
+        </section>
+
         {groups.map(({ destination, launches }) => (
           <section key={destination.slug} id={destination.slug}>
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">

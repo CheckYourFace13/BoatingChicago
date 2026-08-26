@@ -61,6 +61,8 @@ export interface BoatLaunch {
   destinationSlug: string;
   lakeSlug?: string;
   summary: string;
+  /** Extra unique planning context — never invent fees or unconfirmed facilities */
+  overview?: string[];
   /** Verified amenity notes only — never invent fees or unconfirmed facilities */
   amenityNotes?: string;
   source: SourceRef;

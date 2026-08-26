@@ -58,6 +58,15 @@ export default async function NewsPage() {
             <Link href="/weather" className="text-sun-yellow hover:underline">
               Boating weather →
             </Link>
+            <Link href="/events" className="text-white/90 hover:underline">
+              Events
+            </Link>
+            <Link href="/destinations" className="text-white/90 hover:underline">
+              Destinations
+            </Link>
+            <Link href="/guides" className="text-white/90 hover:underline">
+              Guides
+            </Link>
             <Link
               href="/navy-pier-fireworks-boat-rentals"
               className="text-white/90 hover:underline"

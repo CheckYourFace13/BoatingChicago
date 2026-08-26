@@ -1,5 +1,6 @@
 import { buildMetadata } from "@/lib/seo";
 import { FindBoatForm } from "@/components/FindBoatForm";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export const metadata = buildMetadata({
   title: "List Your Boating Business on Boating Chicago | Free & Featured Listings",
@@ -75,6 +76,12 @@ const benefits = [
 export default function ListYourBusinessPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "List Your Business", path: "/list-your-business" },
+        ]}
+      />
       <section className="bg-gradient-to-br from-lake-blue to-sky-blue text-white py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">

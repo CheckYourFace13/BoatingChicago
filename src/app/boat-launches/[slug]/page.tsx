@@ -94,6 +94,19 @@ export default async function BoatLaunchPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+        {launch.overview && launch.overview.length > 0 ? (
+          <section className="max-w-3xl space-y-4">
+            <h2 className="text-2xl font-extrabold text-lake-blue">
+              Planning notes
+            </h2>
+            {launch.overview.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="text-gray-700 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </section>
+        ) : null}
+
         {launch.amenityNotes ? (
           <section className="max-w-3xl">
             <h2 className="text-2xl font-extrabold text-lake-blue mb-3">

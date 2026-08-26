@@ -14,6 +14,10 @@ import { FAQSchema } from "./FAQSchema";
 import { FindBoatForm } from "./FindBoatForm";
 import { VendorCard } from "./VendorCard";
 import { EmailSignup } from "./EmailSignup";
+import {
+  CATEGORY_RESOURCE_LINKS,
+  ExploreResources,
+} from "./ExploreResources";
 import { TrackedLink } from "./TrackedLink";
 import { siteConfig } from "@/config/site";
 import { buildArticleSchema } from "@/lib/schema";
@@ -320,6 +324,10 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
         )}
 
         <FAQ faqs={category.faqs} />
+
+        {CATEGORY_RESOURCE_LINKS[category.slug] ? (
+          <ExploreResources links={CATEGORY_RESOURCE_LINKS[category.slug]} />
+        ) : null}
 
         <AdSenseBlock slot="guide-bottom" />
 

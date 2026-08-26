@@ -95,6 +95,12 @@ export default async function HomePage() {
           <h2 className="text-2xl font-extrabold text-lake-blue mb-2">Chicago Boating Guides</h2>
           <p className="text-gray-600 mb-5 text-sm">In-depth local guides for every aspect of boating in Chicago.</p>
           <div className="flex flex-wrap gap-3">
+            <Link
+              href="/guides"
+              className="px-4 py-2 bg-lake-blue text-white font-semibold text-sm rounded-full hover:bg-lake-blue/90 transition-colors"
+            >
+              All guides hub
+            </Link>
             {chicagoBoatingGuides.map((link) => (
               <Link
                 key={link.href}

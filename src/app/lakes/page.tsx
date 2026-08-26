@@ -41,6 +41,30 @@ export default function LakesPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-10">
         <QualityDisclaimer />
 
+        <section className="max-w-3xl space-y-4 text-gray-700 leading-relaxed">
+          <h2 className="text-2xl font-extrabold text-lake-blue">
+            How to use these waterway pages
+          </h2>
+          <p>
+            Each lake page explains the water body Chicago-area boaters actually
+            use, then links to the destinations, marinas, and launches that sit
+            on it. Operational details like fees and hours stay on the official
+            agency pages we cite — we do not invent them.
+          </p>
+          <p>
+            Checking conditions before you go? Use the{" "}
+            <Link href="/weather" className="font-semibold text-coral hover:underline">
+              weather location selector
+            </Link>{" "}
+            for Chicago, the Chain, Lake Geneva, and southern Lake Michigan
+            harbors. Looking for a town or harbor first? Start at{" "}
+            <Link href="/destinations" className="font-semibold text-coral hover:underline">
+              destinations
+            </Link>
+            .
+          </p>
+        </section>
+
         <ul className="space-y-6">
           {lakes.map((lake) => {
             const destinations = lake.destinationSlugs

@@ -96,7 +96,16 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
               href="/chicago-marinas"
               className="text-white/90 hover:underline"
             >
-              Marinas
+              Chicago marinas guide
+            </Link>
+            <Link href="/marinas" className="text-white/90 hover:underline">
+              Marinas directory
+            </Link>
+            <Link href="/destinations" className="text-white/90 hover:underline">
+              Destinations
+            </Link>
+            <Link href="/boat-launches" className="text-white/90 hover:underline">
+              Boat launches
             </Link>
           </div>
         </div>

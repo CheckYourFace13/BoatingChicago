@@ -142,6 +142,43 @@ export default async function MarinaPage({ params }: PageProps) {
           sourceName={marina.source.name}
         />
 
+        {publishedDestination ? (
+          <section className="max-w-3xl space-y-4">
+            <h2 className="text-2xl font-extrabold text-lake-blue">
+              How this harbor fits the destination
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              {publishedDestination.summary}
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              For fees, seasonal dockage, and amenity lists that can change, use
+              the official marina link above. For trip planning around this
+              harbor, start with{" "}
+              <Link
+                href={`/destinations/${publishedDestination.slug}`}
+                className="font-semibold text-coral hover:underline"
+              >
+                boating in {publishedDestination.name}
+              </Link>
+              , check{" "}
+              <Link
+                href={`/weather?location=${publishedDestination.weatherLocationId}`}
+                className="font-semibold text-coral hover:underline"
+              >
+                local marine weather
+              </Link>
+              , and browse{" "}
+              <Link
+                href="/boat-launches"
+                className="font-semibold text-coral hover:underline"
+              >
+                public launches
+              </Link>{" "}
+              if you are trailering in.
+            </p>
+          </section>
+        ) : null}
+
         <section className="rounded-2xl bg-lake-blue text-white p-6 md:p-8">
           <h2 className="text-xl font-extrabold mb-2">
             Slip rates, fees, and hours
