@@ -9,8 +9,13 @@ import { FindBoatForm } from "@/components/FindBoatForm";
 import { AffiliateOfferGrid } from "@/components/AffiliateOfferGrid";
 import { AdSenseBlock } from "@/components/AdSenseBlock";
 import { SceneryBand } from "@/components/SceneryBand";
+import { WhatsHappeningOnTheWater } from "@/components/BoatingBrief";
 import { getHomepageOffers } from "@/data/affiliate-offers";
+import { getChicagoNews } from "@/lib/news";
 import { buildMetadata } from "@/lib/seo";
+import { getChicagoWeather } from "@/lib/weather";
+
+export const revalidate = 900;
 
 export const metadata = buildMetadata({
   title: "Boating Chicago | Boat Rentals, Yacht Charters & Lake Michigan Experiences",
@@ -19,8 +24,10 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
-export default function HomePage() {
+export default async function HomePage() {
   const homepageOffers = getHomepageOffers();
+  const weather = await getChicagoWeather();
+  const news = await getChicagoNews({ alerts: weather.alerts });
 
   return (
     <>
@@ -33,6 +40,8 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         <PopularCategories />
         <FeaturedExperiences />
+
+        <WhatsHappeningOnTheWater weather={weather} news={news.items} />
 
         <AffiliateOfferGrid
           title="Book Chicago Boating Experiences"

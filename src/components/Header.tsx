@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/yacht-rentals-chicago", label: "Yacht Charters" },
   { href: "/party-boat-rentals-chicago", label: "Party Boats" },
   { href: "/fishing-charters-chicago", label: "Fishing" },
+  { href: "/weather", label: "Weather" },
   { href: "/vendors", label: "Vendors" },
   { href: "/list-your-business", label: "List Your Business", track: true },
 ];

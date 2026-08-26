@@ -41,6 +41,8 @@ const vendorLinks = [
 ];
 
 const companyLinks = [
+  { href: "/weather", label: "Boating Weather" },
+  { href: "/news", label: "Boating News" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },

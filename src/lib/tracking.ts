@@ -8,7 +8,12 @@ export type TrackEventName =
   | "lead_form_submit"
   | "newsletter_signup"
   | "list_business_click"
-  | "find_boat_submit"; // legacy — maps to lead_form_submit
+  | "find_boat_submit" // legacy — maps to lead_form_submit
+  | "weather_page_view"
+  | "weather_alert_click"
+  | "news_story_click"
+  | "news_source_click"
+  | "boating_brief_view";
 
 /**
  * Site-wide event helper. Prefer this for all conversion events.

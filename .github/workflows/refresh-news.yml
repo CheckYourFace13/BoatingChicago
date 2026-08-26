@@ -1,0 +1,29 @@
+name: Refresh news feeds
+
+# Soft-refresh: pings production news/weather pages so Hostinger ISR
+# regenerates from allowlisted feeds a few times per day.
+# Does not require secrets. Failures are non-fatal to the deploy pipeline.
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-news
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Warm production weather + news
+        run: |
+          set -e
+          for path in /weather /news /; do
+            CODE=$(curl -sS -o /dev/null -w "%{http_code}" \
+              -A "BoatingChicago.com GitHub Action (chris@boatingchicago.com)" \
+              "https://boatingchicago.com${path}?warm=$(date +%s)" || echo "000")
+            echo "${path} -> HTTP ${CODE}"
+          done

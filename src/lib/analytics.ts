@@ -15,7 +15,12 @@ export type AnalyticsEventName =
   | "newsletter_signup"
   | "list_business_click"
   | "page_view"
-  | "find_boat_submit"; // legacy alias — prefer lead_form_submit
+  | "find_boat_submit" // legacy alias — prefer lead_form_submit
+  | "weather_page_view"
+  | "weather_alert_click"
+  | "news_story_click"
+  | "news_source_click"
+  | "boating_brief_view";
 
 declare global {
   interface Window {
