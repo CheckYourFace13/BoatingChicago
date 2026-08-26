@@ -15,12 +15,18 @@ import {
   LakeConditions,
   SevenDayForecast,
 } from "@/components/weather/WeatherPanels";
+import { WeatherLocationSelector } from "@/components/weather/WeatherLocationSelector";
+import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
 import { getSeasonalTip, getChicagoNews } from "@/lib/news";
 import { buildMetadata } from "@/lib/seo";
-import { getChicagoWeather } from "@/lib/weather";
+import { getWeatherForLocation } from "@/lib/weather";
 
 export const revalidate = 900;
 
+/**
+ * One indexable weather page, one canonical. Locations are a query-param view
+ * of the same page, so metadata stays generic to southern Lake Michigan.
+ */
 export const metadata = buildMetadata({
   title: "Chicago Boating Weather & Lake Michigan Conditions",
   description:
@@ -28,10 +34,18 @@ export const metadata = buildMetadata({
   path: "/weather",
 });
 
-export default async function WeatherPage() {
-  const weather = await getChicagoWeather();
+interface WeatherPageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function WeatherPage({ searchParams }: WeatherPageProps) {
+  const { location } = await searchParams;
+  const requestedLocationId = Array.isArray(location) ? location[0] : location;
+
+  const weather = await getWeatherForLocation(requestedLocationId);
   const news = await getChicagoNews({ alerts: weather.alerts });
   const tip = getSeasonalTip();
+  const isChicago = weather.locationId === DEFAULT_WEATHER_LOCATION_ID;
 
   return (
     <>
@@ -47,7 +61,9 @@ export default async function WeatherPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_45%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <p className="text-sun-yellow font-bold text-sm tracking-widest uppercase mb-3">
-            Lake Michigan · Chicago
+            {isChicago
+              ? "Lake Michigan · Chicago"
+              : `Southern Lake Michigan · ${weather.locationLabel}`}
           </p>
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 max-w-4xl">
             Chicago Boating Weather &amp; Lake Michigan Conditions
@@ -56,6 +72,9 @@ export default async function WeatherPage() {
             Official NOAA/NWS forecasts and alerts for recreational boaters —
             plus a plain-language conditions summary. Always verify marine
             products before you cast off.
+            {isChicago
+              ? ""
+              : ` Currently showing the nearest official forecast for ${weather.locationLabel}.`}
           </p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
             <Link href="/news" className="text-sun-yellow hover:underline">
@@ -84,6 +103,8 @@ export default async function WeatherPage() {
       </section>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+        <WeatherLocationSelector activeLocationId={weather.locationId} />
+
         <BoatingConditionRatingCard rating={weather.rating} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
@@ -110,8 +131,14 @@ export default async function WeatherPage() {
         </div>
 
         <CurrentBoatingConditions weather={weather} />
-        <LakeConditions weather={weather} />
-        <MarineAlerts alerts={weather.alerts} />
+        <LakeConditions
+          weather={weather}
+          title={isChicago ? undefined : `Lake conditions · ${weather.locationLabel}`}
+        />
+        <MarineAlerts
+          alerts={weather.alerts}
+          scopeLabel={isChicago ? undefined : weather.locationLabel}
+        />
 
         {weather.marineForecastText ? (
           <section>
@@ -122,6 +149,11 @@ export default async function WeatherPage() {
               Official NWS coastal waters forecast product excerpt. Read the full
               product on weather.gov before boating.
             </p>
+            {weather.marineForecastLabel ? (
+              <p className="text-sm font-semibold text-amber-800 mb-3">
+                {weather.marineForecastLabel}
+              </p>
+            ) : null}
             <pre className="whitespace-pre-wrap text-sm text-gray-800 bg-white border border-sky-blue/20 rounded-2xl p-5 overflow-x-auto">
               {weather.marineForecastText}
             </pre>

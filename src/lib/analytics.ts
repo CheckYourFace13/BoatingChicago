@@ -18,6 +18,7 @@ export type AnalyticsEventName =
   | "find_boat_submit" // legacy alias — prefer lead_form_submit
   | "weather_page_view"
   | "weather_alert_click"
+  | "weather_location_select"
   | "news_story_click"
   | "news_source_click"
   | "boating_brief_view";

@@ -9,6 +9,19 @@ const popularSearches = [
   { href: "/chicago-playpen-boat-rentals", label: "Playpen Boat Rentals" },
   { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks Boat Rentals" },
   { href: "/bachelorette-boat-rentals-chicago", label: "Bachelorette Boat Parties" },
+  { href: "/best-boat-rentals-chicago", label: "Best Boat Rentals" },
+  { href: "/luxury-yacht-charters-chicago", label: "Luxury Yacht Charters" },
+];
+
+const guideLinks = [
+  { href: "/chicago-playpen-guide", label: "Playpen Guide" },
+  { href: "/chicago-marina-guide", label: "Marina Guide" },
+  { href: "/chicago-fishing-guide", label: "Fishing Guide" },
+  { href: "/lake-michigan-boating-guide", label: "Lake Michigan Guide" },
+  { href: "/beginners-guide-boating-chicago", label: "Beginner's Guide" },
+  { href: "/chicago-boating-faq", label: "Boating FAQ" },
+  { href: "/sailing-lessons-chicago", label: "Sailing Lessons" },
+  { href: "/best-chicago-sunset-cruises", label: "Sunset Cruises" },
 ];
 
 const categories = [
@@ -40,6 +53,15 @@ const vendorLinks = [
   { href: "/#find-a-boat", label: "Request a Quote" },
 ];
 
+const exploreLinks = [
+  { href: "/destinations", label: "Destinations" },
+  { href: "/lakes", label: "Lakes & Waterways" },
+  { href: "/marinas", label: "Marinas" },
+  { href: "/boat-launches", label: "Boat Launches" },
+  { href: "/guides", label: "Guides" },
+  { href: "/events", label: "Events" },
+];
+
 const companyLinks = [
   { href: "/weather", label: "Boating Weather" },
   { href: "/news", label: "Boating News" },
@@ -58,7 +80,7 @@ export function Footer() {
           <div>
             <Logo className="mb-4" />
             <p className="text-sky-blue/90 text-sm leading-relaxed mb-4">
-              Chicago&apos;s local guide to boat rentals, yacht charters, party boats, and everything Lake Michigan.
+              The boating guide to Chicago, southern Lake Michigan, and nearby lakes — rentals, harbors, launches, weather, and local know-how.
             </p>
             <Link
               href="/#find-a-boat"
@@ -102,9 +124,29 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <h3 className="font-bold text-sun-yellow mb-4 mt-8">Guides</h3>
+            <ul className="space-y-2">
+              {guideLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>
+            <h3 className="font-bold text-sun-yellow mb-4">Explore</h3>
+            <ul className="space-y-2 mb-6">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <h3 className="font-bold text-sun-yellow mb-4">For Vendors</h3>
             <ul className="space-y-2 mb-6">
               {vendorLinks.map((link) => (

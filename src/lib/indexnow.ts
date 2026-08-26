@@ -1,6 +1,13 @@
 import { siteConfig } from "@/config/site";
 import { INDEXNOW_ENDPOINT, INDEXNOW_KEY } from "@/config/indexnow";
 import { getAllCategorySlugs } from "@/data/categories";
+import {
+  getAllPublishedDestinationSlugs,
+  getAllPublishedLakeSlugs,
+  getAllPublishedLaunchSlugs,
+  getAllPublishedMarinaSlugs,
+} from "@/data/geo";
+import { getAllGuideSlugs } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
 import { promises as fs } from "fs";
 import path from "path";
@@ -16,6 +23,14 @@ export function getAllIndexableUrls(): string[] {
 
   const staticPaths = [
     "",
+    "/destinations",
+    "/lakes",
+    "/marinas",
+    "/boat-launches",
+    "/guides",
+    "/events",
+    "/weather",
+    "/news",
     "/vendors",
     "/list-your-business",
     "/about",
@@ -28,6 +43,15 @@ export function getAllIndexableUrls(): string[] {
   const urls = [
     ...staticPaths.map((p) => `${base}${p}`),
     ...getAllCategorySlugs().map((slug) => `${base}/${slug}`),
+    ...getAllGuideSlugs().map((slug) => `${base}/${slug}`),
+    ...getAllPublishedDestinationSlugs().map(
+      (slug) => `${base}/destinations/${slug}`
+    ),
+    ...getAllPublishedLakeSlugs().map((slug) => `${base}/lakes/${slug}`),
+    ...getAllPublishedMarinaSlugs().map((slug) => `${base}/marinas/${slug}`),
+    ...getAllPublishedLaunchSlugs().map(
+      (slug) => `${base}/boat-launches/${slug}`
+    ),
     ...getPublishedVendors().map((v) => `${base}/vendors/${v.slug}`),
   ];
 

@@ -74,6 +74,8 @@ export interface BoatingConditionRating {
 
 export interface ChicagoWeatherPayload {
   fetchedAt: string;
+  /** Weather location id from src/config/weather-locations.ts */
+  locationId: string;
   locationLabel: string;
   current: CurrentConditions | null;
   hourly: HourlyForecastPeriod[];
@@ -83,6 +85,8 @@ export interface ChicagoWeatherPayload {
   sunriseIso: string | null;
   sunsetIso: string | null;
   marineForecastText: string | null;
+  /** Caveat shown with the marine product when it is not local to the selected location */
+  marineForecastLabel: string | null;
   rating: BoatingConditionRating;
   sources: WeatherSourceRef[];
   errors: string[];

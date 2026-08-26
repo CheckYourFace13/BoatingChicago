@@ -71,3 +71,48 @@ export interface SeasonalPromo {
   emoji: string;
   activeMonths: number[];
 }
+
+export interface GuideSection {
+  heading: string;
+  paragraphs: string[];
+}
+
+export interface ComparisonTable {
+  caption: string;
+  headers: string[];
+  rows: string[][];
+}
+
+export interface SeasonalTip {
+  season: string;
+  tip: string;
+}
+
+export interface PopularSearchLink {
+  label: string;
+  href: string;
+}
+
+export interface GuideMapEmbed {
+  title: string;
+  query: string;
+}
+
+export interface GuidePage {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  headline: string;
+  intro: string;
+  sections: GuideSection[];
+  comparisonTable: ComparisonTable;
+  seasonalTips: SeasonalTip[];
+  peopleAlsoAsk: CategoryFAQ[];
+  faqs: CategoryFAQ[];
+  popularSearches: PopularSearchLink[];
+  relatedSlugs: string[];
+  mapEmbed?: GuideMapEmbed;
+  affiliateOffersFromSlug?: string;
+  showLeadForm: boolean;
+}

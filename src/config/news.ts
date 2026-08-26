@@ -22,6 +22,8 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
       "michigan",
       "chicago",
       "illinois",
+      "indiana",
+      "wisconsin",
       "boat",
       "harbor",
       "marina",
@@ -34,6 +36,10 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
       "tourism",
       "water quality",
       "beach",
+      "milwaukee",
+      "kenosha",
+      "racine",
+      "new buffalo",
     ],
     excludeKeywords: ["apostle islands", "lake superior", "lake erie", "ontario"],
     enabled: true,
@@ -72,6 +78,26 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
     defaultCategory: "Safety",
     enabled: true,
   },
+  {
+    id: "nws-mkx-news",
+    name: "NWS Milwaukee (MKX)",
+    domain: "weather.gov",
+    feedUrl: "https://www.weather.gov/rss_page.php?site_name=mkx",
+    defaultCategory: "Safety",
+    includeKeywords: [
+      "lake michigan",
+      "marine",
+      "small craft",
+      "gale",
+      "beach",
+      "rip current",
+      "milwaukee",
+      "kenosha",
+      "racine",
+      "sheboygan",
+    ],
+    enabled: true,
+  },
 ];
 
 export const NEWS_CATEGORY_RELATED: Record<
@@ -98,7 +124,8 @@ export const NEWS_CATEGORY_RELATED: Record<
     { href: "/fishing-charters-chicago", label: "Fishing Charters Chicago" },
   ],
   "Harbors & Marinas": [
-    { href: "/chicago-marinas", label: "Chicago Marinas" },
+    { href: "/marinas", label: "Marinas Directory" },
+    { href: "/chicago-marinas", label: "Chicago Marinas Guide" },
     { href: "/boat-storage-chicago", label: "Boat Storage" },
   ],
 };

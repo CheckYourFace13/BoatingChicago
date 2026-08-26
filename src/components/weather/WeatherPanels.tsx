@@ -30,9 +30,9 @@ export function CurrentBoatingConditions({
         Current conditions
       </h2>
       <p className="text-gray-600 mb-6 max-w-3xl">
-        Observed near Chicago for recreational boaters. Lake conditions can differ
-        from downtown air readings — always cross-check the nearshore marine
-        forecast before you leave the harbor.
+        Observed near {weather.locationLabel} for recreational boaters. On-water
+        conditions can differ from land station readings — always cross-check the
+        nearshore marine forecast before you leave the harbor.
       </p>
       {!c ? (
         <p className="text-gray-600">
@@ -87,12 +87,18 @@ export function CurrentBoatingConditions({
   );
 }
 
-export function LakeConditions({ weather }: { weather: ChicagoWeatherPayload }) {
+export function LakeConditions({
+  weather,
+  title = "Lake Michigan nearshore",
+}: {
+  weather: ChicagoWeatherPayload;
+  title?: string;
+}) {
   const lake = weather.lake;
   return (
     <section>
       <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
-        Lake Michigan nearshore
+        {title}
       </h2>
       <p className="text-gray-600 mb-6 max-w-3xl">
         Wave and water readings come from NOAA buoy data when the station reports
@@ -151,8 +157,8 @@ export function HourlyBoatingForecast({
         Next 24 hours
       </h2>
       <p className="text-gray-600 mb-6">
-        NWS hourly grid forecast for Chicago. Watch wind shifts and thunderstorm
-        chances before afternoon lake trips.
+        NWS hourly grid forecast for {weather.locationLabel}. Watch wind shifts
+        and thunderstorm chances before afternoon lake trips.
       </p>
       <div className="overflow-x-auto -mx-4 px-4">
         <div className="flex gap-3 min-w-max pb-2">

@@ -43,7 +43,9 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         {...trackingAttrs.newsletterSignup}
       >
         <p className="text-sun-yellow font-bold text-lg">You&apos;re in!</p>
-        <p className="text-white/80 text-sm mt-1">Chicago boating deals heading your way.</p>
+        <p className="text-white/80 text-sm mt-1">
+          You&apos;re on the list for the Chicago Boating Brief.
+        </p>
       </div>
     );
   }
@@ -64,7 +66,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
           {...trackingAttrs.newsletterSignup}
           className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
         >
-          {status === "loading" ? "..." : "Get Deals"}
+          {status === "loading" ? "..." : "Join Brief"}
         </button>
       </form>
     );
@@ -81,9 +83,13 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       />
       <div className="absolute inset-0 bg-lake-blue/80" />
       <div className="relative z-10">
-        <h3 className="text-2xl font-extrabold text-white mb-2">Get Chicago Boating Deals</h3>
+        <h3 className="text-2xl font-extrabold text-white mb-2">
+          Chicago Boating Brief
+        </h3>
         <p className="text-white/85 mb-6 max-w-md mx-auto">
-          Seasonal discounts, last-minute availability, and insider tips — straight to your inbox.
+          Weekend forecasts, lake conditions, marine warnings, events, and
+          destination ideas for Chicago and southern Lake Michigan — when we
+          start sending.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
@@ -99,7 +105,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             {...trackingAttrs.newsletterSignup}
             className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
           >
-            {status === "loading" ? "..." : "Subscribe"}
+            {status === "loading" ? "..." : "Join the Brief"}
           </button>
         </form>
         {status === "error" && (

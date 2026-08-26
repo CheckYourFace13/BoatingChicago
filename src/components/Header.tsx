@@ -5,30 +5,106 @@ import { useState } from "react";
 import { Logo } from "./Logo";
 import { TrackedLink } from "./TrackedLink";
 
-const navLinks = [
+type NavItem = { href: string; label: string; track?: boolean };
+type NavGroup = { label: string; items: NavItem[] };
+
+const exploreLinks: NavItem[] = [
+  { href: "/destinations", label: "Destinations" },
+  { href: "/lakes", label: "Lakes & Waterways" },
+  { href: "/marinas", label: "Marinas" },
+  { href: "/boat-launches", label: "Boat Launches" },
+];
+
+const thingsToDoLinks: NavItem[] = [
   { href: "/boat-rentals-chicago", label: "Boat Rentals" },
   { href: "/yacht-rentals-chicago", label: "Yacht Charters" },
   { href: "/party-boat-rentals-chicago", label: "Party Boats" },
   { href: "/fishing-charters-chicago", label: "Fishing" },
-  { href: "/weather", label: "Weather" },
-  { href: "/vendors", label: "Vendors" },
-  { href: "/list-your-business", label: "List Your Business", track: true },
-];
-
-const experienceLinks = [
   { href: "/chicago-architecture-cruises", label: "Architecture Cruises" },
   { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
   { href: "/chicago-dining-cruises", label: "Dining Cruises" },
-  { href: "/chicago-tiki-cruises", label: "Tiki Cruises" },
   { href: "/chicago-sailing-charters", label: "Sailing Charters" },
-  { href: "/chicago-sunset-cruises", label: "Sunset Cruises" },
   { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
   { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
 ];
 
+const conditionsLinks: NavItem[] = [
+  { href: "/weather", label: "Weather" },
+  { href: "/news", label: "News" },
+];
+
+const resourcesLinks: NavItem[] = [
+  { href: "/guides", label: "Guides" },
+  { href: "/events", label: "Events" },
+  { href: "/vendors", label: "Vendors" },
+  { href: "/list-your-business", label: "List Your Business", track: true },
+];
+
+const desktopGroups: NavGroup[] = [
+  { label: "Explore", items: exploreLinks },
+  { label: "Things To Do", items: thingsToDoLinks },
+  { label: "Conditions", items: conditionsLinks },
+  { label: "Resources", items: resourcesLinks },
+];
+
+function Dropdown({
+  label,
+  items,
+  open,
+  setOpen,
+}: {
+  label: string;
+  items: NavItem[];
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}) {
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
+        aria-expanded={open}
+      >
+        {label} ▾
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full pt-1 z-50">
+          <div className="w-56 rounded-2xl border border-sky-blue/20 bg-white shadow-lg py-2">
+            {items.map((link) =>
+              link.track ? (
+                <TrackedLink
+                  key={link.href}
+                  href={link.href}
+                  track="list_business_click"
+                  trackParams={{ page: "header" }}
+                  className="block px-4 py-2.5 text-sm font-semibold text-lake-blue hover:bg-light-blue"
+                >
+                  {link.label}
+                </TrackedLink>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-2.5 text-sm font-semibold text-lake-blue hover:bg-light-blue"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [experiencesOpen, setExperiencesOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sky-blue/20 shadow-sm">
@@ -37,66 +113,15 @@ export function Header() {
           <Logo size="md" />
 
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.slice(0, 4).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
-              >
-                {link.label}
-              </Link>
+            {desktopGroups.map((group) => (
+              <Dropdown
+                key={group.label}
+                label={group.label}
+                items={group.items}
+                open={openGroup === group.label}
+                setOpen={(v) => setOpenGroup(v ? group.label : null)}
+              />
             ))}
-
-            <div
-              className="relative"
-              onMouseEnter={() => setExperiencesOpen(true)}
-              onMouseLeave={() => setExperiencesOpen(false)}
-            >
-              <button
-                type="button"
-                className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
-                aria-expanded={experiencesOpen}
-              >
-                Experiences ▾
-              </button>
-              {experiencesOpen && (
-                <div className="absolute left-0 top-full pt-1 z-50">
-                  <div className="w-56 rounded-2xl border border-sky-blue/20 bg-white shadow-lg py-2">
-                    {experienceLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="block px-4 py-2.5 text-sm font-semibold text-lake-blue hover:bg-light-blue"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {navLinks.slice(4).map((link) =>
-              link.track ? (
-                <TrackedLink
-                  key={link.href}
-                  href={link.href}
-                  track="list_business_click"
-                  trackParams={{ page: "header" }}
-                  className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
-                >
-                  {link.label}
-                </TrackedLink>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-3 py-2 text-sm font-semibold text-lake-blue/80 hover:text-lake-blue rounded-lg hover:bg-light-blue transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -126,41 +151,35 @@ export function Header() {
 
         {open && (
           <nav className="lg:hidden pb-4 space-y-1">
-            {navLinks.map((link) =>
-              link.track ? (
-                <TrackedLink
-                  key={link.href}
-                  href={link.href}
-                  track="list_business_click"
-                  trackParams={{ page: "header_mobile" }}
-                  className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </TrackedLink>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <p className="px-3 pt-3 pb-1 text-xs font-bold uppercase tracking-wide text-sky-blue">
-              Experiences
-            </p>
-            {experienceLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
+            {desktopGroups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 pt-3 pb-1 text-xs font-bold uppercase tracking-wide text-sky-blue">
+                  {group.label}
+                </p>
+                {group.items.map((link) =>
+                  link.track ? (
+                    <TrackedLink
+                      key={link.href}
+                      href={link.href}
+                      track="list_business_click"
+                      trackParams={{ page: "header_mobile" }}
+                      className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.label}
+                    </TrackedLink>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
+              </div>
             ))}
             <Link
               href="/#find-a-boat"

@@ -1,19 +1,25 @@
 import type { NextConfig } from "next";
-
-const INDEXNOW_KEY_PATH = "/525facfab7354dd3a4f44e32baa456a1.txt";
+import {
+  INDEXNOW_KEY,
+  INDEXNOW_KEY_BING_WIZARD,
+} from "./src/config/indexnow";
 
 const nextConfig: NextConfig = {
   /**
    * beforeFiles: run BEFORE App Router matching.
    * Required because src/app/[slug] uses dynamicParams=false and would
-   * otherwise 404 the IndexNow key path as an unknown slug.
+   * otherwise 404 IndexNow key paths as unknown slugs.
    */
   async rewrites() {
     return {
       beforeFiles: [
         {
-          source: INDEXNOW_KEY_PATH,
+          source: `/${INDEXNOW_KEY}.txt`,
           destination: "/api/indexnow-key",
+        },
+        {
+          source: `/${INDEXNOW_KEY_BING_WIZARD}.txt`,
+          destination: "/api/indexnow-key-bing",
         },
       ],
     };

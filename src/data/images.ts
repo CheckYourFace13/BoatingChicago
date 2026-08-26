@@ -233,6 +233,7 @@ export type SiteImageKey = keyof typeof siteImages;
 
 /** Category landing page heroes — one unique image per slug */
 export const categoryImageMap: Record<string, SiteImageKey> = {
+  // Category pages
   "boat-rentals-chicago": "boatRentals",
   "yacht-rentals-chicago": "yachtRentals",
   "party-boat-rentals-chicago": "partyBoats",
@@ -256,6 +257,48 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "chicago-tiki-cruises": "heroParty",
   "chicago-sailing-charters": "boatRentals",
   "chicago-sunset-cruises": "heroSunset",
+
+  // Guide pages — reuse appropriate existing keys
+  "best-boat-rentals-chicago": "boatRentals",
+  "cheap-boat-rentals-chicago": "homeBoatRentals",
+  "luxury-yacht-charters-chicago": "yachtRentals",
+  "best-chicago-sunset-cruises": "heroSunset",
+  "chicago-river-cruises": "skylineWater",
+  "chicago-architecture-cruise-guide": "skylineWater",
+  "chicago-playpen-guide": "playpen",
+  "chicago-boat-party-guide": "partyBoats",
+  "chicago-bachelor-party-boats": "partyBoats",
+  "chicago-bachelorette-party-boats-guide": "bachelorette",
+  "family-boat-rentals-chicago": "boatRentals",
+  "romantic-boat-cruises-chicago": "heroSunset",
+  "chicago-jet-ski-rental-guide": "lakeCruise",
+  "chicago-kayak-rental-guide": "heroTwilight",
+  "paddle-board-rentals-chicago": "heroTwilight",
+  "sailing-lessons-chicago": "boatRentals",
+  "sailboat-charters-chicago": "boatRentals",
+  "private-sailing-charters-chicago": "sunsetGlass",
+  "chicago-fireworks-cruise-guide": "fireworks",
+  "chicago-air-and-water-show-boats": "airWaterShow",
+  "riverwalk-boat-tours-chicago": "skylineWater",
+  "ohio-street-beach-guide": "playpen",
+  "monroe-harbor-guide": "marinas",
+  "burnham-harbor-guide": "marinas",
+  "diversey-harbor-guide": "marinas",
+  "belmont-harbor-guide": "marinas",
+  "montrose-harbor-guide": "marinas",
+  "31st-street-harbor-guide": "marinas",
+  "dusable-harbor-guide": "marinas",
+  "chicago-marina-guide": "marinas",
+  "chicago-boat-storage-guide": "boatStorage",
+  "winter-boat-storage-chicago": "boatStorage",
+  "chicago-boat-detailing-guide": "boatDetailing",
+  "chicago-boat-repair-guide": "boatRepair",
+  "chicago-fishing-guide": "fishing",
+  "best-fishing-charters-chicago": "fishing",
+  "salmon-fishing-chicago": "fishing",
+  "lake-michigan-boating-guide": "heroBoats",
+  "beginners-guide-boating-chicago": "heroBoats",
+  "chicago-boating-faq": "heroBoats",
 };
 
 /** Homepage popular category grid */

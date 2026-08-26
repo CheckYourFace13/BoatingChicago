@@ -10,6 +10,11 @@ import {
   WEATHER_REVALIDATE_SECONDS,
   WEATHER_USER_AGENT,
 } from "@/config/weather";
+import {
+  DEFAULT_WEATHER_LOCATION_ID,
+  getWeatherLocationById,
+  type WeatherLocation,
+} from "@/config/weather-locations";
 import type {
   BoatingConditionRating,
   ChicagoWeatherPayload,
@@ -90,10 +95,191 @@ function heatIndexF(tempF: number, humidityPct: number): number | null {
   return Math.round(hi);
 }
 
+const CHICAGO_FALLBACK_LOCATION: WeatherLocation = {
+  id: DEFAULT_WEATHER_LOCATION_ID,
+  label: "Chicago Lakefront",
+  lat: CHICAGO_LAT,
+  lon: CHICAGO_LON,
+  nwsStation: NWS_OBS_STATION,
+};
+
+export interface NwsGridRef {
+  office: string;
+  gridX: number;
+  gridY: number;
+}
+
+export interface NwsPointResolution extends NwsGridRef {
+  observationStationsUrl: string | null;
+}
+
+/**
+ * Marine data availability for a location.
+ * The NDBC buoy and the LOT coastal waters product describe Chicago-area
+ * nearshore Lake Michigan, so they are only local data for `chicago`.
+ */
+type MarineScope = "chicago" | "lake-michigan" | "inland";
+
+const INLAND_LAKE_LOCATION_IDS = new Set(["lake-geneva", "chain-o-lakes"]);
+
+function marineScopeFor(location: WeatherLocation): MarineScope {
+  if (location.id === DEFAULT_WEATHER_LOCATION_ID) return "chicago";
+  return INLAND_LAKE_LOCATION_IDS.has(location.id) ? "inland" : "lake-michigan";
+}
+
+/** Resolve the NWS forecast office + grid cell for a coordinate pair. */
+export async function resolveNwsGrid(
+  lat: number,
+  lon: number,
+  errors: string[] = []
+): Promise<NwsPointResolution | null> {
+  const url = `https://api.weather.gov/points/${lat},${lon}`;
+  try {
+    const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
+    if (!res.ok) {
+      errors.push(`NWS points lookup HTTP ${res.status}`);
+      return null;
+    }
+    const json = (await res.json()) as {
+      properties?: {
+        gridId?: string;
+        gridX?: number;
+        gridY?: number;
+        observationStations?: string;
+      };
+    };
+    const p = json.properties;
+    if (!p?.gridId || p.gridX == null || p.gridY == null) {
+      errors.push("NWS points lookup returned no grid");
+      return null;
+    }
+    return {
+      office: p.gridId,
+      gridX: p.gridX,
+      gridY: p.gridY,
+      observationStationsUrl: p.observationStations || null,
+    };
+  } catch (err) {
+    errors.push(
+      `NWS points lookup failed: ${err instanceof Error ? err.message : "unknown"}`
+    );
+    return null;
+  }
+}
+
+async function fetchNearestStation(
+  observationStationsUrl: string,
+  errors: string[]
+): Promise<string | null> {
+  try {
+    const res = await fetchWithTimeout(observationStationsUrl, {
+      headers: nwsHeaders(),
+    });
+    if (!res.ok) {
+      errors.push(`NWS station list HTTP ${res.status}`);
+      return null;
+    }
+    const json = (await res.json()) as {
+      features?: { properties?: { stationIdentifier?: string } }[];
+    };
+    return json.features?.[0]?.properties?.stationIdentifier || null;
+  } catch (err) {
+    errors.push(
+      `NWS station list failed: ${err instanceof Error ? err.message : "unknown"}`
+    );
+    return null;
+  }
+}
+
+/** Station display name from NWS metadata — never invented locally. */
+async function fetchStationName(
+  stationId: string,
+  errors: string[]
+): Promise<string | null> {
+  try {
+    const res = await fetchWithTimeout(
+      `https://api.weather.gov/stations/${stationId}`,
+      { headers: nwsHeaders() }
+    );
+    if (!res.ok) {
+      errors.push(`NWS station metadata HTTP ${res.status}`);
+      return null;
+    }
+    const json = (await res.json()) as {
+      properties?: { name?: string };
+    };
+    const name = json.properties?.name?.trim();
+    return name ? `${name} (${stationId})` : null;
+  } catch (err) {
+    errors.push(
+      `NWS station metadata failed: ${err instanceof Error ? err.message : "unknown"}`
+    );
+    return null;
+  }
+}
+
+interface LocationContext {
+  location: WeatherLocation;
+  lat: number;
+  lon: number;
+  grid: NwsGridRef | null;
+  stationId: string | null;
+  stationName: string | null;
+  scope: MarineScope;
+}
+
+async function resolveLocationContext(
+  location: WeatherLocation,
+  errors: string[]
+): Promise<LocationContext> {
+  const scope = marineScopeFor(location);
+
+  // Chicago uses the pre-cached grid/station from config — no extra requests.
+  if (location.id === DEFAULT_WEATHER_LOCATION_ID) {
+    return {
+      location,
+      lat: CHICAGO_LAT,
+      lon: CHICAGO_LON,
+      grid: NWS_GRID,
+      stationId: NWS_OBS_STATION,
+      stationName: "Chicago Midway (KMDW)",
+      scope,
+    };
+  }
+
+  const point = await resolveNwsGrid(location.lat, location.lon, errors);
+  const stationId =
+    location.nwsStation ||
+    (point?.observationStationsUrl
+      ? await fetchNearestStation(point.observationStationsUrl, errors)
+      : null);
+  const stationName = stationId
+    ? await fetchStationName(stationId, errors)
+    : null;
+
+  return {
+    location,
+    lat: location.lat,
+    lon: location.lon,
+    grid: point
+      ? { office: point.office, gridX: point.gridX, gridY: point.gridY }
+      : null,
+    stationId,
+    stationName,
+    scope,
+  };
+}
+
 async function fetchCurrentConditions(
+  stationId: string | null,
+  stationName: string | null,
   errors: string[]
 ): Promise<CurrentConditions | null> {
-  const url = `https://api.weather.gov/stations/${NWS_OBS_STATION}/observations/latest`;
+  if (!stationId) {
+    errors.push("No NWS observation station resolved for this location");
+    return null;
+  }
+  const url = `https://api.weather.gov/stations/${stationId}/observations/latest`;
   try {
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
@@ -122,8 +308,8 @@ async function fetchCurrentConditions(
 
     return {
       observedAt: (p.timestamp as string | undefined) || null,
-      stationId: NWS_OBS_STATION,
-      stationName: "Chicago Midway (KMDW)",
+      stationId,
+      stationName,
       temperatureF: tempF,
       feelsLikeF: feelsLike,
       description: (p.textDescription as string | undefined) || null,
@@ -144,9 +330,11 @@ async function fetchCurrentConditions(
 }
 
 async function fetchHourly(
+  grid: NwsGridRef | null,
   errors: string[]
 ): Promise<HourlyForecastPeriod[]> {
-  const url = `https://api.weather.gov/gridpoints/${NWS_GRID.office}/${NWS_GRID.gridX},${NWS_GRID.gridY}/forecast/hourly`;
+  if (!grid) return [];
+  const url = `https://api.weather.gov/gridpoints/${grid.office}/${grid.gridX},${grid.gridY}/forecast/hourly`;
   try {
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
@@ -184,8 +372,12 @@ async function fetchHourly(
   }
 }
 
-async function fetchDaily(errors: string[]): Promise<DailyForecastPeriod[]> {
-  const url = `https://api.weather.gov/gridpoints/${NWS_GRID.office}/${NWS_GRID.gridX},${NWS_GRID.gridY}/forecast`;
+async function fetchDaily(
+  grid: NwsGridRef | null,
+  errors: string[]
+): Promise<DailyForecastPeriod[]> {
+  if (!grid) return [];
+  const url = `https://api.weather.gov/gridpoints/${grid.office}/${grid.gridX},${grid.gridY}/forecast`;
   try {
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
@@ -236,9 +428,16 @@ function isMarineEvent(event: string, headline: string): boolean {
   );
 }
 
-async function fetchAlerts(errors: string[]): Promise<WeatherAlert[]> {
-  const zoneParam = NWS_ALERT_ZONES.join(",");
-  const url = `https://api.weather.gov/alerts/active?zone=${encodeURIComponent(zoneParam)}`;
+async function fetchAlerts(
+  context: LocationContext,
+  errors: string[]
+): Promise<WeatherAlert[]> {
+  // Chicago keeps the curated marine + Cook County zone list; other locations
+  // use a point query so we do not need a zone map for every harbor.
+  const url =
+    context.scope === "chicago"
+      ? `https://api.weather.gov/alerts/active?zone=${encodeURIComponent(NWS_ALERT_ZONES.join(","))}`
+      : `https://api.weather.gov/alerts/active?point=${context.lat},${context.lon}`;
   try {
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
@@ -355,9 +554,11 @@ async function fetchLakeConditions(
 }
 
 async function fetchSunTimes(
+  lat: number,
+  lon: number,
   errors: string[]
 ): Promise<{ sunriseIso: string | null; sunsetIso: string | null }> {
-  const url = `https://api.sunrise-sunset.org/json?lat=${CHICAGO_LAT}&lng=${CHICAGO_LON}&formatted=0`;
+  const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`;
   try {
     const res = await fetchWithTimeout(url);
     if (!res.ok) {
@@ -502,33 +703,78 @@ export function computeBoatingRating(input: {
   return { level, reason, factors };
 }
 
-export async function getChicagoWeather(): Promise<ChicagoWeatherPayload> {
+/** Inland lakes have no NDBC station on this site — say so instead of reusing Chicago data. */
+function inlandLakeConditions(label: string): LakeConditionsData {
+  return {
+    waterTempF: null,
+    waveHeightFt: null,
+    buoyId: null,
+    observedAt: null,
+    notes: `No NOAA buoy reports for ${label}. NOAA buoy ${NDBC_BUOY_ID} is a Chicago nearshore Lake Michigan reference and does not describe conditions on this inland lake.`,
+  };
+}
+
+export async function getWeatherForLocation(
+  locationId?: string
+): Promise<ChicagoWeatherPayload> {
+  const location =
+    getWeatherLocationById(locationId || DEFAULT_WEATHER_LOCATION_ID) ||
+    getWeatherLocationById(DEFAULT_WEATHER_LOCATION_ID) ||
+    CHICAGO_FALLBACK_LOCATION;
+
   const errors: string[] = [];
+  const context = await resolveLocationContext(location, errors);
+  const usesBuoy = context.scope !== "inland";
+
   const sources: WeatherSourceRef[] = [
     {
       name: "National Weather Service (api.weather.gov)",
       url: "https://www.weather.gov/lot",
     },
-    {
-      name: "NOAA National Data Buoy Center",
-      url: `https://www.ndbc.noaa.gov/station_page.php?station=${NDBC_BUOY_ID}`,
-    },
+    ...(usesBuoy
+      ? [
+          {
+            name: "NOAA National Data Buoy Center",
+            url: `https://www.ndbc.noaa.gov/station_page.php?station=${NDBC_BUOY_ID}`,
+          },
+        ]
+      : []),
     {
       name: "Sunrise-Sunset.org (sunrise/sunset times)",
       url: "https://sunrise-sunset.org/",
     },
   ];
 
-  const [current, hourly, daily, alerts, lake, sun, marineForecastText] =
+  const [current, hourly, daily, alerts, lakeRaw, sun, marineForecastText] =
     await Promise.all([
-      fetchCurrentConditions(errors),
-      fetchHourly(errors),
-      fetchDaily(errors),
-      fetchAlerts(errors),
-      fetchLakeConditions(errors),
-      fetchSunTimes(errors),
-      fetchMarineForecastText(errors),
+      fetchCurrentConditions(context.stationId, context.stationName, errors),
+      fetchHourly(context.grid, errors),
+      fetchDaily(context.grid, errors),
+      fetchAlerts(context, errors),
+      usesBuoy
+        ? fetchLakeConditions(errors)
+        : Promise.resolve(inlandLakeConditions(location.label)),
+      fetchSunTimes(context.lat, context.lon, errors),
+      usesBuoy ? fetchMarineForecastText(errors) : Promise.resolve(null),
     ]);
+
+  const lake: LakeConditionsData =
+    context.scope === "lake-michigan"
+      ? {
+          ...lakeRaw,
+          notes: [
+            `NOAA buoy ${NDBC_BUOY_ID} sits off Chicago — treat these readings as a southern Lake Michigan reference, not a local ${location.label} observation.`,
+            lakeRaw.notes,
+          ]
+            .filter(Boolean)
+            .join(" "),
+        }
+      : lakeRaw;
+
+  const marineForecastLabel =
+    context.scope === "lake-michigan" && marineForecastText
+      ? `NWS Chicago (LOT) nearshore product — covers Illinois and Indiana waters, not ${location.label} specifically.`
+      : null;
 
   const nearTerm = hourly[0] || null;
   const rating = computeBoatingRating({
@@ -542,7 +788,8 @@ export async function getChicagoWeather(): Promise<ChicagoWeatherPayload> {
 
   return {
     fetchedAt: new Date().toISOString(),
-    locationLabel: "Chicago / nearshore Lake Michigan",
+    locationId: location.id,
+    locationLabel: location.label,
     current,
     hourly,
     daily,
@@ -551,10 +798,15 @@ export async function getChicagoWeather(): Promise<ChicagoWeatherPayload> {
     sunriseIso: sun.sunriseIso,
     sunsetIso: sun.sunsetIso,
     marineForecastText,
+    marineForecastLabel,
     rating,
     sources,
     errors,
   };
+}
+
+export async function getChicagoWeather(): Promise<ChicagoWeatherPayload> {
+  return getWeatherForLocation(DEFAULT_WEATHER_LOCATION_ID);
 }
 
 export function formatTemp(f: number | null | undefined): string {
@@ -567,4 +819,4 @@ export function formatMph(v: number | null | undefined): string {
   return `${v} mph`;
 }
 
-export { WEATHER_REVALIDATE_SECONDS };
+export { DEFAULT_WEATHER_LOCATION_ID, WEATHER_REVALIDATE_SECONDS };

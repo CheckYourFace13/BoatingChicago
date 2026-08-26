@@ -3,7 +3,13 @@
 import { trackAnalyticsEvent } from "@/lib/analytics";
 import type { WeatherAlert, WeatherSourceRef } from "@/types/weather";
 
-export function MarineAlerts({ alerts }: { alerts: WeatherAlert[] }) {
+export function MarineAlerts({
+  alerts,
+  scopeLabel = "configured Chicago / nearshore Lake Michigan zones",
+}: {
+  alerts: WeatherAlert[];
+  scopeLabel?: string;
+}) {
   if (!alerts.length) {
     return (
       <section>
@@ -11,8 +17,7 @@ export function MarineAlerts({ alerts }: { alerts: WeatherAlert[] }) {
           Active NOAA/NWS alerts
         </h2>
         <p className="text-gray-600">
-          No active alerts for configured Chicago / nearshore Lake Michigan zones
-          right now.
+          No active alerts for {scopeLabel} right now.
         </p>
       </section>
     );

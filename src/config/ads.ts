@@ -31,8 +31,18 @@ export function getAdSenseClient(): string | undefined {
   return process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || undefined;
 }
 
+/**
+ * Display units stay dormant until traffic/monetization reopen.
+ * Keep NEXT_PUBLIC_ADSENSE_CLIENT for verification / Auto ads infra;
+ * set NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS=true only when units should render.
+ */
+export function areAdSenseDisplayUnitsEnabled(): boolean {
+  const flag = process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS?.trim().toLowerCase();
+  return flag === "1" || flag === "true" || flag === "yes";
+}
+
 export function isAdSenseEnabled(): boolean {
-  return Boolean(getAdSenseClient());
+  return Boolean(getAdSenseClient()) && areAdSenseDisplayUnitsEnabled();
 }
 
 /** Provider toggles — only AdSense can be live today */
