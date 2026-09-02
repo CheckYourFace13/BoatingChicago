@@ -55,7 +55,6 @@ export function buildOrganizationSchema() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    email: siteConfig.contactEmail,
     logo: `${siteConfig.url}/icon-512.png`,
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook].filter(
       Boolean
@@ -68,7 +67,7 @@ export function buildOrganizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: siteConfig.contactEmail,
+      url: `${siteConfig.url}${siteConfig.contactPath}`,
       areaServed: "US",
       availableLanguage: "English",
     },
@@ -163,7 +162,6 @@ export function buildPublisherLocalBusinessSchema() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
-    email: siteConfig.contactEmail,
     areaServed: {
       "@type": "City",
       name: "Chicago",

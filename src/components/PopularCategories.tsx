@@ -13,7 +13,7 @@ export function PopularCategories() {
         </h2>
         <p className="text-gray-600 mb-8 max-w-2xl">
           Boat rentals, yacht charters, party boats, fishing, and ticketed
-          experiences — book online or get matched with a local operator.
+          experiences you can explore on our category pages.
         </p>
       </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

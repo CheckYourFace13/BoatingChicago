@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
@@ -5,7 +6,7 @@ import { siteConfig } from "@/config/site";
 export const metadata = buildMetadata({
   title: "Privacy Policy",
   description:
-    "Privacy Policy for BoatingChicago.com — how we collect, use, and protect information from visitors, leads, and newsletter subscribers.",
+    "Privacy Policy for BoatingChicago.com — how we collect, use, and protect information from visitors, contact forms, and newsletter subscribers.",
   path: "/privacy",
 });
 
@@ -17,7 +18,7 @@ export default function PrivacyPage() {
       path="/privacy"
     >
       <div className="space-y-6 text-gray-700 leading-relaxed">
-        <p className="text-sm text-gray-500">Last updated: July 12, 2026</p>
+        <p className="text-sm text-gray-500">Last updated: September 2, 2026</p>
         <p>
           This Privacy Policy describes how {siteConfig.name} (&quot;we,&quot; &quot;us,&quot; or
           &quot;our&quot;) handles information when you visit {siteConfig.domain}, submit forms, or
@@ -27,8 +28,8 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Information we collect</h2>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <strong>Contact and lead details</strong> you submit (name, email, phone, trip
-            preferences) via Find a Boat or similar forms
+            <strong>Contact details</strong> you submit (name, email, subject, message) via our
+            contact form
           </li>
           <li>
             <strong>Newsletter emails</strong> when you subscribe
@@ -44,7 +45,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">How we use information</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li>To match you with local boating operators and respond to requests</li>
+          <li>To respond to contact and partnership requests</li>
           <li>To send newsletters or updates you opted into</li>
           <li>To improve site content, performance, and user experience</li>
           <li>To measure traffic and conversions (including affiliate clicks) with analytics</li>
@@ -53,10 +54,9 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Sharing</h2>
         <p>
-          We may share lead information with relevant Chicago-area boating vendors so they can
-          respond to your request. We may also use service providers for email delivery, hosting,
-          analytics (such as Google Analytics), and advertising (such as Google AdSense). We do
-          not sell personal information as a standalone consumer data product.
+          We may use service providers for email delivery, hosting, analytics (such as Google
+          Analytics), and advertising (such as Google AdSense). We do not sell personal information
+          as a standalone consumer data product.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Cookies &amp; tracking</h2>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Data retention</h2>
         <p>
-          We retain lead and newsletter records as long as needed to provide matching services,
+          We retain contact and newsletter records as long as needed to respond to requests,
           comply with legal obligations, and operate the business, then delete or anonymize when
           no longer required.
         </p>
@@ -83,14 +83,11 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Your choices</h2>
         <p>
           To request access, correction, or deletion of personal information we hold, or to
-          unsubscribe from marketing emails, contact{" "}
-          <a
-            href={`mailto:${siteConfig.contactEmail}`}
-            className="text-sky-blue font-semibold hover:underline"
-          >
-            {siteConfig.contactEmail}
-          </a>
-          .
+          unsubscribe from marketing emails, use our{" "}
+          <Link href="/contact" className="text-sky-blue font-semibold hover:underline">
+            Contact
+          </Link>{" "}
+          form.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Children</h2>
@@ -107,13 +104,11 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Contact</h2>
         <p>
-          Privacy questions:{" "}
-          <a
-            href={`mailto:${siteConfig.contactEmail}`}
-            className="text-sky-blue font-semibold hover:underline"
-          >
-            {siteConfig.contactEmail}
-          </a>
+          Privacy questions: use our{" "}
+          <Link href="/contact" className="text-sky-blue font-semibold hover:underline">
+            Contact
+          </Link>{" "}
+          form.
         </p>
       </div>
     </LegalPage>

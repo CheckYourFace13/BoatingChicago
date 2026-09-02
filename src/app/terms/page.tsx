@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { buildMetadata } from "@/lib/seo";
 import { disclaimer, siteConfig } from "@/config/site";
@@ -5,7 +6,7 @@ import { disclaimer, siteConfig } from "@/config/site";
 export const metadata = buildMetadata({
   title: "Terms of Service",
   description:
-    "Terms of Service for BoatingChicago.com — rules for using our Chicago boating guides, forms, and referral services.",
+    "Terms of Service for BoatingChicago.com — rules for using our Chicago boating guides and site services.",
   path: "/terms",
 });
 
@@ -13,11 +14,11 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
-      description="Rules for using BoatingChicago.com and our referral services."
+      description="Rules for using BoatingChicago.com."
       path="/terms"
     >
       <div className="space-y-6 text-gray-700 leading-relaxed">
-        <p className="text-sm text-gray-500">Last updated: July 12, 2026</p>
+        <p className="text-sm text-gray-500">Last updated: September 2, 2026</p>
         <p>
           By accessing {siteConfig.domain} (the &quot;Site&quot;), you agree to these Terms of
           Service. If you do not agree, please do not use the Site.
@@ -26,9 +27,9 @@ export default function TermsPage() {
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What we are</h2>
         <p>{disclaimer}</p>
         <p>
-          {siteConfig.name} publishes informational content and may connect visitors with third-party
-          operators or booking platforms. We are not a party to contracts between you and boat
-          operators, captains, or affiliate partners unless explicitly stated in writing.
+          {siteConfig.name} publishes informational content and may link to third-party operators
+          or booking platforms. We are not a party to contracts between you and boat operators,
+          captains, or affiliate partners unless explicitly stated in writing.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Acceptable use</h2>
@@ -38,11 +39,10 @@ export default function TermsPage() {
           <li>Do not attempt to disrupt or reverse-engineer the Site</li>
         </ul>
 
-        <h2 className="text-xl font-extrabold text-lake-blue pt-2">Leads &amp; referrals</h2>
+        <h2 className="text-xl font-extrabold text-lake-blue pt-2">Contact form</h2>
         <p>
-          Submitting a Find a Boat or similar request authorizes us to share your details with
-          relevant local providers who may contact you. We do not guarantee matches, pricing,
-          availability, or response times.
+          Submitting the contact form authorizes us to use your details to respond to your
+          message. We do not operate a boat-matching or charter-brokerage service.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Affiliate &amp; advertising links</h2>
@@ -97,12 +97,11 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Contact</h2>
         <p>
-          <a
-            href={`mailto:${siteConfig.contactEmail}`}
-            className="text-sky-blue font-semibold hover:underline"
-          >
-            {siteConfig.contactEmail}
-          </a>
+          Questions about these terms:{" "}
+          <Link href="/contact" className="text-sky-blue font-semibold hover:underline">
+            Contact Us
+          </Link>
+          .
         </p>
       </div>
     </LegalPage>

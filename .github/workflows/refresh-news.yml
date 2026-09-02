@@ -23,7 +23,7 @@ jobs:
           set -e
           for path in /weather /news /; do
             CODE=$(curl -sS -o /dev/null -w "%{http_code}" \
-              -A "BoatingChicago.com GitHub Action (chris@boatingchicago.com)" \
+              -A "BoatingChicago.com GitHub Action (+https://boatingchicago.com/contact)" \
               "https://boatingchicago.com${path}?warm=$(date +%s)" || echo "000")
             echo "${path} -> HTTP ${CODE}"
           done

@@ -24,10 +24,10 @@ export const categories: CategoryPage[] = [
     title: "Boat Rentals Chicago",
     seoTitle: "Boat Rentals Chicago | Lake Michigan Boat Rental Guide 2026",
     seoDescription:
-      "Compare the best boat rentals in Chicago on Lake Michigan. Pontoons, speedboats, sailboats & more. Book through trusted partners or get matched with local operators.",
+      "Compare the best boat rentals in Chicago on Lake Michigan. Pontoons, speedboats, sailboats & more. Browse trusted partners and local options.",
     headline: "Boat Rentals in Chicago on Lake Michigan",
     intro:
-      "Chicago's lakefront is built for boating — from Monroe Harbor to Burnham and beyond. Whether you want a pontoon for a lazy Playpen afternoon or a speedboat to cruise the skyline, Boating Chicago connects you with the best rental options on Lake Michigan. Compare affiliate partners, browse local vendors, or tell us what you need and we'll match you fast.",
+      "Chicago's lakefront is built for boating — from Monroe Harbor to Burnham and beyond. Whether you want a pontoon for a lazy Playpen afternoon or a speedboat to cruise the skyline, Boating Chicago helps you compare rental and experience options on Lake Michigan. Browse affiliate partners, category guides, and future local vendor listings.",
     bestFor: [
       { title: "First-time renters", description: "Easy captained options with no license required", icon: "🚤" },
       { title: "Playpen days", description: "Pontoons and party-friendly boats for anchoring out", icon: "⚓" },
@@ -132,7 +132,7 @@ export const categories: CategoryPage[] = [
       "Celebrate your birthday on a boat in Chicago! Party boats, yacht charters & Lake Michigan cruises for unforgettable birthday parties. Book today.",
     headline: "Birthday Party Boat Rentals in Chicago",
     intro:
-      "Forget the restaurant reservation — celebrate your birthday on Lake Michigan with the Chicago skyline as your backdrop. Birthday boat rentals range from casual pontoon parties to full yacht experiences with catering. Tell us your group size and vibe, and we'll connect you with the perfect birthday boat.",
+      "Forget the restaurant reservation — celebrate your birthday on Lake Michigan with the Chicago skyline as your backdrop. Birthday boat rentals range from casual pontoon parties to full yacht experiences with catering. Browse party boat and yacht charter pages to compare options for your group.",
     bestFor: [
       { title: "Milestone birthdays", description: "30th, 40th, 50th — celebrate big on the water", icon: "🎂" },
       { title: "Mixed-age groups", description: "Boats comfortable for kids, parents, and grandparents", icon: "👨‍👩‍👧‍👦" },
@@ -407,7 +407,7 @@ export const categories: CategoryPage[] = [
       "Book Chicago architecture river cruises and guided skyline boat tours. Compare top architecture cruises on the Chicago River and Lake Michigan.",
     headline: "Chicago Architecture Cruises & River Tours",
     intro:
-      "Chicago’s architecture is best seen from the water. Architecture river cruises glide past downtown landmarks, bridges, and the skyline while guides share the stories behind the buildings. These are ticketed guided tours — not private boat rentals. Book an architecture cruise online, or use our Find a Boat form if you want a private charter with your own itinerary.",
+      "Chicago’s architecture is best seen from the water. Architecture river cruises glide past downtown landmarks, bridges, and the skyline while guides share the stories behind the buildings. These are ticketed guided tours — not private boat rentals. Book an architecture cruise online, or browse instant-booking options on this page if you want a private charter with your own itinerary.",
     bestFor: [
       { title: "First-time visitors", description: "The classic way to see downtown from the river", icon: "🏙️" },
       { title: "Families & couples", description: "Easy, seated sightseeing with skyline views", icon: "👨‍👩‍👧" },
@@ -419,7 +419,7 @@ export const categories: CategoryPage[] = [
     faqs: [
       { question: "What is a Chicago architecture cruise?", answer: "An architecture cruise is a guided boat tour on the Chicago River (and sometimes Lake Michigan) focused on downtown buildings, bridges, and skyline history. It is a ticketed public tour, not a private boat rental." },
       { question: "How long do architecture cruises last?", answer: "Most Chicago architecture river tours run about 45–90 minutes. The 75-minute guided cruise is a popular middle option." },
-      { question: "Can I book a private architecture charter instead?", answer: "Yes — if you want a private boat with your own group and schedule, use our Find a Boat form. Architecture cruises below are ready-to-book public tours." },
+      { question: "Can I book a private architecture charter instead?", answer: "Yes — if you want a private boat with your own group and schedule, browse instant-booking options on this page. Architecture cruises below are ready-to-book public tours." },
       sharedFaqs.weather,
     ],
     vendors: [],
@@ -432,7 +432,7 @@ export const categories: CategoryPage[] = [
       "Book Chicago fireworks cruises on Lake Michigan. 3D fireworks cruises, Seadog speedboat fireworks tours, and more — watch from the water.",
     headline: "Chicago Fireworks Cruises on Lake Michigan",
     intro:
-      "Watching fireworks from a boat is one of Chicago’s best summer nights — reflections on the lake, skyline glow, and no pier crush. Ticketed fireworks cruises (including 3D fireworks and Seadog speedboat options) let you book online. For a private fireworks charter with just your group, use the Find a Boat form.",
+      "Watching fireworks from a boat is one of Chicago’s best summer nights — reflections on the lake, skyline glow, and no pier crush. Ticketed fireworks cruises (including 3D fireworks and Seadog speedboat options) let you book online. For a private fireworks charter with just your group, use related category pages and instant-booking listings.",
     bestFor: [
       { title: "Navy Pier fireworks nights", description: "Summer Wednesday & Saturday shows from the water", icon: "🎆" },
       { title: "Date nights", description: "Romantic lake views without fighting pier crowds", icon: "💕" },
@@ -443,7 +443,7 @@ export const categories: CategoryPage[] = [
     relatedSlugs: ["navy-pier-fireworks-boat-rentals", "party-boat-rentals-chicago", "boat-rentals-chicago"],
     faqs: [
       { question: "When are Chicago fireworks cruises available?", answer: "Most fireworks cruises align with Navy Pier’s summer fireworks schedule (often Wednesday and Saturday evenings) plus holiday shows. Always confirm the date on the booking page." },
-      { question: "Is a fireworks cruise the same as a private boat rental?", answer: "No. Fireworks cruises are ticketed public tours with set times. Private rentals and charters are arranged separately through our Find a Boat form." },
+      { question: "Is a fireworks cruise the same as a private boat rental?", answer: "No. Fireworks cruises are ticketed public tours with set times. Private rentals and charters are arranged separately through instant-booking options on this page." },
       { question: "Where do fireworks cruises depart from?", answer: "Departure docks vary by operator — often near Navy Pier or downtown harbors. Your confirmation email includes exact boarding instructions." },
       sharedFaqs.weather,
     ],
@@ -457,7 +457,7 @@ export const categories: CategoryPage[] = [
       "Rent a jet ski in Chicago at North Avenue Beach with skyline views on Lake Michigan. Book jet ski rentals online through trusted partners.",
     headline: "Chicago Jet Ski Rentals on Lake Michigan",
     intro:
-      "Want speed and skyline views without chartering a whole boat? Chicago jet ski rentals at North Avenue Beach put you on Lake Michigan with the downtown towers as your backdrop. These are personal watercraft rentals — not private yacht or party boat charters. Book a jet ski online, or request a private boat match if you need a larger vessel.",
+      "Want speed and skyline views without chartering a whole boat? Chicago jet ski rentals at North Avenue Beach put you on Lake Michigan with the downtown towers as your backdrop. These are personal watercraft rentals — not private yacht or party boat charters. Book a jet ski online, or browse boat rental and yacht charter pages if you need a larger vessel.",
     bestFor: [
       { title: "Thrill seekers", description: "Fast rides on Lake Michigan with skyline views", icon: "💨" },
       { title: "Couples & friends", description: "Small-group fun without a full boat charter", icon: "🤙" },
@@ -469,7 +469,7 @@ export const categories: CategoryPage[] = [
     faqs: [
       { question: "Where can I rent a jet ski in Chicago?", answer: "North Avenue Beach is a popular Lake Michigan jet ski rental location with skyline views. Availability and requirements are listed on the booking page." },
       { question: "Do I need a license to rent a jet ski in Illinois?", answer: "Illinois has age and safety requirements for personal watercraft. Confirm operator rules, age minimums, and any required certificates before booking." },
-      { question: "Is a jet ski rental the same as a boat rental?", answer: "No. Jet ski rentals are personal watercraft. For pontoons, party boats, or yacht charters, use our Find a Boat form." },
+      { question: "Is a jet ski rental the same as a boat rental?", answer: "No. Jet ski rentals are personal watercraft. For pontoons, party boats, or yacht charters, browse instant-booking options on this page." },
       sharedFaqs.weather,
     ],
     vendors: [],
@@ -507,7 +507,7 @@ export const categories: CategoryPage[] = [
       "Book Chicago brunch, lunch, or dinner river cruises. Dining cruises with downtown architecture views — not private yacht charters.",
     headline: "Chicago Brunch, Lunch & Dinner River Cruises",
     intro:
-      "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — perfect for celebrations and visitors. They are not private yacht charters. Want a private yacht with custom catering? Use the Find a Boat form.",
+      "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — perfect for celebrations and visitors. They are not private yacht charters. Want a private yacht with custom catering? Use related category pages and instant-booking listings.",
     bestFor: [
       { title: "Celebrations", description: "Birthdays, anniversaries, and special dinners", icon: "🥂" },
       { title: "Visitors", description: "Sightseeing and a meal in one outing", icon: "🍽️" },
@@ -532,7 +532,7 @@ export const categories: CategoryPage[] = [
       "Book the Chicago Tiki Bar Cruise on the Chicago River or Lake Michigan. A ticketed party cruise experience — not a private party boat rental.",
     headline: "Chicago Tiki Bar Cruises",
     intro:
-      "Tropical vibes on the Chicago River or Lake Michigan — the Tiki Bar Cruise is a ticketed party cruise with drinks, music, and skyline scenery. It’s a ready-to-book group experience, not a private party boat you control end-to-end. For a private party boat rental, use our Find a Boat form.",
+      "Tropical vibes on the Chicago River or Lake Michigan — the Tiki Bar Cruise is a ticketed party cruise with drinks, music, and skyline scenery. It’s a ready-to-book group experience, not a private party boat you control end-to-end. For a private party boat rental, browse instant-booking options on this page.",
     bestFor: [
       { title: "Group hangouts", description: "Friends, birthdays, and casual celebrations", icon: "🍹" },
       { title: "Bachelorette add-ons", description: "A fun ticketed cruise for the squad", icon: "💃" },
@@ -542,7 +542,7 @@ export const categories: CategoryPage[] = [
     affiliates: ["getyourguide"],
     relatedSlugs: ["party-boat-rentals-chicago", "bachelorette-boat-rentals-chicago", "birthday-boat-rentals-chicago"],
     faqs: [
-      { question: "Is the Tiki Bar Cruise a private party boat?", answer: "No. It is a ticketed public party cruise. Private party boat rentals are matched through our Find a Boat form." },
+      { question: "Is the Tiki Bar Cruise a private party boat?", answer: "No. It is a ticketed public party cruise. Private party boat rentals are matched through instant-booking options on this page." },
       { question: "Does the cruise go on the river or the lake?", answer: "Depending on the sailing, routes may include the Chicago River and/or Lake Michigan. Confirm details on the booking page." },
       { question: "Can we bring our own drinks?", answer: "Policies vary by operator. Most ticketed tiki cruises have onboard bars — check the listing before you book." },
       sharedFaqs.weather,
@@ -557,7 +557,7 @@ export const categories: CategoryPage[] = [
       "Book Chicago sailing charters on Lake Michigan — private sailboat charters with captain, skyline sails, sunset sailing, fireworks sails, and more. Instant booking plus private charter matching.",
     headline: "Chicago Sailing Charters on Lake Michigan",
     intro:
-      "Sailing Lake Michigan with the Chicago skyline on the horizon is one of the city’s best on-water experiences. Options range from shared skyline sails and special sailing events to private sailboat charters with a captain. Private charters give your group the boat; shared sails are ticketed outings with set schedules. Confirm captain, passenger limits, and departure details on each booking page — and use our Find a Boat form if you want additional private charter matching beyond instant-booking listings.",
+      "Sailing Lake Michigan with the Chicago skyline on the horizon is one of the city’s best on-water experiences. Options range from shared skyline sails and special sailing events to private sailboat charters with a captain. Private charters give your group the boat; shared sails are ticketed outings with set schedules. Confirm captain, passenger limits, and departure details on each booking page — and browse instant-booking options on this page if you want additional private charter matching beyond instant-booking listings.",
     bestFor: [
       { title: "Private sail charters", description: "Your group, a captain, and Lake Michigan skyline views", icon: "⛵" },
       { title: "Sunset sails", description: "Golden-hour private or shared sailing experiences", icon: "🌅" },
@@ -591,7 +591,7 @@ export const categories: CategoryPage[] = [
       {
         question: "What if I need a different private boat or yacht?",
         answer:
-          "Use our Find a Boat form for additional private yacht, party boat, or captain matching beyond the instant-booking sailing options on this page.",
+          "Browse instant-booking options on this page for additional private yacht, party boat, or captain matching beyond the instant-booking sailing options on this page.",
       },
       sharedFaqs.weather,
     ],
@@ -605,7 +605,7 @@ export const categories: CategoryPage[] = [
       "Book Chicago sunset cruises and private sunset sailing charters on Lake Michigan. Golden-hour skyline views — ticketed cruises and private charter options.",
     headline: "Chicago Sunset Cruises & Sunset Sailing",
     intro:
-      "Golden hour on Lake Michigan turns the Chicago skyline into a postcard — warm light, calm water, and downtown glowing as the sun drops. Sunset options include ticketed sunset cruises and private sunset sailing charters. Ticketed cruises are shared experiences with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request — use Find a Boat if you need a tailored charter.",
+      "Golden hour on Lake Michigan turns the Chicago skyline into a postcard — warm light, calm water, and downtown glowing as the sun drops. Sunset options include ticketed sunset cruises and private sunset sailing charters. Ticketed cruises are shared experiences with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request — browse related category pages if you need a tailored charter.",
     bestFor: [
       { title: "Date nights", description: "Golden-hour skyline views from the water", icon: "💕" },
       { title: "Visitors", description: "A classic Chicago summer evening on the lake", icon: "🌆" },

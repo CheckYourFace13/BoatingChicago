@@ -3,7 +3,7 @@
  */
 
 export const WEATHER_USER_AGENT =
-  "BoatingChicago.com weather (chris@boatingchicago.com)";
+  "BoatingChicago.com weather (+https://boatingchicago.com/contact)";
 
 /** Downtown Chicago — used for NWS grid + sunrise */
 export const CHICAGO_LAT = 41.8781;

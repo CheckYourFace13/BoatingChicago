@@ -4,8 +4,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://boatingchicago.com",
   tagline: "Your guide to boating Chicago & southern Lake Michigan",
   description:
-    "Chicago boating weather, lake conditions, marinas, boat launches, news, events, and guides for southern Lake Michigan — plus boat rentals, yacht charters, and local trip matching.",
-  contactEmail: process.env.CONTACT_EMAIL || "hello@boatingchicago.com",
+    "Chicago boating weather, lake conditions, marinas, boat launches, news, events, and guides for southern Lake Michigan — plus curated rental and cruise experiences.",
+  /** Public contact path only — never put recipient emails in client-visible config. */
+  contactPath: "/contact",
   social: {
     instagram: "https://instagram.com/boatingchicago",
     facebook: "https://facebook.com/boatingchicago",
@@ -22,7 +23,7 @@ export const colors = {
 } as const;
 
 export const disclaimer =
-  "Boating Chicago is a local guide and referral site. We do not operate boats, employ captains, or guarantee availability, pricing, licensing, insurance, safety, or legal compliance. Always verify details directly with the provider before booking.";
+  "Boating Chicago is a local information guide. We do not operate boats, employ captains, broker charters, or guarantee availability, pricing, licensing, insurance, safety, or legal compliance. Always verify details directly with the provider before booking.";
 
 export const formDisclaimer =
-  "Boating Chicago is a local guide and referral website. We do not own boats, operate charters, employ captains, or guarantee availability, pricing, safety, or licensing. By submitting this form, you agree to be contacted about boating options. Always confirm all details directly with the provider before booking.";
+  "Boating Chicago is a local information guide. We do not own boats, operate charters, employ captains, or guarantee availability, pricing, safety, or licensing. Always confirm all details directly with the provider before booking.";

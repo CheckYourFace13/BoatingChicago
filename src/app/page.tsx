@@ -1,22 +1,13 @@
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
-import { PopularCategories } from "@/components/PopularCategories";
-import { FeaturedExperiences } from "@/components/FeaturedExperiences";
-import { WhyBoatingChicago } from "@/components/WhyBoatingChicago";
 import { EmailSignup } from "@/components/EmailSignup";
-import { VendorSignupCTA } from "@/components/VendorSignupCTA";
-import { FindBoatForm } from "@/components/FindBoatForm";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { AdSenseBlock } from "@/components/AdSenseBlock";
-import { SceneryBand } from "@/components/SceneryBand";
-import { RegionalDiscovery } from "@/components/geo/RegionalDiscovery";
+import { ExploreBoating } from "@/components/homepage/ExploreBoating";
 import { TodayOnTheWater } from "@/components/homepage/TodayOnTheWater";
-import { HomepageWeatherFeature } from "@/components/homepage/HomepageWeatherFeature";
-import { HomepageNewsFeature } from "@/components/homepage/HomepageNewsFeature";
-import { BoatingResourceTools } from "@/components/homepage/BoatingResourceTools";
-import { PracticalDiscovery } from "@/components/homepage/PracticalDiscovery";
 import { FeaturedGuides } from "@/components/homepage/FeaturedGuides";
 import { HomepageEvents } from "@/components/homepage/HomepageEvents";
+import { HomepageNewsFeature } from "@/components/homepage/HomepageNewsFeature";
 import { getHomepageOffers } from "@/data/affiliate-offers";
 import { getPublishedEvents } from "@/data/geo";
 import { getChicagoNews } from "@/lib/news";
@@ -33,7 +24,7 @@ export const metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const homepageOffers = getHomepageOffers();
+  const homepageOffers = getHomepageOffers(4);
   const weather = await getChicagoWeather();
   const news = await getChicagoNews({ alerts: weather.alerts, weather });
   const events = getPublishedEvents();
@@ -46,78 +37,33 @@ export default async function HomePage() {
         <AdSenseBlock slot="homepage-top" className="mb-4" />
       </div>
 
-      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 md:py-16 space-y-16 md:space-y-20">
+      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-10 md:py-12 space-y-12 md:space-y-14">
         <TodayOnTheWater
           weather={weather}
           news={news.items}
           events={events}
         />
 
-        <RegionalDiscovery />
+        <PopularOnTheWater
+          title="Popular on the Water"
+          subtitle="Highly reviewed Chicago cruises, sailing, and water experiences — ratings from GetYourGuide and Viator. We may earn a commission when you book through these links."
+          pageSlug="homepage"
+          offers={homepageOffers}
+          limit={4}
+          placement="homepage_popular"
+        />
 
-        <BoatingResourceTools />
+        <ExploreBoating />
 
-        <HomepageWeatherFeature weather={weather} />
-
-        <HomepageNewsFeature news={news.items} />
-
-        <PracticalDiscovery />
+        <HomepageNewsFeature news={news.items} limit={3} />
 
         <FeaturedGuides />
 
         <HomepageEvents events={events} />
-      </div>
 
-      <SceneryBand />
-
-      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 space-y-16 md:space-y-20">
-        <PopularCategories />
-        <FeaturedExperiences />
-
-        <PopularOnTheWater
-          title="Popular on the Water in Chicago"
-          subtitle="Bestselling ticketed cruises, kayak and jet ski experiences, and private charters you can check online — ratings from GetYourGuide and Viator. Not the same as a custom private boat match; use Find a Boat below for that."
-          pageSlug="homepage"
-          offers={homepageOffers}
-          limit={6}
-          placement="homepage_popular"
-        />
-
-        <section id="find-a-boat">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-3">
-                Need a Private Boat, Yacht, or Captain?
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                GetYourGuide and Viator cover ticketed cruises, sailing
-                experiences, and some private charter listings. For custom
-                private boat rentals, yacht charters, party boats, fishing
-                charters, and captains, tell us what you need — we&apos;ll match
-                you with local options, usually within 24 hours.
-              </p>
-              <div className="flex flex-wrap gap-3 text-sm font-semibold">
-                <Link href="/boat-rentals-chicago" className="text-coral hover:underline">
-                  Boat rentals
-                </Link>
-                <Link href="/yacht-rentals-chicago" className="text-coral hover:underline">
-                  Yacht charters
-                </Link>
-                <Link href="/party-boat-rentals-chicago" className="text-coral hover:underline">
-                  Party boats
-                </Link>
-                <Link href="/fishing-charters-chicago" className="text-coral hover:underline">
-                  Fishing
-                </Link>
-              </div>
-            </div>
-            <FindBoatForm source="homepage" />
-          </div>
+        <section id="chicago-boating-brief">
+          <EmailSignup source="homepage" />
         </section>
-
-        <WhyBoatingChicago />
-        <EmailSignup source="homepage" />
-        <VendorSignupCTA />
       </div>
     </>
   );

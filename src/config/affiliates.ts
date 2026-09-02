@@ -76,7 +76,7 @@ export const affiliateLinks: Record<AffiliatePartner, AffiliateLink> = {
     label: "Custom Partner",
     url: env(
       "NEXT_PUBLIC_AFFILIATE_CUSTOM",
-      "https://boatingchicago.com/#find-a-boat"
+      "https://boatingchicago.com/boat-rentals-chicago"
     ),
     description: "Book through our preferred Chicago boating partner",
     enabled: false,

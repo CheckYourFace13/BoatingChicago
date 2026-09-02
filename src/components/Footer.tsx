@@ -2,71 +2,32 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { disclaimer, siteConfig } from "@/config/site";
 
-const popularSearches = [
-  { href: "/boat-rentals-chicago", label: "Boat Rentals Chicago" },
-  { href: "/yacht-rentals-chicago", label: "Yacht Rentals Chicago" },
-  { href: "/party-boat-rentals-chicago", label: "Party Boat Rentals" },
-  { href: "/chicago-playpen-boat-rentals", label: "Playpen Boat Rentals" },
-  { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks Boat Rentals" },
-  { href: "/bachelorette-boat-rentals-chicago", label: "Bachelorette Boat Parties" },
-  { href: "/best-boat-rentals-chicago", label: "Best Boat Rentals" },
-  { href: "/luxury-yacht-charters-chicago", label: "Luxury Yacht Charters" },
-];
-
-const guideLinks = [
-  { href: "/chicago-playpen-guide", label: "Playpen Guide" },
-  { href: "/chicago-marina-guide", label: "Marina Guide" },
-  { href: "/chicago-fishing-guide", label: "Fishing Guide" },
-  { href: "/lake-michigan-boating-guide", label: "Lake Michigan Guide" },
-  { href: "/beginners-guide-boating-chicago", label: "Beginner's Guide" },
-  { href: "/chicago-boating-faq", label: "Boating FAQ" },
-  { href: "/sailing-lessons-chicago", label: "Sailing Lessons" },
-  { href: "/best-chicago-sunset-cruises", label: "Sunset Cruises" },
-];
-
-const categories = [
-  { href: "/birthday-boat-rentals-chicago", label: "Birthday Boat Rentals" },
-  { href: "/corporate-yacht-charters-chicago", label: "Corporate Yacht Charters" },
-  { href: "/air-and-water-show-boat-rentals", label: "Air & Water Show Boats" },
-  { href: "/fishing-charters-chicago", label: "Fishing Charters" },
-  { href: "/captains-for-hire-chicago", label: "Captains for Hire" },
-  { href: "/chicago-marinas", label: "Chicago Marinas" },
-  { href: "/boat-storage-chicago", label: "Boat Storage" },
-  { href: "/boat-detailing-chicago", label: "Boat Detailing" },
-  { href: "/boat-repair-chicago", label: "Boat Repair" },
-];
-
-const experienceLinks = [
-  { href: "/chicago-architecture-cruises", label: "Architecture Cruises" },
-  { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
-  { href: "/chicago-dining-cruises", label: "Dining Cruises" },
-  { href: "/chicago-tiki-cruises", label: "Tiki Cruises" },
-  { href: "/chicago-sailing-charters", label: "Sailing Charters" },
-  { href: "/chicago-sunset-cruises", label: "Sunset Cruises" },
-  { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
-  { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
-];
-
-const vendorLinks = [
-  { href: "/vendors", label: "Browse Vendors" },
-  { href: "/list-your-business", label: "List Your Business" },
-  { href: "/#find-a-boat", label: "Request a Quote" },
-];
-
 const exploreLinks = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & Waterways" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
-  { href: "/guides", label: "Guides" },
+  { href: "/weather", label: "Weather" },
+  { href: "/news", label: "News" },
   { href: "/events", label: "Events" },
+  { href: "/guides", label: "Guides" },
+];
+
+const thingsToDoLinks = [
+  { href: "/boat-rentals-chicago", label: "Boat Rentals" },
+  { href: "/yacht-rentals-chicago", label: "Yacht Charters" },
+  { href: "/chicago-architecture-cruises", label: "Cruises" },
+  { href: "/chicago-jet-ski-rentals", label: "Jet Skis" },
+  { href: "/chicago-kayak-rentals", label: "Kayaks" },
+  { href: "/chicago-sailing-charters", label: "Sailing" },
+  { href: "/fishing-charters-chicago", label: "Fishing" },
+  { href: "/vendors", label: "Vendors" },
 ];
 
 const companyLinks = [
-  { href: "/weather", label: "Boating Weather" },
-  { href: "/news", label: "Boating News" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact Us" },
+  { href: "/list-your-business", label: "List Your Business" },
   { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
@@ -75,70 +36,25 @@ const companyLinks = [
 export function Footer() {
   return (
     <footer className="bg-lake-blue text-white mt-auto">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <Logo className="mb-4" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Logo className="mb-3" />
             <p className="text-sky-blue/90 text-sm leading-relaxed mb-4">
-              The boating guide to Chicago, southern Lake Michigan, and nearby lakes — rentals, harbors, launches, weather, and local know-how.
+              Chicago and southern Lake Michigan boating information — weather,
+              harbors, launches, news, and guides.
             </p>
             <Link
-              href="/#find-a-boat"
+              href="/contact"
               className="inline-flex items-center px-5 py-2.5 bg-sun-yellow text-lake-blue font-bold text-sm rounded-full hover:bg-sun-yellow/90 transition-colors"
             >
-              Find a Boat
+              Contact Us
             </Link>
           </div>
 
           <div>
-            <h3 className="font-bold text-sun-yellow mb-4">Popular Searches</h3>
-            <ul className="space-y-2">
-              {popularSearches.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-sun-yellow mb-4">Boating Categories</h3>
-            <ul className="space-y-2">
-              {categories.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <h3 className="font-bold text-sun-yellow mb-4 mt-8">Experiences</h3>
-            <ul className="space-y-2">
-              {experienceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <h3 className="font-bold text-sun-yellow mb-4 mt-8">Guides</h3>
-            <ul className="space-y-2">
-              {guideLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-sun-yellow mb-4">Explore</h3>
-            <ul className="space-y-2 mb-6">
+            <h3 className="font-bold text-sun-yellow mb-3">Explore</h3>
+            <ul className="space-y-1.5">
               {exploreLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
@@ -147,9 +63,12 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h3 className="font-bold text-sun-yellow mb-4">For Vendors</h3>
-            <ul className="space-y-2 mb-6">
-              {vendorLinks.map((link) => (
+          </div>
+
+          <div>
+            <h3 className="font-bold text-sun-yellow mb-3">Things To Do</h3>
+            <ul className="space-y-1.5">
+              {thingsToDoLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
                     {link.label}
@@ -157,8 +76,11 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h3 className="font-bold text-sun-yellow mb-4">Company</h3>
-            <ul className="space-y-2 mb-6">
+          </div>
+
+          <div>
+            <h3 className="font-bold text-sun-yellow mb-3">Company</h3>
+            <ul className="space-y-1.5 mb-4">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
@@ -167,17 +89,11 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="text-sm text-white/70">
-              Questions?{" "}
-              <a href={`mailto:${siteConfig.contactEmail}`} className="text-sky-blue hover:underline">
-                {siteConfig.contactEmail}
-              </a>
-            </p>
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t border-white/10">
-          <p className="text-xs text-white/60 leading-relaxed mb-4">{disclaimer}</p>
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <p className="text-xs text-white/60 leading-relaxed mb-3">{disclaimer}</p>
           <p className="text-xs text-white/50">
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>

@@ -304,7 +304,7 @@ export const guidePart4: GuidePage[] = [
       { question: "Is it safe to leave a boat in the water over a Chicago winter?", answer: "Generally no — Chicago winters pose significant freeze risk. Most experienced Lake Michigan boaters haul out annually." },
       { question: "How long does winterization take?", answer: "Professional winterization for a typical outboard-powered boat takes 1–3 hours. Inboard and larger engines take longer. Schedule with your marine service provider in September." },
       { question: "Can I store a boat in my driveway in Chicago over winter?", answer: "Yes, if you have space and zoning permits. Proper blocking, winterization, and shrink wrap are essential for driveway storage." },
-      { question: "Who do I call for winter boat storage in Chicago?", answer: "Contact Chicago Harbors for harbor-based storage, and search for independent marine storage facilities in your area. Our Find a Boat form can also surface local service provider recommendations." },
+      { question: "Who do I call for winter boat storage in Chicago?", answer: "Contact Chicago Harbors for harbor-based storage, and search for independent marine storage facilities in your area. Instant-booking options on this page and related category pages can help you find local service providers." },
       { question: "What is the difference between blocking and jackstands for boat storage?", answer: "Blocking typically refers to wood or composite blocks placed under the keel. Jackstands support the hull sides. Most storage facilities use a combination, with proper spacing to avoid hull deformation." },
     ],
     popularSearches: [
@@ -720,7 +720,7 @@ export const guidePart4: GuidePage[] = [
       { question: "Is fishing on Lake Michigan near Chicago good for beginners?", answer: "Absolutely — fishing charters are designed to make the experience accessible for all skill levels. The captain handles all the technical aspects; you just hold the rod and enjoy the fight." },
     ],
     faqs: [
-      { question: "How do I book a fishing charter in Chicago?", answer: "Use our Find a Boat form or browse local fishing charter operators through charter booking platforms. Specify your target species, date, group size, and preferred duration." },
+      { question: "How do I book a fishing charter in Chicago?", answer: "Browse instant-booking options on this page or browse local fishing charter operators through charter booking platforms. Specify your target species, date, group size, and preferred duration." },
       { question: "What is the best month for salmon fishing near Chicago?", answer: "June and early July for peak chinook action; May for coho and steelhead; September and October for fall salmon runs. All are productive — the best month depends on which species you prefer." },
       { question: "Do I need a fishing license for a charter in Chicago?", answer: "Some charter captains include license fees; others require you to bring your own. Confirm this specifically when booking." },
       { question: "Can kids go on a Lake Michigan fishing charter?", answer: "Yes — many charter captains welcome families with children. Kids typically enjoy the excitement of catching fish. Confirm age minimums if any with your specific captain." },
@@ -1021,7 +1021,7 @@ export const guidePart4: GuidePage[] = [
       { question: "What is the best beginner boating experience in Chicago?", answer: "A captained architecture cruise or a ticketed river/lake tour is the most accessible first experience. For something more personal, a small captained charter on the lake is the classic beginner Chicago boat experience." },
       { question: "Is boating in Chicago safe for beginners?", answer: "On a captained vessel with a licensed professional, absolutely. The captain handles all safety considerations — your job is to enjoy the experience." },
       { question: "What should a first-time boater know before going on Lake Michigan?", answer: "Dress in layers, apply sunscreen before departure, listen to the safety briefing, and don't worry — a captained charter means someone experienced is managing the boat." },
-      { question: "How do I book my first Chicago boat experience?", answer: "Browse ticketed cruises through GetYourGuide or Viator for the easiest entry point. For a captained private charter, use our Find a Boat form to describe your group and needs." },
+      { question: "How do I book my first Chicago boat experience?", answer: "Browse ticketed cruises through GetYourGuide or Viator for the easiest entry point. For a captained private charter, browse instant-booking options on this page to describe your group and needs." },
     ],
     faqs: [
       { question: "What if I get seasick on a Chicago boat?", answer: "Lake Michigan is calmer than ocean sailing, but wave action is possible. Over-the-counter motion sickness medication taken 30–60 minutes before departure is effective. Morning charters on calm days minimize motion sickness risk." },
@@ -1104,7 +1104,7 @@ export const guidePart4: GuidePage[] = [
         heading: "Chicago Boating Resources: Where to Find Current Information",
         paragraphs: [
           "The National Weather Service Lake Michigan marine forecast is the most important resource for anyone boating on Chicago's lake. The forecast is available online and as a VHF marine radio broadcast on WX channels — monitoring it before every trip and staying aware of updates during longer outings is standard practice for responsible Lake Michigan boating. Chicago's summer weather can include fast-developing thunderstorms that require prompt action to avoid.",
-          "Chicago Harbors (operated by the Chicago Park District) is the official administrative resource for all harbor facilities in the city. Their website and phone line handle slip availability, transient dockage, haul-out scheduling, and facility-specific information. For charter guests, our Find a Boat form and affiliate partner listings are the most efficient booking resources — Chicago Harbors itself does not match guests with charter operators.",
+          "Chicago Harbors (operated by the Chicago Park District) is the official administrative resource for all harbor facilities in the city. Their website and phone line handle slip availability, transient dockage, haul-out scheduling, and facility-specific information. For charter guests, instant-booking options on this page and affiliate partner listings are the most efficient booking resources — Chicago Harbors itself does not match guests with charter operators.",
           "The US Coast Guard Auxiliary offers free Vessel Safety Checks (VSC) throughout the boating season at Chicago-area harbors. A VSC verifies that your boat meets federal and state safety equipment requirements and results in a dated decal that can be useful when selling a vessel. For new boat owners in Chicago, requesting a VSC early in the season is a practical way to confirm your boat's compliance and identify any equipment gaps before they become a problem on the water.",
         ],
       },
@@ -1138,8 +1138,8 @@ export const guidePart4: GuidePage[] = [
       { question: "What's the best time of year to go boating in Chicago?", answer: "June through early September offers the best combination of weather, water temperature, and event programming. Late May and September are great alternatives with fewer crowds." },
       { question: "Can I bring my dog on a boat in Chicago?", answer: "Many charter operators allow dogs with advance notice — confirm when booking. Dogs should wear a canine life jacket on the water." },
       { question: "What happens if the captain cancels my charter due to weather?", answer: "Reputable operators reschedule or refund when conditions are unsafe. Confirm the weather policy in writing before paying a deposit." },
-      { question: "Are there boats available for large groups in Chicago?", answer: "Yes — party boats and yacht charters accommodate groups ranging from 15 to 80+ passengers. Use our Find a Boat form to request options for your specific group size." },
-      { question: "How do I find a private boat charter in Chicago?", answer: "Use our Find a Boat form on this site to describe your needs and get matched with local charter operators. Instant-booking options are also available through our affiliate partners." },
+      { question: "Are there boats available for large groups in Chicago?", answer: "Yes — party boats and yacht charters accommodate groups ranging from 15 to 80+ passengers. Browse instant-booking options on this page to request options for your specific group size." },
+      { question: "How do I find a private boat charter in Chicago?", answer: "Browse instant-booking private charter listings on related category pages and affiliate partners such as GetYourGuide and Viator. Compare operators, dates, and inclusions before you book." },
     ],
     popularSearches: [
       { label: "Best Boat Rentals Chicago", href: "/best-boat-rentals-chicago" },

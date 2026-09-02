@@ -13,8 +13,14 @@ function formatDate(iso: string | null): string {
   });
 }
 
-export function HomepageNewsFeature({ news }: { news: NewsItem[] }) {
-  const items = news.slice(0, 6);
+export function HomepageNewsFeature({
+  news,
+  limit = 3,
+}: {
+  news: NewsItem[];
+  limit?: number;
+}) {
+  const items = news.slice(0, limit);
 
   return (
     <section>

@@ -4,24 +4,24 @@ import { Reveal } from "./Reveal";
 
 const reasons = [
   {
-    title: "Local Chicago Experts",
+    title: "Local Chicago Focus",
     description:
-      "We know Lake Michigan, the Playpen, every harbor, and every season. This isn't a generic directory — it's a Chicago boating guide built by locals.",
+      "We know Lake Michigan, the Playpen, every harbor, and every season. This isn't a generic directory — it's a Chicago boating guide built for locals and visitors.",
   },
   {
-    title: "Fast Matching",
+    title: "Live Conditions First",
     description:
-      "Tell us what you need and we connect you with the right boat, captain, or charter — often within 24 hours. No endless searching.",
+      "Weather, marine alerts, and lake conditions sit alongside guides and destinations so you can plan with real-time context.",
   },
   {
-    title: "Best Price Options",
+    title: "Clear Booking Options",
     description:
-      "Compare affiliate partners like Boatsetter and GetMyBoat, browse local vendor listings, and find options at every budget level.",
+      "When you're ready to get on the water, we highlight highly reviewed GetYourGuide and Viator experiences — clearly labeled affiliate links.",
   },
   {
-    title: "Trusted Referrals",
+    title: "Trusted Local Info",
     description:
-      "We feature vetted local operators and clearly label sponsored listings. You always know who you're booking with.",
+      "Marinas, launches, destinations, news, and events link back to official sources so you can verify fees, hours, and rules yourself.",
   },
 ];
 
@@ -45,7 +45,8 @@ export function WhyBoatingChicago() {
             Why Use Boating Chicago?
           </h2>
           <p className="text-white/80 mb-10 text-center max-w-2xl mx-auto">
-            The fastest way to find and book Chicago boating experiences — built for locals and visitors who want results, not research rabbit holes.
+            An information-first guide to Chicago and southern Lake Michigan boating —
+            conditions, harbors, and curated experiences when you&apos;re ready.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

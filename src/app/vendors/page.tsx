@@ -92,8 +92,8 @@ export default function VendorsPage() {
               <p className="text-gray-600 max-w-xl mx-auto mb-6 leading-relaxed">
                 We are onboarding boat rental companies, yacht charters, fishing
                 operators, captains, marinas, and service providers across the
-                Chicago lakefront. Until partner pages go live, use Find a Boat
-                on category pages for private matching, or browse destination and
+                Chicago lakefront. Until partner pages go live, browse rental and
+                charter category pages, ticketed experiences, or destination and
                 marina guides below.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-8">
@@ -137,16 +137,15 @@ export default function VendorsPage() {
             services, service areas, and contact information.
           </p>
           <p>
-            Prefer an immediate trip match? Use{" "}
-            <Link href="/#find-a-boat" className="font-semibold text-coral hover:underline">
-              Find a Boat
-            </Link>{" "}
-            on the homepage or any category page. Looking for harbor logistics
-            instead of a vendor? Start with the{" "}
+            Looking for experiences or harbor logistics? Start with{" "}
+            <Link href="/boat-rentals-chicago" className="font-semibold text-coral hover:underline">
+              boat rentals
+            </Link>
+            , the{" "}
             <Link href="/marinas" className="font-semibold text-coral hover:underline">
               marinas directory
-            </Link>{" "}
-            and{" "}
+            </Link>
+            , or the{" "}
             <Link href="/destinations/chicago" className="font-semibold text-coral hover:underline">
               Chicago destination guide
             </Link>
@@ -157,7 +156,7 @@ export default function VendorsPage() {
         <div className="bg-lake-blue rounded-3xl p-8 md:p-10 text-center text-white">
           <h2 className="text-2xl font-extrabold mb-3">Own a Boating Business in Chicago?</h2>
           <p className="text-white/85 mb-6 max-w-lg mx-auto">
-            Free basic listings, featured placements, sponsored spots, and direct lead access — built for operators who want more bookings on Lake Michigan.
+            Free basic listings, featured placements, and sponsored spots — built for operators who want more visibility on Lake Michigan.
           </p>
           <TrackedLink
             href="/list-your-business"

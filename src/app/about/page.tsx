@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 export const metadata = buildMetadata({
   title: "About Boating Chicago",
   description:
-    "BoatingChicago.com publishes original Chicago boating content, local guides, and Lake Michigan experiences — helping visitors and locals find boats, charters, and water activities.",
+    "BoatingChicago.com publishes original Chicago boating content, local guides, and Lake Michigan experiences — weather, harbors, launches, news, and curated water activities.",
   path: "/about",
 });
 
@@ -21,27 +21,26 @@ export default function AboutPage() {
           <strong className="text-lake-blue">{siteConfig.name}</strong> is Chicago&apos;s
           local digital guide to boating on Lake Michigan and the Chicago River. We publish
           original content — category guides, seasonal tips, experience overviews, and local
-          information — so visitors and residents can plan boat rentals, yacht charters, party
-          boats, fishing trips, sailing, cruises, and related water activities with clearer
-          context.
+          information — so visitors and residents can plan with clearer context around weather,
+          harbors, launches, news, events, rentals, and cruises.
         </p>
         <p>
-          Our pages cover private charter matching through Find a Boat, plus instant-booking
-          experiences from trusted affiliate partners when they fit the trip. We also help
-          local boating businesses get discovered through vendor listings and lead referrals.
+          We are an information resource. We do not broker boats, employ captains, or manually
+          match private charters. When relevant, we highlight instant-booking experiences from
+          trusted affiliate partners and future vendor listings.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What we publish</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li>Original boating guides and Chicago-focused SEO content</li>
-          <li>Local information about seasons, events, and on-water experiences</li>
-          <li>Comparisons of private charters vs ticketed cruises and rentals</li>
-          <li>Curated booking options and referral matching for private boats</li>
+          <li>Original boating guides and Chicago-focused content</li>
+          <li>Live weather, lake conditions, and marine alerts</li>
+          <li>Destination, marina, launch, and lake directories</li>
+          <li>News, events, and practical planning resources</li>
+          <li>Curated ticketed experiences via affiliate partners</li>
         </ul>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">How we make money</h2>
         <p>
-          Boating Chicago may earn commissions when you book through affiliate links, and we
-          may receive lead fees when we connect you with local operators. That never changes
-          the price you pay for a listed experience. See our{" "}
+          Boating Chicago may earn commissions when you book through affiliate links. That never
+          changes the price you pay for a listed experience. See our{" "}
           <a href="/affiliate-disclosure" className="text-sky-blue font-semibold hover:underline">
             Affiliate Disclosure
           </a>{" "}
@@ -49,14 +48,7 @@ export default function AboutPage() {
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Contact</h2>
         <p>
-          Questions, partnerships, or listing inquiries:{" "}
-          <a
-            href={`mailto:${siteConfig.contactEmail}`}
-            className="text-sky-blue font-semibold hover:underline"
-          >
-            {siteConfig.contactEmail}
-          </a>{" "}
-          or visit our{" "}
+          Questions, partnerships, or listing inquiries: visit our{" "}
           <a href="/contact" className="text-sky-blue font-semibold hover:underline">
             Contact
           </a>{" "}

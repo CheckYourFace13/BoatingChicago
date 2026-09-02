@@ -36,7 +36,7 @@ function formatLeadEmail(lead: Lead): { subject: string; text: string; html: str
 
   const text = lines.map(([k, v]) => `${k}: ${v}`).join("\n");
   const html = `
-    <h2>New Find a Boat Lead</h2>
+    <h2>New contact / legacy lead notification</h2>
     <table style="border-collapse:collapse;font-family:sans-serif;">
       ${lines.map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;font-weight:bold;">${k}</td><td style="padding:4px 0;">${v}</td></tr>`).join("")}
     </table>
@@ -147,6 +147,67 @@ export async function sendLeadNotification(lead: Lead): Promise<boolean> {
     source: lead.source,
   });
   return false;
+}
+
+export async function sendContactNotification(input: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}): Promise<boolean> {
+  const config = getEmailConfig();
+  // Prefer CONTACT_EMAIL, fall back to LEADS_TO_EMAIL — never expose either to clients
+  const to =
+    process.env.CONTACT_EMAIL?.trim() ||
+    config.leadsToEmail ||
+    undefined;
+
+  if (!to) {
+    console.log("[contact] No CONTACT_EMAIL/LEADS_TO_EMAIL — logged only:", {
+      name: input.name,
+      email: input.email,
+      subject: input.subject,
+    });
+    return false;
+  }
+
+  const subject = `[Boating Chicago] Contact: ${input.subject} — ${input.name}`;
+  const text = [
+    `Name: ${input.name}`,
+    `Email: ${input.email}`,
+    `Subject: ${input.subject}`,
+    `Message:`,
+    input.message,
+    `Submitted: ${new Date().toISOString()}`,
+  ].join("\n");
+  const html = `
+    <h2>New contact form message</h2>
+    <p><strong>Name:</strong> ${escapeHtml(input.name)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(input.email)}</p>
+    <p><strong>Subject:</strong> ${escapeHtml(input.subject)}</p>
+    <p><strong>Message:</strong></p>
+    <pre style="white-space:pre-wrap;font-family:sans-serif;">${escapeHtml(input.message)}</pre>
+  `;
+
+  if (config.resendApiKey) {
+    const sent = await sendViaResend(config, to, subject, text, html);
+    if (sent) return true;
+  }
+  if (config.sendgridApiKey) {
+    const sent = await sendViaSendGrid(config, to, subject, text, html);
+    if (sent) return true;
+  }
+
+  console.log("[contact] Email not sent (missing or failed provider) — logged:", input.email);
+  return false;
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 export async function sendNewsletterNotification(

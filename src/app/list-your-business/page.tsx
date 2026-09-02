@@ -1,11 +1,11 @@
 import { buildMetadata } from "@/lib/seo";
-import { FindBoatForm } from "@/components/FindBoatForm";
+import { ContactForm } from "@/components/ContactForm";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export const metadata = buildMetadata({
   title: "List Your Boating Business on Boating Chicago | Free & Featured Listings",
   description:
-    "List your Chicago boat rental, yacht charter, fishing, marina, or boating service on Boating Chicago. Free basic listings, featured placements, sponsored spots, and lead access.",
+    "List your Chicago boat rental, yacht charter, fishing, marina, or boating service on Boating Chicago. Free basic listings, featured placements, and sponsored spots.",
   path: "/list-your-business",
 });
 
@@ -53,8 +53,8 @@ const tiers = [
 const benefits = [
   {
     icon: "📈",
-    title: "Lead Access",
-    description: "Receive qualified leads from our Find a Boat form — customers actively looking to book with your category and area.",
+    title: "Directory Presence",
+    description: "Appear on relevant Chicago boating category pages where visitors research rentals, charters, and services.",
   },
   {
     icon: "🎯",
@@ -69,7 +69,7 @@ const benefits = [
   {
     icon: "🤝",
     title: "Affiliate Integration",
-    description: "Connect your existing Boatsetter, GetMyBoat, or direct booking links to drive more conversions.",
+    description: "Connect your existing GetYourGuide, Viator, or direct booking links to drive more conversions.",
   },
 ];
 
@@ -160,9 +160,10 @@ export default function ListYourBusinessPage() {
               Ready to Get Listed?
             </h2>
             <p className="text-gray-600 mb-6 text-center">
-              Submit your info below and we&apos;ll set up your listing. For featured or sponsored placements, mention your preferred tier in the notes.
+              Send a message with your business details. For featured or sponsored placements,
+              mention your preferred tier. We usually respond within 1–2 business days.
             </p>
-            <FindBoatForm source="list-your-business" compact />
+            <ContactForm defaultSubject="Business / Partnership" />
           </div>
         </section>
       </div>

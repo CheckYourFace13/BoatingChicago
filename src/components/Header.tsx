@@ -17,21 +17,21 @@ const exploreLinks: NavItem[] = [
 
 const conditionsLinks: NavItem[] = [
   { href: "/weather", label: "Weather & Lake Conditions" },
-  { href: "/weather#alerts", label: "Marine Alerts" },
+  { href: "/weather#marine-alerts", label: "Marine Alerts" },
   { href: "/events", label: "Events" },
 ];
 
 const thingsToDoLinks: NavItem[] = [
   { href: "/boat-rentals-chicago", label: "Boat Rentals" },
   { href: "/yacht-rentals-chicago", label: "Yacht Charters" },
+  { href: "/chicago-architecture-cruises", label: "Cruises / Experiences" },
+  { href: "/chicago-jet-ski-rentals", label: "Jet Skis" },
+  { href: "/chicago-kayak-rentals", label: "Kayaks" },
+  { href: "/chicago-sailing-charters", label: "Sailing" },
   { href: "/party-boat-rentals-chicago", label: "Party Boats" },
   { href: "/fishing-charters-chicago", label: "Fishing" },
-  { href: "/chicago-architecture-cruises", label: "Architecture Cruises" },
   { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
   { href: "/chicago-dining-cruises", label: "Dining Cruises" },
-  { href: "/chicago-sailing-charters", label: "Sailing Charters" },
-  { href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" },
-  { href: "/chicago-kayak-rentals", label: "Kayak Rentals" },
   { href: "/list-your-business", label: "List Your Business", track: true },
 ];
 
@@ -145,12 +145,6 @@ export function Header() {
             >
               Explore
             </Link>
-            <Link
-              href="/#find-a-boat"
-              className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold text-coral hover:underline"
-            >
-              Find a Boat
-            </Link>
 
             <button
               type="button"
@@ -235,13 +229,6 @@ export function Header() {
               onClick={() => setOpen(false)}
             >
               Explore Destinations
-            </Link>
-            <Link
-              href="/#find-a-boat"
-              className="block mx-3 mt-2 text-center px-5 py-2.5 text-coral font-bold text-sm"
-              onClick={() => setOpen(false)}
-            >
-              Find a Boat
             </Link>
           </nav>
         )}

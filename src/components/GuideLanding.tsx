@@ -10,7 +10,6 @@ import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
-import { FindBoatForm } from "./FindBoatForm";
 import { EmailSignup } from "./EmailSignup";
 import {
   ExploreResources,
@@ -126,16 +125,16 @@ export function GuideLanding({ guide }: GuideLandingProps) {
           >
             {guide.intro}
           </p>
-          {guide.showLeadForm && (
+          {hasOffers ? (
             <div className="mt-6 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "220ms" }}>
               <a
-                href="#find-a-boat"
-                className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md cta-pulse"
+                href="#book-online"
+                className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md"
               >
-                Get Matched with a Boat →
+                Browse Experiences →
               </a>
             </div>
-          )}
+          ) : null}
         </div>
       </section>
 
@@ -234,26 +233,14 @@ export function GuideLanding({ guide }: GuideLandingProps) {
 
         {/* Affiliate Offers */}
         {hasOffers && (
-          <AffiliateOfferGrid
-            pageSlug={affiliateSlug}
-            placement={`guide_${guide.slug}`}
-            title="Popular on the Water"
-            subtitle="Highly reviewed ticketed cruises and water experiences matched to this guide. Ratings from GetYourGuide or Viator — not BoatingChicago reviews. For custom private boat matching, use Find a Boat below."
-          />
-        )}
-
-        {/* Find a Boat Form */}
-        {guide.showLeadForm && (
-          <section id="find-a-boat">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-3">
-              Get Matched with a Chicago Boat
-            </h2>
-            <p className="text-gray-600 mb-6 max-w-2xl">
-              Tell us what you need — group size, date, and occasion — and we&apos;ll match you with
-              local operators who fit. Usually within 24 hours.
-            </p>
-            <FindBoatForm source={guide.slug} />
-          </section>
+          <div id="book-online">
+            <AffiliateOfferGrid
+              pageSlug={affiliateSlug}
+              placement={`guide_${guide.slug}`}
+              title="Popular on the Water"
+              subtitle="Highly reviewed ticketed cruises and water experiences related to this guide. Ratings from GetYourGuide or Viator — not BoatingChicago reviews."
+            />
+          </div>
         )}
 
         {/* Main FAQs */}

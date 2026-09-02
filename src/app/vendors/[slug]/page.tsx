@@ -6,7 +6,6 @@ import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { buildLocalBusinessSchema } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { FindBoatForm } from "@/components/FindBoatForm";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -151,18 +150,14 @@ export default async function VendorDetailPage({ params }: PageProps) {
                   <p className="font-semibold text-lake-blue">{vendor.phone}</p>
                 </div>
               )}
-              <a
-                href="#request-quote"
+              <Link
+                href="/contact"
                 className="mt-4 w-full inline-flex items-center justify-center px-5 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors"
               >
-                Request a Quote
-              </a>
+                Contact About Listings
+              </Link>
             </div>
           </div>
-        </div>
-
-        <div id="request-quote" className="mt-16 max-w-2xl mx-auto">
-          <FindBoatForm source={`vendor-${vendor.slug}`} compact />
         </div>
       </div>
     </>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
@@ -28,13 +29,13 @@ export default function AffiliateDisclosurePage() {
         <ul className="list-disc pl-5 space-y-2">
           <li>Outbound links to third-party booking platforms</li>
           <li>Featured experience cards and “book online” CTAs</li>
-          <li>Lead referrals to local operators when applicable</li>
         </ul>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Editorial independence</h2>
         <p>
           Affiliate relationships do not change our commitment to clear labeling. We distinguish
-          ticketed cruises and rentals from private charter matching, and we do not claim that
-          ordinary public cruises are private boat rentals.
+          ticketed cruises and rentals from private charters, and we do not claim that ordinary
+          public cruises are private boat rentals. We do not broker boats or manually match private
+          charters.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Advertising</h2>
         <p>
@@ -44,12 +45,10 @@ export default function AffiliateDisclosurePage() {
         </p>
         <p>
           Questions?{" "}
-          <a
-            href={`mailto:${siteConfig.contactEmail}`}
-            className="text-sky-blue font-semibold hover:underline"
-          >
-            {siteConfig.contactEmail}
-          </a>
+          <Link href="/contact" className="text-sky-blue font-semibold hover:underline">
+            Contact Us
+          </Link>
+          .
         </p>
       </div>
     </LegalPage>

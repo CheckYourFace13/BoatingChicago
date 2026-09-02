@@ -187,7 +187,7 @@ function NewsletterModule() {
         Get conditions and Chicago boating updates in your inbox.
       </p>
       <Link
-        href="/#find-a-boat"
+        href="/#chicago-boating-brief"
         className="text-sm font-bold text-coral hover:underline"
       >
         Join the Brief waitlist on the homepage →
@@ -196,17 +196,17 @@ function NewsletterModule() {
   );
 }
 
-function FindBoatModule() {
+function ExperiencesModule() {
   return (
-    <RailCard title="Need a Boat?">
+    <RailCard title="On the Water">
       <p className="text-sm text-gray-600 mb-3 leading-relaxed">
-        Match with local rentals and captains — or browse ticketed experiences.
+        Browse ticketed cruises, rentals, and experiences from trusted partners.
       </p>
       <Link
-        href="/#find-a-boat"
+        href="/boat-rentals-chicago"
         className="inline-flex text-sm font-bold text-coral hover:underline"
       >
-        Find a Boat →
+        Explore experiences →
       </Link>
     </RailCard>
   );
@@ -267,7 +267,7 @@ export function SideRail({
       continue;
     }
     if (mod === "find_a_boat") {
-      nodes.push(<FindBoatModule key={mod} />);
+      nodes.push(<ExperiencesModule key={mod} />);
       continue;
     }
     if (mod === "ad_slot") {

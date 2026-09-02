@@ -11,7 +11,6 @@ import { BestForCards } from "./BestForCards";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
-import { FindBoatForm } from "./FindBoatForm";
 import { VendorCard } from "./VendorCard";
 import { EmailSignup } from "./EmailSignup";
 import {
@@ -34,7 +33,7 @@ const offerSectionCopy: Record<
   "boat-rentals-chicago": {
     title: "Instant-Booking Charters, Cruises and Rentals",
     subtitle:
-      "Book online for private yacht and sailboat charters, kayak rentals, speedboat architecture cruises, and more. These are instant-booking alternatives — for custom private boat rentals and party boats, use the Find a Boat form below.",
+      "Book online for private yacht and sailboat charters, kayak rentals, speedboat architecture cruises, and more. These are instant-booking alternatives — for custom private boat rentals and party boats, use related rental and charter category pages.",
     beforeForm: false,
   },
   "party-boat-rentals-chicago": {
@@ -53,7 +52,7 @@ const offerSectionCopy: Record<
   "navy-pier-fireworks-boat-rentals": {
     title: "Book a Chicago Fireworks Cruise or Sail",
     subtitle:
-      "Ticketed fireworks cruises and fireworks sails you can book online — including Navy Pier marina fireworks, fireworks sails, and GetYourGuide fireworks options. Prefer a private charter for your group? Use the Find a Boat form below.",
+      "Ticketed fireworks cruises and fireworks sails you can book online — including Navy Pier marina fireworks, fireworks sails, and GetYourGuide fireworks options. Prefer a private charter for your group? Use related rental and charter category pages.",
     beforeForm: true,
   },
   "air-and-water-show-boat-rentals": {
@@ -66,13 +65,13 @@ const offerSectionCopy: Record<
   "yacht-rentals-chicago": {
     title: "Instant-Booking Private Yacht & Sailing Charters",
     subtitle:
-      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For custom private yacht matching, use the Find a Boat form below. Dining cruises are ticketed shared experiences, not private yachts.",
+      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For custom private yacht matching, use related rental and charter category pages. Dining cruises are ticketed shared experiences, not private yachts.",
     beforeForm: false,
   },
   "bachelorette-boat-rentals-chicago": {
     title: "Ticketed Party Cruise Option",
     subtitle:
-      "The Tiki Bar Cruise is a fun group experience you can book online. For a private bachelorette boat rental, use the Find a Boat form.",
+      "The Tiki Bar Cruise is a fun group experience you can book online. For a private bachelorette boat rental, use related category pages and instant-booking listings.",
     beforeForm: false,
   },
   "birthday-boat-rentals-chicago": {
@@ -139,13 +138,13 @@ const offerSectionCopy: Record<
   "family-boat-rentals-chicago": {
     title: "Family-Friendly Chicago Water Experiences",
     subtitle:
-      "Shorter architecture cruises, Seadog speedboat rides, and Lake Michigan skyline cruises that work well for families — book online. For a private family boat rental, use Find a Boat below.",
+      "Shorter architecture cruises, Seadog speedboat rides, and Lake Michigan skyline cruises that work well for families — book online. For a private family boat rental, browse related rental category pages.",
     beforeForm: false,
   },
   "romantic-boat-cruises-chicago": {
     title: "Sunset, Night & Dining Cruises",
     subtitle:
-      "Ticketed sunset, night, and dining cruises you can book online. For a private romantic charter, use Find a Boat below.",
+      "Ticketed sunset, night, and dining cruises you can book online. For a private romantic charter, browse related rental category pages.",
     beforeForm: false,
   },
   "chicago-river-cruises": {
@@ -183,7 +182,6 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
   const offerCopy = offerSectionCopy[category.slug];
   const isExperiencePage = experienceSlugs.has(category.slug);
   const showOffers = pageOffers.length > 0 && offerCopy;
-  const offersBeforeForm = showOffers && offerCopy.beforeForm !== false && (offerCopy.beforeForm || isExperiencePage);
 
   const offerBlock = showOffers ? (
     <AffiliateOfferGrid
@@ -276,17 +274,29 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               >
                 {pageOffers[0].ctaLabel} →
               </a>
-            ) : null}
-            <a
-              href="#find-a-boat"
-              className={`inline-flex items-center px-6 py-3 font-bold rounded-full transition-colors shadow-md ${
-                isExperiencePage
-                  ? "bg-white/15 border border-white/40 text-white hover:bg-white/25"
-                  : "bg-coral text-white hover:bg-coral/90 cta-pulse"
-              }`}
-            >
-              {isExperiencePage ? "Need a Private Boat Instead?" : "Get Matched with a Boat →"}
-            </a>
+            ) : (
+              <a
+                href="#book-online"
+                className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-full hover:bg-coral/90 transition-colors shadow-md"
+              >
+                Browse Experiences →
+              </a>
+            )}
+            {!isExperiencePage ? (
+              <Link
+                href="/boat-rentals-chicago"
+                className="inline-flex items-center px-6 py-3 bg-white/15 border border-white/40 text-white font-bold rounded-full hover:bg-white/25 transition-colors shadow-md"
+              >
+                Boat Rentals Guide
+              </Link>
+            ) : (
+              <Link
+                href="/yacht-rentals-chicago"
+                className="inline-flex items-center px-6 py-3 bg-white/15 border border-white/40 text-white font-bold rounded-full hover:bg-white/25 transition-colors shadow-md"
+              >
+                Yacht Charters
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -296,24 +306,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
 
         <AdSenseBlock slot="guide-mid" />
 
-        {offersBeforeForm && offerBlock}
-
-        <section id="find-a-boat">
-          {isExperiencePage && (
-            <div className="mb-6">
-              <h2 className="text-2xl font-extrabold text-lake-blue mb-2">
-                Need a Private Boat, Yacht, or Captain?
-              </h2>
-              <p className="text-gray-600 max-w-2xl">
-                GetYourGuide experiences above are ticketed tours and rentals. For private boat rentals,
-                yacht charters, party boats, or captains for hire, tell us what you need and we&apos;ll match you.
-              </p>
-            </div>
-          )}
-          <FindBoatForm source={category.slug} />
-        </section>
-
-        {!offersBeforeForm && offerBlock}
+        <div id="book-online">{offerBlock}</div>
 
         {vendors.length > 0 ? (
           <section>
@@ -321,7 +314,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               Featured Local Listings
             </h2>
             <p className="text-gray-600 mb-6">
-              Browse Chicago vendors on Boating Chicago — or submit the form above to get matched automatically.
+              Browse Chicago vendors on Boating Chicago when listings are available.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {vendors.map((vendor) => (
@@ -335,7 +328,8 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               Local Vendor Listings
             </h2>
             <p className="text-gray-600 mb-4 max-w-lg mx-auto">
-              We&apos;re onboarding Chicago boating partners. Use the form above to get matched for private rentals and charters.
+              We&apos;re onboarding Chicago boating partners. Browse ticketed experiences above, or
+              explore related category pages for rentals and charters.
             </p>
             <TrackedLink
               href="/list-your-business"

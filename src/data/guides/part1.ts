@@ -40,7 +40,7 @@ export const guidePart1: GuidePage[] = [
         heading: "How to Book the Best Rental for Your Needs",
         paragraphs: [
           "Start by defining the basics: group size, desired duration (half-day vs full-day), budget range, and whether you want a captain included. Most Chicago charter operators require advance booking — especially on summer weekends, holidays, and event weekends like the Air & Water Show.",
-          "Use our Find a Boat form to describe your needs and get matched with local operators who fit your criteria. Alternatively, browse instant-booking options through platforms like GetYourGuide and Viator for ticketed experiences like architecture cruises, kayak rentals, and sailing charters.",
+          "Browse instant-booking options on this page to describe your needs and compare local operators on related category pages. Alternatively, browse instant-booking options through platforms like GetYourGuide and Viator for ticketed experiences like architecture cruises, kayak rentals, and sailing charters.",
           "Always review cancellation and weather policies before paying a deposit. Ask specifically: What happens if conditions are too rough to go out? Is rescheduling free, or is there a fee? Reputable operators handle weather situations fairly — red flags include non-refundable deposits with no weather exceptions.",
         ],
       },
@@ -196,7 +196,7 @@ export const guidePart1: GuidePage[] = [
     ],
     faqs: [
       { question: "Are there any free boat rides in Chicago?", answer: "The Chicago Water Taxi is not free but is very affordable for river transit. For lake experiences, the lowest-cost options are kayak and architecture cruise tickets." },
-      { question: "How do I find the best deal on a Chicago boat rental?", answer: "Compare multiple operators, book weekdays when possible, organize larger groups to lower per-person cost, and avoid peak event weekends. Our Find a Boat form can surface options across multiple local operators." },
+      { question: "How do I find the best deal on a Chicago boat rental?", answer: "Compare multiple operators, book weekdays when possible, organize larger groups to lower per-person cost, and avoid peak event weekends. Instant-booking options on this page can surface options across multiple local operators." },
       { question: "What is the minimum group size for a charter?", answer: "There's no universal minimum. Some operators accept bookings for 2–4 people; others have minimums of 10–15. Confirm minimum headcounts before booking." },
       { question: "Do cheap charters have good captains?", answer: "Price and captain quality don't always correlate. Always verify USCG licensing, check reviews, and ask about the captain's local experience regardless of price tier." },
       { question: "Are kayak rentals in Chicago worth it?", answer: "Downtown river kayaking is a highly enjoyable, affordable Chicago experience. It's not the same as a motorized boat charter, but for solo travelers or small groups, it's a genuine and memorable way to see the city from the water." },
@@ -405,7 +405,7 @@ export const guidePart1: GuidePage[] = [
     peopleAlsoAsk: [
       { question: "What time is sunset in Chicago in summer?", answer: "Chicago's summer sunsets range from around 8:20pm in late June to closer to 7:45pm by mid-August. Exact times shift daily — check a sunset calculator for your specific visit date." },
       { question: "Is a Chicago sunset cruise worth it?", answer: "For many visitors and locals, a sunset cruise is one of the most memorable Chicago experiences available. The skyline view from the lake at golden hour is unique and genuinely beautiful." },
-      { question: "How do I book a private sunset charter in Chicago?", answer: "Use our Find a Boat form to describe your group size and date, or browse private sailing charter listings on our sailing charters guide page. Instant-booking options are also available through our affiliate partners." },
+      { question: "How do I book a private sunset charter in Chicago?", answer: "Browse instant-booking options on this page to describe your group size and date, or browse private sailing charter listings on our sailing charters guide page. Instant-booking options are also available through our affiliate partners." },
       { question: "What should I wear on a Chicago sunset cruise?", answer: "Dress comfortably and bring layers. Wind on Lake Michigan in the evening is cooler than onshore, even in summer. Closed-toe shoes are safer on deck, especially if sailing." },
       { question: "Are Chicago sunset cruises romantic?", answer: "They're among Chicago's most romantic experiences. Private sunset sailing charters especially are popular for proposals, anniversaries, and romantic date nights on the water." },
     ],
@@ -509,7 +509,7 @@ export const guidePart1: GuidePage[] = [
       { question: "How long is a Chicago River cruise?", answer: "Architecture cruises typically run 45–90 minutes. Dining cruises are 1.5–3 hours. Duration varies by operator and package." },
       { question: "Can I kayak on the Chicago River?", answer: "Yes — downtown kayak rentals launch from river-accessible points and let you paddle the main branch through the Loop. Check the booking listing for exact launch locations and rules." },
       { question: "Is the Chicago River clean enough to boat on?", answer: "The Chicago River has improved significantly in recent decades. It supports recreational use and is safe for boating. Swimming is generally not recommended." },
-      { question: "How do I book a private Chicago River charter?", answer: "Use our Find a Boat form to request a private river or harbor charter. Not all operators are river-certified — specify your interest in river navigation when submitting your request." },
+      { question: "How do I book a private Chicago River charter?", answer: "Browse instant-booking options on this page to request a private river or harbor charter. Not all operators are river-certified — specify your interest in river navigation when submitting your request." },
     ],
     faqs: [
       { question: "Do Chicago River cruises operate in winter?", answer: "Most river cruise operators close for winter. Some specialty events (like holiday light tours) may operate in December; check specific operator schedules." },
@@ -1034,7 +1034,7 @@ export const guidePart1: GuidePage[] = [
     ],
     peopleAlsoAsk: [
       { question: "What is the best bachelorette boat activity in Chicago?", answer: "A Playpen party boat day is widely considered the quintessential Chicago bachelorette experience. For more intimate celebrations, a private sunset sailing charter is highly romantic." },
-      { question: "How much does a bachelorette boat party cost in Chicago?", answer: "Costs depend on vessel size, duration, and group size. Request multiple quotes through our Find a Boat form for your specific date and group." },
+      { question: "How much does a bachelorette boat party cost in Chicago?", answer: "Costs depend on vessel size, duration, and group size. Request multiple quotes through instant-booking options on this page for your specific date and group." },
       { question: "Can we decorate the party boat for a bachelorette?", answer: "Yes — most operators allow banners, balloons, and themed props. Avoid confetti and anything that goes in the water. Confirm with your operator before arrival." },
       { question: "How many people fit on a bachelorette party boat?", answer: "Common bachelorette party boats hold 10–30+ guests. The USCG capacity limit for your vessel is the hard maximum — never exceed it." },
       { question: "What should we wear on a bachelorette boat party in Chicago?", answer: "Themed swimwear is popular for Playpen days. Bring a wrap or cover-up, layers for the return trip, and shoes you don't mind getting wet." },

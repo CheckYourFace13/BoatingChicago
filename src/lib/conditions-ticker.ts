@@ -142,14 +142,14 @@ export function buildConditionsTickerItems(input: {
     items.push({
       id: `alert-${top.id}`,
       label: `ALERT: ${top.event.toUpperCase()}`,
-      href: "/weather#alerts",
+      href: "/weather#marine-alerts",
       kind: "alert",
     });
   } else {
     items.push({
       id: "no-alerts",
       label: "NO MARINE ALERTS",
-      href: "/weather#alerts",
+      href: "/weather#marine-alerts",
       kind: "alert",
     });
   }

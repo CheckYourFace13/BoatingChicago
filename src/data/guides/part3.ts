@@ -67,7 +67,7 @@ export const guidePart3: GuidePage[] = [
         ["Chicago Water Taxi", "Transit", "15–30 min per segment", "Affordable river transport"],
         ["Downtown Kayak Rental", "Self-guided rental", "2 hours", "Active, beginner-friendly"],
         ["River Dining Cruise", "Ticketed dining", "1.5–3 hrs", "Meal + river sightseeing"],
-        ["Private River Charter", "Private boat", "Flexible", "Custom via Find a Boat"],
+        ["Private River Charter", "Private boat", "Flexible", "Custom via category pages"],
       ],
     },
     seasonalTips: [
@@ -296,7 +296,7 @@ export const guidePart3: GuidePage[] = [
     ],
     peopleAlsoAsk: [
       { question: "Where is Monroe Harbor in Chicago?", answer: "Monroe Harbor is located on the south lakefront of Chicago, adjacent to Grant Park and the Museum Campus, south of Navy Pier and north of Burnham Harbor." },
-      { question: "Can I rent a boat at Monroe Harbor?", answer: "Several charter operators depart from Monroe Harbor. Use our Find a Boat form to request a charter with Monroe Harbor as your preferred departure point." },
+      { question: "Can I rent a boat at Monroe Harbor?", answer: "Several charter operators depart from Monroe Harbor. Browse instant-booking options on this page to request a charter with Monroe Harbor as your preferred departure point." },
       { question: "How do I get a slip at Monroe Harbor?", answer: "Monroe Harbor slips are administered by the Chicago Park District. Contact Chicago Harbors for current availability and waitlist information." },
       { question: "Is Monroe Harbor close to the Playpen?", answer: "Yes — Monroe Harbor is the closest major harbor to the Playpen anchorage area. It's a short motor to the Playpen zone from Monroe." },
       { question: "Is parking available at Monroe Harbor?", answer: "Yes — metered parking and Museum Campus parking facilities are accessible. Summer weekend parking fills quickly; transit or rideshare is recommended for busy dates." },
@@ -590,7 +590,7 @@ export const guidePart3: GuidePage[] = [
       {
         heading: "Charter Options and Visitor Tips for the Belmont Harbor Area",
         paragraphs: [
-          "Charter departures from Belmont Harbor are available but less common than from the downtown harbors. The North Side sailing community at Belmont is active and some sailing charter operators base themselves here specifically to serve North Side clientele. Use our Find a Boat form and specify Belmont Harbor as your preferred departure location to surface operators who work from this facility.",
+          "Charter departures from Belmont Harbor are available but less common than from the downtown harbors. The North Side sailing community at Belmont is active and some sailing charter operators base themselves here specifically to serve North Side clientele. Browse instant-booking options on this page and specify Belmont Harbor as your preferred departure location to surface operators who work from this facility.",
           "The Lakeview neighborhood immediately west and south of Belmont Harbor is one of Chicago's most restaurant-dense residential areas. Wrigleyville's post-game bar scene is a 20-minute walk west; the Southport Avenue dining corridor is a short bike ride from the harbor entrance. For charter guests who want to build a neighborhood Chicago experience around their harbor day, Belmont's surrounding neighborhoods offer excellent options.",
           "Wrigley Field is approximately 1.5 miles west of Belmont Harbor — an easy bike ride or a comfortable walk on a good day. Combining a Belmont Harbor sailing charter in the morning with a Cubs game in the afternoon is a distinctly Chicago summer itinerary. Check the Cubs schedule when planning a Belmont Harbor visit if baseball is part of your Chicago experience goals.",
         ],
@@ -629,7 +629,7 @@ export const guidePart3: GuidePage[] = [
     ],
     faqs: [
       { question: "How far is Belmont Harbor from downtown Chicago?", answer: "Belmont Harbor is approximately 6 miles north of downtown along the lakefront — about 30 minutes by bike on the lakefront trail." },
-      { question: "Can I rent a boat from Belmont Harbor?", answer: "Some charter operators may use Belmont Harbor. Use our Find a Boat form and specify Belmont Harbor as your preferred departure point." },
+      { question: "Can I rent a boat from Belmont Harbor?", answer: "Some charter operators may use Belmont Harbor. Browse instant-booking options on this page and specify Belmont Harbor as your preferred departure point." },
       { question: "Is Belmont Harbor a good base for Lake Michigan cruising?", answer: "Yes — Belmont's northern location is convenient for cruising north toward Diversey, Montrose, or further north along the Illinois and Wisconsin shore." },
       { question: "What restaurants are near Belmont Harbor?", answer: "Several options are accessible within a short walk or Uber ride along the Belmont Avenue and Clark Street corridors in Lakeview." },
       { question: "Can I dock at Belmont Harbor for the day as a visiting boater?", answer: "Transient daily dockage is available. Contact Chicago Harbors to arrange a transient slip for your specific visit dates." },
@@ -707,7 +707,7 @@ export const guidePart3: GuidePage[] = [
         paragraphs: [
           "Montrose Harbor draws visitors from across Chicago's North and Northwest Sides who come to fish the breakwater, visit Montrose Beach, or use the lakefront trail. The harbor and its adjacent beach and point are genuinely worth making a trip for — the combination of accessible fishing, wild habitat, a dog-friendly beach section, and dramatic lake views makes Montrose one of Chicago's most multi-layered lakefront destinations.",
           "For visitors without local knowledge, the harbor is most easily reached by car via Montrose Drive east to the lakefront, or by CTA bus on the Montrose Avenue route to the lake. The lakefront trail from downtown is a 45–50 minute bicycle ride — manageable for fit cyclists who want a workout alongside the destination. Divvy bike share reaches the Montrose area, though the station network thins out compared to dense downtown coverage.",
-          "Restrooms, seasonal food options (in summer), and basic beach facilities are available at Montrose Beach. The harbor office handles slip and transient dockage inquiries. There are no charter boat booking services directly at the harbor — use online booking platforms or our Find a Boat form to arrange fishing charters or other charter experiences that depart from Montrose Harbor.",
+          "Restrooms, seasonal food options (in summer), and basic beach facilities are available at Montrose Beach. The harbor office handles slip and transient dockage inquiries. There are no charter boat booking services directly at the harbor — use online booking platforms or instant-booking options on this page to arrange fishing charters or other charter experiences that depart from Montrose Harbor.",
         ],
       },
       {
@@ -845,7 +845,7 @@ export const guidePart3: GuidePage[] = [
     peopleAlsoAsk: [
       { question: "Where is 31st Street Harbor in Chicago?", answer: "31st Street Harbor is located on Chicago's South Side lakefront in the Bronzeville neighborhood, accessible from Lake Shore Drive at 31st Street." },
       { question: "Is 31st Street Harbor modern?", answer: "Yes — 31st Street Harbor is one of the more recently upgraded facilities in the Chicago Harbors system with modern dock amenities." },
-      { question: "Can I charter a boat from 31st Street Harbor?", answer: "Some operators use 31st Street Harbor for charter departures. Request this as a preferred departure point when using our Find a Boat form." },
+      { question: "Can I charter a boat from 31st Street Harbor?", answer: "Some operators use 31st Street Harbor for charter departures. Request this as a preferred departure point when using instant-booking options on this page." },
       { question: "Is 31st Street Harbor good for fishing?", answer: "Yes — the adjacent lakefront and harbor breakwater provide access to nearshore fishing, and the open lake is accessible for deeper-water charter fishing." },
       { question: "How far is 31st Street Harbor from the Playpen?", answer: "31st Street Harbor is south of the Playpen zone — approximately 15–20 minutes by boat. It's closer than Montrose but further than Monroe or DuSable." },
     ],
@@ -954,7 +954,7 @@ export const guidePart3: GuidePage[] = [
       { question: "Where is DuSable Harbor in Chicago?", answer: "DuSable Harbor is located near Navy Pier in the Streeterville neighborhood of Chicago, south of the pier on the lakefront." },
       { question: "Is DuSable Harbor close to Navy Pier?", answer: "Yes — DuSable Harbor is within walking distance of Navy Pier, making it ideal for fireworks viewing positions and Navy Pier-adjacent activities." },
       { question: "Is DuSable Harbor close to the Playpen?", answer: "DuSable is one of the closest harbors to the Playpen — vessels can reach the anchorage zone in minutes." },
-      { question: "Can I charter a boat from DuSable Harbor?", answer: "Yes — some charter operators depart from DuSable. Specify this preference when requesting a boat match through our Find a Boat form." },
+      { question: "Can I charter a boat from DuSable Harbor?", answer: "Yes — some charter operators depart from DuSable. Specify this preference when requesting a boat match through instant-booking options on this page." },
       { question: "How do I get a slip at DuSable Harbor?", answer: "DuSable Harbor slips are administered by Chicago Harbors. Contact the system for current seasonal and transient availability." },
     ],
     faqs: [

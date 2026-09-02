@@ -27,11 +27,12 @@ export function TodayOnTheWater({
   const dir =
     current?.windDirectionCardinal || weather.hourly[0]?.windDirection || null;
   const alert = weather.alerts.find((a) => a.isMarine) || weather.alerts[0];
-  const upcoming = events.slice(0, 2);
+  const highlightEvent = events[0];
+  const newsItems = news.slice(0, 2);
 
   return (
     <section>
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-sky-blue mb-2">
             Live from NOAA / NWS
@@ -43,8 +44,7 @@ export function TodayOnTheWater({
             </span>
           </h2>
           <p className="text-gray-600 max-w-2xl">
-            Current Chicago boating conditions, the latest source-cited news, and
-            what&apos;s coming up — refreshed with our weather and news cache.
+            Current Chicago boating conditions, alerts, and a couple of timely updates.
           </p>
         </div>
         <div className="flex flex-wrap gap-4 text-sm font-bold shrink-0">
@@ -64,39 +64,23 @@ export function TodayOnTheWater({
           >
             All News
           </HomepageTrackLink>
-          <Link href="/events" className="text-coral hover:underline">
-            Events
-          </Link>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="space-y-4">
           <h3 className="text-sm font-bold uppercase tracking-widest text-lake-blue/70">
-            Current Conditions
+            Weather &amp; Conditions
           </h3>
           <BoatingConditionRatingCard rating={weather.rating} />
           <div className="rounded-2xl border border-sky-blue/20 bg-white p-5 grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-xs font-bold text-gray-500 uppercase mb-1">Temp</p>
-              <p className="font-extrabold text-lake-blue">
-                {current?.temperatureF != null
-                  ? `${current.temperatureF}°F`
-                  : "—"}
-              </p>
-            </div>
-            <div>
               <p className="text-xs font-bold text-gray-500 uppercase mb-1">Wind</p>
               <p className="font-extrabold text-lake-blue">
-                {wind != null
-                  ? `${dir ? `${dir} ` : ""}${formatMph(wind)}`
-                  : "—"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-bold text-gray-500 uppercase mb-1">Gusts</p>
-              <p className="font-extrabold text-lake-blue">
-                {formatMph(gust) ?? "—"}
+                {[formatMph(wind), dir].filter(Boolean).join(" ") || "—"}
+                {gust != null ? (
+                  <span className="font-semibold text-gray-500"> · gust {formatMph(gust)}</span>
+                ) : null}
               </p>
             </div>
             <div>
@@ -115,85 +99,37 @@ export function TodayOnTheWater({
             {alert ? (
               <>
                 <p className="font-extrabold text-coral text-sm mb-1">{alert.event}</p>
-                <p className="text-sm text-gray-700 line-clamp-2 mb-2">{alert.headline}</p>
+                <p className="text-sm text-gray-700 line-clamp-2">{alert.headline}</p>
               </>
             ) : (
-              <p className="text-sm text-gray-700 mb-2">No active marine alerts right now.</p>
+              <p className="text-sm text-gray-700">No active marine alerts right now.</p>
             )}
-            <div className="flex flex-wrap gap-3 text-xs font-bold">
-              <Link href="/marinas" className="text-coral hover:underline">
-                Marinas
-              </Link>
-              <Link href="/boat-launches" className="text-coral hover:underline">
-                Launches
-              </Link>
-              <Link href="/destinations" className="text-coral hover:underline">
-                Destinations
-              </Link>
-              <Link href="/guides" className="text-coral hover:underline">
-                Guides
-              </Link>
-            </div>
           </div>
-        </div>
-
-        <div className="lg:col-span-1 space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-lake-blue/70">
-            Latest Boating News
-          </h3>
-          <NewsList items={news.slice(0, 3)} compact />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-sm font-bold uppercase tracking-widest text-lake-blue/70">
-            What&apos;s Coming Up
+            News &amp; Notes
           </h3>
-          {upcoming.length ? (
-            <ul className="space-y-3">
-              {upcoming.map((event) => (
-                <li
-                  key={event.slug}
-                  className="rounded-2xl border border-sky-blue/20 bg-white p-4"
-                >
-                  <p className="text-xs font-bold text-sky-blue mb-1">
-                    {event.startDate}
-                    {event.endDate && event.endDate !== event.startDate
-                      ? ` – ${event.endDate}`
-                      : ""}
-                  </p>
-                  <p className="font-extrabold text-lake-blue mb-1">
-                    <Link href="/events" className="hover:underline">
-                      {event.title}
-                    </Link>
-                  </p>
-                  <p className="text-sm text-gray-600 line-clamp-3 mb-2">
-                    {event.summary}
-                  </p>
-                  <div className="flex flex-wrap gap-3 text-xs font-semibold">
-                    <Link href="/events" className="text-coral hover:underline">
-                      Events calendar →
-                    </Link>
-                    <a
-                      href={event.source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sky-blue hover:underline"
-                    >
-                      {event.source.name} →
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="rounded-2xl border border-sky-blue/20 bg-white p-5 text-sm text-gray-600">
-              No upcoming curated events right now. Check the{" "}
-              <Link href="/events" className="font-semibold text-coral hover:underline">
-                events page
-              </Link>{" "}
-              for seasonal schedules.
+          {newsItems.length ? <NewsList items={newsItems} compact /> : null}
+          {highlightEvent ? (
+            <div className="rounded-2xl border border-sky-blue/20 bg-white p-4">
+              <p className="text-xs font-bold text-sky-blue mb-1">
+                {highlightEvent.startDate}
+                {highlightEvent.endDate && highlightEvent.endDate !== highlightEvent.startDate
+                  ? ` – ${highlightEvent.endDate}`
+                  : ""}
+              </p>
+              <p className="font-extrabold text-lake-blue mb-1">
+                <Link href="/events" className="hover:underline">
+                  {highlightEvent.title}
+                </Link>
+              </p>
+              <p className="text-sm text-gray-600 line-clamp-2">
+                {highlightEvent.summary}
+              </p>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </section>

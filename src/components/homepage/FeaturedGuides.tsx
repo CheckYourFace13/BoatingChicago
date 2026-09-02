@@ -7,10 +7,6 @@ const FEATURED_GUIDE_SLUGS = [
   "chicago-marina-guide",
   "chicago-playpen-guide",
   "lake-michigan-boating-guide",
-  "chicago-fishing-guide",
-  "chicago-fireworks-cruise-guide",
-  "chicago-air-and-water-show-boats",
-  "chicago-boating-faq",
 ] as const;
 
 const FALLBACK_LABELS: Record<string, string> = {

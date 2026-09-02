@@ -665,7 +665,7 @@ export const guidePart2: GuidePage[] = [
         paragraphs: [
           "A private sailboat charter reserves the entire vessel for your group — typically 4–8 guests on a monohull sailboat in the 30–45 foot range, with a licensed skipper who handles all sailing while you enjoy the experience. This is fundamentally different from a ticketed shared sailing experience where you purchase individual seats alongside other guests.",
           "Shared sailing experiences like skyline sails and fireworks sails are excellent and more affordable — you get a genuine sailing experience and meet interesting fellow passengers. For couples, anniversary celebrations, or intimate group experiences, the private charter adds an exclusivity that shared tours can't provide.",
-          "For instant-booking private sailing charters, options are available through our affiliate partners. For additional charter matching beyond what's instantly bookable, use our Find a Boat form to describe your group and we'll connect you with local sailing charter operators.",
+          "For instant-booking private sailing charters, options are available through our affiliate partners. For additional charter matching beyond what's instantly bookable, browse instant-booking options on this page to describe your group and compare operator listings on related category pages.",
         ],
       },
       {
@@ -682,7 +682,7 @@ export const guidePart2: GuidePage[] = [
         paragraphs: [
           "Sailboat charter availability is more limited than motorized boat options — there are fewer private sailing charters in Chicago than there are party boats. This makes booking ahead especially important. Summer weekends, sunset slots, and fireworks-viewing dates sell out quickly.",
           "When comparing private sailing charter listings, check: the vessel size (bigger isn't always better for intimacy), what's included (does the skipper bring beverages, snacks, or is it strictly BYOB?), the cancellation policy, and whether the charter departs from a convenient location.",
-          "Use our instant-booking affiliate partners for quickly confirmed sailboat charters, or submit our Find a Boat form if you're looking for a custom or long-format charter beyond what's available for immediate booking.",
+          "Use our instant-booking affiliate partners for quickly confirmed sailboat charters, or submit instant-booking options on this page if you're looking for a custom or long-format charter beyond what's available for immediate booking.",
         ],
       },
       {
@@ -726,7 +726,7 @@ export const guidePart2: GuidePage[] = [
       { season: "Winter", tip: "Sailing operations suspend for winter. Use this time to plan a spring or summer charter." },
     ],
     peopleAlsoAsk: [
-      { question: "How much does a sailboat charter cost in Chicago?", answer: "Private sailboat charter pricing varies by vessel, duration, and season. Check our affiliate partners for instant-booking pricing, or request a custom quote through Find a Boat." },
+      { question: "How much does a sailboat charter cost in Chicago?", answer: "Private sailboat charter pricing varies by vessel, duration, and season. Check our affiliate partners for instant-booking pricing, or request a custom quote through instant-booking listings on this site." },
       { question: "Do Chicago sailboat charters include a captain?", answer: "Yes — all legitimate private sailboat charters include a licensed captain (skipper) who handles all sailing while you enjoy the experience." },
       { question: "How many people can fit on a sailboat charter in Chicago?", answer: "Most Chicago sailing charters accommodate 4–8 guests on vessels in the 30–45 foot range. Smaller boats may take 2–4." },
       { question: "What is the difference between a sailboat charter and a yacht charter?", answer: "Sailboats are wind-powered and quieter; yachts are typically motor-powered and larger. Both offer private charter experiences. Sailboat charters have a different atmosphere — calmer and more dependent on conditions." },
@@ -736,7 +736,7 @@ export const guidePart2: GuidePage[] = [
       { question: "What if there's no wind on my sailboat charter day?", answer: "Most charter skippers will motor out to find wind, motor-sail in light conditions, or offer to reschedule if conditions are genuinely unfavorable. Discuss the wind policy when booking." },
       { question: "Can I bring food and drinks on a sailboat charter?", answer: "Most private sailing charters allow BYOB and outside food. Confirm with your specific operator and bring non-glass containers." },
       { question: "Is sailing comfortable for non-sailors?", answer: "Yes — as a passenger on a charter, you don't need any sailing knowledge. Just sit back, relax, and enjoy. The skipper handles everything." },
-      { question: "How do I book a private sailboat charter in Chicago?", answer: "Check our instant-booking affiliate partners on this page or use the Find a Boat form to request a custom match with local sailing charter operators." },
+      { question: "How do I book a private sailboat charter in Chicago?", answer: "Check our instant-booking affiliate partners on this page or use related category pages and instant-booking listings to compare local sailing charter options." },
       { question: "Can sailboat charters go to the Playpen?", answer: "Some sailing charters can anchor near the Playpen zone, though sailboats are less common in the Playpen than motorized party boats. Discuss the itinerary with your skipper when booking." },
     ],
     popularSearches: [
@@ -788,7 +788,7 @@ export const guidePart2: GuidePage[] = [
         heading: "Booking Private Sailing Charters: What to Know",
         paragraphs: [
           "Private sailing availability in Chicago is genuinely limited — there are far fewer private sailing charters than motorized boat charters. If you want a private sailing charter on a specific summer date, start looking 4–6 weeks ahead. For popular dates (summer weekends, Navy Pier fireworks nights, sunset prime season), book even earlier.",
-          "Instant-booking private sailing options are available through our affiliate partners — look at the Viator and GetYourGuide listings for private sailing charter options. For additional matching or custom duration requests, use our Find a Boat form.",
+          "Instant-booking private sailing options are available through our affiliate partners — look at the Viator and GetYourGuide listings for private sailing charter options. For additional matching or custom duration requests, browse instant-booking options on this page.",
           "Always confirm what happens in light-wind conditions. Experienced skippers handle low-wind days by motoring out to find wind or motor-sailing back. An honest captain will tell you if conditions genuinely aren't appropriate for a satisfying sail.",
         ],
       },

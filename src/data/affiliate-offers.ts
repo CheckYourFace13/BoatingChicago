@@ -802,7 +802,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Customize Your Chicago Experience with a Private Yacht Charter",
     shortTitle: "Private Yacht Charter",
     shortDescription:
-      "Instant-booking private yacht charter on Viator. For additional private matching, use Find a Boat.",
+      "Instant-booking private yacht charter on Viator. For additional private matching, browse related category pages.",
     url: "https://www.viator.com/tours/Chicago/Customize-Your-Chicago-Experience-with-a-Private-Yacht-Charter/d673-5599206P2?pid=P00309183&mcid=42383&medium=link",
     category: "private-yacht-charter",
     relatedPageSlugs: [
@@ -939,7 +939,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Navy Pier Private Sailboat Charter with Captain",
     shortTitle: "Navy Pier Private Sail",
     shortDescription:
-      "Private sailboat charter with captain near Navy Pier. Instant-booking alternative — use Find a Boat for more matching.",
+      "Private sailboat charter with captain near Navy Pier. Instant-booking alternative — browse related category pages for more matching.",
     url: "https://www.viator.com/tours/Chicago/Navy-Pier-Chicago-Private-Sailboat-Charter-with-Captain/d673-5647184P1?pid=P00309183&mcid=42383&medium=link",
     category: "private-sailing-charter",
     relatedPageSlugs: [
@@ -989,7 +989,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Private Day Sailing on Lake Michigan",
     shortTitle: "Private Day Sail",
     shortDescription:
-      "Private day sailing on Lake Michigan — book online or request a custom match through Find a Boat.",
+      "Private day sailing on Lake Michigan — book online or request a custom match through instant-booking listings on this site.",
     url: "https://www.viator.com/tours/Chicago/Private-Day-Sailing-on-Lake-Michigan/d673-46250P1?pid=P00309183&mcid=42383&medium=link",
     category: "private-sailing-charter",
     relatedPageSlugs: [
@@ -1166,15 +1166,14 @@ export const PAGE_OFFER_INTENT: Record<
   },
   homepage: {
     tags: ["architecture", "sunset", "fireworks", "kayak", "jet-ski", "sailing"],
+    // Variety: architecture cruise, sailing/charter, jet ski, fireworks
     preferIds: [
       "gyg-290485",
       "gyg-386902",
-      "gyg-466163",
       "gyg-1336935",
-      "gyg-994419",
-      "viator-private-yacht-charter",
+      "gyg-466163",
     ],
-    limit: 6,
+    limit: 4,
   },
   weather: {
     tags: ["architecture", "lake-michigan", "cruise", "sunset"],
@@ -1297,8 +1296,8 @@ export function getFeaturedOffers(limit = 6): AffiliateOffer[] {
     .slice(0, limit);
 }
 
-/** Homepage “Ready to Get on the Water?” — bestsellers + one private charter. */
-export function getHomepageOffers(limit = 6): AffiliateOffer[] {
+/** Homepage Popular on the Water — max 4 varied experiences. */
+export function getHomepageOffers(limit = 4): AffiliateOffer[] {
   return getContextualOffers("homepage", { limit, placement: "homepage_popular" });
 }
 
