@@ -45,12 +45,15 @@ export default async function HomePage() {
         />
 
         <PopularOnTheWater
-          title="Popular on the Water"
-          subtitle="Highly reviewed Chicago cruises, sailing, and water experiences — ratings from GetYourGuide and Viator. We may earn a commission when you book through these links."
+          id="popular-on-the-water"
+          title="Popular on the Water in Chicago"
+          subtitle="Popular cruises, charters and on-the-water experiences you can book online."
           pageSlug="homepage"
           offers={homepageOffers}
           limit={4}
           placement="homepage_popular"
+          section="popular_on_the_water"
+          emphasized
         />
 
         <ExploreBoating />

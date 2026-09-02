@@ -7,6 +7,7 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { AdSenseScript } from "@/components/AdSenseScript";
 import { SiteConditionsTicker } from "@/components/SiteConditionsTicker";
+import { SessionOriginCapture } from "@/components/SessionOriginCapture";
 import { siteConfig } from "@/config/site";
 import {
   buildOrganizationSchema,
@@ -79,6 +80,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <GoogleAnalytics measurementId={gaMeasurementId} />
+        <SessionOriginCapture />
         <Suspense fallback={null}>
           <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
         </Suspense>

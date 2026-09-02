@@ -6,14 +6,17 @@ import {
   affiliateDisclosure,
   formatOfferRating,
   formatPriceFrom,
-  getProviderLabel,
   getActiveOffers,
   getOffersByCategory,
   getContextualOffers,
+  getProviderLabel,
   type AffiliateOffer,
   type AffiliateOfferCategory,
 } from "@/data/affiliate-offers";
-import { trackEvent } from "@/lib/tracking";
+import {
+  getAttributedAffiliateUrl,
+  trackAffiliateClick,
+} from "@/lib/affiliate-attribution";
 
 interface AffiliateOfferGridProps {
   title?: string;
@@ -26,8 +29,10 @@ interface AffiliateOfferGridProps {
   variant?: "default" | "alternative";
   footerOfferId?: string;
   footerLabel?: string;
-  /** Analytics placement label */
+  /** Analytics placement label (e.g. category_contextual) */
   placement?: string;
+  /** Analytics section label (e.g. recommended_experiences) */
+  section?: string;
 }
 
 function resolveOffers({
@@ -50,48 +55,22 @@ function resolveOffers({
   return list;
 }
 
-function trackAffiliateClick(
-  offer: AffiliateOffer,
-  opts: {
-    page: string;
-    placement: string;
-    position: number;
-    ctaText: string;
-  }
-) {
-  trackEvent("affiliate_click", {
-    provider: offer.provider,
-    product_id: offer.providerProductId || offer.id,
-    product_name: offer.shortTitle || offer.title,
-    category: offer.category,
-    page_path: opts.page,
-    placement: opts.placement,
-    position: String(opts.position),
-    destination: offer.location || "",
-    cta_text: opts.ctaText,
-    // legacy params preserved
-    partner: offer.provider,
-    offer_id: offer.id,
-    offer_title: offer.title,
-    destination_url: offer.url,
-    page: opts.page,
-    cta_label: opts.ctaText,
-  });
-}
-
 export function AffiliateOfferCard({
   offer,
   pageSlug,
   placement,
+  section,
   position,
 }: {
   offer: AffiliateOffer;
   pageSlug: string;
   placement: string;
+  section: string;
   position: number;
 }) {
   const ratingLabel = formatOfferRating(offer);
   const priceLabel = formatPriceFrom(offer);
+  const href = getAttributedAffiliateUrl(offer, placement, position);
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-sky-blue/20 bg-white shadow-sm hover:shadow-lg transition-shadow">
@@ -125,19 +104,14 @@ export function AffiliateOfferCard({
           <p className="text-sm font-bold text-lake-blue mb-3">{priceLabel}</p>
         ) : null}
         <a
-          href={offer.url}
+          href={href}
           target="_blank"
           rel="sponsored nofollow noopener"
-          data-track="affiliate_click"
-          data-partner={offer.provider}
-          data-offer-id={offer.id}
-          data-product-id={offer.providerProductId || offer.id}
-          data-placement={placement}
-          data-position={position}
           onClick={() =>
             trackAffiliateClick(offer, {
-              page: pageSlug,
+              pageSlug,
               placement,
+              section,
               position,
               ctaText: offer.ctaLabel,
             })
@@ -163,6 +137,7 @@ export function AffiliateOfferGrid({
   footerOfferId,
   footerLabel,
   placement,
+  section = "recommended_experiences",
 }: AffiliateOfferGridProps) {
   const list = resolveOffers({ pageSlug, category, offers, limit });
   const footerOffer = footerOfferId
@@ -174,7 +149,7 @@ export function AffiliateOfferGrid({
   const trackPage = pageSlug || "unknown";
   const placementKey =
     placement ||
-    (pageSlug ? `${pageSlug}_contextual` : "experience_grid");
+    (pageSlug ? "category_contextual" : "experience_grid");
 
   return (
     <section
@@ -203,6 +178,7 @@ export function AffiliateOfferGrid({
               offer={offer}
               pageSlug={trackPage}
               placement={placementKey}
+              section={section}
               position={index + 1}
             />
           ))}
@@ -212,13 +188,18 @@ export function AffiliateOfferGrid({
       {footerOffer && (
         <div className="mt-6">
           <a
-            href={footerOffer.url}
+            href={getAttributedAffiliateUrl(
+              footerOffer,
+              `${placementKey}_footer`,
+              list.length + 1
+            )}
             target="_blank"
             rel="sponsored nofollow noopener"
             onClick={() =>
               trackAffiliateClick(footerOffer, {
-                page: trackPage,
+                pageSlug: trackPage,
                 placement: `${placementKey}_footer`,
+                section,
                 position: list.length + 1,
                 ctaText: footerLabel || footerOffer.ctaLabel,
               })

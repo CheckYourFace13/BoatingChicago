@@ -189,7 +189,8 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
       title={offerCopy.title}
       subtitle={offerCopy.subtitle}
       variant={offerCopy.variant}
-      placement={`${category.slug}_contextual`}
+      placement="category_contextual"
+      section="recommended_experiences"
       footerOfferId={
         category.slug === "chicago-architecture-cruises"
           ? "viator-chicago-river-destination"

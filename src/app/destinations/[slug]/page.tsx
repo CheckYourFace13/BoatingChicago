@@ -299,11 +299,12 @@ export default async function DestinationPage({ params }: PageProps) {
 
         {destination.slug === "chicago" ? (
           <PopularOnTheWater
-            title="Popular on the Water in Chicago"
-            subtitle="Top-reviewed architecture cruises, Lake Michigan experiences, and ticketed water activities — ratings from GetYourGuide."
+            title="Popular nearby on the water"
+            subtitle="Popular cruises, charters and on-the-water experiences you can book online."
             pageSlug="destinations-chicago"
             limit={4}
-            placement="destination_recommendation"
+            placement="destination_contextual"
+            section="recommended_experiences"
           />
         ) : null}
 

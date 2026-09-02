@@ -45,6 +45,12 @@ export function Hero() {
             >
               Check Conditions
             </Link>
+            <Link
+              href="#popular-on-the-water"
+              className="inline-flex items-center px-4 py-2.5 text-white/90 font-semibold text-sm sm:text-base underline-offset-4 hover:underline"
+            >
+              Book an Experience
+            </Link>
           </div>
         </div>
       </div>

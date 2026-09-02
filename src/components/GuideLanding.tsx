@@ -236,7 +236,8 @@ export function GuideLanding({ guide }: GuideLandingProps) {
           <div id="book-online">
             <AffiliateOfferGrid
               pageSlug={affiliateSlug}
-              placement={`guide_${guide.slug}`}
+              placement="guide_contextual"
+              section="article_related"
               title="Popular on the Water"
               subtitle="Highly reviewed ticketed cruises and water experiences related to this guide. Ratings from GetYourGuide or Viator — not BoatingChicago reviews."
             />
