@@ -1166,10 +1166,10 @@ export const PAGE_OFFER_INTENT: Record<
   },
   homepage: {
     tags: ["architecture", "sunset", "fireworks", "kayak", "jet-ski", "sailing"],
-    // Variety: architecture cruise, sailing/charter, jet ski, fireworks
+    // Variety: architecture cruise, sailing/private charter (Viator), jet ski, fireworks
     preferIds: [
       "gyg-290485",
-      "gyg-386902",
+      "viator-private-yacht-charter",
       "gyg-1336935",
       "gyg-466163",
     ],
