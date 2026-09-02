@@ -261,7 +261,7 @@ export const categories: CategoryPage[] = [
       "Book a fishing charter in Chicago on Lake Michigan. Salmon, trout, perch & more with experienced captains. Half-day and full-day trips available.",
     headline: "Fishing Charters on Lake Michigan",
     intro:
-      "Lake Michigan fishing out of Chicago is world-class — salmon, trout, perch, and more with experienced captains who know these waters. Whether you're a seasoned angler or bringing the family for a first trip, fishing charters include the boat, gear, and expertise. Boating Chicago connects you with top charter operators and booking platforms.",
+      "Lake Michigan fishing out of Chicago is world-class — salmon, trout, perch, and more with experienced captains who know these waters. Whether you're a seasoned angler or bringing the family for a first trip, fishing charters include the boat, gear, and expertise. Compare charter guides and booking platforms on this page.",
     bestFor: [
       { title: "Salmon & trout", description: "Peak season runs spring through fall", icon: "🐟" },
       { title: "Family trips", description: "Kid-friendly charters with patient captains", icon: "👨‍👧‍👦" },
@@ -286,7 +286,7 @@ export const categories: CategoryPage[] = [
       "Hire a licensed captain in Chicago for your boat rental, event, or private vessel. USCG captains for Lake Michigan and the Chicago River.",
     headline: "Licensed Captains for Hire in Chicago",
     intro:
-      "Need a captain for your Chicago boat rental or private vessel? USCG-licensed captains bring local knowledge, safety expertise, and peace of mind to every trip on Lake Michigan. Whether you're renting a boat without a license, hosting an event, or need a delivery captain, Boating Chicago connects you with professional captains across the Chicago area.",
+      "Need a captain for your Chicago boat rental or private vessel? USCG-licensed captains bring local knowledge, safety expertise, and peace of mind to every trip on Lake Michigan. Whether you're renting a boat without a license, hosting an event, or need a delivery captain, browse related category pages and booking platforms for licensed captain options across the Chicago area.",
     bestFor: [
       { title: "Bareboat rentals", description: "Rent the boat, hire the captain separately", icon: "🧑‍✈️" },
       { title: "Private vessel owners", description: "Captain services for your own boat", icon: "⛵" },
