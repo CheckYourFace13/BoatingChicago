@@ -16,6 +16,7 @@ import {
   SevenDayForecast,
 } from "@/components/weather/WeatherPanels";
 import { WeatherLocationSelector } from "@/components/weather/WeatherLocationSelector";
+import { WeatherGoodDayOffers } from "@/components/weather/WeatherGoodDayOffers";
 import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
 import { getSeasonalTip, getChicagoNews } from "@/lib/news";
 import { buildMetadata } from "@/lib/seo";
@@ -171,6 +172,8 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
 
         <HourlyBoatingForecast weather={weather} />
         <SevenDayForecast weather={weather} />
+
+        <WeatherGoodDayOffers conditionLevel={weather.rating.level} />
 
         <section className="rounded-2xl bg-lake-blue text-white p-6 md:p-8">
           <h2 className="text-2xl font-extrabold mb-3">

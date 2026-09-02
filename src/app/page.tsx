@@ -6,7 +6,7 @@ import { WhyBoatingChicago } from "@/components/WhyBoatingChicago";
 import { EmailSignup } from "@/components/EmailSignup";
 import { VendorSignupCTA } from "@/components/VendorSignupCTA";
 import { FindBoatForm } from "@/components/FindBoatForm";
-import { AffiliateOfferGrid } from "@/components/AffiliateOfferGrid";
+import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { AdSenseBlock } from "@/components/AdSenseBlock";
 import { SceneryBand } from "@/components/SceneryBand";
 import { RegionalDiscovery } from "@/components/geo/RegionalDiscovery";
@@ -74,11 +74,13 @@ export default async function HomePage() {
         <PopularCategories />
         <FeaturedExperiences />
 
-        <AffiliateOfferGrid
-          title="Book Chicago Boating Experiences"
-          subtitle="Ticketed cruises, private yacht and sail charters, kayak rentals, and more you can book online through GetYourGuide and Viator. These are not the same as a custom private boat match — for private rentals and captains, use Find a Boat below."
-          offers={homepageOffers}
+        <PopularOnTheWater
+          title="Popular on the Water in Chicago"
+          subtitle="Bestselling ticketed cruises, kayak and jet ski experiences, and private charters you can check online — ratings from GetYourGuide and Viator. Not the same as a custom private boat match; use Find a Boat below for that."
           pageSlug="homepage"
+          offers={homepageOffers}
+          limit={6}
+          placement="homepage_popular"
         />
 
         <section id="find-a-boat">

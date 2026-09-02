@@ -236,8 +236,9 @@ export function GuideLanding({ guide }: GuideLandingProps) {
         {hasOffers && (
           <AffiliateOfferGrid
             pageSlug={affiliateSlug}
-            title="Instant-Booking Alternatives"
-            subtitle="Book online through trusted platforms — ticketed cruises, private sailing charters, kayak rentals, and more. For custom private boat rentals and charter matching, use Find a Boat below."
+            placement={`guide_${guide.slug}`}
+            title="Popular on the Water"
+            subtitle="Highly reviewed ticketed cruises and water experiences matched to this guide. Ratings from GetYourGuide or Viator — not BoatingChicago reviews. For custom private boat matching, use Find a Boat below."
           />
         )}
 

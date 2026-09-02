@@ -136,6 +136,30 @@ const offerSectionCopy: Record<
       "Sunset cruises and private sunset sailing charters on Lake Michigan. Ticketed and private options available — confirm details on each booking page.",
     beforeForm: true,
   },
+  "family-boat-rentals-chicago": {
+    title: "Family-Friendly Chicago Water Experiences",
+    subtitle:
+      "Shorter architecture cruises, Seadog speedboat rides, and Lake Michigan skyline cruises that work well for families — book online. For a private family boat rental, use Find a Boat below.",
+    beforeForm: false,
+  },
+  "romantic-boat-cruises-chicago": {
+    title: "Sunset, Night & Dining Cruises",
+    subtitle:
+      "Ticketed sunset, night, and dining cruises you can book online. For a private romantic charter, use Find a Boat below.",
+    beforeForm: false,
+  },
+  "chicago-river-cruises": {
+    title: "Popular on the Chicago River",
+    subtitle:
+      "Architecture cruises and downtown kayak options on the Chicago River — book online through GetYourGuide and Viator.",
+    beforeForm: true,
+  },
+  "riverwalk-boat-tours-chicago": {
+    title: "Riverwalk Tours & Kayak Experiences",
+    subtitle:
+      "Architecture river cruises and introductory kayak paddles near the Riverwalk — check times and book online.",
+    beforeForm: true,
+  },
 };
 
 const experienceSlugs = new Set([
@@ -167,6 +191,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
       title={offerCopy.title}
       subtitle={offerCopy.subtitle}
       variant={offerCopy.variant}
+      placement={`${category.slug}_contextual`}
       footerOfferId={
         category.slug === "chicago-architecture-cruises"
           ? "viator-chicago-river-destination"

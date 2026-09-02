@@ -19,6 +19,7 @@ import {
 import { getGuideBySlug } from "@/data/guides";
 import { getWeatherLocationById } from "@/config/weather-locations";
 import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
+import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -294,6 +295,16 @@ export default async function DestinationPage({ params }: PageProps) {
               ))}
             </div>
           </section>
+        ) : null}
+
+        {destination.slug === "chicago" ? (
+          <PopularOnTheWater
+            title="Popular on the Water in Chicago"
+            subtitle="Top-reviewed architecture cruises, Lake Michigan experiences, and ticketed water activities — ratings from GetYourGuide."
+            pageSlug="destinations-chicago"
+            limit={4}
+            placement="destination_recommendation"
+          />
         ) : null}
 
         <QualityDisclaimer />

@@ -26,7 +26,7 @@ export type TrackEventName =
  */
 export function trackEvent(
   name: TrackEventName,
-  params?: Record<string, string>
+  params?: Record<string, string | number | boolean | undefined>
 ): void {
   const eventName: AnalyticsEventName =
     name === "find_boat_submit" ? "lead_form_submit" : name;
