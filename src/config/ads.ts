@@ -8,7 +8,11 @@ export type AdProvider = "adsense" | "sponsored" | "house" | "affiliate_featured
 export type AdSlotKey =
   | "homepage-top"
   | "guide-mid"
-  | "guide-bottom";
+  | "guide-bottom"
+  | "desktop_left_rail"
+  | "desktop_right_rail"
+  | "article_mid"
+  | "article_end";
 
 export interface AdSlotConfig {
   key: AdSlotKey;
@@ -94,6 +98,35 @@ export const adSlots: Record<AdSlotKey, AdSlotConfig> = {
     adsenseSlotId: envFlag("NEXT_PUBLIC_ADSENSE_SLOT_GUIDE_BOTTOM"),
     minHeightPx: 100,
     label: "Long guide — near bottom",
+  },
+  /** Future rail / article slots — disabled until display units are approved. */
+  desktop_left_rail: {
+    key: "desktop_left_rail",
+    provider: "adsense",
+    adsenseSlotId: envFlag("NEXT_PUBLIC_ADSENSE_SLOT_LEFT_RAIL"),
+    minHeightPx: 250,
+    label: "Desktop left rail (dormant)",
+  },
+  desktop_right_rail: {
+    key: "desktop_right_rail",
+    provider: "adsense",
+    adsenseSlotId: envFlag("NEXT_PUBLIC_ADSENSE_SLOT_RIGHT_RAIL"),
+    minHeightPx: 250,
+    label: "Desktop right rail (dormant)",
+  },
+  article_mid: {
+    key: "article_mid",
+    provider: "adsense",
+    adsenseSlotId: envFlag("NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_MID"),
+    minHeightPx: 100,
+    label: "Article mid (dormant)",
+  },
+  article_end: {
+    key: "article_end",
+    provider: "adsense",
+    adsenseSlotId: envFlag("NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE_END"),
+    minHeightPx: 100,
+    label: "Article end (dormant)",
   },
 };
 

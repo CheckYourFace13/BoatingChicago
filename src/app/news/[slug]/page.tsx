@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 import { getChicagoWeather } from "@/lib/weather";
 import { siteConfig } from "@/config/site";
 
-export const revalidate = 10800;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateMetadata({
@@ -19,7 +19,7 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const weather = await getChicagoWeather();
-  const feed = await getChicagoNews({ alerts: weather.alerts });
+  const feed = await getChicagoNews({ alerts: weather.alerts, weather });
   const item = getNewsItemBySlug(feed.items, slug);
   if (!item) {
     return buildMetadata({
@@ -43,7 +43,7 @@ export default async function NewsArticlePage({
 }) {
   const { slug } = await params;
   const weather = await getChicagoWeather();
-  const feed = await getChicagoNews({ alerts: weather.alerts });
+  const feed = await getChicagoNews({ alerts: weather.alerts, weather });
   const item = getNewsItemBySlug(feed.items, slug);
   if (!item) notFound();
 

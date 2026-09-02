@@ -4,7 +4,13 @@ export type NewsCategory =
   | "Safety"
   | "Events"
   | "Fishing"
-  | "Harbors & Marinas";
+  | "Harbors & Marinas"
+  | "Wisconsin"
+  | "Indiana"
+  | "Great Lakes";
+
+/** Story from RSS vs official on-water update (alerts, conditions, events). */
+export type NewsItemKind = "story" | "official";
 
 export interface NewsSourceConfig {
   id: string;
@@ -37,11 +43,14 @@ export interface NewsItem {
   isFeatured: boolean;
   /** Enough original context for a standalone /news/[slug] page */
   qualifiesForArticlePage: boolean;
+  kind: NewsItemKind;
 }
 
 export interface NewsFeedResult {
   fetchedAt: string;
   items: NewsItem[];
+  /** Server-side only diagnostics — never render to visitors. */
   errors: string[];
   sourcesAttempted: string[];
+  sourcesSucceeded: string[];
 }

@@ -83,7 +83,7 @@ export function ConditionsTicker({ items }: ConditionsTickerProps) {
       onTouchEnd={() => setPaused(false)}
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-4 h-full flex items-center gap-2">
-        <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-[0.14em] uppercase text-sun-yellow px-2">
+        <span className="shrink-0 text-[10px] sm:text-[11px] font-extrabold tracking-[0.16em] uppercase text-sun-yellow px-2.5 py-1 rounded-md bg-white/10">
           Live
         </span>
 

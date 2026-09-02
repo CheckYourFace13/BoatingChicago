@@ -113,7 +113,7 @@ html {
 .conditions-ticker-track {
   display: flex;
   width: max-content;
-  animation: conditions-ticker-scroll 55s linear infinite;
+  animation: conditions-ticker-scroll 48s linear infinite;
   will-change: transform;
 }
 

@@ -17,7 +17,7 @@ export async function SiteConditionsTicker() {
       getWeatherForLocation("waukegan"),
     ]);
 
-    const news = await getChicagoNews({ alerts: chicago.alerts });
+    const news = await getChicagoNews({ alerts: chicago.alerts, weather: chicago });
     const events = getPublishedEvents();
 
     const items = buildConditionsTickerItems({

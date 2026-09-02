@@ -35,18 +35,18 @@ export const metadata = buildMetadata({
 export default async function HomePage() {
   const homepageOffers = getHomepageOffers();
   const weather = await getChicagoWeather();
-  const news = await getChicagoNews({ alerts: weather.alerts });
+  const news = await getChicagoNews({ alerts: weather.alerts, weather });
   const events = getPublishedEvents();
 
   return (
     <>
       <Hero />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 pt-8">
         <AdSenseBlock slot="homepage-top" className="mb-4" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-16 space-y-20">
+      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 md:py-16 space-y-16 md:space-y-20">
         <TodayOnTheWater
           weather={weather}
           news={news.items}
@@ -70,7 +70,7 @@ export default async function HomePage() {
 
       <SceneryBand />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 space-y-16 md:space-y-20">
         <PopularCategories />
         <FeaturedExperiences />
 

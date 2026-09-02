@@ -17,6 +17,8 @@ import {
 } from "@/components/weather/WeatherPanels";
 import { WeatherLocationSelector } from "@/components/weather/WeatherLocationSelector";
 import { WeatherGoodDayOffers } from "@/components/weather/WeatherGoodDayOffers";
+import { PageShell } from "@/components/layout/PageShell";
+import { SideRail } from "@/components/layout/SideRail";
 import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
 import { getSeasonalTip, getChicagoNews } from "@/lib/news";
 import { buildMetadata } from "@/lib/seo";
@@ -44,7 +46,7 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
   const requestedLocationId = Array.isArray(location) ? location[0] : location;
 
   const weather = await getWeatherForLocation(requestedLocationId);
-  const news = await getChicagoNews({ alerts: weather.alerts });
+  const news = await getChicagoNews({ alerts: weather.alerts, weather });
   const tip = getSeasonalTip();
   const isChicago = weather.locationId === DEFAULT_WEATHER_LOCATION_ID;
 
@@ -60,7 +62,7 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
 
       <section className="relative bg-gradient-to-br from-lake-blue via-lake-blue to-sky-blue text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_45%)]" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div className="relative mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <p className="text-sun-yellow font-bold text-sm tracking-widest uppercase mb-3">
             {isChicago
               ? "Lake Michigan · Chicago"
@@ -112,7 +114,23 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+      <PageShell
+        className="py-14"
+        leftRail={
+          <SideRail
+            modules={["popular_guides", "upcoming_events", "explore_lake_michigan"]}
+            weather={weather}
+          />
+        }
+        rightRail={
+          <SideRail
+            modules={["popular_destinations", "newsletter", "find_a_boat"]}
+            weather={weather}
+            stickyFirst={false}
+          />
+        }
+      >
+        <div className="space-y-16">
         <WeatherLocationSelector activeLocationId={weather.locationId} />
 
         <BoatingConditionRatingCard rating={weather.rating} />
@@ -208,7 +226,8 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
           fetchedAt={weather.fetchedAt}
           errors={weather.errors}
         />
-      </div>
+        </div>
+      </PageShell>
     </>
   );
 }

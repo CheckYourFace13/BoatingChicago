@@ -7,22 +7,31 @@ import type { NewsItem } from "@/types/news";
 export function NewsCard({
   item,
   compact = false,
+  featured = false,
 }: {
   item: NewsItem;
   compact?: boolean;
+  featured?: boolean;
 }) {
   return (
     <article
-      className={`rounded-2xl border border-sky-blue/20 bg-white ${
-        compact ? "p-4" : "p-5"
+      className={`rounded-2xl border border-sky-blue/20 bg-white shadow-sm ${
+        featured ? "p-6 md:p-8" : compact ? "p-4" : "p-5"
       }`}
     >
-      <p className="text-xs font-bold uppercase tracking-widest text-coral mb-2">
-        {item.category}
-      </p>
+      <div className="flex flex-wrap items-center gap-2 mb-2">
+        <p className="text-xs font-bold uppercase tracking-widest text-coral">
+          {item.category}
+        </p>
+        {item.kind === "official" ? (
+          <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-light-blue text-lake-blue">
+            Official update
+          </span>
+        ) : null}
+      </div>
       <h3
-        className={`font-extrabold text-lake-blue mb-2 ${
-          compact ? "text-base" : "text-xl"
+        className={`font-extrabold text-lake-blue mb-2 leading-snug ${
+          featured ? "text-2xl md:text-3xl" : compact ? "text-base" : "text-xl"
         }`}
       >
         {item.qualifiesForArticlePage ? (
@@ -43,17 +52,13 @@ export function NewsCard({
         )}
       </h3>
       {!compact ? (
-        <>
-          <p className="text-sm text-gray-700 leading-relaxed mb-2">
-            {item.originalSummary}
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed mb-3">
-            <span className="font-semibold text-lake-blue">
-              Why this matters to Chicago boaters:{" "}
-            </span>
-            {item.whyItMatters}
-          </p>
-        </>
+        <p
+          className={`text-gray-700 leading-relaxed mb-3 ${
+            featured ? "text-base md:text-lg" : "text-sm"
+          }`}
+        >
+          {item.originalSummary}
+        </p>
       ) : null}
       <p className="text-xs text-gray-500 mb-3">
         {item.sourceName}
@@ -75,7 +80,7 @@ export function NewsCard({
           })
         }
       >
-        Read the original story →
+        Read at {item.sourceName} →
       </a>
       {!compact && item.relatedBoatingChicagoPages.length ? (
         <div className="mt-4 flex flex-wrap gap-2">
@@ -104,12 +109,11 @@ export function NewsList({
   if (!items.length) {
     return (
       <p className="text-gray-600">
-        No matching allowlisted news items are available right now. Check back
-        after the next refresh, or see{" "}
+        No stories in this section right now. See{" "}
         <Link href="/weather" className="font-semibold text-lake-blue underline">
           boating weather
         </Link>{" "}
-        for live alerts.
+        for live conditions and official alerts.
       </p>
     );
   }

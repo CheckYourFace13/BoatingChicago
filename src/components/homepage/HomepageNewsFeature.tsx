@@ -82,7 +82,7 @@ export function HomepageNewsFeature({ news }: { news: NewsItem[] }) {
         </div>
       ) : (
         <p className="text-gray-600">
-          News will appear here as allowlisted feeds publish relevant items.
+          News will appear here as trusted sources publish relevant Lake Michigan and Chicago boating updates.
         </p>
       )}
     </section>

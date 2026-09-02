@@ -122,7 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let newsPages: MetadataRoute.Sitemap = [];
   try {
     const weather = await getChicagoWeather();
-    const feed = await getChicagoNews({ alerts: weather.alerts });
+    const feed = await getChicagoNews({ alerts: weather.alerts, weather });
     newsPages = feed.items
       .filter((i) => i.isPublished && i.qualifiesForArticlePage)
       .slice(0, 40)
