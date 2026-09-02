@@ -11,12 +11,11 @@ interface EmailSignupProps {
 }
 
 const BRIEF_TOPICS = [
-  "Weekend boating forecast",
+  "Weekend lake conditions",
   "Marine alerts",
-  "Lake conditions",
-  "Events",
-  "News",
-  "Fishing",
+  "Boating weather",
+  "Events on the water",
+  "Chicago boating news",
   "Destination ideas",
 ] as const;
 
@@ -54,7 +53,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       >
         <p className="text-sun-yellow font-bold text-lg">You&apos;re on the list</p>
         <p className="text-white/80 text-sm mt-1">
-          We&apos;ll send the Chicago Boating Brief when it launches — no email yet.
+          We&apos;ll email the Chicago Boating Brief when it launches — no messages yet.
         </p>
       </div>
     );
@@ -88,19 +87,22 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         src={siteImages.newsletterSunset.src}
         alt=""
         fill
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, 1120px"
         className="object-cover"
         aria-hidden
       />
       <div className="absolute inset-0 bg-lake-blue/80" />
       <div className="relative z-10">
-        <h3 className="text-2xl font-extrabold text-white mb-2">
+        <p className="text-sun-yellow text-xs font-bold uppercase tracking-widest mb-2">
+          Free waitlist · No email yet
+        </p>
+        <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
           Chicago Boating Brief
         </h3>
-        <p className="text-white/85 mb-4 max-w-lg mx-auto">
-          Join the waitlist for a practical brief built for Chicago and southern
-          Lake Michigan boaters. We are collecting signups only — we are not
-          sending email yet.
+        <p className="text-white/90 mb-4 max-w-xl mx-auto leading-relaxed">
+          Be first in line for a practical brief covering weekend lake
+          conditions, marine alerts, boating weather, events, news, and
+          southern Lake Michigan destination ideas — built for Chicago boaters.
         </p>
         <ul className="flex flex-wrap justify-center gap-2 mb-6 max-w-xl mx-auto">
           {BRIEF_TOPICS.map((topic) => (

@@ -8,6 +8,7 @@ import {
 import { getMarinasByDestination, getPublishedDestinations } from "@/data/geo";
 import { REGION_ORDER, amenityLabel, regionLabel } from "@/lib/geo-display";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export const metadata = buildMetadata({
   title: "Marinas & Harbors Near Chicago | Verified Official Listings",
@@ -130,6 +131,17 @@ export default function MarinasPage() {
             for official harbor links.
           </p>
         ) : null}
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/boat-launches", label: "Boat launches" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/news", label: "News" },
+            { href: "/guides", label: "Guides" },
+            { href: "/events", label: "Events" },
+          ]}
+        />
       </div>
     </>
   );

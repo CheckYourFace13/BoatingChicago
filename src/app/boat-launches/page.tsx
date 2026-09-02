@@ -11,6 +11,7 @@ import {
 } from "@/data/geo";
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export const metadata = buildMetadata({
   title: "Public Boat Launches Near Chicago | Verified Ramp Listings",
@@ -140,6 +141,17 @@ export default function BoatLaunchesPage() {
             for official access links.
           </p>
         ) : null}
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/marinas", label: "Marinas" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/lakes", label: "Lakes" },
+            { href: "/news", label: "News" },
+            { href: "/guides", label: "Guides" },
+          ]}
+        />
       </div>
     </>
   );

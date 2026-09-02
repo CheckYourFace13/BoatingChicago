@@ -122,14 +122,14 @@ export default async function NewsArticlePage({
         {item.relatedBoatingChicagoPages.length ? (
           <div className="mt-10">
             <h2 className="text-lg font-extrabold text-lake-blue mb-3">
-              Related guides
+              Related Boating Resources
             </h2>
             <div className="flex flex-wrap gap-2">
               {item.relatedBoatingChicagoPages.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-sm font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue"
+                  className="text-sm font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue hover:bg-sky-blue/20"
                 >
                   {l.label}
                 </Link>
@@ -137,6 +137,18 @@ export default async function NewsArticlePage({
             </div>
           </div>
         ) : null}
+
+        <div className="mt-8 flex flex-wrap gap-4 text-sm font-semibold">
+          <Link href="/weather" className="text-coral hover:underline">
+            Boating weather →
+          </Link>
+          <Link href="/news" className="text-coral hover:underline">
+            More news →
+          </Link>
+          <Link href="/marinas" className="text-coral hover:underline">
+            Marinas →
+          </Link>
+        </div>
 
         <p className="mt-10">
           <Link href="/news" className="font-bold text-coral hover:underline">

@@ -287,37 +287,53 @@ export const NEWS_CATEGORY_RELATED: Record<
   "Chicago Boating": [
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/weather", label: "Boating Weather" },
+    { href: "/marinas", label: "Marinas" },
+    { href: "/guides", label: "Guides" },
   ],
   "Lake Michigan": [
     { href: "/weather", label: "Lake Conditions" },
-    { href: "/lakes/lake-michigan-chicago", label: "Lake Michigan Guide" },
+    { href: "/lakes/lake-michigan-chicago", label: "Lake Michigan Overview" },
+    { href: "/lake-michigan-boating-guide", label: "Lake Michigan Guide" },
+    { href: "/boat-launches", label: "Boat Launches" },
   ],
   Safety: [
     { href: "/weather", label: "Boating Weather & Alerts" },
+    { href: "/news", label: "Boating News" },
+    { href: "/marinas", label: "Marinas" },
     { href: "/guides", label: "Boating Guides" },
   ],
   Events: [
     { href: "/events", label: "Boating Events" },
-    { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks Boats" },
+    { href: "/weather", label: "Check Conditions" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
   ],
   Fishing: [
     { href: "/fishing-charters-chicago", label: "Fishing Charters" },
+    { href: "/chicago-fishing-guide", label: "Fishing Guide" },
+    { href: "/weather", label: "Lake Conditions" },
+    { href: "/boat-launches", label: "Boat Launches" },
   ],
   "Harbors & Marinas": [
     { href: "/marinas", label: "Marinas Directory" },
     { href: "/boat-launches", label: "Boat Launches" },
+    { href: "/chicago-marina-guide", label: "Chicago Marinas Guide" },
+    { href: "/weather", label: "Boating Weather" },
   ],
   Wisconsin: [
     { href: "/destinations", label: "Destinations" },
+    { href: "/destinations/lake-geneva", label: "Lake Geneva" },
     { href: "/weather?location=lake-geneva", label: "Lake Geneva Weather" },
   ],
   Indiana: [
     { href: "/destinations", label: "Destinations" },
     { href: "/weather", label: "Lake Conditions" },
+    { href: "/boat-launches", label: "Boat Launches" },
   ],
   "Great Lakes": [
     { href: "/lake-michigan-boating-guide", label: "Lake Michigan Guide" },
     { href: "/weather", label: "Boating Weather" },
+    { href: "/lakes", label: "Lakes & Waterways" },
+    { href: "/news", label: "Boating News" },
   ],
 };
 

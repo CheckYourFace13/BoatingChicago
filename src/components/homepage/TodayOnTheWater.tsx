@@ -38,6 +38,9 @@ export function TodayOnTheWater({
           </p>
           <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
             Today on the Water
+            <span className="ml-3 inline-flex align-middle text-base md:text-lg font-extrabold text-sky-blue">
+              · {weather.rating.level}
+            </span>
           </h2>
           <p className="text-gray-600 max-w-2xl">
             Current Chicago boating conditions, the latest source-cited news, and
@@ -112,11 +115,25 @@ export function TodayOnTheWater({
             {alert ? (
               <>
                 <p className="font-extrabold text-coral text-sm mb-1">{alert.event}</p>
-                <p className="text-sm text-gray-700 line-clamp-2">{alert.headline}</p>
+                <p className="text-sm text-gray-700 line-clamp-2 mb-2">{alert.headline}</p>
               </>
             ) : (
-              <p className="text-sm text-gray-700">No active marine alerts right now.</p>
+              <p className="text-sm text-gray-700 mb-2">No active marine alerts right now.</p>
             )}
+            <div className="flex flex-wrap gap-3 text-xs font-bold">
+              <Link href="/marinas" className="text-coral hover:underline">
+                Marinas
+              </Link>
+              <Link href="/boat-launches" className="text-coral hover:underline">
+                Launches
+              </Link>
+              <Link href="/destinations" className="text-coral hover:underline">
+                Destinations
+              </Link>
+              <Link href="/guides" className="text-coral hover:underline">
+                Guides
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -144,18 +161,27 @@ export function TodayOnTheWater({
                       ? ` – ${event.endDate}`
                       : ""}
                   </p>
-                  <p className="font-extrabold text-lake-blue mb-1">{event.title}</p>
+                  <p className="font-extrabold text-lake-blue mb-1">
+                    <Link href="/events" className="hover:underline">
+                      {event.title}
+                    </Link>
+                  </p>
                   <p className="text-sm text-gray-600 line-clamp-3 mb-2">
                     {event.summary}
                   </p>
-                  <a
-                    href={event.source.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-coral hover:underline"
-                  >
-                    {event.source.name} →
-                  </a>
+                  <div className="flex flex-wrap gap-3 text-xs font-semibold">
+                    <Link href="/events" className="text-coral hover:underline">
+                      Events calendar →
+                    </Link>
+                    <a
+                      href={event.source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sky-blue hover:underline"
+                    >
+                      {event.source.name} →
+                    </a>
+                  </div>
                 </li>
               ))}
             </ul>

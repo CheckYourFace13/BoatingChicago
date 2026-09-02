@@ -171,11 +171,13 @@ function buildWhyItMatters(category: NewsCategory, headline: string): string {
 function relatedPages(category: NewsCategory, headline: string) {
   const base = [...(NEWS_CATEGORY_RELATED[category] || [])];
   const t = headline.toLowerCase();
-  if (t.includes("firework")) {
-    base.unshift({
-      href: "/chicago-fireworks-cruises",
-      label: "Fireworks Cruises",
-    });
+
+  if (t.includes("firework") || t.includes("navy pier")) {
+    base.unshift(
+      { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
+      { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks Boats" },
+      { href: "/events", label: "Events" }
+    );
   }
   if (t.includes("air and water") || t.includes("air & water")) {
     base.unshift({
@@ -184,11 +186,88 @@ function relatedPages(category: NewsCategory, headline: string) {
     });
   }
   if (t.includes("playpen")) {
+    base.unshift(
+      { href: "/chicago-playpen-guide", label: "Playpen Guide" },
+      { href: "/chicago-playpen-boat-rentals", label: "Playpen Boat Rentals" }
+    );
+  }
+  if (t.includes("harbor") || t.includes("marina") || t.includes("slip")) {
+    base.unshift(
+      { href: "/marinas", label: "Marinas" },
+      { href: "/chicago-marina-guide", label: "Chicago Marinas Guide" }
+    );
+  }
+  if (t.includes("launch") || t.includes("ramp")) {
+    base.unshift({ href: "/boat-launches", label: "Boat Launches" });
+  }
+  if (
+    t.includes("fish") ||
+    t.includes("salmon") ||
+    t.includes("trout") ||
+    t.includes("sturgeon")
+  ) {
+    base.unshift(
+      { href: "/chicago-fishing-guide", label: "Fishing Guide" },
+      { href: "/fishing-charters-chicago", label: "Fishing Charters" }
+    );
+  }
+  if (
+    t.includes("kayak") ||
+    t.includes("paddle") ||
+    t.includes("canoe")
+  ) {
+    base.unshift({ href: "/chicago-kayak-rentals", label: "Kayak Rentals" });
+  }
+  if (t.includes("jet ski") || t.includes("pwc")) {
+    base.unshift({ href: "/chicago-jet-ski-rentals", label: "Jet Ski Rentals" });
+  }
+  if (
+    t.includes("architecture") ||
+    t.includes("chicago river") ||
+    t.includes("riverwalk") ||
+    t.includes("wild mile")
+  ) {
+    base.unshift(
+      {
+        href: "/chicago-architecture-cruise-guide",
+        label: "Architecture Cruise Guide",
+      },
+      { href: "/destinations/chicago", label: "Boating in Chicago" }
+    );
+  }
+  if (
+    t.includes("warning") ||
+    t.includes("advisory") ||
+    t.includes("heat") ||
+    t.includes("marine") ||
+    t.includes("small craft") ||
+    t.includes("gale") ||
+    t.includes("rip")
+  ) {
+    base.unshift({ href: "/weather", label: "Boating Weather & Alerts" });
+  }
+  if (t.includes("lake geneva") || t.includes("geneva lake")) {
     base.unshift({
-      href: "/chicago-playpen-boat-rentals",
-      label: "Playpen Boat Rentals",
+      href: "/destinations/lake-geneva",
+      label: "Lake Geneva",
     });
   }
+  if (t.includes("chain") && t.includes("lake")) {
+    base.unshift({
+      href: "/destinations/chain-o-lakes",
+      label: "Chain O'Lakes",
+    });
+  }
+  if (t.includes("milwaukee") || t.includes("kenosha") || t.includes("racine")) {
+    base.unshift({ href: "/destinations", label: "Destinations" });
+  }
+
+  // Always offer a path into the resource graph
+  base.push(
+    { href: "/news", label: "Boating News" },
+    { href: "/weather", label: "Weather" }
+  );
+
   const seen = new Set<string>();
   return base
     .filter((l) => {
@@ -196,7 +275,7 @@ function relatedPages(category: NewsCategory, headline: string) {
       seen.add(l.href);
       return true;
     })
-    .slice(0, 4);
+    .slice(0, 5);
 }
 
 interface RawFeedItem {
@@ -354,12 +433,16 @@ function toNewsItem(
   const summary = buildOriginalSummary(source.name, raw.title);
   const why = buildWhyItMatters(category, raw.title);
 
+  // Standalone pages only for stronger local boating angles — avoid thin doorway URLs
   const qualifiesForArticlePage =
-    raw.title.length >= 40 &&
+    raw.title.length >= 48 &&
     (category === "Safety" ||
       category === "Harbors & Marinas" ||
       category === "Events" ||
-      /chicago|harbor|marina|lake michigan|boat|marine/i.test(raw.title));
+      category === "Fishing") &&
+    /chicago|harbor|marina|lake michigan|boat|marine|navy pier|fishing/i.test(
+      raw.title
+    );
 
   return {
     id,

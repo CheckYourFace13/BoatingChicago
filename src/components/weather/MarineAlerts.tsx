@@ -12,7 +12,7 @@ export function MarineAlerts({
 }) {
   if (!alerts.length) {
     return (
-      <section id="alerts">
+      <section id="marine-alerts">
         <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
           Active NOAA/NWS alerts
         </h2>
@@ -24,7 +24,7 @@ export function MarineAlerts({
   }
 
   return (
-    <section id="alerts">
+    <section id="marine-alerts">
       <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
         Active NOAA/NWS alerts
       </h2>

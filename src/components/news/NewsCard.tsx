@@ -13,6 +13,8 @@ export function NewsCard({
   compact?: boolean;
   featured?: boolean;
 }) {
+  const related = item.relatedBoatingChicagoPages.slice(0, compact ? 2 : 5);
+
   return (
     <article
       className={`rounded-2xl border border-sky-blue/20 bg-white shadow-sm ${
@@ -61,7 +63,7 @@ export function NewsCard({
         </p>
       ) : null}
       <p className="text-xs text-gray-500 mb-3">
-        {item.sourceName}
+        <span className="font-semibold text-gray-600">{item.sourceName}</span>
         {item.sourcePublishedAt
           ? ` · ${new Date(item.sourcePublishedAt).toLocaleDateString("en-US", {
               timeZone: "America/Chicago",
@@ -82,17 +84,29 @@ export function NewsCard({
       >
         Read at {item.sourceName} →
       </a>
-      {!compact && item.relatedBoatingChicagoPages.length ? (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {item.relatedBoatingChicagoPages.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-xs font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue hover:bg-sky-blue/20"
-            >
-              {l.label}
-            </Link>
-          ))}
+      {related.length ? (
+        <div className={`mt-4 ${compact ? "" : ""}`}>
+          {!compact ? (
+            <p className="text-[11px] font-bold uppercase tracking-widest text-lake-blue/60 mb-2">
+              Related Boating Resources
+            </p>
+          ) : null}
+          <div className="flex flex-wrap gap-2">
+            {related.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={
+                  compact
+                    ? "text-xs font-semibold text-sky-blue hover:underline"
+                    : "text-xs font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue hover:bg-sky-blue/20"
+                }
+              >
+                {l.label}
+                {compact ? " →" : ""}
+              </Link>
+            ))}
+          </div>
         </div>
       ) : null}
     </article>

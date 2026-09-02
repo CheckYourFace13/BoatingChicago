@@ -17,6 +17,7 @@ import {
 } from "@/components/weather/WeatherPanels";
 import { WeatherLocationSelector } from "@/components/weather/WeatherLocationSelector";
 import { WeatherGoodDayOffers } from "@/components/weather/WeatherGoodDayOffers";
+import { WeatherExploreLinks } from "@/components/weather/WeatherExploreLinks";
 import { PageShell } from "@/components/layout/PageShell";
 import { SideRail } from "@/components/layout/SideRail";
 import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
@@ -83,32 +84,20 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
             <Link href="/news" className="text-sun-yellow hover:underline">
               Chicago Boating News →
             </Link>
-            <Link
-              href="/boat-rentals-chicago"
-              className="text-white/90 hover:underline"
-            >
-              Boat rentals
-            </Link>
-            <Link
-              href="/fishing-charters-chicago"
-              className="text-white/90 hover:underline"
-            >
-              Fishing charters
-            </Link>
-            <Link
-              href="/chicago-marinas"
-              className="text-white/90 hover:underline"
-            >
-              Chicago marinas guide
-            </Link>
             <Link href="/marinas" className="text-white/90 hover:underline">
-              Marinas directory
+              Marinas
+            </Link>
+            <Link href="/boat-launches" className="text-white/90 hover:underline">
+              Boat launches
             </Link>
             <Link href="/destinations" className="text-white/90 hover:underline">
               Destinations
             </Link>
-            <Link href="/boat-launches" className="text-white/90 hover:underline">
-              Boat launches
+            <Link href="/guides" className="text-white/90 hover:underline">
+              Guides
+            </Link>
+            <Link href="/events" className="text-white/90 hover:underline">
+              Events
             </Link>
           </div>
         </div>
@@ -134,6 +123,8 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
         <WeatherLocationSelector activeLocationId={weather.locationId} />
 
         <BoatingConditionRatingCard rating={weather.rating} />
+
+        <WeatherExploreLinks weather={weather} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">

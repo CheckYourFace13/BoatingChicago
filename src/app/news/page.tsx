@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SideRail } from "@/components/layout/SideRail";
 import { NewsCard, NewsList } from "@/components/news/NewsCard";
 import { OnTheWaterNow } from "@/components/news/OnTheWaterNow";
+import { EmailSignup } from "@/components/EmailSignup";
 import {
   DEFAULT_LEFT_RAIL_MODULES,
   DEFAULT_RIGHT_RAIL_MODULES,
@@ -202,6 +203,8 @@ export default async function NewsPage() {
               </section>
             );
           })}
+
+          <EmailSignup source="news_page" />
 
           <section className="rounded-2xl border border-sky-blue/20 bg-light-blue/40 p-5 text-sm text-gray-700">
             <h2 className="font-extrabold text-lake-blue mb-2">

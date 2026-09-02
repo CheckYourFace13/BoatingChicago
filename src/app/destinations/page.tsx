@@ -9,6 +9,7 @@ import {
 } from "@/data/geo";
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export const metadata = buildMetadata({
   title: "Boating Destinations Near Chicago | Harbors, Lakes & Launch Towns",
@@ -132,6 +133,18 @@ export default function DestinationsPage() {
             </ul>
           </section>
         ))}
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/marinas", label: "Marinas" },
+            { href: "/boat-launches", label: "Boat launches" },
+            { href: "/lakes", label: "Lakes" },
+            { href: "/news", label: "News" },
+            { href: "/guides", label: "Guides" },
+            { href: "/events", label: "Events" },
+          ]}
+        />
       </div>
     </>
   );

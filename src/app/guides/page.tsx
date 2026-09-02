@@ -3,6 +3,7 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { guides } from "@/data/guides";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export const metadata = buildMetadata({
   title: "Chicago Boating Guides | Rentals, Charters, Marinas & Lake Michigan",
@@ -37,7 +38,7 @@ export default function GuidesPage() {
         ]}
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-10">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {sorted.map((guide) => (
             <li key={guide.slug}>
@@ -58,6 +59,18 @@ export default function GuidesPage() {
             </li>
           ))}
         </ul>
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/news", label: "News" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/marinas", label: "Marinas" },
+            { href: "/boat-launches", label: "Boat launches" },
+            { href: "/events", label: "Events" },
+            { href: "/lakes", label: "Lakes" },
+          ]}
+        />
       </div>
     </>
   );

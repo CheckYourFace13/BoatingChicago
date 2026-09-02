@@ -9,6 +9,7 @@ import {
 import { getPublishedEvents } from "@/data/geo";
 import { formatEventDates } from "@/lib/geo-display";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 /** Expired events drop off the list, so refresh the static render hourly. */
 export const revalidate = 3600;
@@ -128,6 +129,17 @@ export default function EventsPage() {
             </Link>
           </div>
         </section>
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/news", label: "News" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/marinas", label: "Marinas" },
+            { href: "/boat-launches", label: "Boat launches" },
+            { href: "/guides", label: "Guides" },
+          ]}
+        />
       </div>
     </>
   );

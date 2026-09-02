@@ -6,6 +6,7 @@ import { QualityDisclaimer } from "@/components/geo/SourceAttribution";
 import { getDestinationBySlug, getPublishedLakes } from "@/data/geo";
 import { regionLabel } from "@/lib/geo-display";
 import { buildMetadata } from "@/lib/seo";
+import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export const metadata = buildMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
@@ -110,6 +111,17 @@ export default function LakesPage() {
             );
           })}
         </ul>
+
+        <ResourceCrossLinks
+          links={[
+            { href: "/weather", label: "Weather" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/marinas", label: "Marinas" },
+            { href: "/boat-launches", label: "Boat launches" },
+            { href: "/news", label: "News" },
+            { href: "/guides", label: "Guides" },
+          ]}
+        />
       </div>
     </>
   );
