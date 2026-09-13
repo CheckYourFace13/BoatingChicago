@@ -4,6 +4,7 @@ import { GuideLanding } from "@/components/GuideLanding";
 import { getAllCategorySlugs, getCategoryBySlug } from "@/data/categories";
 import { getAllGuideSlugs, getGuideBySlug } from "@/data/guides";
 import { buildMetadata } from "@/lib/seo";
+import { shouldIndexCategorySlug } from "@/config/quality";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: PageProps) {
       title: category.seoTitle,
       description: category.seoDescription,
       path: `/${slug}`,
+      noIndex: !shouldIndexCategorySlug(slug),
     });
   }
 

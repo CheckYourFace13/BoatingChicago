@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { SourceAttribution } from "@/components/geo/SourceAttribution";
+import { FAQ } from "@/components/FAQ";
+import { FAQSchema } from "@/components/FAQSchema";
 import {
   getAllPublishedLaunchSlugs,
   getDestinationBySlug,
@@ -12,6 +14,8 @@ import {
   getMarinasByDestination,
 } from "@/data/geo";
 import { getWeatherLocationById } from "@/config/weather-locations";
+import { buildLaunchFaqs } from "@/lib/geo-faqs";
+import { buildLaunchPlaceSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -55,6 +59,7 @@ export default async function BoatLaunchPage({ params }: PageProps) {
   const weatherLocation = publishedDestination
     ? getWeatherLocationById(publishedDestination.weatherLocationId)
     : undefined;
+  const faqs = buildLaunchFaqs(launch, publishedDestination);
 
   return (
     <>
@@ -64,6 +69,25 @@ export default async function BoatLaunchPage({ params }: PageProps) {
           { name: "Boat launches", path: "/boat-launches" },
           { name: launch.name, path: `/boat-launches/${launch.slug}` },
         ]}
+      />
+      <FAQSchema faqs={faqs} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildLaunchPlaceSchema({
+              name: launch.name,
+              description: launch.summary,
+              path: `/boat-launches/${launch.slug}`,
+              bodyOfWater:
+                publishedLake?.name || publishedDestination?.bodyOfWater,
+              containedInName: publishedDestination
+                ? `${publishedDestination.name}, ${publishedDestination.state}`
+                : undefined,
+              officialSourceUrl: launch.source.url,
+            })
+          ),
+        }}
       />
 
       <GeoHero
@@ -129,6 +153,8 @@ export default async function BoatLaunchPage({ params }: PageProps) {
             that may already be out of date.
           </p>
         </section>
+
+        <FAQ faqs={faqs} title="Launch planning FAQs" />
 
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">

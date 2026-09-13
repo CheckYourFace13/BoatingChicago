@@ -11,7 +11,6 @@ import { SessionOriginCapture } from "@/components/SessionOriginCapture";
 import { siteConfig } from "@/config/site";
 import {
   buildOrganizationSchema,
-  buildPublisherLocalBusinessSchema,
   buildWebSiteSchema,
 } from "@/lib/schema";
 import "./globals.css";
@@ -69,12 +68,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(buildWebSiteSchema()),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildPublisherLocalBusinessSchema()),
           }}
         />
       </head>

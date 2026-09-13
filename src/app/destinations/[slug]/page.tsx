@@ -20,6 +20,7 @@ import { getGuideBySlug } from "@/data/guides";
 import { getWeatherLocationById } from "@/config/weather-locations";
 import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
+import { PlanYourDay } from "@/components/geo/PlanYourDay";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -99,6 +100,15 @@ export default async function DestinationPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+        <PlanYourDay
+          destination={destination}
+          marinas={marinas}
+          launches={launches}
+          guides={relatedGuides}
+          categories={relatedCategories}
+          showExperiences={destination.slug === "chicago"}
+        />
+
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">
             <p className="font-bold text-lake-blue mb-1">Body of water</p>
@@ -299,8 +309,9 @@ export default async function DestinationPage({ params }: PageProps) {
 
         {destination.slug === "chicago" ? (
           <PopularOnTheWater
+            id="book-an-experience"
             title="Popular nearby on the water"
-            subtitle="Popular cruises, charters and on-the-water experiences you can book online."
+            subtitle="Bookable affiliate experiences — not BoatingChicago editorial reviews. Ratings and prices come from GetYourGuide or Viator when available."
             pageSlug="destinations-chicago"
             limit={4}
             placement="destination_contextual"

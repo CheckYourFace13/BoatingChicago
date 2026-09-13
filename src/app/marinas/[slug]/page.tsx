@@ -4,6 +4,8 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { AmenityTable } from "@/components/geo/AmenityTable";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { SourceAttribution } from "@/components/geo/SourceAttribution";
+import { FAQ } from "@/components/FAQ";
+import { FAQSchema } from "@/components/FAQSchema";
 import {
   getAllPublishedMarinaSlugs,
   getDestinationBySlug,
@@ -12,6 +14,8 @@ import {
   getMarinasByDestination,
 } from "@/data/geo";
 import { getWeatherLocationById } from "@/config/weather-locations";
+import { buildMarinaFaqs } from "@/lib/geo-faqs";
+import { buildMarinaPlaceSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 interface PageProps {
@@ -52,6 +56,7 @@ export default async function MarinaPage({ params }: PageProps) {
   const weatherLocation = publishedDestination
     ? getWeatherLocationById(publishedDestination.weatherLocationId)
     : undefined;
+  const faqs = buildMarinaFaqs(marina, publishedDestination);
 
   return (
     <>
@@ -61,6 +66,25 @@ export default async function MarinaPage({ params }: PageProps) {
           { name: "Marinas", path: "/marinas" },
           { name: marina.name, path: `/marinas/${marina.slug}` },
         ]}
+      />
+      <FAQSchema faqs={faqs} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildMarinaPlaceSchema({
+              name: marina.name,
+              description: marina.summary,
+              path: `/marinas/${marina.slug}`,
+              officialWebsite: marina.officialWebsite,
+              telephone: marina.phone,
+              bodyOfWater: publishedDestination?.bodyOfWater,
+              containedInName: publishedDestination
+                ? `${publishedDestination.name}, ${publishedDestination.state}`
+                : undefined,
+            })
+          ),
+        }}
       />
 
       <GeoHero
@@ -141,6 +165,8 @@ export default async function MarinaPage({ params }: PageProps) {
           amenities={marina.amenities}
           sourceName={marina.source.name}
         />
+
+        <FAQ faqs={faqs} title="Marina planning FAQs" />
 
         {publishedDestination ? (
           <section className="max-w-3xl space-y-4">

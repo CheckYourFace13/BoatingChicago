@@ -24,6 +24,36 @@ const nextConfig: NextConfig = {
       ],
     };
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/blog/:path*",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/navy-pier-fireworks-boat-rentals",
+        destination: "/chicago-fireworks-cruises",
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/ads.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=3600" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -39,13 +39,13 @@ const offerSectionCopy: Record<
   "party-boat-rentals-chicago": {
     title: "Instant-Booking Party & Cruise Alternatives",
     subtitle:
-      "Ticketed tiki cruises, concert sails, fireworks sails, and skyline sails you can book online. These are not private party boat charters. For a private party boat with your own captain and schedule, use the form below.",
+      "Ticketed tiki cruises, concert sails, fireworks sails, and skyline sails you can book online. These are not private party boat charters. For a private party boat with your own captain and schedule, browse related charter category pages.",
     beforeForm: false,
   },
   "chicago-playpen-boat-rentals": {
     title: "Nearby Lake Experiences (Not Playpen Rentals)",
     subtitle:
-      "These experiences are not Playpen boat rentals. They are nearby Lake Michigan and downtown water activities you can book online while you arrange a private Playpen charter through our form.",
+      "These experiences are not Playpen boat rentals. They are nearby Lake Michigan and downtown water activities you can book online while you arrange a private Playpen charter through related charter category pages.",
     variant: "alternative",
     beforeForm: false,
   },
@@ -58,7 +58,7 @@ const offerSectionCopy: Record<
   "air-and-water-show-boat-rentals": {
     title: "General Lake & River Cruise Alternatives",
     subtitle:
-      "These experiences do not include Air & Water Show seating or access. They are general Chicago architecture and kayak experiences you can book anytime. For a private boat during Air & Water Show weekend, request a match below.",
+      "These experiences do not include Air & Water Show seating or access. They are general Chicago architecture and kayak experiences you can book anytime. For a private boat during Air & Water Show weekend, browse related charter category pages and booking partners.",
     variant: "alternative",
     beforeForm: false,
   },
@@ -83,7 +83,7 @@ const offerSectionCopy: Record<
   "corporate-yacht-charters-chicago": {
     title: "Instant-Booking Charter & Dining Alternatives",
     subtitle:
-      "Private yacht charter and dining cruise options for groups. For a custom corporate yacht charter, use the form below.",
+      "Private yacht charter and dining cruise options for groups. For a custom corporate yacht charter, browse related charter category pages.",
     variant: "alternative",
     beforeForm: false,
   },
@@ -126,7 +126,7 @@ const offerSectionCopy: Record<
   "chicago-sailing-charters": {
     title: "Book Chicago Sailing & Private Sail Charters",
     subtitle:
-      "Skyline sails, private sailboat charters with captain, day sailing, sunset sailing, fireworks sails, and special sailing events — book online. For additional private charter matching, use the form below.",
+      "Skyline sails, private sailboat charters with captain, day sailing, sunset sailing, fireworks sails, and special sailing events — book online. For additional private charter matching, browse related charter category pages.",
     beforeForm: true,
   },
   "chicago-sunset-cruises": {

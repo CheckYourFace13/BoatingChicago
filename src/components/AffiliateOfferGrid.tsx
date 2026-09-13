@@ -17,6 +17,7 @@ import {
   getAttributedAffiliateUrl,
   trackAffiliateClick,
 } from "@/lib/affiliate-attribution";
+import { getOfferMetaChips } from "@/lib/experience-display";
 
 interface AffiliateOfferGridProps {
   title?: string;
@@ -92,6 +93,14 @@ export function AffiliateOfferCard({
         <h3 className="font-extrabold text-lake-blue text-lg mb-2 leading-snug">
           {offer.shortTitle || offer.title}
         </h3>
+        {getOfferMetaChips(offer).length ? (
+          <p className="text-xs font-semibold text-sky-blue mb-2">
+            {getOfferMetaChips(offer).join(" · ")}
+          </p>
+        ) : null}
+        <p className="text-[11px] font-bold uppercase tracking-wide text-gray-500 mb-2">
+          Bookable experience · {getProviderLabel(offer.provider)}
+        </p>
         {ratingLabel ? (
           <p className="text-sm font-semibold text-lake-blue/80 mb-2">
             {ratingLabel}

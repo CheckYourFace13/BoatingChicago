@@ -9,6 +9,7 @@ import {
 } from "@/data/geo";
 import { getAllGuideSlugs } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
+import { shouldIndexCategorySlug } from "@/config/quality";
 import { getChicagoNews } from "@/lib/news";
 import { getChicagoWeather } from "@/lib/weather";
 
@@ -77,11 +78,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/terms`, changeFrequency: "yearly", priority: 0.4 },
   ];
 
-  const categoryPages = getAllCategorySlugs().map((slug) => ({
-    url: `${baseUrl}/${slug}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.9,
-  }));
+  const categoryPages = getAllCategorySlugs()
+    .filter((slug) => shouldIndexCategorySlug(slug))
+    .map((slug) => ({
+      url: `${baseUrl}/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    }));
 
   const guidePages = getAllGuideSlugs().map((slug) => ({
     url: `${baseUrl}/${slug}`,

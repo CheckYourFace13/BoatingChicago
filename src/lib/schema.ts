@@ -1,7 +1,11 @@
 import { siteConfig } from "@/config/site";
 import type { CategoryFAQ } from "@/types";
 
+const ORG_ID = `${siteConfig.url}/#organization`;
+const WEBSITE_ID = `${siteConfig.url}/#website`;
+
 export function buildFAQSchema(faqs: CategoryFAQ[]) {
+  if (!faqs.length) return null;
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -16,6 +20,7 @@ export function buildFAQSchema(faqs: CategoryFAQ[]) {
   };
 }
 
+/** Vendor listing LocalBusiness only — not used for the publisher. */
 export function buildLocalBusinessSchema({
   name,
   description,
@@ -42,6 +47,7 @@ export function buildLocalBusinessSchema({
     ...(image ? { image } : {}),
     parentOrganization: {
       "@type": "Organization",
+      "@id": ORG_ID,
       name: siteConfig.name,
       url: siteConfig.url,
     },
@@ -52,17 +58,20 @@ export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": ORG_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    logo: `${siteConfig.url}/icon-512.png`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteConfig.url}/icon-512.png`,
+    },
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook].filter(
       Boolean
     ),
     areaServed: {
-      "@type": "City",
-      name: "Chicago",
-      containedInPlace: { "@type": "State", name: "Illinois" },
+      "@type": "AdministrativeArea",
+      name: "Southern Lake Michigan & nearby inland lakes",
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -78,19 +87,12 @@ export function buildWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/vendors?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    publisher: { "@id": ORG_ID },
+    inLanguage: "en-US",
   };
 }
 
@@ -135,38 +137,107 @@ export function buildArticleSchema({
       "@type": "WebPage",
       "@id": url,
     },
-    author: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}/icon-512.png`,
-      },
-    },
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : { dateModified: datePublished }),
   };
 }
 
-/** Soft LocalBusiness for the publisher (referral/guide site, not a marina). */
-export function buildPublisherLocalBusinessSchema() {
+/**
+ * Place schema for verified marina/harbor/launch locations.
+ * Only includes fields present in our verified records — never invents
+ * ratings, hours, prices, coordinates, or phone numbers.
+ */
+export function buildMarinaPlaceSchema({
+  name,
+  description,
+  path,
+  officialWebsite,
+  telephone,
+  bodyOfWater,
+  containedInName,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  officialWebsite?: string;
+  telephone?: string;
+  bodyOfWater?: string;
+  containedInName?: string;
+}) {
+  const url = `${siteConfig.url}${path}`;
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    areaServed: {
-      "@type": "City",
-      name: "Chicago",
-      containedInPlace: { "@type": "State", name: "Illinois" },
-    },
-    image: `${siteConfig.url}/icon-512.png`,
+    "@type": "Marina",
+    "@id": `${url}#place`,
+    name,
+    description,
+    url,
+    ...(officialWebsite ? { sameAs: officialWebsite } : {}),
+    ...(telephone ? { telephone } : {}),
+    ...(bodyOfWater
+      ? {
+          additionalProperty: {
+            "@type": "PropertyValue",
+            name: "bodyOfWater",
+            value: bodyOfWater,
+          },
+        }
+      : {}),
+    ...(containedInName
+      ? {
+          containedInPlace: {
+            "@type": "Place",
+            name: containedInName,
+          },
+        }
+      : {}),
+    isPartOf: { "@id": WEBSITE_ID },
+  };
+}
+
+export function buildLaunchPlaceSchema({
+  name,
+  description,
+  path,
+  bodyOfWater,
+  containedInName,
+  officialSourceUrl,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  bodyOfWater?: string;
+  containedInName?: string;
+  officialSourceUrl?: string;
+}) {
+  const url = `${siteConfig.url}${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "@id": `${url}#place`,
+    name,
+    description,
+    url,
+    ...(officialSourceUrl ? { sameAs: officialSourceUrl } : {}),
+    ...(bodyOfWater
+      ? {
+          additionalProperty: {
+            "@type": "PropertyValue",
+            name: "bodyOfWater",
+            value: bodyOfWater,
+          },
+        }
+      : {}),
+    ...(containedInName
+      ? {
+          containedInPlace: {
+            "@type": "Place",
+            name: containedInName,
+          },
+        }
+      : {}),
+    isPartOf: { "@id": WEBSITE_ID },
   };
 }

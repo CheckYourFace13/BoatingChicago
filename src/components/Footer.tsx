@@ -94,8 +94,19 @@ export function Footer() {
 
         <div className="mt-8 pt-6 border-t border-white/10">
           <p className="text-xs text-white/60 leading-relaxed mb-3">{disclaimer}</p>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-white/50 mb-2">
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-white/50">
+            Built by{" "}
+            <a
+              href="https://iscreamstudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-blue hover:underline"
+            >
+              iScream Studio
+            </a>
           </p>
         </div>
       </div>
