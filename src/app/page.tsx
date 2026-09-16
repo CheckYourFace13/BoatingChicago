@@ -42,7 +42,7 @@ export default async function HomePage() {
         <PopularOnTheWater
           id="popular-on-the-water"
           title="Popular on the Water in Chicago"
-          subtitle="Popular cruises, charters and on-the-water experiences you can book online."
+          subtitle="Ticketed cruises, charters, and rentals you can book online — clearly labeled GetYourGuide and Viator experiences."
           pageSlug="homepage"
           offers={homepageOffers}
           limit={4}

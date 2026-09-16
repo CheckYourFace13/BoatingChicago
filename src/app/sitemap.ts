@@ -61,7 +61,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
       lastModified: now,
     },
-    { url: `${baseUrl}/vendors`, changeFrequency: "weekly", priority: 0.8 },
+    // Include /vendors only when real partner listings exist (avoids thin directory)
+    ...(getPublishedVendors().length
+      ? [
+          {
+            url: `${baseUrl}/vendors`,
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
+          },
+        ]
+      : []),
     {
       url: `${baseUrl}/list-your-business`,
       changeFrequency: "monthly",

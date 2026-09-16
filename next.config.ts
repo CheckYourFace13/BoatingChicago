@@ -6,6 +6,11 @@ import {
 
 const nextConfig: NextConfig = {
   /**
+   * Handle trailing-slash normalization in middleware so /blog/ can 308
+   * directly to /news (one hop) instead of /blog/ → /blog → /news.
+   */
+  skipTrailingSlashRedirect: true,
+  /**
    * beforeFiles: run BEFORE App Router matching.
    * Required because src/app/[slug] uses dynamicParams=false and would
    * otherwise 404 IndexNow key paths as unknown slugs.
@@ -30,7 +35,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Editorial / matching-service legacy
       { source: "/blog", destination: "/news", permanent: true },
       { source: "/blog/:path*", destination: "/news", permanent: true },
       {
@@ -43,7 +47,6 @@ const nextConfig: NextConfig = {
         destination: "/boat-rentals-chicago",
         permanent: true,
       },
-      // Thin / overlapping category pages → strongest equivalent
       {
         source: "/navy-pier-fireworks-boat-rentals",
         destination: "/chicago-fireworks-cruises",
@@ -74,7 +77,6 @@ const nextConfig: NextConfig = {
         destination: "/yacht-rentals-chicago",
         permanent: true,
       },
-      // Common alternate spellings / aliases discovered in crawl probes
       {
         source: "/chicago-boat-rentals",
         destination: "/boat-rentals-chicago",
@@ -98,7 +100,6 @@ const nextConfig: NextConfig = {
       { source: "/sitemap", destination: "/sitemap.xml", permanent: true },
       { source: "/feed", destination: "/news", permanent: true },
       { source: "/rss", destination: "/news", permanent: true },
-      // Unpublished sample vendor stubs → onboarding hub
       {
         source: "/vendors/sample-chicago-party-boat-partner",
         destination: "/list-your-business",

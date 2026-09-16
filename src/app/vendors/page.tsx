@@ -8,11 +8,17 @@ import { ExploreResources } from "@/components/ExploreResources";
 import { buildMetadata } from "@/lib/seo";
 import { siteImages } from "@/data/images";
 
+const hasPublishedVendors = getPublishedVendors().length > 0;
+
 export const metadata = buildMetadata({
-  title: "Chicago Boating Vendors | Local Boat Rental & Charter Directory",
-  description:
-    "Boating Chicago connects you with local boat rental companies, yacht charters, fishing captains, marinas, and service providers on Lake Michigan. Now accepting Chicago boating partners.",
+  title: hasPublishedVendors
+    ? "Chicago Boating Vendors | Local Boat Rental & Charter Directory"
+    : "List Your Boating Business | Chicago Partner Onboarding",
+  description: hasPublishedVendors
+    ? "Boating Chicago connects you with local boat rental companies, yacht charters, fishing captains, marinas, and service providers on Lake Michigan."
+    : "Onboarding verified Chicago-area boating partners. Until listings go live, use marinas, destinations, guides, and bookable experience hubs on BoatingChicago.",
   path: "/vendors",
+  noIndex: !hasPublishedVendors,
 });
 
 const partnerCategories = [

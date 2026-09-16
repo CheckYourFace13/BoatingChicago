@@ -41,8 +41,14 @@ export function getAllIndexableUrls(): string[] {
     "/terms",
   ];
 
+  // Omit empty vendor directory from IndexNow (matches sitemap when unpublished)
+  const publishedVendors = getPublishedVendors();
+  const staticFiltered = publishedVendors.length
+    ? staticPaths
+    : staticPaths.filter((p) => p !== "/vendors");
+
   const urls = [
-    ...staticPaths.map((p) => `${base}${p}`),
+    ...staticFiltered.map((p) => `${base}${p}`),
     ...getAllCategorySlugs()
       .filter((slug) => shouldIndexCategorySlug(slug))
       .map((slug) => `${base}/${slug}`),
@@ -55,7 +61,7 @@ export function getAllIndexableUrls(): string[] {
     ...getAllPublishedLaunchSlugs().map(
       (slug) => `${base}/boat-launches/${slug}`
     ),
-    ...getPublishedVendors().map((v) => `${base}/vendors/${v.slug}`),
+    ...publishedVendors.map((v) => `${base}/vendors/${v.slug}`),
   ];
 
   return [...new Set(urls)];

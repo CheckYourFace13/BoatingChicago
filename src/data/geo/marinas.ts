@@ -13,7 +13,7 @@ export const marinas: Marina[] = [
     name: "Belmont Harbor",
     destinationSlug: "chicago",
     summary:
-      "Chicago Park District harbor in Lincoln Park — one of the larger basins in the Chicago Harbors system, with slips, mooring cans, and star docks described on the official harbors site.",
+      "Lincoln Park harbor on Chicago’s north lakefront, known for sailing activity and proximity to Belmont Harbor Beach. Confirm slip, mooring, and guest rules on the official Chicago Harbors site before you plan overnight dockage.",
     officialWebsite: "https://www.chicagoharbors.info/harbors/",
     phone: "(312) 742-7673",
     amenities: [
@@ -59,7 +59,7 @@ export const marinas: Marina[] = [
     name: "Monroe Harbor",
     destinationSlug: "chicago",
     summary:
-      "Iconic downtown Chicago Harbor known for mooring cans and skyline views at the foot of the city, operated within the Chicago Harbors / Park District system.",
+      "Downtown mooring-can harbor at the foot of the Loop skyline — a classic Chicago overnight and day-stop setting. Fuel and pump-out are not confirmed on the overview page we cite; verify services on Chicago Harbors before you arrive.",
     officialWebsite: "https://www.chicagoharbors.info/harbors/",
     phone: "(312) 742-7643",
     amenities: [
@@ -79,7 +79,7 @@ export const marinas: Marina[] = [
     name: "DuSable Harbor",
     destinationSlug: "chicago",
     summary:
-      "Downtown Chicago harbor at the foot of Randolph Street with slips close to the Loop, part of the Chicago Harbors system.",
+      "Slips close to Randolph Street and the downtown lakefront trail — convenient for Loop visitors who need a harbor base near Millennium Park. Confirm transient and seasonal options with Chicago Harbors; amenities beyond seasonal mooring remain unverified on our cited overview.",
     officialWebsite: "https://www.chicagoharbors.info/harbors/",
     phone: "(312) 742-3577",
     amenities: [
@@ -99,7 +99,7 @@ export const marinas: Marina[] = [
     name: "Montrose Harbor",
     destinationSlug: "chicago",
     summary:
-      "North lakefront Chicago Harbor near Montrose Beach in Lincoln Park, with northern skyline views described on the official harbors site.",
+      "North lakefront harbor beside Montrose Beach — a practical base for North Side day trips and fishing runs. Chicago Park District lists the Lincoln Boat Launch at Montrose Harbor; confirm launch fees and harbor rules on the official sources linked on this page.",
     officialWebsite: "https://www.chicagoharbors.info/harbors/",
     phone: "(312) 742-7527",
     amenities: [
@@ -120,7 +120,7 @@ export const marinas: Marina[] = [
     name: "31st Street Harbor",
     destinationSlug: "chicago",
     summary:
-      "Newer Chicago Harbors facility on the south lakefront with slips described on the official harbors site as including metered electric, seasonal water, and internet access.",
+      "South lakefront Chicago Harbors facility with slips the official overview describes as including metered electric, seasonal water, and internet access — useful planning context for south-side boaters. Confirm current rates and guest access on Chicago Harbors before arrival.",
     officialWebsite: "https://www.chicagoharbors.info/harbors/",
     phone: "(312) 225-6464",
     amenities: [
