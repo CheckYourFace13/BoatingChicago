@@ -64,3 +64,18 @@ Reapply only after:
 2. Destination Plan Your Day pages show engagement.
 3. ads.txt remains “found” in AdSense for several days.
 4. Thin CPD marina pages get more harbor-specific verified prose (next content sprint).
+
+---
+
+## Second pass — 2026-09-16
+
+AdSense dashboard: **GETTING READY** + ads.txt **NOT FOUND** (despite live 200).
+
+Additional changes:
+- Thin categories now **308 redirect** to guides/directories (not merely noindex)
+- Matching/lead-form language scrubbed from affiliate cards + category copy
+- ads.txt via `/api/ads-txt` rewrite + **www → apex** middleware
+- Search Console 404 aliases redirected (`/find-a-boat`, `/rentals`, sample vendors, etc.)
+- Homepage empty ad spacer removed; Plan Your Day expanded to conditions → access → guide → activities → book
+
+Remaining concerns: overlapping rental categories, sparse CPD harbors, thin `/vendors`.

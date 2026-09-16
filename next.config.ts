@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         {
+          source: "/ads.txt",
+          destination: "/api/ads-txt",
+        },
+        {
           source: `/${INDEXNOW_KEY}.txt`,
           destination: "/api/indexnow-key",
         },
@@ -26,19 +30,103 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Editorial / matching-service legacy
+      { source: "/blog", destination: "/news", permanent: true },
+      { source: "/blog/:path*", destination: "/news", permanent: true },
       {
-        source: "/blog",
-        destination: "/news",
+        source: "/find-a-boat",
+        destination: "/boat-rentals-chicago",
         permanent: true,
       },
       {
-        source: "/blog/:path*",
-        destination: "/news",
+        source: "/find-a-boat/:path*",
+        destination: "/boat-rentals-chicago",
         permanent: true,
       },
+      // Thin / overlapping category pages → strongest equivalent
       {
         source: "/navy-pier-fireworks-boat-rentals",
         destination: "/chicago-fireworks-cruises",
+        permanent: true,
+      },
+      {
+        source: "/boat-storage-chicago",
+        destination: "/chicago-boat-storage-guide",
+        permanent: true,
+      },
+      {
+        source: "/boat-detailing-chicago",
+        destination: "/chicago-boat-detailing-guide",
+        permanent: true,
+      },
+      {
+        source: "/boat-repair-chicago",
+        destination: "/chicago-boat-repair-guide",
+        permanent: true,
+      },
+      {
+        source: "/chicago-marinas",
+        destination: "/marinas",
+        permanent: true,
+      },
+      {
+        source: "/captains-for-hire-chicago",
+        destination: "/yacht-rentals-chicago",
+        permanent: true,
+      },
+      // Common alternate spellings / aliases discovered in crawl probes
+      {
+        source: "/chicago-boat-rentals",
+        destination: "/boat-rentals-chicago",
+        permanent: true,
+      },
+      {
+        source: "/boat-rental-chicago",
+        destination: "/boat-rentals-chicago",
+        permanent: true,
+      },
+      {
+        source: "/private-yacht-charter",
+        destination: "/yacht-rentals-chicago",
+        permanent: true,
+      },
+      { source: "/rentals", destination: "/boat-rentals-chicago", permanent: true },
+      { source: "/charters", destination: "/yacht-rentals-chicago", permanent: true },
+      { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/about-us", destination: "/about", permanent: true },
+      { source: "/home", destination: "/", permanent: true },
+      { source: "/sitemap", destination: "/sitemap.xml", permanent: true },
+      { source: "/feed", destination: "/news", permanent: true },
+      { source: "/rss", destination: "/news", permanent: true },
+      // Unpublished sample vendor stubs → onboarding hub
+      {
+        source: "/vendors/sample-chicago-party-boat-partner",
+        destination: "/list-your-business",
+        permanent: true,
+      },
+      {
+        source: "/vendors/sample-chicago-yacht-partner",
+        destination: "/list-your-business",
+        permanent: true,
+      },
+      {
+        source: "/vendors/sample-chicago-fishing-partner",
+        destination: "/list-your-business",
+        permanent: true,
+      },
+      {
+        source: "/vendors/sample-chicago-captain-partner",
+        destination: "/list-your-business",
+        permanent: true,
+      },
+      {
+        source: "/vendors/sample-chicago-marina-partner",
+        destination: "/list-your-business",
+        permanent: true,
+      },
+      {
+        source: "/vendors/sample-chicago-detailing-partner",
+        destination: "/list-your-business",
         permanent: true,
       },
     ];
@@ -49,7 +137,10 @@ const nextConfig: NextConfig = {
         source: "/ads.txt",
         headers: [
           { key: "Content-Type", value: "text/plain; charset=utf-8" },
-          { key: "Cache-Control", value: "public, max-age=3600" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=300, must-revalidate",
+          },
         ],
       },
     ];

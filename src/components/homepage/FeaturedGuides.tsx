@@ -7,6 +7,8 @@ const FEATURED_GUIDE_SLUGS = [
   "chicago-marina-guide",
   "chicago-playpen-guide",
   "lake-michigan-boating-guide",
+  "chicago-boating-faq",
+  "chicago-fireworks-cruise-guide",
 ] as const;
 
 const FALLBACK_LABELS: Record<string, string> = {
@@ -14,10 +16,8 @@ const FALLBACK_LABELS: Record<string, string> = {
   "chicago-marina-guide": "Chicago Harbor Guide",
   "chicago-playpen-guide": "Playpen Guide",
   "lake-michigan-boating-guide": "Lake Michigan Guide",
-  "chicago-fishing-guide": "Fishing Guide",
-  "chicago-fireworks-cruise-guide": "Fireworks by Boat",
-  "chicago-air-and-water-show-boats": "Air & Water Show by Boat",
   "chicago-boating-faq": "Boating FAQ / Safety",
+  "chicago-fireworks-cruise-guide": "Fireworks by Boat",
 };
 
 export function FeaturedGuides() {
@@ -60,24 +60,6 @@ export function FeaturedGuides() {
             {guide.label}
           </Link>
         ))}
-        <Link
-          href="/destinations/chain-o-lakes"
-          className="px-4 py-2.5 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-light-blue transition-colors"
-        >
-          Chain O&apos;Lakes Destination
-        </Link>
-        <Link
-          href="/destinations/lake-geneva"
-          className="px-4 py-2.5 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-light-blue transition-colors"
-        >
-          Lake Geneva Destination
-        </Link>
-        <Link
-          href="/boat-launches"
-          className="px-4 py-2.5 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-light-blue transition-colors"
-        >
-          Boat Launch Guide
-        </Link>
       </div>
     </section>
   );

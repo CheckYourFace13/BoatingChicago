@@ -7,7 +7,7 @@ export const seasonalPromos: SeasonalPromo[] = [
     description:
       "Skip the crowds — watch Navy Pier fireworks from a boat on Lake Michigan. Book early; summer Wednesday & Saturday shows sell out fast.",
     cta: "Find Fireworks Boat Rentals",
-    href: "/navy-pier-fireworks-boat-rentals",
+    href: "/chicago-fireworks-cruises",
     emoji: "🎆",
     activeMonths: [5, 6, 7, 8, 9],
   },
@@ -37,7 +37,7 @@ export const seasonalPromos: SeasonalPromo[] = [
     description:
       "Fireworks, sunshine, and the skyline — July 4th on a boat is peak Chicago summer. Reserve your charter now.",
     cta: "Find July 4th Boats",
-    href: "/navy-pier-fireworks-boat-rentals",
+    href: "/chicago-fireworks-cruises",
     emoji: "🎇",
     activeMonths: [6, 7],
   },

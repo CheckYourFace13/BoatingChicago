@@ -1,8 +1,9 @@
 /**
- * Category slugs that remain reachable but should not be indexed until they
- * have independent useful content (real listings / unique editorial value).
+ * Category slugs permanently redirected — keep out of sitemaps / IndexNow.
+ * Destinations live in next.config.ts redirects.
  */
-export const NOINDEX_CATEGORY_SLUGS = new Set([
+export const REDIRECTED_CATEGORY_SLUGS = new Set([
+  "navy-pier-fireworks-boat-rentals",
   "boat-storage-chicago",
   "boat-detailing-chicago",
   "boat-repair-chicago",
@@ -10,11 +11,19 @@ export const NOINDEX_CATEGORY_SLUGS = new Set([
   "captains-for-hire-chicago",
 ]);
 
-/** Slugs redirected elsewhere — keep out of sitemap generators. */
-export const REDIRECTED_CATEGORY_SLUGS = new Set([
-  "navy-pier-fireworks-boat-rentals",
-]);
+/** @deprecated Prefer REDIRECTED_CATEGORY_SLUGS — kept for any leftover callers. */
+export const NOINDEX_CATEGORY_SLUGS = new Set<string>();
 
 export function shouldIndexCategorySlug(slug: string): boolean {
-  return !NOINDEX_CATEGORY_SLUGS.has(slug) && !REDIRECTED_CATEGORY_SLUGS.has(slug);
+  return !REDIRECTED_CATEGORY_SLUGS.has(slug);
 }
+
+/** Map retired thin category URLs → strongest equivalent resource. */
+export const CATEGORY_REDIRECT_MAP: Record<string, string> = {
+  "navy-pier-fireworks-boat-rentals": "/chicago-fireworks-cruises",
+  "boat-storage-chicago": "/chicago-boat-storage-guide",
+  "boat-detailing-chicago": "/chicago-boat-detailing-guide",
+  "boat-repair-chicago": "/chicago-boat-repair-guide",
+  "chicago-marinas": "/marinas",
+  "captains-for-hire-chicago": "/yacht-rentals-chicago",
+};

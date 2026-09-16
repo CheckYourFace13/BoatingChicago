@@ -1,6 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { INDEXNOW_ENDPOINT, INDEXNOW_KEY } from "@/config/indexnow";
 import { getAllCategorySlugs } from "@/data/categories";
+import { shouldIndexCategorySlug } from "@/config/quality";
 import {
   getAllPublishedDestinationSlugs,
   getAllPublishedLakeSlugs,
@@ -42,7 +43,9 @@ export function getAllIndexableUrls(): string[] {
 
   const urls = [
     ...staticPaths.map((p) => `${base}${p}`),
-    ...getAllCategorySlugs().map((slug) => `${base}/${slug}`),
+    ...getAllCategorySlugs()
+      .filter((slug) => shouldIndexCategorySlug(slug))
+      .map((slug) => `${base}/${slug}`),
     ...getAllGuideSlugs().map((slug) => `${base}/${slug}`),
     ...getAllPublishedDestinationSlugs().map(
       (slug) => `${base}/destinations/${slug}`

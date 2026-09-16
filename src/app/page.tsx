@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { EmailSignup } from "@/components/EmailSignup";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
-import { AdSenseBlock } from "@/components/AdSenseBlock";
 import { ExploreBoating } from "@/components/homepage/ExploreBoating";
 import { TodayOnTheWater } from "@/components/homepage/TodayOnTheWater";
 import { FeaturedGuides } from "@/components/homepage/FeaturedGuides";
@@ -32,10 +31,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-
-      <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 pt-8">
-        <AdSenseBlock slot="homepage-top" className="mb-4" />
-      </div>
 
       <div className="mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-10 md:py-12 space-y-12 md:space-y-14">
         <TodayOnTheWater

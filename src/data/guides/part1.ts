@@ -449,7 +449,7 @@ export const guidePart1: GuidePage[] = [
         heading: "Types of Chicago River Cruises",
         paragraphs: [
           "Architecture cruises are the most iconic Chicago River experience. Guided tours — ranging from 45 minutes to 2 hours — narrate the stories behind the buildings, bridges, and engineering of the downtown waterway. These are ticketed shared experiences operated by several companies, and they run frequently throughout the season from spring through fall.",
-          "Dining cruises on the river offer a meal alongside the sightseeing. Brunch, lunch, and dinner departures vary by operator. These are also ticketed shared experiences — not private restaurant vessels. If you want a private dining charter, that's organized separately through our lead form.",
+          "Dining cruises on the river offer a meal alongside the sightseeing. Brunch, lunch, and dinner departures vary by operator. These are also ticketed shared experiences — not private restaurant vessels. If you want a private dining charter, that's organized separately through instant-booking charter options on related category pages.",
           "Kayak rentals let you experience the river at your own pace. Downtown launch points put you on the river at water level, paddling under the same bridges the architecture tour boats pass under. It's a slower, more immersive option — and significantly more affordable than a guided cruise.",
           "Private river charters are available for groups that want exclusivity. These typically depart from river-accessible docks or from the harbor and head into the river system. Note that Lake Michigan winds and swells don't affect the river, making it a calmer option for guests who prefer sheltered water.",
         ],

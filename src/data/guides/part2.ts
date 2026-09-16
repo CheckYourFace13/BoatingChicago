@@ -665,7 +665,7 @@ export const guidePart2: GuidePage[] = [
         paragraphs: [
           "A private sailboat charter reserves the entire vessel for your group — typically 4–8 guests on a monohull sailboat in the 30–45 foot range, with a licensed skipper who handles all sailing while you enjoy the experience. This is fundamentally different from a ticketed shared sailing experience where you purchase individual seats alongside other guests.",
           "Shared sailing experiences like skyline sails and fireworks sails are excellent and more affordable — you get a genuine sailing experience and meet interesting fellow passengers. For couples, anniversary celebrations, or intimate group experiences, the private charter adds an exclusivity that shared tours can't provide.",
-          "For instant-booking private sailing charters, options are available through our affiliate partners. For additional charter matching beyond what's instantly bookable, browse instant-booking options on this page to describe your group and compare operator listings on related category pages.",
+          "For instant-booking private sailing charters, options are available through our affiliate partners. For more private sailing options beyond what's listed here, compare instant-booking listings on related charter category pages.",
         ],
       },
       {
@@ -763,7 +763,7 @@ export const guidePart2: GuidePage[] = [
     title: "Private Sailing Charters Chicago",
     seoTitle: "Private Sailing Charters Chicago 2026 | Exclusive Lake Michigan Sailboat Charters",
     seoDescription:
-      "Book private sailing charters in Chicago for couples, groups, and special occasions on Lake Michigan. Instant-booking options and custom private charter matching.",
+      "Book private sailing charters in Chicago for couples, groups, and special occasions on Lake Michigan. Instant-booking options and private sailboat charters you can book online.",
     headline: "Private Sailing Charters in Chicago on Lake Michigan",
     intro:
       "When you book a private sailing charter in Chicago, you're reserving the entire sailboat for your group — no strangers, no shared itinerary, just your party, a skilled skipper, and Lake Michigan. Private sailing charters are among the most intimate and flexible boating experiences available in Chicago, suitable for couples, small families, friend groups, and special occasions that deserve something more personal than a ticketed cruise.",
@@ -788,7 +788,7 @@ export const guidePart2: GuidePage[] = [
         heading: "Booking Private Sailing Charters: What to Know",
         paragraphs: [
           "Private sailing availability in Chicago is genuinely limited — there are far fewer private sailing charters than motorized boat charters. If you want a private sailing charter on a specific summer date, start looking 4–6 weeks ahead. For popular dates (summer weekends, Navy Pier fireworks nights, sunset prime season), book even earlier.",
-          "Instant-booking private sailing options are available through our affiliate partners — look at the Viator and GetYourGuide listings for private sailing charter options. For additional matching or custom duration requests, browse instant-booking options on this page.",
+          "Instant-booking private sailing options are available through our affiliate partners — look at the Viator and GetYourGuide listings for private sailing charter options. For custom duration or other private sailing options, compare instant-booking listings on related category pages.",
           "Always confirm what happens in light-wind conditions. Experienced skippers handle low-wind days by motoring out to find wind or motor-sailing back. An honest captain will tell you if conditions genuinely aren't appropriate for a satisfying sail.",
         ],
       },
@@ -956,7 +956,7 @@ export const guidePart2: GuidePage[] = [
       { question: "Are there fireworks other than Navy Pier to watch by boat?", answer: "Various lakefront communities and Navy Pier occasionally hold special fireworks events beyond the regular schedule. Check local Chicago event calendars for fireworks dates across the region." },
     ],
     popularSearches: [
-      { label: "Navy Pier Fireworks Boat Rentals", href: "/navy-pier-fireworks-boat-rentals" },
+      { label: "Chicago Fireworks Cruises", href: "/chicago-fireworks-cruises" },
       { label: "Chicago Air & Water Show Boats", href: "/chicago-air-and-water-show-boats" },
       { label: "Best Chicago Sunset Cruises", href: "/best-chicago-sunset-cruises" },
       { label: "Chicago Fireworks Cruises", href: "/chicago-fireworks-cruises" },
@@ -964,7 +964,7 @@ export const guidePart2: GuidePage[] = [
       { label: "Sailboat Charters Chicago", href: "/sailboat-charters-chicago" },
     ],
     relatedSlugs: [
-      "navy-pier-fireworks-boat-rentals",
+      "chicago-fireworks-cruises",
       "chicago-air-and-water-show-boats",
       "best-chicago-sunset-cruises",
       "chicago-fireworks-cruises",

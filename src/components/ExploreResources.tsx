@@ -25,7 +25,7 @@ export const CATEGORY_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
   "party-boat-rentals-chicago": [
     { href: "/chicago-playpen-guide", label: "Playpen guide" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
-    { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks boats" },
+    { href: "/chicago-fireworks-cruises", label: "Fireworks boats" },
     { href: "/weather", label: "Boating weather" },
     { href: "/events", label: "Boating events" },
   ],
@@ -36,7 +36,7 @@ export const CATEGORY_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/party-boat-rentals-chicago", label: "Party boat rentals" },
     { href: "/marinas", label: "Marinas" },
   ],
-  "navy-pier-fireworks-boat-rentals": [
+  "chicago-fireworks-cruises": [
     { href: "/chicago-fireworks-cruise-guide", label: "Fireworks cruise guide" },
     { href: "/events", label: "Events calendar" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },

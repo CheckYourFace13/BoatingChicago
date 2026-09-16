@@ -288,7 +288,6 @@ export const affiliateOffers: AffiliateOffer[] = [
     category: "night-cruise",
     relatedPageSlugs: [
       "chicago-fireworks-cruises",
-      "navy-pier-fireworks-boat-rentals",
       "chicago-sunset-cruises",
       "best-chicago-sunset-cruises",
       "romantic-boat-cruises-chicago",
@@ -490,7 +489,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     relatedPageSlugs: [
       "chicago-fireworks-cruises",
       "chicago-fireworks-cruise-guide",
-      "navy-pier-fireworks-boat-rentals",
+      "chicago-fireworks-cruises",
       "homepage",
       "events",
     ],
@@ -701,7 +700,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     relatedPageSlugs: [
       "chicago-fireworks-cruises",
       "chicago-fireworks-cruise-guide",
-      "navy-pier-fireworks-boat-rentals",
+      "chicago-fireworks-cruises",
     ],
     active: true,
     featured: true,
@@ -802,7 +801,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Customize Your Chicago Experience with a Private Yacht Charter",
     shortTitle: "Private Yacht Charter",
     shortDescription:
-      "Instant-booking private yacht charter on Viator. For additional private matching, browse related category pages.",
+      "Instant-booking private yacht charter on Viator. Browse related yacht and charter category pages for more private charter options you can book online.",
     url: "https://www.viator.com/tours/Chicago/Customize-Your-Chicago-Experience-with-a-Private-Yacht-Charter/d673-5599206P2?pid=P00309183&mcid=42383&medium=link",
     category: "private-yacht-charter",
     relatedPageSlugs: [
@@ -920,7 +919,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     relatedPageSlugs: [
       "chicago-fireworks-cruises",
       "chicago-fireworks-cruise-guide",
-      "navy-pier-fireworks-boat-rentals",
+      "chicago-fireworks-cruises",
       "chicago-sailing-charters",
       "party-boat-rentals-chicago",
     ],
@@ -939,7 +938,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Navy Pier Private Sailboat Charter with Captain",
     shortTitle: "Navy Pier Private Sail",
     shortDescription:
-      "Private sailboat charter with captain near Navy Pier. Instant-booking alternative — browse related category pages for more matching.",
+      "Private sailboat charter with captain near Navy Pier. Instant-booking alternative — browse related sailing and charter category pages for more options.",
     url: "https://www.viator.com/tours/Chicago/Navy-Pier-Chicago-Private-Sailboat-Charter-with-Captain/d673-5647184P1?pid=P00309183&mcid=42383&medium=link",
     category: "private-sailing-charter",
     relatedPageSlugs: [
@@ -989,7 +988,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Private Day Sailing on Lake Michigan",
     shortTitle: "Private Day Sail",
     shortDescription:
-      "Private day sailing on Lake Michigan — book online or request a custom match through instant-booking listings on this site.",
+      "Private day sailing on Lake Michigan — book online or compare other instant-booking private sailing listings on this site.",
     url: "https://www.viator.com/tours/Chicago/Private-Day-Sailing-on-Lake-Michigan/d673-46250P1?pid=P00309183&mcid=42383&medium=link",
     category: "private-sailing-charter",
     relatedPageSlugs: [
@@ -1042,7 +1041,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     relatedPageSlugs: [
       "chicago-fireworks-cruises",
       "chicago-fireworks-cruise-guide",
-      "navy-pier-fireworks-boat-rentals",
+      "chicago-fireworks-cruises",
     ],
     active: true,
     featured: true,
@@ -1060,14 +1059,15 @@ export const PAGE_OFFER_INTENT: Record<
   string,
   { tags: OfferTag[]; preferIds?: string[]; limit?: number }
 > = {
-  "navy-pier-fireworks-boat-rentals": {
-    tags: ["fireworks", "night", "lake-michigan"],
-    preferIds: ["gyg-466163", "viator-navy-pier-fireworks-cruise", "gyg-266010", "viator-fireworks-sail"],
-    limit: 4,
-  },
   "chicago-fireworks-cruises": {
-    tags: ["fireworks", "night"],
-    preferIds: ["gyg-466163", "viator-navy-pier-fireworks-cruise", "viator-fireworks-sail", "gyg-24800-seadog-fireworks"],
+    tags: ["fireworks", "night", "lake-michigan"],
+    preferIds: [
+      "gyg-466163",
+      "viator-navy-pier-fireworks-cruise",
+      "viator-fireworks-sail",
+      "gyg-24800-seadog-fireworks",
+      "gyg-266010",
+    ],
     limit: 4,
   },
   "chicago-fireworks-cruise-guide": {

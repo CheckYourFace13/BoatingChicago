@@ -5,7 +5,7 @@ import type { BoatLaunch } from "@/types/geo";
 import type { CategoryPage, GuidePage } from "@/types";
 
 /**
- * Planning module connecting weather → access → activities → bookable options.
+ * Planning module connecting weather → access → guides → activities → bookable options.
  * Does not invent safety conclusions from our informational weather rating.
  */
 export function PlanYourDay({
@@ -32,27 +32,27 @@ export function PlanYourDay({
     {
       title: "1. Check conditions",
       blurb:
-        "Review live marine weather and official NOAA/NWS products before you go. Our site rating is informational only — official forecasts remain authoritative.",
+        "Start with live marine weather and official NOAA/NWS products. A “Good” rating on this site is informational only — it is never a safety clearance.",
       links: [
         { href: weatherHref, label: "Local marine weather →" },
         { href: "/weather", label: "Full weather hub →" },
       ],
     },
     {
-      title: "2. Where to launch or dock",
+      title: "2. Choose marina or launch",
       blurb:
         marinas.length || launches.length
-          ? "Verified harbors and public launches for this area — amenity details and fees are confirmed on the official operator pages."
-          : "Browse the regional marina and launch directories, then verify access rules with the operating agency.",
+          ? "Verified harbors and public launches for this area. Confirm fees, hours, and amenities on the official operator pages before you trailer or dock."
+          : "Browse regional marina and launch directories, then verify access rules with the operating agency.",
       links: [
-        ...(marinas.slice(0, 3).map((m) => ({
+        ...marinas.slice(0, 3).map((m) => ({
           href: `/marinas/${m.slug}`,
           label: m.name,
-        })) || []),
-        ...(launches.slice(0, 2).map((l) => ({
+        })),
+        ...launches.slice(0, 2).map((l) => ({
           href: `/boat-launches/${l.slug}`,
           label: l.name,
-        })) || []),
+        })),
         ...(marinas.length === 0 && launches.length === 0
           ? [
               { href: "/marinas", label: "Marinas directory →" },
@@ -65,32 +65,45 @@ export function PlanYourDay({
       ],
     },
     {
-      title: "3. What to do",
+      title: "3. Local guide",
       blurb:
-        "Use destination highlights and local guides for planning context — not as a substitute for operator rules or marine forecasts.",
+        guides.length > 0
+          ? "Read harbor and destination context written for boaters planning this area."
+          : "Browse regional guides for harbors, safety, and local waterways.",
       links: [
         ...guides.slice(0, 3).map((g) => ({
           href: `/${g.slug}`,
           label: g.title,
         })),
-        ...categories.slice(0, 2).map((c) => ({
+        { href: "/guides", label: "All guides →" },
+      ],
+    },
+    {
+      title: "4. Things to do",
+      blurb:
+        "Experiences, events, and on-water activities — still subject to marine conditions and operator rules.",
+      links: [
+        ...categories.slice(0, 3).map((c) => ({
           href: `/${c.slug}`,
           label: c.title,
         })),
-        { href: "/guides", label: "All guides →" },
         { href: "/events", label: "Events →" },
+        { href: "/destinations", label: "All destinations →" },
       ],
     },
   ];
 
   if (showExperiences) {
     steps.push({
-      title: "4. Book an experience (optional)",
+      title: "5. Book an experience (optional)",
       blurb:
         "Ticketed cruises and rentals from GetYourGuide or Viator when you want a ready-to-book outing. These are affiliate booking options — not BoatingChicago-operated trips.",
       links: [
         { href: "#book-an-experience", label: "Popular nearby experiences ↓" },
-        { href: "/chicago-architecture-cruises", label: "Architecture cruises →" },
+        {
+          href: "/chicago-architecture-cruises",
+          label: "Architecture cruises →",
+        },
         { href: "/boat-rentals-chicago", label: "Rentals & charters hub →" },
       ],
     });
@@ -105,12 +118,12 @@ export function PlanYourDay({
         Plan Your Day in {destination.name}
       </h2>
       <p className="text-gray-600 max-w-3xl mb-6 leading-relaxed">
-        A practical flow from conditions to access to activities — using pages
-        already on BoatingChicago. Always verify fees, hours, and marine
-        conditions with official sources before you cast off.
+        Conditions → access → guides → activities
+        {showExperiences ? " → bookable experiences" : ""}. Always verify fees,
+        hours, and marine conditions with official sources before you cast off.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {steps.map((step) => (
           <div
             key={step.title}

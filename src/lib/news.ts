@@ -175,7 +175,7 @@ function relatedPages(category: NewsCategory, headline: string) {
   if (t.includes("firework") || t.includes("navy pier")) {
     base.unshift(
       { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
-      { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks Boats" },
+      { href: "/chicago-fireworks-cruises", label: "Fireworks Boats" },
       { href: "/events", label: "Events" }
     );
   }

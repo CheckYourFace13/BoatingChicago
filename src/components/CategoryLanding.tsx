@@ -49,10 +49,10 @@ const offerSectionCopy: Record<
     variant: "alternative",
     beforeForm: false,
   },
-  "navy-pier-fireworks-boat-rentals": {
+  "chicago-fireworks-cruises": {
     title: "Book a Chicago Fireworks Cruise or Sail",
     subtitle:
-      "Ticketed fireworks cruises and fireworks sails you can book online — including Navy Pier marina fireworks, fireworks sails, and GetYourGuide fireworks options. Prefer a private charter for your group? Use related rental and charter category pages.",
+      "Ticketed fireworks cruises and fireworks sails on Lake Michigan — including Navy Pier marina fireworks options you can book online. Prefer a private charter for your group? Browse related rental and charter category pages.",
     beforeForm: true,
   },
   "air-and-water-show-boat-rentals": {
@@ -65,7 +65,7 @@ const offerSectionCopy: Record<
   "yacht-rentals-chicago": {
     title: "Instant-Booking Private Yacht & Sailing Charters",
     subtitle:
-      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For custom private yacht matching, use related rental and charter category pages. Dining cruises are ticketed shared experiences, not private yachts.",
+      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For more private yacht charter options, browse related rental and charter category pages. Dining cruises are ticketed shared experiences, not private yachts.",
     beforeForm: false,
   },
   "bachelorette-boat-rentals-chicago": {
@@ -77,7 +77,7 @@ const offerSectionCopy: Record<
   "birthday-boat-rentals-chicago": {
     title: "Ticketed Party Cruise Option",
     subtitle:
-      "Prefer an instant-booking cruise for your celebration? Check the Tiki Bar Cruise — or request a private birthday boat below.",
+      "Prefer an instant-booking cruise for your celebration? Check the Tiki Bar Cruise — or browse related category pages for private birthday boat rentals you can book online.",
     beforeForm: false,
   },
   "corporate-yacht-charters-chicago": {
@@ -91,12 +91,6 @@ const offerSectionCopy: Record<
     title: "Book a Chicago Architecture Cruise",
     subtitle:
       "Guided architecture river tours, speedboat architecture cruises, and river sightseeing you can book online.",
-    beforeForm: true,
-  },
-  "chicago-fireworks-cruises": {
-    title: "Book a Chicago Fireworks Cruise or Sail",
-    subtitle:
-      "Ticketed fireworks cruises and fireworks sails on Lake Michigan — book online and skip the pier crowds.",
     beforeForm: true,
   },
   "chicago-jet-ski-rentals": {
@@ -126,7 +120,7 @@ const offerSectionCopy: Record<
   "chicago-sailing-charters": {
     title: "Book Chicago Sailing & Private Sail Charters",
     subtitle:
-      "Skyline sails, private sailboat charters with captain, day sailing, sunset sailing, fireworks sails, and special sailing events — book online. For additional private charter matching, browse related charter category pages.",
+      "Skyline sails, private sailboat charters with captain, day sailing, sunset sailing, fireworks sails, and special sailing events — book online. For more private charter options, browse related charter category pages.",
     beforeForm: true,
   },
   "chicago-sunset-cruises": {

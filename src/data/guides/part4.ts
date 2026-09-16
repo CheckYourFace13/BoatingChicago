@@ -96,7 +96,7 @@ export const guidePart4: GuidePage[] = [
       { label: "Burnham Harbor Guide", href: "/burnham-harbor-guide" },
       { label: "Montrose Harbor Guide", href: "/montrose-harbor-guide" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
-      { label: "Chicago Marinas", href: "/chicago-marinas" },
+      { label: "Chicago Marinas", href: "/marinas" },
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
     ],
     relatedSlugs: [
@@ -203,7 +203,7 @@ export const guidePart4: GuidePage[] = [
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Chicago Boat Detailing Guide", href: "/chicago-boat-detailing-guide" },
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
-      { label: "Boat Storage Chicago", href: "/boat-storage-chicago" },
+      { label: "Boat Storage Chicago", href: "/chicago-boat-storage-guide" },
       { label: "Monroe Harbor Guide", href: "/monroe-harbor-guide" },
     ],
     relatedSlugs: [
@@ -312,7 +312,7 @@ export const guidePart4: GuidePage[] = [
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Chicago Boat Detailing Guide", href: "/chicago-boat-detailing-guide" },
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
-      { label: "Boat Storage Chicago", href: "/boat-storage-chicago" },
+      { label: "Boat Storage Chicago", href: "/chicago-boat-storage-guide" },
       { label: "Beginners Guide to Boating", href: "/beginners-guide-boating-chicago" },
     ],
     relatedSlugs: [
@@ -417,7 +417,7 @@ export const guidePart4: GuidePage[] = [
     popularSearches: [
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
-      { label: "Boat Detailing Chicago", href: "/boat-detailing-chicago" },
+      { label: "Boat Detailing Chicago", href: "/chicago-boat-detailing-guide" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Winter Boat Storage Chicago", href: "/winter-boat-storage-chicago" },
       { label: "Monroe Harbor Guide", href: "/monroe-harbor-guide" },
@@ -519,10 +519,10 @@ export const guidePart4: GuidePage[] = [
     popularSearches: [
       { label: "Chicago Boat Detailing Guide", href: "/chicago-boat-detailing-guide" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
-      { label: "Boat Repair Chicago", href: "/boat-repair-chicago" },
+      { label: "Boat Repair Chicago", href: "/chicago-boat-repair-guide" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Winter Boat Storage Chicago", href: "/winter-boat-storage-chicago" },
-      { label: "Chicago Marinas", href: "/chicago-marinas" },
+      { label: "Chicago Marinas", href: "/marinas" },
     ],
     relatedSlugs: [
       "chicago-boat-detailing-guide",

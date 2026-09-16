@@ -1,86 +1,79 @@
 # Monetization Opportunities — BoatingChicago
 
-Research date: 2026-09-13  
-Status: **research only** — no new monetized outbound boat-shopping links published.
+Research refreshed: 2026-09-16  
+Status: **research + architecture only** — no new boat-shopping affiliate links published until approved.
 
 Preserve existing live revenue:
 - GetYourGuide `partner_id=HISQ5ML` (+ `cmp` campaign labels)
 - Viator `pid=P00309183` (+ `campaign` labels)
+- GA4 `affiliate_click` with placement/campaign attribution
 
 ---
 
-## TIER 1 — Apply now
+## APPLY NOW
 
 ### 1. BoatUS Affiliate Program
-- **Type:** Membership / towing referral
-- **Fit:** Excellent for ownership, safety, and “keep a boat in Chicago” content
-- **Public terms:** Up to ~$30 per new membership (program page); monthly payouts
-- **Apply:** https://www.boatus.com/business/affiliates
-- **Tracking:** Personalized links/banners after approval
-- **Action:** Apply with BoatingChicago as a boating information publisher
+- **Type:** Membership / towing referral  
+- **Public claim:** Up to ~$30 per new membership; monthly payouts  
+- **Apply:** https://www.boatus.com/business/affiliates  
+- **Fit:** Excellent for ownership, winterization, safety, and “keep a boat in Chicago” content  
+- **Recommendation:** Apply immediately as a boating information publisher. Do not place links until approved.
 
-### 2. Boats Group via Awin (Boat Trader / boats.com / YachtWorld)
-- **Type:** Affiliate / CPA via Awin merchant **Boats Group** (Awin ID **124170**)
-- **Fit:** Future “Buying a Boat” editorial — do **not** deep-link until approved
-- **Network:** https://www.awin.com/ (publisher signup) then apply to Boats Group
-- **Deep linking:** Available through Awin once accepted (program-dependent)
-- **Action:** Create/verify Awin publisher account → apply to Boats Group → wait for approval before any public links
+### 2. Awin publisher → Boats Group (merchant **124170**)
+- **Brands:** Boat Trader, boats.com, YachtWorld  
+- **Network:** https://ui.awin.com / https://www.awin.com/  
+- **Fit:** Future **Boat Ownership** editorial (not a spammy “Boats for Sale” dump)  
+- **Recommendation:** Create/verify Awin publisher account → apply to Boats Group → wait for approval before any public deep links.
 
-### 3. Expand existing GYG / Viator contextual placements (already live)
-- **Type:** Experience affiliate (proven revenue)
-- **Action:** Keep improving high-intent pages; do not dilute with thin doorway pages
+### 3. Keep optimizing GYG / Viator (already producing bookings)
+- Improve placement quality and campaign codes; do not dilute with doorway pages.
 
 ---
 
-## TIER 2 — After more traffic / editorial depth
+## APPLY AFTER TRAFFIC / EDITORIAL DEPTH
 
-| Opportunity | Why wait | Notes |
-| --- | --- | --- |
-| GEICO BoatUS Insurance referrals | Often partner-gated; needs clear disclosure + ownership content | Research after BoatUS membership approval |
-| Local marina/storage featured listings | Requires sales ops + real inventory | Use `/list-your-business` once inventory exists |
-| Fishing charter / sailing lesson direct sponsorships | Needs local partner outreach | Prefer real operators over placeholders |
-| Newsletter sponsorships | Needs Brief launch + list size | Keep waitlist first |
-| Marine accessories (Bass Pro / Cabela’s style networks) | Broad retail; weaker local intent | Only with specific gear guides |
-| Boat financing referrals | Heavily regulated; verify current publisher programs before linking | Document later if a clear public program appears |
-
----
-
-## TIER 3 — Not worth pursuing now
-
-- Building an in-house boat marketplace
-- Scraped dealer directories without partnership agreements
-- Display ads as primary monetization (last; after AdSense quality recovery)
-- Unverified “lead broker” boat-sales networks with unclear disclosure
-- Thin “best boats 2026” doorway pages created only for affiliate clicks
+| Opportunity | Why wait |
+| --- | --- |
+| BoatUS / GEICO insurance referrals | Often gated; need ownership content + disclosure |
+| Marina / winter storage featured listings | Needs real inventory + sales ops (`/list-your-business`) |
+| Local sailing school / fishing charter sponsorships | Outreach; replace sample vendor stubs |
+| Newsletter sponsorships | After Brief list size |
+| Marine accessories (Bass Pro / Cabela’s networks) | Only with specific gear guides |
+| Boat financing referrals | Regulated; verify current publisher programs first |
 
 ---
 
-## Proposed future architecture (do not publish thin stubs)
+## DON'T BOTHER (now)
 
-Top-level concept: **Buying a Boat** (later)
+- In-house boat marketplace  
+- Scraped dealer directories without agreements  
+- Display ads as primary monetization (last; after AdSense quality stays healthy)  
+- Unverified lead-broker “boat sales” networks  
+- Thin “best boats 2026” doorway pages  
 
-Possible strong standalone resources (only when each can stand alone):
+---
 
-1. Buying a Boat in Chicago / Southern Lake Michigan  
-2. New vs Used for Lake Michigan conditions  
-3. Boat types that fit harbors + Playpen day trips  
-4. Ownership costs (slip, storage, insurance — with official sources)  
-5. Where to keep a boat (harbors vs trailering)  
-6. Winter storage & haul-out planning  
-7. Insurance & towing checklist (BoatUS etc. after approval)  
-8. Pre-purchase survey / inspection checklist  
-9. Chicago-area dealers (sponsored or verified listings only)
+## Boat Ownership architecture (do not mass-publish)
 
-Until approved partnerships + original local research exist, keep this as architecture only.
+Preferred top-level: **Boat Ownership** (not “Boats for Sale”).
+
+**Highest-value pages to build later (2–4 first):**
+
+1. **Buying a Boat for Lake Michigan / Chicago** — local conditions, harbor constraints, survey checklist  
+2. **True Cost of Boat Ownership in Chicago** — slips, storage, insurance, winterization (official sources)  
+3. **Winter Boat Storage in Chicago** — expand existing storage guide; partner links after BoatUS/storage deals  
+4. **Boat Insurance & Towing Checklist** — after BoatUS approval  
+
+Only publish when each can stand alone with verified local information. **No thin stubs shipped in this pass.**
 
 ---
 
 ## Best 5 NEW opportunities (ranked)
 
-1. **BoatUS membership affiliate** — apply now  
-2. **Boats Group / Boat Trader / YachtWorld via Awin** — apply now, link later  
-3. **Marina/storage featured listings** — sell after inventory quality exists  
-4. **Local charter/lesson sponsorships** — replace placeholder vendor pages  
-5. **Newsletter sponsorships** — after Brief launches  
+1. BoatUS membership affiliate  
+2. Boats Group / Boat Trader / YachtWorld via Awin  
+3. Marina/storage featured listings  
+4. Local charter/lesson sponsorships  
+5. Newsletter sponsorships  
 
 Display ads remain **last**.

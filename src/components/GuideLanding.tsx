@@ -32,7 +32,7 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
   ],
   "chicago-marina-guide": [
     { href: "/marinas", label: "Marinas directory" },
-    { href: "/chicago-marinas", label: "Chicago marinas overview" },
+    { href: "/marinas", label: "Chicago marinas overview" },
     { href: "/boat-launches", label: "Boat launches" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/weather", label: "Boating weather" },
@@ -51,13 +51,13 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/news", label: "Boating news" },
   ],
   "chicago-air-and-water-show-boats": [
-    { href: "/air-and-water-show-boat-rentals", label: "Request a show boat" },
+    { href: "/air-and-water-show-boat-rentals", label: "Air & Water Show boats" },
     { href: "/events", label: "Events" },
     { href: "/weather", label: "Boating weather" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
   ],
   "chicago-fireworks-cruise-guide": [
-    { href: "/navy-pier-fireworks-boat-rentals", label: "Fireworks boats" },
+    { href: "/chicago-fireworks-cruises", label: "Fireworks boats" },
     { href: "/events", label: "Events" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/weather", label: "Boating weather" },
