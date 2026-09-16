@@ -42,4 +42,6 @@ Google’s “Not found (404)” warning is explained by **legacy/retired URLs s
 
 ## Host consistency
 
-- Middleware: `www.boatingchicago.com` → `boatingchicago.com` (308) for all matched routes including `/ads.txt`
+- Apex and www both serve the app (Hostinger dual-host). Canonical tags prefer apex.
+- Do **not** force www→apex in Next middleware — that caused gateway timeouts on Hostinger.
+- ads.txt returns identical correct body on both hosts via `/api/ads-txt` rewrite.
