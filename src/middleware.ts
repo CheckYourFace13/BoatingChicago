@@ -2,20 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Host + legacy-path normalization for crawl consistency.
- * Keeps ads.txt / static assets working; www always lands on apex.
+ * Legacy-path normalization for crawl consistency.
+ * Host canonicalization (www ↔ apex) is left to DNS/CDN — do not force
+ * www→apex here (Hostinger dual-host serving timed out under that redirect).
  */
 export function middleware(request: NextRequest) {
-  const host = request.headers.get("host")?.toLowerCase() || "";
   const { pathname } = request.nextUrl;
-
-  // Canonical host: www → apex (preserves path + query)
-  if (host === "www.boatingchicago.com") {
-    const url = request.nextUrl.clone();
-    url.hostname = "boatingchicago.com";
-    url.protocol = "https:";
-    return NextResponse.redirect(url, 308);
-  }
 
   // One-hop legacy editorial hub
   if (pathname === "/blog" || pathname.startsWith("/blog/")) {
@@ -36,10 +28,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Run on page routes + ads.txt so www/ads.txt also canonicalizes.
-     * Skip Next internals and most static assets (images, fonts, etc.).
-     */
-    "/((?!_next/static|_next/image|favicon.ico|icon.svg|apple-icon.png|images/).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icon.svg|apple-icon.png|images/|api/).*)",
   ],
 };
