@@ -14,7 +14,7 @@ import {
   getLakeBySlug,
 } from "@/data/geo";
 import { getLaunchesByLake, regionLabel } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
   const lake = getLakeBySlug(slug);
   if (!lake || !lake.isPublished) return {};
 
-  return buildMetadata({
+  return buildManagedMetadata({
     title: `${lake.name} Boating — Access, Destinations & Official Sources`,
     description: lake.overview[0]?.slice(0, 155) ?? `${lake.name} boating access and destinations.`,
     path: `/lakes/${lake.slug}`,

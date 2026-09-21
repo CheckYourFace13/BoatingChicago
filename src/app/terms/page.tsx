@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { disclaimer, siteConfig } from "@/config/site";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Terms of Service",
   description:
     "Terms of Service for BoatingChicago.com — rules for using our Chicago boating guides and site services.",
   path: "/terms",
 });
+}
 
 export default function TermsPage() {
   return (

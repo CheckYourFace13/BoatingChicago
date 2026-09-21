@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Privacy Policy",
   description:
     "Privacy Policy for BoatingChicago.com — how we collect, use, and protect information from visitors, contact forms, and newsletter subscribers.",
   path: "/privacy",
 });
+}
 
 export default function PrivacyPage() {
   return (

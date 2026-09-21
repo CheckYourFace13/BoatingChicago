@@ -1,13 +1,15 @@
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ContactForm } from "@/components/ContactForm";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "List Your Boating Business on Boating Chicago | Free & Featured Listings",
   description:
     "List your Chicago boat rental, yacht charter, fishing, marina, or boating service on Boating Chicago. Free basic listings, featured placements, and sponsored spots.",
   path: "/list-your-business",
 });
+}
 
 const tiers = [
   {

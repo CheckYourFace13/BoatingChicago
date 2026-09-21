@@ -10,15 +10,17 @@ import {
   getPublishedDestinations,
 } from "@/data/geo";
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Public Boat Launches Near Chicago | Verified Ramp Listings",
   description:
     "Public boat launch ramps around Chicago — Lake Michigan, the Chain O' Lakes, and Geneva Lake — listed from official park district, state, and municipal sources.",
   path: "/boat-launches",
 });
+}
 
 export default function BoatLaunchesPage() {
   const destinations = getPublishedDestinations()

@@ -12,6 +12,7 @@ import { getPublishedVendors } from "@/data/vendors";
 import { shouldIndexCategorySlug } from "@/config/quality";
 import { getChicagoNews } from "@/lib/news";
 import { getChicagoWeather } from "@/lib/weather";
+import { getManagedFeed } from "@/lib/gravyblock-managed";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;

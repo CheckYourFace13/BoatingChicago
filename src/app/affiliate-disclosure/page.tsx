@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 import { affiliateDisclosure } from "@/data/affiliate-offers";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Affiliate Disclosure",
   description:
     "How Boating Chicago uses affiliate links, commissions, and partner relationships — transparent disclosure for readers and advertisers.",
   path: "/affiliate-disclosure",
 });
+}
 
 export default function AffiliateDisclosurePage() {
   return (

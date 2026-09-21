@@ -8,15 +8,17 @@ import {
   getPublishedDestinations,
 } from "@/data/geo";
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Boating Destinations Near Chicago | Harbors, Lakes & Launch Towns",
   description:
     "Boating destinations within reach of Chicago — Lake Michigan harbors in Illinois, Wisconsin, Indiana, and Michigan plus inland lakes, each with official sources and marine weather links.",
   path: "/destinations",
 });
+}
 
 export default function DestinationsPage() {
   const destinations = getPublishedDestinations();

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedVendorBySlug, getPublishedVendors } from "@/data/vendors";
 import { getCategoryBySlug } from "@/data/categories";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 import { buildLocalBusinessSchema } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps) {
   const vendor = getPublishedVendorBySlug(slug);
   if (!vendor) return {};
 
-  return buildMetadata({
+  return buildManagedMetadata({
     title: `${vendor.name} | ${vendor.category} in Chicago`,
     description: vendor.description,
     path: `/vendors/${slug}`,

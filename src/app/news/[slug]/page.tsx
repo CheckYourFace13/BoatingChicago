@@ -5,7 +5,7 @@ import {
   getChicagoNews,
   getNewsItemBySlug,
 } from "@/lib/news";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getChicagoWeather } from "@/lib/weather";
 import { siteConfig } from "@/config/site";
 
@@ -22,14 +22,14 @@ export async function generateMetadata({
   const feed = await getChicagoNews({ alerts: weather.alerts, weather });
   const item = getNewsItemBySlug(feed.items, slug);
   if (!item) {
-    return buildMetadata({
+    return buildManagedMetadata({
       title: "News story",
       description: "Chicago boating news story",
       path: `/news/${slug}`,
       noIndex: true,
     });
   }
-  return buildMetadata({
+  return buildManagedMetadata({
     title: item.headline,
     description: item.whyItMatters.slice(0, 155),
     path: `/news/${item.slug}`,

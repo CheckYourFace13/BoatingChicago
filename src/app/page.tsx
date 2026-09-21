@@ -10,17 +10,19 @@ import { HomepageNewsFeature } from "@/components/homepage/HomepageNewsFeature";
 import { getHomepageOffers } from "@/data/affiliate-offers";
 import { getPublishedEvents } from "@/data/geo";
 import { getChicagoNews } from "@/lib/news";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getChicagoWeather } from "@/lib/weather";
 
 export const revalidate = 900;
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Boating Chicago | Chicago Boating Weather, Marinas, Launches & Guides",
   description:
     "Your guide to boating Chicago and southern Lake Michigan — live weather and lake conditions, boating news, destinations, marinas, boat launches, events, guides, plus rentals and charters.",
   path: "/",
 });
+}
 
 export default async function HomePage() {
   const homepageOffers = getHomepageOffers(4);

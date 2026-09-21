@@ -5,15 +5,17 @@ import { GeoHero } from "@/components/geo/GeoHero";
 import { QualityDisclaimer } from "@/components/geo/SourceAttribution";
 import { getDestinationBySlug, getPublishedLakes } from "@/data/geo";
 import { regionLabel } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
   description:
     "Lake Michigan, the Chain O' Lakes, and Geneva Lake — the waterways Chicago-area boaters use, with official agency sources and the destinations that sit on each one.",
   path: "/lakes",
 });
+}
 
 export default function LakesPage() {
   const lakes = getPublishedLakes();

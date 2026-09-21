@@ -2,15 +2,17 @@ import Link from "next/link";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { guides } from "@/data/guides";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Chicago Boating Guides | Rentals, Charters, Marinas & Lake Michigan",
   description:
     "Every BoatingChicago guide in one place — boat rentals, yacht and fishing charters, the Playpen, marinas, fireworks cruises, safety, and Lake Michigan planning.",
   path: "/guides",
 });
+}
 
 export default function GuidesPage() {
   const sorted = guides

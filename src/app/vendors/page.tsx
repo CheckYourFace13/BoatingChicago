@@ -5,12 +5,13 @@ import { VendorCard } from "@/components/VendorCard";
 import { TrackedLink } from "@/components/TrackedLink";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { ExploreResources } from "@/components/ExploreResources";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteImages } from "@/data/images";
 
 const hasPublishedVendors = getPublishedVendors().length > 0;
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: hasPublishedVendors
     ? "Chicago Boating Vendors | Local Boat Rental & Charter Directory"
     : "List Your Boating Business | Chicago Partner Onboarding",
@@ -20,6 +21,7 @@ export const metadata = buildMetadata({
   path: "/vendors",
   noIndex: !hasPublishedVendors,
 });
+}
 
 const partnerCategories = [
   "Boat & Party Boat Rentals",

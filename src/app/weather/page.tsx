@@ -22,7 +22,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SideRail } from "@/components/layout/SideRail";
 import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
 import { getSeasonalTip, getChicagoNews } from "@/lib/news";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getWeatherForLocation } from "@/lib/weather";
 
 export const revalidate = 900;
@@ -31,12 +31,14 @@ export const revalidate = 900;
  * One indexable weather page, one canonical. Locations are a query-param view
  * of the same page, so metadata stays generic to southern Lake Michigan.
  */
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Chicago Boating Weather & Lake Michigan Conditions",
   description:
     "Live Chicago boating weather, Lake Michigan nearshore conditions, NOAA/NWS marine alerts, and an informational boating conditions summary for recreational boaters.",
   path: "/weather",
 });
+}
 
 interface WeatherPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

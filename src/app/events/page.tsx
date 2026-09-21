@@ -8,7 +8,7 @@ import {
 } from "@/components/geo/SourceAttribution";
 import { getPublishedEvents } from "@/data/geo";
 import { formatEventDates } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 /** Expired events drop off the list, so refresh the static render hourly. */
@@ -23,12 +23,14 @@ const CATEGORY_LABELS: Record<EventCategory, string> = {
   other: "On the water",
 };
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Chicago Boating Events & Season Dates",
   description:
     "Upcoming Chicago-area boating events and harbor season dates — lakefront shows, fireworks nights, and marina seasons — each linked to the official schedule.",
   path: "/events",
 });
+}
 
 export default function EventsPage() {
   const events = getPublishedEvents().sort((a, b) =>

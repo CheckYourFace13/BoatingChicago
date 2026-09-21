@@ -16,18 +16,20 @@ import {
   getSeasonalTip,
   getStoryItems,
 } from "@/lib/news";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getChicagoWeather } from "@/lib/weather";
 import type { NewsCategory } from "@/types/news";
 
 export const revalidate = 3600;
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Chicago & Lake Michigan Boating News",
   description:
     "Chicago and southern Lake Michigan boating news — marine alerts, harbor updates, fishing notes, and Great Lakes coverage with links to original sources.",
   path: "/news",
 });
+}
 
 const CATEGORIES: NewsCategory[] = [
   "Chicago Boating",

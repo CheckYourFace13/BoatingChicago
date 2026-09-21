@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
 import { ContactForm } from "@/components/ContactForm";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Contact Boating Chicago",
   description:
     "Contact Boating Chicago for boating questions, partnerships, advertising, and website corrections.",
   path: "/contact",
 });
+}
 
 const quickLinks = [
   { href: "/list-your-business", label: "List your business" },

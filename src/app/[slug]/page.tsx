@@ -3,7 +3,7 @@ import { CategoryLanding } from "@/components/CategoryLanding";
 import { GuideLanding } from "@/components/GuideLanding";
 import { getAllCategorySlugs, getCategoryBySlug } from "@/data/categories";
 import { getAllGuideSlugs, getGuideBySlug } from "@/data/guides";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { shouldIndexCategorySlug } from "@/config/quality";
 
 interface PageProps {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const category = getCategoryBySlug(slug);
   if (category) {
-    return buildMetadata({
+    return buildManagedMetadata({
       title: category.seoTitle,
       description: category.seoDescription,
       path: `/${slug}`,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const guide = getGuideBySlug(slug);
   if (guide) {
-    return buildMetadata({
+    return buildManagedMetadata({
       title: guide.seoTitle,
       description: guide.seoDescription,
       path: `/${slug}`,

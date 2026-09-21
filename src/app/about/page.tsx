@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "About Boating Chicago",
   description:
     "BoatingChicago.com is an original information resource for Chicago and southern Lake Michigan boating — weather, harbors, launches, news, guides, and curated experiences.",
   path: "/about",
 });
+}
 
 export default function AboutPage() {
   return (

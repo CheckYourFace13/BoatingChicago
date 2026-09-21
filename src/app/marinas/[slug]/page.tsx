@@ -16,7 +16,7 @@ import {
 import { getWeatherLocationById } from "@/config/weather-locations";
 import { buildMarinaFaqs } from "@/lib/geo-faqs";
 import { buildMarinaPlaceSchema } from "@/lib/schema";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps) {
   const marina = getMarinaBySlug(slug);
   if (!marina || !marina.isPublished) return {};
 
-  return buildMetadata({
+  return buildManagedMetadata({
     title: `${marina.name} | Amenities, Contact & Official Source`,
     description: marina.summary.slice(0, 155),
     path: `/marinas/${marina.slug}`,

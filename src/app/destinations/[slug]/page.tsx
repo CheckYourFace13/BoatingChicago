@@ -21,7 +21,7 @@ import { getWeatherLocationById } from "@/config/weather-locations";
 import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { PlanYourDay } from "@/components/geo/PlanYourDay";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps) {
   const destination = getDestinationBySlug(slug);
   if (!destination || !destination.isPublished) return {};
 
-  return buildMetadata({
+  return buildManagedMetadata({
     title: `Boating in ${destination.name}, ${destination.state} | Marinas, Launches & Conditions`,
     description: destination.summary.slice(0, 155),
     path: `/destinations/${destination.slug}`,

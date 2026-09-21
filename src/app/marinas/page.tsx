@@ -7,15 +7,17 @@ import {
 } from "@/components/geo/SourceAttribution";
 import { getMarinasByDestination, getPublishedDestinations } from "@/data/geo";
 import { REGION_ORDER, amenityLabel, regionLabel } from "@/lib/geo-display";
-import { buildMetadata } from "@/lib/seo";
+import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
-export const metadata = buildMetadata({
+export async function generateMetadata() {
+  return buildManagedMetadata({
   title: "Marinas & Harbors Near Chicago | Verified Official Listings",
   description:
     "Chicago-area marinas and harbors on Lake Michigan and inland lakes, each listed from the operator's own official page with amenities confirmed by the source.",
   path: "/marinas",
 });
+}
 
 export default function MarinasPage() {
   const destinations = getPublishedDestinations()
