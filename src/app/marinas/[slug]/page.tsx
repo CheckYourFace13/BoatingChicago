@@ -15,6 +15,7 @@ import {
 } from "@/data/geo";
 import { getWeatherLocationById } from "@/config/weather-locations";
 import { buildMarinaFaqs } from "@/lib/geo-faqs";
+import { verifiedMarinaPlaces } from "@/data/geo/place-verification";
 import { buildMarinaPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
@@ -78,6 +79,7 @@ export default async function MarinaPage({ params }: PageProps) {
               path: `/marinas/${marina.slug}`,
               officialWebsite: marina.officialWebsite,
               telephone: marina.phone,
+              place: verifiedMarinaPlaces[marina.slug],
               bodyOfWater: publishedDestination?.bodyOfWater,
               containedInName: publishedDestination
                 ? `${publishedDestination.name}, ${publishedDestination.state}`

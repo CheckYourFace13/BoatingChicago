@@ -4,7 +4,10 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://boatingchicago.com",
   tagline: "Your guide to boating Chicago & southern Lake Michigan",
   description:
-    "Chicago boating weather, lake conditions, marinas, boat launches, news, events, and guides for southern Lake Michigan — plus curated rental and cruise experiences.",
+    "Boating information for Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within roughly 100 miles of Chicago — weather, harbors, launches, news, and guides.",
+  /** Editorial coverage, not a service area or NAP. */
+  coverage:
+    "Chicago, southern Lake Michigan, nearby Wisconsin and Indiana boating destinations, and selected lakes within roughly 100 miles of Chicago.",
   /** Public contact path only — never put recipient emails in client-visible config. */
   contactPath: "/contact",
   social: {

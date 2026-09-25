@@ -46,7 +46,7 @@ export default function DestinationsPage() {
       <GeoHero
         eyebrow="Lake Michigan & inland lakes"
         title="Boating Destinations Near Chicago"
-        intro="Harbor towns, launch communities, and inland lakes within a day's reach of Chicago. Each destination collects official harbor and park sources, verified marinas and launches, and a marine weather anchor."
+        intro="Harbor towns and inland lakes across Chicago, southern Lake Michigan, nearby Wisconsin and Indiana, and selected lakes within roughly 100 miles of Chicago. Each page collects official sources, verified marinas or launches, and a marine weather link."
         links={[
           { label: "Marinas →", href: "/marinas" },
           { label: "Boat launches", href: "/boat-launches" },

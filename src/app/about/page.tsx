@@ -23,8 +23,7 @@ export default function AboutPage() {
         <p>
           <strong className="text-lake-blue">{siteConfig.name}</strong> (
           {siteConfig.domain}) is an original digital information resource for
-          recreational boaters around Chicago, southern Lake Michigan, and nearby
-          inland lakes. We publish practical planning pages — weather context,
+          recreational boaters in {siteConfig.coverage}. We publish practical planning pages — weather context,
           marina and launch directories with official sources, destination guides,
           news summaries, and events — so locals and visitors can plan with clearer
           context.

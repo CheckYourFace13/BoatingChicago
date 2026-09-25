@@ -433,16 +433,9 @@ function toNewsItem(
   const summary = buildOriginalSummary(source.name, raw.title);
   const why = buildWhyItMatters(category, raw.title);
 
-  // Standalone pages only for stronger local boating angles — avoid thin doorway URLs
-  const qualifiesForArticlePage =
-    raw.title.length >= 48 &&
-    (category === "Safety" ||
-      category === "Harbors & Marinas" ||
-      category === "Events" ||
-      category === "Fishing") &&
-    /chicago|harbor|marina|lake michigan|boat|marine|navy pier|fishing/i.test(
-      raw.title
-    );
+  // Automated feeds stay on the hub. See documentation/NEWS_INDEXING_POLICY.md.
+  // Standalone /news URLs require a curated durable story, not a title match.
+  const qualifiesForArticlePage = false;
 
   return {
     id,

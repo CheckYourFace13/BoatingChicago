@@ -32,6 +32,8 @@ Google’s “Not found (404)” warning is explained by **legacy/retired URLs s
 | `/feed`, `/rss` | Feed probes | **308** → `/news` | Redirect |
 | `/vendors/sample-*` | Unpublished sample stubs | **308** → `/list-your-business` | Redirect |
 | `/blog`, `/blog/*` | Old editorial hub | **308** → `/news` (middleware one-hop) | Redirect |
+| `/faq`, `/faq/` | Alias of the FAQ guide | **308** → `/chicago-boating-faq` (2026-09-24) | Redirect |
+| `/news/flood-warning-...` and similar feed URLs | Ephemeral NWS/RSS items that were sitemap members and then fell off the feed | **404** by design after 2026-09-24; removed from sitemap and IndexNow. See `NEWS_INDEXING_POLICY.md`. Do not redirect to homepage. | 404 |
 | `/matching`, `/services`, `/boats`, `/boat-sales`, `/wp-login.php`, `/lakes/fox-river` | Never published / spam probes | Leave proper **404** (no homepage dump) | 404 |
 
 ## Internal link fixes

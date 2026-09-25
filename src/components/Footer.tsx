@@ -11,6 +11,7 @@ const exploreLinks = [
   { href: "/news", label: "News" },
   { href: "/events", label: "Events" },
   { href: "/guides", label: "Guides" },
+  { href: "/chicago-boating-faq", label: "Boating FAQ" },
 ];
 
 const thingsToDoLinks = [

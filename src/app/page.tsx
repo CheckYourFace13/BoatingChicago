@@ -19,7 +19,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Boating Chicago | Chicago Boating Weather, Marinas, Launches & Guides",
   description:
-    "Your guide to boating Chicago and southern Lake Michigan — live weather and lake conditions, boating news, destinations, marinas, boat launches, events, guides, plus rentals and charters.",
+    "Your guide to boating Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within about 100 miles — weather, harbors, launches, news, and guides.",
   path: "/",
 });
 }

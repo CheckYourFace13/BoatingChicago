@@ -21,6 +21,7 @@ import { getWeatherLocationById } from "@/config/weather-locations";
 import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { PlanYourDay } from "@/components/geo/PlanYourDay";
+import { buildDestinationPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
 interface PageProps {
@@ -78,6 +79,23 @@ export default async function DestinationPage({ params }: PageProps) {
           { name: "Destinations", path: "/destinations" },
           { name: destination.name, path: `/destinations/${destination.slug}` },
         ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildDestinationPlaceSchema({
+              name: destination.name,
+              description: destination.summary,
+              path: `/destinations/${destination.slug}`,
+              bodyOfWater: destination.bodyOfWater,
+              addressLocality: destination.name,
+              addressRegion: destination.state,
+              lat: destination.coordinates?.lat,
+              lng: destination.coordinates?.lng,
+            })
+          ),
+        }}
       />
 
       <GeoHero

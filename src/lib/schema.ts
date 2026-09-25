@@ -71,7 +71,7 @@ export function buildOrganizationSchema() {
     ),
     areaServed: {
       "@type": "AdministrativeArea",
-      name: "Southern Lake Michigan & nearby inland lakes",
+      name: siteConfig.coverage,
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -157,6 +157,7 @@ export function buildMarinaPlaceSchema({
   telephone,
   bodyOfWater,
   containedInName,
+  place,
 }: {
   name: string;
   description: string;
@@ -165,6 +166,14 @@ export function buildMarinaPlaceSchema({
   telephone?: string;
   bodyOfWater?: string;
   containedInName?: string;
+  place?: {
+    streetAddress?: string;
+    addressLocality: string;
+    addressRegion: string;
+    postalCode?: string;
+    lat: number;
+    lng: number;
+  };
 }) {
   const url = `${siteConfig.url}${path}`;
   return {
@@ -176,6 +185,23 @@ export function buildMarinaPlaceSchema({
     url,
     ...(officialWebsite ? { sameAs: officialWebsite } : {}),
     ...(telephone ? { telephone } : {}),
+    ...(place
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            ...(place.streetAddress ? { streetAddress: place.streetAddress } : {}),
+            addressLocality: place.addressLocality,
+            addressRegion: place.addressRegion,
+            ...(place.postalCode ? { postalCode: place.postalCode } : {}),
+            addressCountry: "US",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: place.lat,
+            longitude: place.lng,
+          },
+        }
+      : {}),
     ...(bodyOfWater
       ? {
           additionalProperty: {
@@ -190,6 +216,61 @@ export function buildMarinaPlaceSchema({
           containedInPlace: {
             "@type": "Place",
             name: containedInName,
+          },
+        }
+      : {}),
+    isPartOf: { "@id": WEBSITE_ID },
+  };
+}
+
+/** Destination-level Place — not a LocalBusiness and not a BoatingChicago NAP. */
+export function buildDestinationPlaceSchema({
+  name,
+  description,
+  path,
+  bodyOfWater,
+  addressLocality,
+  addressRegion,
+  lat,
+  lng,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  bodyOfWater?: string;
+  addressLocality: string;
+  addressRegion: string;
+  lat?: number;
+  lng?: number;
+}) {
+  const url = `${siteConfig.url}${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "@id": `${url}#place`,
+    name,
+    description,
+    url,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality,
+      addressRegion,
+      addressCountry: "US",
+    },
+    ...(lat != null && lng != null
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: lat,
+            longitude: lng,
+          },
+        }
+      : {}),
+    ...(bodyOfWater
+      ? {
+          containedInPlace: {
+            "@type": "BodyOfWater",
+            name: bodyOfWater,
           },
         }
       : {}),

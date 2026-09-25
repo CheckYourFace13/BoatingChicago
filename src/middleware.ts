@@ -13,6 +13,10 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     const bare = pathname.replace(/\/+$/, "") || "/";
 
+    if (bare === "/faq" || bare.startsWith("/faq/")) {
+      url.pathname = "/chicago-boating-faq";
+      return NextResponse.redirect(url, 308);
+    }
     if (bare === "/blog" || bare.startsWith("/blog/")) {
       url.pathname = "/news";
       return NextResponse.redirect(url, 308);
@@ -23,6 +27,12 @@ export function middleware(request: NextRequest) {
     }
 
     url.pathname = bare;
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (pathname === "/faq" || pathname.startsWith("/faq/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/chicago-boating-faq";
     return NextResponse.redirect(url, 308);
   }
 
