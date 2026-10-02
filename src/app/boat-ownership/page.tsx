@@ -5,6 +5,8 @@ import {
   BoatUsMembershipNote,
   OwnershipNextLinks,
 } from "@/components/ownership/OwnershipLinks";
+import { AmazonRecommendedGear } from "@/components/AmazonRecommendedGear";
+import { getAmazonGearPlacementForPath } from "@/data/amazon-gear";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 
@@ -181,6 +183,16 @@ export default function BoatOwnershipPage() {
             location where a buyer can see the boat.
           </p>
         </section>
+
+        {(() => {
+          const amazonPlacement = getAmazonGearPlacementForPath("/boat-ownership");
+          return amazonPlacement ? (
+            <AmazonRecommendedGear
+              placement={amazonPlacement}
+              analyticsPlacement="ownership_amazon_gear"
+            />
+          ) : null;
+        })()}
 
         <section>
           <h2 className="text-2xl font-extrabold text-lake-blue mb-3">

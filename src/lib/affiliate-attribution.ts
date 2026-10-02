@@ -1,4 +1,6 @@
 import type { AffiliateOffer, AffiliateProvider } from "@/data/affiliate-offers";
+import type { AmazonGearItem } from "@/data/amazon-gear";
+import { getAmazonGearUrl } from "@/data/amazon-gear";
 import { trackEvent } from "@/lib/tracking";
 import { getSessionOrigin } from "@/lib/session-origin";
 
@@ -6,6 +8,7 @@ import { getSessionOrigin } from "@/lib/session-origin";
  * Official partner campaign labels (safe characters only).
  * GYG: `cmp` — Partner Portal Analytics → Campaigns
  * Viator: `campaign` — alphanumeric + dashes only (official docs)
+ * Amazon: Special Links use tag= (Associates ID); no campaign param required
  */
 export function sanitizeCampaignCode(raw: string): string {
   return raw
@@ -124,4 +127,48 @@ export function getAttributedAffiliateUrl(
     offer.provider,
     buildCampaignCode(placement, position)
   );
+}
+
+/**
+ * GA4 affiliate_click for Amazon Associates Special Links.
+ * Same event + session attribution fields as GYG/Viator; provider = amazon.
+ */
+export function trackAmazonAffiliateClick(
+  item: AmazonGearItem,
+  ctx: AffiliateClickContext
+): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+  const destinationUrl = getAmazonGearUrl(item);
+
+  trackEvent("affiliate_click", {
+    provider: "amazon",
+    product_id: item.id,
+    product_name: item.title,
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "amazon",
+    category: item.category,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "amazon",
+    offer_id: item.id,
+    offer_title: item.title,
+    destination_url: destinationUrl,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: buildCampaignCode(ctx.placement, ctx.position),
+  });
 }

@@ -298,6 +298,7 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "salmon-fishing-chicago": "fishing",
   "lake-michigan-boating-guide": "heroBoats",
   "beginners-guide-boating-chicago": "heroBoats",
+  "essential-boating-gear-chicago": "heroBoats",
   "chicago-boating-faq": "heroBoats",
 };
 

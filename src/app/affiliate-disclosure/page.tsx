@@ -3,6 +3,7 @@ import { LegalPage } from "@/components/LegalPage";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { siteConfig } from "@/config/site";
 import { affiliateDisclosure } from "@/data/affiliate-offers";
+import { AMAZON_ASSOCIATE_DISCLOSURE } from "@/config/amazon";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
@@ -22,28 +23,42 @@ export default function AffiliateDisclosurePage() {
     >
       <div className="space-y-6 text-gray-700 leading-relaxed">
         <p className="font-semibold text-lake-blue">{affiliateDisclosure}</p>
+        <p className="font-semibold text-lake-blue">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
         <p>
           {siteConfig.name} participates in affiliate marketing programs, including partners
-          such as GetYourGuide and Viator. That means we may earn a commission if you click a
-          partner link and complete a booking or purchase — at no additional cost to you.
+          such as GetYourGuide, Viator, and Amazon Associates. That means we may earn a
+          commission if you click a partner link and complete a booking or purchase — at no
+          additional cost to you.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What this covers</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li>Outbound links to third-party booking platforms</li>
+          <li>Outbound links to third-party booking platforms (for example GetYourGuide and Viator)</li>
           <li>Featured experience cards and “book online” CTAs</li>
+          <li>
+            Amazon product and category links labeled as Amazon destinations (paid links). We do
+            not sell, stock, or fulfill Amazon products.
+          </li>
         </ul>
+        <h2 className="text-xl font-extrabold text-lake-blue pt-2">Amazon Associates</h2>
+        <p>
+          {AMAZON_ASSOCIATE_DISCLOSURE} Amazon links use our Associates tracking ID and send you
+          directly to Amazon.com. Product availability, pricing, ratings, and shipping terms are
+          controlled by Amazon and can change. We do not invent prices or claim Amazon review
+          counts as our own.
+        </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Editorial independence</h2>
         <p>
           Affiliate relationships do not change our commitment to clear labeling. We distinguish
           ticketed cruises and rentals from private charters, and we do not claim that ordinary
           public cruises are private boat rentals. We do not broker boats or manually match private
-          charters.
+          charters. Gear recommendations are editorial suggestions for common Chicago boating needs,
+          not sponsored product placements unless separately labeled.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Advertising</h2>
         <p>
           We may display third-party advertisements (including Google AdSense) and, in the
           future, sponsored placements. Sponsored content will be labeled when used. Ads are
-          separate from affiliate booking links.
+          separate from affiliate booking and Amazon product links.
         </p>
         <p>
           Questions?{" "}

@@ -34,6 +34,7 @@ export function OwnershipNextLinks() {
         ["/boat-launches", "Public launches"],
         ["/chicago-boat-storage-guide", "Winter storage guide"],
         ["/lake-michigan-boating-guide", "Lake Michigan guide"],
+        ["/essential-boating-gear-chicago", "Essential gear checklist"],
         ["/beginners-guide-boating-chicago", "Beginner guide"],
         ["/weather", "Marine weather"],
         ["/destinations/chicago", "Boating in Chicago"],

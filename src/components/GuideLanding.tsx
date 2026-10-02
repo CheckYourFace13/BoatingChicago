@@ -6,6 +6,8 @@ import { getGuideBySlug } from "@/data/guides";
 import { getCategoryImage } from "@/data/images";
 import { getOffersForPage } from "@/data/affiliate-offers";
 import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
+import { AmazonRecommendedGear } from "./AmazonRecommendedGear";
+import { getAmazonGearPlacementForGuide } from "@/data/amazon-gear";
 import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
@@ -15,7 +17,6 @@ import {
   ExploreResources,
   type ResourceLink,
 } from "./ExploreResources";
-import { siteConfig } from "@/config/site";
 import { buildArticleSchema } from "@/lib/schema";
 
 interface GuideLandingProps {
@@ -62,6 +63,13 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/weather", label: "Boating weather" },
   ],
+  "essential-boating-gear-chicago": [
+    { href: "/beginners-guide-boating-chicago", label: "Beginner’s guide" },
+    { href: "/lake-michigan-boating-guide", label: "Lake Michigan guide" },
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/weather", label: "Boating weather" },
+    { href: "/guides", label: "All guides" },
+  ],
 };
 
 function resolveSlugTitle(slug: string): string | null {
@@ -77,6 +85,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const affiliateSlug = guide.affiliateOffersFromSlug ?? guide.slug;
   const pageOffers = getOffersForPage(affiliateSlug);
   const hasOffers = pageOffers.length > 0;
+  const amazonPlacement = getAmazonGearPlacementForGuide(guide.slug);
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -230,6 +239,13 @@ export function GuideLanding({ guide }: GuideLandingProps) {
 
         {/* People Also Ask */}
         <FAQ faqs={guide.peopleAlsoAsk} title="People Also Ask" />
+
+        {amazonPlacement ? (
+          <AmazonRecommendedGear
+            placement={amazonPlacement}
+            analyticsPlacement="guide_amazon_gear"
+          />
+        ) : null}
 
         {/* Affiliate Offers */}
         {hasOffers && (

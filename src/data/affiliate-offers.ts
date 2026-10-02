@@ -103,7 +103,7 @@ export interface AffiliateOffer {
 }
 
 export const affiliateDisclosure =
-  "Boating Chicago may earn a commission when you book through links on this page, at no additional cost to you.";
+  "Boating Chicago may earn a commission when you book or shop through links on this page, at no additional cost to you.";
 
 export const PROVIDER_RATINGS_DISCLAIMER =
   "Ratings and review counts from GetYourGuide (or Viator where noted). Not BoatingChicago reviews.";

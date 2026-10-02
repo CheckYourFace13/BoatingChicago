@@ -1160,4 +1160,135 @@ export const guidePart4: GuidePage[] = [
     affiliateOffersFromSlug: "boat-rentals-chicago",
     showLeadForm: true,
   },
+  {
+    slug: "essential-boating-gear-chicago",
+    title: "Essential Boating Gear for Chicago",
+    seoTitle:
+      "Essential Boating Gear for Chicago & Lake Michigan | Safety Checklist",
+    seoDescription:
+      "Practical gear checklist for Chicago and Lake Michigan boat days — life jackets, VHF, dock lines, dry bags, and what to pack before you leave the dock.",
+    headline: "Essential Gear for a Chicago Boat Day",
+    intro:
+      "Most Chicago boating days fail on small omissions — the wrong jacket, a dead phone, no throwable flotation — not on missing a fancy chartplotter. This guide is an editorial packing and safety checklist for southern Lake Michigan and nearby inland lakes. It is not a product catalog, and BoatingChicago does not sell gear.",
+    sections: [
+      {
+        heading: "Start with safety equipment, not accessories",
+        paragraphs: [
+          "Before packing coolers or camera mounts, confirm United States Coast Guard–approved life jackets (PFDs) for every person who will be aboard. Illinois rules also require children under 13 to wear a PFD while the vessel is underway. Captained charter guests usually find jackets on the boat, but owners and operators are responsible for having the right sizes aboard and knowing where they are stowed.",
+          "Add a throwable flotation device, a sound-producing device, and a simple first-aid kit sized for the group. On Lake Michigan nearshore trips those items are not optional polish — they are the baseline that Vessel Safety Checks and responsible captains expect to see.",
+          "A handheld marine VHF radio belongs on any open-lake day when you leave phone-friendly harbors. Channel 16 remains the distress and hailing channel monitored by the Coast Guard. Cell coverage is often fine along the Chicago lakefront and still fails at the wrong moment in chop or a crowded Playpen afternoon.",
+        ],
+      },
+      {
+        heading: "What to pack for weather on southern Lake Michigan",
+        paragraphs: [
+          "Lake Michigan runs colder than downtown sidewalks. Even in July, a moving boat creates wind chill that makes a light shore outfit feel thin within minutes. Pack a windproof layer, a dry change of clothes in a waterproof bag, and sun protection that works when you are facing glare off the water for hours.",
+          "Waterproof dry bags keep phones, keys, wallets, and spare layers usable after spray or a wet boarding. Soft coolers help for short trips; hard coolers need a secure place so they cannot become projectiles in a wake. None of this replaces checking the National Weather Service marine forecast before you leave — gear does not fix a small-craft advisory you ignored.",
+        ],
+      },
+      {
+        heading: "Dock and ownership basics once you keep a boat here",
+        paragraphs: [
+          "Trailering and slip boaters both need spare dock lines in diameters appropriate to the boat, plus fenders sized for the freeboard you actually have. Chicago Harbor fuel docks, guest walls, and busy launch ramps punish thin or short lines. Keep a spare set dry in a locker rather than relying on whatever came with a used boat ten seasons ago.",
+          "Cleaning supplies matter more on Lake Michigan than many inland lakes because mineral spotting and summer UV degrade gelcoat and vinyl quickly. A marine wash, wax or sealant, and vinyl protectant between professional details is usually enough for day boats. Bottom paint and haul-out services are separate yard jobs — not weekend Amazon shopping.",
+        ],
+      },
+      {
+        heading: "How we recommend shopping links",
+        paragraphs: [
+          "Where this site includes Amazon category links, they open Amazon search results for evergreen product types such as life jackets or dock lines. We do not invent prices, copy Amazon customer reviews, or imply that BoatingChicago sells or ships products. Availability and fulfillment are Amazon’s.",
+          "Prefer confirming legal and safety requirements with Illinois DNR, the Coast Guard, and your marina or charter operator. Gear recommendations here support those rules — they do not replace them.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Chicago boat-day gear priorities",
+      headers: ["Priority", "Item", "Why it matters here"],
+      rows: [
+        ["1", "USCG-approved PFDs", "Required carriage; kids under 13 must wear underway in Illinois"],
+        ["2", "Throwable + sound signal", "Baseline open-water safety kit"],
+        ["3", "Marine VHF (handheld ok)", "Distress/hailing when phones fail offshore"],
+        ["4", "Dry bag + wind layer", "Spray, wind chill, and wet decks are normal"],
+        ["5", "Dock lines & fenders", "Busy harbors and launches punish thin gear"],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Spring (May)",
+        tip: "Water and air are still cold — prioritize PFDs, dry layers, and a working VHF before decorative accessories.",
+      },
+      {
+        season: "Summer (Jun–Aug)",
+        tip: "Sun and dehydration hit harder than shore temps suggest. Pack dry bags, chargers, and sun protection for long Playpen or charter days.",
+      },
+      {
+        season: "Fall (Sep–Oct)",
+        tip: "Wind and shorter days raise the value of warm layers, lights, and communication gear even on “nice” afternoons.",
+      },
+      {
+        season: "Winter",
+        tip: "Use the off-season to replace cracked fenders, faded PFDs, and dead VHF batteries before spring launch.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "What gear do I need for a first boat day in Chicago?",
+        answer:
+          "On a captained charter, bring layered clothing, sun protection, and a dry bag for valuables. Confirm life jackets are aboard. Owners and operators also need required safety equipment for the vessel.",
+      },
+      {
+        question: "Do I need a marine VHF radio on Lake Michigan?",
+        answer:
+          "A marine VHF is strongly recommended for open-lake trips. Channel 16 is the standard distress and hailing channel monitored by the Coast Guard.",
+      },
+      {
+        question: "Does BoatingChicago sell boat gear?",
+        answer:
+          "No. BoatingChicago is an information guide. Occasional Amazon category links are affiliate links that send you to Amazon.com.",
+      },
+      {
+        question: "What size dock lines do I need?",
+        answer:
+          "Diameter and length depend on boat size and docking style. Match line diameter to your boat’s cleats and keep spares — do not rely on a single worn set.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I skip life jackets on a short Chicago harbor trip?",
+        answer:
+          "No. Carriage requirements apply regardless of trip length. Children under 13 must wear a PFD while underway in Illinois.",
+      },
+      {
+        question: "Are Amazon product links on this site ads?",
+        answer:
+          "They are Amazon Associates affiliate links (paid links). BoatingChicago may earn a commission on qualifying purchases. Availability and prices are set by Amazon.",
+      },
+      {
+        question: "What should I check before buying used safety gear?",
+        answer:
+          "Confirm USCG approval labels on PFDs, inspect straps and flotation for damage, and replace expired or sun-rotted equipment rather than stretching one more season.",
+      },
+      {
+        question: "Does gear replace checking the marine forecast?",
+        answer:
+          "Never. Always read the National Weather Service Lake Michigan marine forecast and active alerts before departure.",
+      },
+    ],
+    popularSearches: [
+      { label: "Beginners Guide to Boating", href: "/beginners-guide-boating-chicago" },
+      { label: "Lake Michigan Boating Guide", href: "/lake-michigan-boating-guide" },
+      { label: "Boat Ownership", href: "/boat-ownership" },
+      { label: "Chicago Boat Detailing Guide", href: "/chicago-boat-detailing-guide" },
+      { label: "Chicago Boating FAQ", href: "/chicago-boating-faq" },
+      { label: "Marinas", href: "/marinas" },
+    ],
+    relatedSlugs: [
+      "beginners-guide-boating-chicago",
+      "lake-michigan-boating-guide",
+      "chicago-boating-faq",
+      "chicago-boat-detailing-guide",
+      "chicago-marina-guide",
+    ],
+    showLeadForm: false,
+  },
 ];
