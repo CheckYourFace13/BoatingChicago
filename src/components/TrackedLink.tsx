@@ -7,7 +7,7 @@ import { trackEvent } from "@/lib/tracking";
 type LinkProps = ComponentProps<typeof Link>;
 
 interface TrackedLinkProps extends LinkProps {
-  track?: "list_business_click" | "affiliate_click";
+  track?: "list_business_click" | "affiliate_click" | "advertise_interest";
   trackParams?: Record<string, string>;
 }
 
@@ -28,6 +28,8 @@ export function TrackedLink({
       onClick={(e) => {
         if (track === "list_business_click") {
           trackEvent("list_business_click", trackParams);
+        } else if (track === "advertise_interest") {
+          trackEvent("advertise_interest", trackParams);
         } else if (track === "affiliate_click") {
           trackEvent("affiliate_click", trackParams);
         }

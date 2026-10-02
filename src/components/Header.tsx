@@ -13,6 +13,7 @@ const exploreLinks: NavItem[] = [
   { href: "/lakes", label: "Lakes & Waterways" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
+  { href: "/boat-ownership", label: "Boat Ownership" },
 ];
 
 const conditionsLinks: NavItem[] = [
@@ -32,7 +33,7 @@ const thingsToDoLinks: NavItem[] = [
   { href: "/fishing-charters-chicago", label: "Fishing" },
   { href: "/chicago-fireworks-cruises", label: "Fireworks Cruises" },
   { href: "/chicago-dining-cruises", label: "Dining Cruises" },
-  { href: "/list-your-business", label: "List Your Business", track: true },
+  { href: "/advertise", label: "Advertise", track: true },
 ];
 
 const desktopGroups: NavGroup[] = [
@@ -78,7 +79,7 @@ function Dropdown({
                 <TrackedLink
                   key={link.href}
                   href={link.href}
-                  track="list_business_click"
+                  track="advertise_interest"
                   trackParams={{ page: "header" }}
                   className="block px-4 py-2.5 text-sm font-semibold text-lake-blue hover:bg-light-blue"
                 >
@@ -204,7 +205,7 @@ export function Header() {
                   <TrackedLink
                     key={link.href}
                     href={link.href}
-                    track="list_business_click"
+                    track="advertise_interest"
                     trackParams={{ page: "header_mobile" }}
                     className="block px-3 py-2.5 text-sm font-semibold text-lake-blue rounded-lg hover:bg-light-blue"
                     onClick={() => setOpen(false)}

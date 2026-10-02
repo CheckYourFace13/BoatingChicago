@@ -37,7 +37,11 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       });
 
       if (!res.ok) throw new Error("Failed to subscribe");
-      trackEvent("newsletter_signup", { source });
+      trackEvent("newsletter_signup", {
+        source,
+        signup_page: source,
+        signup_placement: variant === "inline" ? "inline" : "brief_card",
+      });
       setStatus("success");
       e.currentTarget.reset();
     } catch {
@@ -53,7 +57,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       >
         <p className="text-sun-yellow font-bold text-lg">You&apos;re on the list</p>
         <p className="text-white/80 text-sm mt-1">
-          We&apos;ll email the Chicago Boating Brief when it launches — no messages yet.
+          We&apos;ll email the Chicago Boating Brief when an issue is ready.
         </p>
       </div>
     );
@@ -94,15 +98,15 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       <div className="absolute inset-0 bg-lake-blue/80" />
       <div className="relative z-10">
         <p className="text-sun-yellow text-xs font-bold uppercase tracking-widest mb-2">
-          Free waitlist · No email yet
+          Chicago Boating Brief
         </p>
         <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
-          Chicago Boating Brief
+          Weekend conditions, alerts, and destination ideas
         </h3>
         <p className="text-white/90 mb-4 max-w-xl mx-auto leading-relaxed">
-          Be first in line for a practical brief covering weekend lake
-          conditions, marine alerts, boating weather, events, news, and
-          southern Lake Michigan destination ideas — built for Chicago boaters.
+          Weekend lake conditions, marine alerts, events, boating news, and
+          destination ideas. Join free. We email when an issue is ready — we
+          do not promise a fixed schedule yet.
         </p>
         <ul className="flex flex-wrap justify-center gap-2 mb-6 max-w-xl mx-auto">
           {BRIEF_TOPICS.map((topic) => (
@@ -121,7 +125,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             required
             placeholder="Enter your email"
             className="flex-1 px-4 py-3 rounded-full border-0 outline-none text-gray-800"
-            aria-label="Email for Chicago Boating Brief waitlist"
+            aria-label="Email for the Chicago Boating Brief"
           />
           <button
             type="submit"
@@ -129,7 +133,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             {...trackingAttrs.newsletterSignup}
             className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
           >
-            {status === "loading" ? "..." : "Join the waitlist"}
+            {status === "loading" ? "..." : "Join free"}
           </button>
         </form>
         {status === "error" && (

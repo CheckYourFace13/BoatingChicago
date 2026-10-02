@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { trackEvent } from "@/lib/tracking";
 
 const SUBJECTS = [
   "General Question",
@@ -12,8 +13,10 @@ const SUBJECTS = [
 
 export function ContactForm({
   defaultSubject,
+  placement = "contact",
 }: {
   defaultSubject?: (typeof SUBJECTS)[number];
+  placement?: string;
 } = {}) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
@@ -35,6 +38,8 @@ export function ContactForm({
       return;
     }
 
+    const subject = String(data.get("subject") || "");
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -49,6 +54,9 @@ export function ContactForm({
       const json = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
         throw new Error(json.error || "Failed to send");
+      }
+      if (subject === "Advertising / Sponsorship" || placement === "advertise") {
+        trackEvent("advertise_interest", { page: placement, subject });
       }
       setStatus("success");
       form.reset();

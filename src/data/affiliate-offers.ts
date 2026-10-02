@@ -143,9 +143,9 @@ export function formatReviewCount(n: number): string {
   return String(n);
 }
 
-export function formatPriceFrom(offer: AffiliateOffer): string | null {
-  if (offer.priceFrom == null || offer.priceFrom <= 0) return null;
-  return `From $${offer.priceFrom.toFixed(2).replace(/\.00$/, "")}`;
+export function formatPriceFrom(_offer: AffiliateOffer): string | null {
+  // Catalog priceFrom values are snapshots, not a live partner feed.
+  return "Check availability & price";
 }
 
 function sortOffers(a: AffiliateOffer, b: AffiliateOffer): number {
@@ -1166,12 +1166,12 @@ export const PAGE_OFFER_INTENT: Record<
   },
   homepage: {
     tags: ["architecture", "sunset", "fireworks", "kayak", "jet-ski", "sailing"],
-    // Variety: architecture cruise, sailing/private charter (Viator), jet ski, fireworks
+    // Variety: high-volume cruise, active rental, seasonal interest, private charter
     preferIds: [
       "gyg-290485",
-      "viator-private-yacht-charter",
       "gyg-1336935",
-      "gyg-466163",
+      "gyg-386902",
+      "viator-private-yacht-charter",
     ],
     limit: 4,
   },

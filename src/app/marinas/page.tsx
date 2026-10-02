@@ -136,6 +136,7 @@ export default function MarinasPage() {
 
         <ResourceCrossLinks
           links={[
+            { href: "/boat-ownership", label: "Boat ownership" },
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
             { href: "/destinations", label: "Destinations" },

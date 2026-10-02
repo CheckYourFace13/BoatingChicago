@@ -8,6 +8,7 @@ export type TrackEventName =
   | "lead_form_submit"
   | "newsletter_signup"
   | "list_business_click"
+  | "advertise_interest"
   | "find_boat_submit" // legacy — maps to lead_form_submit
   | "weather_page_view"
   | "weather_alert_click"

@@ -14,6 +14,7 @@ export type AnalyticsEventName =
   | "lead_form_submit"
   | "newsletter_signup"
   | "list_business_click"
+  | "advertise_interest"
   | "page_view"
   | "find_boat_submit" // legacy alias — prefer lead_form_submit
   | "weather_page_view"

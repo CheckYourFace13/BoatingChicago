@@ -28,7 +28,7 @@ const thingsToDoLinks = [
 const companyLinks = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact Us" },
-  { href: "/list-your-business", label: "List Your Business" },
+  { href: "/advertise", label: "Advertise" },
   { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },

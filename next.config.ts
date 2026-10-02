@@ -96,6 +96,7 @@ const nextConfig: NextConfig = {
       },
       { source: "/rentals", destination: "/boat-rentals-chicago", permanent: true },
       { source: "/charters", destination: "/yacht-rentals-chicago", permanent: true },
+      { source: "/list-your-business", destination: "/advertise", permanent: true },
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/about-us", destination: "/about", permanent: true },
       { source: "/home", destination: "/", permanent: true },
@@ -104,32 +105,32 @@ const nextConfig: NextConfig = {
       { source: "/rss", destination: "/news", permanent: true },
       {
         source: "/vendors/sample-chicago-party-boat-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
       {
         source: "/vendors/sample-chicago-yacht-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
       {
         source: "/vendors/sample-chicago-fishing-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
       {
         source: "/vendors/sample-chicago-captain-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
       {
         source: "/vendors/sample-chicago-marina-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
       {
         source: "/vendors/sample-chicago-detailing-partner",
-        destination: "/list-your-business",
+        destination: "/advertise",
         permanent: true,
       },
     ];
