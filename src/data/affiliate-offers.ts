@@ -898,7 +898,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     url: "https://www.viator.com/tours/Chicago/Monday-Night-Concert-Series/d673-5560540P6?pid=P00309183&mcid=42383&medium=link",
     category: "sailing-event",
     relatedPageSlugs: ["chicago-sailing-charters", "party-boat-rentals-chicago"],
-    active: true,
+    active: false,
     featured: false,
     image: "/images/chicago/hero-party.jpg",
     ctaLabel: "View Concert Sail",
@@ -1141,9 +1141,14 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 4,
   },
   "boat-rentals-chicago": {
-    tags: ["cruise", "architecture", "kayak", "jet-ski", "speedboat"],
-    preferIds: ["gyg-290485", "gyg-24790", "gyg-994419", "gyg-1336935", "viator-private-yacht-charter"],
-    limit: 5,
+    tags: ["sailing", "jet-ski", "kayak", "speedboat", "lake-michigan", "cruise"],
+    preferIds: [
+      "gyg-1336935",
+      "viator-private-yacht-charter",
+      "gyg-994419",
+      "viator-skyline-sail",
+    ],
+    limit: 4,
   },
   "party-boat-rentals-chicago": {
     tags: ["party", "fireworks", "sailing"],
@@ -1151,11 +1156,12 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 3,
   },
   "yacht-rentals-chicago": {
-    tags: ["sailing", "dining"],
+    tags: ["sailing", "cruise", "lake-michigan"],
     preferIds: [
       "viator-private-yacht-charter",
       "viator-navy-pier-private-sail",
-      "gyg-233082",
+      "viator-private-sunset-sailing",
+      "gyg-386902",
     ],
     limit: 4,
   },
@@ -1165,13 +1171,13 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 3,
   },
   homepage: {
-    tags: ["architecture", "sunset", "fireworks", "kayak", "jet-ski", "sailing"],
-    // Variety: high-volume cruise, active rental, seasonal interest, private charter
+    tags: ["sailing", "architecture", "sunset", "lake-michigan"],
+    // GYG keeps strong slots; Viator emphasizes private yacht / sailing interest
     preferIds: [
       "gyg-290485",
-      "gyg-1336935",
-      "gyg-386902",
       "viator-private-yacht-charter",
+      "gyg-386902",
+      "viator-private-sunset-sailing",
     ],
     limit: 4,
   },
@@ -1198,16 +1204,26 @@ export const PAGE_OFFER_INTENT: Record<
   "chicago-sailing-charters": {
     tags: ["sailing", "sunset", "lake-michigan"],
     preferIds: [
+      "viator-private-sunset-sailing",
       "viator-skyline-sail",
+      "viator-navy-pier-private-sail",
+      "viator-private-yacht-charter",
+    ],
+    limit: 4,
+  },
+  "private-sailing-charters-chicago": {
+    tags: ["sailing", "lake-michigan"],
+    preferIds: [
       "viator-private-sunset-sailing",
       "viator-navy-pier-private-sail",
-      "gyg-386902",
+      "viator-private-lake-sailing",
+      "viator-private-day-sailing",
     ],
     limit: 4,
   },
   "bachelorette-boat-rentals-chicago": {
-    tags: ["party", "dining", "cruise"],
-    preferIds: ["gyg-994332", "gyg-233082", "viator-skyline-sail"],
+    tags: ["party", "dining", "cruise", "sailing"],
+    preferIds: ["gyg-994332", "gyg-233082", "viator-private-yacht-charter"],
     limit: 3,
   },
   "birthday-boat-rentals-chicago": {

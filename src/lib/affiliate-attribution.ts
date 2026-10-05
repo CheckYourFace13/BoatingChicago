@@ -19,8 +19,44 @@ export function sanitizeCampaignCode(raw: string): string {
     .slice(0, 80);
 }
 
-export function buildCampaignCode(placement: string, position: number): string {
-  return sanitizeCampaignCode(`${placement}-${position}`);
+/** Viator/GYG campaign intent bucket for partner reporting. */
+export function campaignIntentForOffer(offer: {
+  provider: AffiliateProvider;
+  experienceType?: string;
+  category?: string;
+  tags?: string[];
+}): string {
+  if (offer.experienceType === "private-charter") return "private-charter";
+  if (offer.tags?.includes("sailing") || offer.category?.includes("sailing")) {
+    return "sailing";
+  }
+  if (
+    offer.tags?.includes("sunset") ||
+    offer.category?.includes("sunset")
+  ) {
+    return "sunset";
+  }
+  if (
+    offer.tags?.includes("cruise") ||
+    offer.category?.includes("cruise") ||
+    offer.experienceType === "ticketed-cruise"
+  ) {
+    return "cruise";
+  }
+  if (offer.experienceType === "rental" || offer.tags?.includes("kayak")) {
+    return "rental";
+  }
+  if (offer.provider === "viator") return "viator";
+  return "experience";
+}
+
+export function buildCampaignCode(
+  placement: string,
+  position: number,
+  intent?: string
+): string {
+  const parts = [placement, intent, String(position)].filter(Boolean);
+  return sanitizeCampaignCode(parts.join("-"));
 }
 
 /**
@@ -81,7 +117,11 @@ export function trackAffiliateClick(
   const pageTitle =
     typeof document !== "undefined" ? document.title || "" : "";
 
-  const campaignCode = buildCampaignCode(ctx.placement, ctx.position);
+  const campaignCode = buildCampaignCode(
+    ctx.placement,
+    ctx.position,
+    campaignIntentForOffer(offer)
+  );
   const destinationUrl = withPartnerCampaign(
     offer.url,
     offer.provider,
@@ -125,7 +165,7 @@ export function getAttributedAffiliateUrl(
   return withPartnerCampaign(
     offer.url,
     offer.provider,
-    buildCampaignCode(placement, position)
+    buildCampaignCode(placement, position, campaignIntentForOffer(offer))
   );
 }
 
