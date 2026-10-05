@@ -19,15 +19,19 @@ const BRIEF_TOPICS = [
   "Destination ideas",
 ] as const;
 
+type FormStatus = "idle" | "loading" | "success" | "duplicate" | "error";
+
 export function EmailSignup({ source = "homepage", variant = "card" }: EmailSignupProps) {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
+    setErrorMsg(null);
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
+    const email = String(formData.get("email") || "").trim();
 
     try {
       const res = await fetch("/api/newsletter", {
@@ -36,28 +40,54 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         body: JSON.stringify({ email, source }),
       });
 
-      if (!res.ok) throw new Error("Failed to subscribe");
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        created?: boolean;
+        alreadySubscribed?: boolean;
+        success?: boolean;
+      };
+
+      if (!res.ok) {
+        setErrorMsg(
+          data.error ||
+            (res.status === 429
+              ? "Too many tries. Please wait a moment and try again."
+              : "Something went wrong. Try again.")
+        );
+        setStatus("error");
+        return;
+      }
+
+      // GA4: never send email / PII — only page and placement context
       trackEvent("newsletter_signup", {
         source,
         signup_page: source,
         signup_placement: variant === "inline" ? "inline" : "brief_card",
+        already_subscribed: data.alreadySubscribed ? "yes" : "no",
       });
-      setStatus("success");
+
+      setStatus(data.alreadySubscribed ? "duplicate" : "success");
       e.currentTarget.reset();
     } catch {
+      setErrorMsg("Something went wrong. Try again.");
       setStatus("error");
     }
   }
 
-  if (status === "success") {
+  if (status === "success" || status === "duplicate") {
     return (
       <div
         className={variant === "card" ? "text-center py-4" : ""}
         {...trackingAttrs.newsletterSignup}
       >
-        <p className="text-sun-yellow font-bold text-lg">You&apos;re on the list</p>
+        <p className="text-sun-yellow font-bold text-lg">
+          {status === "duplicate"
+            ? "You\u2019re already on the list"
+            : "You\u2019re on the list"}
+        </p>
         <p className="text-white/80 text-sm mt-1">
-          We&apos;ll email the Chicago Boating Brief when an issue is ready.
+          We&apos;ll email the Chicago Boating Brief when an issue is ready — no
+          fixed schedule promised yet.
         </p>
       </div>
     );
@@ -70,17 +100,21 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
           name="email"
           type="email"
           required
+          autoComplete="email"
           placeholder="Enter your email"
-          className="flex-1 px-4 py-3 rounded-full border-0 outline-none text-gray-800"
+          className="flex-1 min-h-[48px] px-4 py-3 rounded-full border-0 outline-none text-gray-800"
         />
         <button
           type="submit"
           disabled={status === "loading"}
           {...trackingAttrs.newsletterSignup}
-          className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
+          className="min-h-[48px] px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
         >
           {status === "loading" ? "..." : "Join Brief"}
         </button>
+        {status === "error" && errorMsg ? (
+          <p className="text-coral text-sm font-semibold sm:col-span-2 w-full">{errorMsg}</p>
+        ) : null}
       </form>
     );
   }
@@ -118,27 +152,31 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
             </li>
           ))}
         </ul>
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+        >
           <input
             name="email"
             type="email"
             required
+            autoComplete="email"
             placeholder="Enter your email"
-            className="flex-1 px-4 py-3 rounded-full border-0 outline-none text-gray-800"
+            className="flex-1 min-h-[48px] px-4 py-3 rounded-full border-0 outline-none text-gray-800"
             aria-label="Email for the Chicago Boating Brief"
           />
           <button
             type="submit"
             disabled={status === "loading"}
             {...trackingAttrs.newsletterSignup}
-            className="px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
+            className="min-h-[48px] px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60"
           >
             {status === "loading" ? "..." : "Join free"}
           </button>
         </form>
-        {status === "error" && (
-          <p className="text-coral mt-3 text-sm font-semibold">Something went wrong. Try again.</p>
-        )}
+        {status === "error" && errorMsg ? (
+          <p className="text-coral mt-3 text-sm font-semibold">{errorMsg}</p>
+        ) : null}
       </div>
     </div>
   );

@@ -68,6 +68,7 @@ async function sendViaResend(
         text,
         html,
       }),
+      signal: AbortSignal.timeout(8_000),
     });
 
     if (!res.ok) {
@@ -77,7 +78,7 @@ async function sendViaResend(
     }
     return true;
   } catch (err) {
-    console.error("[email] Resend error:", err);
+    console.error("[email] Resend error:", err instanceof Error ? err.message : "error");
     return false;
   }
 }
@@ -107,6 +108,7 @@ async function sendViaSendGrid(
           { type: "text/html", value: html },
         ],
       }),
+      signal: AbortSignal.timeout(8_000),
     });
 
     if (!res.ok) {
@@ -116,7 +118,7 @@ async function sendViaSendGrid(
     }
     return true;
   } catch (err) {
-    console.error("[email] SendGrid error:", err);
+    console.error("[email] SendGrid error:", err instanceof Error ? err.message : "error");
     return false;
   }
 }
@@ -217,13 +219,14 @@ export async function sendNewsletterNotification(
   const config = getEmailConfig();
 
   if (!config.leadsToEmail || !config.fromEmail) {
-    console.log("[newsletter] Notification skipped — env not configured:", email, source);
+    // Do not log the subscriber email address
+    console.log("[newsletter] Owner notification skipped — email provider/env incomplete");
     return false;
   }
 
   const subject = `[Boating Chicago] New newsletter signup`;
-  const text = `Email: ${email}\nSource: ${source}\nTime: ${new Date().toISOString()}`;
-  const html = `<p><strong>Email:</strong> ${email}</p><p><strong>Source:</strong> ${source}</p>`;
+  const text = `Source: ${source}\nTime: ${new Date().toISOString()}\n(Email omitted from logs; included in message body for the owner inbox only.)\nEmail: ${email}`;
+  const html = `<p><strong>Source:</strong> ${escapeHtml(source)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p>`;
 
   if (config.resendApiKey) {
     return sendViaResend(config, config.leadsToEmail, subject, text, html);
@@ -232,5 +235,6 @@ export async function sendNewsletterNotification(
     return sendViaSendGrid(config, config.leadsToEmail, subject, text, html);
   }
 
+  console.log("[newsletter] Owner notification skipped — no RESEND_API_KEY/SENDGRID_API_KEY");
   return false;
 }

@@ -1,5 +1,10 @@
 import type { NewsletterSignup } from "@/types";
 
+/**
+ * Optional ESP sync for Brief signups.
+ * Not configured in production today — keep ready for Mailchimp/ConvertKit
+ * without making signup depend on them.
+ */
 export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<void> {
   const mailchimpKey = process.env.MAILCHIMP_API_KEY;
   const mailchimpListId = process.env.MAILCHIMP_LIST_ID;
@@ -22,13 +27,17 @@ export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<vo
             status: "subscribed",
             tags: [signup.source],
           }),
+          signal: AbortSignal.timeout(8_000),
         }
       );
       if (!res.ok) {
-        console.error("[newsletter] Mailchimp sync failed:", await res.text());
+        console.error("[newsletter] Mailchimp sync failed:", res.status);
       }
     } catch (err) {
-      console.error("[newsletter] Mailchimp error:", err);
+      console.error(
+        "[newsletter] Mailchimp error:",
+        err instanceof Error ? err.message : "error"
+      );
     }
     return;
   }
@@ -45,13 +54,25 @@ export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<vo
             email: signup.email,
             tags: [signup.source],
           }),
+          signal: AbortSignal.timeout(8_000),
         }
       );
       if (!res.ok) {
-        console.error("[newsletter] ConvertKit sync failed:", await res.text());
+        console.error("[newsletter] ConvertKit sync failed:", res.status);
       }
     } catch (err) {
-      console.error("[newsletter] ConvertKit error:", err);
+      console.error(
+        "[newsletter] ConvertKit error:",
+        err instanceof Error ? err.message : "error"
+      );
     }
   }
+}
+
+/** True when an ESP is configured for list sync (not the same as outbound campaign sending). */
+export function hasNewsletterEspConfigured(): boolean {
+  return Boolean(
+    (process.env.MAILCHIMP_API_KEY && process.env.MAILCHIMP_LIST_ID) ||
+      (process.env.CONVERTKIT_API_KEY && process.env.CONVERTKIT_FORM_ID)
+  );
 }

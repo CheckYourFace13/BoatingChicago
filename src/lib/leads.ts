@@ -60,23 +60,13 @@ export async function getLeads(): Promise<Lead[]> {
 export async function saveNewsletterSignup(
   signup: Omit<NewsletterSignup, "id" | "createdAt">
 ): Promise<NewsletterSignup> {
-  const newSignup: NewsletterSignup = {
-    ...signup,
-    id: generateId(),
-    createdAt: new Date().toISOString(),
-  };
-
-  try {
-    const signups = await readJsonFile<NewsletterSignup>("newsletter.json");
-    signups.push(newSignup);
-    await writeJsonFile("newsletter.json", signups);
-  } catch (err) {
-    console.error("[newsletter] Local file storage failed (non-fatal):", err);
-  }
-
-  return newSignup;
+  // Legacy file-backed helper — production Brief signups use src/lib/newsletter-store.ts
+  const { upsertNewsletterSignup } = await import("@/lib/newsletter-store");
+  const result = await upsertNewsletterSignup(signup.email, signup.source);
+  return result.signup;
 }
 
 export async function getNewsletterSignups(): Promise<NewsletterSignup[]> {
-  return readJsonFile<NewsletterSignup>("newsletter.json");
+  const { listNewsletterSignups } = await import("@/lib/newsletter-store");
+  return listNewsletterSignups();
 }
