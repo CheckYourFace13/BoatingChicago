@@ -3,7 +3,7 @@
  * Tracking ID must appear as tag= on every Special Link.
  */
 
-export const AMAZON_ASSOCIATES_TAG = "iscreamstudio-20";
+export const AMAZON_ASSOCIATES_TAG = "boatingchicago-20";
 
 export const AMAZON_ASSOCIATE_DISCLOSURE =
   "As an Amazon Associate I earn from qualifying purchases.";

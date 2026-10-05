@@ -3,6 +3,7 @@
  * Fail closed — do not send if any check fails.
  */
 
+import { AMAZON_ASSOCIATES_TAG } from "@/config/amazon";
 import type { BriefIssue } from "@/lib/brief/generator";
 
 export interface BriefQaResult {
@@ -98,8 +99,11 @@ export async function qaBriefIssue(issue: BriefIssue): Promise<BriefQaResult> {
   }
 
   // Affiliate tag sanity for Amazon links in body
-  if (/amazon\./i.test(issue.htmlBody) && !/tag=iscreamstudio-20/i.test(issue.htmlBody)) {
-    errors.push("Amazon link missing tag=iscreamstudio-20");
+  if (
+    /amazon\./i.test(issue.htmlBody) &&
+    !new RegExp(`tag=${AMAZON_ASSOCIATES_TAG}`, "i").test(issue.htmlBody)
+  ) {
+    errors.push(`Amazon link missing tag=${AMAZON_ASSOCIATES_TAG}`);
   }
   if (/getyourguide\./i.test(issue.htmlBody) && !/partner_id=HISQ5ML/i.test(issue.htmlBody)) {
     errors.push("GetYourGuide link missing partner_id=HISQ5ML");
