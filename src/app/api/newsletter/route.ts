@@ -49,7 +49,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    let body: { email?: unknown; source?: unknown };
+    try {
+      body = (await request.json()) as { email?: unknown; source?: unknown };
+    } catch {
+      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    }
     const email = String(body.email || "").trim();
     const source = String(body.source || "unknown").trim().slice(0, 255) || "unknown";
 
