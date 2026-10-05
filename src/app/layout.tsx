@@ -49,6 +49,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} h-full`}>
       <head>
+        <meta
+          name="impact-site-verification"
+          {...{ value: "f8cca382-3bf1-4af2-8ffe-f74bfa0ba920" }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
