@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   },
   other: {
     "fo-verify": "7b72da17-a330-4781-882c-eace69f3b67c",
+    verification: "975d53b00307525b6d1f3ecf6e67fda4",
   },
 };
 
