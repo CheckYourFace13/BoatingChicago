@@ -263,3 +263,64 @@ export function trackBoatTraderAffiliateClick(
     campaign_code: sanitizeCampaignCode(ctx.clickref),
   });
 }
+
+export interface GiraffeToolsClickContext extends AffiliateClickContext {
+  product: "hose-reel" | "pressure-washer";
+  clickref: string;
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for Giraffe Tools via Awin.
+ * One call per click — do not also bind data-track listeners.
+ */
+export function trackGiraffeToolsAffiliateClick(
+  ctx: GiraffeToolsClickContext
+): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+  const creativeId =
+    ctx.product === "hose-reel" ? "4002162" : "4002166";
+
+  trackEvent("affiliate_click", {
+    provider: "awin",
+    merchant: "giraffe-tools",
+    brand: "giraffe-tools",
+    merchant_id: "76248",
+    creative_id: creativeId,
+    product: ctx.product,
+    product_id: ctx.product,
+    product_name:
+      ctx.product === "hose-reel"
+        ? "Giraffe Tools Hose Reels"
+        : "Grandfalls Pressure Washer PRO",
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "giraffe-tools",
+    clickref: ctx.clickref,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "awin",
+    offer_id: `giraffe-tools-${ctx.product}`,
+    offer_title:
+      ctx.product === "hose-reel"
+        ? "Giraffe Tools Hose Reels"
+        : "Grandfalls Pressure Washer PRO",
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(ctx.clickref),
+  });
+}

@@ -9,6 +9,7 @@ import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
 import { AmazonRecommendedGear } from "./AmazonRecommendedGear";
 import { getAmazonGearPlacementForGuide } from "@/data/amazon-gear";
 import { BoatTraderShopCta } from "./ownership/BoatTraderShopCta";
+import { GiraffeToolsMaintenanceCta } from "./ownership/GiraffeToolsMaintenanceCta";
 import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
@@ -92,6 +93,45 @@ const GUIDE_BOAT_TRADER: Record<
   },
 };
 
+/** Guides where Giraffe Tools cleaning gear is editorially appropriate. */
+const GUIDE_GIRAFFE_TOOLS: Record<
+  string,
+  {
+    placement: string;
+    heading?: string;
+    intro?: string;
+    items: Array<{
+      product: "hose-reel" | "pressure-washer";
+      clickref: string;
+      blurb: string;
+      ctaLabel?: string;
+    }>;
+  }
+> = {
+  "chicago-boat-detailing-guide": {
+    placement: "boat-detailing",
+    heading: "Dockside cleaning tools for owners",
+    intro:
+      "Between professional details, many owners rinse mineral spots and deck grime themselves. A retractable hose reel helps keep the washdown zone organized. High-pressure washing is a different tool — use it cautiously and never assume it is safe for every finish.",
+    items: [
+      {
+        product: "hose-reel",
+        clickref: "boat-detailing-hose",
+        blurb:
+          "A retractable hose reel can make regular marina or driveway washdowns less tangled — useful when you are rinsing Lake Michigan mineral spots before they etch into gelcoat.",
+        ctaLabel: "Shop Giraffe Tools Hose Reels",
+      },
+      {
+        product: "pressure-washer",
+        clickref: "boat-detailing-pressure-washer",
+        blurb:
+          "A pressure washer may help with stubborn dirt on rugged exterior areas, but high pressure can damage gelcoat, sealants, decals, upholstery, electrical fittings, and soft or aged surfaces. Confirm safe pressure, distance, and nozzle choice for each material — and when unsure, leave aggressive cleaning to a marine detailer. We do not invent manufacturer specifications.",
+        ctaLabel: "See the Grandfalls Pressure Washer PRO",
+      },
+    ],
+  },
+};
+
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
   if (cat) return cat.title;
@@ -107,6 +147,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const hasOffers = pageOffers.length > 0;
   const amazonPlacement = getAmazonGearPlacementForGuide(guide.slug);
   const boatTrader = GUIDE_BOAT_TRADER[guide.slug];
+  const giraffeTools = GUIDE_GIRAFFE_TOOLS[guide.slug];
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -288,6 +329,16 @@ export function GuideLanding({ guide }: GuideLandingProps) {
                   ? "If a slip is part of your plan, comparing listings on Boat Trader can help you match boat size and type to harbor options."
                   : "Compare new and used boats from dealers and private sellers on Boat Trader."
             }
+          />
+        ) : null}
+
+        {giraffeTools ? (
+          <GiraffeToolsMaintenanceCta
+            placement={giraffeTools.placement}
+            pageSlug={`/${guide.slug}`}
+            heading={giraffeTools.heading}
+            intro={giraffeTools.intro}
+            items={giraffeTools.items}
           />
         ) : null}
 
