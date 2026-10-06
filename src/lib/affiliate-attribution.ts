@@ -212,3 +212,54 @@ export function trackAmazonAffiliateClick(
     campaign_code: buildCampaignCode(ctx.placement, ctx.position),
   });
 }
+
+export interface BoatTraderClickContext extends AffiliateClickContext {
+  clickref: string;
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for Boat Trader via Awin (Boats Group).
+ * One call per click — do not also bind data-track listeners.
+ */
+export function trackBoatTraderAffiliateClick(
+  ctx: BoatTraderClickContext
+): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+
+  trackEvent("affiliate_click", {
+    provider: "awin",
+    merchant: "boats-group",
+    brand: "boat-trader",
+    merchant_id: "124170",
+    creative_id: "4695412",
+    product_id: "boat-trader",
+    product_name: "Boat Trader",
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "boat-trader",
+    clickref: ctx.clickref,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "awin",
+    offer_id: "boat-trader",
+    offer_title: "Boat Trader",
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(ctx.clickref),
+  });
+}

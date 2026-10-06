@@ -8,6 +8,7 @@ import { getOffersForPage } from "@/data/affiliate-offers";
 import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
 import { AmazonRecommendedGear } from "./AmazonRecommendedGear";
 import { getAmazonGearPlacementForGuide } from "@/data/amazon-gear";
+import { BoatTraderShopCta } from "./ownership/BoatTraderShopCta";
 import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
@@ -72,6 +73,25 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
   ],
 };
 
+/** Guides where shopping for a boat is a natural next step — not every guide. */
+const GUIDE_BOAT_TRADER: Record<
+  string,
+  { clickref: string; placement: string }
+> = {
+  "beginners-guide-boating-chicago": {
+    clickref: "first-boat-guide",
+    placement: "first-boat-guide",
+  },
+  "chicago-marina-guide": {
+    clickref: "marina-ownership",
+    placement: "marina-ownership",
+  },
+  "essential-boating-gear-chicago": {
+    clickref: "gear-guide",
+    placement: "gear-guide",
+  },
+};
+
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
   if (cat) return cat.title;
@@ -86,6 +106,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const pageOffers = getOffersForPage(affiliateSlug);
   const hasOffers = pageOffers.length > 0;
   const amazonPlacement = getAmazonGearPlacementForGuide(guide.slug);
+  const boatTrader = GUIDE_BOAT_TRADER[guide.slug];
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -244,6 +265,29 @@ export function GuideLanding({ guide }: GuideLandingProps) {
           <AmazonRecommendedGear
             placement={amazonPlacement}
             analyticsPlacement="guide_amazon_gear"
+          />
+        ) : null}
+
+        {boatTrader ? (
+          <BoatTraderShopCta
+            clickref={boatTrader.clickref}
+            placement={boatTrader.placement}
+            pageSlug={`/${guide.slug}`}
+            section="guide_ownership"
+            heading={
+              guide.slug === "beginners-guide-boating-chicago"
+                ? "Considering buying a boat later?"
+                : guide.slug === "chicago-marina-guide"
+                  ? "Shopping for a boat to keep in a harbor?"
+                  : "Shopping for a boat?"
+            }
+            body={
+              guide.slug === "beginners-guide-boating-chicago"
+                ? "When you are ready to move beyond charters and clubs, compare new and used boats from dealers and private sellers on Boat Trader."
+                : guide.slug === "chicago-marina-guide"
+                  ? "If a slip is part of your plan, comparing listings on Boat Trader can help you match boat size and type to harbor options."
+                  : "Compare new and used boats from dealers and private sellers on Boat Trader."
+            }
           />
         ) : null}
 

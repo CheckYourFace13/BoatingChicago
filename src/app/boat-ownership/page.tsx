@@ -5,6 +5,7 @@ import {
   BoatUsMembershipNote,
   OwnershipNextLinks,
 } from "@/components/ownership/OwnershipLinks";
+import { BoatTraderShopCta } from "@/components/ownership/BoatTraderShopCta";
 import { AmazonRecommendedGear } from "@/components/AmazonRecommendedGear";
 import { getAmazonGearPlacementForPath } from "@/data/amazon-gear";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
@@ -60,6 +61,14 @@ export default function BoatOwnershipPage() {
             pay is the practical way to separate a sound used boat from an
             expensive surprise.
           </p>
+          <div className="mt-5">
+            <BoatTraderShopCta
+              clickref="boat-ownership"
+              placement="boat-ownership"
+              pageSlug="/boat-ownership"
+              section="new_versus_used"
+            />
+          </div>
         </section>
 
         <section>
@@ -177,10 +186,9 @@ export default function BoatOwnershipPage() {
           <p>
             When you sell, marketplaces such as Boat Trader, boats.com, and
             YachtWorld are common places buyers look. BoatingChicago does not
-            list inventory and does not publish shopping links until a
-            publisher program is approved. Until then, use the same ownership
-            checklist in reverse: survey paperwork, storage history, and a clear
-            location where a buyer can see the boat.
+            list inventory or broker sales. Use the same ownership checklist in
+            reverse: survey paperwork, storage history, and a clear location
+            where a buyer can see the boat.
           </p>
         </section>
 

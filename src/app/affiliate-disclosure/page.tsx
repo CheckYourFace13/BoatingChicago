@@ -26,9 +26,9 @@ export default function AffiliateDisclosurePage() {
         <p className="font-semibold text-lake-blue">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
         <p>
           {siteConfig.name} participates in affiliate marketing programs, including partners
-          such as GetYourGuide, Viator, and Amazon Associates. That means we may earn a
-          commission if you click a partner link and complete a booking or purchase — at no
-          additional cost to you.
+          such as GetYourGuide, Viator, Amazon Associates, and Awin (Boat Trader / Boats Group).
+          That means we may earn a commission if you click a partner link and complete a booking
+          or purchase — at no additional cost to you.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What this covers</h2>
         <ul className="list-disc pl-5 space-y-2">
@@ -37,6 +37,10 @@ export default function AffiliateDisclosurePage() {
           <li>
             Amazon product and category links labeled as Amazon destinations (paid links). We do
             not sell, stock, or fulfill Amazon products.
+          </li>
+          <li>
+            Boat Trader shopping links via Awin (paid links). We do not sell, broker, or list boats,
+            and we do not guarantee pricing or inventory on Boat Trader.
           </li>
         </ul>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Amazon Associates</h2>
