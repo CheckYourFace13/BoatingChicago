@@ -5,6 +5,7 @@ import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { ExploreBoating } from "@/components/homepage/ExploreBoating";
 import { TodayOnTheWater } from "@/components/homepage/TodayOnTheWater";
 import { FeaturedGuides } from "@/components/homepage/FeaturedGuides";
+import { SeasonalWinterGuides } from "@/components/homepage/SeasonalWinterGuides";
 import { HomepageEvents } from "@/components/homepage/HomepageEvents";
 import { HomepageNewsFeature } from "@/components/homepage/HomepageNewsFeature";
 import { getHomepageOffers } from "@/data/affiliate-offers";
@@ -59,10 +60,22 @@ export default async function HomePage() {
 
         <FeaturedGuides />
 
+        <SeasonalWinterGuides />
+
         <HomepageEvents events={events} />
 
         <section id="chicago-boating-brief">
           <EmailSignup source="homepage" />
+          <p className="mt-3 text-center text-sm text-gray-600">
+            Prefer a dedicated page?{" "}
+            <Link
+              href="/subscribe"
+              className="font-semibold text-coral hover:underline"
+            >
+              Subscribe to the Chicago Boating Brief
+            </Link>
+            .
+          </p>
         </section>
       </div>
     </>

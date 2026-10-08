@@ -13,7 +13,7 @@ export async function generateMetadata() {
 }
 
 const quickLinks = [
-  { href: "/list-your-business", label: "List your business" },
+  { href: "/advertise", label: "Advertise / sponsorship" },
   { href: "/weather", label: "Boating weather" },
   { href: "/news", label: "Boating news" },
   { href: "/destinations/chicago", label: "Boating in Chicago" },
@@ -54,9 +54,9 @@ export default function ContactPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Vendors &amp; operators</h2>
         <p>
-          To list your Chicago boating business, visit{" "}
-          <Link href="/list-your-business" className="text-sky-blue font-semibold hover:underline">
-            List Your Business
+          For sponsorship and featured placements, visit{" "}
+          <Link href="/advertise" className="text-sky-blue font-semibold hover:underline">
+            Advertise
           </Link>
           .
         </p>

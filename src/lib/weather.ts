@@ -431,7 +431,7 @@ function isMarineEvent(event: string, headline: string): boolean {
 async function fetchAlerts(
   context: LocationContext,
   errors: string[]
-): Promise<WeatherAlert[]> {
+): Promise<{ alerts: WeatherAlert[]; ok: boolean }> {
   // Chicago keeps the curated marine + Cook County zone list; other locations
   // use a point query so we do not need a zone map for every harbor.
   const url =
@@ -442,7 +442,7 @@ async function fetchAlerts(
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
       errors.push(`NWS alerts HTTP ${res.status}`);
-      return [];
+      return { alerts: [], ok: false };
     }
     const json = (await res.json()) as {
       features?: {
@@ -450,7 +450,7 @@ async function fetchAlerts(
         properties?: Record<string, unknown>;
       }[];
     };
-    return (json.features || []).map((f) => {
+    const alerts = (json.features || []).map((f) => {
       const p = f.properties || {};
       const event = String(p.event || "Alert");
       const headline = String(p.headline || event);
@@ -468,11 +468,12 @@ async function fetchAlerts(
         sourceUrl: String(p["@id"] || f.id || "https://www.weather.gov/lot"),
       };
     });
+    return { alerts, ok: true };
   } catch (err) {
     errors.push(
       `NWS alerts failed: ${err instanceof Error ? err.message : "unknown"}`
     );
-    return [];
+    return { alerts: [], ok: false };
   }
 }
 
@@ -625,6 +626,8 @@ export function computeBoatingRating(input: {
   precipProbabilityPct: number | null;
   shortForecast: string | null;
   alerts: WeatherAlert[];
+  /** When false, alert list may be empty because the NWS fetch failed — do not treat as “all clear”. */
+  alertsAvailable?: boolean;
 }): BoatingConditionRating {
   const factors: string[] = [];
   let level: BoatingConditionRating["level"] = "Good";
@@ -637,6 +640,33 @@ export function computeBoatingRating(input: {
   const forecastText = (input.shortForecast || "").toLowerCase();
   const thunder =
     forecastText.includes("thunder") || forecastText.includes("tstm");
+
+  const hasObservation =
+    wind != null ||
+    gust != null ||
+    wave != null ||
+    precip != null ||
+    Boolean(input.shortForecast?.trim());
+
+  // Incomplete source data must never look like an affirmative “Good” day.
+  if (!hasObservation) {
+    return {
+      level: "Caution",
+      reason:
+        "Caution — current wind, wave, and near-term forecast observations are incomplete from NOAA/NWS sources. Check weather.gov before boating.",
+      factors: [
+        "Incomplete observation data from NOAA/NWS sources",
+        "Do not treat a missing feed as favorable conditions",
+      ],
+    };
+  }
+
+  if (input.alertsAvailable === false) {
+    level = "Caution";
+    factors.push(
+      "NOAA/NWS alert feed unavailable — cannot confirm whether marine advisories are in effect"
+    );
+  }
 
   const marineWarning = input.alerts.find(
     (a) =>
@@ -745,7 +775,7 @@ export async function getWeatherForLocation(
     },
   ];
 
-  const [current, hourly, daily, alerts, lakeRaw, sun, marineForecastText] =
+  const [current, hourly, daily, alertResult, lakeRaw, sun, marineForecastText] =
     await Promise.all([
       fetchCurrentConditions(context.stationId, context.stationName, errors),
       fetchHourly(context.grid, errors),
@@ -757,6 +787,9 @@ export async function getWeatherForLocation(
       fetchSunTimes(context.lat, context.lon, errors),
       usesBuoy ? fetchMarineForecastText(errors) : Promise.resolve(null),
     ]);
+
+  const alerts = alertResult.alerts;
+  const alertsAvailable = alertResult.ok;
 
   const lake: LakeConditionsData =
     context.scope === "lake-michigan"
@@ -784,6 +817,7 @@ export async function getWeatherForLocation(
     precipProbabilityPct: nearTerm?.precipProbabilityPct ?? null,
     shortForecast: nearTerm?.shortForecast ?? current?.description ?? null,
     alerts,
+    alertsAvailable,
   });
 
   return {
@@ -794,6 +828,7 @@ export async function getWeatherForLocation(
     hourly,
     daily,
     alerts,
+    alertsAvailable,
     lake,
     sunriseIso: sun.sunriseIso,
     sunsetIso: sun.sunsetIso,

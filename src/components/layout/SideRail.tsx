@@ -56,6 +56,21 @@ function WeatherNowModule({ weather }: { weather: ChicagoWeatherPayload }) {
 }
 
 function MarineAlertsModule({ weather }: { weather: ChicagoWeatherPayload }) {
+  if (weather.alertsAvailable === false) {
+    return (
+      <RailCard title="Marine Alerts">
+        <p className="text-sm text-amber-800 font-semibold">
+          Alert feed unavailable. Check weather.gov before you go.
+        </p>
+        <Link
+          href="/weather"
+          className="inline-block mt-3 text-sm font-bold text-coral hover:underline"
+        >
+          Weather page →
+        </Link>
+      </RailCard>
+    );
+  }
   const alerts = weather.alerts.slice(0, 3);
   if (!alerts.length) return null;
   return (

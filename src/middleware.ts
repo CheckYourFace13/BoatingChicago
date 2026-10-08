@@ -25,6 +25,14 @@ export function middleware(request: NextRequest) {
       url.pathname = "/boat-rentals-chicago";
       return NextResponse.redirect(url, 308);
     }
+    if (bare === "/conditions" || bare.startsWith("/conditions/")) {
+      url.pathname = "/weather";
+      return NextResponse.redirect(url, 308);
+    }
+    if (bare === "/launches" || bare.startsWith("/launches/")) {
+      url.pathname = "/boat-launches";
+      return NextResponse.redirect(url, 308);
+    }
 
     url.pathname = bare;
     return NextResponse.redirect(url, 308);
@@ -45,6 +53,18 @@ export function middleware(request: NextRequest) {
   if (pathname === "/find-a-boat" || pathname.startsWith("/find-a-boat/")) {
     const url = request.nextUrl.clone();
     url.pathname = "/boat-rentals-chicago";
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (pathname === "/conditions" || pathname.startsWith("/conditions/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/weather";
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (pathname === "/launches" || pathname.startsWith("/launches/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/boat-launches";
     return NextResponse.redirect(url, 308);
   }
 

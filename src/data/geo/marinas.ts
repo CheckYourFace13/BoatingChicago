@@ -1,6 +1,6 @@
 import type { Marina } from "@/types/geo";
 
-const VERIFIED = "2026-08-25";
+const VERIFIED = "2026-10-07";
 
 /**
  * Published marinas with clear official websites only.
@@ -22,6 +22,12 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
       { key: "restrooms", available: null },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -47,6 +53,12 @@ export const marinas: Marina[] = [
       { key: "boat-launch", available: true, note: "3-lane launch ramp (per harbor page)" },
       { key: "power-and-water", available: true, note: "Slips have power and water (per harbor page)" },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Burnham",
       url: "https://www.chicagoharbors.info/harbors/burnham/",
@@ -67,6 +79,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -87,6 +105,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -108,6 +132,12 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
       { key: "boat-launch", available: true, note: "Lincoln Boat Launch — Montrose Harbor listed by CPD" },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -131,6 +161,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -157,6 +193,12 @@ export const marinas: Marina[] = [
       { key: "wifi", available: true },
       { key: "security", available: true, note: "24-hour security (per marina site)" },
     ],
+    seasonalAccessNote:
+      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+    hoursNote:
+      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+    feesNote:
+      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
     source: {
       name: "Waukegan Harbor & Marina",
       url: "https://waukeganharbor.com/",
@@ -186,6 +228,12 @@ export const marinas: Marina[] = [
       { key: "security", available: true, note: "24-hour security (per IDNR about page)" },
       { key: "parking", available: true, note: "Restricted parking (per IDNR about page)" },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "IDNR — North Point Marina State Recreation Area",
       url: "https://dnr.illinois.gov/parks/park.northpointmarina.html",
@@ -208,6 +256,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "Southport Marina",
       url: "https://spmarina.net/",
@@ -230,6 +284,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "Reefpoint Marina",
       url: "https://reefpointmarina.org/",
@@ -258,6 +318,12 @@ export const marinas: Marina[] = [
       { key: "parking", available: true },
       { key: "security", available: true },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "Milwaukee County Parks — McKinley Marina",
       url: "https://county.milwaukee.gov/EN/Parks/Explore/Lakefront/McKinley-Marina",
@@ -288,6 +354,12 @@ export const marinas: Marina[] = [
       { key: "fish-cleaning", available: true },
       { key: "wifi", available: null },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "Michigan City Port Authority",
       url: "https://www.mcmarina.org/",
@@ -312,6 +384,12 @@ export const marinas: Marina[] = [
       { key: "fuel", available: null },
       { key: "pump-out", available: null },
     ],
+    seasonalAccessNote:
+      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+    hoursNote:
+      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+    feesNote:
+      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
     source: {
       name: "City of New Buffalo — Municipal Marina",
       url: "https://cityofnewbuffalomi.gov/municipal-marina/",

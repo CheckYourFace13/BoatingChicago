@@ -327,7 +327,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               explore related category pages for rentals and charters.
             </p>
             <TrackedLink
-              href="/list-your-business"
+              href="/advertise"
               track="list_business_click"
               trackParams={{ page: category.slug }}
               className="inline-flex text-sky-blue font-bold hover:underline"

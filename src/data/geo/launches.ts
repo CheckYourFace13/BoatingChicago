@@ -1,6 +1,6 @@
 import type { BoatLaunch } from "@/types/geo";
 
-const VERIFIED = "2026-08-25";
+const VERIFIED = "2026-10-07";
 
 /**
  * Verified public launches only. Fees and detailed amenity lists belong on the cited official page.
@@ -20,6 +20,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "Listed on the Chicago Park District boat launches directory; contact phone published on the facility page.",
+    seasonalAccessNote:
+      "Chicago Park District launch access follows seasonal facility schedules. Confirm current open status on the cited Park District facility page before you hitch up.",
+    feesNote:
+      "Launch fees, permits, and any residency distinctions are published by the operating agency. Use the official facility page for current amounts — we do not reprint dollar figures that go stale.",
     source: {
       name: "Chicago Park District — Lincoln Boat Launch Montrose Harbor",
       url: "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-boat-launch-montrose-harbor",
@@ -41,6 +45,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "Chicago Harbors’ Burnham page also notes a 3-lane launch ramp with trailer parking at this harbor — confirm current access on CPD/Chicago Harbors pages.",
+    seasonalAccessNote:
+      "Chicago Park District launch access follows seasonal facility schedules. Confirm current open status on the cited Park District facility page before you hitch up.",
+    feesNote:
+      "Launch fees, permits, and any residency distinctions are published by the operating agency. Use the official facility page for current amounts — we do not reprint dollar figures that go stale.",
     source: {
       name: "Chicago Park District — Burnham Boat Launch Burnham Harbor",
       url: "https://www.chicagoparkdistrict.com/parks-facilities/burnham-boat-launch-burnham-harbor",
@@ -62,6 +70,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "Official launch page publishes daily and season pass pricing — check that page for current amounts before you go.",
+    seasonalAccessNote:
+      "Confirm seasonal ramp hours and weather closures on the cited official launch page before you go.",
+    feesNote:
+      "Daily, season-pass, and related fees — including resident vs nonresident distinctions when published — are defined by the operator. Check the official page for current amounts.",
     source: {
       name: "Waukegan Harbor — Launch Ramps",
       url: "https://waukeganharbor.com/launch-ramps/",
@@ -83,6 +95,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "IDNR park materials state there is no charge to launch at the park; Fox Waterway Agency user fees/stickers still apply for boats using the chain. Confirm both before launching.",
+    seasonalAccessNote:
+      "Confirm seasonal ramp hours and weather closures on the cited official launch page before you go.",
+    feesNote:
+      "Daily, season-pass, and related fees — including resident vs nonresident distinctions when published — are defined by the operator. Check the official page for current amounts.",
     source: {
       name: "Fox Waterway Agency — Where can I launch?",
       url: "https://foxwaterway.com/faq-items/where-can-i-launch-my-boat/",
@@ -104,6 +120,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "Paid launch includes parking guidance for Lot No. 4 per village page. Fee schedule is on the official launch page — do not rely on third-party reprints.",
+    seasonalAccessNote:
+      "Confirm seasonal ramp hours and ice/weather closures on the Waukegan Harbor official launch page before you go.",
+    feesNote:
+      "Daily and season pass pricing is published on the marina’s official launch-ramps page. Resident vs nonresident distinctions, if any, are defined by the operator — check that page.",
     source: {
       name: "Village of Fontana — Public Boat Launch",
       url: "https://vi.fontana.wi.gov/visit-fontana/launch/",
@@ -125,6 +145,10 @@ export const launches: BoatLaunch[] = [
     ],
     amenityNotes:
       "Launch permits required; launching without a pass can result in a ticket per County Parks. Confirm current daily/season permit details on the official marina page.",
+    seasonalAccessNote:
+      "Confirm seasonal ramp hours and weather closures on the cited official launch page before you go.",
+    feesNote:
+      "Daily, season-pass, and related fees — including resident vs nonresident distinctions when published — are defined by the operator. Check the official page for current amounts.",
     source: {
       name: "Milwaukee County Parks — McKinley Marina",
       url: "https://county.milwaukee.gov/EN/Parks/Explore/Lakefront/McKinley-Marina",

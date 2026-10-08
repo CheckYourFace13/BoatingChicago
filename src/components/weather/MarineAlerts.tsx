@@ -5,11 +5,37 @@ import type { WeatherAlert, WeatherSourceRef } from "@/types/weather";
 
 export function MarineAlerts({
   alerts,
+  alertsAvailable = true,
   scopeLabel = "configured Chicago / nearshore Lake Michigan zones",
 }: {
   alerts: WeatherAlert[];
+  /** When false, an empty list means the feed failed — not “no alerts”. */
+  alertsAvailable?: boolean;
   scopeLabel?: string;
 }) {
+  if (!alertsAvailable) {
+    return (
+      <section id="marine-alerts">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
+          Active NOAA/NWS alerts
+        </h2>
+        <p className="text-amber-800 font-semibold">
+          Alert status unavailable right now — the NOAA/NWS alert feed did not
+          load. Check{" "}
+          <a
+            href="https://www.weather.gov/lot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:no-underline"
+          >
+            weather.gov/lot
+          </a>{" "}
+          before treating conditions as clear for {scopeLabel}.
+        </p>
+      </section>
+    );
+  }
+
   if (!alerts.length) {
     return (
       <section id="marine-alerts">
@@ -17,7 +43,9 @@ export function MarineAlerts({
           Active NOAA/NWS alerts
         </h2>
         <p className="text-gray-600">
-          No active alerts for {scopeLabel} right now.
+          No active alerts returned for {scopeLabel} from the NOAA/NWS feed
+          right now. Re-check weather.gov before you go — products can change
+          quickly.
         </p>
       </section>
     );

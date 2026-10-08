@@ -158,6 +158,7 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
         />
         <MarineAlerts
           alerts={weather.alerts}
+          alertsAvailable={weather.alertsAvailable}
           scopeLabel={isChicago ? undefined : weather.locationLabel}
         />
 

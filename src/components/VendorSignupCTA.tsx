@@ -10,15 +10,17 @@ export function VendorSignupCTA() {
           Own a Boating Business in Chicago?
         </h2>
         <p className="text-gray-600 mb-6 leading-relaxed">
-          Get found by thousands of locals and visitors searching for Chicago boat rentals, charters, and services. We&apos;re now accepting boating partners — free basic listings and featured placements available.
+          Get found by locals and visitors searching for Chicago boat rentals,
+          charters, and services. We accept sponsorship inquiries for labeled
+          featured placements — not unpaid “guaranteed ranking” promises.
         </p>
         <TrackedLink
-          href="/list-your-business"
+          href="/advertise"
           track="list_business_click"
           trackParams={{ page: "homepage_vendor_cta" }}
           className="inline-flex items-center px-6 py-3 bg-lake-blue text-white font-bold rounded-full hover:bg-lake-blue/90 transition-colors shadow-md"
         >
-          List Your Business →
+          Advertise with us →
         </TrackedLink>
       </div>
     </section>

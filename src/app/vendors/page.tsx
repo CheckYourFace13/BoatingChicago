@@ -117,7 +117,7 @@ export default function VendorsPage() {
                 ))}
               </div>
               <TrackedLink
-                href="/list-your-business"
+                href="/advertise"
                 track="list_business_click"
                 trackParams={{ page: "vendors" }}
                 className="inline-flex items-center px-8 py-4 bg-coral text-white font-bold text-lg rounded-full hover:bg-coral/90 transition-colors shadow-md"
@@ -167,7 +167,7 @@ export default function VendorsPage() {
             Free basic listings, featured placements, and sponsored spots — built for operators who want more visibility on Lake Michigan.
           </p>
           <TrackedLink
-            href="/list-your-business"
+            href="/advertise"
             track="list_business_click"
             trackParams={{ page: "vendors_bottom" }}
             className="inline-flex items-center px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors"

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
-import { guides } from "@/data/guides";
+import { guides, WINTER_GUIDE_SLUGS, getGuideBySlug } from "@/data/guides";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
@@ -41,6 +41,36 @@ export default function GuidesPage() {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+        <section
+          id="winter-guides"
+          className="rounded-2xl border border-sky-blue/25 bg-light-blue/30 p-5 sm:p-6"
+        >
+          <h2 className="text-xl font-extrabold text-lake-blue mb-2">
+            Winter &amp; off-season collection
+          </h2>
+          <p className="text-sm text-gray-700 mb-4 max-w-3xl">
+            Storage, winterizing, shrink wrap, buying off-season, and boat-show
+            prep. Procedures defer to manufacturer manuals and qualified service
+            where engines and systems are involved.
+          </p>
+          <ul className="flex flex-wrap gap-2">
+            {WINTER_GUIDE_SLUGS.map((slug) => {
+              const g = getGuideBySlug(slug);
+              if (!g) return null;
+              return (
+                <li key={slug}>
+                  <Link
+                    href={`/${slug}`}
+                    className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
+                  >
+                    {g.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {sorted.map((guide) => (
             <li key={guide.slug}>

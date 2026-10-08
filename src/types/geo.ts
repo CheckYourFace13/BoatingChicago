@@ -51,6 +51,20 @@ export interface Marina {
   officialWebsite?: string;
   phone?: string;
   amenities: MarinaAmenity[];
+  /**
+   * Seasonal access / harbor-season note from the cited operator.
+   * Never invent opening dates — point readers to the official page when unsure.
+   */
+  seasonalAccessNote?: string;
+  /**
+   * Hours / office access note only when confirmed on the cited source.
+   */
+  hoursNote?: string;
+  /**
+   * Fees/permits note — prefer “see official source” over repeating dollar amounts
+   * that go stale. Distinguish resident vs nonresident when the operator publishes that.
+   */
+  feesNote?: string;
   source: SourceRef;
   isPublished: boolean;
 }
@@ -65,6 +79,9 @@ export interface BoatLaunch {
   overview?: string[];
   /** Verified amenity notes only — never invent fees or unconfirmed facilities */
   amenityNotes?: string;
+  seasonalAccessNote?: string;
+  hoursNote?: string;
+  feesNote?: string;
   source: SourceRef;
   isPublished: boolean;
 }

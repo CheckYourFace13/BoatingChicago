@@ -142,15 +142,45 @@ export default async function BoatLaunchPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        {(launch.seasonalAccessNote || launch.hoursNote || launch.feesNote) && (
+          <section className="max-w-3xl space-y-4">
+            <h2 className="text-2xl font-extrabold text-lake-blue">
+              Hours, season &amp; fees
+            </h2>
+            {launch.seasonalAccessNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Seasonal access</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {launch.seasonalAccessNote}
+                </p>
+              </div>
+            ) : null}
+            {launch.hoursNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Hours</h3>
+                <p className="text-gray-700 leading-relaxed">{launch.hoursNote}</p>
+              </div>
+            ) : null}
+            {launch.feesNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Fees &amp; permits</h3>
+                <p className="text-gray-700 leading-relaxed">{launch.feesNote}</p>
+              </div>
+            ) : null}
+          </section>
+        )}
+
         <section className="rounded-2xl bg-lake-blue text-white p-6 md:p-8">
           <h2 className="text-xl font-extrabold mb-2">
             Launch fees and permits
           </h2>
           <p className="text-white/90 leading-relaxed max-w-3xl">
             Ramp fees, season passes, and waterway stickers are set by the
-            operating agency and change between seasons. We link to the page
-            that publishes the current amounts rather than repeating numbers
-            that may already be out of date.
+            operating agency and change between seasons. Resident vs nonresident
+            distinctions — when they exist — are defined by the operator. We
+            link to the page that publishes the current amounts rather than
+            repeating numbers that may already be out of date. If a detail is
+            missing here, check the operator&apos;s current information.
           </p>
         </section>
 

@@ -48,9 +48,15 @@ export function ChicagoBoatingBrief({
                 {alert.headline}
               </p>
             </>
+          ) : weather.alertsAvailable === false ? (
+            <p className="text-amber-800 font-semibold mb-3">
+              Alert feed unavailable — check weather.gov before treating waters
+              as clear.
+            </p>
           ) : (
             <p className="text-gray-600 mb-3">
-              No active alerts in configured nearshore zones right now.
+              No active alerts returned for configured nearshore zones right
+              now — re-check before you go.
             </p>
           )}
           <p className="text-xs font-bold uppercase tracking-widest text-lake-blue/70 mb-2">

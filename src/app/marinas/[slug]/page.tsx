@@ -168,6 +168,40 @@ export default async function MarinaPage({ params }: PageProps) {
           sourceName={marina.source.name}
         />
 
+        {(marina.seasonalAccessNote ||
+          marina.hoursNote ||
+          marina.feesNote) && (
+          <section className="max-w-3xl space-y-4">
+            <h2 className="text-2xl font-extrabold text-lake-blue">
+              Hours, season &amp; fees
+            </h2>
+            {marina.seasonalAccessNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Seasonal access</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {marina.seasonalAccessNote}
+                </p>
+              </div>
+            ) : null}
+            {marina.hoursNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Hours</h3>
+                <p className="text-gray-700 leading-relaxed">{marina.hoursNote}</p>
+              </div>
+            ) : null}
+            {marina.feesNote ? (
+              <div>
+                <h3 className="font-bold text-lake-blue mb-1">Fees &amp; permits</h3>
+                <p className="text-gray-700 leading-relaxed">{marina.feesNote}</p>
+              </div>
+            ) : null}
+            <p className="text-sm text-gray-600">
+              When a detail is not listed here, check the operator&apos;s current
+              information via the official source below — we do not guess.
+            </p>
+          </section>
+        )}
+
         <FAQ faqs={faqs} title="Marina planning FAQs" />
 
         {publishedDestination ? (

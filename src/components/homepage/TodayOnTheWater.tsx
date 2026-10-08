@@ -101,8 +101,14 @@ export function TodayOnTheWater({
                 <p className="font-extrabold text-coral text-sm mb-1">{alert.event}</p>
                 <p className="text-sm text-gray-700 line-clamp-2">{alert.headline}</p>
               </>
+            ) : weather.alertsAvailable === false ? (
+              <p className="text-sm text-amber-800 font-semibold">
+                Alert feed unavailable — check weather.gov before going.
+              </p>
             ) : (
-              <p className="text-sm text-gray-700">No active marine alerts right now.</p>
+              <p className="text-sm text-gray-700">
+                No active marine alerts returned right now — re-check before you go.
+              </p>
             )}
           </div>
         </div>

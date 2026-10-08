@@ -27,6 +27,7 @@ const thingsToDoLinks = [
 
 const companyLinks = [
   { href: "/about", label: "About" },
+  { href: "/subscribe", label: "Chicago Boating Brief" },
   { href: "/contact", label: "Contact Us" },
   { href: "/advertise", label: "Advertise" },
   { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },

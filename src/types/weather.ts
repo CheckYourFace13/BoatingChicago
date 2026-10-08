@@ -81,6 +81,8 @@ export interface ChicagoWeatherPayload {
   hourly: HourlyForecastPeriod[];
   daily: DailyForecastPeriod[];
   alerts: WeatherAlert[];
+  /** False when the NWS alerts request failed — empty alerts must not mean “all clear”. */
+  alertsAvailable: boolean;
   lake: LakeConditionsData;
   sunriseIso: string | null;
   sunsetIso: string | null;
