@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { useCallback, useState, type FormEvent } from "react";
 import { siteImages } from "@/data/images";
 import { trackEvent, trackingAttrs } from "@/lib/tracking";
+import { SendFableFormEmbed } from "@/components/SendFableFormEmbed";
 
 interface EmailSignupProps {
   source?: string;
@@ -12,9 +14,22 @@ interface EmailSignupProps {
 
 type FormStatus = "idle" | "loading" | "success" | "duplicate" | "error";
 
-export function EmailSignup({ source = "homepage", variant = "card" }: EmailSignupProps) {
+/**
+ * Chicago Boating Brief signup.
+ * Primary: official SendFable embed (boatingchicago-newsletter).
+ * Fallback: local /api/newsletter → MySQL + SendFable sync (no double-submit).
+ */
+export function EmailSignup({
+  source = "homepage",
+  variant = "card",
+}: EmailSignupProps) {
+  const [useFallback, setUseFallback] = useState(false);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const handleEmbedFailed = useCallback(() => {
+    setUseFallback(true);
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,7 +43,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source: `${source}:embed-fallback` }),
       });
 
       const data = (await res.json().catch(() => ({}))) as {
@@ -49,11 +64,11 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
         return;
       }
 
-      // GA4: never send email / PII — only page and placement context
       trackEvent("newsletter_signup", {
         source,
         signup_page: source,
         signup_placement: variant === "inline" ? "inline" : "brief_card",
+        provider: "local_fallback",
         already_subscribed: data.alreadySubscribed ? "yes" : "no",
       });
 
@@ -65,13 +80,43 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
     }
   }
 
+  const privacyNote = (
+    <p
+      className={
+        variant === "card"
+          ? "text-white/85 text-xs sm:text-sm mt-4 max-w-md mx-auto leading-relaxed"
+          : "text-gray-600 text-xs sm:text-sm mt-3 leading-relaxed"
+      }
+    >
+      Free weekly Brief. Unsubscribe anytime.{" "}
+      <Link
+        href="/privacy"
+        className={
+          variant === "card"
+            ? "underline font-semibold text-sun-yellow hover:text-white"
+            : "underline font-semibold text-sky-blue hover:text-lake-blue"
+        }
+      >
+        Privacy policy
+      </Link>
+      .
+    </p>
+  );
+
   if (status === "success" || status === "duplicate") {
     return (
       <div
         className={variant === "card" ? "text-center py-4" : ""}
         {...trackingAttrs.newsletterSignup}
       >
-        <p className="text-sun-yellow font-bold text-lg md:text-xl">
+        <p
+          className={
+            variant === "card"
+              ? "text-sun-yellow font-bold text-lg md:text-xl"
+              : "text-lake-blue font-bold text-lg"
+          }
+          role="status"
+        >
           {status === "duplicate"
             ? "You\u2019re already on the list."
             : "You\u2019re on the list. Watch your inbox for the next Chicago Boating Brief."}
@@ -80,30 +125,99 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
     );
   }
 
-  if (variant === "inline") {
-    return (
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+  const fallbackForm = (
+    <form
+      onSubmit={handleSubmit}
+      className={
+        variant === "inline"
+          ? "flex flex-col sm:flex-row gap-3"
+          : "flex flex-col sm:flex-row gap-3 max-w-md mx-auto text-left"
+      }
+      noValidate
+    >
+      <div className="flex-1 w-full">
+        <label
+          htmlFor={`brief-email-${source}`}
+          className={
+            variant === "card"
+              ? "block text-sm font-bold text-white mb-1.5"
+              : "block text-sm font-bold text-lake-blue mb-1.5"
+          }
+        >
+          Email *
+        </label>
         <input
+          id={`brief-email-${source}`}
           name="email"
           type="email"
           required
           autoComplete="email"
-          placeholder="Your email address"
-          className="flex-1 min-h-[48px] px-4 py-3 rounded-full border-0 outline-none text-gray-800 text-base"
+          placeholder="you@example.com"
+          className="bc-field w-full"
+          aria-label="Email for the Chicago Boating Brief"
         />
+      </div>
+      <div className={variant === "inline" ? "sm:self-end" : "sm:self-end"}>
         <button
           type="submit"
           disabled={status === "loading"}
           {...trackingAttrs.newsletterSignup}
-          className="min-h-[48px] px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60 text-base"
+          className="min-h-[48px] w-full sm:w-auto px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-xl hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60 text-base"
         >
-          {status === "loading" ? "..." : "Get the Brief"}
+          {status === "loading" ? "Joining…" : "Get the Brief"}
         </button>
-        {status === "error" && errorMsg ? (
-          <p className="text-coral text-sm font-semibold sm:col-span-2 w-full">{errorMsg}</p>
-        ) : null}
-      </form>
-    );
+      </div>
+      {status === "error" && errorMsg ? (
+        <p
+          className="text-coral text-sm font-semibold w-full basis-full"
+          role="alert"
+        >
+          {errorMsg}
+        </p>
+      ) : null}
+    </form>
+  );
+
+  const body = useFallback ? (
+    <div>
+      <p
+        className={
+          variant === "card"
+            ? "text-white/90 text-sm mb-3"
+            : "text-gray-700 text-sm mb-3"
+        }
+        role="status"
+      >
+        Using backup signup — your address still joins the Chicago Boating Brief
+        list.
+      </p>
+      {fallbackForm}
+      {privacyNote}
+    </div>
+  ) : (
+    <div>
+      <SendFableFormEmbed
+        source={source}
+        placement={
+          source === "subscribe-page"
+            ? "subscribe"
+            : variant === "inline"
+              ? "inline"
+              : "brief_card"
+        }
+        className={
+          variant === "card"
+            ? "sendfable-embed-host--on-dark max-w-md mx-auto text-left"
+            : "sendfable-embed-host--on-light max-w-md"
+        }
+        onFailed={handleEmbedFailed}
+      />
+      {privacyNote}
+    </div>
+  );
+
+  if (variant === "inline") {
+    return <div className="w-full">{body}</div>;
   }
 
   return (
@@ -128,31 +242,7 @@ export function EmailSignup({ source = "homepage", variant = "card" }: EmailSign
           Chicago boating conditions, marine alerts, weekend events, news and
           ideas — delivered to your inbox.
         </p>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-        >
-          <input
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="Your email address"
-            className="flex-1 min-h-[48px] px-4 py-3 rounded-full border-0 outline-none text-gray-800 text-base"
-            aria-label="Email for the Chicago Boating Brief"
-          />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            {...trackingAttrs.newsletterSignup}
-            className="min-h-[48px] px-6 py-3 bg-sun-yellow text-lake-blue font-bold rounded-full hover:bg-sun-yellow/90 transition-colors whitespace-nowrap disabled:opacity-60 text-base"
-          >
-            {status === "loading" ? "..." : "Get the Brief"}
-          </button>
-        </form>
-        {status === "error" && errorMsg ? (
-          <p className="text-coral mt-3 text-sm font-semibold">{errorMsg}</p>
-        ) : null}
+        {body}
       </div>
     </div>
   );

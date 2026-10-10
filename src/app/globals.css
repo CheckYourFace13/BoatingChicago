@@ -162,3 +162,201 @@ html {
   min-height: 100px;
   max-width: 100%;
 }
+
+/*
+ * Sitewide form control visibility
+ * Distinct white fields, clear borders, readable text/placeholders, strong focus.
+ */
+.bc-field,
+:where(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(
+      [type="submit"]
+    ):not([type="button"]):not([type="image"]):not([type="file"]):not(
+      [type="range"]
+    ):not([type="color"]):not([tabindex="-1"]),
+  textarea,
+  select
+):not([aria-hidden="true"]) {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #1a1a2e;
+  background-color: #ffffff;
+  border: 1.5px solid #5a9fd4;
+  border-radius: 0.75rem;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+textarea.bc-field,
+textarea:not([aria-hidden="true"]) {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+select.bc-field,
+select:not([aria-hidden="true"]) {
+  background-image: linear-gradient(45deg, transparent 50%, #0b3d6b 50%),
+    linear-gradient(135deg, #0b3d6b 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+}
+
+.bc-field::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: #5c6578;
+  opacity: 1;
+}
+
+.bc-field:hover,
+:where(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(
+      [type="submit"]
+    ):not([type="button"]),
+  textarea,
+  select
+):not([aria-hidden="true"]):hover {
+  border-color: #0b3d6b;
+}
+
+.bc-field:focus,
+.bc-field:focus-visible,
+:where(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(
+      [type="submit"]
+    ):not([type="button"]),
+  textarea,
+  select
+):not([aria-hidden="true"]):focus,
+:where(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(
+      [type="submit"]
+    ):not([type="button"]),
+  textarea,
+  select
+):not([aria-hidden="true"]):focus-visible {
+  border-color: #0b3d6b;
+  box-shadow: 0 0 0 3px rgba(77, 166, 232, 0.55);
+  outline: 2px solid transparent;
+}
+
+/* Autofill: keep readable contrast on white fields */
+.bc-field:-webkit-autofill,
+.bc-field:-webkit-autofill:hover,
+.bc-field:-webkit-autofill:focus,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #1a1a2e;
+  caret-color: #1a1a2e;
+  box-shadow: 0 0 0 1000px #ffffff inset;
+  transition: background-color 99999s ease-out 0s;
+}
+
+/* SendFable embed — renders in-page (not iframe); site CSS can style fields.
+   Official theme=inherit uses transparent inputs; force readable fields. */
+.sendfable-embed-host {
+  color: inherit;
+}
+
+.sendfable-embed-host .sendfable-form {
+  max-width: 28rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.sendfable-embed-host .sendfable-form label span {
+  font-weight: 700;
+  margin-bottom: 0.35rem !important;
+}
+
+.sendfable-embed-host--on-dark .sendfable-form {
+  color: #ffffff;
+}
+
+.sendfable-embed-host--on-dark .sendfable-form label > span:first-child {
+  color: #ffffff;
+}
+
+.sendfable-embed-host--on-light .sendfable-form {
+  color: #1a1a2e;
+}
+
+.sendfable-embed-host--on-light .sendfable-form label > span:first-child {
+  color: #0b3d6b;
+}
+
+.sendfable-embed-host .sendfable-form input[type="email"],
+.sendfable-embed-host .sendfable-form input[type="text"],
+.sendfable-embed-host .sendfable-form input[type="tel"],
+.sendfable-embed-host .sendfable-form textarea,
+.sendfable-embed-host .sendfable-form select {
+  background-color: #ffffff !important;
+  color: #1a1a2e !important;
+  border: 1.5px solid #5a9fd4 !important;
+  border-radius: 0.75rem !important;
+  min-height: 48px !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+}
+
+.sendfable-embed-host .sendfable-form input:focus,
+.sendfable-embed-host .sendfable-form textarea:focus,
+.sendfable-embed-host .sendfable-form select:focus {
+  border-color: #0b3d6b !important;
+  box-shadow: 0 0 0 3px rgba(77, 166, 232, 0.55) !important;
+  outline: none !important;
+}
+
+.sendfable-embed-host .sendfable-form button[type="submit"] {
+  min-height: 48px;
+  font-weight: 800;
+  border-radius: 0.75rem !important;
+  background: #ffd23f !important;
+  color: #0b3d6b !important;
+  border: 0 !important;
+  margin-top: 0.25rem;
+}
+
+.sendfable-embed-host .sendfable-form button[type="submit"]:hover {
+  filter: brightness(0.97);
+}
+
+.sendfable-embed-host .sendfable-form button[type="submit"]:focus-visible {
+  outline: 3px solid #4da6e8;
+  outline-offset: 2px;
+}
+
+.sendfable-embed-host--on-dark .sendfable-form p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  opacity: 1 !important;
+}
+
+.sendfable-embed-host .sendfable-form p[style*="color:#b91c1c"],
+.sendfable-embed-host .sendfable-form p[style*="color: #b91c1c"] {
+  color: #ffb4a4 !important;
+  font-weight: 700;
+}
+
+.sendfable-embed-host--on-light .sendfable-form p[style*="color:#b91c1c"],
+.sendfable-embed-host--on-light .sendfable-form p[style*="color: #b91c1c"] {
+  color: #b91c1c !important;
+}

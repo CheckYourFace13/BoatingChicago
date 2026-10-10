@@ -88,6 +88,7 @@ export function ContactForm({
           type="text"
           tabIndex={-1}
           autoComplete="off"
+          aria-hidden="true"
         />
       </div>
 
@@ -101,7 +102,8 @@ export function ContactForm({
           type="text"
           required
           maxLength={120}
-          className="w-full px-4 py-3 rounded-xl border border-sky-blue/30 outline-none focus:border-sky-blue"
+          autoComplete="name"
+          className="bc-field"
         />
       </div>
 
@@ -115,7 +117,8 @@ export function ContactForm({
           type="email"
           required
           maxLength={200}
-          className="w-full px-4 py-3 rounded-xl border border-sky-blue/30 outline-none focus:border-sky-blue"
+          autoComplete="email"
+          className="bc-field"
         />
       </div>
 
@@ -128,7 +131,7 @@ export function ContactForm({
           name="subject"
           required
           defaultValue={defaultSubject || ""}
-          className="w-full px-4 py-3 rounded-xl border border-sky-blue/30 outline-none focus:border-sky-blue bg-white"
+          className="bc-field"
         >
           {!defaultSubject ? (
             <option value="" disabled>
@@ -153,11 +156,11 @@ export function ContactForm({
           required
           rows={6}
           maxLength={4000}
-          className="w-full px-4 py-3 rounded-xl border border-sky-blue/30 outline-none focus:border-sky-blue resize-y"
+          className="bc-field"
         />
       </div>
 
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-700">
         We usually respond within 1–2 business days.
       </p>
 

@@ -50,10 +50,12 @@ export default function SubscribePage() {
               affiliate / paid links
             </li>
           </ul>
-          <p className="text-sm text-gray-600">
-            We store your address in our durable subscriber list and sync it to
-            the Chicago Boating Brief audience in SendFable. We do not sell your
-            email. Unsubscribe anytime from any Brief. See our{" "}
+          <p className="text-sm text-gray-700">
+            Signup uses the official SendFable form for the Chicago Boating
+            Brief audience. If that form cannot load, a backup signup still
+            stores your address in our durable subscriber list and syncs it to
+            the same Brief audience. We do not sell your email. Unsubscribe
+            anytime from any Brief. See our{" "}
             <Link
               href="/privacy"
               className="font-semibold text-sky-blue hover:underline"
