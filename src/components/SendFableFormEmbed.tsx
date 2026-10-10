@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import {
   SENDFABLE_FORM_SLUG,
-  hostHasForm,
   hostShowsSuccess,
-  hostShowsUnavailable,
   remountSendfableForms,
+  waitForHostForm,
 } from "@/lib/sendfable-embed";
 import { trackEvent } from "@/lib/tracking";
 
@@ -42,11 +41,12 @@ export function SendFableFormEmbed({
 
     let cancelled = false;
     let observer: MutationObserver | null = null;
-    let timeoutId = 0;
 
-    host.replaceChildren();
-    host.removeAttribute("data-sendfable-ready");
-    host.setAttribute("data-sendfable-form", SENDFABLE_FORM_SLUG);
+    const resetHost = () => {
+      host.replaceChildren();
+      host.removeAttribute("data-sendfable-ready");
+      host.setAttribute("data-sendfable-form", SENDFABLE_FORM_SLUG);
+    };
 
     const markFailed = () => {
       if (cancelled) return;
@@ -73,25 +73,30 @@ export function SendFableFormEmbed({
       });
     };
 
+    const attemptMount = async (): Promise<"ready" | "unavailable" | "timeout"> => {
+      resetHost();
+      await remountSendfableForms();
+      if (cancelled) return "timeout";
+      return waitForHostForm(host, 10000);
+    };
+
     (async () => {
       try {
-        await remountSendfableForms();
+        let result = await attemptMount();
         if (cancelled) return;
 
-        // Give the official mount a moment to fetch form JSON and paint.
-        const started = Date.now();
-        while (Date.now() - started < 8000) {
+        // One retry for transient CDN / rate-limit / SPA remount races
+        if (result !== "ready") {
+          await new Promise((r) => setTimeout(r, 600));
           if (cancelled) return;
-          if (hostHasForm(host)) {
-            setStatus("ready");
-            watchSuccess();
-            return;
-          }
-          if (hostShowsUnavailable(host)) {
-            markFailed();
-            return;
-          }
-          await new Promise((r) => setTimeout(r, 150));
+          result = await attemptMount();
+        }
+
+        if (cancelled) return;
+        if (result === "ready") {
+          setStatus("ready");
+          watchSuccess();
+          return;
         }
         markFailed();
       } catch {
@@ -99,13 +104,8 @@ export function SendFableFormEmbed({
       }
     })();
 
-    timeoutId = window.setTimeout(() => {
-      if (!cancelled && !hostHasForm(host)) markFailed();
-    }, 9000);
-
     return () => {
       cancelled = true;
-      window.clearTimeout(timeoutId);
       observer?.disconnect();
       host.replaceChildren();
       host.removeAttribute("data-sendfable-ready");
@@ -123,7 +123,6 @@ export function SendFableFormEmbed({
         ref={hostRef}
         data-sendfable-form={SENDFABLE_FORM_SLUG}
         className="sendfable-embed-host"
-        // Official embed also reads data-theme; form default is inherit.
         data-theme="inherit"
       />
       {status === "failed" ? (

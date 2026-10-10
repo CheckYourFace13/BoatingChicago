@@ -4,8 +4,8 @@
  * Markup: <div data-sendfable-form="{slug}"></div>
  *
  * The script mounts on DOMContentLoaded only and exposes no remount API.
- * We load it once, then re-execute the same cached script when a new host
- * appears after client-side navigation (clears data-sendfable-ready first).
+ * We load a single script node, then re-execute that cached script when a new
+ * host appears after client-side navigation (after clearing data-sendfable-ready).
  */
 
 export const SENDFABLE_FORM_SLUG = "boatingchicago-newsletter";
@@ -20,40 +20,41 @@ function existingScript(): HTMLScriptElement | null {
   return document.querySelector<HTMLScriptElement>(`script[${SCRIPT_ATTR}]`);
 }
 
-/** Ensure the official embed script is present (first load only creates it). */
+function injectScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = SENDFABLE_EMBED_SCRIPT;
+    script.async = true;
+    script.setAttribute(SCRIPT_ATTR, "1");
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("SendFable embed script failed to load"));
+    document.body.appendChild(script);
+  });
+}
+
+/** Ensure the official embed script is present. */
 export function loadSendfableEmbedScript(): Promise<void> {
   if (typeof document === "undefined") {
     return Promise.reject(new Error("no document"));
   }
   if (loadPromise) return loadPromise;
 
-  loadPromise = new Promise((resolve, reject) => {
-    const existing = existingScript();
-    if (existing) {
-      // Already injected — resolve on next tick so callers can remount.
-      resolve();
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = SENDFABLE_EMBED_SCRIPT;
-    script.async = true;
-    script.setAttribute(SCRIPT_ATTR, "1");
-    script.onload = () => resolve();
-    script.onerror = () => {
-      loadPromise = null;
-      reject(new Error("SendFable embed script failed to load"));
-    };
-    document.body.appendChild(script);
-  });
+  const existing = existingScript();
+  if (existing) {
+    loadPromise = Promise.resolve();
+    return loadPromise;
+  }
 
+  loadPromise = injectScript().catch((err) => {
+    loadPromise = null;
+    throw err;
+  });
   return loadPromise;
 }
 
 /**
- * Remount forms that are not yet marked ready.
- * Re-appends a fresh script node so the official IIFE runs again
- * (dynamically inserted scripts execute even when cached).
- * Keeps a single logical loader: previous loader node is replaced, not stacked.
+ * Mount any hosts that are not yet marked ready.
+ * Replaces the single loader script node so the official IIFE runs again.
  */
 export async function remountSendfableForms(): Promise<void> {
   await loadSendfableEmbedScript();
@@ -63,10 +64,11 @@ export async function remountSendfableForms(): Promise<void> {
   );
   if (pending.length === 0) return;
 
-  const prev = existingScript();
-  prev?.remove();
+  existingScript()?.remove();
   loadPromise = null;
-  await loadSendfableEmbedScript();
+  await injectScript().then(() => {
+    loadPromise = Promise.resolve();
+  });
 }
 
 export function hostHasForm(el: HTMLElement): boolean {
@@ -87,7 +89,19 @@ export function hostShowsSuccess(el: HTMLElement): boolean {
     text.includes("thanks for joining") ||
     text.includes("you're subscribed") ||
     text.includes("you’re subscribed") ||
-    text.includes("check your email") ||
-    text.includes("already")
+    text.includes("check your email")
   );
+}
+
+export async function waitForHostForm(
+  el: HTMLElement,
+  timeoutMs = 12000
+): Promise<"ready" | "unavailable" | "timeout"> {
+  const started = Date.now();
+  while (Date.now() - started < timeoutMs) {
+    if (hostHasForm(el)) return "ready";
+    if (hostShowsUnavailable(el)) return "unavailable";
+    await new Promise((r) => setTimeout(r, 150));
+  }
+  return hostHasForm(el) ? "ready" : "timeout";
 }
