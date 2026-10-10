@@ -156,7 +156,9 @@ export async function sendContactNotification(input: {
   email: string;
   subject: string;
   message: string;
-}): Promise<boolean> {
+  /** Whether the visitor opted into the Chicago Boating Brief (consent only — not SendFable payload). */
+  briefOptIn?: boolean;
+}): Promise<{ sent: boolean; recipientConfigured: boolean }> {
   const config = getEmailConfig();
   // Prefer CONTACT_EMAIL, fall back to LEADS_TO_EMAIL — never expose either to clients
   const to =
@@ -170,14 +172,19 @@ export async function sendContactNotification(input: {
       email: input.email,
       subject: input.subject,
     });
-    return false;
+    return { sent: false, recipientConfigured: false };
   }
+
+  const briefLine = input.briefOptIn
+    ? "Chicago Boating Brief opt-in: YES (email-only enrollment requested)"
+    : "Chicago Boating Brief opt-in: no";
 
   const subject = `[Boating Chicago] Contact: ${input.subject} — ${input.name}`;
   const text = [
     `Name: ${input.name}`,
     `Email: ${input.email}`,
     `Subject: ${input.subject}`,
+    briefLine,
     `Message:`,
     input.message,
     `Submitted: ${new Date().toISOString()}`,
@@ -187,21 +194,22 @@ export async function sendContactNotification(input: {
     <p><strong>Name:</strong> ${escapeHtml(input.name)}</p>
     <p><strong>Email:</strong> ${escapeHtml(input.email)}</p>
     <p><strong>Subject:</strong> ${escapeHtml(input.subject)}</p>
+    <p><strong>Brief opt-in:</strong> ${input.briefOptIn ? "YES" : "no"}</p>
     <p><strong>Message:</strong></p>
     <pre style="white-space:pre-wrap;font-family:sans-serif;">${escapeHtml(input.message)}</pre>
   `;
 
   if (config.resendApiKey) {
     const sent = await sendViaResend(config, to, subject, text, html);
-    if (sent) return true;
+    if (sent) return { sent: true, recipientConfigured: true };
   }
   if (config.sendgridApiKey) {
     const sent = await sendViaSendGrid(config, to, subject, text, html);
-    if (sent) return true;
+    if (sent) return { sent: true, recipientConfigured: true };
   }
 
   console.log("[contact] Email not sent (missing or failed provider) — logged:", input.email);
-  return false;
+  return { sent: false, recipientConfigured: true };
 }
 
 function escapeHtml(s: string): string {

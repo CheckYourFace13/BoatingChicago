@@ -8,17 +8,27 @@ import {
   sendfableUpsertContact,
 } from "@/lib/sendfable-client";
 
+export type NewsletterSyncResult = {
+  status: "synced" | "failed" | "skipped";
+  created?: boolean;
+  contactId?: string | null;
+  error?: string;
+};
+
 /**
  * Sync a single signup to the SendFable “Chicago Boating Brief” audience.
  * Local MySQL row is already durable — sync failure must not undo that.
+ * Email-only: never send name/subject/message.
  */
-export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<void> {
+export async function syncNewsletterSignup(
+  signup: NewsletterSignup
+): Promise<NewsletterSyncResult> {
   if (!isSendfableConfigured()) {
     await markSendfableSync(signup.email, {
       status: "skipped",
       error: "SendFable not configured",
     });
-    return;
+    return { status: "skipped", error: "SendFable not configured" };
   }
 
   const result = await sendfableUpsertContact({
@@ -32,7 +42,7 @@ export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<vo
       error: result.error,
     });
     console.error("[newsletter] SendFable sync failed");
-    return;
+    return { status: "failed", error: result.error };
   }
 
   await markSendfableSync(signup.email, {
@@ -40,6 +50,11 @@ export async function syncNewsletterSignup(signup: NewsletterSignup): Promise<vo
     contactId: result.contactId || null,
     error: null,
   });
+  return {
+    status: "synced",
+    created: result.created,
+    contactId: result.contactId || null,
+  };
 }
 
 /** Retry pending/failed syncs (owner cron or post-signup recovery). */
