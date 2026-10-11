@@ -392,7 +392,7 @@ export const categories: CategoryPage[] = [
     relatedSlugs: ["chicago-dining-cruises", "boat-rentals-chicago", "yacht-rentals-chicago"],
     faqs: [
       { question: "What is a Chicago architecture cruise?", answer: "An architecture cruise is a guided boat tour on the Chicago River (and sometimes Lake Michigan) focused on downtown buildings, bridges, and skyline history. It is a ticketed public tour, not a private boat rental." },
-      { question: "How long do architecture cruises last?", answer: "Most Chicago architecture river tours run about 45–90 minutes. The 75-minute guided cruise is a popular middle option." },
+      { question: "How long do architecture cruises last?", answer: "Wendella’s Chicago River architecture tours run 45 or 90 minutes (the fuller 90-minute tour is often listed as 1.5 hours on booking partners). Confirm the exact duration on the operator or booking page before you go." },
       { question: "Can I book a private architecture charter instead?", answer: "Yes — if you want a private boat with your own group and schedule, browse instant-booking options on this page. Architecture cruises below are ready-to-book public tours." },
       sharedFaqs.weather,
     ],

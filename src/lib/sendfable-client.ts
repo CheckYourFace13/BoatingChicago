@@ -108,6 +108,44 @@ export async function sendfableUntagReserved(): Promise<
   };
 }
 
+export async function sendfableUpdateCampaign(input: {
+  campaignId: string;
+  name?: string;
+  subject: string;
+  previewText?: string;
+  htmlBody: string;
+}): Promise<
+  | {
+      ok: true;
+      campaignId: string;
+      status: string;
+      scheduledAt: string | null;
+      issueSlotKey?: string | null;
+      refreshedAt?: string;
+    }
+  | { ok: false; error: string; status: number }
+> {
+  const result = await sfFetch<{
+    campaignId: string;
+    status: string;
+    scheduledAt: string | null;
+    issueSlotKey?: string | null;
+    refreshedAt?: string;
+  }>("/api/v1/campaigns/update", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+  if (!result.ok) return { ok: false, error: result.error, status: result.status };
+  return {
+    ok: true,
+    campaignId: result.data.campaignId,
+    status: result.data.status,
+    scheduledAt: result.data.scheduledAt,
+    issueSlotKey: result.data.issueSlotKey,
+    refreshedAt: result.data.refreshedAt,
+  };
+}
+
 export async function sendfableCreateCampaign(input: {
   name: string;
   subject: string;

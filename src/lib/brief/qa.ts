@@ -44,6 +44,17 @@ export async function qaBriefIssue(issue: BriefIssue): Promise<BriefQaResult> {
     errors.push("Missing required weekend conditions section");
   }
 
+  // No blanket Good/Caution/Poor email ratings (weekend winds can disagree)
+  if (/\b(Good|Caution|Poor)\s+near-term\b/i.test(issue.htmlBody)) {
+    errors.push("Brief must not use near-term condition rating labels in email body");
+  }
+  if (/No elevated wind/i.test(issue.htmlBody)) {
+    errors.push("Brief must not claim 'No elevated wind' (use factual NWS wind strings)");
+  }
+  if (/\bGood near-term conditions\b/i.test(issue.htmlBody)) {
+    errors.push("Brief must not use 'Good near-term conditions' label");
+  }
+
   // Duplicate story headlines
   const newsSection = issue.sections.find((s) => s.id === "news");
   if (newsSection) {

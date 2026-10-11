@@ -17,6 +17,7 @@ import {
   sendfableListCampaigns,
   sendfableStatus,
   sendfableUntagReserved,
+  sendfableUpdateCampaign,
 } from "@/lib/sendfable-client";
 
 export const runtime = "nodejs";
@@ -29,11 +30,11 @@ export const maxDuration = 120;
  *
  * Query:
  *   ?mode=preview   — generate + QA only (default when paused or dry)
- *   ?mode=schedule  — create SendFable campaign scheduled for next Thu 3pm CT
- *   ?force=1        — allow schedule even if not Thursday window
+ *   ?mode=schedule  — create or refresh SendFable campaign for next Thu 3pm CT
+ *   ?force=1        — allow schedule even if automation paused
  *
- * Recommended Hostinger/external cron: every Thursday 14:30 America/Chicago
- * hitting mode=schedule so the campaign is queued for 15:00 CT.
+ * Thursday cron refreshes content on an existing SCHEDULED campaign for the
+ * same America/Chicago issue slot (no second campaign / no blast).
  */
 export async function POST(request: Request) {
   try {
@@ -45,7 +46,6 @@ export async function POST(request: Request) {
     const mode = (url.searchParams.get("mode") || "schedule").toLowerCase();
     const force = url.searchParams.get("force") === "1";
 
-    // Always attempt sync + contact delivery retry (safe, capped)
     const syncRetry = await retryFailedSendfableSyncs(40);
     const contactRetry = await retryFailedContactDeliveries(25).catch((err) => {
       console.error(
@@ -66,7 +66,14 @@ export async function POST(request: Request) {
       });
     }
 
-    const issue = await generateBriefIssue();
+    const scheduledAtDate = nextThursdayBriefAt();
+    const scheduledAt = scheduledAtDate.toISOString();
+    const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
+
+    const issue = await generateBriefIssue({
+      now: new Date(),
+      issueDate: scheduledAtDate,
+    });
     const qa = await qaBriefIssue(issue);
 
     if (!qa.ok) {
@@ -96,7 +103,8 @@ export async function POST(request: Request) {
         meta: issue.meta,
         qa,
         schedule: BRIEF_SCHEDULE_LABEL,
-        nextScheduledAt: nextThursdayBriefAt().toISOString(),
+        nextScheduledAt: scheduledAt,
+        issueSlotKey,
         htmlLength: issue.htmlBody.length,
         syncRetry,
         contactRetry,
@@ -132,15 +140,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Drop reserved QA example.* addresses from production Brief audience.
     const untag = await sendfableUntagReserved().catch(() => null);
 
-    const scheduledAtDate = nextThursdayBriefAt();
-    const scheduledAt = scheduledAtDate.toISOString();
-    const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
-
-    // Idempotency: do not queue a second subscriber campaign for the same Thu slot
-    // (covers SCHEDULED / SENDING / PAUSED / COMPLETED — not only SCHEDULED).
     const listed = await sendfableListCampaigns();
     if (listed.ok) {
       const existing = findExistingBriefSchedule(
@@ -148,6 +149,50 @@ export async function POST(request: Request) {
         scheduledAtDate
       );
       if (existing) {
+        // Refresh content in place when still SCHEDULED (same campaign + slot).
+        if (existing.status === "SCHEDULED") {
+          const refreshed = await sendfableUpdateCampaign({
+            campaignId: existing.id,
+            name: `Chicago Boating Brief — ${issue.editionKey}`,
+            subject: issue.subject,
+            previewText: issue.previewText,
+            htmlBody: issue.htmlBody,
+          });
+          if (!refreshed.ok) {
+            return NextResponse.json(
+              {
+                ok: false,
+                stage: "refresh",
+                error: refreshed.error,
+                campaignId: existing.id,
+                qa,
+                syncRetry,
+                contactRetry,
+                untag,
+              },
+              { status: refreshed.status || 502 }
+            );
+          }
+          return NextResponse.json({
+            ok: true,
+            stage: "refreshed",
+            campaignId: refreshed.campaignId,
+            status: refreshed.status,
+            scheduledAt: refreshed.scheduledAt || existing.scheduledAt,
+            issueSlotKey: refreshed.issueSlotKey || issueSlotKey,
+            subject: issue.subject,
+            sections: issue.sections.map((s) => s.id),
+            refreshedAt: refreshed.refreshedAt,
+            message:
+              "Refreshed weather/news content on the existing SCHEDULED Brief for this America/Chicago issue slot — no duplicate campaign created.",
+            qa,
+            syncRetry,
+            contactRetry,
+            untag,
+            schedule: BRIEF_SCHEDULE_LABEL,
+          });
+        }
+
         return NextResponse.json({
           ok: true,
           stage: "already_scheduled",
@@ -157,7 +202,7 @@ export async function POST(request: Request) {
           issueSlotKey: existing.issueSlotKey || issueSlotKey,
           subject: existing.subject,
           message:
-            "A Chicago Boating Brief campaign already occupies this America/Chicago issue slot — skipped create to avoid a duplicate subscriber send.",
+            "A Chicago Boating Brief campaign already occupies this America/Chicago issue slot in a non-refreshable status — skipped create.",
           qa,
           syncRetry,
           contactRetry,
@@ -219,6 +264,5 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  // Allow GET for simple cron providers that only support GET
   return POST(request);
 }

@@ -22,6 +22,7 @@ import {
   sendfableStatus,
   sendfableTestCampaign,
   sendfableUntagReserved,
+  sendfableUpdateCampaign,
 } from "@/lib/sendfable-client";
 import { hasDatabaseConfig } from "@/lib/db";
 
@@ -93,7 +94,9 @@ export async function POST(request: Request) {
     }
 
     if (action === "preview") {
-      const issue = await generateBriefIssue();
+      const issue = await generateBriefIssue({
+        issueDate: nextThursdayBriefAt(),
+      });
       const qa = await qaBriefIssue(issue);
       return NextResponse.json({
         ok: qa.ok,
@@ -119,7 +122,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "SendFable not configured" }, { status: 503 });
       }
 
-      const issue = await generateBriefIssue();
+      const issue = await generateBriefIssue({
+        issueDate: nextThursdayBriefAt(),
+      });
       const qa = await qaBriefIssue(issue);
       if (!qa.ok) {
         return NextResponse.json(
@@ -173,7 +178,13 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "SendFable not configured" }, { status: 503 });
       }
 
-      const issue = await generateBriefIssue();
+      const scheduledAtDate = nextThursdayBriefAt();
+      const scheduledAt = scheduledAtDate.toISOString();
+      const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
+
+      const issue = await generateBriefIssue({
+        issueDate: scheduledAtDate,
+      });
       const qa = await qaBriefIssue(issue);
       if (!qa.ok) {
         return NextResponse.json(
@@ -184,9 +195,6 @@ export async function POST(request: Request) {
 
       await sendfableUntagReserved().catch(() => null);
 
-      const scheduledAtDate = nextThursdayBriefAt();
-      const scheduledAt = scheduledAtDate.toISOString();
-      const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
       const listed = await sendfableListCampaigns();
       if (listed.ok) {
         const existing = findExistingBriefSchedule(
@@ -194,6 +202,33 @@ export async function POST(request: Request) {
           scheduledAtDate
         );
         if (existing) {
+          if (existing.status === "SCHEDULED") {
+            const refreshed = await sendfableUpdateCampaign({
+              campaignId: existing.id,
+              name: `Chicago Boating Brief — ${issue.editionKey}`,
+              subject: issue.subject,
+              previewText: issue.previewText,
+              htmlBody: issue.htmlBody,
+            });
+            if (!refreshed.ok) {
+              return NextResponse.json(
+                { ok: false, action, stage: "refresh", error: refreshed.error },
+                { status: refreshed.status || 502 }
+              );
+            }
+            return NextResponse.json({
+              ok: true,
+              action,
+              stage: "refreshed",
+              campaignId: refreshed.campaignId,
+              status: refreshed.status,
+              scheduledAt: refreshed.scheduledAt || existing.scheduledAt,
+              issueSlotKey: refreshed.issueSlotKey || issueSlotKey,
+              subject: issue.subject,
+              refreshedAt: refreshed.refreshedAt,
+              qa,
+            });
+          }
           return NextResponse.json({
             ok: true,
             action,

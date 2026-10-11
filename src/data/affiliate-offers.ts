@@ -211,13 +211,14 @@ export const affiliateOffers: AffiliateOffer[] = [
     id: "gyg-290485",
     provider: "getyourguide",
     providerProductId: "290485",
-    title: "Chicago River: 1.5-Hour Guided Architecture Cruise",
-    shortTitle: "1.5-Hour Architecture Cruise",
+    // Wendella operator listing: 90 Minute Chicago River Architecture Tour (GYG markets as 1.5 hours).
+    title: "Chicago River: 90-Minute Guided Architecture Cruise",
+    shortTitle: "90-Minute Architecture Cruise",
     shortDescription:
       "Chicago’s top-reviewed architecture river cruise — bridges, skyline landmarks, and downtown stories from the water.",
     url: buildGygUrl(
       "290485",
-      "chicago-river-75-minute-guided-architecture-cruise"
+      "chicago-river-90-minute-guided-architecture-cruise"
     ),
     category: "architecture-cruise",
     relatedPageSlugs: [
