@@ -32,9 +32,9 @@ export function PlanYourDay({
     {
       title: "1. Check conditions",
       blurb:
-        "Start with live marine weather and official NOAA/NWS products. A “Good” rating on this site is informational only — it is never a safety clearance.",
+        "Start with the area NOAA/NWS forecast for this destination (not a harbor- or ramp-specific observation). A “Good” rating on this site is informational only — it is never a safety clearance.",
       links: [
-        { href: weatherHref, label: "Local marine weather →" },
+        { href: weatherHref, label: "Area forecast →" },
         { href: "/weather", label: "Full weather hub →" },
       ],
     },

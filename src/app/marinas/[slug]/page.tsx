@@ -109,7 +109,7 @@ export default async function MarinaPage({ params }: PageProps) {
           ...(publishedDestination
             ? [
                 {
-                  label: `${weatherLocation?.label ?? "Marine"} weather`,
+                  label: `${weatherLocation?.label ?? "Area"} forecast`,
                   href: `/weather?location=${publishedDestination.weatherLocationId}`,
                 },
               ]
@@ -222,14 +222,14 @@ export default async function MarinaPage({ params }: PageProps) {
               >
                 boating in {publishedDestination.name}
               </Link>
-              , check{" "}
+              , check the{" "}
               <Link
                 href={`/weather?location=${publishedDestination.weatherLocationId}`}
                 className="font-semibold text-coral hover:underline"
               >
-                local marine weather
-              </Link>
-              , and browse{" "}
+                {weatherLocation?.label ?? "area"} forecast
+              </Link>{" "}
+              (area NOAA/NWS products — not a harbor-mouth observation), and browse{" "}
               <Link
                 href="/boat-launches"
                 className="font-semibold text-coral hover:underline"

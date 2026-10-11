@@ -137,7 +137,14 @@ export function buildConditionsTickerItems(input: {
   });
 
   const marineAlerts = chicago.alerts.filter((a) => a.isMarine);
-  if (marineAlerts.length > 0) {
+  if (chicago.alertsAvailable === false) {
+    items.push({
+      id: "alerts-unavailable",
+      label: "ALERTS UNAVAILABLE",
+      href: "/weather#marine-alerts",
+      kind: "alert",
+    });
+  } else if (marineAlerts.length > 0) {
     const top = marineAlerts[0];
     items.push({
       id: `alert-${top.id}`,

@@ -36,8 +36,11 @@ export default function BoatOwnershipPage() {
         links={[
           { label: "Marinas", href: "/marinas" },
           { label: "Boat launches", href: "/boat-launches" },
-          { label: "Winter storage guide", href: "/chicago-boat-storage-guide" },
-          { label: "Advertise a business", href: "/advertise" },
+          { label: "Storage & haul-out", href: "/storage" },
+          {
+            label: "Spring launch checklist",
+            href: "/spring-boat-launch-checklist-chicago",
+          },
         ]}
       />
 
@@ -142,8 +145,19 @@ export default function BoatOwnershipPage() {
             will actually keep. Our{" "}
             <Link href="/chicago-boat-storage-guide" className="font-semibold text-coral hover:underline">
               Chicago boat storage guide
+            </Link>
+            , the{" "}
+            <Link href="/storage" className="font-semibold text-coral hover:underline">
+              storage &amp; haul-out directory
+            </Link>
+            , and the{" "}
+            <Link
+              href="/spring-boat-launch-checklist-chicago"
+              className="font-semibold text-coral hover:underline"
+            >
+              spring launch checklist
             </Link>{" "}
-            covers the planning questions. Insurance and on-water towing are
+            cover planning questions. Insurance and on-water towing are
             separate contracts from the marina. Membership organizations such
             as BoatUS sell towing and membership products; compare the contract,
             the service area, and the boat you actually own.

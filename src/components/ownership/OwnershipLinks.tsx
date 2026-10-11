@@ -32,11 +32,13 @@ export function OwnershipNextLinks() {
       {[
         ["/marinas", "Marinas & harbors"],
         ["/boat-launches", "Public launches"],
+        ["/storage", "Storage & haul-out directory"],
         ["/chicago-boat-storage-guide", "Winter storage guide"],
+        ["/spring-boat-launch-checklist-chicago", "Spring launch checklist"],
         ["/lake-michigan-boating-guide", "Lake Michigan guide"],
         ["/essential-boating-gear-chicago", "Essential gear checklist"],
         ["/beginners-guide-boating-chicago", "Beginner guide"],
-        ["/weather", "Marine weather"],
+        ["/weather", "Area weather forecast"],
         ["/destinations/chicago", "Boating in Chicago"],
       ].map(([href, label]) => (
         <li key={href}>

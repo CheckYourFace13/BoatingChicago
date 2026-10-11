@@ -40,11 +40,13 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 
 Weather ratings and “no alerts” messaging on this site are informational only and never a safety clearance. Always verify marine forecasts, harbor rules, fees, and hours on operator or agency pages before you go.
 
-## Winter planning (seasonal)
+## Winter & spring ownership planning (seasonal)
 - Boat storage guide: ${siteConfig.url}/chicago-boat-storage-guide
 - Winter storage checklist: ${siteConfig.url}/winter-boat-storage-chicago
+- Storage & haul-out directory: ${siteConfig.url}/storage
 - Winterizing guide: ${siteConfig.url}/chicago-boat-winterizing-guide
 - Shrink wrap guide: ${siteConfig.url}/chicago-boat-shrink-wrap-guide
+- Spring launch checklist: ${siteConfig.url}/spring-boat-launch-checklist-chicago
 - Buying a boat off-season: ${siteConfig.url}/buying-a-boat-off-season-chicago
 - Chicago Boat Show buyer prep: ${siteConfig.url}/chicago-boat-show-buyer-guide
 

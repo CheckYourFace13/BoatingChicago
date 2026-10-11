@@ -105,3 +105,23 @@ export interface EventItem {
   isPublished: boolean;
   category: EventCategory;
 }
+
+/**
+ * Editorial storage / haul-out directory entry.
+ * Only list operators whose official site confirms relevant services.
+ * Never invent prices, availability, reviews, or endorsements.
+ */
+export interface StorageFacility {
+  slug: string;
+  name: string;
+  /** City / harbor / yard location as stated by the operator */
+  location: string;
+  /** Who the facility serves geographically (plain language) */
+  serviceArea: string;
+  summary: string;
+  /** Confirmed services only — wording must match the cited official page */
+  confirmedServices: string[];
+  officialWebsite: string;
+  source: SourceRef;
+  isPublished: boolean;
+}

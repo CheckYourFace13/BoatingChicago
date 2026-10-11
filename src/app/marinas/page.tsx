@@ -54,8 +54,8 @@ export default function MarinasPage() {
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Boat launches", href: "/boat-launches" },
-          { label: "Lakes & waterways", href: "/lakes" },
-          { label: "Boating weather", href: "/weather" },
+          { label: "Storage & haul-out", href: "/storage" },
+          { label: "Area weather forecast", href: "/weather" },
         ]}
       />
 

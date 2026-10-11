@@ -47,7 +47,7 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Spring is part of winterizing",
         paragraphs: [
-          "De-winterizing is not “just add fuel.” Impellers, anodes, zincs, bellows, and cooling integrity get attention during commissioning for a reason. Schedule spring service early — April shop calendars fill before the first warm weekend on the lake.",
+          "De-winterizing is not “just add fuel.” Manufacturer-directed commissioning and a qualified marine tech matter for cooling integrity and related systems. Schedule spring service early — April shop calendars fill before the first warm weekend on the lake. Use the spring boat launch checklist for registration, safety gear, launch access, and official conditions planning.",
         ],
       },
     ],
@@ -134,8 +134,8 @@ export const guidePart5: GuidePage[] = [
       "chicago-boat-storage-guide",
       "winter-boat-storage-chicago",
       "chicago-boat-shrink-wrap-guide",
+      "spring-boat-launch-checklist-chicago",
       "chicago-boat-repair-guide",
-      "boat-ownership",
     ],
     showLeadForm: false,
   },
@@ -241,6 +241,7 @@ export const guidePart5: GuidePage[] = [
       "chicago-boat-storage-guide",
       "winter-boat-storage-chicago",
       "chicago-boat-winterizing-guide",
+      "spring-boat-launch-checklist-chicago",
       "chicago-boat-detailing-guide",
     ],
     showLeadForm: false,
@@ -355,8 +356,9 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Verified show basics (confirm before you go)",
         paragraphs: [
-          "According to the official Discover Boating Chicago Boat Show site (chicagoboatshow.com), the show is listed for February 3–7, 2027 at the Donald E. Stephens Convention & Conference Center, 5555 N. River Road, Rosemont, IL 60018. Published show hours on that site (as of our last check) include Wednesday 2 PM–8 PM, Thursday–Saturday windows through evening, and Sunday ending earlier — re-check the organizer page for ticket products and any schedule changes.",
-          "The show moved away from McCormick Place; do not navigate to the old venue out of habit. Organizer contact details are published on the official about/FAQ pages.",
+          "According to the official Discover Boating Chicago Boat Show site (https://www.chicagoboatshow.com/), the show is listed for February 3–7, 2027 at the Donald E. Stephens Convention & Conference Center, 5555 N. River Road, Rosemont, IL 60018.",
+          "Published show hours on that official page (re-check before you travel): Wednesday 2 PM–8 PM; Thursday 11 AM–8 PM; Friday 11 AM–8 PM; Saturday 10 AM–8 PM; Sunday 10 AM–5 PM. Ticket products and any schedule changes are controlled by the organizer — use chicagoboatshow.com, not secondary blogs.",
+          "The show moved away from McCormick Place; do not navigate to the old venue out of habit. Organizer contact details are published on the official site.",
         ],
       },
       {
@@ -437,10 +439,170 @@ export const guidePart5: GuidePage[] = [
     ],
     relatedSlugs: [
       "buying-a-boat-off-season-chicago",
-      "boat-ownership",
       "beginners-guide-boating-chicago",
       "chicago-boat-storage-guide",
       "chicago-marina-guide",
+      "spring-boat-launch-checklist-chicago",
+    ],
+    showLeadForm: false,
+  },
+  {
+    slug: "spring-boat-launch-checklist-chicago",
+    title: "Chicago Spring Boat Launch Checklist",
+    seoTitle:
+      "Chicago Spring Boat Launch Checklist | Lake Michigan Commissioning Prep",
+    seoDescription:
+      "A source-backed Chicago and Lake Michigan spring launch checklist — manufacturer-directed service, safety gear, registration, launch access, and official conditions. Not a universal DIY procedure.",
+    headline: "Spring Boat Launch Checklist for Chicago & Lake Michigan",
+    intro:
+      "Getting a Chicago-area boat ready after winter is a planning sequence, not a single weekend DIY script. This checklist points owners to manufacturer instructions, qualified service, official registration and safety rules, public launch access, and National Weather Service conditions. It is not a universal mechanical procedure and it is not legal advice.",
+    sections: [
+      {
+        heading: "1. Schedule manufacturer-directed commissioning",
+        paragraphs: [
+          "Engine, drive, generator, and systems commissioning steps differ by brand and model year. Start with the current owner’s manuals and the engine manufacturer’s commissioning / de-winterizing guidance for your specific powerplant. If a yard’s “spring package” differs from the manufacturer’s instructions, ask the yard to match the manufacturer — not the other way around.",
+          "Book marine service early. Chicago-area shops fill before the first warm May weekend. Document what was inspected or serviced, with dates and who performed the work. BoatingChicago does not publish a single impeller, antifreeze, or fogging sequence for all boats.",
+        ],
+      },
+      {
+        heading: "2. Safety equipment before the first trip",
+        paragraphs: [
+          "Federal recreational-boat carriage requirements are published by the U.S. Coast Guard. Confirm life jackets that fit every person aboard, visual distress signals where required, sound-producing devices, fire extinguishers appropriate to the boat, and navigation lights that work — then re-check expiration dates on flares and extinguisher service tags.",
+          "Official USCG recreational boating safety materials are the reference, not a blog checklist. Illinois also publishes boating safety-education and equipment expectations through the Illinois Department of Natural Resources. Replace anything that failed in storage before you trailer to a ramp.",
+        ],
+      },
+      {
+        heading: "3. Registration, titles, and paperwork",
+        paragraphs: [
+          "Illinois registration, titling, and related boating rules are published by the Illinois Department of Natural Resources (dnr.illinois.gov/boating.html). Confirm the boat’s registration is current, numbers/decals are displayed as required, and any trailer registration or tow-vehicle requirements in your state are satisfied before launch day.",
+          "If the boat is principally used in Wisconsin, Indiana, or Michigan, follow that state’s registration and education rules. Do not treat this page as a substitute for the issuing agency’s current instructions.",
+        ],
+      },
+      {
+        heading: "4. Confirm launch or harbor access",
+        paragraphs: [
+          "Public ramps and harbor gates publish their own hours, fees, and seasonal rules. Use our boat launches and marinas directories to find the operator’s official page, then confirm access for the day you plan to splash — we do not reprint dollar amounts that go stale.",
+          "If the boat wintered at a yard, confirm the operator’s spring launch window and any requirement that you be present. Coordinate slip assignment or trailer parking before the travel lift is scheduled.",
+        ],
+      },
+      {
+        heading: "5. Check official conditions — not a go/no-go app",
+        paragraphs: [
+          "Before you leave the yard or driveway, read National Weather Service marine products for your area (weather.gov and our /weather page, which links area forecasts). Area forecasts and nearshore products are not the same as a wind sensor at your exact ramp or harbor mouth.",
+          "Our informational boating rating is never a safety clearance. If alerts or observations fail to load, treat conditions as unknown and verify on weather.gov — never assume “no alerts” means the lake is calm.",
+        ],
+      },
+      {
+        heading: "How this fits winter planning",
+        paragraphs: [
+          "Spring commissioning is easier when fall haul-out, winterization, and storage were documented. See the winter storage guide, winterizing guide, and the storage & haul-out directory for operator links confirmed from official sites.",
+          "Ownership cost context — slips, insurance, and surveys — lives on the boat ownership hub. Affiliate shopping links elsewhere on the site are labeled paid relationships, not endorsements of a specific yard or hull.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Spring launch planning checklist (Chicago-area)",
+      headers: ["Focus", "What to confirm", "Where to confirm"],
+      rows: [
+        [
+          "Systems / engine",
+          "Commissioning steps for your model",
+          "Manufacturer manuals + qualified marine service",
+        ],
+        [
+          "Safety gear",
+          "Carriage requirements and working equipment",
+          "USCG recreational boating safety + IL DNR",
+        ],
+        [
+          "Paperwork",
+          "Current registration / education rules",
+          "State DNR (IL, WI, IN, or MI as applicable)",
+        ],
+        [
+          "Access",
+          "Ramp/harbor hours, fees, launch window",
+          "Operator official page via launches/marinas directories",
+        ],
+        [
+          "Conditions",
+          "Marine forecasts and alerts for the area",
+          "weather.gov + BoatingChicago /weather area forecast",
+        ],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Late winter",
+        tip: "Book commissioning appointments before April shop calendars fill.",
+      },
+      {
+        season: "Early spring",
+        tip: "Confirm yard launch dates and ramp/harbor access on official operator pages.",
+      },
+      {
+        season: "First trips",
+        tip: "Re-check NWS marine products the morning you go — products change quickly.",
+      },
+      {
+        season: "After splash",
+        tip: "Keep service records with the boat; they help warranty claims and future buyers.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "When do Chicago boats typically launch in spring?",
+        answer:
+          "Many yards and harbors begin launching in a late-April to mid-May window depending on ice-out, weather, and operator schedules. Confirm dates with your storage yard or harbor — they are not fixed by this site.",
+      },
+      {
+        question: "Is this a do-it-yourself winterization reverse checklist?",
+        answer:
+          "No. Mechanical steps must follow your manufacturer’s instructions or a qualified marine technician. This page is a planning checklist with official sources.",
+      },
+      {
+        question: "Where do I check Illinois boat registration?",
+        answer:
+          "Use the Illinois Department of Natural Resources boating pages at dnr.illinois.gov/boating.html for current registration and related rules.",
+      },
+      {
+        question: "Does BoatingChicago tell me if it is safe to go?",
+        answer:
+          "No. We surface NOAA/NWS products and an informational summary. Always verify marine forecasts and alerts on weather.gov before you boat.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do I need a fishing license to launch my boat?",
+        answer:
+          "A boat launch does not require a fishing license by itself. Fishing in Illinois waters has separate license rules published by IL DNR. Confirm both launch access and fishing rules if you plan to fish.",
+      },
+      {
+        question: "Can I use any public ramp listed on this site?",
+        answer:
+          "Only if the operating agency currently allows it. Use each launch’s official link for hours, fees, and seasonal closures — listings are planning aids, not permits.",
+      },
+      {
+        question: "Where is the storage and haul-out directory?",
+        answer:
+          "See /storage for operators whose official websites confirm winter storage and/or haul-out services. Ask each operator for quotes and availability.",
+      },
+    ],
+    popularSearches: [
+      { label: "Storage & haul-out directory", href: "/storage" },
+      { label: "Winter boat storage", href: "/winter-boat-storage-chicago" },
+      { label: "Winterizing guide", href: "/chicago-boat-winterizing-guide" },
+      { label: "Boat launches", href: "/boat-launches" },
+      { label: "Boating weather", href: "/weather" },
+      { label: "Boat ownership", href: "/boat-ownership" },
+    ],
+    relatedSlugs: [
+      "winter-boat-storage-chicago",
+      "chicago-boat-storage-guide",
+      "chicago-boat-winterizing-guide",
+      "chicago-boat-shrink-wrap-guide",
+      "buying-a-boat-off-season-chicago",
+      "essential-boating-gear-chicago",
     ],
     showLeadForm: false,
   },

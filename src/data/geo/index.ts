@@ -4,18 +4,21 @@ import type {
   EventItem,
   Lake,
   Marina,
+  StorageFacility,
 } from "@/types/geo";
 import { destinations } from "./destinations";
 import { events } from "./events";
 import { lakes } from "./lakes";
 import { launches } from "./launches";
 import { marinas } from "./marinas";
+import { storageFacilities } from "./storage-facilities";
 
 export { destinations } from "./destinations";
 export { lakes } from "./lakes";
 export { marinas } from "./marinas";
 export { launches } from "./launches";
 export { events } from "./events";
+export { storageFacilities } from "./storage-facilities";
 
 function isPublished<T extends { isPublished: boolean }>(item: T): boolean {
   return item.isPublished;
@@ -116,4 +119,14 @@ export function filterExpiredEvents(
   asOf: Date = new Date(),
 ): EventItem[] {
   return items.filter((e) => !isEventExpired(e, asOf));
+}
+
+export function getPublishedStorageFacilities(): StorageFacility[] {
+  return storageFacilities.filter(isPublished);
+}
+
+export function getStorageFacilityBySlug(
+  slug: string,
+): StorageFacility | undefined {
+  return storageFacilities.find((f) => f.slug === slug);
 }

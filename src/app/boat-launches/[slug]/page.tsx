@@ -106,7 +106,7 @@ export default async function BoatLaunchPage({ params }: PageProps) {
                   href: `/destinations/${publishedDestination.slug}`,
                 },
                 {
-                  label: `${weatherLocation?.label ?? "Marine"} weather`,
+                  label: `${weatherLocation?.label ?? "Area"} forecast`,
                   href: `/weather?location=${publishedDestination.weatherLocationId}`,
                 },
               ]
@@ -222,16 +222,19 @@ export default async function BoatLaunchPage({ params }: PageProps) {
                 href={`/weather?location=${publishedDestination.weatherLocationId}`}
                 className="font-semibold text-coral hover:underline"
               >
-                Check marine conditions →
+                {weatherLocation?.label ?? "Area"} forecast →
               </Link>
             ) : (
               <Link
                 href="/weather"
                 className="font-semibold text-coral hover:underline"
               >
-                Check marine conditions →
+                Area forecast →
               </Link>
             )}
+            <p className="text-xs text-gray-500 mt-2">
+              Area NOAA/NWS products — not a ramp-specific observation.
+            </p>
           </div>
         </section>
 

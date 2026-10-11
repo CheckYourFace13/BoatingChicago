@@ -28,6 +28,7 @@ export function getAllIndexableUrls(): string[] {
     "/lakes",
     "/marinas",
     "/boat-launches",
+    "/storage",
     "/guides",
     "/events",
     "/weather",

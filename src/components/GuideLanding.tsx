@@ -73,6 +73,47 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/weather", label: "Boating weather" },
     { href: "/guides", label: "All guides" },
   ],
+  "chicago-boat-storage-guide": [
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+    { href: "/winter-boat-storage-chicago", label: "Winter storage checklist" },
+    { href: "/boat-ownership", label: "Boat ownership" },
+  ],
+  "winter-boat-storage-chicago": [
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+    { href: "/chicago-boat-winterizing-guide", label: "Winterizing guide" },
+    { href: "/boat-ownership", label: "Boat ownership" },
+  ],
+  "chicago-boat-winterizing-guide": [
+    { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/winter-boat-storage-chicago", label: "Winter storage checklist" },
+    { href: "/weather", label: "Area weather forecast" },
+  ],
+  "chicago-boat-shrink-wrap-guide": [
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/winter-boat-storage-chicago", label: "Winter storage checklist" },
+    { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+  ],
+  "buying-a-boat-off-season-chicago": [
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/chicago-boat-show-buyer-guide", label: "Boat show buyer prep" },
+    { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+  ],
+  "chicago-boat-show-buyer-guide": [
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/buying-a-boat-off-season-chicago", label: "Buying off-season" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/marinas", label: "Marinas" },
+  ],
+  "spring-boat-launch-checklist-chicago": [
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/boat-launches", label: "Boat launches" },
+    { href: "/weather", label: "Area weather forecast" },
+    { href: "/boat-ownership", label: "Boat ownership" },
+  ],
 };
 
 /** Guides where shopping for a boat is a natural next step — not every guide. */

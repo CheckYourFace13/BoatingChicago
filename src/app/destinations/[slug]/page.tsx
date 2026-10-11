@@ -105,8 +105,8 @@ export default async function DestinationPage({ params }: PageProps) {
         links={[
           {
             label: weatherLocation
-              ? `${weatherLocation.label} weather →`
-              : "Boating weather →",
+              ? `${weatherLocation.label} area forecast →`
+              : "Area forecast →",
             href: `/weather?location=${destination.weatherLocationId}`,
           },
           { label: "All destinations", href: "/destinations" },
@@ -149,13 +149,16 @@ export default async function DestinationPage({ params }: PageProps) {
             </p>
           </div>
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">
-            <p className="font-bold text-lake-blue mb-1">Marine weather</p>
+            <p className="font-bold text-lake-blue mb-1">Area forecast</p>
             <Link
               href={`/weather?location=${destination.weatherLocationId}`}
               className="font-semibold text-coral hover:underline"
             >
               {weatherLocation?.label ?? "Chicago lakefront"} →
             </Link>
+            <p className="text-xs text-gray-500 mt-2">
+              Shared NOAA/NWS area products — not a dock-specific observation.
+            </p>
           </div>
         </section>
 

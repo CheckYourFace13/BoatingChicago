@@ -75,12 +75,13 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
             Chicago Boating Weather &amp; Lake Michigan Conditions
           </h1>
           <p className="text-white/90 text-lg max-w-3xl leading-relaxed">
-            Official NOAA/NWS forecasts and alerts for recreational boaters —
-            plus a plain-language conditions summary. Always verify marine
-            products before you cast off.
+            Official NOAA/NWS area forecasts and alerts for recreational
+            boaters — plus a plain-language conditions summary. These are area
+            products, not exact harbor- or ramp-mouth observations. Always
+            verify marine products on weather.gov before you cast off.
             {isChicago
               ? ""
-              : ` Currently showing the nearest official forecast for ${weather.locationLabel}.`}
+              : ` Currently showing the nearest official area forecast for ${weather.locationLabel}.`}
           </p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
             <Link href="/news" className="text-sun-yellow hover:underline">

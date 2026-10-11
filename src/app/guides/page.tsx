@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
-import { guides, WINTER_GUIDE_SLUGS, getGuideBySlug } from "@/data/guides";
+import {
+  guides,
+  WINTER_GUIDE_SLUGS,
+  SPRING_GUIDE_SLUGS,
+  getGuideBySlug,
+} from "@/data/guides";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
@@ -68,6 +73,28 @@ export default function GuidesPage() {
                 </li>
               );
             })}
+            {SPRING_GUIDE_SLUGS.map((slug) => {
+              const g = getGuideBySlug(slug);
+              if (!g) return null;
+              return (
+                <li key={slug}>
+                  <Link
+                    href={`/${slug}`}
+                    className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
+                  >
+                    {g.title}
+                  </Link>
+                </li>
+              );
+            })}
+            <li>
+              <Link
+                href="/storage"
+                className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
+              >
+                Storage &amp; haul-out directory
+              </Link>
+            </li>
           </ul>
         </section>
 

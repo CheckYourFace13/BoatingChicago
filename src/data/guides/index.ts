@@ -23,6 +23,11 @@ export const WINTER_GUIDE_SLUGS = [
   "chicago-boat-show-buyer-guide",
 ] as const;
 
+/** Spring commissioning companion (linked from winter + ownership hubs). */
+export const SPRING_GUIDE_SLUGS = [
+  "spring-boat-launch-checklist-chicago",
+] as const;
+
 export function getGuideBySlug(slug: string): GuidePage | undefined {
   return guides.find((g) => g.slug === slug);
 }
