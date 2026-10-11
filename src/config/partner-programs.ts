@@ -165,3 +165,80 @@ export function isGiraffeToolsAwinUrl(
     return false;
   }
 }
+
+/** Piscifun product keys for approved Awin creatives (mid 89509). */
+export type PiscifunProduct = "carbon-x-reel" | "fishing-jacket";
+
+/**
+ * Verified 2026-10-11:
+ * - carbon-x-reel creative (gid 522760 / linkid 4878626) redirects to the
+ *   Carbon X ultralight spinning reel PDP (not a generic sale landing page).
+ * - fishing-jacket creative (gid 610836 / linkid 4846768) redirects to the
+ *   3-layer waterproof fly fishing wading jacket PDP; store listing showed
+ *   Lake Green & Dark Blue in S–3XL in stock at verification time.
+ */
+export const PISCIFUN_AWIN = {
+  mid: "89509",
+  awinaffid: AWIN_PUBLISHER_ID,
+  merchant: "piscifun",
+  brand: "piscifun",
+  products: {
+    "carbon-x-reel": {
+      product: "carbon-x-reel" as const,
+      gid: "522760",
+      linkid: "4878626",
+      label: "View Carbon X spinning reel",
+      shortName: "Piscifun Carbon X spinning reel",
+      destinationPath: "/products/piscifun-carbon-x-lightest-carbon-spinning-reel",
+    },
+    "fishing-jacket": {
+      product: "fishing-jacket" as const,
+      gid: "610836",
+      linkid: "4846768",
+      label: "View fishing jacket",
+      shortName: "Piscifun 3-layer fishing jacket",
+      destinationPath:
+        "/products/3-layer-waterproof-fly-fishing-wading-jacket",
+    },
+  },
+} as const;
+
+export function buildPiscifunAwinUrl(
+  product: PiscifunProduct,
+  clickref: string
+): string {
+  const creative = PISCIFUN_AWIN.products[product];
+  return buildAwinClickUrl({
+    gid: creative.gid,
+    mid: PISCIFUN_AWIN.mid,
+    linkid: creative.linkid,
+    clickref,
+    awinaffid: PISCIFUN_AWIN.awinaffid,
+  });
+}
+
+export function isPiscifunAwinUrl(
+  url: string,
+  product?: PiscifunProduct
+): boolean {
+  try {
+    const u = new URL(url);
+    if (u.hostname !== "www.awin1.com" && u.hostname !== "awin1.com") {
+      return false;
+    }
+    if (
+      u.searchParams.get("mid") !== PISCIFUN_AWIN.mid ||
+      u.searchParams.get("awinaffid") !== PISCIFUN_AWIN.awinaffid
+    ) {
+      return false;
+    }
+    if (!product) return true;
+    const creative = PISCIFUN_AWIN.products[product];
+    return (
+      u.searchParams.get("gid") === creative.gid &&
+      u.searchParams.get("linkid") === creative.linkid
+    );
+  } catch {
+    return false;
+  }
+}

@@ -324,3 +324,60 @@ export function trackGiraffeToolsAffiliateClick(
     campaign_code: sanitizeCampaignCode(ctx.clickref),
   });
 }
+
+export interface PiscifunClickContext extends AffiliateClickContext {
+  product: "carbon-x-reel" | "fishing-jacket";
+  clickref: string;
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for Piscifun via Awin (merchant ID 89509).
+ * One call per click — do not also bind data-track listeners. No PII.
+ */
+export function trackPiscifunAffiliateClick(ctx: PiscifunClickContext): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+  const creativeId =
+    ctx.product === "carbon-x-reel" ? "4878626" : "4846768";
+  const productName =
+    ctx.product === "carbon-x-reel"
+      ? "Piscifun Carbon X Spinning Reel"
+      : "Piscifun 3-Layer Fishing Jacket";
+
+  trackEvent("affiliate_click", {
+    provider: "awin",
+    merchant: "piscifun",
+    brand: "piscifun",
+    merchant_id: "89509",
+    creative_id: creativeId,
+    product: ctx.product,
+    product_id: ctx.product,
+    product_name: productName,
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "piscifun",
+    clickref: ctx.clickref,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "awin",
+    offer_id: `piscifun-${ctx.product}`,
+    offer_title: productName,
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(ctx.clickref),
+  });
+}

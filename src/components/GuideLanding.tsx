@@ -10,6 +10,7 @@ import { AmazonRecommendedGear } from "./AmazonRecommendedGear";
 import { getAmazonGearPlacementForGuide } from "@/data/amazon-gear";
 import { BoatTraderShopCta } from "./ownership/BoatTraderShopCta";
 import { GiraffeToolsMaintenanceCta } from "./ownership/GiraffeToolsMaintenanceCta";
+import { PiscifunFishingGearCta } from "./ownership/PiscifunFishingGearCta";
 import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
@@ -132,6 +133,45 @@ const GUIDE_GIRAFFE_TOOLS: Record<
   },
 };
 
+/** Guides where Piscifun Awin gear/clothing links are editorially appropriate. */
+const GUIDE_PISCIFUN: Record<
+  string,
+  {
+    placement: string;
+    heading?: string;
+    intro?: string;
+    items: Array<{
+      product: "carbon-x-reel" | "fishing-jacket";
+      clickref: string;
+      blurb: string;
+      ctaLabel?: string;
+    }>;
+  }
+> = {
+  "chicago-fishing-guide": {
+    placement: "chicago-fishing-guide",
+    heading: "Optional tackle & outerwear links",
+    intro:
+      "Charters often supply rods. For pier or kayak fishing, or for cool early-morning Lake Michigan starts, these merchant product pages are optional reference links — not required gear lists.",
+    items: [
+      {
+        product: "carbon-x-reel",
+        clickref: "chicago-fishing-reel",
+        blurb:
+          "The linked Awin creative opens the Piscifun Carbon X ultralight spinning reel product page. Confirm size, handle options, and current availability on the merchant page before buying.",
+        ctaLabel: "View Carbon X spinning reel",
+      },
+      {
+        product: "fishing-jacket",
+        clickref: "chicago-fishing-jacket",
+        blurb:
+          "The linked Awin creative opens the Piscifun 3-layer fishing jacket product page (merchant title includes waterproof). At verification time the store listed sizes S–3XL in Lake Green and Dark Blue — confirm size chart, materials, and stock on the merchant page.",
+        ctaLabel: "View fishing jacket",
+      },
+    ],
+  },
+};
+
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
   if (cat) return cat.title;
@@ -148,6 +188,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const amazonPlacement = getAmazonGearPlacementForGuide(guide.slug);
   const boatTrader = GUIDE_BOAT_TRADER[guide.slug];
   const giraffeTools = GUIDE_GIRAFFE_TOOLS[guide.slug];
+  const piscifun = GUIDE_PISCIFUN[guide.slug];
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -306,6 +347,16 @@ export function GuideLanding({ guide }: GuideLandingProps) {
           <AmazonRecommendedGear
             placement={amazonPlacement}
             analyticsPlacement="guide_amazon_gear"
+          />
+        ) : null}
+
+        {piscifun ? (
+          <PiscifunFishingGearCta
+            placement={piscifun.placement}
+            pageSlug={`/${guide.slug}`}
+            heading={piscifun.heading}
+            intro={piscifun.intro}
+            items={piscifun.items}
           />
         ) : null}
 
