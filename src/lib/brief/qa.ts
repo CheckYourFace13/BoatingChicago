@@ -85,9 +85,15 @@ export async function qaBriefIssue(issue: BriefIssue): Promise<BriefQaResult> {
         signal: AbortSignal.timeout(10_000),
         headers: { "User-Agent": "BoatingChicago-BriefQA/1.0" },
       });
-      if (res.status >= 400 && res.status !== 405 && res.status !== 403) {
-        // Some affiliate/Amazon endpoints block bots with 403 — warn only
-        if (res.status === 403 || res.status === 999) {
+      if (res.status >= 400 && res.status !== 405) {
+        // Affiliate/Amazon endpoints often bot-block or flap with 403/429/503/999.
+        const affiliateSoft =
+          res.status === 403 ||
+          res.status === 429 ||
+          res.status === 503 ||
+          res.status === 999 ||
+          /amazon\.|amzn\.|getyourguide\.|viator\./i.test(url);
+        if (affiliateSoft) {
           warnings.push(`Link soft-fail ${res.status}: ${url.slice(0, 100)}`);
         } else {
           errors.push(`Broken link ${res.status}: ${url.slice(0, 100)}`);
