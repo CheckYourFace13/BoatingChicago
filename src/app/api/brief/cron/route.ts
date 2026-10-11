@@ -8,6 +8,7 @@ import {
 } from "@/lib/brief/schedule";
 import { briefCronAuthorized } from "@/lib/brief/auth";
 import { retryFailedSendfableSyncs } from "@/lib/newsletter-sync";
+import { retryFailedContactDeliveries } from "@/lib/contact-retry";
 import {
   isSendfableConfigured,
   sendfableCreateCampaign,
@@ -40,8 +41,15 @@ export async function POST(request: Request) {
     const mode = (url.searchParams.get("mode") || "schedule").toLowerCase();
     const force = url.searchParams.get("force") === "1";
 
-    // Always attempt sync retry (safe, capped)
+    // Always attempt sync + contact delivery retry (safe, capped)
     const syncRetry = await retryFailedSendfableSyncs(40);
+    const contactRetry = await retryFailedContactDeliveries(25).catch((err) => {
+      console.error(
+        "[brief-cron] contact retry failed:",
+        err instanceof Error ? err.message : "error"
+      );
+      return { attempted: 0, accepted: 0, failed: 0 };
+    });
 
     if (isBriefAutomationPaused() && mode === "schedule" && !force) {
       return NextResponse.json({
@@ -50,6 +58,7 @@ export async function POST(request: Request) {
         message: "Brief automation is paused (BRIEF_AUTOMATION_PAUSED)",
         schedule: BRIEF_SCHEDULE_LABEL,
         syncRetry,
+        contactRetry,
       });
     }
 
@@ -67,6 +76,7 @@ export async function POST(request: Request) {
           subject: issue.subject,
           sections: issue.sections.map((s) => s.id),
           syncRetry,
+          contactRetry,
         },
         { status: 422 }
       );
@@ -85,6 +95,7 @@ export async function POST(request: Request) {
         nextScheduledAt: nextThursdayBriefAt().toISOString(),
         htmlLength: issue.htmlBody.length,
         syncRetry,
+        contactRetry,
       });
     }
 
@@ -96,6 +107,7 @@ export async function POST(request: Request) {
           error: "SendFable API not configured (SENDFABLE_API_URL / SENDFABLE_API_SECRET)",
           qa,
           syncRetry,
+          contactRetry,
         },
         { status: 503 }
       );
@@ -110,6 +122,7 @@ export async function POST(request: Request) {
           error: "SendFable CAMPAIGN_SEND_ENABLED is false — refusing to schedule",
           qa,
           syncRetry,
+          contactRetry,
         },
         { status: 503 }
       );
@@ -134,6 +147,7 @@ export async function POST(request: Request) {
           error: created.error,
           qa,
           syncRetry,
+          contactRetry,
         },
         { status: created.status || 502 }
       );
@@ -150,6 +164,7 @@ export async function POST(request: Request) {
       badge: created.badge,
       qa,
       syncRetry,
+      contactRetry,
       schedule: BRIEF_SCHEDULE_LABEL,
     });
   } catch (err) {

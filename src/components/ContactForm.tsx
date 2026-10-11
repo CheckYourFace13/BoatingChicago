@@ -19,6 +19,8 @@ type NewsletterApi = {
   error?: string;
 };
 
+type DeliveryStatus = "accepted" | "queued" | "failed" | null;
+
 export function ContactForm({
   defaultSubject,
   placement = "contact",
@@ -30,14 +32,14 @@ export function ContactForm({
     "idle"
   );
   const [errorMsg, setErrorMsg] = useState("");
-  const [delivered, setDelivered] = useState<boolean | null>(null);
+  const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>(null);
   const [newsletter, setNewsletter] = useState<NewsletterApi | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
     setErrorMsg("");
-    setDelivered(null);
+    setDeliveryStatus(null);
     setNewsletter(null);
 
     const form = e.currentTarget;
@@ -46,7 +48,7 @@ export function ContactForm({
     // Honeypot — bots fill this; humans never see it
     if (String(data.get("company_website") || "").trim()) {
       setStatus("success");
-      setDelivered(true);
+      setDeliveryStatus("accepted");
       form.reset();
       return;
     }
@@ -69,6 +71,9 @@ export function ContactForm({
       const json = (await res.json().catch(() => ({}))) as {
         error?: string;
         delivered?: boolean;
+        queued?: boolean;
+        status?: string;
+        inboxConfirmed?: boolean;
         newsletter?: NewsletterApi;
       };
       if (!res.ok) {
@@ -86,12 +91,20 @@ export function ContactForm({
           already_subscribed: json.newsletter?.alreadySubscribed ? "yes" : "no",
         });
       }
-      setDelivered(Boolean(json.delivered));
+
+      const nextStatus: DeliveryStatus =
+        json.status === "accepted" || json.delivered
+          ? "accepted"
+          : json.status === "queued" || json.queued
+            ? "queued"
+            : "failed";
+      setDeliveryStatus(nextStatus);
       setNewsletter(json.newsletter || { optedIn: briefOptIn });
       setStatus("success");
       form.reset();
     } catch (err) {
       setStatus("error");
+      setDeliveryStatus("failed");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
     }
   }
@@ -107,16 +120,27 @@ export function ContactForm({
           ? "Your Brief signup was saved and will finish syncing shortly."
           : "Your message was received, but Brief signup could not be completed right now.";
 
+    const title =
+      deliveryStatus === "accepted"
+        ? "Message sent"
+        : deliveryStatus === "queued"
+          ? "Message queued"
+          : "Message status";
+
+    const body =
+      deliveryStatus === "accepted"
+        ? "Thanks for reaching out. The delivery provider accepted your message (this is not a confirmed inbox receipt). We usually respond within 1–2 business days."
+        : deliveryStatus === "queued"
+          ? "Your message was saved and will be delivered to the owner inbox when the mail provider accepts it. You do not need to resubmit."
+          : "Thanks for reaching out.";
+
     return (
       <div className="rounded-2xl border border-sky-blue/25 bg-light-blue/40 p-6 space-y-2">
-        <p className="font-extrabold text-lake-blue text-lg mb-1">Message sent</p>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Thanks for reaching out. We usually respond within 1–2 business days.
-        </p>
-        {delivered === false ? (
+        <p className="font-extrabold text-lake-blue text-lg mb-1">{title}</p>
+        <p className="text-gray-700 text-sm leading-relaxed">{body}</p>
+        {deliveryStatus === "queued" ? (
           <p className="text-sm font-semibold text-coral" role="status">
-            Your message was accepted on the site, but owner-inbox delivery could
-            not be confirmed. Please try again or email us directly if urgent.
+            Delivery is queued for retry — not marked as sent yet.
           </p>
         ) : null}
         {briefNote ? (

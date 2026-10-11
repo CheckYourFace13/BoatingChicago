@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
-import { sendContactNotification } from "@/lib/email";
+import { sendContactNotification, hasAnyEmailProviderConfigured } from "@/lib/email";
 import { syncNewsletterSignup } from "@/lib/newsletter-sync";
 import {
   isValidEmail,
   upsertNewsletterSignup,
 } from "@/lib/newsletter-store";
+import {
+  createContactMessage,
+  findRecentAcceptedDuplicate,
+  isContactStoreConfigured,
+  markContactAccepted,
+  markContactFailed,
+} from "@/lib/contact-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,7 +74,6 @@ async function enrollBriefOptIn(email: string): Promise<
         syncStatus: "synced",
       };
     }
-    // Local consent row kept; pending/failed rows are picked up by retryFailedSendfableSyncs.
     return {
       optedIn: true,
       enrolled: true,
@@ -125,7 +131,55 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
     }
 
-    // Contact delivery first — newsletter must never block this.
+    // Honeypot from JSON clients
+    if (String(body.company_website || body.website || "").trim()) {
+      return NextResponse.json({
+        success: true,
+        delivered: true,
+        queued: false,
+        status: "accepted",
+        inboxConfirmed: false,
+        newsletter: { optedIn: false },
+      });
+    }
+
+    const duplicate = await findRecentAcceptedDuplicate({
+      email,
+      subject,
+      message,
+    }).catch(() => null);
+    if (duplicate) {
+      return NextResponse.json({
+        success: true,
+        delivered: true,
+        queued: false,
+        status: "accepted",
+        inboxConfirmed: false,
+        deduped: true,
+        messageId: duplicate.id,
+        newsletter: { optedIn: false },
+      });
+    }
+
+    let storedId: string | null = null;
+    if (isContactStoreConfigured()) {
+      try {
+        const row = await createContactMessage({
+          name,
+          email,
+          subject,
+          message,
+          briefOptIn,
+        });
+        storedId = row?.id || null;
+      } catch (err) {
+        console.error(
+          "[contact] Durable store write failed:",
+          err instanceof Error ? err.message : "error"
+        );
+      }
+    }
+
     const delivery = await sendContactNotification({
       name,
       email,
@@ -137,19 +191,68 @@ export async function POST(request: Request) {
         "[contact] Email notification failed:",
         err instanceof Error ? err.message : "error"
       );
-      return { sent: false, recipientConfigured: true };
+      return {
+        sent: false as const,
+        recipientConfigured: true,
+        provider: undefined as string | undefined,
+        messageId: undefined as string | undefined,
+        error: err instanceof Error ? err.message : "delivery failed",
+      };
     });
+
+    if (storedId) {
+      if (delivery.sent) {
+        await markContactAccepted({
+          id: storedId,
+          provider: delivery.provider || "unknown",
+          providerMessageId: delivery.messageId || null,
+        }).catch(() => undefined);
+      } else {
+        await markContactFailed({
+          id: storedId,
+          error: delivery.error || "provider rejected",
+          dead: !hasAnyEmailProviderConfigured(),
+        }).catch(() => undefined);
+      }
+    }
 
     let newsletter: NewsletterResult = { optedIn: false };
     if (briefOptIn) {
       newsletter = await enrollBriefOptIn(email);
     }
 
+    const queued = Boolean(storedId && !delivery.sent && delivery.recipientConfigured);
+    const delivered = Boolean(delivery.sent);
+
+    // Honest UX: success only when provider accepted OR durable queue will retry.
+    if (!delivered && !queued) {
+      return NextResponse.json(
+        {
+          success: false,
+          delivered: false,
+          queued: false,
+          status: "failed",
+          inboxConfirmed: false,
+          recipientConfigured: delivery.recipientConfigured,
+          error: delivery.recipientConfigured
+            ? "Message could not be delivered right now. Please try again shortly."
+            : "Owner inbox is not configured.",
+          newsletter,
+        },
+        { status: 503 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
-      // Form accepted the message; delivered means the ESP accepted the owner email.
-      delivered: delivery.sent,
+      delivered,
+      queued,
+      status: delivered ? "accepted" : "queued",
+      // Provider acceptance ≠ confirmed inbox receipt.
+      inboxConfirmed: false,
       recipientConfigured: delivery.recipientConfigured,
+      provider: delivery.provider || null,
+      messageId: storedId,
       newsletter,
     });
   } catch (err) {
