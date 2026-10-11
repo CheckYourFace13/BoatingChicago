@@ -13,9 +13,11 @@ import {
 } from "@/lib/newsletter-store";
 import { retryFailedSendfableSyncs } from "@/lib/newsletter-sync";
 import {
+  findExistingBriefSchedule,
   isSendfableConfigured,
   sendfableCancelCampaign,
   sendfableCreateCampaign,
+  sendfableListCampaigns,
   sendfableStatus,
   sendfableTestCampaign,
 } from "@/lib/sendfable-client";
@@ -178,7 +180,30 @@ export async function POST(request: Request) {
         );
       }
 
-      const scheduledAt = nextThursdayBriefAt().toISOString();
+      const scheduledAtDate = nextThursdayBriefAt();
+      const scheduledAt = scheduledAtDate.toISOString();
+      const listed = await sendfableListCampaigns();
+      if (listed.ok) {
+        const existing = findExistingBriefSchedule(
+          listed.campaigns,
+          scheduledAtDate
+        );
+        if (existing) {
+          return NextResponse.json({
+            ok: true,
+            action,
+            stage: "already_scheduled",
+            campaignId: existing.id,
+            status: existing.status,
+            scheduledAt: existing.scheduledAt,
+            subject: existing.subject,
+            message:
+              "A Brief campaign is already SCHEDULED for this send window — skipped create.",
+            qa,
+          });
+        }
+      }
+
       const created = await sendfableCreateCampaign({
         name: `Chicago Boating Brief — ${issue.editionKey}`,
         subject: issue.subject,

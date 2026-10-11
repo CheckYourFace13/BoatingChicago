@@ -197,4 +197,50 @@ export async function sendfableStatus(): Promise<
   return { ok: true, data: result.data };
 }
 
+export type SendfableCampaignSummary = {
+  id: string;
+  name: string;
+  status: string;
+  subject: string | null;
+  scheduledAt: string | null;
+  sentAt: string | null;
+  recipientCount: number;
+  sentCount: number;
+  bounceCount?: number;
+};
+
+/** Recent Brief/news campaigns (for schedule idempotency). */
+export async function sendfableListCampaigns(): Promise<
+  | { ok: true; campaigns: SendfableCampaignSummary[] }
+  | { ok: false; error: string }
+> {
+  const result = await sfFetch<{ campaigns?: SendfableCampaignSummary[] }>(
+    "/api/v1/campaigns"
+  );
+  if (!result.ok) return { ok: false, error: result.error };
+  return { ok: true, campaigns: result.data.campaigns || [] };
+}
+
+/**
+ * True when a non-test Brief campaign is already SCHEDULED near the target slot
+ * (same Thursday window). Prevents double-queue when cron runs mid-week and again
+ * Thursday afternoon before send.
+ */
+export function findExistingBriefSchedule(
+  campaigns: SendfableCampaignSummary[],
+  targetScheduledAt: Date,
+  windowMs = 2 * 60 * 60 * 1000
+): SendfableCampaignSummary | null {
+  const target = targetScheduledAt.getTime();
+  for (const c of campaigns) {
+    if (c.status !== "SCHEDULED" || !c.scheduledAt) continue;
+    if (/\[TEST\]/i.test(c.name || "")) continue;
+    if (!/Boating Brief/i.test(c.name || "")) continue;
+    const sched = Date.parse(c.scheduledAt);
+    if (Number.isNaN(sched)) continue;
+    if (Math.abs(sched - target) <= windowMs) return c;
+  }
+  return null;
+}
+
 export { BRIEF_TAG };
