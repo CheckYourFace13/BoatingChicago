@@ -100,3 +100,11 @@ export function isBriefAutomationPaused(): boolean {
 
 export const BRIEF_SCHEDULE_LABEL =
   "Every Thursday 3:00 PM America/Chicago";
+
+/**
+ * Canonical SendFable issue-slot key for a Brief send instant.
+ * Matches SendFable briefIssueSlotKey (America/Chicago calendar date).
+ */
+export function briefIssueSlotKey(scheduledAt: Date): string {
+  return `brief:America/Chicago:${chicagoDateKey(scheduledAt)}`;
+}

@@ -3,6 +3,7 @@ import { generateBriefIssue } from "@/lib/brief/generator";
 import { qaBriefIssue } from "@/lib/brief/qa";
 import {
   BRIEF_SCHEDULE_LABEL,
+  briefIssueSlotKey,
   isBriefAutomationPaused,
   nextThursdayBriefAt,
 } from "@/lib/brief/schedule";
@@ -15,6 +16,7 @@ import {
   sendfableCreateCampaign,
   sendfableListCampaigns,
   sendfableStatus,
+  sendfableUntagReserved,
 } from "@/lib/sendfable-client";
 
 export const runtime = "nodejs";
@@ -130,10 +132,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Drop reserved QA example.* addresses from production Brief audience.
+    const untag = await sendfableUntagReserved().catch(() => null);
+
     const scheduledAtDate = nextThursdayBriefAt();
     const scheduledAt = scheduledAtDate.toISOString();
+    const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
 
-    // Idempotency: do not queue a second subscriber campaign for the same Thu slot.
+    // Idempotency: do not queue a second subscriber campaign for the same Thu slot
+    // (covers SCHEDULED / SENDING / PAUSED / COMPLETED — not only SCHEDULED).
     const listed = await sendfableListCampaigns();
     if (listed.ok) {
       const existing = findExistingBriefSchedule(
@@ -147,12 +154,14 @@ export async function POST(request: Request) {
           campaignId: existing.id,
           status: existing.status,
           scheduledAt: existing.scheduledAt,
+          issueSlotKey: existing.issueSlotKey || issueSlotKey,
           subject: existing.subject,
           message:
-            "A Chicago Boating Brief campaign is already SCHEDULED for this send window — skipped create to avoid a duplicate subscriber send.",
+            "A Chicago Boating Brief campaign already occupies this America/Chicago issue slot — skipped create to avoid a duplicate subscriber send.",
           qa,
           syncRetry,
           contactRetry,
+          untag,
           schedule: BRIEF_SCHEDULE_LABEL,
         });
       }
@@ -165,6 +174,7 @@ export async function POST(request: Request) {
       htmlBody: issue.htmlBody,
       scheduledAt,
       draftOnly: false,
+      issueSlotKey,
     });
 
     if (!created.ok) {
@@ -177,6 +187,7 @@ export async function POST(request: Request) {
           qa,
           syncRetry,
           contactRetry,
+          untag,
         },
         { status: created.status || 502 }
       );
@@ -184,16 +195,18 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
-      stage: "scheduled",
+      stage: created.alreadyScheduled ? "already_scheduled" : "scheduled",
       campaignId: created.campaignId,
       status: created.status,
       scheduledAt: created.scheduledAt || scheduledAt,
+      issueSlotKey: created.issueSlotKey || issueSlotKey,
       subject: issue.subject,
       sections: issue.sections.map((s) => s.id),
       badge: created.badge,
       qa,
       syncRetry,
       contactRetry,
+      untag,
       schedule: BRIEF_SCHEDULE_LABEL,
     });
   } catch (err) {

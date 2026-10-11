@@ -3,7 +3,17 @@
  * Secrets stay in env vars — never log emails or tokens.
  */
 
+import { briefIssueSlotKey, chicagoDateKey } from "@/lib/brief/schedule";
+
 const BRIEF_TAG = "Chicago Boating Brief";
+
+/** Campaign statuses that already occupy a weekly Brief issue slot. */
+const ACTIVE_BRIEF_SLOT_STATUSES = new Set([
+  "SCHEDULED",
+  "SENDING",
+  "PAUSED",
+  "COMPLETED",
+]);
 
 function baseUrl(): string | null {
   const raw = process.env.SENDFABLE_API_URL?.trim() || "https://sendfable.com";
@@ -82,6 +92,22 @@ export async function sendfableUpsertContact(input: {
   };
 }
 
+export async function sendfableUntagReserved(): Promise<
+  | { ok: true; removed: number; subscribedRemaining: number }
+  | { ok: false; error: string }
+> {
+  const result = await sfFetch<{
+    removed?: number;
+    subscribedRemaining?: number;
+  }>("/api/v1/contacts/untag-reserved", { method: "POST", body: "{}" });
+  if (!result.ok) return { ok: false, error: result.error };
+  return {
+    ok: true,
+    removed: result.data.removed ?? 0,
+    subscribedRemaining: result.data.subscribedRemaining ?? 0,
+  };
+}
+
 export async function sendfableCreateCampaign(input: {
   name: string;
   subject: string;
@@ -89,8 +115,17 @@ export async function sendfableCreateCampaign(input: {
   htmlBody: string;
   scheduledAt?: string | null;
   draftOnly?: boolean;
+  issueSlotKey?: string | null;
 }): Promise<
-  | { ok: true; campaignId: string; status: string; scheduledAt: string | null; badge: boolean }
+  | {
+      ok: true;
+      campaignId: string;
+      status: string;
+      scheduledAt: string | null;
+      badge: boolean;
+      alreadyScheduled?: boolean;
+      issueSlotKey?: string | null;
+    }
   | { ok: false; error: string; status: number }
 > {
   const result = await sfFetch<{
@@ -98,6 +133,8 @@ export async function sendfableCreateCampaign(input: {
     status: string;
     scheduledAt: string | null;
     badge: boolean;
+    alreadyScheduled?: boolean;
+    issueSlotKey?: string | null;
   }>("/api/v1/campaigns", {
     method: "POST",
     body: JSON.stringify({
@@ -108,6 +145,7 @@ export async function sendfableCreateCampaign(input: {
       tagName: BRIEF_TAG,
       scheduledAt: input.scheduledAt,
       draftOnly: input.draftOnly,
+      issueSlotKey: input.issueSlotKey,
     }),
   });
   if (!result.ok) return { ok: false, error: result.error, status: result.status };
@@ -117,19 +155,27 @@ export async function sendfableCreateCampaign(input: {
     status: result.data.status,
     scheduledAt: result.data.scheduledAt,
     badge: result.data.badge,
+    alreadyScheduled: result.data.alreadyScheduled,
+    issueSlotKey: result.data.issueSlotKey,
   };
 }
 
 export async function sendfableTestCampaign(input: {
   campaignId: string;
   email: string;
-}): Promise<{ ok: true } | { ok: false; error: string }> {
-  const result = await sfFetch<{ ok?: boolean }>("/api/v1/campaigns/test", {
-    method: "POST",
-    body: JSON.stringify(input),
-  });
+}): Promise<
+  | { ok: true; messageId?: string | null }
+  | { ok: false; error: string }
+> {
+  const result = await sfFetch<{ ok?: boolean; messageId?: string | null }>(
+    "/api/v1/campaigns/test",
+    {
+      method: "POST",
+      body: JSON.stringify(input),
+    }
+  );
   if (!result.ok) return { ok: false, error: result.error };
-  return { ok: true };
+  return { ok: true, messageId: result.data.messageId };
 }
 
 export async function sendfableCancelCampaign(
@@ -207,6 +253,9 @@ export type SendfableCampaignSummary = {
   recipientCount: number;
   sentCount: number;
   bounceCount?: number;
+  deliveredCount?: number;
+  failedCount?: number;
+  issueSlotKey?: string | null;
 };
 
 /** Recent Brief/news campaigns (for schedule idempotency). */
@@ -222,25 +271,34 @@ export async function sendfableListCampaigns(): Promise<
 }
 
 /**
- * True when a non-test Brief campaign is already SCHEDULED near the target slot
- * (same Thursday window). Prevents double-queue when cron runs mid-week and again
- * Thursday afternoon before send.
+ * True when a non-test Brief campaign already occupies the target Thursday
+ * America/Chicago issue slot (SCHEDULED, SENDING, PAUSED, or COMPLETED).
  */
 export function findExistingBriefSchedule(
   campaigns: SendfableCampaignSummary[],
   targetScheduledAt: Date,
   windowMs = 2 * 60 * 60 * 1000
 ): SendfableCampaignSummary | null {
+  const targetKey = briefIssueSlotKey(targetScheduledAt);
   const target = targetScheduledAt.getTime();
+  const targetDay = chicagoDateKey(targetScheduledAt);
+
   for (const c of campaigns) {
-    if (c.status !== "SCHEDULED" || !c.scheduledAt) continue;
     if (/\[TEST\]/i.test(c.name || "")) continue;
     if (!/Boating Brief/i.test(c.name || "")) continue;
-    const sched = Date.parse(c.scheduledAt);
-    if (Number.isNaN(sched)) continue;
-    if (Math.abs(sched - target) <= windowMs) return c;
+    if (!ACTIVE_BRIEF_SLOT_STATUSES.has(c.status)) continue;
+
+    if (c.issueSlotKey && c.issueSlotKey === targetKey) return c;
+
+    if (c.scheduledAt) {
+      const sched = Date.parse(c.scheduledAt);
+      if (!Number.isNaN(sched)) {
+        if (chicagoDateKey(new Date(sched)) === targetDay) return c;
+        if (Math.abs(sched - target) <= windowMs) return c;
+      }
+    }
   }
   return null;
 }
 
-export { BRIEF_TAG };
+export { BRIEF_TAG, briefIssueSlotKey };

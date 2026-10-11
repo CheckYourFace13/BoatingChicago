@@ -3,6 +3,7 @@ import { generateBriefIssue } from "@/lib/brief/generator";
 import { qaBriefIssue } from "@/lib/brief/qa";
 import {
   BRIEF_SCHEDULE_LABEL,
+  briefIssueSlotKey,
   isBriefAutomationPaused,
   nextThursdayBriefAt,
 } from "@/lib/brief/schedule";
@@ -20,6 +21,7 @@ import {
   sendfableListCampaigns,
   sendfableStatus,
   sendfableTestCampaign,
+  sendfableUntagReserved,
 } from "@/lib/sendfable-client";
 import { hasDatabaseConfig } from "@/lib/db";
 
@@ -180,8 +182,11 @@ export async function POST(request: Request) {
         );
       }
 
+      await sendfableUntagReserved().catch(() => null);
+
       const scheduledAtDate = nextThursdayBriefAt();
       const scheduledAt = scheduledAtDate.toISOString();
+      const issueSlotKey = briefIssueSlotKey(scheduledAtDate);
       const listed = await sendfableListCampaigns();
       if (listed.ok) {
         const existing = findExistingBriefSchedule(
@@ -196,9 +201,10 @@ export async function POST(request: Request) {
             campaignId: existing.id,
             status: existing.status,
             scheduledAt: existing.scheduledAt,
+            issueSlotKey: existing.issueSlotKey || issueSlotKey,
             subject: existing.subject,
             message:
-              "A Brief campaign is already SCHEDULED for this send window — skipped create.",
+              "A Brief campaign already occupies this America/Chicago issue slot — skipped create.",
             qa,
           });
         }
@@ -210,6 +216,7 @@ export async function POST(request: Request) {
         previewText: issue.previewText,
         htmlBody: issue.htmlBody,
         scheduledAt,
+        issueSlotKey,
       });
       if (!created.ok) {
         return NextResponse.json(
@@ -220,9 +227,11 @@ export async function POST(request: Request) {
       return NextResponse.json({
         ok: true,
         action,
+        stage: created.alreadyScheduled ? "already_scheduled" : "scheduled",
         campaignId: created.campaignId,
         status: created.status,
         scheduledAt: created.scheduledAt || scheduledAt,
+        issueSlotKey: created.issueSlotKey || issueSlotKey,
         subject: issue.subject,
         qa,
       });
