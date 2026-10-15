@@ -137,7 +137,11 @@ export function buildArticleSchema({
       "@type": "WebPage",
       "@id": url,
     },
-    author: { "@id": ORG_ID },
+    author: {
+      "@type": "Person",
+      name: "Chris",
+      url: `${siteConfig.url}/about`,
+    },
     publisher: { "@id": ORG_ID },
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : { dateModified: datePublished }),

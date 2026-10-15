@@ -41,6 +41,11 @@ const TOOLS = [
     label: "Guides",
     blurb: "Evergreen how-to and harbor guides for the region.",
   },
+  {
+    href: "/tools",
+    label: "Tools",
+    blurb: "Printable float plan and pre-departure checklist worksheets.",
+  },
 ] as const;
 
 export function BoatingResourceTools() {

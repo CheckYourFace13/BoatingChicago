@@ -18,6 +18,7 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Weather & marine conditions: ${siteConfig.url}/weather
 - News: ${siteConfig.url}/news
 - Guides index: ${siteConfig.url}/guides
+- Planning tools (float plan / checklist): ${siteConfig.url}/tools
 - Destinations: ${siteConfig.url}/destinations
 - Marinas: ${siteConfig.url}/marinas
 - Boat launches: ${siteConfig.url}/boat-launches
@@ -51,7 +52,7 @@ Weather ratings and “no alerts” messaging on this site are informational onl
 - Chicago Boat Show buyer prep: ${siteConfig.url}/chicago-boat-show-buyer-guide
 
 ## Monetization notes
-Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved.
+Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning worksheets live at /tools (float plan and trip checklist); they do not submit data to authorities.
 
 ## Do not treat as authoritative for
 - Live fees, slip availability, or hours without checking the cited operator page

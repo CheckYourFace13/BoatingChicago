@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { HeroSlideshow } from "./HeroSlideshow";
+import { getSeasonalHeroCopy } from "@/lib/season";
 
 export function Hero() {
+  const seasonal = getSeasonalHeroCopy();
+
   return (
     <section className="relative min-h-[52vh] md:min-h-[58vh] flex items-end overflow-hidden text-white">
       <HeroSlideshow />
@@ -24,9 +27,7 @@ export function Hero() {
             className="text-base md:text-lg text-white/90 leading-relaxed mb-6 max-w-2xl animate-fade-up"
             style={{ animationDelay: "240ms" }}
           >
-            Live weather and lake conditions, boating news, destinations,
-            marinas, launches, and practical guides — with curated experiences
-            when you&apos;re ready to get on the water.
+            {seasonal.supporting}
           </p>
 
           <div
@@ -34,22 +35,22 @@ export function Hero() {
             style={{ animationDelay: "340ms" }}
           >
             <Link
-              href="#explore-boating"
+              href={seasonal.primaryCta.href}
               className="inline-flex items-center px-6 py-3 bg-coral text-white font-bold text-base rounded-full hover:bg-coral/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
-              Explore Boating →
+              {seasonal.primaryCta.label}
             </Link>
             <Link
-              href="/weather"
+              href={seasonal.secondaryCta.href}
               className="inline-flex items-center px-6 py-3 bg-white/15 backdrop-blur-md text-white font-bold text-base rounded-full border border-white/40 hover:bg-white/25 transition-all"
             >
-              Check Conditions
+              {seasonal.secondaryCta.label}
             </Link>
             <Link
-              href="#popular-on-the-water"
+              href="#explore-boating"
               className="inline-flex items-center px-4 py-2.5 text-white/90 font-semibold text-sm sm:text-base underline-offset-4 hover:underline"
             >
-              Book an Experience
+              Explore resources
             </Link>
           </div>
         </div>

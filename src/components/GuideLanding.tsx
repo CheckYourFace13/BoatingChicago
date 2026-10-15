@@ -278,6 +278,12 @@ export function GuideLanding({ guide }: GuideLandingProps) {
           >
             {guide.intro}
           </p>
+          <p
+            className="mt-3 text-sm text-white/75 animate-fade-up"
+            style={{ animationDelay: "160ms" }}
+          >
+            By Chris · BoatingChicago editorial
+          </p>
           {hasOffers ? (
             <div className="mt-6 flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "220ms" }}>
               <a

@@ -382,3 +382,21 @@ select:-webkit-autofill {
 .sendfable-embed-host--on-light .sendfable-form p[style*="color: #b91c1c"] {
   color: #b91c1c !important;
 }
+
+@media print {
+  header,
+  footer,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+}

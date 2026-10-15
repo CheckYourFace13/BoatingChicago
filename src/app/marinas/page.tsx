@@ -1,22 +1,20 @@
 import Link from "next/link";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
-import {
-  QualityDisclaimer,
-  SourceLink,
-} from "@/components/geo/SourceAttribution";
+import { QualityDisclaimer } from "@/components/geo/SourceAttribution";
+import { MarinaAmenityFilters } from "@/components/geo/MarinaAmenityFilters";
 import { getMarinasByDestination, getPublishedDestinations } from "@/data/geo";
-import { REGION_ORDER, amenityLabel, regionLabel } from "@/lib/geo-display";
+import { REGION_ORDER } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-  title: "Marinas & Harbors Near Chicago | Verified Official Listings",
-  description:
-    "Chicago-area marinas and harbors on Lake Michigan and inland lakes, each listed from the operator's own official page with amenities confirmed by the source.",
-  path: "/marinas",
-});
+    title: "Marinas & Harbors Near Chicago | Verified Official Listings",
+    description:
+      "Chicago-area marinas and harbors on Lake Michigan and inland lakes, each listed from the operator's own official page with amenities confirmed by the source.",
+    path: "/marinas",
+  });
 }
 
 export default function MarinasPage() {
@@ -62,65 +60,6 @@ export default function MarinasPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
         <QualityDisclaimer />
 
-        {groups.map(({ destination, marinas }) => (
-          <section key={destination.slug} id={destination.slug}>
-            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue">
-                <Link
-                  href={`/destinations/${destination.slug}`}
-                  className="hover:underline"
-                >
-                  {destination.name}, {destination.state}
-                </Link>
-              </h2>
-              <p className="text-sm text-gray-500">
-                {regionLabel(destination.region)} · {destination.bodyOfWater}
-              </p>
-            </div>
-
-            <ul className="space-y-4">
-              {marinas.map((marina) => {
-                const confirmed = marina.amenities.filter(
-                  (a) => a.available === true,
-                );
-                return (
-                  <li
-                    key={marina.slug}
-                    className="rounded-2xl border border-sky-blue/20 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <h3 className="text-lg font-extrabold text-lake-blue mb-1">
-                      <Link
-                        href={`/marinas/${marina.slug}`}
-                        className="hover:underline"
-                      >
-                        {marina.name}
-                      </Link>
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed mb-3">
-                      {marina.summary}
-                    </p>
-                    {confirmed.length > 0 ? (
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {confirmed.slice(0, 6).map((amenity) => (
-                          <span
-                            key={amenity.key}
-                            className="text-xs font-semibold px-3 py-1 rounded-full bg-light-blue text-lake-blue"
-                          >
-                            {amenityLabel(amenity.key)}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                    <p className="text-sm">
-                      <SourceLink source={marina.source} />
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        ))}
-
         {groups.length === 0 ? (
           <p className="text-gray-700">
             No marinas are published yet. Check the{" "}
@@ -132,7 +71,9 @@ export default function MarinasPage() {
             </Link>{" "}
             for official harbor links.
           </p>
-        ) : null}
+        ) : (
+          <MarinaAmenityFilters groups={groups} />
+        )}
 
         <ResourceCrossLinks
           links={[
@@ -140,6 +81,7 @@ export default function MarinasPage() {
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
             { href: "/destinations", label: "Destinations" },
+            { href: "/tools", label: "Planning tools" },
             { href: "/news", label: "News" },
             { href: "/guides", label: "Guides" },
             { href: "/events", label: "Events" },

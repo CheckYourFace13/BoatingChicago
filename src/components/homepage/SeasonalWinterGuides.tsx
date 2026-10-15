@@ -1,12 +1,24 @@
 import Link from "next/link";
-import { getGuideBySlug, WINTER_GUIDE_SLUGS } from "@/data/guides";
+import {
+  getGuideBySlug,
+  SPRING_GUIDE_SLUGS,
+  WINTER_GUIDE_SLUGS,
+} from "@/data/guides";
 import { HomepageTrackLink } from "@/components/HomepageTrackLink";
+import { getBoatingSeason } from "@/lib/season";
 
 /**
  * Compact seasonal strip — does not expand homepage hero or add cards clutter.
+ * Spring: commissioning checklist. Peak: omit (hero already points to weather/marinas).
+ * Winter: storage / winterizing collection.
  */
 export function SeasonalWinterGuides() {
-  const guides = WINTER_GUIDE_SLUGS.map((slug) => {
+  const season = getBoatingSeason();
+  if (season === "peak") return null;
+
+  const isSpring = season === "spring";
+  const slugs = isSpring ? SPRING_GUIDE_SLUGS : WINTER_GUIDE_SLUGS;
+  const guides = slugs.map((slug) => {
     const guide = getGuideBySlug(slug);
     return {
       href: `/${slug}`,
@@ -14,28 +26,35 @@ export function SeasonalWinterGuides() {
     };
   });
 
+  const heading = isSpring
+    ? "Spring commissioning"
+    : "Winter & Off-Season Guides";
+  const blurb = isSpring
+    ? "Registration, safety gear, launch access, and conditions planning before the first warm weekend."
+    : "Storage, winterizing, shrink wrap, off-season buying, and boat-show prep — for owners planning through Chicago winters.";
+  const hubHref = isSpring ? "/guides" : "/guides#winter-guides";
+  const hubLabel = isSpring ? "All guides →" : "All guides →";
+  const hubEvent = isSpring ? "spring-guides" : "winter-guides";
+
   return (
-    <section aria-labelledby="winter-guides-heading">
+    <section aria-labelledby="seasonal-guides-heading">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
         <div>
           <h2
-            id="winter-guides-heading"
+            id="seasonal-guides-heading"
             className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2"
           >
-            Winter &amp; Off-Season Guides
+            {heading}
           </h2>
-          <p className="text-gray-600 max-w-2xl text-sm md:text-base">
-            Storage, winterizing, shrink wrap, off-season buying, and boat-show
-            prep — for owners planning through Chicago winters.
-          </p>
+          <p className="text-gray-600 max-w-2xl text-sm md:text-base">{blurb}</p>
         </div>
         <HomepageTrackLink
-          href="/guides#winter-guides"
+          href={hubHref}
           event="homepage_resource_click"
-          params={{ resource: "winter-guides" }}
+          params={{ resource: hubEvent }}
           className="font-bold text-coral hover:underline shrink-0"
         >
-          All guides →
+          {hubLabel}
         </HomepageTrackLink>
       </div>
       <div className="flex flex-wrap gap-3">
@@ -48,6 +67,21 @@ export function SeasonalWinterGuides() {
             {guide.label}
           </Link>
         ))}
+        {isSpring ? (
+          <Link
+            href="/tools"
+            className="px-4 py-2.5 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-light-blue transition-colors"
+          >
+            Planning tools
+          </Link>
+        ) : (
+          <Link
+            href="/storage"
+            className="px-4 py-2.5 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-light-blue transition-colors"
+          >
+            Storage directory
+          </Link>
+        )}
       </div>
     </section>
   );
