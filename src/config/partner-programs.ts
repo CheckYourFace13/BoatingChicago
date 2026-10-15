@@ -242,3 +242,68 @@ export function isPiscifunAwinUrl(
     return false;
   }
 }
+
+/** BLUETTI US product keys for approved Awin creatives (mid 59271). */
+export type BluettiProduct = "elite-100-mini";
+
+/**
+ * Verified 2026-10-15 against live Awin redirect:
+ * - elite-100-mini (gid 568164 / linkid 4885014) → bluettipower.com Elite 100 Mini PDP
+ * Publisher awinaffid 3112962. Not marine-rated equipment — shore/backup power context only.
+ */
+export const BLUETTI_AWIN = {
+  mid: "59271",
+  awinaffid: AWIN_PUBLISHER_ID,
+  merchant: "bluetti",
+  brand: "bluetti",
+  products: {
+    "elite-100-mini": {
+      product: "elite-100-mini" as const,
+      gid: "568164",
+      linkid: "4885014",
+      label: "View BLUETTI Elite 100 Mini",
+      shortName: "BLUETTI Elite 100 Mini portable power station",
+      destinationPath: "/products/elite-100-mini-portable-power-station",
+    },
+  },
+} as const;
+
+export function buildBluettiAwinUrl(
+  product: BluettiProduct,
+  clickref: string
+): string {
+  const creative = BLUETTI_AWIN.products[product];
+  return buildAwinClickUrl({
+    gid: creative.gid,
+    mid: BLUETTI_AWIN.mid,
+    linkid: creative.linkid,
+    clickref,
+    awinaffid: BLUETTI_AWIN.awinaffid,
+  });
+}
+
+export function isBluettiAwinUrl(
+  url: string,
+  product?: BluettiProduct
+): boolean {
+  try {
+    const u = new URL(url);
+    if (u.hostname !== "www.awin1.com" && u.hostname !== "awin1.com") {
+      return false;
+    }
+    if (
+      u.searchParams.get("mid") !== BLUETTI_AWIN.mid ||
+      u.searchParams.get("awinaffid") !== BLUETTI_AWIN.awinaffid
+    ) {
+      return false;
+    }
+    if (!product) return true;
+    const creative = BLUETTI_AWIN.products[product];
+    return (
+      u.searchParams.get("gid") === creative.gid &&
+      u.searchParams.get("linkid") === creative.linkid
+    );
+  } catch {
+    return false;
+  }
+}

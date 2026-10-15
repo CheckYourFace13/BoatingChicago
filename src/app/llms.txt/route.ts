@@ -52,7 +52,7 @@ Weather ratings and “no alerts” messaging on this site are informational onl
 - Chicago Boat Show buyer prep: ${siteConfig.url}/chicago-boat-show-buyer-guide
 
 ## Monetization notes
-Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning worksheets live at /tools (float plan and trip checklist); they do not submit data to authorities.
+Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun, Awin BLUETTI) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning worksheets live at /tools (float plan and trip checklist); they do not submit data to authorities.
 
 ## Do not treat as authoritative for
 - Live fees, slip availability, or hours without checking the cited operator page

@@ -6,6 +6,7 @@ import {
   OwnershipNextLinks,
 } from "@/components/ownership/OwnershipLinks";
 import { BoatTraderShopCta } from "@/components/ownership/BoatTraderShopCta";
+import { BluettiPowerCta } from "@/components/ownership/BluettiPowerCta";
 import { AmazonRecommendedGear } from "@/components/AmazonRecommendedGear";
 import { getAmazonGearPlacementForPath } from "@/data/amazon-gear";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
@@ -164,6 +165,21 @@ export default function BoatOwnershipPage() {
           </p>
           <div className="mt-3">
             <BoatUsMembershipNote />
+          </div>
+          <div className="mt-5">
+            <BluettiPowerCta
+              placement="boat-ownership"
+              pageSlug="/boat-ownership"
+              section="winter_insurance_towing"
+              items={[
+                {
+                  product: "elite-100-mini",
+                  clickref: "boat-ownership-bluetti",
+                  blurb:
+                    "If you store on a trailer or at a yard without convenient shore power, a compact portable power station can support battery maintainers and small tools on land. Confirm capacity and outlets on the merchant page — this is not marine-rated gear.",
+                },
+              ]}
+            />
           </div>
         </section>
 

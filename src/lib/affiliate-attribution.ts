@@ -331,6 +331,57 @@ export interface PiscifunClickContext extends AffiliateClickContext {
   href: string;
 }
 
+export interface BluettiClickContext extends AffiliateClickContext {
+  product: "elite-100-mini";
+  clickref: string;
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for BLUETTI US via Awin (merchant ID 59271).
+ * One call per click — do not also bind data-track listeners. No PII.
+ */
+export function trackBluettiAffiliateClick(ctx: BluettiClickContext): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+
+  trackEvent("affiliate_click", {
+    provider: "awin",
+    merchant: "bluetti",
+    brand: "bluetti",
+    merchant_id: "59271",
+    creative_id: "4885014",
+    product: ctx.product,
+    product_id: ctx.product,
+    product_name: "BLUETTI Elite 100 Mini Portable Power Station",
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "bluetti",
+    clickref: ctx.clickref,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "awin",
+    offer_id: `bluetti-${ctx.product}`,
+    offer_title: "BLUETTI Elite 100 Mini Portable Power Station",
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(ctx.clickref),
+  });
+}
+
 /**
  * GA4 affiliate_click for Piscifun via Awin (merchant ID 89509).
  * One call per click — do not also bind data-track listeners. No PII.

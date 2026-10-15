@@ -27,7 +27,7 @@ export default function AffiliateDisclosurePage() {
         <p>
           {siteConfig.name} participates in affiliate marketing programs, including partners
           such as GetYourGuide, Viator, Amazon Associates, and Awin (including Boat Trader /
-          Boats Group, Giraffe Tools, and Piscifun). That means we may earn a commission if you click a
+          Boats Group, Giraffe Tools, Piscifun, and BLUETTI). That means we may earn a commission if you click a
           partner link and complete a booking or purchase — at no additional cost to you.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What this covers</h2>
@@ -51,6 +51,11 @@ export default function AffiliateDisclosurePage() {
             Piscifun product links via Awin (paid links) for fishing gear and clothing. We do not
             invent prices, discounts, or manufacturer performance claims; availability and sizes are
             set by the seller.
+          </li>
+          <li>
+            BLUETTI product links via Awin (paid links) for portable shore/backup power stations. We
+            do not claim marine suitability, invent capacity or safety specs, or present these as
+            emergency communications gear.
           </li>
         </ul>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Amazon Associates</h2>

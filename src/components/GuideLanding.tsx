@@ -9,6 +9,7 @@ import { AffiliateOfferGrid } from "./AffiliateOfferGrid";
 import { AmazonRecommendedGear } from "./AmazonRecommendedGear";
 import { getAmazonGearPlacementForGuide } from "@/data/amazon-gear";
 import { BoatTraderShopCta } from "./ownership/BoatTraderShopCta";
+import { BluettiPowerCta } from "./ownership/BluettiPowerCta";
 import { GiraffeToolsMaintenanceCta } from "./ownership/GiraffeToolsMaintenanceCta";
 import { PiscifunFishingGearCta } from "./ownership/PiscifunFishingGearCta";
 import { AdSenseBlock } from "./AdSenseBlock";
@@ -213,6 +214,38 @@ const GUIDE_PISCIFUN: Record<
   },
 };
 
+/** Guides where BLUETTI shore/backup power is editorially appropriate. */
+const GUIDE_BLUETTI: Record<
+  string,
+  {
+    placement: string;
+    heading?: string;
+    intro?: string;
+    items: Array<{
+      product: "elite-100-mini";
+      clickref: string;
+      blurb: string;
+      ctaLabel?: string;
+    }>;
+  }
+> = {
+  "chicago-boat-winterizing-guide": {
+    placement: "winterizing-guide",
+    heading: "Optional shore-side backup power",
+    intro:
+      "Winterizing and yard storage can leave owners needing a portable charger or small backup supply for battery maintainers and tools on land. This is not marine propulsion power and is not emergency communications gear.",
+    items: [
+      {
+        product: "elite-100-mini",
+        clickref: "winterizing-bluetti",
+        blurb:
+          "The linked Awin creative opens the BLUETTI Elite 100 Mini portable power station product page. Confirm capacity, outlets, and safety specs on the merchant page before buying.",
+        ctaLabel: "View BLUETTI Elite 100 Mini",
+      },
+    ],
+  },
+};
+
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
   if (cat) return cat.title;
@@ -230,6 +263,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const boatTrader = GUIDE_BOAT_TRADER[guide.slug];
   const giraffeTools = GUIDE_GIRAFFE_TOOLS[guide.slug];
   const piscifun = GUIDE_PISCIFUN[guide.slug];
+  const bluetti = GUIDE_BLUETTI[guide.slug];
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -437,6 +471,16 @@ export function GuideLanding({ guide }: GuideLandingProps) {
             heading={giraffeTools.heading}
             intro={giraffeTools.intro}
             items={giraffeTools.items}
+          />
+        ) : null}
+
+        {bluetti ? (
+          <BluettiPowerCta
+            placement={bluetti.placement}
+            pageSlug={`/${guide.slug}`}
+            heading={bluetti.heading}
+            intro={bluetti.intro}
+            items={bluetti.items}
           />
         ) : null}
 
