@@ -175,9 +175,11 @@ function familyOf(offer: AffiliateOffer): OfferFamily {
 const FAMILY_CAPS: Partial<Record<OfferFamily, number>> = {
   architecture: 2,
   fireworks: 2,
-  kayak: 2,
+  // Rental + lesson + guided sunset + lake kayak (Ohio Street).
+  kayak: 4,
   "jet-ski": 1,
-  sunset: 1,
+  // River cocktail sunset + lake sunset / sail can coexist.
+  sunset: 2,
   night: 1,
   party: 1,
   dining: 1,
@@ -216,9 +218,10 @@ export const affiliateOffers: AffiliateOffer[] = [
     shortTitle: "90-Minute Architecture Cruise",
     shortDescription:
       "Chicago’s top-reviewed architecture river cruise — bridges, skyline landmarks, and downtown stories from the water.",
+    // Live GYG slug verified 2026-10-15 (tour ID remains 290485).
     url: buildGygUrl(
       "290485",
-      "chicago-river-90-minute-guided-architecture-cruise"
+      "chicago-river-75-minute-guided-architecture-cruise"
     ),
     category: "architecture-cruise",
     relatedPageSlugs: [
@@ -581,7 +584,8 @@ export const affiliateOffers: AffiliateOffer[] = [
     shortDescription:
       "Shoreline Lake Michigan skyline cruise — classic sightseeing along Chicago’s waterfront.",
     url: buildGygUrl("46393"),
-    category: "river-cruise",
+    // Lake shoreline product (not a river cruise) — category corrected 2026-10-15.
+    category: "chicago-experience",
     relatedPageSlugs: [
       "lake-michigan-boating-guide",
       "boat-rentals-chicago",
@@ -596,7 +600,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     experienceType: "ticketed-cruise",
     tags: ["lake-michigan", "cruise", "family"],
     family: "other",
-    location: "Lake Michigan",
+    location: "Lake Michigan shoreline",
     priceFrom: 28.03,
     rating: 4.58,
     reviewCount: 803,
@@ -714,6 +718,113 @@ export const affiliateOffers: AffiliateOffer[] = [
     location: "Lake Michigan",
     seasonality: "summer fireworks season",
   },
+  {
+    id: "gyg-466232",
+    provider: "getyourguide",
+    providerProductId: "466232",
+    // Verified 2026-10-15 on GYG PDP: CAC docent cruise on Chicago's First Lady,
+    // 1.5 hours, Chicago River, meeting point 112 E Wacker Dr.
+    title: "Chicago: Architecture Center Cruise on Chicago's First Lady",
+    shortTitle: "Architecture Center First Lady Cruise",
+    shortDescription:
+      "Chicago Architecture Center–docent river cruise on Chicago’s First Lady — open-deck sightseeing on all three river branches. Confirm times and seating on the booking page.",
+    url: buildGygUrl(
+      "466232",
+      "chicago-architecture-river-cruise-on-chicago-s-first-lady"
+    ),
+    category: "architecture-cruise",
+    relatedPageSlugs: [
+      "chicago-architecture-cruises",
+      "chicago-architecture-cruise-guide",
+      "chicago-river-cruises",
+      "riverwalk-boat-tours-chicago",
+      "destinations-chicago",
+    ],
+    active: true,
+    featured: true,
+    image: "/images/chicago/skyline-water.jpg",
+    ctaLabel: "See Cruise Times",
+    priority: 7,
+    experienceType: "ticketed-cruise",
+    tags: ["architecture", "river", "cruise"],
+    family: "architecture",
+    location: "Chicago River (First Lady / Wacker Dr.)",
+    rating: 4.7,
+    reviewCount: 654,
+    bestFor: ["architecture fans", "first-timers", "visitors"],
+  },
+  {
+    id: "gyg-500340",
+    provider: "getyourguide",
+    providerProductId: "500340",
+    // Verified 2026-10-15: guided sunset cocktail + architecture, 1.5 hours,
+    // Empire Tours, meeting point 465 N McClurg Ct.
+    title: "Chicago River: Guided Sunset Cocktail & Architecture Tour",
+    shortTitle: "Sunset Cocktail Architecture Cruise",
+    shortDescription:
+      "Guided Chicago River architecture cruise at dusk with an included cocktail — skyline lights and river landmarks. Confirm departure details on the booking page.",
+    url: buildGygUrl(
+      "500340",
+      "chicago-river-guided-sunset-cocktail-architecture-tour"
+    ),
+    category: "sunset-cruise",
+    relatedPageSlugs: [
+      "chicago-sunset-cruises",
+      "best-chicago-sunset-cruises",
+      "chicago-architecture-cruises",
+      "romantic-boat-cruises-chicago",
+      "destinations-chicago",
+    ],
+    active: true,
+    featured: true,
+    image: "/images/chicago/sunset-glass.jpg",
+    ctaLabel: "See Tickets & Times",
+    priority: 11,
+    experienceType: "ticketed-cruise",
+    tags: ["sunset", "architecture", "river", "night", "cruise"],
+    family: "sunset",
+    location: "Chicago River (Near North / McClurg Ct.)",
+    rating: 4.5,
+    reviewCount: 243,
+    seasonality: "evening / golden-hour departures",
+    bestFor: ["evening outings", "couples", "visitors"],
+  },
+  {
+    id: "gyg-1308180",
+    provider: "getyourguide",
+    providerProductId: "1308180",
+    // Verified 2026-10-15: Urban Kayaks guided sunset tour, 2 hours,
+    // meeting point 435 E Riverwalk.
+    title: "Chicago: Guided Sunset Kayak Tour on the River",
+    shortTitle: "Guided Sunset River Kayak",
+    shortDescription:
+      "Guided 2-hour sunset kayak on the Chicago River from the Riverwalk — golden-hour skyline paddling with a guide. Confirm skill requirements and gear on the booking page.",
+    url: buildGygUrl(
+      "1308180",
+      "chicago-guided-sunset-kayak-tour-on-the-river"
+    ),
+    category: "kayak-rental",
+    relatedPageSlugs: [
+      "chicago-kayak-rentals",
+      "chicago-kayak-rental-guide",
+      "chicago-sunset-cruises",
+      "riverwalk-boat-tours-chicago",
+      "destinations-chicago",
+    ],
+    active: true,
+    featured: true,
+    image: "/images/chicago/hero-twilight.jpg",
+    ctaLabel: "Check Kayak Availability",
+    priority: 21,
+    experienceType: "ticketed-cruise",
+    tags: ["kayak", "river", "sunset", "night"],
+    family: "kayak",
+    location: "Chicago Riverwalk (Urban Kayaks)",
+    rating: 5,
+    reviewCount: 8,
+    seasonality: "warm-season evening paddles",
+    bestFor: ["active visitors", "couples"],
+  },
 
   // ——— Viator (preserved; water-focused) ———
   {
@@ -734,14 +845,15 @@ export const affiliateOffers: AffiliateOffer[] = [
     experienceType: "destination",
     tags: ["architecture", "river", "cruise"],
     family: "other",
+    location: "Chicago River",
   },
   {
     id: "viator-sunset-cruise",
     provider: "viator",
     title: "Chicago Sunset Cruise",
-    shortTitle: "Viator Sunset Cruise",
+    shortTitle: "Lake Michigan Sunset Cruise",
     shortDescription:
-      "Ticketed Chicago sunset cruise experience — golden-hour views over the water.",
+      "Ticketed Chicago sunset cruise on Lake Michigan — confirm operator, duration, and departure point on the Viator product page.",
     url: "https://www.viator.com/tours/Chicago/Chicago-Sunset-Cruise/d673-76126P8?pid=P00309183&mcid=42383&medium=link",
     category: "sunset-cruise",
     relatedPageSlugs: [
@@ -757,6 +869,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     experienceType: "ticketed-cruise",
     tags: ["sunset", "lake-michigan", "cruise"],
     family: "sunset",
+    location: "Lake Michigan",
   },
   {
     id: "viator-speedboat-architecture",
@@ -764,7 +877,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Lake Michigan and Chicago River Architecture Cruise by Speedboat",
     shortTitle: "Speedboat Architecture Cruise",
     shortDescription:
-      "Architecture sightseeing by speedboat on Lake Michigan and the Chicago River.",
+      "Architecture sightseeing by speedboat on Lake Michigan and the Chicago River — confirm boarding location on the product page.",
     url: "https://www.viator.com/tours/Chicago/Lake-Michigan-and-Chicago-River-Architecture-Cruise-by-Speedboat/d673-5042CHIARC?pid=P00309183&mcid=42383&medium=link",
     category: "architecture-cruise",
     relatedPageSlugs: ["chicago-architecture-cruises", "boat-rentals-chicago"],
@@ -776,14 +889,15 @@ export const affiliateOffers: AffiliateOffer[] = [
     experienceType: "ticketed-cruise",
     tags: ["architecture", "speedboat", "lake-michigan", "river"],
     family: "speedboat",
+    location: "Lake Michigan / Chicago River",
   },
   {
     id: "viator-chicago-river-cruise",
     provider: "viator",
     title: "Chicago River Cruise",
-    shortTitle: "Viator River Cruise",
+    shortTitle: "Downtown River Cruise",
     shortDescription:
-      "Classic Chicago River cruise for skyline and downtown sightseeing.",
+      "Ticketed Chicago River sightseeing cruise for downtown skyline views — confirm operator and duration on the Viator product page.",
     url: "https://www.viator.com/tours/Chicago/Chicago-River-Cruise/d673-70067P1?pid=P00309183&mcid=42383&medium=link",
     category: "river-cruise",
     relatedPageSlugs: ["chicago-architecture-cruises", "chicago-river-cruises"],
@@ -793,8 +907,9 @@ export const affiliateOffers: AffiliateOffer[] = [
     ctaLabel: "View River Cruise",
     priority: 55,
     experienceType: "ticketed-cruise",
-    tags: ["river", "cruise"],
+    tags: ["river", "cruise", "architecture"],
     family: "architecture",
+    location: "Chicago River",
   },
   {
     id: "viator-private-yacht-charter",
@@ -868,9 +983,9 @@ export const affiliateOffers: AffiliateOffer[] = [
     id: "viator-skyline-sail",
     provider: "viator",
     title: "Chicago Skyline Sail",
-    shortTitle: "Skyline Sail",
+    shortTitle: "Shared Lake Michigan Skyline Sail",
     shortDescription:
-      "Shared Chicago skyline sailing outing on Lake Michigan — not a private boat rental.",
+      "Shared Chicago skyline sailing outing on Lake Michigan — ticketed, not a private boat rental. Confirm marina departure on the product page.",
     url: "https://www.viator.com/tours/Chicago/Chicago-Skyline-Sail/d673-5560540P2?pid=P00309183&mcid=42383&medium=link",
     category: "sailing",
     relatedPageSlugs: [
@@ -888,6 +1003,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     experienceType: "ticketed-cruise",
     tags: ["sailing", "lake-michigan", "cruise"],
     family: "sailing-shared",
+    location: "Lake Michigan",
   },
   {
     id: "viator-monday-concert-sail",
@@ -1078,22 +1194,27 @@ export const PAGE_OFFER_INTENT: Record<
   },
   "chicago-architecture-cruises": {
     tags: ["architecture", "river"],
-    preferIds: ["gyg-290485", "gyg-46389", "gyg-361750", "gyg-293160"],
+    preferIds: [
+      "gyg-290485",
+      "gyg-466232",
+      "gyg-500340",
+      "gyg-46389",
+    ],
     limit: 4,
   },
   "chicago-architecture-cruise-guide": {
     tags: ["architecture", "river"],
-    preferIds: ["gyg-290485", "gyg-46389", "gyg-361750"],
+    preferIds: ["gyg-290485", "gyg-466232", "gyg-361750"],
     limit: 3,
   },
   "chicago-river-cruises": {
     tags: ["architecture", "river", "kayak", "cruise"],
-    preferIds: ["gyg-290485", "gyg-46389", "gyg-994419"],
+    preferIds: ["gyg-290485", "gyg-466232", "gyg-1308180"],
     limit: 3,
   },
   "riverwalk-boat-tours-chicago": {
     tags: ["architecture", "river", "kayak"],
-    preferIds: ["gyg-290485", "gyg-1308165", "gyg-361750"],
+    preferIds: ["gyg-466232", "gyg-1308180", "gyg-1308165"],
     limit: 3,
   },
   "family-boat-rentals-chicago": {
@@ -1113,32 +1234,37 @@ export const PAGE_OFFER_INTENT: Record<
   },
   "chicago-sunset-cruises": {
     tags: ["sunset", "night", "sailing"],
-    preferIds: ["gyg-386902", "gyg-266010", "viator-private-sunset-sailing"],
+    preferIds: ["gyg-500340", "gyg-386902", "viator-private-sunset-sailing"],
     limit: 3,
   },
   "best-chicago-sunset-cruises": {
     tags: ["sunset", "night"],
-    preferIds: ["gyg-386902", "gyg-266010", "viator-sunset-cruise"],
+    preferIds: ["gyg-500340", "gyg-386902", "viator-sunset-cruise"],
     limit: 3,
   },
   "chicago-kayak-rentals": {
     tags: ["kayak", "river", "lesson"],
-    preferIds: ["gyg-994419", "gyg-1308165", "gyg-1308175", "viator-kayak-ohio-street"],
+    preferIds: [
+      "gyg-1308180",
+      "gyg-994419",
+      "gyg-1308165",
+      "viator-kayak-ohio-street",
+    ],
     limit: 4,
   },
   "chicago-kayak-rental-guide": {
     tags: ["kayak"],
-    preferIds: ["gyg-994419", "gyg-1308165", "gyg-1308175"],
+    preferIds: ["gyg-1308180", "gyg-994419", "gyg-1308165"],
     limit: 3,
   },
   "lake-michigan-boating-guide": {
     tags: ["lake-michigan", "cruise", "speedboat", "sunset"],
-    preferIds: ["gyg-46393", "gyg-24790", "gyg-386902", "gyg-293160"],
+    preferIds: ["gyg-46393", "gyg-24790", "gyg-386902", "viator-skyline-sail"],
     limit: 4,
   },
   "destinations-chicago": {
-    tags: ["architecture", "lake-michigan", "cruise", "sunset"],
-    preferIds: ["gyg-290485", "gyg-386902", "gyg-24790", "gyg-466163"],
+    tags: ["architecture", "lake-michigan", "cruise", "sunset", "kayak"],
+    preferIds: ["gyg-290485", "gyg-466232", "gyg-500340", "gyg-1308180"],
     limit: 4,
   },
   "boat-rentals-chicago": {
@@ -1243,7 +1369,7 @@ export const PAGE_OFFER_INTENT: Record<
   },
   "romantic-boat-cruises-chicago": {
     tags: ["sunset", "night", "dining"],
-    preferIds: ["gyg-386902", "gyg-266010", "gyg-233082"],
+    preferIds: ["gyg-500340", "gyg-386902", "gyg-233082"],
     limit: 3,
   },
 };
@@ -1267,8 +1393,8 @@ export function getOffersForPage(slug: string): AffiliateOffer[] {
 }
 
 /**
- * Contextual offer selection: preferIds → tag match → relatedPageSlugs,
- * then family-dedupe and limit.
+ * Contextual offer selection: preferIds (declared order wins) → tag /
+ * relatedPageSlugs scoring for the remainder, then family-dedupe and limit.
  */
 export function getContextualOffers(
   pageSlug: string,
@@ -1279,13 +1405,19 @@ export function getContextualOffers(
   const active = getActiveOffers().filter(
     (o) => o.experienceType !== "destination"
   );
+  const byId = new Map(active.map((o) => [o.id, o]));
+
+  // Strict preferIds order first — bestseller rank must not outrank editorial picks.
+  const preferred: AffiliateOffer[] = [];
+  for (const id of intent?.preferIds ?? []) {
+    const offer = byId.get(id);
+    if (offer) preferred.push(offer);
+  }
 
   const scored: { offer: AffiliateOffer; score: number }[] = [];
-
   for (const offer of active) {
+    if (intent?.preferIds?.includes(offer.id)) continue;
     let score = 0;
-    const preferIdx = intent?.preferIds?.indexOf(offer.id) ?? -1;
-    if (preferIdx >= 0) score += 1000 - preferIdx * 10;
     if (offer.relatedPageSlugs.includes(pageSlug)) score += 200;
     if (intent?.tags?.length && offer.tags?.length) {
       const overlap = intent.tags.filter((t) => offer.tags!.includes(t)).length;
@@ -1296,15 +1428,16 @@ export function getContextualOffers(
     if (score > 0) scored.push({ offer, score });
   }
 
-  // Fallback: relatedPageSlugs only
-  if (!scored.length) {
+  scored.sort((a, b) => b.score - a.score || sortOffers(a.offer, b.offer));
+  const ordered = [...preferred, ...scored.map((s) => s.offer)];
+
+  if (!ordered.length) {
     return dedupeOfferFamilies(
       active.filter((o) => o.relatedPageSlugs.includes(pageSlug))
     ).slice(0, limit);
   }
 
-  scored.sort((a, b) => b.score - a.score || sortOffers(a.offer, b.offer));
-  return dedupeOfferFamilies(scored.map((s) => s.offer)).slice(0, limit);
+  return dedupeOfferFamilies(ordered).slice(0, limit);
 }
 
 export function getFeaturedOffers(limit = 6): AffiliateOffer[] {

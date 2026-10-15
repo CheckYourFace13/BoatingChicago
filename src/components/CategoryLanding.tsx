@@ -90,7 +90,7 @@ const offerSectionCopy: Record<
   "chicago-architecture-cruises": {
     title: "Book a Chicago Architecture Cruise",
     subtitle:
-      "Guided architecture river tours, speedboat architecture cruises, and river sightseeing you can book online.",
+      "Guided architecture river tours — including the Chicago Architecture Center cruise on Chicago’s First Lady — plus speedboat architecture options and sunset cocktail architecture cruises you can book online.",
     beforeForm: true,
   },
   "chicago-jet-ski-rentals": {
@@ -100,9 +100,9 @@ const offerSectionCopy: Record<
     beforeForm: true,
   },
   "chicago-kayak-rentals": {
-    title: "Book a Chicago Kayak Rental",
+    title: "Book a Chicago Kayak Experience",
     subtitle:
-      "Downtown river kayak rentals and Ohio Street Beach Lake Michigan kayak rentals — different locations and products. Compare and book online.",
+      "Guided sunset river kayak tours from the Riverwalk, downtown rentals, introductory lessons, and Ohio Street Beach Lake Michigan kayaks — different locations and products. Compare and book online.",
     beforeForm: true,
   },
   "chicago-dining-cruises": {
@@ -126,7 +126,7 @@ const offerSectionCopy: Record<
   "chicago-sunset-cruises": {
     title: "Book a Chicago Sunset Cruise or Sail",
     subtitle:
-      "Sunset cruises and private sunset sailing charters on Lake Michigan. Ticketed and private options available — confirm details on each booking page.",
+      "Sunset cocktail architecture cruises on the river, Lake Michigan sunset cruises, and private sunset sailing charters. Ticketed and private options — confirm details on each booking page.",
     beforeForm: true,
   },
   "family-boat-rentals-chicago": {
@@ -144,13 +144,13 @@ const offerSectionCopy: Record<
   "chicago-river-cruises": {
     title: "Popular on the Chicago River",
     subtitle:
-      "Architecture cruises and downtown kayak options on the Chicago River — book online through GetYourGuide and Viator.",
+      "Architecture cruises (including the Architecture Center First Lady cruise) and guided sunset kayak options on the Chicago River — book online through GetYourGuide and Viator.",
     beforeForm: true,
   },
   "riverwalk-boat-tours-chicago": {
     title: "Riverwalk Tours & Kayak Experiences",
     subtitle:
-      "Architecture river cruises and introductory kayak paddles near the Riverwalk — check times and book online.",
+      "Architecture Center river cruises and guided sunset kayak paddles near the Riverwalk — check times and book online.",
     beforeForm: true,
   },
 };
