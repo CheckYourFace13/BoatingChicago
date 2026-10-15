@@ -52,11 +52,42 @@ const CJ_TRACKING_HOSTS = new Set([
  */
 export const ADVERTISER_REGISTRY: AdvertiserRecord[] = [
   {
+    id: "adrenaline",
+    network: "cj",
+    advertiserId: "4851771",
+    name: "Adrenaline",
+    approvalStatus: "approved",
+    permittedWebsites: ["boatingchicago"],
+    categories: [
+      "dining-cruise",
+      "sunset-cruise",
+      "sailing",
+      "chicago-experience",
+      "romantic",
+    ],
+    keywords: [
+      "dinner cruise",
+      "sunset sail",
+      "private sail",
+      "navy pier",
+      "burnham harbor",
+    ],
+    /**
+     * Deep-linkable evergreen creative for website PID 101904027.
+     * Product-level placements use partner-programs buildAdrenalineCjUrl instead.
+     */
+    trackedDestination:
+      "https://www.tkqlhce.com/click-101904027-15734435?url=https%3A%2F%2Fwww.adrenaline365.com%2Fchicago%2F",
+    disclosure:
+      "Optional experience marketplace. Paid CJ link. Confirm boarding, duration, and cancellation on the merchant page — not a BoatingChicago review or rank.",
+    enabled: true,
+  },
+  {
     id: "aliexpress",
     network: "cj",
-    advertiserId: null,
+    advertiserId: "7711902",
     name: "AliExpress",
-    approvalStatus: "unverified",
+    approvalStatus: "declined",
     permittedWebsites: [],
     categories: ["moving", "home-upgrades", "home-furniture", "office-school", "city-living", "kitchen-tools"],
     keywords: ["moving boxes", "furniture", "desk chair", "storage bins"],

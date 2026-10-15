@@ -307,3 +307,95 @@ export function isBluettiAwinUrl(
     return false;
   }
 }
+
+/**
+ * CJ website PID for BoatingChicago (Account > Websites, verified with link-search).
+ * Not the account CID. Deep links must carry this PID.
+ */
+export const CJ_WEBSITE_PID_BOATINGCHICAGO = "101904027";
+
+const CJ_TRACKING_HOSTS = new Set([
+  "anrdoezrs.net",
+  "dpbolvw.net",
+  "jdoqocy.com",
+  "tkqlhce.com",
+  "kqzyfj.com",
+  "emjcd.com",
+  "qksrv.net",
+  "afcyhf.com",
+  "ftjcfx.com",
+  "lduhtrp.net",
+  "tqlkg.com",
+  "awltovhc.com",
+]);
+
+/** Adrenaline (CJ advertiser 4851771) product keys with verified destination paths. */
+export type AdrenalineProduct = "premier-dinner-cruise" | "private-sunset-sail";
+
+/**
+ * Verified 2026-10-15 via CJ link-search for PID 101904027.
+ * Evergreen link 15734435 allows deep linking (`allow-deep-linking=true`).
+ * Product paths checked on adrenaline365.com Chicago listings — confirm duration,
+ * boarding, and cancellation on each product page; do not invent specs.
+ */
+export const ADRENALINE_CJ = {
+  advertiserId: "4851771",
+  merchant: "adrenaline",
+  brand: "adrenaline",
+  websitePid: CJ_WEBSITE_PID_BOATINGCHICAGO,
+  /** Deep-linkable evergreen creative from CJ link-search. */
+  linkId: "15734435",
+  trackingHost: "www.tkqlhce.com",
+  products: {
+    "premier-dinner-cruise": {
+      product: "premier-dinner-cruise" as const,
+      label: "View Premier Dinner Cruise on Adrenaline",
+      shortName: "Premier Dinner Cruise, Chicago (Lake Michigan)",
+      destinationUrl:
+        "https://www.adrenaline365.com/chicago/meal-cruises/early-premier-dinner-cruise-lake-michigan-2.5hrs/",
+      boarding: "Navy Pier",
+      notes:
+        "Adrenaline lists a 2.5-hour Lake Michigan dinner cruise with plated dinner and DJ entertainment; drinks are sold separately. Confirm times, menu, and cancellation terms on the product page.",
+    },
+    "private-sunset-sail": {
+      product: "private-sunset-sail" as const,
+      label: "View Private Sunset Sail on Adrenaline",
+      shortName: "Private Skyline Sunset Sailing, Chicago",
+      destinationUrl:
+        "https://www.adrenaline365.com/chicago/sailing/private-skyline-sunset-sailing-chicago-2hrs30mins/",
+      boarding: "Burnham Harbor",
+      notes:
+        "Adrenaline lists a private skyline sunset sail from Burnham Harbor for up to six guests with a captain. Duration wording on the merchant page varies — confirm the live booking details before you reserve.",
+    },
+  },
+} as const;
+
+/**
+ * Build a CJ deep-link click URL for Adrenaline.
+ * Always routes through a CJ tracking host with the BoatingChicago website PID.
+ */
+export function buildAdrenalineCjUrl(product: AdrenalineProduct): string {
+  const creative = ADRENALINE_CJ.products[product];
+  const u = new URL(
+    `https://${ADRENALINE_CJ.trackingHost}/click-${ADRENALINE_CJ.websitePid}-${ADRENALINE_CJ.linkId}`,
+  );
+  u.searchParams.set("url", creative.destinationUrl);
+  return u.toString();
+}
+
+export function isAdrenalineCjUrl(
+  url: string,
+  product?: AdrenalineProduct,
+): boolean {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.replace(/^www\./, "").toLowerCase();
+    if (!CJ_TRACKING_HOSTS.has(host)) return false;
+    const expectedPath = `/click-${ADRENALINE_CJ.websitePid}-${ADRENALINE_CJ.linkId}`;
+    if (u.pathname !== expectedPath) return false;
+    if (!product) return true;
+    return u.searchParams.get("url") === ADRENALINE_CJ.products[product].destinationUrl;
+  } catch {
+    return false;
+  }
+}

@@ -18,8 +18,53 @@ import {
   ExploreResources,
 } from "./ExploreResources";
 import { TrackedLink } from "./TrackedLink";
+import { AdrenalineExperienceCta } from "./experiences/AdrenalineExperienceCta";
+import type { AdrenalineItem } from "./experiences/AdrenalineExperienceCta";
 import { siteConfig } from "@/config/site";
 import { buildArticleSchema } from "@/lib/schema";
+
+/** Verified Adrenaline (CJ) Chicago water products — page-specific, not commission-ranked. */
+const CATEGORY_ADRENALINE: Record<
+  string,
+  { heading: string; intro: string; items: AdrenalineItem[] }
+> = {
+  "chicago-dining-cruises": {
+    heading: "Lake Michigan dinner cruise on Adrenaline",
+    intro:
+      "Besides the GetYourGuide and Viator dining options above, Adrenaline lists a plated Premier Dinner Cruise on Lake Michigan from Navy Pier. Compare boarding location, duration, and cancellation terms before you book.",
+    items: [
+      {
+        product: "premier-dinner-cruise",
+        blurb:
+          "Navy Pier departure. Adrenaline describes a 2.5-hour Lake Michigan cruise with plated dinner and DJ entertainment; alcoholic drinks are sold separately. Confirm the live menu and schedule on the product page.",
+      },
+    ],
+  },
+  "chicago-sunset-cruises": {
+    heading: "Private sunset sail on Adrenaline",
+    intro:
+      "Ticketed sunset cruises are listed above. If you want a private sail for your group, Adrenaline also lists a Burnham Harbor skyline sunset charter — confirm capacity and duration on the merchant page.",
+    items: [
+      {
+        product: "private-sunset-sail",
+        blurb:
+          "Burnham Harbor boarding. Adrenaline lists a private skyline sunset sail for up to six guests with a captain. Duration wording on the merchant page varies — verify the booking details before you reserve.",
+      },
+    ],
+  },
+  "chicago-sailing-charters": {
+    heading: "Private sunset sail on Adrenaline",
+    intro:
+      "In addition to GetYourGuide and Viator sailing listings, Adrenaline offers a private Burnham Harbor skyline sunset sail. Treat it as one more booking path — not a ranked recommendation.",
+    items: [
+      {
+        product: "private-sunset-sail",
+        blurb:
+          "Private charter from Burnham Harbor for up to six guests with a captain, per Adrenaline’s product page. Confirm schedule, what’s supplied, and cancellation terms before paying.",
+      },
+    ],
+  },
+};
 
 interface CategoryLandingProps {
   category: CategoryPage;
@@ -172,6 +217,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
     .map((slug) => getCategoryBySlug(slug))
     .filter(Boolean);
   const heroImage = getCategoryImage(category.slug);
+  const adrenaline = CATEGORY_ADRENALINE[category.slug];
   const pageOffers = getOffersForPage(category.slug);
   const offerCopy = offerSectionCopy[category.slug];
   const isExperiencePage = experienceSlugs.has(category.slug);
@@ -302,6 +348,16 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
         <AdSenseBlock slot="guide-mid" />
 
         <div id="book-online">{offerBlock}</div>
+
+        {adrenaline ? (
+          <AdrenalineExperienceCta
+            placement={`category_${category.slug}`}
+            pageSlug={`/${category.slug}`}
+            heading={adrenaline.heading}
+            intro={adrenaline.intro}
+            items={adrenaline.items}
+          />
+        ) : null}
 
         {vendors.length > 0 ? (
           <section>

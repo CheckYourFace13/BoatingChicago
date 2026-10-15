@@ -12,6 +12,8 @@ import { BoatTraderShopCta } from "./ownership/BoatTraderShopCta";
 import { BluettiPowerCta } from "./ownership/BluettiPowerCta";
 import { GiraffeToolsMaintenanceCta } from "./ownership/GiraffeToolsMaintenanceCta";
 import { PiscifunFishingGearCta } from "./ownership/PiscifunFishingGearCta";
+import { AdrenalineExperienceCta } from "./experiences/AdrenalineExperienceCta";
+import type { AdrenalineItem } from "./experiences/AdrenalineExperienceCta";
 import { AdSenseBlock } from "./AdSenseBlock";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
@@ -246,6 +248,31 @@ const GUIDE_BLUETTI: Record<
   },
 };
 
+/** Guides where verified Adrenaline Chicago water products fit editorially. */
+const GUIDE_ADRENALINE: Record<
+  string,
+  { placement: string; heading: string; intro: string; items: AdrenalineItem[] }
+> = {
+  "romantic-boat-cruises-chicago": {
+    placement: "romantic-guide",
+    heading: "Dinner cruise and private sunset sail on Adrenaline",
+    intro:
+      "GetYourGuide and Viator options appear below. Adrenaline is another marketplace with a Lake Michigan dinner cruise from Navy Pier and a private Burnham Harbor sunset sail — compare policies side by side.",
+    items: [
+      {
+        product: "premier-dinner-cruise",
+        blurb:
+          "Navy Pier. Adrenaline lists a 2.5-hour Lake Michigan Premier Dinner Cruise with plated dinner and DJ entertainment; drinks sold separately. Confirm times and cancellation terms on the product page.",
+      },
+      {
+        product: "private-sunset-sail",
+        blurb:
+          "Burnham Harbor. Private skyline sunset sail for up to six guests with a captain, per Adrenaline. Duration wording on the merchant page varies — verify before booking.",
+      },
+    ],
+  },
+};
+
 function resolveSlugTitle(slug: string): string | null {
   const cat = getCategoryBySlug(slug);
   if (cat) return cat.title;
@@ -264,6 +291,7 @@ export function GuideLanding({ guide }: GuideLandingProps) {
   const giraffeTools = GUIDE_GIRAFFE_TOOLS[guide.slug];
   const piscifun = GUIDE_PISCIFUN[guide.slug];
   const bluetti = GUIDE_BLUETTI[guide.slug];
+  const adrenaline = GUIDE_ADRENALINE[guide.slug];
 
   const allFaqs = [...guide.peopleAlsoAsk, ...guide.faqs];
 
@@ -481,6 +509,16 @@ export function GuideLanding({ guide }: GuideLandingProps) {
             heading={bluetti.heading}
             intro={bluetti.intro}
             items={bluetti.items}
+          />
+        ) : null}
+
+        {adrenaline ? (
+          <AdrenalineExperienceCta
+            placement={adrenaline.placement}
+            pageSlug={`/${guide.slug}`}
+            heading={adrenaline.heading}
+            intro={adrenaline.intro}
+            items={adrenaline.items}
           />
         ) : null}
 

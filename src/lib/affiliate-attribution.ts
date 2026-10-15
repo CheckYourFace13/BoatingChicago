@@ -382,6 +382,60 @@ export function trackBluettiAffiliateClick(ctx: BluettiClickContext): void {
   });
 }
 
+export interface AdrenalineClickContext extends AffiliateClickContext {
+  product: "premier-dinner-cruise" | "private-sunset-sail";
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for Adrenaline via CJ (advertiser 4851771, website PID 101904027).
+ * One call per click — do not also bind data-track listeners. No PII.
+ */
+export function trackAdrenalineAffiliateClick(ctx: AdrenalineClickContext): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+  const productName =
+    ctx.product === "premier-dinner-cruise"
+      ? "Premier Dinner Cruise, Chicago"
+      : "Private Skyline Sunset Sailing, Chicago";
+
+  trackEvent("affiliate_click", {
+    provider: "cj",
+    merchant: "adrenaline",
+    brand: "adrenaline",
+    merchant_id: "4851771",
+    creative_id: "15734435",
+    website_pid: "101904027",
+    product: ctx.product,
+    product_id: ctx.product,
+    product_name: productName,
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: "adrenaline",
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: "cj",
+    offer_id: `adrenaline-${ctx.product}`,
+    offer_title: productName,
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(`${ctx.placement}-${ctx.product}`),
+  });
+}
+
 /**
  * GA4 affiliate_click for Piscifun via Awin (merchant ID 89509).
  * One call per click — do not also bind data-track listeners. No PII.

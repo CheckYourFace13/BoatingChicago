@@ -26,9 +26,10 @@ export default function AffiliateDisclosurePage() {
         <p className="font-semibold text-lake-blue">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
         <p>
           {siteConfig.name} participates in affiliate marketing programs, including partners
-          such as GetYourGuide, Viator, Amazon Associates, and Awin (including Boat Trader /
-          Boats Group, Giraffe Tools, Piscifun, and BLUETTI). That means we may earn a commission if you click a
-          partner link and complete a booking or purchase — at no additional cost to you.
+          such as GetYourGuide, Viator, Amazon Associates, Commission Junction (Adrenaline), and Awin
+          (including Boat Trader / Boats Group, Giraffe Tools, Piscifun, and BLUETTI). That means we may
+          earn a commission if you click a partner link and complete a booking or purchase — at no
+          additional cost to you.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What this covers</h2>
         <ul className="list-disc pl-5 space-y-2">
@@ -37,6 +38,11 @@ export default function AffiliateDisclosurePage() {
           <li>
             Amazon product and category links labeled as Amazon destinations (paid links). We do
             not sell, stock, or fulfill Amazon products.
+          </li>
+          <li>
+            Adrenaline experience links via Commission Junction (paid links) for selected Chicago
+            water experiences. Boarding, duration, cancellation, and pricing are set by Adrenaline
+            and the operator — we do not invent those details.
           </li>
           <li>
             Boat Trader shopping links via Awin (paid links). We do not sell, broker, or list boats,
