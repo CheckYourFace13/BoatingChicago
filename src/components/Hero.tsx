@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrandPeriod } from "./BrandPeriod";
 import { Logo } from "./Logo";
 import { HeroSlideshow } from "./HeroSlideshow";
 import { getSeasonalHeroCopy } from "@/lib/season";
@@ -22,7 +21,6 @@ export function Hero() {
             style={{ animationDelay: "140ms" }}
           >
             Your Guide to Boating Chicago &amp; Southern Lake Michigan
-            <BrandPeriod />
           </h1>
 
           <p
