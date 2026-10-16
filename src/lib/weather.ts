@@ -7,6 +7,7 @@ import {
   NWS_GRID,
   NWS_OBS_STATION,
   WEATHER_FETCH_TIMEOUT_MS,
+  WEATHER_OBSERVATION_STALE_MS,
   WEATHER_REVALIDATE_SECONDS,
   WEATHER_USER_AGENT,
 } from "@/config/weather";
@@ -628,6 +629,8 @@ export function computeBoatingRating(input: {
   alerts: WeatherAlert[];
   /** When false, alert list may be empty because the NWS fetch failed — do not treat as “all clear”. */
   alertsAvailable?: boolean;
+  /** When true, observation timestamps are older than the freshness ceiling. */
+  observationStale?: boolean;
 }): BoatingConditionRating {
   const factors: string[] = [];
   let level: BoatingConditionRating["level"] = "Good";
@@ -665,6 +668,13 @@ export function computeBoatingRating(input: {
     level = "Caution";
     factors.push(
       "NOAA/NWS alert feed unavailable — cannot confirm whether marine advisories are in effect"
+    );
+  }
+
+  if (input.observationStale) {
+    if (level === "Good") level = "Caution";
+    factors.push(
+      "Observation timestamps are stale (>3 hours) — verify live conditions on weather.gov before treating this as current",
     );
   }
 
@@ -810,6 +820,13 @@ export async function getWeatherForLocation(
       : null;
 
   const nearTerm = hourly[0] || null;
+  const observationStale = isObservationStale(current?.observedAt, lake.observedAt);
+  if (observationStale) {
+    errors.push(
+      "Latest observation timestamp is older than 3 hours — treat conditions as potentially stale",
+    );
+  }
+
   const rating = computeBoatingRating({
     windSpeedMph: current?.windSpeedMph ?? nearTerm?.windSpeedMph ?? null,
     windGustMph: current?.windGustMph ?? nearTerm?.windGustMph ?? null,
@@ -818,6 +835,7 @@ export async function getWeatherForLocation(
     shortForecast: nearTerm?.shortForecast ?? current?.description ?? null,
     alerts,
     alertsAvailable,
+    observationStale,
   });
 
   return {
@@ -838,6 +856,21 @@ export async function getWeatherForLocation(
     sources,
     errors,
   };
+}
+
+/** True when the newest observation timestamp is missing age checks or older than the stale ceiling. */
+export function isObservationStale(
+  currentObservedAt: string | null | undefined,
+  lakeObservedAt: string | null | undefined,
+  nowMs = Date.now(),
+): boolean {
+  const times = [currentObservedAt, lakeObservedAt]
+    .filter((v): v is string => Boolean(v))
+    .map((v) => Date.parse(v))
+    .filter((n) => !Number.isNaN(n));
+  if (times.length === 0) return false;
+  const newest = Math.max(...times);
+  return nowMs - newest > WEATHER_OBSERVATION_STALE_MS;
 }
 
 export async function getChicagoWeather(): Promise<ChicagoWeatherPayload> {

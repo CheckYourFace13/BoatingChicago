@@ -2,7 +2,10 @@ import type { NewsCategory, NewsSourceConfig } from "@/types/news";
 
 /** Revalidate news aggregates ~1 hour for fresher coverage. */
 export const NEWS_REVALIDATE_SECONDS = 3600;
-export const NEWS_FETCH_TIMEOUT_MS = 10000;
+/** Bound each feed wait so one hung source cannot stall the whole page. */
+export const NEWS_FETCH_TIMEOUT_MS = 6000;
+/** Skip a failing feed for this long (in-process) to avoid hammering known 403/5xx sources. */
+export const NEWS_FEED_COOLDOWN_MS = NEWS_REVALIDATE_SECONDS * 1000;
 
 export const NEWS_USER_AGENT =
   "Mozilla/5.0 (compatible; BoatingChicago/1.0; +https://boatingchicago.com; news aggregation)";
@@ -53,7 +56,9 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
       "toronto",
       "buffalo ny",
     ],
-    enabled: true,
+    // Disabled 2026-10-16: feed consistently returns HTTP 403 and flooded runtime logs
+    // on every page regenerate. Re-enable after the publisher feed is reachable again.
+    enabled: false,
   },
   {
     id: "illinois-sea-grant",

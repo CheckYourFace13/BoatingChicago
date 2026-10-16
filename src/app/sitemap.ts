@@ -10,13 +10,9 @@ import {
 import { getAllGuideSlugs } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
 import { shouldIndexCategorySlug } from "@/config/quality";
-import { getChicagoNews } from "@/lib/news";
-import { getChicagoWeather } from "@/lib/weather";
-import { getManagedFeed } from "@/lib/gravyblock-managed";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
-  const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: "weekly", priority: 1 },
@@ -74,13 +70,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/weather`,
       changeFrequency: "hourly",
       priority: 0.85,
-      lastModified: now,
     },
     {
       url: `${baseUrl}/news`,
       changeFrequency: "hourly",
       priority: 0.8,
-      lastModified: now,
     },
     // Include /vendors only when real partner listings exist (avoids thin directory)
     ...(getPublishedVendors().length
@@ -167,24 +161,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  let newsPages: MetadataRoute.Sitemap = [];
-  try {
-    const weather = await getChicagoWeather();
-    const feed = await getChicagoNews({ alerts: weather.alerts, weather });
-    newsPages = feed.items
-      .filter((i) => i.isPublished && i.qualifiesForArticlePage)
-      .slice(0, 40)
-      .map((i) => ({
-        url: `${baseUrl}/news/${i.slug}`,
-        changeFrequency: "daily" as const,
-        priority: 0.55,
-        lastModified: i.sourcePublishedAt
-          ? new Date(i.sourcePublishedAt)
-          : now,
-      }));
-  } catch {
-    newsPages = [];
-  }
+  // Automated news items never qualify for standalone /news/[slug] pages
+  // (see documentation/NEWS_INDEXING_POLICY.md), so do not fetch weather/news here.
 
   return [
     ...staticPages,
@@ -195,6 +173,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...marinaPages,
     ...launchPages,
     ...vendorPages,
-    ...newsPages,
   ];
 }

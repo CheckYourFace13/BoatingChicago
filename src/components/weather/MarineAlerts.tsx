@@ -137,11 +137,12 @@ export function WeatherSourceAttribution({
         {new Date(fetchedAt).toLocaleString("en-US", {
           timeZone: "America/Chicago",
         })}{" "}
-        (approx. 15-minute cache).
+        (approx. 15-minute cache). Observation timestamps older than 3 hours are
+        treated as stale and shown as caution — never as a fresh “Good” day.
       </p>
       {errors.length ? (
         <p className="mt-2 text-amber-800">
-          Some sources were unavailable: {errors.join(" · ")}
+          Some sources were unavailable or stale: {errors.join(" · ")}
         </p>
       ) : null}
     </section>

@@ -1,12 +1,12 @@
 import { getPublishedEvents } from "@/data/geo";
 import { buildConditionsTickerItems } from "@/lib/conditions-ticker";
-import { getChicagoNews } from "@/lib/news";
 import { getWeatherForLocation } from "@/lib/weather";
 import { ConditionsTicker } from "./ConditionsTicker";
 
 /**
  * Server-rendered sitewide conditions wire below the header.
- * Uses existing weather/news/events caches — no client polling.
+ * Uses weather/events caches only — no RSS fan-out on every page shell.
+ * Safety/alert copy comes from Chicago NWS alerts already on the weather payload.
  */
 export async function SiteConditionsTicker() {
   try {
@@ -17,7 +17,6 @@ export async function SiteConditionsTicker() {
       getWeatherForLocation("waukegan"),
     ]);
 
-    const news = await getChicagoNews({ alerts: chicago.alerts, weather: chicago });
     const events = getPublishedEvents();
 
     const items = buildConditionsTickerItems({
@@ -25,13 +24,12 @@ export async function SiteConditionsTicker() {
       lakeGeneva,
       chain,
       waukegan,
-      news: news.items,
       events,
     });
 
     return <ConditionsTicker items={items} />;
   } catch {
-    // Never break the shell if weather/news fetch fails
+    // Never break the shell if weather fetch fails
     return null;
   }
 }

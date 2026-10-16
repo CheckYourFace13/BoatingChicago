@@ -41,6 +41,12 @@ export const WEATHER_REVALIDATE_SECONDS = 900;
 
 export const WEATHER_FETCH_TIMEOUT_MS = 8000;
 
+/**
+ * Observations older than this are labeled stale and must not present as a fresh
+ * “Good” day without a caution. NWS ASOS can lag; 3 hours is a hard ceiling.
+ */
+export const WEATHER_OBSERVATION_STALE_MS = 3 * 60 * 60 * 1000;
+
 /** Informational boating rating thresholds (mph / feet). Not an official NWS rating. */
 export const BOATING_RATING_THRESHOLDS = {
   /** Sustained wind (mph) */

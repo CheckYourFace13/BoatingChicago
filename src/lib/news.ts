@@ -1,5 +1,6 @@
 import {
   NEWS_CATEGORY_RELATED,
+  NEWS_FEED_COOLDOWN_MS,
   NEWS_FETCH_TIMEOUT_MS,
   NEWS_REVALIDATE_SECONDS,
   NEWS_SOURCES,
@@ -390,7 +391,24 @@ function parseFeedItems(xml: string, feedUrl: string): RawFeedItem[] {
   return parseRssItems(xml, feedUrl);
 }
 
-async function fetchFeedXml(url: string): Promise<string> {
+/** In-process cooldown after hard feed failures — avoids repeated 403/timeout spam. */
+const feedCooldownUntil = new Map<string, number>();
+
+function markFeedCooldown(sourceId: string): void {
+  feedCooldownUntil.set(sourceId, Date.now() + NEWS_FEED_COOLDOWN_MS);
+}
+
+/** Test helper — clears cooldown state between unit tests. */
+export function resetNewsFeedCooldowns(): void {
+  feedCooldownUntil.clear();
+}
+
+async function fetchFeedXml(sourceId: string, url: string): Promise<string> {
+  const coolingUntil = feedCooldownUntil.get(sourceId) ?? 0;
+  if (Date.now() < coolingUntil) {
+    throw new Error("cooling down after recent failure");
+  }
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), NEWS_FETCH_TIMEOUT_MS);
   try {
@@ -404,9 +422,26 @@ async function fetchFeedXml(url: string): Promise<string> {
       next: { revalidate: NEWS_REVALIDATE_SECONDS },
     });
     if (!res.ok) {
+      if (res.status === 403 || res.status === 404 || res.status >= 500) {
+        markFeedCooldown(sourceId);
+      }
       throw new Error(`HTTP ${res.status}`);
     }
+    feedCooldownUntil.delete(sourceId);
     return await res.text();
+  } catch (err) {
+    const name =
+      typeof err === "object" && err && "name" in err
+        ? String((err as { name: unknown }).name)
+        : "";
+    const message = err instanceof Error ? err.message : String(err);
+    if (
+      name === "AbortError" ||
+      /aborted|AbortError|timeout/i.test(`${name} ${message}`)
+    ) {
+      markFeedCooldown(sourceId);
+    }
+    throw err;
   } finally {
     clearTimeout(timer);
   }
@@ -414,6 +449,10 @@ async function fetchFeedXml(url: string): Promise<string> {
 
 function logFeedFailure(sourceId: string, err: unknown): void {
   const message = err instanceof Error ? err.message : "feed failed";
+  if (/cooling down/i.test(message)) {
+    console.info(`[news] feed skipped source=${sourceId} error=${message}`);
+    return;
+  }
   console.error(`[news] feed failed source=${sourceId} error=${message}`);
 }
 
@@ -635,10 +674,12 @@ export async function getChicagoNews(options?: {
   const sourcesSucceeded: string[] = [];
   const byUrl = new Map<string, NewsItem>();
 
-  for (const source of NEWS_SOURCES.filter((s) => s.enabled)) {
-    sourcesAttempted.push(source.id);
-    try {
-      const xml = await fetchFeedXml(source.feedUrl);
+  const enabledSources = NEWS_SOURCES.filter((s) => s.enabled);
+  sourcesAttempted.push(...enabledSources.map((s) => s.id));
+
+  const settled = await Promise.allSettled(
+    enabledSources.map(async (source) => {
+      const xml = await fetchFeedXml(source.id, source.feedUrl);
       const rawItems = parseFeedItems(xml, source.feedUrl);
       const matched: NewsItem[] = [];
       for (const raw of rawItems) {
@@ -646,21 +687,32 @@ export async function getChicagoNews(options?: {
         if (!item) continue;
         matched.push(item);
       }
-      for (const item of matched.slice(0, 8)) {
-        if (!byUrl.has(item.sourceUrl)) {
-          byUrl.set(item.sourceUrl, item);
-        }
-      }
-      sourcesSucceeded.push(source.id);
-      if (matched.length === 0 && rawItems.length > 0) {
-        console.info(
-          `[news] source=${source.id} fetched=${rawItems.length} matched=0 (filters)`
-        );
-      }
-    } catch (err) {
-      logFeedFailure(source.id, err);
+      return { source, rawCount: rawItems.length, matched };
+    }),
+  );
+
+  for (let i = 0; i < settled.length; i++) {
+    const result = settled[i];
+    const source = enabledSources[i];
+    if (result.status === "rejected") {
+      logFeedFailure(source.id, result.reason);
       errors.push(
-        `${source.id}: ${err instanceof Error ? err.message : "feed failed"}`
+        `${source.id}: ${
+          result.reason instanceof Error ? result.reason.message : "feed failed"
+        }`,
+      );
+      continue;
+    }
+    const { matched, rawCount } = result.value;
+    for (const item of matched.slice(0, 8)) {
+      if (!byUrl.has(item.sourceUrl)) {
+        byUrl.set(item.sourceUrl, item);
+      }
+    }
+    sourcesSucceeded.push(source.id);
+    if (matched.length === 0 && rawCount > 0) {
+      console.info(
+        `[news] source=${source.id} fetched=${rawCount} matched=0 (filters)`,
       );
     }
   }

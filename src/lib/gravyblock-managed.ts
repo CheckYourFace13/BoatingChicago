@@ -23,7 +23,10 @@ export type ManagedFeed = { version: number; businessId: string; generatedAt: st
 
 export async function getManagedFeed(): Promise<ManagedFeed | null> {
   try {
-    const res = await fetch(FEED_URL, { next: { revalidate: 60 }, signal: AbortSignal.timeout(4000) });
+    const res = await fetch(FEED_URL, {
+      next: { revalidate: 300 },
+      signal: AbortSignal.timeout(4000),
+    });
     if (!res.ok) return null;
     const sig = res.headers.get("x-gravyblock-signature");
     const body = await res.text();
