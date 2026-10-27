@@ -3,6 +3,7 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import { PartnerShoppingAds } from "@/components/PartnerShoppingAds";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
@@ -74,6 +75,8 @@ export default function ToolsPage() {
           current federal, state, and local requirements for your vessel and
           waters.
         </p>
+
+        <PartnerShoppingAds pageKey="tools" />
 
         <ResourceCrossLinks
           links={[

@@ -436,6 +436,59 @@ export function trackAdrenalineAffiliateClick(ctx: AdrenalineClickContext): void
   });
 }
 
+export interface PartnerShoppingClickContext extends AffiliateClickContext {
+  network: "impact" | "cj";
+  merchant: string;
+  merchantId: string;
+  creativeId: string;
+  href: string;
+}
+
+/**
+ * GA4 affiliate_click for Impact / CJ shopping-partner placements.
+ * Handler only — not proof GA received the hit. No PII.
+ */
+export function trackPartnerShoppingClick(
+  ctx: PartnerShoppingClickContext,
+): void {
+  const origin = getSessionOrigin();
+  const pagePath =
+    typeof window !== "undefined"
+      ? window.location.pathname || ctx.pageSlug || "/"
+      : ctx.pageSlug || "/";
+  const pageTitle =
+    typeof document !== "undefined" ? document.title || "" : "";
+
+  trackEvent("affiliate_click", {
+    provider: ctx.network,
+    merchant: ctx.merchant,
+    brand: ctx.merchant,
+    merchant_id: ctx.merchantId,
+    creative_id: ctx.creativeId,
+    product_id: ctx.creativeId,
+    product_name: ctx.merchant,
+    page_path: pagePath,
+    page_title: pageTitle.slice(0, 150),
+    placement: ctx.placement,
+    section: ctx.section,
+    position: ctx.position,
+    cta_text: ctx.ctaText,
+    destination: ctx.merchant,
+    landing_page: origin?.landing_page || "",
+    initial_referrer: origin?.initial_referrer || "",
+    utm_source: origin?.utm_source || "",
+    utm_medium: origin?.utm_medium || "",
+    utm_campaign: origin?.utm_campaign || "",
+    partner: ctx.network,
+    offer_id: `${ctx.merchant}-${ctx.creativeId}`,
+    offer_title: ctx.merchant,
+    destination_url: ctx.href,
+    page: pagePath,
+    cta_label: ctx.ctaText,
+    campaign_code: sanitizeCampaignCode(`${ctx.placement}-${ctx.merchant}`),
+  });
+}
+
 /**
  * GA4 affiliate_click for Piscifun via Awin (merchant ID 89509).
  * One call per click — do not also bind data-track listeners. No PII.

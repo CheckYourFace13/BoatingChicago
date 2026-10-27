@@ -26,10 +26,11 @@ export default function AffiliateDisclosurePage() {
         <p className="font-semibold text-lake-blue">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
         <p>
           {siteConfig.name} participates in affiliate marketing programs, including partners
-          such as GetYourGuide, Viator, Amazon Associates, Commission Junction (Adrenaline), and Awin
-          (including Boat Trader / Boats Group, Giraffe Tools, Piscifun, and BLUETTI). That means we may
-          earn a commission if you click a partner link and complete a booking or purchase — at no
-          additional cost to you.
+          such as GetYourGuide, Viator, Amazon Associates, Commission Junction (Adrenaline and
+          Peet&apos;s Coffee), Awin (including Boat Trader / Boats Group, Giraffe Tools, Piscifun,
+          and BLUETTI), and Impact (including BrandsMart, KingCamp, Chipolo, and Best Choice
+          Products). That means we may earn a commission if you click a partner link and complete
+          a booking or purchase — at no additional cost to you.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">What this covers</h2>
         <ul className="list-disc pl-5 space-y-2">
@@ -62,6 +63,11 @@ export default function AffiliateDisclosurePage() {
             BLUETTI product links via Awin (paid links) for portable shore/backup power stations. We
             do not claim marine suitability, invent capacity or safety specs, or present these as
             emergency communications gear.
+          </li>
+          <li>
+            Labeled “Advertisement — shopping partners” placements via Impact and Commission
+            Junction. These are paid shopping links, not boat reviews, marine certifications, or
+            inventory promises. Impression tags load only with the creative that is actually shown.
           </li>
         </ul>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Amazon Associates</h2>

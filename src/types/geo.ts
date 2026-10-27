@@ -82,6 +82,9 @@ export interface BoatLaunch {
   seasonalAccessNote?: string;
   hoursNote?: string;
   feesNote?: string;
+  /** Optional page-specific search title — do not invent access or fees. */
+  seoTitle?: string;
+  seoDescription?: string;
   source: SourceRef;
   isPublished: boolean;
 }

@@ -114,9 +114,9 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "chicago-boat-storage-guide",
     title: "Chicago Boat Storage Guide",
-    seoTitle: "Chicago Boat Storage Guide 2026 | Winter Storage & Indoor Options",
+    seoTitle: "Boat Storage Chicago 2026 | Indoor, Outdoor & Winter Options",
     seoDescription:
-      "Find the best boat storage in Chicago — indoor and outdoor winter storage, dry stack, shrink wrap, and marina storage options for Lake Michigan boats.",
+      "Boat storage Chicago for Lake Michigan boats: indoor and outdoor winter storage, shrink wrap, and how heated indoor differs from unheated space. Confirm dates with each yard — see the haul-out directory.",
     headline: "Chicago Boat Storage: Complete Guide to Winter Storage",
     intro:
       "Chicago winters are no place for an unprotected boat. From late October through April, proper boat storage is the difference between arriving at the marina in spring with a boat in excellent condition and spending the season on repairs from freeze damage. This guide covers Chicago-area boat storage options, what to look for in a storage facility, and how to prepare your boat for winter.",
@@ -125,7 +125,7 @@ export const guidePart4: GuidePage[] = [
         heading: "Types of Boat Storage in Chicago",
         paragraphs: [
           "Outdoor rack or yard storage is the most common and typically most affordable option in the Chicago area. Boats are pulled from the water, placed on stands or trailers, and stored in a secured outdoor lot. This is appropriate for fiberglass and aluminum boats that can tolerate Chicago's winter temperatures with proper winterization.",
-          "Indoor storage protects against UV, ice loading, and vandalism and is considered the premium option for higher-value vessels. Indoor facilities in the Chicago area are limited and fill up early — if you want indoor storage, contact facilities in August or September to reserve space before the fall haul-out season.",
+          "Indoor storage protects against UV, ice loading, and vandalism and is considered the premium option for higher-value vessels. Indoor facilities in the Chicago area are limited and fill up early — if you want indoor storage, contact facilities in August or September to reserve space before the fall haul-out season. Heated indoor space is a narrower subset: some buildings are only enclosed, not climate-controlled. Ask the operator whether the building is heated, what temperature they hold, and whether shrink wrap is still required. Do not assume a listing that says “indoor” means heated.",
           "Shrink wrap is applied over the boat to create a weatherproof cocoon for the winter season. Most storage facilities offer shrink wrapping as a service; some boat owners prefer to do it themselves. Professional shrink wrap service includes framing to support the plastic and prevent pooling.",
           "In-water winter storage is sometimes available at facilities with breakwaters strong enough to protect vessels from ice loading. This is more common in southern Lake Michigan ports and is relatively uncommon in Chicago proper due to the severity of winter ice conditions.",
         ],
@@ -205,13 +205,14 @@ export const guidePart4: GuidePage[] = [
       { label: "Spring launch checklist", href: "/spring-boat-launch-checklist-chicago" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
+      { label: "Winterization hub", href: "/chicago-boat-winterization" },
       { label: "Boat Storage Chicago", href: "/chicago-boat-storage-guide" },
     ],
     relatedSlugs: [
       "winter-boat-storage-chicago",
+      "chicago-boat-winterization",
       "spring-boat-launch-checklist-chicago",
       "chicago-marina-guide",
-      "chicago-boat-detailing-guide",
       "chicago-boat-repair-guide",
       "chicago-boat-winterizing-guide",
     ],
@@ -221,9 +222,9 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "winter-boat-storage-chicago",
     title: "Winter Boat Storage Chicago",
-    seoTitle: "Winter Boat Storage Chicago 2026 | Find the Best Off-Season Storage",
+    seoTitle: "Winter Boat Storage Chicago 2026 | Indoor, Outdoor & Haul-Out",
     seoDescription:
-      "Find winter boat storage in Chicago — indoor heated storage, outdoor rack, shrink wrap services, and tips for protecting your boat through a Chicago winter.",
+      "Winter boat storage Chicago: outdoor rack, indoor and heated indoor options, shrink wrap, and October haul-out timing. Harbor season is not your yard’s pull date — confirm both.",
     headline: "Winter Boat Storage in Chicago: Options and Tips",
     intro:
       "Chicago winters can be brutal — temperatures well below freezing, significant snowfall, and ice loading that can damage unsupported vessels. Proper winter storage isn't optional for most Lake Michigan boaters; it's essential. This guide focuses specifically on the winter storage decision — what options are available, what to ask facilities, and how to make sure your boat comes out of storage in spring ready for the season.",
@@ -310,6 +311,7 @@ export const guidePart4: GuidePage[] = [
     ],
     popularSearches: [
       { label: "Storage & haul-out directory", href: "/storage" },
+      { label: "Winterization hub", href: "/chicago-boat-winterization" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
       { label: "Spring launch checklist", href: "/spring-boat-launch-checklist-chicago" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
@@ -318,11 +320,11 @@ export const guidePart4: GuidePage[] = [
     ],
     relatedSlugs: [
       "chicago-boat-storage-guide",
+      "chicago-boat-winterization",
       "spring-boat-launch-checklist-chicago",
       "chicago-marina-guide",
       "chicago-boat-winterizing-guide",
       "chicago-boat-repair-guide",
-      "beginners-guide-boating-chicago",
     ],
     affiliateOffersFromSlug: "boat-rentals-chicago",
     showLeadForm: false,
@@ -539,12 +541,12 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "chicago-fishing-guide",
     title: "Chicago Fishing Guide",
-    seoTitle: "Chicago Fishing Guide 2026 | Lake Michigan Fishing in Chicago",
+    seoTitle: "Chicago Fishing Guide 2026 | Lake Michigan Salmon, Trout & Pier",
     seoDescription:
-      "Complete guide to fishing in Chicago on Lake Michigan — what species to target, when to fish, where to go, fishing charters, and pier fishing spots.",
+      "Fishing on Lake Michigan in Chicago: chinook and coho salmon, lake trout, perch, Illinois DNR licenses, pier spots, and when a charter helps. Seasonality matters — fall runs end as winter charter calendars pause.",
     headline: "Fishing in Chicago: Complete Lake Michigan Guide",
     intro:
-      "Fishing on Lake Michigan out of Chicago is world-class by any measure. The lake holds chinook and coho salmon, lake trout, steelhead, yellow perch, and more — and Chicago's harbors give anglers convenient access to these fisheries without long drives or boat trailering. Whether you're booking a fishing charter for the first time or you're an experienced angler looking to optimize your Lake Michigan strategy, this guide covers the essentials.",
+      "Fishing on Lake Michigan out of Chicago is world-class by any measure. The lake holds chinook and coho salmon, lake trout, steelhead, yellow perch, and more — and Chicago's harbors give anglers convenient access to these fisheries without long drives or boat trailering. Whether you're booking a fishing charter for the first time or you're an experienced angler looking to optimize your Lake Michigan strategy, this guide covers the essentials. Anglers 16 and older need an Illinois fishing license in Illinois waters — buy it from the Illinois Department of Natural Resources, not from this site. For species-specific timing see the salmon fishing page; for booked trips see fishing charters.",
     sections: [
       {
         heading: "What Fish Live in Lake Michigan Near Chicago?",
@@ -749,12 +751,12 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "salmon-fishing-chicago",
     title: "Salmon Fishing Chicago",
-    seoTitle: "Salmon Fishing Chicago 2026 | Lake Michigan Salmon Fishing Guide",
+    seoTitle: "Salmon Fishing Chicago 2026 | Chinook & Coho on Lake Michigan",
     seoDescription:
-      "Your guide to salmon fishing in Chicago on Lake Michigan — chinook and coho salmon seasons, charter tips, tackle, and where to find the best fishing near the city.",
+      "Salmon fishing Chicago on Lake Michigan: chinook and coho seasons, downrigger trolling, Illinois DNR limits, and how charters work. Late fall and winter see most salmon charters pause — confirm current catch reports with a captain.",
     headline: "Salmon Fishing in Chicago on Lake Michigan",
     intro:
-      "Lake Michigan's salmon fishery is one of the great sport fishing resources in the American Midwest — accessible from the heart of a major city, producing fish of serious quality, and supported by a community of dedicated charter captains who run these waters year-round. This guide focuses specifically on salmon fishing out of Chicago: when the fish move, how to target them, and what a great charter experience looks like.",
+      "Lake Michigan's salmon fishery is one of the great sport fishing resources in the American Midwest — accessible from the heart of a major city, producing fish of serious quality, and supported by a community of dedicated charter captains. This guide focuses specifically on salmon fishing out of Chicago: when the fish move, how to target them, and what a charter trip involves. Most Chicago salmon charters run spring through fall; by late October many calendars are winding down. We do not publish live bite reports — read current notes from a captain before you book.",
     sections: [
       {
         heading: "Chinook Salmon: The Trophy of Lake Michigan",

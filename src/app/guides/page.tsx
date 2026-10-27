@@ -9,6 +9,7 @@ import {
 } from "@/data/guides";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import { PartnerShoppingAds } from "@/components/PartnerShoppingAds";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
@@ -125,6 +126,8 @@ export default function GuidesPage() {
             </li>
           ))}
         </ul>
+
+        <PartnerShoppingAds pageKey="guides" />
 
         <ResourceCrossLinks
           links={[

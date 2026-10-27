@@ -647,9 +647,9 @@ export const guidePart1: GuidePage[] = [
   {
     slug: "chicago-playpen-guide",
     title: "Chicago Playpen Guide",
-    seoTitle: "Chicago Playpen Guide 2026 | Everything About the Lake Michigan Playpen",
+    seoTitle: "Chicago Playpen Guide 2026 | Oak Street Beach Anchorage",
     seoDescription:
-      "The complete guide to the Chicago Playpen — what it is, where it is, how to get there, what to bring, and how to rent a boat for the Playpen experience.",
+      "Chicago Playpen on Lake Michigan: informal summer anchorage east of Oak Street Beach, typically Memorial Day through Labor Day. How to get there by boat, etiquette, and Playpen rentals. The zone is empty in winter.",
     headline: "Chicago Playpen: Complete Boater's Guide",
     intro:
       "The Chicago Playpen is unlike any boating scene in the country. On summer weekends, hundreds of boats anchor in the shallow water off Oak Street Beach, creating a floating neighborhood of party pontoons, sailboats, speedboats, and everything in between. Music carries across the water, people swim between boats, and the Chicago skyline towers overhead. If you've never been, this guide tells you everything you need to know to do it right.",

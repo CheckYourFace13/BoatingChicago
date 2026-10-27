@@ -48,9 +48,9 @@ export const categories: CategoryPage[] = [
   {
     slug: "yacht-rentals-chicago",
     title: "Yacht Rentals Chicago",
-    seoTitle: "Yacht Rentals Chicago | Luxury Lake Michigan Yacht Charters",
+    seoTitle: "Yacht Rental Chicago | Private Lake Michigan Yacht Charters",
     seoDescription:
-      "Rent a yacht in Chicago for birthdays, corporate events, and luxury Lake Michigan cruises. Compare yacht charters, pricing, and book through trusted partners.",
+      "Yacht rental Chicago and private yacht charters on Lake Michigan — celebrations, corporate groups, and sunset cruises. Confirm live price, crew, and inclusions on each booking listing.",
     headline: "Luxury Yacht Rentals & Charters in Chicago",
     intro:
       "Nothing beats a Chicago summer on a yacht — champagne on the deck, the skyline rolling by, and Lake Michigan stretching to the horizon. From intimate sunset sails to full-deck corporate events, yacht charters are the ultimate Chicago boating experience. Use the guides and bookable listings on this page to compare vessels, crew options, and price points.",
@@ -230,9 +230,9 @@ export const categories: CategoryPage[] = [
   {
     slug: "fishing-charters-chicago",
     title: "Fishing Charters Chicago",
-    seoTitle: "Fishing Charters Chicago | Lake Michigan Fishing Trips",
+    seoTitle: "Chicago Fishing Charters | Lake Michigan Salmon & Trout Trips",
     seoDescription:
-      "Book a fishing charter in Chicago on Lake Michigan. Salmon, trout, perch & more with experienced captains. Half-day and full-day trips available.",
+      "Chicago fishing charters on Lake Michigan for salmon, trout, and perch. Half-day and full-day trips; gear is usually included. Confirm license, dates, and live catch notes with the captain.",
     headline: "Fishing Charters on Lake Michigan",
     intro:
       "Lake Michigan fishing out of Chicago is world-class — salmon, trout, perch, and more with experienced captains who know these waters. Whether you're a seasoned angler or bringing the family for a first trip, fishing charters include the boat, gear, and expertise. Compare charter guides and booking platforms on this page.",
@@ -257,7 +257,7 @@ export const categories: CategoryPage[] = [
     title: "Captains for Hire Chicago",
     seoTitle: "Captains for Hire Chicago | USCG Licensed Boat Captains",
     seoDescription:
-      "Hire a licensed captain in Chicago for your boat rental, event, or private vessel. USCG captains for Lake Michigan and the Chicago River.",
+      "Hire a USCG-licensed boat captain in Chicago for a private vessel, bareboat rental, or event on Lake Michigan or the Chicago River. This is not a fishing-charter booking page — compare captained trips on related listings.",
     headline: "Licensed Captains for Hire in Chicago",
     intro:
       "Need a captain for your Chicago boat rental or private vessel? USCG-licensed captains bring local knowledge, safety expertise, and peace of mind to every trip on Lake Michigan. Whether you're renting a boat without a license, hosting an event, or need a delivery captain, browse related category pages and booking platforms for licensed captain options across the Chicago area.",
@@ -476,9 +476,9 @@ export const categories: CategoryPage[] = [
   {
     slug: "chicago-dining-cruises",
     title: "Chicago Dining Cruises",
-    seoTitle: "Chicago Dining Cruises | Brunch, Lunch & Dinner River Cruises",
+    seoTitle: "Chicago Dinner Cruise | Brunch, Lunch & Dining River Cruises",
     seoDescription:
-      "Book Chicago brunch, lunch, or dinner river cruises. Dining cruises with downtown architecture views — not private yacht charters.",
+      "Chicago dinner cruise and brunch or lunch river cruises with downtown architecture views. Ticketed dining boats — not private yacht charters. Confirm menu and boarding on the listing.",
     headline: "Chicago Brunch, Lunch & Dinner River Cruises",
     intro:
       "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — perfect for celebrations and visitors. They are not private yacht charters. Want a private yacht with custom catering? Use related category pages and instant-booking listings.",
@@ -573,9 +573,9 @@ export const categories: CategoryPage[] = [
   {
     slug: "chicago-sunset-cruises",
     title: "Chicago Sunset Cruises",
-    seoTitle: "Chicago Sunset Cruises & Sunset Sailing | Lake Michigan Golden Hour",
+    seoTitle: "Sunset Cruise Chicago | Lake Michigan Golden-Hour Boat Tours",
     seoDescription:
-      "Book Chicago sunset cruises and private sunset sailing charters on Lake Michigan. Golden-hour skyline views — ticketed cruises and private charter options.",
+      "Sunset cruise Chicago on Lake Michigan: ticketed golden-hour skyline cruises and private sunset sailing charters. Shared cruises are not private yacht rentals — confirm departure time on the listing.",
     headline: "Chicago Sunset Cruises & Sunset Sailing",
     intro:
       "Golden hour on Lake Michigan turns the Chicago skyline into a postcard — warm light, calm water, and downtown glowing as the sun drops. Sunset options include ticketed sunset cruises and private sunset sailing charters. Ticketed cruises are shared experiences with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request — browse related category pages if you need a tailored charter.",

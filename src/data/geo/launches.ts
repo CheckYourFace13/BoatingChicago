@@ -136,8 +136,11 @@ export const launches: BoatLaunch[] = [
     name: "McKinley Marina Boat Launch",
     destinationSlug: "milwaukee",
     lakeSlug: "lake-michigan-chicago",
+    seoTitle: "McKinley Marina Boat Launch | Milwaukee Permit Required",
+    seoDescription:
+      "Milwaukee County Parks public launch at McKinley Marina. A launch permit is required; County Parks states the same permit also covers South Shore Park, Bender Park, and Riverfront sites. Confirm current rules on the official page.",
     summary:
-      "Public launch at Milwaukee County’s McKinley Marina. County Parks states launch permits also cover South Shore Park, Bender Park, and Riverfront launch sites.",
+      "Public launch at Milwaukee County’s McKinley Marina. County Parks states a launch permit is required, and that permit also covers South Shore Park, Bender Park, and Riverfront launch sites.",
     overview: [
       "McKinley Marina is Milwaukee County Parks’ primary lakefront marina and a common public launch for boaters working the Milwaukee harbor and nearshore Lake Michigan. County Parks publishes launch-permit rules and notes that a permit can cover multiple county launch sites — verify the current list on the official page.",
       "Launching onto Lake Michigan from Milwaukee still requires the same marine-forecast discipline as Chicago: wind, waves, and small-craft products can change the day quickly.",

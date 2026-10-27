@@ -15,6 +15,8 @@ import { PiscifunFishingGearCta } from "./ownership/PiscifunFishingGearCta";
 import { AdrenalineExperienceCta } from "./experiences/AdrenalineExperienceCta";
 import type { AdrenalineItem } from "./experiences/AdrenalineExperienceCta";
 import { AdSenseBlock } from "./AdSenseBlock";
+import { PartnerShoppingAds } from "./PartnerShoppingAds";
+import { SHOPPING_PAGE_SLOTS } from "@/data/partner-shopping";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { FAQ } from "./FAQ";
 import { FAQSchema } from "./FAQSchema";
@@ -585,6 +587,10 @@ export function GuideLanding({ guide }: GuideLandingProps) {
             </div>
           </section>
         )}
+
+        {SHOPPING_PAGE_SLOTS[guide.slug] ? (
+          <PartnerShoppingAds pageKey={guide.slug} />
+        ) : null}
 
         <EmailSignup source={guide.slug} />
       </div>

@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: PageProps) {
   if (!launch || !launch.isPublished) return {};
 
   return buildManagedMetadata({
-    title: `${launch.name} | Public Boat Launch Access`,
-    description: launch.summary.slice(0, 155),
+    title: launch.seoTitle || `${launch.name} | Public Boat Launch Access`,
+    description: (launch.seoDescription || launch.summary).slice(0, 160),
     path: `/boat-launches/${launch.slug}`,
   });
 }
