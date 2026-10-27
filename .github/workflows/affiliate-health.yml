@@ -1,0 +1,46 @@
+name: Affiliate health check
+
+# Weekly destination probe of placed shopping-partner click bases.
+# Does not rotate offers, send campaigns, or request impression pixels.
+
+on:
+  schedule:
+    - cron: "15 16 * * 3"
+  workflow_dispatch:
+
+concurrency:
+  group: affiliate-health
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Probe placed click destinations
+        run: |
+          set -o pipefail
+          npx --yes tsx scripts/affiliate-health-check.ts | tee /tmp/affiliate-health.txt
+          {
+            echo "## Affiliate health"
+            echo
+            echo "Failures fail this job. Review the log; do not treat a green run as commission proof."
+            echo
+            echo '```'
+            cat /tmp/affiliate-health.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

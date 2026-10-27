@@ -3,6 +3,8 @@
  * Only Google Analytics is active today; other providers are stubs for future use.
  */
 
+import { allowsAnalytics, readStoredConsent } from "@/lib/consent";
+
 export type AnalyticsProvider =
   | "google_analytics"
   | "facebook_pixel"
@@ -91,6 +93,7 @@ function pushDataLayer(payload: Record<string, unknown>): void {
 /** Send a page view to active providers (GA4 today). */
 export function trackPageView(path: string, title?: string): void {
   if (typeof window === "undefined") return;
+  if (!allowsAnalytics(readStoredConsent())) return;
 
   const pageTitle = title || document.title;
 
@@ -122,6 +125,7 @@ export function trackAnalyticsEvent(
   params?: Record<string, string | number | boolean | undefined>
 ): void {
   if (typeof window === "undefined") return;
+  if (!allowsAnalytics(readStoredConsent())) return;
 
   const cleaned: Record<string, string | number | boolean> = {};
   if (params) {

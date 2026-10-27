@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { CookieSettingsButton } from "./CookieConsent";
 import { disclaimer, siteConfig } from "@/config/site";
 
 const exploreLinks = [
@@ -101,6 +102,8 @@ export function Footer() {
           <p className="text-xs text-white/60 leading-relaxed mb-3">{disclaimer}</p>
           <p className="text-xs text-white/50 mb-2">
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            {" · "}
+            <CookieSettingsButton className="text-sky-blue hover:underline" />
           </p>
           <p className="text-xs text-white/50">
             Built by{" "}

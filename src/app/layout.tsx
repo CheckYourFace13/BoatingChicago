@@ -6,6 +6,10 @@ import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { AdSenseScript } from "@/components/AdSenseScript";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
+import { ConsentDefaultsScript } from "@/components/ConsentDefaultsScript";
+import { ConsentProvider } from "@/components/ConsentProvider";
+import { CookieConsent } from "@/components/CookieConsent";
 import { SiteConditionsTicker } from "@/components/SiteConditionsTicker";
 import { SessionOriginCapture } from "@/components/SessionOriginCapture";
 import { siteConfig } from "@/config/site";
@@ -62,6 +66,7 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <ConsentDefaultsScript />
         <AdSenseScript />
         <script
           type="application/ld+json"
@@ -77,25 +82,29 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
-        <GoogleAnalytics measurementId={gaMeasurementId} />
-        <SessionOriginCapture />
-        <Suspense fallback={null}>
-          <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
-        </Suspense>
-        <Header />
-        <Suspense
-          fallback={
-            <div
-              className="border-b border-sky-blue/25 bg-lake-blue"
-              style={{ height: 36 }}
-              aria-hidden
-            />
-          }
-        >
-          <SiteConditionsTicker />
-        </Suspense>
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ConsentProvider>
+          <GoogleAnalytics measurementId={gaMeasurementId} />
+          <AdSenseLoader />
+          <SessionOriginCapture />
+          <Suspense fallback={null}>
+            <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
+          </Suspense>
+          <Header />
+          <Suspense
+            fallback={
+              <div
+                className="border-b border-sky-blue/25 bg-lake-blue"
+                style={{ height: 36 }}
+                aria-hidden
+              />
+            }
+          >
+            <SiteConditionsTicker />
+          </Suspense>
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CookieConsent />
+        </ConsentProvider>
       </body>
     </html>
   );

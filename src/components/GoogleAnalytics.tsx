@@ -1,23 +1,28 @@
+"use client";
+
 import Script from "next/script";
+import { allowsAnalytics, applyGtagConsent } from "@/lib/consent";
+import { useConsent } from "./ConsentProvider";
 
 interface GoogleAnalyticsProps {
   measurementId?: string;
 }
 
 /**
- * Official gtag.js loader for the App Router root layout (Server Component).
- * Returns null when NEXT_PUBLIC_GA_MEASUREMENT_ID is missing.
- * Page views are handled separately by GoogleAnalyticsPageView.
+ * Loads gtag.js only after analytics consent. Consent Mode defaults are set
+ * in <head> as denied so a late script still cannot grant itself.
  */
 export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+  const { state } = useConsent();
   const id = measurementId?.trim();
-  if (!id) return null;
+  if (!id || !allowsAnalytics(state)) return null;
 
   return (
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
         strategy="afterInteractive"
+        onLoad={() => applyGtagConsent(state)}
       />
       <Script id="ga4-gtag-init" strategy="afterInteractive">
         {`

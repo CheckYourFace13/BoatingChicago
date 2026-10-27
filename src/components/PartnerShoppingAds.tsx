@@ -7,6 +7,9 @@ import {
   type ResolvedShoppingSlot,
 } from "@/data/partner-shopping";
 import { trackPartnerShoppingClick } from "@/lib/affiliate-attribution";
+import { allowsAdvertising } from "@/lib/consent";
+import { CookieSettingsButton } from "./CookieConsent";
+import { useConsent } from "./ConsentProvider";
 
 /**
  * Labeled shopping-partner ads. Broad placements stay off booking CTAs.
@@ -14,11 +17,39 @@ import { trackPartnerShoppingClick } from "@/lib/affiliate-attribution";
  * for a hidden fallback, and never both BrandsMart creatives at once.
  */
 export function PartnerShoppingAds({ pageKey }: { pageKey: string }) {
+  const { state } = useConsent();
+  const advertisingOk = allowsAdvertising(state);
   const [slots, setSlots] = useState<ResolvedShoppingSlot[] | null>(null);
 
   useEffect(() => {
+    if (!advertisingOk) {
+      setSlots(null);
+      return;
+    }
     setSlots(resolveShoppingSlots(pageKey, new Date()));
-  }, [pageKey]);
+  }, [advertisingOk, pageKey]);
+
+  if (!advertisingOk) {
+    return (
+      <aside
+        className="rounded-2xl border border-sky-blue/25 bg-white p-5 sm:p-6"
+        aria-labelledby={`shopping-ads-${pageKey}`}
+      >
+        <p
+          id={`shopping-ads-${pageKey}`}
+          className="text-xs font-extrabold uppercase tracking-[0.14em] text-lake-blue/70 mb-1"
+        >
+          Advertisement — shopping partners
+        </p>
+        <p className="text-sm text-gray-700 leading-relaxed">
+          Shopping-partner creatives and Impact impression tags load only if you
+          allow advertising cookies.{" "}
+          <CookieSettingsButton className="font-semibold text-sky-blue hover:underline" />
+          .
+        </p>
+      </aside>
+    );
+  }
 
   if (slots !== null && slots.length === 0) return null;
 

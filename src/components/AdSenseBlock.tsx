@@ -7,6 +7,8 @@ import {
   isSlotEnabled,
   type AdSlotKey,
 } from "@/config/ads";
+import { allowsAdvertising } from "@/lib/consent";
+import { useConsent } from "./ConsentProvider";
 
 interface AdSenseBlockProps {
   /** Logical slot key, e.g. "homepage-top" */
@@ -30,7 +32,8 @@ export function AdSenseBlock({ slot, className = "" }: AdSenseBlockProps) {
   const pushed = useRef(false);
   const config = getSlotConfig(slot);
   const client = getAdSenseClient();
-  const enabled = isSlotEnabled(slot);
+  const { state } = useConsent();
+  const enabled = isSlotEnabled(slot) && allowsAdvertising(state);
 
   useEffect(() => {
     if (!enabled || !client || !config?.adsenseSlotId || pushed.current) return;

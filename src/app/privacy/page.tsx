@@ -63,14 +63,24 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Cookies &amp; tracking</h2>
         <p>
-          We and our partners may use cookies and similar technologies for analytics, affiliate
-          attribution, and advertising. Google Analytics and Google AdSense, when configured, may
-          set their own cookies subject to Google&apos;s policies.
+          Essential cookies or local storage keep the site working (for example remembering your
+          optional-cookie choice). Google Analytics, labeled shopping-partner ads, and Impact
+          impression tags are optional. They stay off until you accept them in the cookie banner
+          or Cookie settings. Rejecting them does not block weather, guides, booking links,
+          contact, or the newsletter form.
+        </p>
+        <p>
+          Google&apos;s EU user consent policy and Consent Mode v2 apply to end users in the EEA
+          (and, for some publisher advertising products, the UK and Switzerland). We do not run a
+          Google-certified IAB CMP such as Funding Choices, and this site does not look up your
+          country at the edge. Optional tags therefore stay denied for every visitor until you
+          choose. That is not a certified-CMP or AdSense-approval claim. If display ads are later
+          turned on for EEA traffic, a certified CMP would still be required for that product.
         </p>
         <p>
           Google and other third-party vendors may use cookies to serve ads based on your prior
-          visits to this site or other websites. You can review or turn off ad personalization
-          in{" "}
+          visits to this site or other websites after you allow advertising cookies. You can
+          review or turn off ad personalization in{" "}
           <a
             href="https://adssettings.google.com"
             className="text-sky-blue font-semibold hover:underline"
@@ -79,10 +89,7 @@ export default function PrivacyPage() {
           >
             Google&apos;s Ad Settings / My Ad Center
           </a>
-          . Browser settings let you block or delete cookies; some site features may then work
-          less well. This site does not currently show a separate cookie-consent banner or IAB
-          CMP (such as Google Funding Choices). Analytics and advertising scripts load only when
-          those products are configured for the site.
+          . Browser settings also let you block or delete cookies.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Third-party links</h2>

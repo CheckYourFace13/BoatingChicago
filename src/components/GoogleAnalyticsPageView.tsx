@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { allowsAnalytics } from "@/lib/consent";
+import { useConsent } from "./ConsentProvider";
 
 interface GoogleAnalyticsPageViewProps {
   measurementId?: string;
@@ -17,9 +19,11 @@ export function GoogleAnalyticsPageView({
   const id = measurementId?.trim();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { state } = useConsent();
+  const analyticsOk = allowsAnalytics(state);
 
   useEffect(() => {
-    if (!id || !pathname) return;
+    if (!id || !pathname || !analyticsOk) return;
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
@@ -34,7 +38,7 @@ export function GoogleAnalyticsPageView({
       page_path: pagePath,
       page_title: document.title,
     });
-  }, [id, pathname, searchParams]);
+  }, [analyticsOk, id, pathname, searchParams]);
 
   return null;
 }

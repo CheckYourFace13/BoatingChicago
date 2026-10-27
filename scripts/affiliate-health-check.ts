@@ -2,8 +2,10 @@
  * Read-only affiliate health check.
  * Usage: npx tsx scripts/affiliate-health-check.ts
  *
- * Surfaces expired date-window creatives and destination HTTP failures.
- * Does not publish, rotate, or send campaigns. Editorial rank is unused.
+ * Surfaces destination HTTP failures for placed click bases only.
+ * Scheduled by .github/workflows/affiliate-health.yml (Wed 16:15 UTC).
+ * Failures exit 1 so the Actions run is red and the step summary lists the log.
+ * Does not publish, rotate, request impression pixels, or send campaigns.
  */
 import {
   isBrandsmartBlackFridayWindow,
