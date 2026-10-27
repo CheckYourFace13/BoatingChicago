@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
    */
   skipTrailingSlashRedirect: true,
   /**
+   * Hostinger shared-plan builds spawn one static worker per CPU (56 on the
+   * last failed run) and SIGABRT during prerender. Cap workers to match the
+   * existing TOKIO_WORKER_THREADS=2 runtime budget, with a little headroom.
+   */
+  experimental: {
+    cpus: 4,
+    memoryBasedWorkersCount: true,
+    staticGenerationMaxConcurrency: 4,
+  },
+  /**
    * beforeFiles: run BEFORE App Router matching.
    * Required because src/app/[slug] uses dynamicParams=false and would
    * otherwise 404 IndexNow key paths as unknown slugs.
