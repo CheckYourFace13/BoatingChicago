@@ -20,7 +20,7 @@ export default function PrivacyPage() {
       path="/privacy"
     >
       <div className="space-y-6 text-gray-700 leading-relaxed">
-        <p className="text-sm text-gray-500">Last updated: September 2, 2026</p>
+        <p className="text-sm text-gray-500">Last updated: October 27, 2026</p>
         <p>
           This Privacy Policy describes how {siteConfig.name} (&quot;we,&quot; &quot;us,&quot; or
           &quot;our&quot;) handles information when you visit {siteConfig.domain}, submit forms, or
@@ -65,8 +65,24 @@ export default function PrivacyPage() {
         <p>
           We and our partners may use cookies and similar technologies for analytics, affiliate
           attribution, and advertising. Google Analytics and Google AdSense, when configured, may
-          set their own cookies subject to Google&apos;s policies. You can control cookies through
-          your browser settings.
+          set their own cookies subject to Google&apos;s policies.
+        </p>
+        <p>
+          Google and other third-party vendors may use cookies to serve ads based on your prior
+          visits to this site or other websites. You can review or turn off ad personalization
+          in{" "}
+          <a
+            href="https://adssettings.google.com"
+            className="text-sky-blue font-semibold hover:underline"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Google&apos;s Ad Settings / My Ad Center
+          </a>
+          . Browser settings let you block or delete cookies; some site features may then work
+          less well. This site does not currently show a separate cookie-consent banner or IAB
+          CMP (such as Google Funding Choices). Analytics and advertising scripts load only when
+          those products are configured for the site.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Third-party links</h2>

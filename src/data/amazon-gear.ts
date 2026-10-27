@@ -36,7 +36,7 @@ const catalog: Record<string, AmazonGearItem> = {
     category: "pfd-life-jackets",
     title: "Life jackets (PFDs)",
     blurb:
-      "Coast Guard–approved PFDs sized for each person on board are the first piece of gear Chicago boaters should confirm before leaving the dock.",
+      "Confirm a U.S. Coast Guard–approved PFD that fits each person aboard — check the approval label and the manufacturer’s size/weight range on the product, not just the listing title.",
     searchKeywords: "USCG approved life jacket PFD adult",
     ctaLabel: "Shop life jackets on Amazon",
   },
@@ -162,6 +162,22 @@ export const amazonGearPlacements: AmazonGearPlacement[] = [
     intro:
       "Charters often supply rods. If you are fishing from a launch or pier, a basic tackle refresh is usually enough.",
     itemIds: ["fishing-tackle", "waterproof-dry-bags"],
+  },
+  {
+    pagePath: "/chicago-kayak-rental-guide",
+    guideSlug: "chicago-kayak-rental-guide",
+    heading: "Recommended paddling safety extras",
+    intro:
+      "Rental operators usually supply a PFD. If you want your own jacket or a dry bag for phones and keys, these Amazon category searches are starting points — confirm USCG approval and fit on the product page.",
+    itemIds: ["life-jackets", "waterproof-dry-bags"],
+  },
+  {
+    pagePath: "/paddle-board-rentals-chicago",
+    guideSlug: "paddle-board-rentals-chicago",
+    heading: "Recommended SUP safety extras",
+    intro:
+      "Wear a properly fitting USCG-approved PFD and keep electronics in a sealed bag. These links open Amazon search results; we do not certify or sell the products.",
+    itemIds: ["life-jackets", "waterproof-dry-bags"],
   },
   {
     pagePath: "/essential-boating-gear-chicago",

@@ -291,6 +291,8 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "chicago-marina-guide": "marinas",
   "chicago-boat-storage-guide": "boatStorage",
   "winter-boat-storage-chicago": "boatStorage",
+  "chicago-boat-winterization": "boatStorage",
+  "chicago-transient-dockage": "marinas",
   "chicago-boat-winterizing-guide": "boatStorage",
   "chicago-boat-shrink-wrap-guide": "boatStorage",
   "buying-a-boat-off-season-chicago": "boatStorage",

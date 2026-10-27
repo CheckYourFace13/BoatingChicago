@@ -11,6 +11,8 @@ const exploreLinks = [
   { href: "/news", label: "News" },
   { href: "/events", label: "Events" },
   { href: "/guides", label: "Guides" },
+  { href: "/chicago-boat-winterization", label: "Winterization" },
+  { href: "/chicago-transient-dockage", label: "Transient dockage" },
   { href: "/tools", label: "Planning Tools" },
   { href: "/chicago-boating-faq", label: "Boating FAQ" },
 ];

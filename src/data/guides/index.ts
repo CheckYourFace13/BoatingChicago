@@ -15,6 +15,7 @@ export const guides: GuidePage[] = [
 
 /** Compact seasonal collection for homepage / guides hub. */
 export const WINTER_GUIDE_SLUGS = [
+  "chicago-boat-winterization",
   "chicago-boat-storage-guide",
   "winter-boat-storage-chicago",
   "chicago-boat-winterizing-guide",

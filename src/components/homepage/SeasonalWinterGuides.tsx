@@ -5,7 +5,7 @@ import {
   WINTER_GUIDE_SLUGS,
 } from "@/data/guides";
 import { HomepageTrackLink } from "@/components/HomepageTrackLink";
-import { getBoatingSeason } from "@/lib/season";
+import { getBoatingSeason, isHaulOutPlanningWindow } from "@/lib/season";
 
 /**
  * Compact seasonal strip — does not expand homepage hero or add cards clutter.
@@ -14,7 +14,8 @@ import { getBoatingSeason } from "@/lib/season";
  */
 export function SeasonalWinterGuides() {
   const season = getBoatingSeason();
-  if (season === "peak") return null;
+  const haulOut = isHaulOutPlanningWindow();
+  if (season === "peak" && !haulOut) return null;
 
   const isSpring = season === "spring";
   const slugs = isSpring ? SPRING_GUIDE_SLUGS : WINTER_GUIDE_SLUGS;
@@ -28,13 +29,19 @@ export function SeasonalWinterGuides() {
 
   const heading = isSpring
     ? "Spring commissioning"
-    : "Winter & Off-Season Guides";
+    : haulOut && season === "peak"
+      ? "Haul-out planning"
+      : "Winter & Off-Season Guides";
   const blurb = isSpring
     ? "Registration, safety gear, launch access, and conditions planning before the first warm weekend."
-    : "Storage, winterizing, shrink wrap, off-season buying, and boat-show prep — for owners planning through Chicago winters.";
-  const hubHref = isSpring ? "/guides" : "/guides#winter-guides";
-  const hubLabel = isSpring ? "All guides →" : "All guides →";
-  const hubEvent = isSpring ? "spring-guides" : "winter-guides";
+    : haulOut && season === "peak"
+      ? "Chicago Harbors’ published season still runs through October 31; yards set their own haul-out dates. Start with the winterization hub, then confirm your operator."
+      : "Storage, winterizing, shrink wrap, off-season buying, and boat-show prep — for owners planning through Chicago winters.";
+  const hubHref = isSpring
+    ? "/guides"
+    : "/chicago-boat-winterization";
+  const hubLabel = isSpring ? "All guides →" : "Winterization hub →";
+  const hubEvent = isSpring ? "spring-guides" : "winterization-hub";
 
   return (
     <section aria-labelledby="seasonal-guides-heading">

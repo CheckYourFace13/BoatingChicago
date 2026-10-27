@@ -125,12 +125,14 @@ export const guidePart5: GuidePage[] = [
       },
     ],
     popularSearches: [
+      { label: "Winterization hub", href: "/chicago-boat-winterization" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
       { label: "Shrink Wrap Guide", href: "/chicago-boat-shrink-wrap-guide" },
       { label: "Boat Ownership", href: "/boat-ownership" },
       { label: "Winter Storage Checklist", href: "/winter-boat-storage-chicago" },
     ],
     relatedSlugs: [
+      "chicago-boat-winterization",
       "chicago-boat-storage-guide",
       "winter-boat-storage-chicago",
       "chicago-boat-shrink-wrap-guide",
@@ -603,6 +605,260 @@ export const guidePart5: GuidePage[] = [
       "chicago-boat-shrink-wrap-guide",
       "buying-a-boat-off-season-chicago",
       "essential-boating-gear-chicago",
+    ],
+    showLeadForm: false,
+  },
+  {
+    slug: "chicago-boat-winterization",
+    title: "Chicago Boat Winterization Hub",
+    seoTitle: "Chicago Boat Winterization Hub 2026 | Storage, Haul-Out & Prep",
+    seoDescription:
+      "Concise Chicago winterization hub: harbor season versus yard haul-out dates, plus links to storage, winterizing, shrink wrap, and the haul-out directory.",
+    headline: "Chicago Boat Winterization: One Page to Plan the Off-Season",
+    intro:
+      "This is a planning hub, not a universal winterizing recipe. Use it to line up haul-out, storage, engine work, and shrink wrap — then follow your manufacturer’s manual or a qualified marine technician for the boat itself.",
+    sections: [
+      {
+        heading: "Harbor season is not your haul-out date",
+        paragraphs: [
+          "Chicago Harbors / Chicago Park District materials used on this site state the lakefront harbor season as May 1 through October 31. That is the published operating season for the public harbor program. It is not a promise that every boat must stay in until Halloween, and it is not your storage yard’s pull date.",
+          "Private marinas, boat yards, and dry-storage operators set their own haul-out windows, late-leaver rules, and indoor/outdoor contracts. Confirm those dates with the operator that will actually lift or store the boat. Chicago Harbors also publishes late-leaver and related fees on its official rates pages when a vessel stays past the program’s published season — read the current sheet rather than assuming last year’s terms.",
+        ],
+      },
+      {
+        heading: "What to schedule, in order",
+        paragraphs: [
+          "Book the lift or trailer slot first. Align engine and systems winterization with the day the boat becomes accessible on the hard — leaving raw-water systems unprotected through an early freeze is a common expensive mistake.",
+          "Then decide outdoor cover versus shrink wrap versus indoor storage, and whether batteries, canvas, and electronics stay aboard. The linked guides below go deeper; this page does not repeat their procedures.",
+        ],
+      },
+      {
+        heading: "Official starting points",
+        paragraphs: [
+          "Chicago Harbors: chicagoharbors.info — season, slips, and published late-season fees. Illinois DNR boating pages cover registration and related rules. NOAA/NWS products on our weather page are planning inputs, not a go/no-go clearance.",
+          "BoatingChicago does not take haul-out reservations, sell winterizing service, or invent operator availability.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Which page to open next",
+      headers: ["Need", "Open", "Do not expect"],
+      rows: [
+        [
+          "Who can store or haul the boat",
+          "/storage directory",
+          "Live quotes or reserved space",
+        ],
+        [
+          "How storage types differ",
+          "Storage and winter-storage guides",
+          "A single price for every yard",
+        ],
+        [
+          "Engine and systems work",
+          "Winterizing guide + your manual",
+          "One DIY recipe for all engines",
+        ],
+        [
+          "Cover / wrap decisions",
+          "Shrink wrap guide",
+          "A wrap that replaces winterization",
+        ],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Late summer",
+        tip: "Reserve haul-out and indoor space before September calendars fill.",
+      },
+      {
+        season: "October",
+        tip: "Harbor season through Oct 31 is not the same as your yard’s last lift day — confirm both.",
+      },
+      {
+        season: "After haul-out",
+        tip: "Finish engine protection before the first hard freeze, even if shrink wrap is scheduled later.",
+      },
+      {
+        season: "Late winter",
+        tip: "Book spring commissioning early; April shop slots go first.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "When does Chicago harbor season end?",
+        answer:
+          "Official Chicago Harbors materials cited on this site state May 1 through October 31. Confirm the current year on chicagoharbors.info. Your yard’s haul-out date can be earlier.",
+      },
+      {
+        question: "Is winterization the same as shrink wrap?",
+        answer:
+          "No. Shrink wrap protects the exterior. Engine and systems winterization is separate and must follow manufacturer guidance.",
+      },
+      {
+        question: "Does BoatingChicago winterize boats?",
+        answer:
+          "No. We publish planning pages and a directory of operators whose official sites confirm storage or haul-out. Hire service directly.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Where do I start if I only have time for one page?",
+        answer:
+          "Use this hub, then open the storage directory for operator links and the winterizing guide for engine/systems planning.",
+      },
+      {
+        question: "Are facility haul-out dates the same as harbor season?",
+        answer:
+          "Not necessarily. Harbor season is a Chicago Harbors program date range. Storage yards and private marinas publish their own lift and contract dates.",
+      },
+    ],
+    popularSearches: [
+      { label: "Storage & haul-out directory", href: "/storage" },
+      { label: "Winterizing guide", href: "/chicago-boat-winterizing-guide" },
+      { label: "Winter storage", href: "/winter-boat-storage-chicago" },
+      { label: "Shrink wrap", href: "/chicago-boat-shrink-wrap-guide" },
+      { label: "Spring launch checklist", href: "/spring-boat-launch-checklist-chicago" },
+      { label: "Boat ownership", href: "/boat-ownership" },
+    ],
+    relatedSlugs: [
+      "chicago-boat-winterizing-guide",
+      "winter-boat-storage-chicago",
+      "chicago-boat-storage-guide",
+      "chicago-boat-shrink-wrap-guide",
+      "spring-boat-launch-checklist-chicago",
+      "chicago-transient-dockage",
+    ],
+    showLeadForm: false,
+  },
+  {
+    slug: "chicago-transient-dockage",
+    title: "Chicago Transient Dockage Guide",
+    seoTitle: "Chicago Transient Dockage 2026 | Chicago Harbors Reservations",
+    seoDescription:
+      "How visiting boaters request Chicago Harbors transient dockage: official reservation rules, published 2026 daily rates, season dates, and what this site does not claim.",
+    headline: "Transient Dockage at Chicago Harbors",
+    intro:
+      "Visiting boaters use Chicago Park District / Chicago Harbors facilities — not this website — to request a night or a few nights of dockage. The notes below were checked against official Chicago Harbors pages on October 27, 2026. Rates, minimum stays, and reservation windows change; confirm on chicagoharbors.info before you go. This page does not claim a slip is available.",
+    sections: [
+      {
+        heading: "How to request a transient stay",
+        paragraphs: [
+          "Chicago Harbors’ official Transient Reservation Requests page states that transient docking is available by phone or in person at the harbor of your choice beginning May 15 at 8:00 a.m., depending on availability. Online reservation requests may be made beginning May 16 at 8:00 a.m.",
+          "The online form is a request, not a confirmed booking. The official page says there is no guarantee a specific request will be honored; if they can accommodate it, they contact you. Online service is limited. A two- or three-day minimum stay may be required during holidays and special events.",
+          "The same official page requires 24-hour notice to cancel; insufficient notice or a no-show is charged one night of stay. Transient dockage cannot be used for commercial purposes. Navy Pier hourly transient dockage is handled separately through Dockwa, per Chicago Harbors — use their current Dockwa instructions, not this site, for that location.",
+        ],
+      },
+      {
+        heading: "Season versus reservation start",
+        paragraphs: [
+          "Official Chicago Harbors materials used elsewhere on this site state the harbor season as May 1 through October 31. That is the published seasonal-mooring season. Transient reservation requests, on the official 2026 form page we checked, start later — May 15 in person/phone and May 16 online. Do not treat May 1 as the first day you can request a transient slip.",
+          "The official daily-dockage page lists Montrose, Belmont, Diversey, DuSable, Monroe, Burnham, 31st Street, 59th Street, Jackson Inner, and Jackson Outer as harbors you can select. Spaces can be limited; they recommend reserving ahead.",
+        ],
+      },
+      {
+        heading: "Published daily transient rates (official, 2026 check)",
+        paragraphs: [
+          "The following daily transient figures appeared on both the Chicago Harbors Daily Dockage page and the Rates and Applications page when checked on October 27, 2026. They are per foot unless noted. Official footnotes: a 2- to 3-day minimum may apply for special events or holidays; star dock/mooring can and wall space have a 25-foot minimum; stalls have a 30-foot minimum. City tax and other surcharges may apply — the official sheets control.",
+          "Star dock / mooring can: $1.50 per foot. Wall space: $2.00 per foot. Stalls at 31st Street, Belmont, Burnham, Diversey, DuSable, and Montrose: $3.50 per foot for 30–60 feet and $6.00 per foot for 61 feet and longer. Stalls at Jackson and 59th Street: $2.50 per foot (30–39), $2.75 (40–60), and $4.00 (61+).",
+          "Published electric charges on those same pages: single 30 amp $10/day; twin 30 amp $20/day; single 50 amp $20/day; twin 50 amp $25/day; 100 amp $30/day.",
+          "We are not reprinting seasonal slip fees or launch-ramp prices here. The official rates pages listed different launch-ramp dollar amounts on the same day we checked, so use chicagoharbors.info/rates-applications/ and the 2026 rate sheet PDF rather than any third-party recap. Seasonal mooring applications are a different process from transient requests.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Official Chicago Harbors links",
+      headers: ["Need", "Official page", "This site"],
+      rows: [
+        [
+          "Request a stay",
+          "chicagoharbors.info/forms/transient/",
+          "Explains that it is a request, not a guarantee",
+        ],
+        [
+          "Daily dockage overview",
+          "chicagoharbors.info/daily-dockage/",
+          "Summarizes published rates with a check date",
+        ],
+        [
+          "Full fee sheet",
+          "chicagoharbors.info/rates-applications/",
+          "Does not reprint the entire seasonal sheet",
+        ],
+        [
+          "Harbor character",
+          "Individual harbor pages / our marina guides",
+          "Not a substitute for harbor-office instructions",
+        ],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Before May 15",
+        tip: "Do not assume the online transient form is open — official 2026 copy started in-person/phone May 15 and online May 16.",
+      },
+      {
+        season: "Summer weekends",
+        tip: "Official pages say space can be limited; request ahead, especially downtown harbors.",
+      },
+      {
+        season: "Holidays / events",
+        tip: "Expect possible 2–3 day minimums. Some events use a separate reservation page on the official site.",
+      },
+      {
+        season: "After October",
+        tip: "Harbor season published as ending October 31; confirm late-season or haul-out options with the operator.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "How do I reserve a transient slip in Chicago?",
+        answer:
+          "Use Chicago Harbors’ official transient request form, or call/visit the harbor. The form is a request. Confirm on chicagoharbors.info/forms/transient/.",
+      },
+      {
+        question: "What does Chicago Harbors charge for transient dockage?",
+        answer:
+          "As published on official pages checked October 27, 2026, typical stall rates were $3.50/ft (30–60 ft) or $6.00/ft (61+ ft) at most listed harbors, with lower stall rates at Jackson and 59th Street. Confirm live figures on the official rates pages.",
+      },
+      {
+        question: "Does BoatingChicago book transient slips?",
+        answer:
+          "No. We do not take reservations or show live availability.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is an online transient form a confirmed reservation?",
+        answer:
+          "No. Chicago Harbors states the form is only a request and they will contact you if they can accommodate it.",
+      },
+      {
+        question: "Can I use a transient slip for a charter or rental business?",
+        answer:
+          "Official daily-dockage copy says transient dockage cannot be used for commercial purposes. Commercial permits are a separate official process.",
+      },
+      {
+        question: "Where is Navy Pier hourly dockage reserved?",
+        answer:
+          "Chicago Harbors directs Navy Pier hourly transient dockage to Dockwa. Use their current official instructions.",
+      },
+    ],
+    popularSearches: [
+      { label: "Chicago marina guide", href: "/chicago-marina-guide" },
+      { label: "Marinas directory", href: "/marinas" },
+      { label: "Monroe Harbor", href: "/monroe-harbor-guide" },
+      { label: "Burnham Harbor", href: "/burnham-harbor-guide" },
+      { label: "Winterization hub", href: "/chicago-boat-winterization" },
+      { label: "Boating weather", href: "/weather" },
+    ],
+    relatedSlugs: [
+      "chicago-marina-guide",
+      "monroe-harbor-guide",
+      "burnham-harbor-guide",
+      "dusable-harbor-guide",
+      "lake-michigan-boating-guide",
+      "chicago-boat-winterization",
     ],
     showLeadForm: false,
   },

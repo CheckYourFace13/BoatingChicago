@@ -18,7 +18,7 @@ const TOOLS = [
     href: "/tools/float-plan",
     title: "Float plan worksheet",
     blurb:
-      "A printable plan you fill out and leave with a trusted contact before you leave the dock — not an online filing system.",
+      "A printable plan you fill out, leave with a trusted contact, update if plans change, and close when you return — not an online filing system.",
   },
   {
     href: "/tools/trip-checklist",
@@ -40,7 +40,7 @@ export default function ToolsPage() {
       <GeoHero
         eyebrow="Planning worksheets"
         title="Boating Planning Tools"
-        intro="Small printable worksheets for recreational trips. Completing them on this site does not notify the Coast Guard or any agency — share a filled copy with someone ashore."
+        intro="Small printable worksheets for recreational trips. Completing them on this site does not notify the Coast Guard or any agency — share a filled copy with someone ashore, then close the plan when you return."
         links={[
           { label: "Boating weather →", href: "/weather" },
           { label: "Boat launches", href: "/boat-launches" },

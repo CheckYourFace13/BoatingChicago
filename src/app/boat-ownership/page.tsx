@@ -144,6 +144,10 @@ export default function BoatOwnershipPage() {
             Boats that stay in the region need a winter plan: shrink-wrap or
             indoor storage, engine winterization, and a haul-out date the yard
             will actually keep. Our{" "}
+            <Link href="/chicago-boat-winterization" className="font-semibold text-coral hover:underline">
+              winterization hub
+            </Link>
+            ,{" "}
             <Link href="/chicago-boat-storage-guide" className="font-semibold text-coral hover:underline">
               Chicago boat storage guide
             </Link>

@@ -42,6 +42,8 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 Weather ratings and “no alerts” messaging on this site are informational only and never a safety clearance. Always verify marine forecasts, harbor rules, fees, and hours on operator or agency pages before you go.
 
 ## Winter & spring ownership planning (seasonal)
+- Winterization hub: ${siteConfig.url}/chicago-boat-winterization
+- Transient dockage (Chicago Harbors): ${siteConfig.url}/chicago-transient-dockage
 - Boat storage guide: ${siteConfig.url}/chicago-boat-storage-guide
 - Winter storage checklist: ${siteConfig.url}/winter-boat-storage-chicago
 - Storage & haul-out directory: ${siteConfig.url}/storage

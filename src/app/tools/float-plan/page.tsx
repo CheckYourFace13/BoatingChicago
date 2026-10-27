@@ -44,9 +44,14 @@ export default function FloatPlanPage() {
         <div className="space-y-3 text-gray-700 leading-relaxed mb-6 print:text-black">
           <p>
             A float plan is information you leave with a{" "}
-            <strong>trusted person ashore</strong> before you get underway. If
-            you do not check in when expected, that person can contact the Coast
-            Guard or local responders with useful details.
+            <strong>trusted person ashore</strong> before you get underway — not
+            something this site files for you. Share a printed or copied plan
+            with that person. If you do not check in when expected, they can
+            contact the Coast Guard or local responders with useful details. If
+            your route or return time changes, update them before they expect
+            you back. When you return,{" "}
+            <strong>close the plan</strong> by telling them you are safely in so
+            they do not start a search.
           </p>
           <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm print:border-black print:bg-transparent">
             Completing this page does <strong>not</strong> submit your plan to
@@ -109,8 +114,9 @@ export default function FloatPlanPage() {
             </div>
           ))}
           <p className="text-xs text-gray-500 print:text-black">
-            Check in with your shore contact when you return. If plans change,
-            update them before your expected return time.
+            Check in with your shore contact when you return and explicitly close
+            the plan. If plans change, update them before your expected return
+            time.
           </p>
         </LocalOnlyForm>
 

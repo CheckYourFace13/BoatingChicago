@@ -33,6 +33,7 @@ export function OwnershipNextLinks() {
         ["/marinas", "Marinas & harbors"],
         ["/boat-launches", "Public launches"],
         ["/storage", "Storage & haul-out directory"],
+        ["/chicago-boat-winterization", "Winterization hub"],
         ["/chicago-boat-storage-guide", "Winter storage guide"],
         ["/spring-boat-launch-checklist-chicago", "Spring launch checklist"],
         ["/lake-michigan-boating-guide", "Lake Michigan guide"],

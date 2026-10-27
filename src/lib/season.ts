@@ -29,6 +29,16 @@ export function getBoatingSeason(from: Date = new Date()): BoatingSeason {
   return "winter";
 }
 
+/**
+ * Late-peak haul-out planning window (America/Chicago Oct 15–31).
+ * Does not change the May 1–Oct 31 peak season; used only for a compact
+ * homepage link to winterization resources while harbors are still “in season.”
+ */
+export function isHaulOutPlanningWindow(from: Date = new Date()): boolean {
+  const { month, day } = chicagoMonthDay(from);
+  return month === 10 && day >= 15;
+}
+
 export interface SeasonalHeroCopy {
   season: BoatingSeason;
   /** Supporting sentence under the brand headline — one job. */
@@ -58,8 +68,8 @@ export function getSeasonalHeroCopy(from: Date = new Date()): SeasonalHeroCopy {
         "Haul-out and winter storage season — confirm yard schedules, shrink wrap, and off-season ownership guides before ice closes the harbors.",
       primaryCta: { href: "/storage", label: "Storage & haul-out →" },
       secondaryCta: {
-        href: "/chicago-boat-winterizing-guide",
-        label: "Winterizing guide",
+        href: "/chicago-boat-winterization",
+        label: "Winterization hub",
       },
     };
   }

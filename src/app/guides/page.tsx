@@ -54,9 +54,16 @@ export default function GuidesPage() {
             Winter &amp; off-season collection
           </h2>
           <p className="text-sm text-gray-700 mb-4 max-w-3xl">
-            Storage, winterizing, shrink wrap, buying off-season, and boat-show
-            prep. Procedures defer to manufacturer manuals and qualified service
-            where engines and systems are involved.
+            Start with the{" "}
+            <Link
+              href="/chicago-boat-winterization"
+              className="font-semibold text-coral hover:underline"
+            >
+              winterization hub
+            </Link>{" "}
+            if you need the short path across storage, winterizing, shrink wrap,
+            and haul-out. Procedures defer to manufacturer manuals and qualified
+            service where engines and systems are involved.
           </p>
           <ul className="flex flex-wrap gap-2">
             {WINTER_GUIDE_SLUGS.map((slug) => {

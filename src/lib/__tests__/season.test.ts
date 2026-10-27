@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { getBoatingSeason, getSeasonalHeroCopy } from "@/lib/season";
+import {
+  getBoatingSeason,
+  getSeasonalHeroCopy,
+  isHaulOutPlanningWindow,
+} from "@/lib/season";
 
 /** Fixed UTC instants that fall on specific America/Chicago calendar days. */
 function chicagoNoon(isoDate: string): Date {
@@ -23,6 +27,14 @@ describe("getBoatingSeason", () => {
     assert.equal(getBoatingSeason(chicagoNoon("2026-01-15")), "spring");
     assert.equal(getBoatingSeason(chicagoNoon("2026-12-15")), "winter");
   });
+
+  it("treats Oct 15–31 as haul-out planning without leaving peak", () => {
+    assert.equal(isHaulOutPlanningWindow(chicagoNoon("2026-10-14")), false);
+    assert.equal(isHaulOutPlanningWindow(chicagoNoon("2026-10-15")), true);
+    assert.equal(isHaulOutPlanningWindow(chicagoNoon("2026-10-31")), true);
+    assert.equal(getBoatingSeason(chicagoNoon("2026-10-15")), "peak");
+    assert.equal(isHaulOutPlanningWindow(chicagoNoon("2026-11-01")), false);
+  });
 });
 
 describe("getSeasonalHeroCopy", () => {
@@ -34,5 +46,6 @@ describe("getSeasonalHeroCopy", () => {
     assert.equal(peak.secondaryCta.href, "/marinas");
     const winter = getSeasonalHeroCopy(chicagoNoon("2026-11-15"));
     assert.equal(winter.primaryCta.href, "/storage");
+    assert.equal(winter.secondaryCta.href, "/chicago-boat-winterization");
   });
 });

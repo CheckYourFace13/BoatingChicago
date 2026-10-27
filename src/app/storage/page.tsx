@@ -35,10 +35,10 @@ export default function StorageDirectoryPage() {
         title="Chicago-Area Boat Storage & Haul-Out"
         intro="An editorial directory of operators whose official websites confirm winter storage and/or haul-out services for southern Lake Michigan boaters. This is not a ranking, marketplace, or paid partner list — ask each operator for current contracts, quotes, and space."
         links={[
-          { label: "Winter storage guide →", href: "/winter-boat-storage-chicago" },
+          { label: "Winterization hub →", href: "/chicago-boat-winterization" },
+          { label: "Winter storage guide", href: "/winter-boat-storage-chicago" },
           { label: "Spring launch checklist", href: "/spring-boat-launch-checklist-chicago" },
           { label: "Marinas", href: "/marinas" },
-          { label: "Boat ownership", href: "/boat-ownership" },
         ]}
       />
 
@@ -108,6 +108,13 @@ export default function StorageDirectoryPage() {
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Pair this directory with the{" "}
+            <Link
+              href="/chicago-boat-winterization"
+              className="font-semibold text-coral hover:underline"
+            >
+              winterization hub
+            </Link>
+            ,{" "}
             <Link
               href="/winter-boat-storage-chicago"
               className="font-semibold text-coral hover:underline"
