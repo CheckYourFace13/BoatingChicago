@@ -8,6 +8,7 @@ import {
 } from "@/components/geo/SourceAttribution";
 import { getPublishedEvents } from "@/data/geo";
 import { formatEventDates } from "@/lib/geo-display";
+import { seasonalStatusLabel } from "@/lib/event-status";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
@@ -49,7 +50,7 @@ export default function EventsPage() {
       <GeoHero
         eyebrow="On the water this season"
         title="Chicago Boating Events & Season Dates"
-        intro="Lakefront events boaters plan around, plus published harbor and marina season windows. Dates come from the organizer or agency — confirm on the official page before you build a trip around one."
+        intro="Lakefront events boaters plan around, plus published harbor and marina season windows. Dates come from the organizer or agency — confirm on the official page before you build a trip around one. Published season dates are not a claim that every facility is operating or available."
         links={[
           { label: "Boating weather →", href: "/weather" },
           { label: "Boating news", href: "/news" },
@@ -75,6 +76,11 @@ export default function EventsPage() {
                   <span className="text-sm font-semibold text-lake-blue">
                     {formatEventDates(event)}
                   </span>
+                  {seasonalStatusLabel(event) ? (
+                    <span className="text-xs font-bold uppercase tracking-wide text-lake-blue/80">
+                      {seasonalStatusLabel(event)}
+                    </span>
+                  ) : null}
                 </div>
                 <h2 className="text-xl md:text-2xl font-extrabold text-lake-blue mb-1">
                   {event.title}

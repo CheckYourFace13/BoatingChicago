@@ -10,7 +10,7 @@
  */
 import { createPublicKey, verify } from "node:crypto";
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, resolveMetadataTitle } from "@/lib/seo";
 
 export const GRAVYBLOCK_BUSINESS_ID = "9cb1c401-34d8-4f52-8dc9-b6a1e3aedecf";
 const FEED_URL = `https://gravyblock.com/api/managed-site/${GRAVYBLOCK_BUSINESS_ID}/feed`;
@@ -59,7 +59,7 @@ export async function buildManagedMetadata(args: Parameters<typeof buildMetadata
   if (!ov) return base;
   const out: Metadata = { ...base };
   if (ov.title) {
-    out.title = ov.title;
+    out.title = resolveMetadataTitle(ov.title);
     out.openGraph = { ...(out.openGraph ?? {}), title: ov.title };
     out.twitter = { ...(out.twitter ?? {}), title: ov.title };
   }

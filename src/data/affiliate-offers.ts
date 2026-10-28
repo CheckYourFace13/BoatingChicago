@@ -105,6 +105,7 @@ export interface AffiliateOffer {
 export const affiliateDisclosure =
   "Boating Chicago may earn a commission when you book or shop through links on this page, at no additional cost to you.";
 
+/** Kept for catalog comments only — static export stars are not shown. */
 export const PROVIDER_RATINGS_DISCLAIMER =
   "Ratings and review counts from GetYourGuide (or Viator where noted). Not BoatingChicago reviews.";
 
@@ -126,10 +127,12 @@ export function buildGygUrl(tourId: string, slugPath?: string): string {
   return `${base}${joiner}partner_id=${GETYOURGUIDE_PARTNER_ID}&utm_medium=online_publisher&cmp=Boating`;
 }
 
-export function formatOfferRating(offer: AffiliateOffer): string | null {
-  if (offer.rating == null || offer.reviewCount == null) return null;
-  const rounded = (Math.round(offer.rating * 10) / 10).toFixed(1);
-  return `${rounded} ★ (${formatReviewCount(offer.reviewCount)} reviews)`;
+/**
+ * Catalog `rating` / `reviewCount` values are a static GetYourGuide export,
+ * not an authorized live feed. Do not render stars or review counts from them.
+ */
+export function formatOfferRating(_offer: AffiliateOffer): string | null {
+  return null;
 }
 
 export function formatReviewCount(n: number): string {
@@ -152,8 +155,7 @@ function sortOffers(a: AffiliateOffer, b: AffiliateOffer): number {
   const brA = a.bestsellerRank ?? 999;
   const brB = b.bestsellerRank ?? 999;
   if (brA !== brB) return brA - brB;
-  if (a.priority !== b.priority) return a.priority - b.priority;
-  return (b.reviewCount ?? 0) - (a.reviewCount ?? 0);
+  return a.priority - b.priority;
 }
 
 function familyOf(offer: AffiliateOffer): OfferFamily {

@@ -33,7 +33,7 @@ export default function StorageDirectoryPage() {
       <GeoHero
         eyebrow={`${facilities.length} verified storage & haul-out operators`}
         title="Chicago-Area Boat Storage & Haul-Out"
-        intro="An editorial directory of operators whose official websites confirm winter storage and/or haul-out services for southern Lake Michigan boaters. This is not a ranking, marketplace, or paid partner list — ask each operator for current contracts, quotes, and space."
+        intro="An editorial directory of operators whose official websites confirm winter storage and/or haul-out services for southern Lake Michigan boaters. This is not a ranking, marketplace, or paid partner list. Chicago Harbors’ published mooring season (May 1–October 31) is a program calendar, not each yard’s haul-out date — ask operators for current contracts, quotes, and space."
         links={[
           { label: "Winterization hub →", href: "/chicago-boat-winterization" },
           { label: "Winter storage guide", href: "/winter-boat-storage-chicago" },
@@ -46,10 +46,10 @@ export default function StorageDirectoryPage() {
         <QualityDisclaimer />
 
         <p className="text-sm text-gray-700 max-w-3xl leading-relaxed">
-          We do not invent prices, availability, reviews, photos, or endorsements.
           Service wording below tracks what each operator published on the linked
-          page on the verification date. Rates and yard capacity change — contact
-          the operator before you plan haul-out.
+          page on the verification date. Rates, photos, reviews, and yard capacity
+          are not listed here because they change; confirm current terms with the
+          operator before you plan haul-out.
         </p>
 
         <ul className="space-y-5">

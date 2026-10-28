@@ -74,8 +74,8 @@ export default function AffiliateDisclosurePage() {
         <p>
           {AMAZON_ASSOCIATE_DISCLOSURE} Amazon links use our Associates tracking ID and send you
           directly to Amazon.com. Product availability, pricing, ratings, and shipping terms are
-          controlled by Amazon and can change. We do not invent prices or claim Amazon review
-          counts as our own.
+          controlled by Amazon and can change; this site does not republish Amazon prices or
+          review counts as its own.
         </p>
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Editorial independence</h2>
         <p>

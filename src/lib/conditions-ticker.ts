@@ -1,6 +1,7 @@
 import type { EventItem } from "@/types/geo";
 import type { NewsItem } from "@/types/news";
 import type { ChicagoWeatherPayload } from "@/types/weather";
+import { eventTickerLabel, pickTickerEvent } from "@/lib/event-status";
 
 export type TickerKind =
   | "weather"
@@ -75,8 +76,10 @@ export function buildConditionsTickerItems(input: {
   waukegan?: ChicagoWeatherPayload | null;
   news?: NewsItem[];
   events?: EventItem[];
+  asOf?: Date;
 }): ConditionsTickerItem[] {
   const { chicago } = input;
+  const asOf = input.asOf ?? new Date();
   const items: ConditionsTickerItem[] = [];
 
   const chicagoTemp = formatTemp(chicago, "CHICAGO");
@@ -207,11 +210,11 @@ export function buildConditionsTickerItems(input: {
     });
   }
 
-  const nextEvent = input.events?.[0];
-  if (nextEvent) {
+  const tickerEvent = pickTickerEvent(input.events ?? [], asOf);
+  if (tickerEvent) {
     items.push({
-      id: `event-${nextEvent.slug}`,
-      label: `UPCOMING: ${nextEvent.title.toUpperCase()}`,
+      id: `event-${tickerEvent.slug}`,
+      label: eventTickerLabel(tickerEvent, asOf),
       href: "/events",
       kind: "event",
     });

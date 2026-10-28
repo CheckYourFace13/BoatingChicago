@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import {
-  PROVIDER_RATINGS_DISCLAIMER,
   affiliateDisclosure,
-  formatOfferRating,
   formatPriceFrom,
   getPopularOnTheWaterOffers,
   getProviderLabel,
@@ -94,7 +92,6 @@ export function PopularOnTheWater({
 
       <div className={gridClass}>
         {list.map((offer, index) => {
-          const ratingLabel = formatOfferRating(offer);
           const priceLabel = formatPriceFrom(offer);
           const cta = offer.ctaLabel || "View Experience";
           const position = index + 1;
@@ -135,11 +132,6 @@ export function PopularOnTheWater({
                 <p className="text-[11px] font-bold uppercase tracking-wide text-gray-500 mb-2">
                   Bookable experience · {getProviderLabel(offer.provider)}
                 </p>
-                {ratingLabel ? (
-                  <p className="text-sm font-semibold text-lake-blue/80 mb-2">
-                    {ratingLabel}
-                  </p>
-                ) : null}
                 {offer.shortDescription && emphasized ? (
                   <p className="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">
                     {offer.shortDescription}
@@ -176,7 +168,6 @@ export function PopularOnTheWater({
       </div>
 
       <div className="mt-5 space-y-1">
-        <p className="text-xs text-gray-500">{PROVIDER_RATINGS_DISCLAIMER}</p>
         <p className="text-xs text-gray-500">
           {affiliateDisclosure}{" "}
           <a href="/affiliate-disclosure" className="underline">

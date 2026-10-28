@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import {
   affiliateOffers,
   buildGygUrl,
+  formatOfferRating,
   getOffersForPage,
 } from "../affiliate-offers";
 
@@ -35,6 +36,14 @@ describe("experience offer additions (2026-10-15)", () => {
   it("surfaces guided sunset kayak on kayak page", () => {
     const ids = getOffersForPage("chicago-kayak-rentals").map((o) => o.id);
     assert.ok(ids.includes("gyg-1308180"));
+  });
+
+  it("does not render static export ratings as stars", () => {
+    const rated = affiliateOffers.find(
+      (o) => o.rating != null && o.reviewCount != null,
+    );
+    assert.ok(rated);
+    assert.equal(formatOfferRating(rated), null);
   });
 
   it("keeps Viator tracking params on improved river/sunset cards", () => {

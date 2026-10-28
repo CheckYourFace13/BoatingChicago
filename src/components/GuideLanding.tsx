@@ -172,7 +172,7 @@ const GUIDE_GIRAFFE_TOOLS: Record<
         product: "pressure-washer",
         clickref: "boat-detailing-pressure-washer",
         blurb:
-          "A pressure washer may help with stubborn dirt on rugged exterior areas, but high pressure can damage gelcoat, sealants, decals, upholstery, electrical fittings, and soft or aged surfaces. Confirm safe pressure, distance, and nozzle choice for each material — and when unsure, leave aggressive cleaning to a marine detailer. We do not invent manufacturer specifications.",
+          "A pressure washer may help with stubborn dirt on rugged exterior areas, but high pressure can damage gelcoat, sealants, decals, upholstery, electrical fittings, and soft or aged surfaces. Confirm safe pressure, distance, and nozzle choice for each material, and when unsure, leave aggressive cleaning to a marine detailer. Follow the tool maker’s current specifications.",
         ctaLabel: "See the Grandfalls Pressure Washer PRO",
       },
     ],

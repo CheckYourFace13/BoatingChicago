@@ -6,6 +6,7 @@ import type {
   Marina,
   StorageFacility,
 } from "@/types/geo";
+import { chicagoCalendarDate } from "@/lib/season";
 import { destinations } from "./destinations";
 import { events } from "./events";
 import { lakes } from "./lakes";
@@ -24,17 +25,22 @@ function isPublished<T extends { isPublished: boolean }>(item: T): boolean {
   return item.isPublished;
 }
 
-/** End of local calendar day for `YYYY-MM-DD` (inclusive end dates). */
-function endOfDay(dateStr: string): Date {
-  return new Date(`${dateStr}T23:59:59.999`);
-}
-
+/**
+ * Dated events drop the calendar day after their inclusive end date
+ * (America/Chicago). Seasonal program dates stay listed through Dec 31 of
+ * the end-date year so a CLOSED label can show after the season.
+ */
 export function isEventExpired(
   event: EventItem,
   asOf: Date = new Date(),
 ): boolean {
   const lastDay = event.endDate ?? event.startDate;
-  return endOfDay(lastDay) < asOf;
+  const today = chicagoCalendarDate(asOf);
+  if (event.category === "seasonal") {
+    const endYear = lastDay.slice(0, 4);
+    return today > `${endYear}-12-31`;
+  }
+  return today > lastDay;
 }
 
 export function getPublishedDestinations(): Destination[] {

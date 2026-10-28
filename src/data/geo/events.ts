@@ -47,7 +47,7 @@ export const events: EventItem[] = [
     endDate: "2026-10-31",
     location: "Chicago Park District harbors, Lake Michigan",
     summary:
-      "The Chicago Park District / Chicago Harbors program publishes an annual harbor season for seasonal moorings along the lakefront. Official materials state the harbor season runs May 1 through October 31 each year. Slip applications, rates, and harbor-specific details are on chicagoharbors.info — not reproduced here because they change.",
+      "The Chicago Park District / Chicago Harbors program publishes an annual harbor season for seasonal moorings along the lakefront. Official materials state the harbor season runs May 1 through October 31 each year. Those are published program dates, not a claim that every harbor, slip, or related facility is operating or available on a given day. Slip applications, rates, and harbor-specific details are on chicagoharbors.info — not reproduced here because they change.",
     source: {
       name: "Chicago Park District — Harbors",
       url: "https://www.chicagoparkdistrict.com/facilities/harbors",
@@ -63,7 +63,7 @@ export const events: EventItem[] = [
     endDate: "2026-10-31",
     location: "McKinley Marina, Milwaukee, WI",
     summary:
-      "Milwaukee County Parks lists McKinley Marina’s official boating season as May 1 – October 31. Slip rentals, launch permits, and storage details are published on the County Parks marina page.",
+      "Milwaukee County Parks lists McKinley Marina’s official boating season as May 1 – October 31. Those are published program dates, not a claim that every slip, launch, or related service is operating or available on a given day. Slip rentals, launch permits, and storage details are published on the County Parks marina page.",
     source: {
       name: "Milwaukee County Parks — McKinley Marina",
       url: "https://county.milwaukee.gov/EN/Parks/Explore/Lakefront/McKinley-Marina",

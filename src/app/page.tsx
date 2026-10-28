@@ -18,7 +18,7 @@ export const revalidate = 900;
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-  title: "Boating Chicago | Chicago Boating Weather, Marinas, Launches & Guides",
+  title: "Chicago Boating Weather, Marinas, Launches & Guides | Boating Chicago",
   description:
     "Your guide to boating Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within about 100 miles — weather, harbors, launches, news, and guides.",
   path: "/",

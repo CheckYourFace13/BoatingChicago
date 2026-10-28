@@ -4,7 +4,7 @@ export const guidePart1: GuidePage[] = [
   {
     slug: "best-boat-rentals-chicago",
     title: "Best Boat Rentals Chicago",
-    seoTitle: "Best Boat Rentals Chicago 2026 | Top-Rated Lake Michigan Rentals",
+    seoTitle: "Best Boat Rentals Chicago 2026 | Lake Michigan Rentals",
     seoDescription:
       "Find the best boat rentals in Chicago for 2026. Compare pontoons, speedboats, sailboats, and party boats on Lake Michigan with tips on marinas, pricing, and booking.",
     headline: "Best Boat Rentals in Chicago for Lake Michigan",

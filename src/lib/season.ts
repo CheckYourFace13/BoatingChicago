@@ -22,6 +22,16 @@ export function chicagoMonthDay(from: Date = new Date()): {
   return { month, day };
 }
 
+/** Calendar date `YYYY-MM-DD` in America/Chicago. */
+export function chicagoCalendarDate(from: Date = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(from);
+}
+
 export function getBoatingSeason(from: Date = new Date()): BoatingSeason {
   const { month } = chicagoMonthDay(from);
   if (month >= 1 && month <= 4) return "spring";

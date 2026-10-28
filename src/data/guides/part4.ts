@@ -233,7 +233,7 @@ export const guidePart4: GuidePage[] = [
         heading: "The Chicago Winter Storage Timeline",
         paragraphs: [
           "Most Chicago-area boaters target October for haul-out. The first hard freeze is a key milestone — you want your boat out of the water and properly winterized before temperatures regularly dip below 20°F. The actual timing varies year to year, but planning for an October 15–November 1 haul-out window is sensible.",
-          "Chicago Harbors typically sets haul-out schedules and yard availability for each season. If your boat is in a harbor slip, coordinate with the harbor office on haul-out timing to ensure a spot in the yard or to arrange transfer to an off-site storage facility.",
+          "Chicago Harbors publishes a May 1–October 31 mooring season; haul-out and yard dates are separate and come from the operator. If your boat is in a harbor slip, coordinate with the harbor office on haul-out timing to ensure a spot in the yard or to arrange transfer to an off-site storage facility.",
           "Spring launch timing in Chicago is typically May, after ice-out and once water temperatures are stable enough for marine operations. Many facilities do spring launches in the April 15–May 15 window, weather depending.",
         ],
       },
@@ -1199,7 +1199,7 @@ export const guidePart4: GuidePage[] = [
       {
         heading: "How we recommend shopping links",
         paragraphs: [
-          "Where this site includes Amazon category links, they open Amazon search results for evergreen product types such as life jackets or dock lines. We do not invent prices, copy Amazon customer reviews, or imply that BoatingChicago sells or ships products. Availability and fulfillment are Amazon’s.",
+          "Where this site includes Amazon category links, they open Amazon search results for evergreen product types such as life jackets or dock lines. Prices, customer reviews, availability, and fulfillment are Amazon’s; BoatingChicago does not sell or ship those products.",
           "Prefer confirming legal and safety requirements with Illinois DNR, the Coast Guard, and your marina or charter operator. Gear recommendations here support those rules — they do not replace them.",
         ],
       },

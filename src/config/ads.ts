@@ -36,9 +36,12 @@ export function getAdSenseClient(): string | undefined {
 }
 
 /**
- * Display units stay dormant until traffic/monetization reopen.
- * Keep NEXT_PUBLIC_ADSENSE_CLIENT for verification / Auto ads infra;
- * set NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS=true only when units should render.
+ * Display units and adsbygoogle.js stay off until both are true:
+ * 1) NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS is explicitly enabled, and
+ * 2) the visitor has granted advertising consent.
+ * NEXT_PUBLIC_ADSENSE_CLIENT plus ads.txt / the verification meta tag only
+ * identify the publisher account. They do not mean Auto ads are approved or
+ * authorized. Do not load Auto ads from this flag remaining unset.
  */
 export function areAdSenseDisplayUnitsEnabled(): boolean {
   const flag = process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS?.trim().toLowerCase();
@@ -75,7 +78,8 @@ export const adProviders: Record<
 
 /**
  * Logical AdSense slots. Slot IDs come from env when units are created in AdSense.
- * Without a slot ID, AdSenseBlock renders nothing (script may still load for Auto ads).
+ * Without a slot ID, AdSenseBlock renders nothing. The loader also stays off
+ * unless display units are explicitly enabled and consent is granted.
  */
 export const adSlots: Record<AdSlotKey, AdSlotConfig> = {
   "homepage-top": {

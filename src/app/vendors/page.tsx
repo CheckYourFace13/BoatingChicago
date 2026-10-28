@@ -141,8 +141,8 @@ export default function VendorsPage() {
           <p>
             Featured and sponsored placements are labeled when they appear.
             Basic directory listings are free for qualified local operators.
-            We do not invent business details — partners supply their own
-            services, service areas, and contact information.
+            Listing details come from the partner: services, service areas, and
+            contact information they supply.
           </p>
           <p>
             Looking for experiences or harbor logistics? Start with{" "}

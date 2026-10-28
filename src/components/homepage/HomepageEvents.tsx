@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { EventItem } from "@/types/geo";
+import { seasonalStatusLabel } from "@/lib/event-status";
 
 export function HomepageEvents({ events }: { events: EventItem[] }) {
   const list = events.slice(0, 3);
@@ -9,11 +10,12 @@ export function HomepageEvents({ events }: { events: EventItem[] }) {
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
         <div>
           <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
-            Upcoming Boating Events
+            Season dates &amp; lakefront events
           </h2>
           <p className="text-gray-600 max-w-2xl">
-            Seasonal harbor dates and lakefront events with official source links.
-            Expired events are filtered out automatically.
+            Published harbor season windows and lakefront events with official
+            source links. Program dates are not a claim that every facility is
+            operating or available.
           </p>
         </div>
         <Link href="/events" className="font-bold text-coral hover:underline shrink-0">
@@ -32,6 +34,9 @@ export function HomepageEvents({ events }: { events: EventItem[] }) {
                 {event.startDate}
                 {event.endDate && event.endDate !== event.startDate
                   ? ` – ${event.endDate}`
+                  : ""}
+                {seasonalStatusLabel(event)
+                  ? ` · ${seasonalStatusLabel(event)}`
                   : ""}
               </p>
               <h3 className="font-extrabold text-lake-blue mb-2">{event.title}</h3>

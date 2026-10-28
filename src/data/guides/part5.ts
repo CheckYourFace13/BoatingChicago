@@ -40,7 +40,7 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Timing around Chicago haul-out",
         paragraphs: [
-          "Many Chicago Harbors and regional yards schedule haul-outs through October, with exact windows published by the operator. Align mechanic appointments with the day the boat becomes accessible on the hard. Leaving a raw-water engine unprotected through a cold snap after haul-out is a common expensive mistake.",
+          "Chicago Harbors’ published mooring season runs through October 31; yards and private marinas set their own haul-out windows. Align mechanic appointments with the day the boat becomes accessible on the hard. Leaving a raw-water engine unprotected through a cold snap after haul-out is a common expensive mistake.",
           "For storage choices and shrink wrap decisions, see our Chicago boat storage and shrink wrap guides. For ownership planning beyond winter, see the boat ownership hub.",
         ],
       },
@@ -621,7 +621,7 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Harbor season is not your haul-out date",
         paragraphs: [
-          "Chicago Harbors / Chicago Park District materials used on this site state the lakefront harbor season as May 1 through October 31. That is the published operating season for the public harbor program. It is not a promise that every boat must stay in until Halloween, and it is not your storage yard’s pull date.",
+          "Chicago Harbors / Chicago Park District materials used on this site state the lakefront harbor season as May 1 through October 31. That is the published operating season for the public harbor program. It is not a claim that every harbor, slip, or related facility is operating or available on a given day, and it is not your storage yard’s pull date.",
           "Private marinas, boat yards, and dry-storage operators set their own haul-out windows, late-leaver rules, and indoor/outdoor contracts. Confirm those dates with the operator that will actually lift or store the boat. Chicago Harbors also publishes late-leaver and related fees on its official rates pages when a vessel stays past the program’s published season — read the current sheet rather than assuming last year’s terms.",
         ],
       },
@@ -636,7 +636,7 @@ export const guidePart5: GuidePage[] = [
         heading: "Official starting points",
         paragraphs: [
           "Chicago Harbors: chicagoharbors.info — season, slips, and published late-season fees. Illinois DNR boating pages cover registration and related rules. NOAA/NWS products on our weather page are planning inputs, not a go/no-go clearance.",
-          "BoatingChicago does not take haul-out reservations, sell winterizing service, or invent operator availability.",
+          "BoatingChicago does not take haul-out reservations or sell winterizing. Confirm current space and service dates with the operator.",
         ],
       },
     ],
@@ -688,7 +688,7 @@ export const guidePart5: GuidePage[] = [
       {
         question: "When does Chicago harbor season end?",
         answer:
-          "Official Chicago Harbors materials cited on this site state May 1 through October 31. Confirm the current year on chicagoharbors.info. Your yard’s haul-out date can be earlier.",
+          "Official Chicago Harbors materials cited on this site state May 1 through October 31. Confirm the current year on chicagoharbors.info. Those are published program dates, not a claim every facility is operating, and your yard’s haul-out date can be earlier.",
       },
       {
         question: "Is winterization the same as shrink wrap?",
