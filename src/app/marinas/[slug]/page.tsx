@@ -196,8 +196,8 @@ export default async function MarinaPage({ params }: PageProps) {
               </div>
             ) : null}
             <p className="text-sm text-gray-600">
-              When a detail is not listed here, check the operator&apos;s current
-              information via the official source below — we do not guess.
+              Missing a detail for {marina.name}? Use the official source link
+              below — we do not guess.
             </p>
           </section>
         )}
@@ -205,51 +205,50 @@ export default async function MarinaPage({ params }: PageProps) {
         <FAQ faqs={faqs} title="Marina planning FAQs" />
 
         {publishedDestination ? (
-          <section className="max-w-3xl space-y-4">
+          <section className="max-w-3xl space-y-3">
             <h2 className="text-2xl font-extrabold text-lake-blue">
-              How this harbor fits the destination
+              Plan around {marina.name}
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              {publishedDestination.summary}
+              Use the destination and weather links for area context — not a
+              repeat of the full {publishedDestination.name} overview. Confirm
+              fees and guest rules on this marina&apos;s official link above.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              For fees, seasonal dockage, and amenity lists that can change, use
-              the official marina link above. For trip planning around this
-              harbor, start with{" "}
               <Link
                 href={`/destinations/${publishedDestination.slug}`}
                 className="font-semibold text-coral hover:underline"
               >
-                boating in {publishedDestination.name}
+                Boating in {publishedDestination.name}
               </Link>
-              , check the{" "}
+              {" · "}
               <Link
                 href={`/weather?location=${publishedDestination.weatherLocationId}`}
                 className="font-semibold text-coral hover:underline"
               >
-                {weatherLocation?.label ?? "area"} forecast
-              </Link>{" "}
-              (area NOAA/NWS products — not a harbor-mouth observation), and browse{" "}
+                {weatherLocation?.label ?? "Area"} forecast
+              </Link>
+              {" · "}
               <Link
                 href="/boat-launches"
                 className="font-semibold text-coral hover:underline"
               >
-                public launches
-              </Link>{" "}
-              if you are trailering in.
+                Public launches
+              </Link>
             </p>
           </section>
         ) : null}
 
         <section className="rounded-2xl bg-lake-blue text-white p-6 md:p-8">
           <h2 className="text-xl font-extrabold mb-2">
-            Before you book or budget
+            Before you book {marina.name}
           </h2>
           <p className="text-white/90 leading-relaxed max-w-3xl">
-            Harbor-specific season, hours, and fee notes above summarize what we
-            verified from the cited operator. Live dollar amounts and same-day
-            desk hours still belong on the official site and phone number —
-            confirm there before you reserve or trailer in.
+            Season, hours, and fee notes above summarize what we verified for{" "}
+            {marina.name} from {marina.source.name}. Live dollar amounts and
+            same-day desk hours still belong on the official site
+            {marina.phone ? ` or ${marina.phone}` : ""} — confirm there before
+            you reserve or trailer in.
           </p>
         </section>
 
@@ -258,19 +257,16 @@ export default async function MarinaPage({ params }: PageProps) {
             <h2 className="text-2xl font-extrabold text-lake-blue mb-4">
               Other marinas at this destination
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Names only — embedding every sibling summary made Chicago harbor
+                pages near-duplicates of each other. */}
+            <div className="flex flex-wrap gap-3">
               {siblings.map((sibling) => (
                 <Link
                   key={sibling.slug}
                   href={`/marinas/${sibling.slug}`}
-                  className="rounded-2xl border border-sky-blue/20 bg-white p-5 hover:shadow-md transition-shadow"
+                  className="px-4 py-2 bg-light-blue text-lake-blue font-semibold text-sm rounded-full hover:bg-sky-blue/20 transition-colors"
                 >
-                  <p className="font-extrabold text-lake-blue mb-1">
-                    {sibling.name}
-                  </p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {sibling.summary}
-                  </p>
+                  {sibling.name}
                 </Link>
               ))}
             </div>

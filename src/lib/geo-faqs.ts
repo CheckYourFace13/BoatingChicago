@@ -6,6 +6,10 @@ function amenityAvailable(marina: Marina, key: string): boolean | null {
   return row ? row.available : null;
 }
 
+function amenityNote(marina: Marina, key: string): string | undefined {
+  return marina.amenities.find((a) => a.key === key)?.note;
+}
+
 /** FAQs supported only by verified marina amenity/source fields — never invents. */
 export function buildMarinaFaqs(
   marina: Marina,
@@ -14,49 +18,76 @@ export function buildMarinaFaqs(
   const launch = amenityAvailable(marina, "boat-launch");
   const transient = amenityAvailable(marina, "transient-dockage");
   const fuel = amenityAvailable(marina, "fuel");
+  const pump = amenityAvailable(marina, "pump-out");
+  const launchNote = amenityNote(marina, "boat-launch");
+  const transientNote = amenityNote(marina, "transient-dockage");
+  const fuelNote = amenityNote(marina, "fuel");
   const faqs: CategoryFAQ[] = [];
 
   faqs.push({
     question: `Does ${marina.name} have a public boat launch?`,
     answer:
       launch === true
-        ? `Yes — a boat launch is listed as available for ${marina.name} based on the operator source we cite on this page. Confirm current access, fees, and hours on the official website before you trailer in.`
+        ? `Yes — ${marina.name} lists a boat launch on the cited operator source${
+            launchNote ? ` (${launchNote})` : ""
+          }. Confirm current ramp access, fees, and hours on that official page before you trailer in.`
         : launch === false
-          ? `A boat launch is not listed as available for ${marina.name} in the amenity data we verified. Check the official operator page for any seasonal or special-access options.`
-          : `We have not confirmed a boat launch amenity for ${marina.name}. Use the official operator link on this page to verify launching options before you go.`,
+          ? `${marina.name} does not list a boat launch in the amenity data we verified. Check ${marina.source.name} for any seasonal or special-access exceptions.`
+          : `A boat launch is not confirmed for ${marina.name} on the source we cite. Verify launching options on ${marina.source.name} before you go.`,
   });
 
   faqs.push({
-    question: "Where do I verify launch fees and dockage rates?",
-    answer: marina.officialWebsite
-      ? `BoatingChicago does not reprint live marina pricing. Confirm launch fees, transient rates, and season passes on the official operator site (${marina.source.name}) linked on this page.`
-      : `Confirm fees directly with the operating agency cited as ${marina.source.name}. We do not reprint live marina pricing.`,
+    question: `How do I verify fees for ${marina.name}?`,
+    answer: marina.feesNote
+      ? `${marina.feesNote}`
+      : `BoatingChicago does not reprint live pricing for ${marina.name}. Confirm rates on ${marina.source.name}${
+          marina.officialWebsite ? " via the official link on this page" : ""
+        }.`,
   });
 
   faqs.push({
     question: `Can transient boats dock at ${marina.name}?`,
     answer:
       transient === true
-        ? `Transient dockage is listed as available. Capacity, reservations, and overnight rules change — verify with ${marina.source.name} before arrival.`
+        ? `Transient dockage is listed for ${marina.name}${
+            transientNote ? ` (${transientNote})` : ""
+          }. Capacity, reservations, and overnight rules change — verify with ${marina.source.name} before arrival.`
         : transient === false
-          ? `Transient dockage is not listed as available in our verified amenity notes. Confirm any guest-dock exceptions with the operator.`
-          : `Transient dockage status is unknown in our verified data. Check the official source before planning an overnight or day dockage stay.`,
+          ? `${marina.name} does not list transient dockage in our verified amenity notes. Confirm any guest-dock exceptions with the operator.`
+          : `Transient dockage is not confirmed for ${marina.name} on the source we cite. Ask ${marina.source.name} before planning an overnight or day stop.`,
   });
 
+  if (fuel === true || pump === true) {
+    const bits: string[] = [];
+    if (fuel === true) {
+      bits.push(
+        `fuel is listed as available${fuelNote ? ` (${fuelNote})` : ""}`
+      );
+    }
+    if (pump === true) {
+      const pumpNote = amenityNote(marina, "pump-out");
+      bits.push(
+        `pump-out is listed as available${pumpNote ? ` (${pumpNote})` : ""}`
+      );
+    }
+    faqs.push({
+      question: `Does ${marina.name} offer fuel or pump-out?`,
+      answer: `On the cited source, ${bits.join(" and ")}. Confirm hours and any purchase rules on ${marina.source.name} before you depend on those services.`,
+    });
+  }
+
   faqs.push({
-    question: "Where should I check current conditions?",
+    question: `Where should I check conditions near ${marina.name}?`,
     answer: destination
-      ? `Use the ${destination.name} marine weather view on BoatingChicago and always cross-check official NOAA/NWS marine forecasts. Our informational rating is not a safety clearance.`
+      ? `Use the ${destination.name} weather view on BoatingChicago and cross-check official NOAA/NWS marine forecasts for that area. Those are area products — not a sensor at ${marina.name}'s basin mouth — and our informational rating is not a safety clearance.`
       : `Use the BoatingChicago weather hub and official NOAA/NWS marine products. Our informational rating is not a safety clearance.`,
   });
 
   faqs.push({
     question: `Who operates ${marina.name}?`,
-    answer: `Details on this page are attributed to ${marina.source.name}. Follow the official website link for operator contact, rules, and current facility status.${
-      fuel === true
-        ? " Fuel is listed as available in our amenity notes — confirm hours on the official site."
-        : ""
-    }`,
+    answer: `${marina.name} details on this page are attributed to ${marina.source.name}${
+      marina.phone ? ` (phone ${marina.phone})` : ""
+    }. Use the official website link for contact, rules, and current facility status.`,
   });
 
   return faqs;
@@ -72,18 +103,19 @@ export function buildLaunchFaqs(
       answer: `${launch.summary} Confirm current access, stickers, and fees on the official source (${launch.source.name}) before you tow.`,
     },
     {
-      question: "Where do I verify launch fees?",
-      answer:
-        "BoatingChicago does not reprint live launch fees. Use the official agency link on this page for current ramp fees, season passes, and waterway stickers.",
+      question: `How do I verify fees for ${launch.name}?`,
+      answer: launch.feesNote
+        ? launch.feesNote
+        : `BoatingChicago does not reprint live launch fees for ${launch.name}. Use ${launch.source.name} for current ramp fees, season passes, and waterway stickers.`,
     },
     {
-      question: "Where should I check current conditions?",
+      question: `Where should I check conditions near ${launch.name}?`,
       answer: destination
-        ? `Check ${destination.name} marine weather on BoatingChicago and official NOAA/NWS products. Do not treat our informational rating as a go/no-go decision.`
+        ? `Check ${destination.name} marine weather on BoatingChicago and official NOAA/NWS products. Do not treat our informational rating as a go/no-go decision for ${launch.name}.`
         : "Check the BoatingChicago weather hub and official NOAA/NWS marine forecasts before launching.",
     },
     {
-      question: "Who operates this launch?",
+      question: `Who operates ${launch.name}?`,
       answer: `Access guidance is attributed to ${launch.source.name}. Follow the official source link for rules, hours, and closures.${
         launch.amenityNotes ? ` Notes: ${launch.amenityNotes}` : ""
       }`,

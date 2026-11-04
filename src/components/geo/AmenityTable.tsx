@@ -22,8 +22,7 @@ export function AmenityTable({
     <section>
       <h2 className="text-2xl font-extrabold text-lake-blue mb-3">Amenities</h2>
       <p className="text-gray-600 mb-4 max-w-3xl">
-        Only amenities stated on {sourceName} are listed here. Anything the
-        source does not state is marked unknown rather than guessed.
+        Statuses below follow {sourceName}; unmarked items stay unknown.
       </p>
 
       {confirmed.length > 0 ? (
