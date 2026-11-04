@@ -243,12 +243,13 @@ export default async function MarinaPage({ params }: PageProps) {
 
         <section className="rounded-2xl bg-lake-blue text-white p-6 md:p-8">
           <h2 className="text-xl font-extrabold mb-2">
-            Slip rates, fees, and hours
+            Before you book or budget
           </h2>
           <p className="text-white/90 leading-relaxed max-w-3xl">
-            We do not reprint pricing, season dates, or operating hours — those
-            change and go stale fast. Use the marina&apos;s official page and
-            phone number above for anything you are booking or budgeting around.
+            Harbor-specific season, hours, and fee notes above summarize what we
+            verified from the cited operator. Live dollar amounts and same-day
+            desk hours still belong on the official site and phone number —
+            confirm there before you reserve or trailer in.
           </p>
         </section>
 

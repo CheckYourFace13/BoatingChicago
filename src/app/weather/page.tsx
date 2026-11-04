@@ -127,6 +127,33 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
 
         <BoatingConditionRatingCard rating={weather.rating} />
 
+        <section className="rounded-2xl border border-sky-blue/25 bg-white p-5 md:p-6 max-w-3xl">
+          <h2 className="text-xl font-extrabold text-lake-blue mb-3">
+            How to read waves, advisories, and nearshore forecasts
+          </h2>
+          <ul className="space-y-2 text-sm md:text-base text-gray-700 leading-relaxed list-disc pl-5">
+            <li>
+              <strong>Waves and wind</strong> on this page are area NOAA/NWS
+              products for the selected forecast point — not a sensor at your
+              exact ramp, harbor mouth, or breakwater.
+            </li>
+            <li>
+              <strong>Marine alerts</strong> (for example Small Craft Advisories)
+              apply to the NWS marine zones covering this area. Read the full
+              alert text and end time on weather.gov before you cast off.
+            </li>
+            <li>
+              <strong>Nearshore marine forecast</strong> excerpts are coastal
+              waters guidance. Conditions inside protected basins can differ
+              from open nearshore bands; always compare the latest full product.
+            </li>
+            <li>
+              The Good / Caution / Poor card is an informational summary only —
+              not a go/no-go clearance for any vessel or trip.
+            </li>
+          </ul>
+        </section>
+
         <WeatherExploreLinks weather={weather} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">

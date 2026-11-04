@@ -6,6 +6,8 @@ const VERIFIED = "2026-10-07";
  * Published marinas with clear official websites only.
  * Amenities use available: null when not confirmed on the cited source.
  * Do not invent fees, slip counts, or hours here — link to the source.
+ * seasonalAccessNote / hoursNote / feesNote must be harbor-specific — never
+ * paste the same Chicago Harbors disclaimer onto non-Chicago operators.
  */
 export const marinas: Marina[] = [
   {
@@ -23,11 +25,11 @@ export const marinas: Marina[] = [
       { key: "restrooms", available: null },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "Belmont is part of the Chicago Harbors seasonal system. Use the Chicago Harbors calendar for the published mooring season and any guest-dock windows before planning an overnight at this Lincoln Park basin.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "Belmont Harbor office contact is (312) 742-7673. Staffed hours change with the season — call before you arrive rather than assuming daytime desk coverage.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Belmont slip and mooring fees are set by Chicago Harbors and can differ by residency and product type. Check the official harbors listing for current amounts; we do not reprint dollar figures.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -54,11 +56,11 @@ export const marinas: Marina[] = [
       { key: "power-and-water", available: true, note: "Slips have power and water (per harbor page)" },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "Burnham’s seasonal mooring and guest dockage follow Chicago Harbors’ published harbor season. Confirm launch-ramp and transient availability for your date on the Burnham harbor page before trailering to Museum Campus.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "Burnham Harbor desk: (312) 747-7009. Fuel dock, pump-out, store, and office hours are seasonal — verify on the Burnham page or by phone before you need services.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Burnham transient, seasonal, fuel, and launch fees are published by Chicago Harbors. Use the Burnham harbor page for current amounts; this guide does not reprint rates.",
     source: {
       name: "Chicago Harbors — Burnham",
       url: "https://www.chicagoharbors.info/harbors/burnham/",
@@ -80,11 +82,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "Monroe’s mooring-can program runs under Chicago Harbors’ seasonal schedule. Confirm can assignments, guest rules, and tender expectations for downtown approaches before you plan to hold overnight under the skyline.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "Monroe Harbor contact: (312) 742-7643. Do not assume fuel or pump-out at this basin — those services are unconfirmed on the overview we cite; call ahead for any service needs.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Monroe mooring fees are Chicago Harbors products. Check the official harbors listing for current pricing; we do not reprint dollar amounts.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -106,11 +108,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "DuSable slips sit in the Chicago Harbors seasonal system near Randolph Street. Confirm whether your stay is seasonal or guest dockage and what downtown approach/no-wake rules apply for your arrival window.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "DuSable Harbor contact: (312) 742-3577. Beyond seasonal mooring, fuel and pump-out are not verified on the overview we cite — ask the harbor office what is available the day you arrive.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "DuSable rates are published by Chicago Harbors. Use the official listing for current slip or guest fees rather than cached third-party numbers.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -133,11 +135,11 @@ export const marinas: Marina[] = [
       { key: "boat-launch", available: true, note: "Lincoln Boat Launch — Montrose Harbor listed by CPD" },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "Montrose combines Chicago Harbors seasonal mooring with the Chicago Park District Lincoln Boat Launch at the same complex. Confirm harbor season dates and launch operating status separately before a trailer trip to Montrose Beach.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "Montrose Harbor desk: (312) 742-7527. Launch and harbor office hours can differ — check CPD launch information and the harbor phone for the same day you plan to use either.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Harbor mooring fees come from Chicago Harbors; launch fees follow Chicago Park District rules for Lincoln Boat Launch. Confirm each fee on the cited official sources.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -162,11 +164,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "31st Street Harbor follows Chicago Harbors’ seasonal calendar. Metered electric, seasonal water, and internet access are described on the harbors overview — confirm which utilities are live for your slip or guest stay.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "31st Street Harbor contact: (312) 225-6464. Fuel and pump-out are not verified on the overview we cite; call if you need those services before south-lakefront arrival.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Slip fees and any seasonal water/electric charges are Chicago Harbors products. Check the official harbors listing for current amounts.",
     source: {
       name: "Chicago Harbors — Harbors",
       url: "https://www.chicagoharbors.info/harbors/",
@@ -194,11 +196,11 @@ export const marinas: Marina[] = [
       { key: "security", available: true, note: "24-hour security (per marina site)" },
     ],
     seasonalAccessNote:
-      "Chicago Harbors publishes seasonal harbor dates each year. Confirm the current season, waitlists, and guest rules on the official Chicago Harbors site before planning dockage.",
+      "Waukegan Port District sets its own seasonal dockage and launch calendar — this is not a Chicago Harbors facility. Confirm current season dates and ramp access on waukeganharbor.com before an overnight or trailer trip.",
     hoursNote:
-      "Harbor office hours vary by facility and season. Confirm on the cited Chicago Harbors page or by phone before you arrive.",
+      "Waukegan Harbor & Marina: (847) 244-3133. Fuel pier, free pump-outs, and launch ramps are listed on the Port District site; verify desk and fuel hours for your arrival day.",
     feesNote:
-      "Slip, mooring, and related fees are published by Chicago Harbors and can differ by harbor and residency rules. Check the official harbor page — we do not reprint dollar amounts that go stale.",
+      "Transient, seasonal, launch, and fuel prices are published by the Waukegan Port District. Use the marina website for current amounts.",
     source: {
       name: "Waukegan Harbor & Marina",
       url: "https://waukeganharbor.com/",
@@ -229,11 +231,11 @@ export const marinas: Marina[] = [
       { key: "parking", available: true, note: "Restricted parking (per IDNR about page)" },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "North Point is an Illinois DNR State Recreation Area marina. Confirm IDNR seasonal dockage, gate access, and winter layup rules on the official park page before planning a Winthrop Harbor stay next to Illinois Beach State Park.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "North Point Marina: (847) 746-2845. IDNR describes electricity/water in one-price slip rental, sanitary pump-outs, Wi-Fi, and 24-hour security — verify office hours and gate access for your arrival.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Slip and related fees are set by Illinois DNR for North Point Marina. Check the IDNR park page for current pricing and any resident/nonresident distinctions.",
     source: {
       name: "IDNR — North Point Marina State Recreation Area",
       url: "https://dnr.illinois.gov/parks/park.northpointmarina.html",
@@ -257,11 +259,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "Southport Marina in Kenosha Harbor Park publishes its own seasonal slip and winter-storage calendar. Confirm dockage dates and downtown Harbor Park access on spmarina.net before you commit to a Kenosha overnight.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "Southport Marina: (262) 657-5565. The site lists slip rentals, service, and winter storage; fuel and pump-out are not confirmed in our verified notes — ask the marina if you need those services.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Slip, service, and storage pricing come from Southport Marina. Use the official site for current amounts.",
     source: {
       name: "Southport Marina",
       url: "https://spmarina.net/",
@@ -285,11 +287,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "Reefpoint is Racine County’s marina at Len Ziolkowski Harbor Park. Confirm seasonal slip availability and park access rules on reefpointmarina.org before a Racine overnight.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "Reefpoint Marina: (262) 633-7171. The marina site lists a heated pool and dog-friendly areas; fuel and pump-out remain unverified in our notes — call if those services matter for your trip.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Slip and amenity fees are published by Reefpoint Marina / Racine County. Check the marina website for current pricing.",
     source: {
       name: "Reefpoint Marina",
       url: "https://reefpointmarina.org/",
@@ -319,11 +321,11 @@ export const marinas: Marina[] = [
       { key: "security", available: true },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "McKinley Marina is a Milwaukee County Parks facility with 655 slips listed by the county. Confirm seasonal dockage and county launch-permit rules before a Milwaukee lakefront arrival.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "McKinley Marina: (414) 273-5224. County Parks describe fuel with pump-out, ships store, and restrooms/showers — verify fuel dock and office hours for the day you need them.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Slip, fuel, and launch-permit fees are Milwaukee County Parks products. Use the County Parks McKinley page for current amounts.",
     source: {
       name: "Milwaukee County Parks — McKinley Marina",
       url: "https://county.milwaukee.gov/EN/Parks/Explore/Lakefront/McKinley-Marina",
@@ -355,11 +357,11 @@ export const marinas: Marina[] = [
       { key: "wifi", available: null },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "Washington Park Marina is the Michigan City Port Authority flagship wet-slip basin. Confirm seasonal and transient dockage windows on mcmarina.org before a Michigan City overnight.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "Washington Park Marina: (219) 872-1712. MCPA lists diesel and alcohol-free gasoline, free pump-out with fuel purchase, bathhouses, laundry, and fish cleaning — verify fuel-dock hours before you depend on them.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Transient, seasonal, and fuel pricing come from the Michigan City Port Authority. Use mcmarina.org for current amounts.",
     source: {
       name: "Michigan City Port Authority",
       url: "https://www.mcmarina.org/",
@@ -385,11 +387,11 @@ export const marinas: Marina[] = [
       { key: "pump-out", available: null },
     ],
     seasonalAccessNote:
-      "Seasonal dockage, gate access, and winter rules are published by the marina operator. Confirm current dates on the official website before you plan overnight dockage.",
+      "New Buffalo Municipal Marina is a city transient facility with 30 guest slips listed on the city page. Confirm seasonal operating dates and slip availability before a stop at 100 W. Water Street.",
     hoursNote:
-      "Office and gate hours vary by season. Confirm on the cited official source or by phone.",
+      "New Buffalo Municipal Marina: (269) 469-3574. The city lists VHF 9/16 monitoring, 30/50 amp shore power, water, and bathrooms with showers; fuel and pump-out are not confirmed on the page we cite.",
     feesNote:
-      "Transient, seasonal, and related fees — including any resident vs nonresident distinctions — are published by the operator. Check the official page for current amounts.",
+      "Guest-slip fees are published by the City of New Buffalo. Check the municipal marina page for current rates.",
     source: {
       name: "City of New Buffalo — Municipal Marina",
       url: "https://cityofnewbuffalomi.gov/municipal-marina/",

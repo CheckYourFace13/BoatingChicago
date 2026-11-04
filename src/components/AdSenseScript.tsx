@@ -4,8 +4,9 @@ import {
 } from "@/config/ads";
 
 /**
- * Server-rendered AdSense account meta only. The adsbygoogle.js loader is
- * client-gated on advertising consent in AdSenseLoader.
+ * Server-rendered AdSense account meta only (site verification).
+ * Executable adsbygoogle.js is loaded only from AdSenseBlock when a display
+ * unit is actually mounted — never from the root layout.
  */
 export function AdSenseScript() {
   const client = getAdSenseClient();
@@ -13,6 +14,7 @@ export function AdSenseScript() {
   return <meta name="google-adsense-account" content={client} />;
 }
 
+/** True only when a page may mount display units (not verification alone). */
 export function shouldLoadAdSenseScript(): boolean {
   return Boolean(getAdSenseClient()) && areAdSenseDisplayUnitsEnabled();
 }

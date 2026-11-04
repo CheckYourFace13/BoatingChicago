@@ -6,12 +6,12 @@ import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { AdSenseScript } from "@/components/AdSenseScript";
-import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { ConsentDefaultsScript } from "@/components/ConsentDefaultsScript";
 import { ConsentProvider } from "@/components/ConsentProvider";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SiteConditionsTicker } from "@/components/SiteConditionsTicker";
 import { SessionOriginCapture } from "@/components/SessionOriginCapture";
+import { areAdSenseDisplayUnitsEnabled } from "@/config/ads";
 import { siteConfig } from "@/config/site";
 import {
   buildOrganizationSchema,
@@ -65,7 +65,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        {/* Prefetch AdSense host only when display units are explicitly enabled.
+            Verification meta alone must not imply ads load on every route. */}
+        {areAdSenseDisplayUnitsEnabled() ? (
+          <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        ) : null}
         <ConsentDefaultsScript />
         <AdSenseScript />
         <script
@@ -84,7 +88,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased">
         <ConsentProvider>
           <GoogleAnalytics measurementId={gaMeasurementId} />
-          <AdSenseLoader />
           <SessionOriginCapture />
           <Suspense fallback={null}>
             <GoogleAnalyticsPageView measurementId={gaMeasurementId} />
