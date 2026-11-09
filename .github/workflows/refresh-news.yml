@@ -6,7 +6,8 @@ name: Refresh news feeds
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    # Twice daily (was every 6 hours). Soft ISR warm only — Hostinger still serves live pages between runs.
+    - cron: "0 0,12 * * *"
   workflow_dispatch:
 
 concurrency:
