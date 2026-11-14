@@ -20,6 +20,8 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Guides index: ${siteConfig.url}/guides
 - Planning tools (float plan / checklist): ${siteConfig.url}/tools
 - Destinations: ${siteConfig.url}/destinations
+- Lakes & waterways: ${siteConfig.url}/lakes
+- Forest preserves (Cook County waters): ${siteConfig.url}/forest-preserves
 - Marinas: ${siteConfig.url}/marinas
 - Boat launches: ${siteConfig.url}/boat-launches
 - Events: ${siteConfig.url}/events

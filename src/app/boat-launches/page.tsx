@@ -56,7 +56,7 @@ export default function BoatLaunchesPage() {
         intro="Trailer-in access from the Chicago lakefront to Wisconsin and the Fox River chain. Launch fees, permits, and stickers are set by the operating agency — we link you to the page that publishes them."
         links={[
           { label: "Destinations →", href: "/destinations" },
-          { label: "Marinas", href: "/marinas" },
+          { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Lakes & waterways", href: "/lakes" },
           { label: "Boating weather", href: "/weather" },
         ]}
@@ -147,10 +147,10 @@ export default function BoatLaunchesPage() {
         <ResourceCrossLinks
           links={[
             { href: "/weather", label: "Weather" },
+            { href: "/forest-preserves", label: "Forest preserves" },
             { href: "/marinas", label: "Marinas" },
             { href: "/destinations", label: "Destinations" },
             { href: "/lakes", label: "Lakes" },
-            { href: "/news", label: "News" },
             { href: "/guides", label: "Guides" },
           ]}
         />

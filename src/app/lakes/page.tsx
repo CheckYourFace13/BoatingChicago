@@ -35,8 +35,8 @@ export default function LakesPage() {
         intro="Open Lake Michigan, the Fox River chain, and southern Wisconsin's inland lakes each carry different access rules and different hazards. Start here, then follow the destination pages for harbor-level detail."
         links={[
           { label: "Destinations →", href: "/destinations" },
+          { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Boat launches", href: "/boat-launches" },
-          { label: "Marinas", href: "/marinas" },
           { label: "Boating weather", href: "/weather" },
         ]}
       />
@@ -117,10 +117,10 @@ export default function LakesPage() {
         <ResourceCrossLinks
           links={[
             { href: "/weather", label: "Weather" },
+            { href: "/forest-preserves", label: "Forest preserves" },
             { href: "/destinations", label: "Destinations" },
-            { href: "/marinas", label: "Marinas" },
             { href: "/boat-launches", label: "Boat launches" },
-            { href: "/news", label: "News" },
+            { href: "/marinas", label: "Marinas" },
             { href: "/guides", label: "Guides" },
           ]}
         />

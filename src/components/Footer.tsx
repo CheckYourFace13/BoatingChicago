@@ -6,6 +6,7 @@ import { disclaimer, siteConfig } from "@/config/site";
 const exploreLinks = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & Waterways" },
+  { href: "/forest-preserves", label: "Forest Preserves" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
   { href: "/weather", label: "Weather" },

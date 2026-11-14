@@ -6,6 +6,7 @@ import {
   getAllPublishedLakeSlugs,
   getAllPublishedLaunchSlugs,
   getAllPublishedMarinaSlugs,
+  getAllPublishedPreserveSlugs,
 } from "@/data/geo";
 import { getAllGuideSlugs } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
@@ -33,6 +34,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/boat-launches`,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/forest-preserves`,
       changeFrequency: "weekly",
       priority: 0.85,
     },
@@ -152,6 +158,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
+  const preservePages = getAllPublishedPreserveSlugs().map((slug) => ({
+    url: `${baseUrl}/forest-preserves/${slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const vendorPages = getPublishedVendors().map((v) => ({
     url: `${baseUrl}/vendors/${v.slug}`,
     changeFrequency: "monthly" as const,
@@ -169,6 +181,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...lakePages,
     ...marinaPages,
     ...launchPages,
+    ...preservePages,
     ...vendorPages,
   ];
 }

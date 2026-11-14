@@ -4,11 +4,13 @@ import type {
   EventItem,
   Lake,
   Marina,
+  PreserveWaterAccess,
   StorageFacility,
 } from "@/types/geo";
 import { chicagoCalendarDate } from "@/lib/season";
 import { destinations } from "./destinations";
 import { events } from "./events";
+import { forestPreserveAccess } from "./forest-preserves";
 import { lakes } from "./lakes";
 import { launches } from "./launches";
 import { marinas } from "./marinas";
@@ -20,6 +22,7 @@ export { marinas } from "./marinas";
 export { launches } from "./launches";
 export { events } from "./events";
 export { storageFacilities } from "./storage-facilities";
+export { forestPreserveAccess } from "./forest-preserves";
 
 function isPublished<T extends { isPublished: boolean }>(item: T): boolean {
   return item.isPublished;
@@ -135,4 +138,24 @@ export function getStorageFacilityBySlug(
   slug: string,
 ): StorageFacility | undefined {
   return storageFacilities.find((f) => f.slug === slug);
+}
+
+export function getPublishedPreserveAccess(): PreserveWaterAccess[] {
+  return forestPreserveAccess.filter(isPublished);
+}
+
+export function getPreserveAccessBySlug(
+  slug: string,
+): PreserveWaterAccess | undefined {
+  return forestPreserveAccess.find((p) => p.slug === slug);
+}
+
+export function getAllPublishedPreserveSlugs(): string[] {
+  return getPublishedPreserveAccess().map((p) => p.slug);
+}
+
+export function getPreserveAccessByCounty(county: string): PreserveWaterAccess[] {
+  return getPublishedPreserveAccess().filter(
+    (p) => p.county.toLowerCase() === county.toLowerCase(),
+  );
 }

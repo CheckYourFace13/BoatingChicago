@@ -11,6 +11,7 @@ type NavGroup = { label: string; items: NavItem[] };
 const exploreLinks: NavItem[] = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & Waterways" },
+  { href: "/forest-preserves", label: "Forest Preserves" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
   { href: "/boat-ownership", label: "Boat Ownership" },

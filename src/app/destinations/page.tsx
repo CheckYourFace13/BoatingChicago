@@ -49,8 +49,8 @@ export default function DestinationsPage() {
         intro="Harbor towns, inland lakes, and paddling waters across Chicago, the suburbs, southern Lake Michigan, nearby Wisconsin and Indiana, and selected destinations within roughly 250 driving miles. Each page collects official sources, verified marinas or launches, and a weather link."
         links={[
           { label: "Marinas →", href: "/marinas" },
+          { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Boat launches", href: "/boat-launches" },
-          { label: "Lakes & waterways", href: "/lakes" },
           { label: "Boating weather", href: "/weather" },
         ]}
       />
@@ -139,10 +139,10 @@ export default function DestinationsPage() {
         <ResourceCrossLinks
           links={[
             { href: "/weather", label: "Weather" },
+            { href: "/forest-preserves", label: "Forest preserves" },
             { href: "/marinas", label: "Marinas" },
             { href: "/boat-launches", label: "Boat launches" },
             { href: "/lakes", label: "Lakes" },
-            { href: "/news", label: "News" },
             { href: "/guides", label: "Guides" },
             { href: "/events", label: "Events" },
           ]}

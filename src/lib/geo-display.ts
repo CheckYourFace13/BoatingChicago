@@ -1,4 +1,11 @@
-import type { BoatLaunch, EventItem, GeoRegion, Lake } from "@/types/geo";
+import type {
+  BoatLaunch,
+  EventItem,
+  GeoRegion,
+  Lake,
+  PreserveAccessKind,
+  PreserveCraft,
+} from "@/types/geo";
 import { getPublishedLakes, getPublishedLaunches } from "@/data/geo";
 
 const REGION_LABELS: Record<GeoRegion, string> = {
@@ -120,4 +127,29 @@ export function getLakesForDestination(destinationSlug: string): Lake[] {
 
 export function getLaunchesByLake(lakeSlug: string): BoatLaunch[] {
   return getPublishedLaunches().filter((launch) => launch.lakeSlug === lakeSlug);
+}
+
+const PRESERVE_ACCESS_LABELS: Record<PreserveAccessKind, string> = {
+  "trailered-launch": "Trailored launch",
+  "carry-in": "Carry-in canoe/kayak landing",
+  "rental-only": "Rental location (no private boats)",
+  "accessible-landing": "Accessible landing / launch",
+};
+
+const PRESERVE_CRAFT_LABELS: Record<PreserveCraft, string> = {
+  canoe: "Canoe",
+  kayak: "Kayak",
+  rowboat: "Rowboat",
+  sailboat: "Sailboat",
+  "electric-trolling": "Electric trolling motor",
+  "paddle-boat": "Paddle boat",
+  "fishing-boat-electric": "Fishing boat with electric motor",
+};
+
+export function preserveAccessLabel(kind: PreserveAccessKind): string {
+  return PRESERVE_ACCESS_LABELS[kind];
+}
+
+export function preserveCraftLabel(craft: PreserveCraft): string {
+  return PRESERVE_CRAFT_LABELS[craft];
 }

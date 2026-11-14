@@ -128,3 +128,58 @@ export interface StorageFacility {
   source: SourceRef;
   isPublished: boolean;
 }
+
+/** County / district that publishes the access rules for a preserve water. */
+export type PreserveAgency =
+  | "cook-fpdcc"
+  | "dupage-fpd"
+  | "lake-county-fpd"
+  | "will-fpdwc"
+  | "kane-fpd"
+  | "mchenry-ccd"
+  | "other";
+
+export type PreserveAccessKind =
+  | "trailered-launch"
+  | "carry-in"
+  | "rental-only"
+  | "accessible-landing";
+
+export type PreserveCraft =
+  | "canoe"
+  | "kayak"
+  | "rowboat"
+  | "sailboat"
+  | "electric-trolling"
+  | "paddle-boat"
+  | "fishing-boat-electric";
+
+/**
+ * Forest-preserve / conservation-district water access.
+ * Only publish facts confirmed on the cited official agency page.
+ * Never invent motor limits, fees, hours, or rental availability.
+ */
+export interface PreserveWaterAccess {
+  slug: string;
+  name: string;
+  county: string;
+  agency: PreserveAgency;
+  /** Nearest town / preserve name as the agency describes it */
+  locationLabel: string;
+  summary: string;
+  overview: string[];
+  accessKinds: PreserveAccessKind[];
+  /** Craft types the agency lists as allowed at this site */
+  allowedCraft: PreserveCraft[];
+  /** Explicit agency prohibitions relevant to boaters (e.g. gasoline motors) */
+  restrictions: string[];
+  hasRentals: boolean;
+  rentalNotes?: string;
+  seasonalAccessNote?: string;
+  phone?: string;
+  addressHint?: string;
+  source: SourceRef;
+  /** Secondary official pages (maps, district boating hub) */
+  relatedSources?: SourceRef[];
+  isPublished: boolean;
+}
