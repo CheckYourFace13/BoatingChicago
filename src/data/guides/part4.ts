@@ -1104,6 +1104,14 @@ export const guidePart4: GuidePage[] = [
         ],
       },
       {
+        heading: "Public Launches and Forest-Preserve Waters",
+        paragraphs: [
+          "If you trailer your own boat, start with the verified public launches index on BoatingChicago — Chicago Park District lakefront and river sites, plus outlying municipal and state ramps. The Chicago Park District also publishes a full boat-launches directory covering Lake Michigan and Chicago River facilities; fees and seasonal open status belong on those official pages, not on third-party reprints.",
+          "Suburban Cook County forest-preserve lakes are a different system. The Forest Preserves of Cook County publishes launches and rental centers (including Busse, Skokie Lagoons / Tower Road, Tampier, and others). District rules on that official boating page prohibit gasoline-powered boats on FPDCC lakes and list stand-up paddleboards among prohibited flotation devices on FPDCC waterbodies — confirm before you hitch up. Our forest-preserves hub summarizes those verified sites with links back to FPDCC.",
+          "Inland chains such as the Fox Waterway / Chain O' Lakes and Geneva Lake follow their own agencies (Fox Waterway stickers, village launch fees, and so on). Use the destination and lake pages for the water body you intend, then confirm stickers and dollars on the cited operator page the day you tow.",
+        ],
+      },
+      {
         heading: "Chicago Boating Resources: Where to Find Current Information",
         paragraphs: [
           "The National Weather Service Lake Michigan marine forecast is the most important resource for anyone boating on Chicago's lake. The forecast is available online and as a VHF marine radio broadcast on WX channels — monitoring it before every trip and staying aware of updates during longer outings is standard practice for responsible Lake Michigan boating. Chicago's summer weather can include fast-developing thunderstorms that require prompt action to avoid.",
@@ -1122,6 +1130,8 @@ export const guidePart4: GuidePage[] = [
         ["Boating age minimum?", "Varies by vessel and operator"],
         ["BYOB on charters?", "Most allow BYOB — confirm with operator (no glass)"],
         ["Tipping etiquette", "15–20% of charter fee for good service"],
+        ["Public launches", "See /boat-launches + CPD directory"],
+        ["Forest-preserve lakes", "See /forest-preserves + FPDCC (electric only)"],
       ],
     },
     seasonalTips: [
@@ -1136,6 +1146,8 @@ export const guidePart4: GuidePage[] = [
       { question: "How much does it cost to rent a boat in Chicago?", answer: "Costs vary widely by vessel type, group size, and duration. Get quotes for your specific needs — there's no single answer that covers the range from kayak rentals to yacht charters." },
       { question: "What is the Playpen in Chicago?", answer: "The Chicago Playpen is an informal summer anchorage area on Lake Michigan near Oak Street Beach where hundreds of boats gather on summer weekends." },
       { question: "Is Chicago good for boating?", answer: "Very — Chicago's lakefront infrastructure, active boating community, and spectacular skyline backdrop make it one of the great urban boating cities in the country." },
+      { question: "Where can I launch a boat in Chicago?", answer: "Chicago Park District publishes lakefront and river launches in its boat-launches directory. BoatingChicago's public launches index links verified facility pages — confirm fees and open status on the official source before you tow." },
+      { question: "Can I use a gas motor on Cook County forest preserve lakes?", answer: "No — the Forest Preserves of Cook County states gasoline-powered boats are prohibited on all FPDCC lakes. Confirm craft rules on the official FPDCC boating page; our forest-preserves hub summarizes verified sites." },
     ],
     faqs: [
       { question: "What's the best time of year to go boating in Chicago?", answer: "June through early September offers the best combination of weather, water temperature, and event programming. Late May and September are great alternatives with fewer crowds." },
@@ -1143,13 +1155,14 @@ export const guidePart4: GuidePage[] = [
       { question: "What happens if the captain cancels my charter due to weather?", answer: "Reputable operators reschedule or refund when conditions are unsafe. Confirm the weather policy in writing before paying a deposit." },
       { question: "Are there boats available for large groups in Chicago?", answer: "Yes — party boats and yacht charters accommodate groups ranging from 15 to 80+ passengers. Browse instant-booking options on this page to request options for your specific group size." },
       { question: "How do I find a private boat charter in Chicago?", answer: "Browse instant-booking private charter listings on related category pages and affiliate partners such as GetYourGuide and Viator. Compare operators, dates, and inclusions before you book." },
+      { question: "Where do I find public boat launches near Chicago?", answer: "Use BoatingChicago's boat launches index for verified Park District, municipal, and state ramps, then confirm fees on each linked official page. Forest-preserve lakes are listed separately under forest preserves." },
     ],
     popularSearches: [
       { label: "Best Boat Rentals Chicago", href: "/best-boat-rentals-chicago" },
       { label: "Beginners Guide to Boating", href: "/beginners-guide-boating-chicago" },
-      { label: "Chicago Playpen Guide", href: "/chicago-playpen-guide" },
+      { label: "Public Boat Launches", href: "/boat-launches" },
+      { label: "Forest Preserve Boating", href: "/forest-preserves" },
       { label: "Lake Michigan Boating Guide", href: "/lake-michigan-boating-guide" },
-      { label: "Boat Rentals Chicago", href: "/boat-rentals-chicago" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
     ],
     relatedSlugs: [
