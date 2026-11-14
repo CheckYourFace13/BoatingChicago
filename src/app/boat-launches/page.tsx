@@ -43,7 +43,9 @@ function matchesFilter(
   }
   if (filter === "inland") {
     return (
-      launch.lakeSlug === "chain-o-lakes" || launch.lakeSlug === "geneva-lake"
+      launch.lakeSlug === "chain-o-lakes" ||
+      launch.lakeSlug === "geneva-lake" ||
+      launch.lakeSlug === "fox-river"
     );
   }
   // River / non-lakefront Chicago Park District sites: Chicago destination, no lakeSlug

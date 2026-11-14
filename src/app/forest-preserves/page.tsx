@@ -12,23 +12,47 @@ import {
 } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import type { PreserveWaterAccess } from "@/types/geo";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Forest Preserve Boating Near Chicago | Cook County Lakes & Rivers",
+    title: "Forest Preserve Boating Near Chicago | Cook & Lake County Waters",
     description:
-      "Verified forest-preserve launches and rental waters near Chicago — Busse, Skokie Lagoons, Tampier, Maple, Saganashkee, and more — from official Cook County Forest Preserves sources.",
+      "Verified forest-preserve launches and rental waters near Chicago — Cook County FPDCC lakes and Lake County paddling sites — from official forest-preserve sources.",
     path: "/forest-preserves",
   });
 }
 
+const COUNTY_ORDER = ["Cook", "Lake"];
+
+function groupByCounty(sites: PreserveWaterAccess[]) {
+  const map = new Map<string, PreserveWaterAccess[]>();
+  for (const site of sites) {
+    const list = map.get(site.county) ?? [];
+    list.push(site);
+    map.set(site.county, list);
+  }
+  const ordered = COUNTY_ORDER.filter((c) => map.has(c)).map((county) => ({
+    county,
+    sites: (map.get(county) ?? []).slice().sort((a, b) => {
+      if (a.hasRentals !== b.hasRentals) return a.hasRentals ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    }),
+  }));
+  for (const [county, list] of map) {
+    if (!COUNTY_ORDER.includes(county)) {
+      ordered.push({
+        county,
+        sites: list.slice().sort((a, b) => a.name.localeCompare(b.name)),
+      });
+    }
+  }
+  return ordered;
+}
+
 export default function ForestPreservesPage() {
-  const sites = getPublishedPreserveAccess().slice().sort((a, b) => {
-    if (a.hasRentals !== b.hasRentals) return a.hasRentals ? -1 : 1;
-    return a.name.localeCompare(b.name);
-  });
-  const rentalSites = sites.filter((s) => s.hasRentals);
-  const launchOnly = sites.filter((s) => !s.hasRentals);
+  const sites = getPublishedPreserveAccess();
+  const byCounty = groupByCounty(sites);
 
   return (
     <>
@@ -40,9 +64,9 @@ export default function ForestPreservesPage() {
       />
 
       <GeoHero
-        eyebrow={`${sites.length} verified Cook County waters`}
+        eyebrow={`${sites.length} verified preserve waters`}
         title="Forest Preserve Boating Near Chicago"
-        intro="Suburban lakes and river landings managed by the Forest Preserves of Cook County — rentals where listed, launch-only sites elsewhere. Gasoline motors are prohibited on FPDCC lakes; confirm craft rules on the official page before you go."
+        intro="Suburban lakes and river landings managed by county forest-preserve districts — Cook County rentals and launches, plus Lake County paddling lakes. Agency rules differ by district; confirm craft limits on the official page before you go."
         links={[
           { label: "Boat launches →", href: "/boat-launches" },
           { label: "Lakes & waterways", href: "/lakes" },
@@ -59,140 +83,132 @@ export default function ForestPreservesPage() {
             How to use this hub
           </h2>
           <p>
-            These pages summarize what the Forest Preserves of Cook County
-            publishes about launches and rentals. We separate{" "}
-            <strong className="font-semibold text-lake-blue">
-              rental centers
-            </strong>{" "}
-            from{" "}
-            <strong className="font-semibold text-lake-blue">
-              launch-only sites
-            </strong>{" "}
-            so you do not trailer to Maple Lake expecting a public ramp for a
-            private boat — FPDCC states private boats are prohibited there.
+            These pages summarize what each forest-preserve district publishes
+            about launches and rentals. Rules are not interchangeable: Cook
+            County FPDCC prohibits gasoline motors on its lakes and lists
+            stand-up paddleboards among prohibited flotation devices on FPDCC
+            waterbodies, while Lake County Forest Preserves allows cartop /
+            non-motorized craft (including paddleboards) and electric trolling
+            motors on its inland lakes.
           </p>
           <p>
-            District-wide rules from the official boating page: gasoline-powered
-            boats are prohibited on all FPDCC lakes, and stand-up paddleboards
-            are listed among prohibited flotation devices on all FPDCC
-            waterbodies. Fees, hours, and seasonal closures change — use the
-            cited source before you hitch up.
-          </p>
-          <p className="text-sm">
-            Primary source:{" "}
-            <a
-              href="https://fpdcc.com/things-to-do/boating-canoeing-kayaking/"
+            Fees, hours, and seasonal closures change — use the cited source
+            before you hitch up. For Fox River motorized launching in Lake
+            County, see the{" "}
+            <Link
+              href="/boat-launches/fox-river-forest-preserve-launch"
               className="font-semibold text-coral hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              Forest Preserves of Cook County — Boating, Canoeing &amp; Kayaking
-            </a>
-            .
+              Fox River Forest Preserve launch
+            </Link>{" "}
+            (fee required) on the public launches index.
           </p>
         </section>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-lake-blue">
-            Rental centers
-          </h2>
-          <p className="text-gray-700 max-w-3xl">
-            FPDCC lists seasonal rentals at these locations. Call ahead —
-            schedules vary mid-April through October.
-          </p>
-          <ul className="grid gap-4 md:grid-cols-2">
-            {rentalSites.map((site) => (
-              <li key={site.slug}>
-                <Link
-                  href={`/forest-preserves/${site.slug}`}
-                  className="block h-full rounded-2xl border border-sky-blue/25 bg-white p-6 hover:border-sky-blue/50 hover:shadow-md transition-all"
-                >
-                  <p className="text-xs font-bold uppercase tracking-widest text-coral mb-2">
-                    {site.county} County · Rentals
-                  </p>
-                  <h3 className="text-xl font-extrabold text-lake-blue mb-2">
-                    {site.name}
+        {byCounty.map(({ county, sites: countySites }) => {
+          const rentalSites = countySites.filter((s) => s.hasRentals);
+          const launchOnly = countySites.filter((s) => !s.hasRentals);
+          return (
+            <section key={county} className="space-y-8" id={county.toLowerCase()}>
+              <h2 className="text-3xl font-extrabold text-lake-blue">
+                {county} County
+              </h2>
+
+              {rentalSites.length > 0 ? (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-extrabold text-lake-blue">
+                    Rental centers
                   </h3>
-                  <p className="text-sm text-gray-500 mb-3">
-                    {site.locationLabel}
-                  </p>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-3">
-                    {site.summary}
-                  </p>
-                  <p className="text-sm font-bold text-coral">Details →</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-lake-blue">
-            Launch-only sites
-          </h2>
-          <p className="text-gray-700 max-w-3xl">
-            Bring your own allowed craft. Access types and allowed watercraft
-            below match the FPDCC listing for each site.
-          </p>
-          <ul className="space-y-4">
-            {launchOnly.map((site) => (
-              <li
-                key={site.slug}
-                className="rounded-2xl border border-sky-blue/20 bg-white p-6 shadow-sm"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-coral mb-1">
-                      {site.county} County · Launch
-                    </p>
-                    <h3 className="text-xl font-extrabold text-lake-blue">
-                      <Link
-                        href={`/forest-preserves/${site.slug}`}
-                        className="hover:underline"
-                      >
-                        {site.name}
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-1">
-                      {site.locationLabel}
-                    </p>
-                  </div>
-                  <Link
-                    href={`/forest-preserves/${site.slug}`}
-                    className="text-sm font-bold text-coral hover:underline"
-                  >
-                    Open →
-                  </Link>
+                  <ul className="grid gap-4 md:grid-cols-2">
+                    {rentalSites.map((site) => (
+                      <li key={site.slug}>
+                        <Link
+                          href={`/forest-preserves/${site.slug}`}
+                          className="block h-full rounded-2xl border border-sky-blue/25 bg-white p-6 hover:border-sky-blue/50 hover:shadow-md transition-all"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-widest text-coral mb-2">
+                            Rentals
+                          </p>
+                          <h4 className="text-xl font-extrabold text-lake-blue mb-2">
+                            {site.name}
+                          </h4>
+                          <p className="text-sm text-gray-500 mb-3">
+                            {site.locationLabel}
+                          </p>
+                          <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                            {site.summary}
+                          </p>
+                          <p className="text-sm font-bold text-coral">Details →</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-3">
-                  {site.summary}
-                </p>
-                <p className="text-sm text-gray-600 mb-1">
-                  Access:{" "}
-                  {site.accessKinds.map(preserveAccessLabel).join(" · ")}
-                </p>
-                <p className="text-sm text-gray-600 mb-3">
-                  Listed craft:{" "}
-                  {site.allowedCraft.map(preserveCraftLabel).join(", ")}
-                </p>
-                <p className="text-sm">
-                  <SourceLink source={site.source} />
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+              ) : null}
+
+              {launchOnly.length > 0 ? (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-extrabold text-lake-blue">
+                    Launch sites
+                  </h3>
+                  <ul className="space-y-4">
+                    {launchOnly.map((site) => (
+                      <li
+                        key={site.slug}
+                        className="rounded-2xl border border-sky-blue/20 bg-white p-6 shadow-sm"
+                      >
+                        <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
+                          <div>
+                            <h4 className="text-xl font-extrabold text-lake-blue">
+                              <Link
+                                href={`/forest-preserves/${site.slug}`}
+                                className="hover:underline"
+                              >
+                                {site.name}
+                              </Link>
+                            </h4>
+                            <p className="text-sm text-gray-500 mt-1">
+                              {site.locationLabel}
+                            </p>
+                          </div>
+                          <Link
+                            href={`/forest-preserves/${site.slug}`}
+                            className="text-sm font-bold text-coral hover:underline"
+                          >
+                            Open →
+                          </Link>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed mb-3">
+                          {site.summary}
+                        </p>
+                        <p className="text-sm text-gray-600 mb-1">
+                          Access:{" "}
+                          {site.accessKinds.map(preserveAccessLabel).join(" · ")}
+                        </p>
+                        <p className="text-sm text-gray-600 mb-3">
+                          Listed craft:{" "}
+                          {site.allowedCraft.map(preserveCraftLabel).join(", ")}
+                        </p>
+                        <p className="text-sm">
+                          <SourceLink source={site.source} />
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </section>
+          );
+        })}
 
         <section className="max-w-3xl rounded-2xl bg-light-blue/50 border border-sky-blue/20 p-6 space-y-2">
           <h2 className="text-lg font-extrabold text-lake-blue">
             More counties coming
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">
-            This hub starts with Cook County because FPDCC publishes a clear
-            public boating inventory. DuPage, Lake, Will, Kane, and McHenry
-            preserve waters will be added as each district&apos;s official
-            launch and rental pages are verified the same way — no thin
-            placeholders.
+            DuPage, Will, Kane, and McHenry preserve waters will be added as each
+            district&apos;s official launch and rental pages are verified the
+            same way — no thin placeholders.
           </p>
         </section>
 
@@ -200,10 +216,10 @@ export default function ForestPreservesPage() {
           links={[
             { href: "/boat-launches", label: "Lakefront & municipal launches" },
             { href: "/lakes", label: "Lakes & waterways" },
+            { href: "/destinations/chain-o-lakes", label: "Chain O' Lakes" },
             { href: "/destinations", label: "Destinations" },
             { href: "/tools/trip-checklist", label: "Trip checklist" },
             { href: "/weather", label: "Weather" },
-            { href: "/guides", label: "Guides" },
           ]}
         />
       </div>

@@ -70,7 +70,9 @@ export default async function LakePage({ params }: PageProps) {
             href: `/boat-launches?water=${
               lake.slug === "lake-michigan-chicago"
                 ? "lake-michigan"
-                : lake.slug === "chain-o-lakes" || lake.slug === "geneva-lake"
+                : lake.slug === "chain-o-lakes" ||
+                    lake.slug === "geneva-lake" ||
+                    lake.slug === "fox-river"
                   ? "inland"
                   : "all"
             }`,

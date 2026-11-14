@@ -1,15 +1,19 @@
 import type { PreserveWaterAccess } from "@/types/geo";
 
-/** Checked against Forest Preserves of Cook County boating page. */
+/** Checked against official county forest-preserve boating / paddling pages. */
 const VERIFIED = "2026-11-14";
 
 const FPDCC_BOATING =
   "https://fpdcc.com/things-to-do/boating-canoeing-kayaking/";
 
+const LCFPD_PADDLING =
+  "https://www.lcfpd.org/things-to-do/recreation/boat-launches/";
+
 /**
- * Cook County forest-preserve waters first — facts only from FPDCC.
- * Gasoline motors are prohibited on all FPDCC lakes; stand-up paddleboards
- * are listed as prohibited on all FPDCC waterbodies. Confirm on the source.
+ * Forest-preserve waters — facts only from the cited official agency page.
+ * Cook FPDCC: gasoline motors prohibited on lakes; SUPs listed as prohibited
+ * on FPDCC waterbodies. Lake County FPD: inland lakes allow cartop /
+ * non-motorized craft + electric trolling; rules differ by site. Confirm.
  */
 export const forestPreserveAccess: PreserveWaterAccess[] = [
   {
@@ -300,6 +304,152 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
       url: FPDCC_BOATING,
       lastVerified: VERIFIED,
     },
+    isPublished: true,
+  },
+  {
+    slug: "sterling-lake-van-patten-woods",
+    name: "Sterling Lake — Van Patten Woods",
+    county: "Lake",
+    agency: "lake-county-fpd",
+    locationLabel: "Van Patten Woods Forest Preserve, Wadsworth",
+    summary:
+      "Lake County Forest Preserves inland lake for cartop / non-motorized craft and electric trolling motors — free launch at your own risk; trailers permitted only here among the four inland lakes, with overflow grass parking.",
+    overview: [
+      "Lake County Forest Preserves lists Sterling Lake at Van Patten Woods among four inland lakes where you may launch your own cartop boat, canoe, kayak, paddleboard, or other small non-motorized watercraft. Launching is free and at your own risk; approved flotation gear is required.",
+      "Electric trolling motors are allowed. LCFPD states trailers are permitted only at Van Patten Woods, with parking limited to the grass overflow area. Confirm current rules on the official paddling page before you go.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Cartop / small non-motorized craft per LCFPD paddling page; electric trolling motors allowed",
+      "Trailers permitted only at Van Patten Woods among the four inland lakes — parking limited to grass overflow",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Confirm preserve hours and any temporary closures on Lake County Forest Preserves channels before launching.",
+    source: {
+      name: "Lake County Forest Preserves — Paddling / Boat Launches",
+      url: LCFPD_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Lake County Forest Preserves — Van Patten Woods",
+        url: "https://www.lcfpd.org/van-patten-woods/",
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "long-lake-grant-woods",
+    name: "Long Lake — Grant Woods",
+    county: "Lake",
+    agency: "lake-county-fpd",
+    locationLabel: "Grant Woods Forest Preserve, Ingleside",
+    summary:
+      "Lake County Forest Preserves inland lake for cartop / non-motorized craft and electric trolling motors — free launch; use the boat-launch parking lot south of Rollins Road.",
+    overview: [
+      "LCFPD lists Long Lake at Grant Woods for cartop boats, canoes, kayaks, paddleboards, and other small non-motorized craft. Launching is free and at your own risk with approved flotation gear; electric trolling motors are allowed.",
+      "The district directs paddlers to the boat-launch parking lot in the south section of the preserve, south of Rollins Road. Trailers are not listed as permitted at this inland lake (only Van Patten Woods among the four).",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Cartop / small non-motorized craft per LCFPD paddling page; electric trolling motors allowed",
+      "Trailers not listed as permitted at Grant Woods — confirm on the official page",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Lake County Forest Preserves — Paddling / Boat Launches",
+      url: LCFPD_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "hastings-lake-lake-villa",
+    name: "Hastings Lake",
+    county: "Lake",
+    agency: "lake-county-fpd",
+    locationLabel: "Hastings Lake Forest Preserve, Lake Villa",
+    summary:
+      "Lake County Forest Preserves inland lake for cartop / non-motorized craft and electric trolling motors — free launch at your own risk.",
+    overview: [
+      "LCFPD lists Hastings Lake in Lake Villa among the four inland lakes open to cartop boats, canoes, kayaks, paddleboards, and other small non-motorized watercraft. Launching is free and at your own risk; approved flotation gear is required; electric trolling motors are allowed.",
+      "Confirm current preserve access on the official paddling page before you go.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Cartop / small non-motorized craft per LCFPD paddling page; electric trolling motors allowed",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Lake County Forest Preserves — Paddling / Boat Launches",
+      url: LCFPD_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lake-carina-gurnee",
+    name: "Lake Carina",
+    county: "Lake",
+    agency: "lake-county-fpd",
+    locationLabel: "Lake Carina Forest Preserve, Gurnee",
+    summary:
+      "Lake County Forest Preserves inland lake for cartop / non-motorized craft and electric trolling motors — free launch at your own risk.",
+    overview: [
+      "LCFPD lists Lake Carina in Gurnee among the four inland lakes for cartop / non-motorized craft. Launching is free and at your own risk with approved flotation gear; electric trolling motors are allowed.",
+      "Confirm current rules on the official paddling page before launching.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Cartop / small non-motorized craft per LCFPD paddling page; electric trolling motors allowed",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Lake County Forest Preserves — Paddling / Boat Launches",
+      url: LCFPD_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "independence-grove-rentals",
+    name: "Independence Grove Marina Rentals",
+    county: "Lake",
+    agency: "lake-county-fpd",
+    locationLabel: "Independence Grove Forest Preserve, Libertyville",
+    summary:
+      "Seasonal boat rentals on the 129-acre lake at Independence Grove — LCFPD states personal watercraft are not allowed on this lake.",
+    overview: [
+      "Lake County Forest Preserves offers seasonal boat and small-watercraft rentals at the marina at Independence Grove Forest Preserve in Libertyville. The district notes the 129-acre lake is a good beginner setting because rentals are available and the water is calm.",
+      "LCFPD states personal watercraft are not allowed on the lake at Independence Grove. Confirm seasonal rental hours and craft types on the official paddling page or with the marina before you visit.",
+    ],
+    accessKinds: ["rental-only"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Personal watercraft not allowed on Independence Grove lake per LCFPD",
+      "Confirm which craft types are available for rent each season on the official page",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Seasonal rentals at the Independence Grove marina — confirm current inventory and hours with Lake County Forest Preserves.",
+    source: {
+      name: "Lake County Forest Preserves — Paddling / Boat Launches",
+      url: LCFPD_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Lake County Forest Preserves — Independence Grove",
+        url: "https://www.lcfpd.org/independence-grove/",
+        lastVerified: VERIFIED,
+      },
+    ],
     isPublished: true,
   },
 ];

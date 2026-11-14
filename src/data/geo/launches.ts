@@ -393,4 +393,136 @@ export const launches: BoatLaunch[] = [
     },
     isPublished: true,
   },
+  {
+    slug: "jackson-boat-launch-inner-harbor",
+    name: "Jackson Boat Launch — Inner Harbor",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Jackson Park Inner Harbor on the south lakefront.",
+    overview: [
+      "CPD lists Jackson Boat Launch — Inner Harbor at 6400 S. Lake Shore Drive in Jackson Park, with phone (773) 288-7106. It is a separate facility listing from the 63rd Street Beach launch in the same park corridor.",
+      "Confirm which Jackson Park ramp matches your trip on the CPD directory, then check marine weather before launching onto Lake Michigan.",
+      "Related: 63rd Street Beach launch page, Chicago destination overview, weather hub.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Jackson Boat Launch Inner Harbor",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/jackson-boat-launch-inner-harbor",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "daley-richard-j-boat-launch",
+    name: "Daley (Richard J.) Boat Launch",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District boat launch at Daley Park on the Chicago River / South Branch corridor (not a Lake Michigan lakefront ramp).",
+    overview: [
+      "CPD lists Daley (Richard J.) Boat Launch at 3150 South Western Avenue inside Daley Park. The district directory covers both lake and river sites — treat this as river/park access, not a lakefront trailer ramp.",
+      "Confirm current access on the CPD facility page. For Lake Michigan launches, use the lakefront filter on the launches index.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Daley (Richard J.) Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/daley-richard-j-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "river-boat-launch-above-dam",
+    name: "River Boat Launch — Above Dam",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District river launch at River Park (Above Dam listing) on the North Branch of the Chicago River.",
+    overview: [
+      "CPD lists River Boat Launch — Above Dam at 5100 N. Francisco Ave. in River Park, with phone (312) 742-7516. A separate Below Dam listing shares the same address corridor — confirm which access you need on the official facility pages.",
+      "River Park also hosts RiverLab programming; confirm launch status on CPD before you go. This is Chicago River access, not Lake Michigan.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — River Boat Launch Above Dam",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/river-boat-launch-above-dam",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "river-boat-launch-below-dam",
+    name: "River Boat Launch — Below Dam",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District river launch at River Park (Below Dam listing) on the North Branch of the Chicago River.",
+    overview: [
+      "CPD lists River Boat Launch — Below Dam at 5100 N. Francisco Ave. in River Park, with phone (312) 742-7516. Use the Below Dam facility page when that is the access you intend — do not assume Above and Below are interchangeable without checking CPD.",
+      "Confirm open status on the cited page before you go.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — River Boat Launch Below Dam",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/river-boat-launch-below-dam",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "stone-boat-launch",
+    name: "Stone Boat Launch",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District boat launch at Stone Park on the North Branch of the Chicago River corridor.",
+    overview: [
+      "CPD lists Stone Boat Launch at 3150 West Peterson Avenue in Stone (Bernard) Park, with phone (773) 478-3482. This is a river/park listing in the CPD boat-launches directory, not a Lake Michigan harbor ramp.",
+      "Confirm current access on the facility page before you tow.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Stone Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/stone-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "fox-river-forest-preserve-launch",
+    name: "Fox River Forest Preserve Boat Launch",
+    destinationSlug: "chain-o-lakes",
+    lakeSlug: "fox-river",
+    summary:
+      "Lake County Forest Preserves public boat launch and marina at Fox River Forest Preserve in Port Barrington — LCFPD states there is a fee for launching.",
+    overview: [
+      "Lake County Forest Preserves describes Fox River Forest Preserve (28500 W. Roberts Rd, Port Barrington) as featuring a marina with boat slips, a public boat launch, and dry storage. The paddling/boat-launches page states this is the district’s motorized public launch on the Fox River and that there is a fee for launching — confirm current amounts with the marina.",
+      "Published ramp hours on the preserve page: boat ramp 6:30 am–10 pm, March 31–season end (slip holders have separate published access). Preserve hours are listed as 6:30 am–sunset daily. You will also need any Fox Waterway Agency sticker required for the waterway — confirm on FWA pages.",
+      "Pair with the Chain O’ Lakes destination page, Fox River waterway overview, and inland weather for the Chain.",
+    ],
+    amenityNotes:
+      "LCFPD lists public launch, seasonal slips (169-slip marina noted on preserve page), and indoor dry storage. Phone 847-381-0669 published on the preserve page.",
+    seasonalAccessNote:
+      "LCFPD publishes boat-ramp hours 6:30 am–10 pm, March 31–season end, and marina office hours May–October. Confirm current season end and any closures on the official preserve page.",
+    feesNote:
+      "LCFPD states there is a fee for launching. Slip and storage pricing are set by the preserve marina — confirm current amounts with Fox River Marina / LCFPD. Fox Waterway Agency stickers are a separate requirement on the waterway.",
+    source: {
+      name: "Lake County Forest Preserves — Fox River Marina",
+      url: "https://www.lcfpd.org/fox-river/",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
 ];

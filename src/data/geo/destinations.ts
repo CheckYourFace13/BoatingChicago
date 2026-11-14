@@ -79,15 +79,16 @@ export const destinations: Destination[] = [
       "Northeast Illinois’ interconnected natural lakes and Fox River channels — a water-oriented state park destination managed with Fox Waterway Agency access rules.",
     overview: [
       "The Chain O' Lakes sits in Lake and McHenry counties northwest of Chicago and is one of Illinois’ densest clusters of recreational lakes. Chain O' Lakes State Park, operated by the Illinois Department of Natural Resources, borders Grass, Marie, and Nippersink lakes and sits on the Fox River link that connects the broader chain. IDNR describes nearly 6,500 acres of water and hundreds of miles of shoreline across the system.",
-      "Boating here is inland-lake and channel boating, not open Lake Michigan. That means different wind fetch, different congestion patterns on summer weekends, and a regulatory layer through the Fox Waterway Agency for vessels using the waterway. The Agency’s public guidance points boaters to Chain O' Lakes State Park as a free public launch option and notes that many private marinas also offer launching for a fee — confirm current rules and stickers before you trailer in.",
+      "Boating here is inland-lake and channel boating, not open Lake Michigan. That means different wind fetch, different congestion patterns on summer weekends, and a regulatory layer through the Fox Waterway Agency for vessels using the waterway. FWA states that boats on the Chain must display a current agency sticker and publishes the class-based fee schedule online — use that schedule for dollars, not third-party reprints.",
+      "The Agency’s launch FAQ points boaters to Chain O' Lakes State Park as a free public launch and notes that many private marinas also offer launching for a fee. Lake County Forest Preserves adds a public motorized ramp (fee required) at Fox River Forest Preserve / Fox River Marina in Port Barrington, with published ramp hours on the preserve page.",
       "The state park itself is oriented around camping, fishing, and water access, with a concession season that typically runs spring through mid-fall according to IDNR materials. Turner Lake inside the park is restricted to electric trolling motors only; the wider chain does not carry a blanket horsepower limit on the connected lakes, per park publications. Always verify current park and waterway rules before your trip.",
-      "For Chicago-area boaters, the Chain is a weekend alternative when lake swell or harbor logistics make Michigan less appealing. Distances are short by highway compared with Wisconsin or Michigan destinations, but weekend traffic on the water can be heavy. Plan with official IDNR and Fox Waterway sources first, then layer in local marina advice for transient or seasonal needs.",
+      "For Chicago-area boaters, the Chain is a weekend alternative when lake swell or harbor logistics make Michigan less appealing. Distances are short by highway compared with Wisconsin or Michigan destinations, but weekend traffic on the water can be heavy. Plan with official IDNR, Fox Waterway, and Lake County Forest Preserves sources first, then layer in local marina advice for transient or seasonal needs.",
     ],
     highlights: [
       "IDNR Chain O' Lakes State Park water access",
-      "Fox Waterway Agency user-fee / sticker requirements",
+      "Fox Waterway Agency sticker + user-fee schedule",
+      "LCFPD Fox River Forest Preserve public launch",
       "Interconnected lakes and Fox River channels",
-      "Fishing and camping-oriented inland boating",
     ],
     officialLinks: [
       {
@@ -98,7 +99,22 @@ export const destinations: Destination[] = [
       {
         name: "Fox Waterway Agency — Where can I launch?",
         url: "https://foxwaterway.com/faq-items/where-can-i-launch-my-boat/",
-        lastVerified: VERIFIED,
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Fox Waterway Agency — Stickers",
+        url: "https://foxwaterway.com/fwa-stickers/",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Fox Waterway Agency — User Fee Schedule",
+        url: "https://foxwaterway.com/user-fee-schedule/",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Lake County Forest Preserves — Fox River Marina",
+        url: "https://www.lcfpd.org/fox-river/",
+        lastVerified: "2026-11-14",
       },
     ],
     relatedGuideSlugs: ["beginners-guide-boating-chicago", "chicago-fishing-guide"],
