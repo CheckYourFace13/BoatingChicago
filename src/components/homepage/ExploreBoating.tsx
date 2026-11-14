@@ -5,6 +5,7 @@ import { ExploreRegionCards } from "@/components/geo/ExploreRegionCards";
 const HUB_LINKS = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & waterways" },
+  { href: "/forest-preserves", label: "Forest preserves" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat launches" },
 ];
@@ -31,8 +32,9 @@ export function ExploreBoating() {
           Explore Boating &amp; Plan a Day
         </h2>
         <p className="text-gray-600 mb-6 max-w-2xl">
-          Destinations, lakes, marinas, and launches around Chicago and southern
-          Lake Michigan — with Plan Your Day flows on each destination page.
+          Destinations, lakes, forest-preserve waters, marinas, and launches
+          around Chicago and southern Lake Michigan — with Plan Your Day flows
+          on each destination page.
         </p>
       </Reveal>
 
