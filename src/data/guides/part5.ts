@@ -877,7 +877,7 @@ export const guidePart5: GuidePage[] = [
         heading: "Start with the water body, then the agency",
         paragraphs: [
           "Within roughly 250 driving miles of Chicago you will find three overlapping systems: (1) Lake Michigan harbors and Park District launches, (2) inland chains and municipal lakes such as the Fox Waterway / Chain O’ Lakes and Geneva Lake, and (3) county forest-preserve and conservation-district waters. Each system publishes its own craft, motor, and seasonal rules.",
-          "Use BoatingChicago’s forest-preserves hub for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, Chicago River sites, and non-motorized-only access when the agency is explicit.",
+          "Use BoatingChicago’s forest-preserves hub for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, rivers (Chicago River, Fox, Des Plaines, DuPage), and non-motorized-only access when the agency is explicit.",
         ],
       },
       {
@@ -891,8 +891,8 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Rivers and creeks: Fox, Des Plaines, DuPage, Nippersink",
         paragraphs: [
-          "The Fox River links the Chain O’ Lakes and continues through Lake and Kane counties. Fox Waterway Agency stickers apply on the Chain and published waterway reaches — use FWA’s sticker and fee-schedule pages for dollars. Lake County Forest Preserves operate a fee motorized launch at Fox River Forest Preserve in Port Barrington.",
-          "Will County publishes canoe/kayak river access at Isle a la Cache (Des Plaines), Hammel Woods and Riverview Farmstead (DuPage River), and McKinley Woods sites. McHenry’s Nippersink Creek landings (Keystone, Pioneer, Nippersink Canoe Base) close when water exceeds published high-water thresholds. River paddling always depends on level, debris, and skill — agency pages state travel is at your own risk.",
+          "The Fox River links the Chain O’ Lakes and continues through Lake and Kane counties. Fox Waterway Agency stickers apply on the Chain and published waterway reaches — use FWA’s sticker and fee-schedule pages for dollars. Lake County Forest Preserves operate a fee motorized launch at Fox River Forest Preserve in Port Barrington. Start with the Fox River waterway page for grouped official links.",
+          "Cook County Forest Preserves publish Des Plaines River canoe landings from Allison Woods through Stony Ford, including Maywood Grove and the Plank Road Meadow trailered launch. Will County publishes canoe/kayak river access at Isle a la Cache and McKinley Woods — Frederick’s Grove (Des Plaines), plus Hammel Woods, Riverview Farmstead, and McKinley Woods — Kerry Sheridan Grove (DuPage River). Use the Des Plaines River and DuPage River waterway pages for preserve cross-links. McHenry’s Nippersink Creek landings (Keystone, Pioneer, Nippersink Canoe Base) close when water exceeds published high-water thresholds. River paddling always depends on level, debris, and skill — agency pages state travel is at your own risk.",
         ],
       },
       {
@@ -933,6 +933,16 @@ export const guidePart5: GuidePage[] = [
           "Geneva Lake",
           "/destinations/lake-geneva",
           "Village launch fee tables",
+        ],
+        [
+          "Des Plaines River",
+          "/lakes/des-plaines-river",
+          "FPDCC / Will County landing rules",
+        ],
+        [
+          "DuPage River",
+          "/lakes/dupage-river",
+          "Will County canoe/kayak put-ins",
         ],
       ],
     },
@@ -991,6 +1001,8 @@ export const guidePart5: GuidePage[] = [
     popularSearches: [
       { label: "Forest preserves", href: "/forest-preserves" },
       { label: "Boat launch finder", href: "/boat-launches" },
+      { label: "Des Plaines River", href: "/lakes/des-plaines-river" },
+      { label: "DuPage River", href: "/lakes/dupage-river" },
       { label: "Chain O’ Lakes", href: "/destinations/chain-o-lakes" },
       { label: "Kayak rentals Chicago", href: "/chicago-kayak-rental-guide" },
       { label: "Lakes & waterways", href: "/lakes" },

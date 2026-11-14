@@ -994,4 +994,243 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
     },
     isPublished: true,
   },
+  {
+    slug: "maywood-grove-des-plaines",
+    name: "Maywood Grove — Des Plaines River",
+    county: "Cook",
+    agency: "cook-fpdcc",
+    locationLabel: "Maywood Grove, Maywood",
+    summary:
+      "Accessible Cook County Forest Preserves carry-in canoe landing on the Des Plaines River — home of the Greater Maywood Paddling Program.",
+    overview: [
+      "Forest Preserves of Cook County lists Maywood Grove (Ohio St & Des Plaines Ave, Maywood) as a Des Plaines River carry-in canoe landing and includes it among accessible canoe landings with accessible parking and a paved path to a stable landing surface.",
+      "FPDCC also notes Maywood Grove as home of the Greater Maywood Paddling Program for organized community kayaking. District-wide prohibitions still apply on FPDCC waterbodies, including stand-up paddleboards among listed flotation devices.",
+      "Confirm current open status and program details on the official Maywood Grove and boating pages before you put in.",
+    ],
+    accessKinds: ["carry-in", "accessible-landing"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Stand-up paddleboards listed as prohibited on all FPDCC waterbodies",
+      "Confirm craft rules on the official FPDCC boating page before launching",
+    ],
+    hasRentals: false,
+    addressHint: "Ohio St & Des Plaines Ave, Maywood, IL 60153",
+    source: {
+      name: "Forest Preserves of Cook County — Boating, Canoeing & Kayaking",
+      url: FPDCC_BOATING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserves of Cook County — Maywood Grove",
+        url: "https://fpdcc.com/places/locations/maywood-grove/",
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "irving-park-road-canoe-landing",
+    name: "Irving Park Road Canoe Landing",
+    county: "Cook",
+    agency: "cook-fpdcc",
+    locationLabel: "Des Plaines River at Schiller Park",
+    summary:
+      "Cook County Forest Preserves carry-in canoe landing on the Des Plaines River north of Irving Park Road.",
+    overview: [
+      "Forest Preserves of Cook County lists Irving Park Road Canoe Landing (Des Plaines River Rd, north of Irving Park Rd, Schiller Park) as a carry-in canoe landing on the Des Plaines River.",
+      "Hours are published as year-round sunrise to sunset on the landing page. Confirm district flotation-device and craft rules on the FPDCC boating page — stand-up paddleboards are listed as prohibited on all FPDCC waterbodies.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Stand-up paddleboards listed as prohibited on all FPDCC waterbodies",
+    ],
+    hasRentals: false,
+    addressHint: "Des Plaines River Rd, north of Irving Park Rd, Schiller Park, IL 60176",
+    source: {
+      name: "Forest Preserves of Cook County — Irving Park Road Canoe Landing",
+      url: "https://fpdcc.com/places/locations/irving-park-road-canoe-landing/",
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserves of Cook County — Boating, Canoeing & Kayaking",
+        url: FPDCC_BOATING,
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "schuths-grove-des-plaines",
+    name: "Schuth’s Grove — Des Plaines River",
+    county: "Cook",
+    agency: "cook-fpdcc",
+    locationLabel: "Near Riverside / Des Plaines River",
+    summary:
+      "Accessible Cook County Forest Preserves canoe/kayak landing on the Des Plaines River near Riverside.",
+    overview: [
+      "Forest Preserves of Cook County lists Schuth’s Grove (W Cermak Rd, west of Des Plaines Ave) among Des Plaines River river-access sites and among accessible canoe landings with accessible parking and a paved path to a stable landing.",
+      "The preserve page describes an accessible canoe and kayak launch with paved pathways and shoreline access. Confirm district-wide craft prohibitions (including stand-up paddleboards on FPDCC waterbodies) before you go.",
+    ],
+    accessKinds: ["carry-in", "accessible-landing"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Stand-up paddleboards listed as prohibited on all FPDCC waterbodies",
+    ],
+    hasRentals: false,
+    addressHint: "W Cermak Rd, west of Des Plaines Ave, Cook County, IL 60546",
+    source: {
+      name: "Forest Preserves of Cook County — Schuth’s Grove",
+      url: "https://fpdcc.com/places/locations/schuths-grove/",
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserves of Cook County — Boating, Canoeing & Kayaking",
+        url: FPDCC_BOATING,
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "allison-woods-des-plaines",
+    name: "Allison Woods — Des Plaines River",
+    county: "Cook",
+    agency: "cook-fpdcc",
+    locationLabel: "Allison Woods, near Northbrook / Wheeling area",
+    summary:
+      "Cook County Forest Preserves carry-in canoe landing on the upper Des Plaines River corridor.",
+    overview: [
+      "Forest Preserves of Cook County lists Allison Woods (Milwaukee Ave & Winkleman Rd) as a Des Plaines River carry-in canoe landing.",
+      "Use this landing with other FPDCC Des Plaines sites for trip planning, and confirm craft rules — including the district’s stand-up paddleboard prohibition on FPDCC waterbodies — on the official boating page.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Stand-up paddleboards listed as prohibited on all FPDCC waterbodies",
+    ],
+    hasRentals: false,
+    addressHint: "Milwaukee Ave & Winkleman Rd, Cook County, IL 60062",
+    source: {
+      name: "Forest Preserves of Cook County — Boating, Canoeing & Kayaking",
+      url: FPDCC_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "hammel-woods-dupage-will",
+    name: "Hammel Woods — DuPage River",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Hammel Woods, Shorewood",
+    summary:
+      "Will County Forest Preserve canoe/kayak access to the DuPage River at two published Shorewood put-ins — DuPage River Access and Route 59 Access.",
+    overview: [
+      "The Forest Preserve District of Will County lists Hammel Woods — DuPage River Access and Hammel Woods — Route 59 Access in Shorewood among canoe/kayak launches for local river access on the DuPage River.",
+      "No launch pass is required at designated forest-preserve locations. Unless otherwise posted, canoes and kayaks may launch year-round except when ice is present; district boat launches close October 31. Paddleboards and float tubes are prohibited.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Paddleboards and float tubes prohibited",
+      "No launching when ice is present",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launching year-round except ice; district boat launches close Oct. 31.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "riverview-farmstead-dupage-will",
+    name: "Riverview Farmstead Preserve — DuPage River",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Riverview Farmstead Preserve, Naperville",
+    summary:
+      "Will County Forest Preserve canoe/kayak launch for DuPage River access in Naperville.",
+    overview: [
+      "Will County Forest Preserve lists Riverview Farmstead Preserve in Naperville among canoe/kayak launches for DuPage River access.",
+      "District rules: no launch pass at designated locations; year-round canoe/kayak launching except ice unless otherwise posted; boat launches close October 31; paddleboards and float tubes prohibited.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Paddleboards and float tubes prohibited",
+      "No launching when ice is present",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launching year-round except ice; district boat launches close Oct. 31.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "mckinley-woods-frederick-will",
+    name: "McKinley Woods — Frederick’s Grove",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "McKinley Woods, Channahon",
+    summary:
+      "Will County Forest Preserve canoe/kayak access at Frederick’s Grove for the Des Plaines River and I&M Canal corridor.",
+    overview: [
+      "Will County Forest Preserve lists McKinley Woods — Frederick’s Grove in Channahon for canoe/kayak access to the Des Plaines River and I&M Canal.",
+      "Confirm put-in details and district craft rules on the official canoeing/kayaking page — paddleboards and float tubes are prohibited, and ice closes launching.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Paddleboards and float tubes prohibited",
+      "No launching when ice is present",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launching year-round except ice; district boat launches close Oct. 31.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "mckinley-woods-kerry-sheridan-will",
+    name: "McKinley Woods — Kerry Sheridan Grove",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "McKinley Woods, Channahon",
+    summary:
+      "Will County Forest Preserve canoe/kayak launch at Kerry Sheridan Grove for DuPage River access.",
+    overview: [
+      "Will County Forest Preserve lists McKinley Woods — Kerry Sheridan Grove in Channahon among canoe/kayak launches for DuPage River access.",
+      "Use with Hammel Woods and Riverview Farmstead for DuPage River trip planning. Confirm ice, Oct. 31 boat-launch closure notes, and paddleboard prohibitions on the official paddling page.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Paddleboards and float tubes prohibited",
+      "No launching when ice is present",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launching year-round except ice; district boat launches close Oct. 31.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
 ];

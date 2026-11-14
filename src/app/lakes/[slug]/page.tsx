@@ -12,9 +12,24 @@ import {
   getAllPublishedLakeSlugs,
   getDestinationBySlug,
   getLakeBySlug,
+  getPreserveAccessBySlug,
 } from "@/data/geo";
 import { getLaunchesByLake, regionLabel } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import type { PreserveWaterAccess } from "@/types/geo";
+
+const RIVER_LAKE_SLUGS = new Set([
+  "fox-river",
+  "des-plaines-river",
+  "dupage-river",
+]);
+
+function waterFilterForLake(slug: string): string {
+  if (slug === "lake-michigan-chicago") return "lake-michigan";
+  if (slug === "chain-o-lakes" || slug === "geneva-lake") return "inland";
+  if (RIVER_LAKE_SLUGS.has(slug)) return "river";
+  return "all";
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,6 +63,12 @@ export default async function LakePage({ params }: PageProps) {
     .filter((d): d is Destination => d !== undefined && d.isPublished);
 
   const launches = getLaunchesByLake(lake.slug);
+  const relatedPreserves = (lake.relatedPreserveSlugs ?? [])
+    .map((s) => getPreserveAccessBySlug(s))
+    .filter(
+      (p): p is PreserveWaterAccess =>
+        p !== undefined && p.isPublished,
+    );
 
   return (
     <>
@@ -67,17 +88,10 @@ export default async function LakePage({ params }: PageProps) {
           { label: "All lakes & waterways →", href: "/lakes" },
           {
             label: "Launches on this water",
-            href: `/boat-launches?water=${
-              lake.slug === "lake-michigan-chicago"
-                ? "lake-michigan"
-                : lake.slug === "chain-o-lakes" ||
-                    lake.slug === "geneva-lake" ||
-                    lake.slug === "fox-river"
-                  ? "inland"
-                  : "all"
-            }`,
+            href: `/boat-launches?water=${waterFilterForLake(lake.slug)}`,
           },
           { label: "Forest preserves", href: "/forest-preserves" },
+          { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Boating weather", href: "/weather" },
         ]}
       />
@@ -125,10 +139,10 @@ export default async function LakePage({ params }: PageProps) {
                 Public launches on this water
               </h2>
               <Link
-                href="/boat-launches"
+                href={`/boat-launches?water=${waterFilterForLake(lake.slug)}`}
                 className="text-sm font-bold text-coral hover:underline"
               >
-                All launches →
+                Filtered launch finder →
               </Link>
             </div>
             <ul className="space-y-4">
@@ -150,6 +164,48 @@ export default async function LakePage({ params }: PageProps) {
                   </p>
                   <p className="text-sm">
                     <SourceLink source={launch.source} />
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {relatedPreserves.length > 0 ? (
+          <section>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+              <h2 className="text-2xl font-extrabold text-lake-blue">
+                Forest-preserve access on this water
+              </h2>
+              <Link
+                href="/forest-preserves"
+                className="text-sm font-bold text-coral hover:underline"
+              >
+                All preserves →
+              </Link>
+            </div>
+            <ul className="space-y-4">
+              {relatedPreserves.map((site) => (
+                <li
+                  key={site.slug}
+                  className="rounded-2xl border border-sky-blue/20 bg-white p-5"
+                >
+                  <h3 className="text-lg font-extrabold text-lake-blue mb-1">
+                    <Link
+                      href={`/forest-preserves/${site.slug}`}
+                      className="hover:underline"
+                    >
+                      {site.name}
+                    </Link>
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-2">
+                    {site.county} County · {site.locationLabel}
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-2">
+                    {site.summary}
+                  </p>
+                  <p className="text-sm">
+                    <SourceLink source={site.source} />
                   </p>
                 </li>
               ))}

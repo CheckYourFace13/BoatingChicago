@@ -33,6 +33,8 @@ export interface Lake {
   overview: string[];
   officialLinks: SourceRef[];
   destinationSlugs: string[];
+  /** Forest-preserve / conservation landings on this waterway (optional cross-links) */
+  relatedPreserveSlugs?: string[];
   isPublished: boolean;
 }
 

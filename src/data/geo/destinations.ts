@@ -238,6 +238,11 @@ export const destinations: Destination[] = [
         url: "https://dnr.illinois.gov/parks/about/park.northpointmarina.html",
         lastVerified: VERIFIED,
       },
+      {
+        name: "Illinois DNR iFish — Lake Michigan marinas / launches",
+        url: "https://ifishillinois.org/Pages/Fishing/WhereToFish/LakeMichigan",
+        lastVerified: "2026-11-14",
+      },
     ],
     relatedGuideSlugs: ["lake-michigan-boating-guide", "chicago-marina-guide"],
     weatherLocationId: "winthrop-harbor",
@@ -271,6 +276,16 @@ export const destinations: Destination[] = [
         name: "Southport Marina",
         url: "https://spmarina.net/",
         lastVerified: VERIFIED,
+      },
+      {
+        name: "City of Kenosha Parks — Boating Information",
+        url: "https://kenosha.org/departments/city_parks/resources.php",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Visit Kenosha — Boating & Fishing",
+        url: "https://www.visitkenosha.com/things-to-do/outdoor-recreation/boating-and-fishing/",
+        lastVerified: "2026-11-14",
       },
     ],
     relatedGuideSlugs: ["lake-michigan-boating-guide"],
@@ -384,6 +399,11 @@ export const destinations: Destination[] = [
         url: "https://www.mcmarina.org/rates.htm",
         lastVerified: VERIFIED,
       },
+      {
+        name: "Michigan City Parks — Washington Park (boat launch closures)",
+        url: "https://parks.michigancityin.gov/parks-and-facilities/washington-park/",
+        lastVerified: "2026-11-14",
+      },
     ],
     relatedGuideSlugs: [
       "lake-michigan-boating-guide",
@@ -426,6 +446,11 @@ export const destinations: Destination[] = [
         name: "City of New Buffalo — Parks and Harbor",
         url: "https://cityofnewbuffalomi.gov/departments/parks-and-harbor/",
         lastVerified: VERIFIED,
+      },
+      {
+        name: "City of New Buffalo — Boat Launch",
+        url: "https://cityofnewbuffalomi.gov/boat-launch/",
+        lastVerified: "2026-11-14",
       },
     ],
     relatedGuideSlugs: ["lake-michigan-boating-guide", "chicago-fishing-guide"],

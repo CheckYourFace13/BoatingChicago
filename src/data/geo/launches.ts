@@ -176,6 +176,7 @@ export const launches: BoatLaunch[] = [
     name: "Burnham Boat Launch — 31st Street Harbor",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch at 31st Street Harbor in Burnham Park on the south lakefront.",
     overview: [
@@ -199,6 +200,7 @@ export const launches: BoatLaunch[] = [
     name: "Lincoln Boat Launch — Diversey Harbor",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch at Diversey Harbor in Lincoln Park on the north lakefront.",
     overview: [
@@ -222,6 +224,7 @@ export const launches: BoatLaunch[] = [
     name: "Calumet Boat Launch — North",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch at Calumet Park on the far south lakefront (North listing).",
     overview: [
@@ -245,6 +248,7 @@ export const launches: BoatLaunch[] = [
     name: "Calumet Boat Launch — South",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch at Calumet Park on the far south lakefront (South listing).",
     overview: [
@@ -268,6 +272,8 @@ export const launches: BoatLaunch[] = [
     name: "Jackson Boat Launch — 63rd Street Beach",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District boat launch at 63rd Street Beach in Jackson Park on the south lakefront.",
     overview: [
@@ -291,6 +297,8 @@ export const launches: BoatLaunch[] = [
     name: "Leone Beach Boat Launch",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District boat launch at Leone Beach Park on the far north lakefront near Touhy Avenue.",
     overview: [
@@ -337,6 +345,8 @@ export const launches: BoatLaunch[] = [
     name: "Northerly Island Boat Launch — 12th Street Beach",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District boat launch at 12th Street Beach on Northerly Island near Museum Campus.",
     overview: [
@@ -406,6 +416,7 @@ export const launches: BoatLaunch[] = [
     name: "Jackson Boat Launch — Inner Harbor",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch at Jackson Park Inner Harbor on the south lakefront.",
     overview: [
@@ -449,6 +460,8 @@ export const launches: BoatLaunch[] = [
     slug: "river-boat-launch-above-dam",
     name: "River Boat Launch — Above Dam",
     destinationSlug: "chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District river launch at River Park (Above Dam listing) on the North Branch of the Chicago River.",
     overview: [
@@ -470,6 +483,8 @@ export const launches: BoatLaunch[] = [
     slug: "river-boat-launch-below-dam",
     name: "River Boat Launch — Below Dam",
     destinationSlug: "chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District river launch at River Park (Below Dam listing) on the North Branch of the Chicago River.",
     overview: [
@@ -539,6 +554,8 @@ export const launches: BoatLaunch[] = [
     name: "Lincoln Boat Launch — Montrose Beach North",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District boat launch listing at Montrose Beach North on the north lakefront.",
     overview: [
@@ -561,6 +578,8 @@ export const launches: BoatLaunch[] = [
     name: "Lincoln Boat Launch — Montrose Beach South",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District boat launch listing at Montrose Beach South on the north lakefront.",
     overview: [
@@ -646,6 +665,108 @@ export const launches: BoatLaunch[] = [
     source: {
       name: "Village of Williams Bay — Boat Launch & Beach",
       url: "https://www.williamsbay.org/1359/Boat-Launch-Beach",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "north-point-marina-boat-launch",
+    name: "North Point Marina Boat Launch",
+    destinationSlug: "winthrop-harbor",
+    lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
+    summary:
+      "IDNR / Westrec multi-lane public launch at North Point Marina in Winthrop Harbor — Illinois’ far-north Lake Michigan trailer access near the Wisconsin line.",
+    overview: [
+      "Illinois Department of Natural Resources’ iFish Lake Michigan marina table lists North Point Marina in Winthrop Harbor with 10 boat-launching lanes, about 200 car-and-trailer parking spaces, and a public launch fee. Operator contact is listed as Westrec Marinas. The ramp is described as open 24 hours April 1 to October 31, weather permitting.",
+      "On-site marina amenities published in the same IDNR table include fuel, boat repairs, food, restrooms, a fish cleaning station, and sanitary pump-out. Confirm current fees, parking rules, and seasonal notices with the marina before peak summer weekends.",
+      "Pair with the Winthrop Harbor destination page, North Point marina listings on this site, and Lake Michigan weather for the Illinois nearshore.",
+    ],
+    amenityNotes:
+      "IDNR lists multi-lane launch, trailer parking, fuel, repairs, food, restrooms, fish cleaning, and pump-out — confirm current services with the marina operator.",
+    seasonalAccessNote:
+      "IDNR lists the ramp open 24 hours April 1–October 31, weather permitting. Confirm current season status before you hitch up.",
+    feesNote:
+      "IDNR publishes a public launch fee for North Point Marina. Confirm the current amount with the marina — we do not reprint dollar figures that go stale.",
+    source: {
+      name: "Illinois DNR iFish — Lake Michigan marinas / launches",
+      url: "https://ifishillinois.org/Pages/Fishing/WhereToFish/LakeMichigan",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "simmons-island-public-boat-launch",
+    name: "Simmons Island Public Boat Launch",
+    destinationSlug: "kenosha",
+    lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
+    summary:
+      "Kenosha’s published public Lake Michigan launch at Simmons Island Boat Harbor (45th Street & Kennedy Drive).",
+    overview: [
+      "Visit Kenosha’s official boating page states there is a public launch site at Simmons Island Marina, with a self-serve fish cleaning station noted for anglers. The City of Kenosha Parks resources page lists Simmons Island Boat Harbor at 45th Street & Kennedy Drive and directs slip/general harbor questions to Great Lakes Yacht Sales, noting seasonal and temporary slips, 24-hour security, a fish cleaning station, and fueling/pump-out.",
+      "Treat the city parks page and Visit Kenosha materials as the planning start, then confirm launch hours, fees, and any seasonal pier removals with the harbor operator before you trailer north from Illinois.",
+      "Useful next reads: Kenosha destination page, Southport Marina materials for the second Kenosha harbor, and Lake Michigan weather.",
+    ],
+    amenityNotes:
+      "City parks materials list fish cleaning, fueling, and pump-out at Simmons Island Boat Harbor — confirm current public-launch procedures with the harbor contact.",
+    feesNote:
+      "Launch and parking fees are set by the harbor operator / city program. Confirm current amounts before you go — we do not reprint dollar figures that go stale.",
+    source: {
+      name: "City of Kenosha Parks — Resources (Boating Information)",
+      url: "https://kenosha.org/departments/city_parks/resources.php",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "washington-park-boat-launch",
+    name: "Washington Park Boat Launch",
+    destinationSlug: "michigan-city",
+    lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
+    summary:
+      "Michigan City Parks–published public boat launch in Washington Park on Indiana’s Lake Michigan shoreline.",
+    overview: [
+      "Michigan City Parks’ Washington Park page publishes important closure dates specifically for the Washington Park Boat Launch, including Independence Day fireworks and the Great Lakes Grand Prix window. The park address is listed as 6 On the Lake, Michigan City, IN.",
+      "The Michigan City Port Authority operates Washington Park and Trail Creek marinas and publishes ramp-fee tables on its official rates page — use Port Authority and Parks pages together for current launch, parking, and seasonal rules. Do not assume the launch is open on event closure dates posted by Parks.",
+      "Pair with the Michigan City destination page, Port Authority marina materials, and south-shore Lake Michigan weather before a Chicago-to-Indiana trailer day.",
+    ],
+    amenityNotes:
+      "Park and Port Authority materials cover the Washington Park lakefront marina complex — confirm ramp, parking, and marina services on those official pages.",
+    seasonalAccessNote:
+      "Michigan City Parks publishes specific boat-launch closure dates for fireworks and the Great Lakes Grand Prix. Confirm the current calendar on the Washington Park page before you tow.",
+    feesNote:
+      "Michigan City Port Authority publishes ramp fee tables. Confirm current daily/seasonal amounts and parking stickers on official Port Authority and Parks pages — we do not reprint dollar figures that go stale.",
+    source: {
+      name: "Michigan City Parks — Washington Park",
+      url: "https://parks.michigancityin.gov/parks-and-facilities/washington-park/",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "new-buffalo-city-boat-launch",
+    name: "New Buffalo City Boat Launch",
+    destinationSlug: "new-buffalo",
+    lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
+    summary:
+      "City of New Buffalo public trailer launch on the Galien River with published Lake Michigan access via the river channel.",
+    overview: [
+      "The City of New Buffalo’s Boat Launch page places the City Boat Launch at 201 Marquette Drive, about 1,200 feet northeast of the Whittaker Street Bridge, with the bridge to Lake Michigan roughly another 2,000 feet. The page publishes parking, launching, and boating rules, including a credit/debit kiosk payment requirement (no cash) and a prohibition on power-loading onto trailers.",
+      "Season-pass purchases require the trailer on site so a Park Ranger can attach the pass. Confirm current daily and season fees, attendant hours, and kayak parking notes on the city page and related Harbor Country materials before holiday weekends.",
+      "Continue with the New Buffalo destination page (municipal marina), Michigan City as a nearby Indiana harbor, and Lake Michigan weather for the south shore.",
+    ],
+    amenityNotes:
+      "City page describes trailer-only parking, skid piers, and kiosk payment. Confirm restrooms and attendant coverage on official city channels before you go.",
+    seasonalAccessNote:
+      "Confirm current boating-season open status on the City of New Buffalo boat-launch page; ice and river conditions can close access.",
+    feesNote:
+      "Launch fees are paid at the city’s credit/debit kiosk; resident and non-resident schedules are published by the city. Confirm current amounts on the official page — we do not reprint dollar figures that go stale.",
+    source: {
+      name: "City of New Buffalo — Boat Launch",
+      url: "https://cityofnewbuffalomi.gov/boat-launch/",
       lastVerified: CPD_VERIFIED,
     },
     isPublished: true,

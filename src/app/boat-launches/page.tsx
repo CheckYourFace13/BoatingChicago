@@ -28,11 +28,19 @@ export async function generateMetadata() {
 type WaterFilter = "all" | "lake-michigan" | "inland" | "river";
 type AccessFilter = "all" | "trailered" | "carry-in" | "non-motorized" | "steps";
 
+const RIVER_LAKE_SLUGS = new Set([
+  "fox-river",
+  "des-plaines-river",
+  "dupage-river",
+]);
+
+const INLAND_LAKE_SLUGS = new Set(["chain-o-lakes", "geneva-lake"]);
+
 const WATER_FILTERS: { id: WaterFilter; label: string }[] = [
   { id: "all", label: "All waters" },
   { id: "lake-michigan", label: "Lake Michigan" },
   { id: "inland", label: "Inland lakes" },
-  { id: "river", label: "Chicago River" },
+  { id: "river", label: "Rivers" },
 ];
 
 const ACCESS_FILTERS: { id: AccessFilter; label: string }[] = [
@@ -49,13 +57,14 @@ function matchesWater(launch: BoatLaunch, filter: WaterFilter): boolean {
     return launch.lakeSlug === "lake-michigan-chicago";
   }
   if (filter === "inland") {
-    return (
-      launch.lakeSlug === "chain-o-lakes" ||
-      launch.lakeSlug === "geneva-lake" ||
-      launch.lakeSlug === "fox-river"
-    );
+    return !!launch.lakeSlug && INLAND_LAKE_SLUGS.has(launch.lakeSlug);
   }
-  return launch.destinationSlug === "chicago" && !launch.lakeSlug;
+  if (filter === "river") {
+    if (launch.lakeSlug && RIVER_LAKE_SLUGS.has(launch.lakeSlug)) return true;
+    // Chicago River CPD sites are destination=chicago without a lakeSlug
+    return launch.destinationSlug === "chicago" && !launch.lakeSlug;
+  }
+  return true;
 }
 
 function matchesAccess(launch: BoatLaunch, filter: AccessFilter): boolean {
@@ -161,13 +170,35 @@ export default async function BoatLaunchesPage({
             currently tagged) — use “Any access” to see the full verified set.
           </p>
           <p>
-            Suburban forest-preserve lakes (often electric-only, sometimes
+            Suburban forest-preserve lakes and Des Plaines / DuPage River
+            landings (often electric-only or non-motorized, sometimes
             paddleboard-prohibited) live on the{" "}
             <Link
               href="/forest-preserves"
               className="font-semibold text-coral hover:underline"
             >
               forest-preserves hub
+            </Link>
+            . River waterway overviews:{" "}
+            <Link
+              href="/lakes/des-plaines-river"
+              className="font-semibold text-coral hover:underline"
+            >
+              Des Plaines River
+            </Link>
+            ,{" "}
+            <Link
+              href="/lakes/dupage-river"
+              className="font-semibold text-coral hover:underline"
+            >
+              DuPage River
+            </Link>
+            , and{" "}
+            <Link
+              href="/lakes/fox-river"
+              className="font-semibold text-coral hover:underline"
+            >
+              Fox River
             </Link>
             . Chicago Park District’s full directory:{" "}
             <a

@@ -12,7 +12,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
   description:
-    "Lake Michigan, the Chain O' Lakes, and Geneva Lake — the waterways Chicago-area boaters use, with official agency sources and the destinations that sit on each one.",
+    "Lake Michigan, Chain O’ Lakes, Geneva Lake, Fox River, Des Plaines River, and DuPage River — Chicago-area waterways with official sources and linked launches.",
   path: "/lakes",
 });
 }
@@ -32,11 +32,12 @@ export default function LakesPage() {
       <GeoHero
         eyebrow="Where Chicago boaters go"
         title="Lakes & Waterways"
-        intro="Open Lake Michigan, the Fox River chain, and southern Wisconsin's inland lakes each carry different access rules and different hazards. Start here, then follow the destination pages for harbor-level detail."
+        intro="Lake Michigan, inland lakes, and the Fox, Des Plaines, and DuPage river corridors each carry different access rules and hazards. Start here, then follow destinations, launches, and forest-preserve landings."
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Boat launches", href: "/boat-launches" },
+          { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Boating weather", href: "/weather" },
         ]}
       />
@@ -49,10 +50,11 @@ export default function LakesPage() {
             How to use these waterway pages
           </h2>
           <p>
-            Each lake page explains the water body Chicago-area boaters actually
-            use, then links to the destinations, marinas, and launches that sit
-            on it. Operational details like fees and hours stay on the official
-            agency pages we cite — we do not invent them.
+            Each waterway page explains the water body Chicago-area boaters
+            actually use, then links to destinations, municipal launches, and
+            forest-preserve landings that sit on it. Operational details like
+            fees and hours stay on the official agency pages we cite — we do not
+            invent them.
           </p>
           <p>
             Checking conditions before you go? Use the{" "}
@@ -64,12 +66,20 @@ export default function LakesPage() {
             <Link href="/destinations" className="font-semibold text-coral hover:underline">
               destinations
             </Link>
-            . Suburban Cook County preserve lakes and river landings are on the{" "}
+            . Preserve lakes and Des Plaines / DuPage River canoe landings are on
+            the{" "}
             <Link
               href="/forest-preserves"
               className="font-semibold text-coral hover:underline"
             >
               forest-preserves hub
+            </Link>
+            ; filter municipal ramps with the{" "}
+            <Link
+              href="/boat-launches?water=river"
+              className="font-semibold text-coral hover:underline"
+            >
+              rivers launch filter
             </Link>
             .
           </p>

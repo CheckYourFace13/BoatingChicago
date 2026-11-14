@@ -141,4 +141,78 @@ export const lakes: Lake[] = [
     destinationSlugs: ["chain-o-lakes"],
     isPublished: true,
   },
+  {
+    slug: "des-plaines-river",
+    name: "Des Plaines River",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "The Des Plaines River is a primary paddling corridor through Cook and Will counties west and southwest of Chicago. Public canoe and kayak access is published by the Forest Preserves of Cook County (carry-in landings plus the Plank Road Meadow trailered launch at Riverside) and by the Forest Preserve District of Will County (Isle a la Cache and McKinley Woods — Frederick’s Grove).",
+      "Cook County’s boating page lists Des Plaines River landings from Allison Woods south through Stony Ford, including Maywood Grove (home of the Greater Maywood Paddling Program) and accessible landings at Maywood Grove and Schuth’s Grove. District-wide flotation-device rules — including the stand-up paddleboard prohibition on FPDCC waterbodies — still apply. Will County lists canoe/kayak river access without a launch pass at designated preserves; paddleboards and float tubes are prohibited on district waters.",
+      "River level, debris, and bridges change trip difficulty. Confirm current conditions and each landing’s launch type on the cited agency pages before you put in. Pair this waterway page with the forest-preserves hub and the inland paddling guide for county-by-county craft rules.",
+    ],
+    officialLinks: [
+      {
+        name: "Forest Preserves of Cook County — Boating, Canoeing & Kayaking",
+        url: "https://fpdcc.com/things-to-do/boating-canoeing-kayaking/",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+        url: "https://www.reconnectwithnature.org/activities/canoeing-kayaking",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Paddle Illinois Water Trails",
+        url: "https://paddleillinoiswatertrails.org/",
+        lastVerified: "2026-11-14",
+      },
+    ],
+    destinationSlugs: ["chicago"],
+    relatedPreserveSlugs: [
+      "plank-road-meadow-des-plaines",
+      "maywood-grove-des-plaines",
+      "irving-park-road-canoe-landing",
+      "schuths-grove-des-plaines",
+      "allison-woods-des-plaines",
+      "isle-a-la-cache-will",
+      "mckinley-woods-frederick-will",
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "dupage-river",
+    name: "DuPage River",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "The DuPage River offers suburban canoe and kayak trips in Will County’s forest-preserve system, with published put-ins at Hammel Woods (DuPage River Access and Route 59 Access in Shorewood), Riverview Farmstead Preserve in Naperville, and McKinley Woods — Kerry Sheridan Grove in Channahon.",
+      "Will County’s canoeing/kayaking page states no launch pass is required at designated forest-preserve locations, and that unless otherwise posted canoes and kayaks may launch year-round except when ice is present. District boat launches close October 31. Swimming, wading, paddleboards, and float tubes are prohibited under district rules — persons must be entirely secured in watercraft.",
+      "Upstream DuPage County forest-preserve waters are mostly inland lakes under a separate private-watercraft permit program (see Silver Lake at Blackwell and other DuPage sites on the forest-preserves hub). Use this waterway page for the river corridor itself, then confirm each Will County landing on the official paddling page before you go.",
+    ],
+    officialLinks: [
+      {
+        name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+        url: "https://www.reconnectwithnature.org/activities/canoeing-kayaking",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Forest Preserve District of DuPage County — Boating",
+        url: "https://www.dupageforest.org/things-to-do/recreational-activities/boating",
+        lastVerified: "2026-11-14",
+      },
+      {
+        name: "Paddle Illinois Water Trails",
+        url: "https://paddleillinoiswatertrails.org/",
+        lastVerified: "2026-11-14",
+      },
+    ],
+    destinationSlugs: ["chicago"],
+    relatedPreserveSlugs: [
+      "hammel-woods-dupage-will",
+      "riverview-farmstead-dupage-will",
+      "mckinley-woods-kerry-sheridan-will",
+    ],
+    isPublished: true,
+  },
 ];
