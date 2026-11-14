@@ -17,6 +17,7 @@ export const launches: BoatLaunch[] = [
     name: "Lincoln Boat Launch — Montrose Harbor",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District motorized boat launch at Montrose Harbor on the north lakefront.",
     overview: [
@@ -42,6 +43,7 @@ export const launches: BoatLaunch[] = [
     name: "Burnham Boat Launch — Burnham Harbor",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Chicago Park District boat launch serving Burnham Harbor near Museum Campus.",
     overview: [
@@ -67,6 +69,7 @@ export const launches: BoatLaunch[] = [
     name: "Waukegan Harbor Launch Ramps",
     destinationSlug: "waukegan",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     summary:
       "Public launch ramps at Waukegan Harbor & Marina. Daily and season pass fees are published on the marina’s official launch page.",
     overview: [
@@ -92,6 +95,7 @@ export const launches: BoatLaunch[] = [
     name: "Chain O' Lakes State Park Boat Launch",
     destinationSlug: "chain-o-lakes",
     lakeSlug: "chain-o-lakes",
+    accessMode: "trailered",
     summary:
       "Public launch at Chain O' Lakes State Park in Spring Grove. Fox Waterway Agency and IDNR materials describe park launching with separate waterway user-fee sticker requirements for boats on the chain.",
     overview: [
@@ -117,6 +121,7 @@ export const launches: BoatLaunch[] = [
     name: "Fontana Public Boat Launch",
     destinationSlug: "lake-geneva",
     lakeSlug: "geneva-lake",
+    accessMode: "trailered",
     summary:
       "Village of Fontana public boat launch on Lake Avenue (Geneva Lake). Official village page publishes resident and non-resident fee tables and notes 24-hour ramp access with an honor box when unstaffed.",
     overview: [
@@ -142,6 +147,7 @@ export const launches: BoatLaunch[] = [
     name: "McKinley Marina Boat Launch",
     destinationSlug: "milwaukee",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "trailered",
     seoTitle: "McKinley Marina Boat Launch | Milwaukee Permit Required",
     seoDescription:
       "Milwaukee County Parks public launch at McKinley Marina. A launch permit is required; County Parks states the same permit also covers South Shore Park, Bender Park, and Riverfront sites. Confirm current rules on the official page.",
@@ -375,6 +381,8 @@ export const launches: BoatLaunch[] = [
     slug: "ping-tom-boat-launch",
     name: "Ping Tom Boat Launch",
     destinationSlug: "chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District launch at Ping Tom Memorial Park on the South Branch — CPD states it is for kayaks and non-motorized boats.",
     overview: [
@@ -505,6 +513,7 @@ export const launches: BoatLaunch[] = [
     name: "Fox River Forest Preserve Boat Launch",
     destinationSlug: "chain-o-lakes",
     lakeSlug: "fox-river",
+    accessMode: "trailered",
     summary:
       "Lake County Forest Preserves public boat launch and marina at Fox River Forest Preserve in Port Barrington — LCFPD states there is a fee for launching.",
     overview: [
@@ -574,6 +583,7 @@ export const launches: BoatLaunch[] = [
     name: "Lincoln Boat Launch — Diversey Harbor Steps",
     destinationSlug: "chicago",
     lakeSlug: "lake-michigan-chicago",
+    accessMode: "steps",
     summary:
       "Chicago Park District Diversey Harbor Steps launch listing in Lincoln Park — separate from the Diversey Harbor boat-launch facility page.",
     overview: [
@@ -595,6 +605,8 @@ export const launches: BoatLaunch[] = [
     slug: "park-no-571-boat-launch",
     name: "Park No. 571 Boat Launch",
     destinationSlug: "chicago",
+    accessMode: "non-motorized",
+    nonMotorizedOnly: true,
     summary:
       "Chicago Park District launch at Park No. 571 — CPD states it is for kayaks and canoes.",
     overview: [
@@ -617,6 +629,7 @@ export const launches: BoatLaunch[] = [
     name: "Williams Bay Public Boat Launch",
     destinationSlug: "lake-geneva",
     lakeSlug: "geneva-lake",
+    accessMode: "trailered",
     summary:
       "Village of Williams Bay public boat launch on Geneva Lake. The village publishes launch fee tables and states boats may launch 24 hours, with an honor box when unstaffed.",
     overview: [

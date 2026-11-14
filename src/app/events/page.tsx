@@ -53,9 +53,9 @@ export default function EventsPage() {
         intro="Lakefront events boaters plan around, plus published harbor and marina season windows. Dates come from the organizer or agency — confirm on the official page before you build a trip around one. Published season dates are not a claim that every facility is operating or available."
         links={[
           { label: "Boating weather →", href: "/weather" },
-          { label: "Boating news", href: "/news" },
-          { label: "Destinations", href: "/destinations" },
-          { label: "Marinas", href: "/marinas" },
+          { label: "Boat launches", href: "/boat-launches" },
+          { label: "Forest preserves", href: "/forest-preserves" },
+          { label: "Winterization", href: "/chicago-boat-winterization" },
         ]}
       />
 

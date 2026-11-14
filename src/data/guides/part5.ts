@@ -862,4 +862,148 @@ export const guidePart5: GuidePage[] = [
     ],
     showLeadForm: false,
   },
+  {
+    slug: "chicago-area-inland-paddling-guide",
+    title: "Chicago-Area Inland Paddling Guide",
+    seoTitle:
+      "Inland Kayak, Canoe & Paddle Waters Near Chicago | Forest Preserves & Rivers",
+    seoDescription:
+      "Plan kayak, canoe, paddleboard, and electric-only trips on forest-preserve lakes and rivers within about 250 miles of Chicago — Cook, Lake, DuPage, Will, Kane, and McHenry rules linked to official sources.",
+    headline: "Inland Paddling Near Chicago: Lakes, Rivers & Preserve Rules",
+    intro:
+      "Lake Michigan gets the headlines, but Chicago-area paddlers and small-boat owners spend as many weekends on forest-preserve lakes, the Fox River chain, Nippersink Creek, and municipal inland ramps. This guide points you to verified hubs — and the agency rules that differ by county — so you do not trailer a gas motor or SUP to a water that prohibits them.",
+    sections: [
+      {
+        heading: "Start with the water body, then the agency",
+        paragraphs: [
+          "Within roughly 250 driving miles of Chicago you will find three overlapping systems: (1) Lake Michigan harbors and Park District launches, (2) inland chains and municipal lakes such as the Fox Waterway / Chain O’ Lakes and Geneva Lake, and (3) county forest-preserve and conservation-district waters. Each system publishes its own craft, motor, and seasonal rules.",
+          "Use BoatingChicago’s forest-preserves hub for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, Chicago River sites, and non-motorized-only access when the agency is explicit.",
+        ],
+      },
+      {
+        heading: "Forest-preserve lakes: electric-only is common — SUP rules vary",
+        paragraphs: [
+          "Cook County Forest Preserves (FPDCC) prohibit gasoline-powered boats on all FPDCC lakes and list stand-up paddleboards among prohibited flotation devices on FPDCC waterbodies. Lake County Forest Preserves allow cartop / non-motorized craft including paddleboards plus electric trolling on listed inland lakes. DuPage requires private-watercraft permits and allows electric motors only on designated lakes; Silver Lake at Blackwell has the trailered launch.",
+          "Will County Forest Preserve rules permit non-gasoline craft up to 18 feet with electric trolling only and explicitly prohibit paddleboards and float tubes. Boat launches close October 31. Kane County materials distinguish preserve waters (trolling motors) from the Fox River (gasoline allowed). McHenry County Conservation District publishes canoe/kayak landings on Nippersink Creek (no tubing) and allows canoe, kayak, paddleboard, or electric-motorized rowboat on Lake Atwood at The Hollows.",
+          "Never assume neighboring counties share the same SUP or motor policy. Confirm on the cited district page the day you go.",
+        ],
+      },
+      {
+        heading: "Rivers and creeks: Fox, Des Plaines, DuPage, Nippersink",
+        paragraphs: [
+          "The Fox River links the Chain O’ Lakes and continues through Lake and Kane counties. Fox Waterway Agency stickers apply on the Chain and published waterway reaches — use FWA’s sticker and fee-schedule pages for dollars. Lake County Forest Preserves operate a fee motorized launch at Fox River Forest Preserve in Port Barrington.",
+          "Will County publishes canoe/kayak river access at Isle a la Cache (Des Plaines), Hammel Woods and Riverview Farmstead (DuPage River), and McKinley Woods sites. McHenry’s Nippersink Creek landings (Keystone, Pioneer, Nippersink Canoe Base) close when water exceeds published high-water thresholds. River paddling always depends on level, debris, and skill — agency pages state travel is at your own risk.",
+        ],
+      },
+      {
+        heading: "Kayaks, canoes, paddleboards, and pedal boats",
+        paragraphs: [
+          "Kayak and canoe rentals appear at many preserve centers (Busse, Tower Road / Skokie Lagoons, Tampier, Maple, Independence Grove, Blackwell, Herrick, Monee, Lake Chaminwood, Whalon via concessionaires). Pedal-boat rentals are listed at select Will County and DuPage sites. Downtown Chicago river and Ohio Street Beach kayak rentals remain a separate urban product — see the Chicago kayak rental guide for operator-style trips on the Loop and lakefront.",
+          "Paddleboards: allowed on some Lake County and McHenry waters and on designated DuPage lakes under permit rules; prohibited on Cook FPDCC waterbodies and Will County forest-preserve lakes. If your craft is a SUP, read the district page before loading the car.",
+        ],
+      },
+      {
+        heading: "Seasonal planning and winter content",
+        paragraphs: [
+          "Many inland boat launches run roughly April–October. Preserve canoe/kayak rules sometimes allow year-round put-ins except ice. Harbor and marina seasons on Lake Michigan are a different calendar — see Events for published mooring windows and the winterization hub when you are hauling out.",
+          "Before any inland day trip: check NWS products for thunderstorms, confirm stickers/permits, and leave a float plan with someone ashore using the planning tools on this site.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Inland water systems near Chicago",
+      headers: ["System", "Where to start", "Key rule to confirm"],
+      rows: [
+        [
+          "County forest preserves",
+          "/forest-preserves",
+          "Motor / SUP rules differ by county",
+        ],
+        [
+          "Municipal & state launches",
+          "/boat-launches",
+          "Fees and stickers on operator pages",
+        ],
+        [
+          "Fox Waterway / Chain",
+          "/destinations/chain-o-lakes",
+          "FWA sticker required on the Chain",
+        ],
+        [
+          "Geneva Lake",
+          "/destinations/lake-geneva",
+          "Village launch fee tables",
+        ],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Spring (Apr–May)",
+        tip: "Many inland launches reopen; confirm ice-out and April 1 start dates on Will/DuPage pages.",
+      },
+      {
+        season: "Summer",
+        tip: "Weekend preserve lakes fill early — check rental hours and waterway stickers before you tow.",
+      },
+      {
+        season: "Fall (Sep–Oct)",
+        tip: "Will County boat launches close Oct. 31; other districts publish their own end dates.",
+      },
+      {
+        season: "Winter",
+        tip: "Use the winterization hub and storage directory when hauling out; creek paddling is ice-dependent.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "Can I use a gas motor on Cook County forest preserve lakes?",
+        answer:
+          "No. The Forest Preserves of Cook County state gasoline-powered boats are prohibited on all FPDCC lakes. Confirm on the official FPDCC boating page.",
+      },
+      {
+        question: "Where can I paddleboard near Chicago on preserve waters?",
+        answer:
+          "Lake County Forest Preserves list paddleboards among cartop craft on inland lakes; McHenry’s Lake Atwood page mentions paddle boards; DuPage allows SUPs on designated lakes under permit rules. Cook FPDCC and Will County forest preserves prohibit paddleboards — confirm on each district page.",
+      },
+      {
+        question: "Do I need a Fox Waterway sticker for the Chain O’ Lakes?",
+        answer:
+          "Fox Waterway Agency states boats on the Chain must display a current agency sticker and publishes the fee schedule online. Confirm classes and temporary permits on foxwaterway.com before you launch.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Where do I find verified inland launches near Chicago?",
+        answer:
+          "Use the forest-preserves hub for county preserve waters and the boat-launches finder for municipal and state ramps. Both link to official sources for fees and hours.",
+      },
+      {
+        question: "Are pedal boats available at forest preserves?",
+        answer:
+          "Some districts publish pedal-boat rentals (for example Monee Reservoir in Will County and DuPage rental centers). Confirm seasonal availability and fees on the cited official page — we do not reprint stale dollar figures.",
+      },
+      {
+        question: "What is the best first inland paddle for beginners?",
+        answer:
+          "Calm preserve lakes with rental fleets (such as Independence Grove or Blackwell Silver Lake) are often easier than open Lake Michigan or fast creek runs. Always match the district’s craft rules and weather to your skill.",
+      },
+    ],
+    popularSearches: [
+      { label: "Forest preserves", href: "/forest-preserves" },
+      { label: "Boat launch finder", href: "/boat-launches" },
+      { label: "Chain O’ Lakes", href: "/destinations/chain-o-lakes" },
+      { label: "Kayak rentals Chicago", href: "/chicago-kayak-rental-guide" },
+      { label: "Lakes & waterways", href: "/lakes" },
+      { label: "Winterization hub", href: "/chicago-boat-winterization" },
+    ],
+    relatedSlugs: [
+      "chicago-kayak-rental-guide",
+      "paddle-board-rentals-chicago",
+      "beginners-guide-boating-chicago",
+      "lake-michigan-boating-guide",
+      "chicago-boating-faq",
+      "chicago-boat-winterization",
+    ],
+    showLeadForm: false,
+  },
 ];

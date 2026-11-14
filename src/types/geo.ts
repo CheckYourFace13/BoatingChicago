@@ -69,6 +69,13 @@ export interface Marina {
   isPublished: boolean;
 }
 
+/** How you get a craft into the water — only set when the official source is clear. */
+export type LaunchAccessMode =
+  | "trailered"
+  | "carry-in"
+  | "steps"
+  | "non-motorized";
+
 export interface BoatLaunch {
   slug: string;
   name: string;
@@ -82,6 +89,16 @@ export interface BoatLaunch {
   seasonalAccessNote?: string;
   hoursNote?: string;
   feesNote?: string;
+  /**
+   * Access mode when the operating agency is explicit.
+   * Omit when the source does not clearly classify the ramp.
+   */
+  accessMode?: LaunchAccessMode;
+  /**
+   * True when the official page limits the site to kayaks/canoes/non-motorized
+   * (or equivalent wording). Never infer from destination alone.
+   */
+  nonMotorizedOnly?: boolean;
   /** Optional page-specific search title — do not invent access or fees. */
   seoTitle?: string;
   seoDescription?: string;

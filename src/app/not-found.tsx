@@ -29,6 +29,12 @@ export default function NotFound() {
           Boat launches
         </Link>
         <Link
+          href="/forest-preserves"
+          className="inline-flex items-center px-6 py-3 border border-lake-blue/30 text-lake-blue font-bold rounded-full hover:bg-light-blue/50 transition-colors"
+        >
+          Forest preserves
+        </Link>
+        <Link
           href="/guides"
           className="inline-flex items-center px-6 py-3 border border-lake-blue/30 text-lake-blue font-bold rounded-full hover:bg-light-blue/50 transition-colors"
         >

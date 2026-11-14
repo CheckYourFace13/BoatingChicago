@@ -16,14 +16,15 @@ import type { PreserveWaterAccess } from "@/types/geo";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Forest Preserve Boating Near Chicago | Cook, Lake & DuPage Waters",
+    title:
+      "Forest Preserve Boating Near Chicago | Cook, Lake, DuPage, Will, Kane & McHenry",
     description:
-      "Verified forest-preserve launches and rental waters near Chicago — Cook, Lake, and DuPage County preserve lakes — from official forest-preserve sources.",
+      "Verified forest-preserve launches and rental waters near Chicago across Cook, Lake, DuPage, Will, Kane, and McHenry counties — from official district sources.",
     path: "/forest-preserves",
   });
 }
 
-const COUNTY_ORDER = ["Cook", "Lake", "DuPage"];
+const COUNTY_ORDER = ["Cook", "Lake", "DuPage", "Will", "Kane", "McHenry"];
 
 function groupByCounty(sites: PreserveWaterAccess[]) {
   const map = new Map<string, PreserveWaterAccess[]>();
@@ -90,7 +91,10 @@ export default function ForestPreservesPage() {
             waterbodies; Lake County Forest Preserves allows cartop /
             non-motorized craft (including paddleboards) and electric trolling
             on its inland lakes; DuPage requires private-watercraft permits and
-            allows electric motors only on designated lakes.
+            allows electric motors only on designated lakes; Will County
+            prohibits paddleboards and closes boat launches October 31; Kane and
+            McHenry river/creek landings publish their own motor and high-water
+            rules.
           </p>
           <p>
             Fees, hours, and seasonal closures change — use the cited source
@@ -207,9 +211,9 @@ export default function ForestPreservesPage() {
             More counties coming
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Will, Kane, and McHenry preserve waters will be added as each
-            district&apos;s official launch and rental pages are verified the
-            same way — no thin placeholders.
+            Additional sites in these and neighboring districts will be added
+            only when each official launch or rental page is verified the same
+            way — no thin placeholders.
           </p>
         </section>
 

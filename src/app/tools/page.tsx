@@ -45,7 +45,8 @@ export default function ToolsPage() {
         links={[
           { label: "Boating weather →", href: "/weather" },
           { label: "Boat launches", href: "/boat-launches" },
-          { label: "Guides", href: "/guides" },
+          { label: "Forest preserves", href: "/forest-preserves" },
+          { label: "Winterization", href: "/chicago-boat-winterization" },
         ]}
       />
 
@@ -120,6 +121,22 @@ export default function ToolsPage() {
                 Storage facilities directory →
               </Link>
             </li>
+            <li>
+              <Link
+                href="/chicago-area-inland-paddling-guide"
+                className="font-semibold text-coral hover:underline"
+              >
+                Inland paddling guide →
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/forest-preserves"
+                className="font-semibold text-coral hover:underline"
+              >
+                Forest-preserve waters →
+              </Link>
+            </li>
           </ul>
         </section>
 
@@ -127,9 +144,9 @@ export default function ToolsPage() {
           links={[
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
-            { href: "/marinas", label: "Marinas" },
-            { href: "/spring-boat-launch-checklist-chicago", label: "Spring checklist guide" },
-            { href: "/beginners-guide-boating-chicago", label: "Beginner’s guide" },
+            { href: "/forest-preserves", label: "Forest preserves" },
+            { href: "/chicago-boat-winterization", label: "Winterization" },
+            { href: "/spring-boat-launch-checklist-chicago", label: "Spring checklist" },
             { href: "/guides", label: "All guides" },
           ]}
         />

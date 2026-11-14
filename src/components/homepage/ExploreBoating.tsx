@@ -32,8 +32,8 @@ export function ExploreBoating() {
           Explore Boating &amp; Plan a Day
         </h2>
         <p className="text-gray-600 mb-6 max-w-2xl">
-          Destinations, lakes, forest-preserve waters, marinas, and launches
-          around Chicago and southern Lake Michigan — with Plan Your Day flows
+          Destinations, lakes, forest-preserve waters across six Illinois
+          counties, marinas, and the launch finder — with Plan Your Day flows
           on each destination page.
         </p>
       </Reveal>

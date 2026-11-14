@@ -14,29 +14,36 @@ import {
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import type { BoatLaunch } from "@/types/geo";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Public Boat Launches Near Chicago | Verified Ramp Listings",
+    title: "Public Boat Launches Near Chicago | Verified Ramp Finder",
     description:
-      "Public boat launch ramps around Chicago — Chicago Park District lakefront and river sites, the Chain O' Lakes, Geneva Lake, and more — listed from official park district, state, and municipal sources.",
+      "Filter verified public boat launches near Chicago by waterbody and access type — Chicago Park District, inland lakes, rivers, and municipal ramps linked to official sources.",
     path: "/boat-launches",
   });
 }
 
 type WaterFilter = "all" | "lake-michigan" | "inland" | "river";
+type AccessFilter = "all" | "trailered" | "carry-in" | "non-motorized" | "steps";
 
-const FILTERS: { id: WaterFilter; label: string }[] = [
+const WATER_FILTERS: { id: WaterFilter; label: string }[] = [
   { id: "all", label: "All waters" },
   { id: "lake-michigan", label: "Lake Michigan" },
   { id: "inland", label: "Inland lakes" },
   { id: "river", label: "Chicago River" },
 ];
 
-function matchesFilter(
-  launch: { lakeSlug?: string; destinationSlug: string },
-  filter: WaterFilter,
-): boolean {
+const ACCESS_FILTERS: { id: AccessFilter; label: string }[] = [
+  { id: "all", label: "Any access" },
+  { id: "trailered", label: "Trailored" },
+  { id: "carry-in", label: "Carry-in" },
+  { id: "non-motorized", label: "Non-motorized only" },
+  { id: "steps", label: "Steps / harbor steps" },
+];
+
+function matchesWater(launch: BoatLaunch, filter: WaterFilter): boolean {
   if (filter === "all") return true;
   if (filter === "lake-michigan") {
     return launch.lakeSlug === "lake-michigan-chicago";
@@ -48,23 +55,51 @@ function matchesFilter(
       launch.lakeSlug === "fox-river"
     );
   }
-  // River / non-lakefront Chicago Park District sites: Chicago destination, no lakeSlug
   return launch.destinationSlug === "chicago" && !launch.lakeSlug;
 }
 
-function filterHref(id: WaterFilter): string {
-  return id === "all" ? "/boat-launches" : `/boat-launches?water=${id}`;
+function matchesAccess(launch: BoatLaunch, filter: AccessFilter): boolean {
+  if (filter === "all") return true;
+  if (filter === "non-motorized") {
+    return launch.nonMotorizedOnly === true || launch.accessMode === "non-motorized";
+  }
+  if (filter === "trailered") return launch.accessMode === "trailered";
+  if (filter === "carry-in") return launch.accessMode === "carry-in";
+  if (filter === "steps") return launch.accessMode === "steps";
+  return true;
+}
+
+function filterHref(water: WaterFilter, access: AccessFilter): string {
+  const params = new URLSearchParams();
+  if (water !== "all") params.set("water", water);
+  if (access !== "all") params.set("access", access);
+  const q = params.toString();
+  return q ? `/boat-launches?${q}` : "/boat-launches";
+}
+
+function accessBadge(launch: BoatLaunch): string | null {
+  if (launch.nonMotorizedOnly || launch.accessMode === "non-motorized") {
+    return "Non-motorized only";
+  }
+  if (launch.accessMode === "trailered") return "Trailored";
+  if (launch.accessMode === "carry-in") return "Carry-in";
+  if (launch.accessMode === "steps") return "Steps access";
+  return null;
 }
 
 export default async function BoatLaunchesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ water?: string }>;
+  searchParams: Promise<{ water?: string; access?: string }>;
 }) {
   const params = await searchParams;
-  const raw = params.water ?? "all";
-  const filter: WaterFilter = FILTERS.some((f) => f.id === raw)
-    ? (raw as WaterFilter)
+  const rawWater = params.water ?? "all";
+  const rawAccess = params.access ?? "all";
+  const water: WaterFilter = WATER_FILTERS.some((f) => f.id === rawWater)
+    ? (rawWater as WaterFilter)
+    : "all";
+  const access: AccessFilter = ACCESS_FILTERS.some((f) => f.id === rawAccess)
+    ? (rawAccess as AccessFilter)
     : "all";
 
   const destinations = getPublishedDestinations()
@@ -79,14 +114,16 @@ export default async function BoatLaunchesPage({
   const groups = destinations
     .map((destination) => ({
       destination,
-      launches: getLaunchesByDestination(destination.slug).filter((launch) =>
-        matchesFilter(launch, filter),
+      launches: getLaunchesByDestination(destination.slug).filter(
+        (launch) =>
+          matchesWater(launch, water) && matchesAccess(launch, access),
       ),
     }))
     .filter((group) => group.launches.length > 0);
 
   const totalPublished = getPublishedLaunches().length;
   const total = groups.reduce((sum, group) => sum + group.launches.length, 0);
+  const taggedAccess = getPublishedLaunches().filter((l) => l.accessMode).length;
 
   return (
     <>
@@ -99,11 +136,11 @@ export default async function BoatLaunchesPage({
 
       <GeoHero
         eyebrow={`${totalPublished} verified public launches`}
-        title="Public Boat Launches Near Chicago"
-        intro="Trailer-in and carry-in access from the Chicago lakefront and river to Wisconsin and the Fox River chain. Launch fees, permits, and stickers are set by the operating agency — we link you to the page that publishes them."
+        title="Public Boat Launch Finder Near Chicago"
+        intro="Filter verified ramps by waterbody and access type. Launch fees, permits, stickers, and seasonal open status are set by the operating agency — each listing links to the official page."
         links={[
-          { label: "Destinations →", href: "/destinations" },
-          { label: "Forest preserves", href: "/forest-preserves" },
+          { label: "Forest preserves →", href: "/forest-preserves" },
+          { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Lakes & waterways", href: "/lakes" },
           { label: "Boating weather", href: "/weather" },
         ]}
@@ -114,74 +151,87 @@ export default async function BoatLaunchesPage({
 
         <section className="max-w-3xl space-y-4 text-gray-700 leading-relaxed">
           <h2 className="text-2xl font-extrabold text-lake-blue">
-            Finding a ramp near Chicago
+            How this finder works
           </h2>
           <p>
-            Public launches below are verified against municipal, park-district,
-            county, or state sources. We publish a launch page only when that
-            official listing exists — incomplete tips stay out of the index.
+            Every launch below is backed by a municipal, park-district, county,
+            or state source. Cards show seasonal notes when the agency publishes
+            them. Access-type filters only match launches where the official
+            page clearly classifies the site ({taggedAccess} of {totalPublished}{" "}
+            currently tagged) — use “Any access” to see the full verified set.
           </p>
           <p>
-            Chicago Park District publishes a full{" "}
-            <a
-              href="https://www.chicagoparkdistrict.com/facilities/boat-launches"
-              className="font-semibold text-coral hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              boat-launches directory
-            </a>{" "}
-            covering Lake Michigan and Chicago River sites. Suburban forest-preserve
-            waters (often electric-only) live on the{" "}
+            Suburban forest-preserve lakes (often electric-only, sometimes
+            paddleboard-prohibited) live on the{" "}
             <Link
               href="/forest-preserves"
               className="font-semibold text-coral hover:underline"
             >
               forest-preserves hub
             </Link>
+            . Chicago Park District’s full directory:{" "}
+            <a
+              href="https://www.chicagoparkdistrict.com/facilities/boat-launches"
+              className="font-semibold text-coral hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CPD boat launches
+            </a>
             .
-          </p>
-          <p>
-            Before you tow: confirm fees and stickers on the linked source,
-            check{" "}
-            <Link href="/weather" className="font-semibold text-coral hover:underline">
-              marine weather
-            </Link>
-            , and read the matching{" "}
-            <Link href="/destinations" className="font-semibold text-coral hover:underline">
-              destination
-            </Link>{" "}
-            page for harbor context. Lake Michigan ramps, river landings, and
-            inland-chain ramps follow different agencies and rules.
           </p>
         </section>
 
-        <nav
-          aria-label="Filter launches by waterbody"
-          className="flex flex-wrap gap-2"
-        >
-          {FILTERS.map((item) => {
-            const active = item.id === filter;
-            return (
-              <Link
-                key={item.id}
-                href={filterHref(item.id)}
-                className={
-                  active
-                    ? "text-sm font-bold px-3 py-1.5 rounded-full bg-lake-blue text-white"
-                    : "text-sm font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue hover:bg-sky-blue/20 transition-colors"
-                }
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="space-y-4">
+          <nav aria-label="Filter launches by waterbody" className="flex flex-wrap gap-2">
+            {WATER_FILTERS.map((item) => {
+              const active = item.id === water;
+              return (
+                <Link
+                  key={item.id}
+                  href={filterHref(item.id, access)}
+                  className={
+                    active
+                      ? "text-sm font-bold px-3 py-1.5 rounded-full bg-lake-blue text-white"
+                      : "text-sm font-semibold px-3 py-1.5 rounded-full bg-light-blue text-lake-blue hover:bg-sky-blue/20 transition-colors"
+                  }
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <nav aria-label="Filter launches by access type" className="flex flex-wrap gap-2">
+            {ACCESS_FILTERS.map((item) => {
+              const active = item.id === access;
+              return (
+                <Link
+                  key={item.id}
+                  href={filterHref(water, item.id)}
+                  className={
+                    active
+                      ? "text-sm font-bold px-3 py-1.5 rounded-full bg-coral text-white"
+                      : "text-sm font-semibold px-3 py-1.5 rounded-full bg-white text-lake-blue border border-sky-blue/25 hover:bg-light-blue/60 transition-colors"
+                  }
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
 
         <p className="text-sm text-gray-600">
           Showing {total} of {totalPublished} verified launches
-          {filter !== "all" ? ` · ${FILTERS.find((f) => f.id === filter)?.label}` : ""}.
+          {water !== "all"
+            ? ` · ${WATER_FILTERS.find((f) => f.id === water)?.label}`
+            : ""}
+          {access !== "all"
+            ? ` · ${ACCESS_FILTERS.find((f) => f.id === access)?.label}`
+            : ""}
+          .
         </p>
 
         {groups.map(({ destination, launches }) => (
@@ -205,19 +255,27 @@ export default async function BoatLaunchesPage({
                 const lake = launch.lakeSlug
                   ? getLakeBySlug(launch.lakeSlug)
                   : undefined;
+                const badge = accessBadge(launch);
                 return (
                   <li
                     key={launch.slug}
                     className="rounded-2xl border border-sky-blue/20 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <h3 className="text-lg font-extrabold text-lake-blue mb-1">
-                      <Link
-                        href={`/boat-launches/${launch.slug}`}
-                        className="hover:underline"
-                      >
-                        {launch.name}
-                      </Link>
-                    </h3>
+                    <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+                      <h3 className="text-lg font-extrabold text-lake-blue">
+                        <Link
+                          href={`/boat-launches/${launch.slug}`}
+                          className="hover:underline"
+                        >
+                          {launch.name}
+                        </Link>
+                      </h3>
+                      {badge ? (
+                        <span className="text-xs font-bold uppercase tracking-wide px-2 py-1 rounded-full bg-light-blue text-lake-blue">
+                          {badge}
+                        </span>
+                      ) : null}
+                    </div>
                     {lake?.isPublished ? (
                       <p className="text-xs font-bold uppercase tracking-widest text-coral mb-2">
                         <Link
@@ -236,6 +294,14 @@ export default async function BoatLaunchesPage({
                     <p className="text-gray-700 leading-relaxed mb-2">
                       {launch.summary}
                     </p>
+                    {launch.seasonalAccessNote ? (
+                      <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                        <span className="font-semibold text-lake-blue">
+                          Seasonal note:{" "}
+                        </span>
+                        {launch.seasonalAccessNote}
+                      </p>
+                    ) : null}
                     <p className="text-sm">
                       <SourceLink source={launch.source} />
                     </p>
@@ -248,32 +314,32 @@ export default async function BoatLaunchesPage({
 
         {groups.length === 0 ? (
           <p className="text-gray-700">
-            No launches match this filter.{" "}
+            No launches match these filters.{" "}
             <Link
               href="/boat-launches"
               className="font-semibold text-coral hover:underline"
             >
-              Show all launches
+              Reset filters
             </Link>{" "}
-            or check the{" "}
+            or browse{" "}
             <Link
-              href="/destinations"
+              href="/forest-preserves"
               className="font-semibold text-coral hover:underline"
             >
-              destination guides
-            </Link>{" "}
-            for official access links.
+              forest-preserve waters
+            </Link>
+            .
           </p>
         ) : null}
 
         <ResourceCrossLinks
           links={[
-            { href: "/weather", label: "Weather" },
             { href: "/forest-preserves", label: "Forest preserves" },
-            { href: "/marinas", label: "Marinas" },
-            { href: "/destinations", label: "Destinations" },
+            { href: "/chicago-area-inland-paddling-guide", label: "Inland paddling guide" },
             { href: "/lakes", label: "Lakes" },
-            { href: "/guides", label: "Guides" },
+            { href: "/destinations", label: "Destinations" },
+            { href: "/weather", label: "Weather" },
+            { href: "/tools/trip-checklist", label: "Trip checklist" },
           ]}
         />
       </div>

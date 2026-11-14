@@ -12,6 +12,10 @@ const LCFPD_PADDLING =
 const DUPAGE_BOATING =
   "https://www.dupageforest.org/things-to-do/recreational-activities/boating";
 
+const WILL_BOATING = "https://www.reconnectwithnature.org/activities/boating";
+const WILL_PADDLING =
+  "https://www.reconnectwithnature.org/activities/canoeing-kayaking";
+
 /**
  * Forest-preserve waters — facts only from the cited official agency page.
  * Cook FPDCC: gasoline motors prohibited on lakes; SUPs listed as prohibited
@@ -606,6 +610,386 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
     source: {
       name: "Forest Preserve District of DuPage County — Boating",
       url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "whalon-lake-will",
+    name: "Whalon Lake",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Whalon Lake Forest Preserve, Naperville",
+    summary:
+      "Will County Forest Preserve fishing lake with a trailered boat launch and canoe/kayak access — non-gasoline craft up to 18 feet; electric trolling only; paddleboards prohibited.",
+    overview: [
+      "The Forest Preserve District of Will County lists a boat launch at Whalon Lake in Naperville with trailer parking and no launch fee. District boating rules permit non-gasoline-powered watercraft up to 18 feet (fishing boats, rowboats, canoes, kayaks); sailboats, float tubes, and paddleboards are not permitted. Only electric trolling motors may be used; gas motors must be raised out of the water.",
+      "Boats may be launched April 1–October 31 per the district boating page. Canoes and kayaks may also launch here; no launch pass is required. Kayak rentals are offered through The Forge under a district concessions license — confirm current costs and hours on The Forge’s Whalon Lake rental page.",
+    ],
+    accessKinds: ["trailered-launch"],
+    allowedCraft: ["canoe", "kayak", "rowboat", "fishing-boat-electric", "electric-trolling"],
+    restrictions: [
+      "Non-gasoline craft up to 18 feet; electric trolling only",
+      "Sailboats, float tubes, and paddleboards not permitted",
+      "District boat launches close October 31; confirm open status before you tow",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Kayak rentals via The Forge at Whalon Lake (district concessions licensee). Confirm current hours, limits, and rates on The Forge / district pages.",
+    seasonalAccessNote:
+      "Will County FPD: boats may be launched April 1–Oct. 31. Canoe/kayak launching on designated preserve property may continue year-round except when ice is present — confirm on the canoeing/kayaking page.",
+    source: {
+      name: "Forest Preserve District of Will County — Boating",
+      url: WILL_BOATING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+        url: WILL_PADDLING,
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "rock-run-rookery-will",
+    name: "Rock Run Rookery Preserve",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Rock Run Rookery Preserve, Joliet",
+    summary:
+      "Will County Forest Preserve trailered boat launch and canoe/kayak access — electric-only rules; boats prohibited in the small west lake and buoy-marked rookery area of the east lake.",
+    overview: [
+      "Will County Forest Preserve lists a boat launch at Rock Run Rookery Preserve in Joliet with trailer parking and no launch fee. The same district craft rules apply: non-gasoline craft up to 18 feet, electric trolling only, no sailboats/float tubes/paddleboards.",
+      "At Rock Run, boats are not allowed in the small west lake or in the portion of the large east lake marked by buoys protecting an established rookery. Confirm buoyed closures on site and on the official boating page.",
+    ],
+    accessKinds: ["trailered-launch"],
+    allowedCraft: ["canoe", "kayak", "rowboat", "fishing-boat-electric", "electric-trolling"],
+    restrictions: [
+      "Non-gasoline craft up to 18 feet; electric trolling only; paddleboards prohibited",
+      "No boats in small west lake or buoy-marked rookery area of east lake",
+      "Boat launches close October 31 per district",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Boats may be launched April 1–Oct. 31 per Will County FPD boating page.",
+    source: {
+      name: "Forest Preserve District of Will County — Boating",
+      url: WILL_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lake-chaminwood-will",
+    name: "Lake Chaminwood",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Lake Chaminwood Preserve, Channahon / Troy Township",
+    summary:
+      "Will County Forest Preserve carry-in lake with an accessible/adaptive canoe/kayak launch — no trailer parking; paddleboards prohibited; seasonal kayak rentals via Rent.Fun.",
+    overview: [
+      "Will County Forest Preserve allows boating at Lake Chaminwood, but only craft that can be transported in or on top of a vehicle and carried or rolled by hand cart — there is no boat trailer parking. An accessible and adaptive canoe/kayak launch is published for paddlers of all abilities.",
+      "District rules prohibit paddleboards and float tubes. Kayak rentals April 1–Oct. 31 through a Rent.Fun station are listed on the canoeing/kayaking page — confirm current rates and app instructions there. No launch pass is required for private canoes/kayaks at designated sites.",
+    ],
+    accessKinds: ["carry-in", "accessible-landing"],
+    allowedCraft: ["canoe", "kayak", "fishing-boat-electric", "electric-trolling"],
+    restrictions: [
+      "Carry-in / hand-cart only — no trailer parking",
+      "Paddleboards and float tubes prohibited",
+      "Electric trolling only under district boating rules",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Kayak rentals via Rent.Fun April 1–Oct. 31 — confirm current pricing and hours on the official canoeing/kayaking page.",
+    seasonalAccessNote:
+      "Boat launches close Oct. 31; canoe/kayak launching rules for ice and year-round access are on the canoeing/kayaking page.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserve District of Will County — Boating",
+        url: WILL_BOATING,
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "monee-reservoir-will",
+    name: "Monee Reservoir",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Monee Reservoir, Monee Township",
+    summary:
+      "Will County Forest Preserve carry-in fishing lake with canoe/kayak/rowboat/pedal-boat rentals — no trailer launch; paddleboards prohibited; age rules for personal canoes/kayaks.",
+    overview: [
+      "Will County Forest Preserve allows private canoes, kayaks, and small fishing boats at Monee Reservoir only when they can be carried or rolled by hand cart — there is no boat trailer parking or boat launch. Pedal boats and rowboats (and canoe/kayak rentals) are offered seasonally at the visitor center under published deposit and age rules.",
+      "Individuals must be 12 or older to launch a personal canoe or kayak; those under 18 must be accompanied by an adult on the water. Paddleboards and float tubes are prohibited. Confirm rental seasons and activity fees on the official boating and canoeing pages.",
+    ],
+    accessKinds: ["carry-in", "rental-only"],
+    allowedCraft: [
+      "canoe",
+      "kayak",
+      "rowboat",
+      "paddle-boat",
+      "fishing-boat-electric",
+      "electric-trolling",
+    ],
+    restrictions: [
+      "No trailer parking or boat launch — hand-cart / car-top only for private craft",
+      "Paddleboards and float tubes prohibited",
+      "Age rules for personal canoe/kayak launching published on canoeing page",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Seasonal canoe, kayak, rowboat, and pedal-boat rentals at Monee Reservoir — deposits, late fees, and hourly rates are published on the district boating page.",
+    seasonalAccessNote:
+      "Rowboat rentals typically April 1–Oct. 31; canoe/kayak rentals May 1–Sept. 30; pedal boats typically May 1–Oct. 31 — confirm on the official page.",
+    source: {
+      name: "Forest Preserve District of Will County — Boating",
+      url: WILL_BOATING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+        url: WILL_PADDLING,
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "isle-a-la-cache-will",
+    name: "Isle a la Cache — Des Plaines River",
+    county: "Will",
+    agency: "will-fpdwc",
+    locationLabel: "Isle a la Cache, Romeoville",
+    summary:
+      "Will County Forest Preserve canoe/kayak river access to the Des Plaines River — no launch pass; paddleboards prohibited on district waters.",
+    overview: [
+      "Will County Forest Preserve lists a canoe/kayak launch at Isle a la Cache in Romeoville for Des Plaines River access. No launch pass is required at designated forest-preserve locations.",
+      "Unless otherwise posted, canoes and kayaks may launch year-round except when ice is present. District boat launches close October 31. Paddleboards and float tubes are prohibited under district rules.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Paddleboards and float tubes prohibited",
+      "No launching when ice is present",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launching year-round except ice; district boat launches close Oct. 31.",
+    source: {
+      name: "Forest Preserve District of Will County — Canoeing/Kayaking",
+      url: WILL_PADDLING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "jon-j-duerr-kane",
+    name: "Jon J. Duerr Forest Preserve",
+    county: "Kane",
+    agency: "kane-fpd",
+    locationLabel: "Jon J. Duerr Forest Preserve, South Elgin (Fox River)",
+    summary:
+      "Kane County Forest Preserve Fox River access — canoe/kayak launch open when the river is open; the district states the boat/trailer launch is currently closed.",
+    overview: [
+      "The Forest Preserve District of Kane County lists Jon J. Duerr Forest Preserve at 35W003 Route 31, South Elgin, with boat/canoe launch amenities on the Fox River.",
+      "The preserve page states: when the river is open, the canoe/kayak launch is open, however the boat launch (for boats and trailers) is currently closed. Mind all barricades and confirm status on the official page before trailering.",
+      "Kane County fishing materials state that within forest preserves only trolling motors (no gasoline motors) are permitted, while the Fox River is the only location where gasoline motors are allowed — confirm current rules before launching.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Trailer boat launch currently closed per Kane Forest Preserve page — canoe/kayak launch open when river is open",
+      "Confirm motor rules: preserve waters vs Fox River gasoline allowance on official materials",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Canoe/kayak launch open when the river is open per preserve page. Confirm trailer-launch project status before you hitch up.",
+    addressHint: "35W003 Route 31, South Elgin, IL",
+    source: {
+      name: "Forest Preserve District of Kane County — Jon J. Duerr",
+      url: "https://www.kaneforest.com/location/jon-j-duerr",
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserve District of Kane County — Fishing (launch notes)",
+        url: "https://kaneforest.com/upload/Fishing_2020.pdf",
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "fabyan-kane",
+    name: "Fabyan Forest Preserve",
+    county: "Kane",
+    agency: "kane-fpd",
+    locationLabel: "Fabyan Forest Preserve, Geneva (Fox River)",
+    summary:
+      "Kane County Forest Preserve on the Fox River with a listed boat/canoe launch amenity — confirm motor and craft rules on official Kane Forest Preserve materials.",
+    overview: [
+      "Kane County Forest Preserve lists Fabyan Forest Preserve at 1925 S. Batavia Ave., Geneva, with boat/canoe launch among published amenities on the Fox River.",
+      "District fishing materials note designated boat/canoe/kayak launch locations and state that within forest preserves only trolling motors are permitted, while gasoline motors are allowed on the Fox River. Confirm current launch status and rules before you go.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Confirm posted launch rules and motor restrictions on official Kane Forest Preserve pages",
+    ],
+    hasRentals: false,
+    addressHint: "1925 S. Batavia Ave., Geneva, IL",
+    source: {
+      name: "Forest Preserve District of Kane County — Fabyan",
+      url: "https://kaneforest.com/location/fabyan",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "fox-river-shores-kane",
+    name: "Fox River Shores Forest Preserve",
+    county: "Kane",
+    agency: "kane-fpd",
+    locationLabel: "Fox River Shores, Carpentersville",
+    summary:
+      "Kane County Forest Preserve Fox River shoreline with a listed boat/canoe launch amenity.",
+    overview: [
+      "Kane County Forest Preserve lists Fox River Shores Forest Preserve (Williams Rd., Carpentersville) with boat/canoe launch amenities along the Fox River.",
+      "Confirm craft and motor rules on official Kane Forest Preserve materials before launching — preserve inland waters and the Fox River can carry different motor rules in district publications.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Confirm posted launch and motor rules on official Kane Forest Preserve pages",
+    ],
+    hasRentals: false,
+    addressHint: "716 Williams Rd., Carpentersville, IL",
+    source: {
+      name: "Forest Preserve District of Kane County — Fox River Shores",
+      url: "https://kaneforest.com/location/fox-river-shores",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lake-atwood-hollows-mchenry",
+    name: "Lake Atwood — The Hollows",
+    county: "McHenry",
+    agency: "mchenry-ccd",
+    locationLabel: "The Hollows Conservation Area, Cary",
+    summary:
+      "McHenry County Conservation District lake for canoe, kayak, paddleboard, or electric-motorized rowboat — ADA kayak launch improvements published by the district.",
+    overview: [
+      "McHenry County Conservation District’s The Hollows page states you can launch a canoe, kayak, paddle board, or electric motorized rowboat on Lake Atwood (about 22 acres) at 3804 US Highway 14, Cary. Site hours are sunrise to sunset unless seasonally closed.",
+      "The district published accessibility improvements at Lake Atwood including an ADA kayak launch. Confirm current open status and any seasonal notices on the official Hollows page before you go.",
+    ],
+    accessKinds: ["carry-in", "accessible-landing"],
+    allowedCraft: ["canoe", "kayak", "rowboat", "electric-trolling"],
+    restrictions: [
+      "Electric motorized rowboats noted by MCCD — confirm gasoline policy on official materials before assuming gas is allowed",
+      "Site hours sunrise–sunset unless otherwise posted",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Open daily sunrise to sunset; some MCCD sites have seasonal closures — confirm on the Hollows page.",
+    addressHint: "3804 US Highway 14, Cary, IL",
+    source: {
+      name: "McHenry County Conservation District — The Hollows",
+      url: "https://www.mccdistrict.org/visit___explore/places_to_go/find_a_site/the_hollows.php",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "keystone-landing-mchenry",
+    name: "Keystone Road Canoe Landing",
+    county: "McHenry",
+    agency: "mchenry-ccd",
+    locationLabel: "Glacial Park / Nippersink Creek, Richmond",
+    summary:
+      "McHenry County Conservation District canoe/kayak landing on Nippersink Creek — tubing/flotation devices prohibited; launches close at high water.",
+    overview: [
+      "MCCD lists Keystone Road Canoe Landing at 6500 Keystone Road, Richmond, as a canoe/kayak put-in for Nippersink Creek trips toward Pioneer Landing, Lyle C. Thomas, or Nippersink Canoe Base. Site hours are sunrise to sunset.",
+      "The district states tubing/flotation devices are prohibited on Nippersink Creek. When USGS levels are above 750 cfs or 7 feet, all launches are CLOSED due to bridge clearance. Paddling is at your own risk; debris conditions are not continuously updated.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Tubing/flotation devices prohibited on Nippersink Creek",
+      "All launches closed when water is above 750 cfs / 7 feet per MCCD",
+      "Paddling at your own risk — debris not continuously reported",
+    ],
+    hasRentals: false,
+    seasonalAccessNote:
+      "Sunrise–sunset; confirm water levels before launching. High-water closures published by MCCD.",
+    addressHint: "6500 Keystone Road, Richmond, IL",
+    source: {
+      name: "McHenry County Conservation District — Keystone Landing",
+      url: "https://mccdistrict.org/visit___explore/places_to_go/find_a_site/keystone_road_canoe_landing.php",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "pioneer-landing-mchenry",
+    name: "Pioneer Road Canoe Landing",
+    county: "McHenry",
+    agency: "mchenry-ccd",
+    locationLabel: "Glacial Park / Nippersink Creek, Richmond",
+    summary:
+      "McHenry County Conservation District canoe/kayak landing on Nippersink Creek — same high-water and no-tubing rules as other Nippersink landings.",
+    overview: [
+      "MCCD lists Pioneer Road Canoe Landing at 7049 Pioneer Road, Richmond, on the Nippersink canoe trail. Hours are sunrise to sunset.",
+      "Tubing/flotation devices are prohibited. High-water closures apply when levels exceed 750 cfs / 7 feet. Confirm conditions before you put in.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Tubing/flotation devices prohibited on Nippersink Creek",
+      "All launches closed above 750 cfs / 7 feet per MCCD",
+    ],
+    hasRentals: false,
+    addressHint: "7049 Pioneer Road, Richmond, IL",
+    source: {
+      name: "McHenry County Conservation District — Pioneer Landing",
+      url: "https://mccdistrict.org/visit___explore/places_to_go/find_a_site/pioneer_road_canoe_landing.php",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "nippersink-canoe-base-mchenry",
+    name: "Nippersink Canoe Base",
+    county: "McHenry",
+    agency: "mchenry-ccd",
+    locationLabel: "Nippersink Creek, Spring Grove",
+    summary:
+      "McHenry County Conservation District take-out / landing on Nippersink Creek with shelter and short trails — tubing prohibited; high-water launch closures apply.",
+    overview: [
+      "MCCD’s Nippersink Canoe Base (400 E. US Highway 12, Spring Grove) sits on the southern banks of Nippersink Creek as a landing/take-out on the published canoe trail, with a small shelter and short nature trail.",
+      "District Nippersink rules prohibit tubing/flotation devices and close all launches above 750 cfs / 7 feet. Confirm water levels and site status before you go.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak"],
+    restrictions: [
+      "Tubing/flotation devices prohibited on Nippersink Creek",
+      "All launches closed above 750 cfs / 7 feet per MCCD",
+    ],
+    hasRentals: false,
+    addressHint: "400 E. US Highway 12, Spring Grove, IL",
+    source: {
+      name: "McHenry County Conservation District — Nippersink Canoe Base",
+      url: "https://mccdistrict.org/visit___explore/places_to_go/find_a_site/nippersink_canoe_base.php",
       lastVerified: VERIFIED,
     },
     isPublished: true,
