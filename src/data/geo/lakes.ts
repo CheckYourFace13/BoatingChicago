@@ -97,6 +97,11 @@ export const lakes: Lake[] = [
         url: "https://vi.fontana.wi.gov/visit-fontana/launch/",
         lastVerified: VERIFIED,
       },
+      {
+        name: "Village of Williams Bay — Boat Launch & Beach",
+        url: "https://www.williamsbay.org/1359/Boat-Launch-Beach",
+        lastVerified: "2026-11-14",
+      },
     ],
     destinationSlugs: ["lake-geneva"],
     isPublished: true,

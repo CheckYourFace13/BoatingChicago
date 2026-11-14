@@ -9,11 +9,15 @@ const FPDCC_BOATING =
 const LCFPD_PADDLING =
   "https://www.lcfpd.org/things-to-do/recreation/boat-launches/";
 
+const DUPAGE_BOATING =
+  "https://www.dupageforest.org/things-to-do/recreational-activities/boating";
+
 /**
  * Forest-preserve waters — facts only from the cited official agency page.
  * Cook FPDCC: gasoline motors prohibited on lakes; SUPs listed as prohibited
  * on FPDCC waterbodies. Lake County FPD: inland lakes allow cartop /
- * non-motorized craft + electric trolling; rules differ by site. Confirm.
+ * non-motorized craft + electric trolling. DuPage: nongasoline craft with
+ * permits; Silver Lake has the trailered launch. Rules differ by site — confirm.
  */
 export const forestPreserveAccess: PreserveWaterAccess[] = [
   {
@@ -450,6 +454,160 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
         lastVerified: VERIFIED,
       },
     ],
+    isPublished: true,
+  },
+  {
+    slug: "silver-lake-blackwell",
+    name: "Silver Lake — Blackwell",
+    county: "DuPage",
+    agency: "dupage-fpd",
+    locationLabel: "Blackwell Forest Preserve, Warrenville",
+    summary:
+      "DuPage Forest Preserve District’s Silver Lake at Blackwell — trailered boat launch (March 1–Nov. 30) for permitted nongasoline-powered craft, plus seasonal canoe/kayak/rowboat/paddleboat rentals.",
+    overview: [
+      "The Forest Preserve District of DuPage County lists Silver Lake at Blackwell as the preserve lake with a boat launch (open March 1–November 30). Bring-your-own canoe, kayak, stand-up paddleboard, or other qualifying nongasoline-powered watercraft requires a daily or annual private-watercraft permit; electric motors are allowed, gas motors are not.",
+      "Seasonal rentals of canoes, kayaks, paddleboats, and rowboats are offered at Blackwell on published weekend/weekday schedules — confirm current hours and rates on the official boating page. Watercraft over 20 feet, float tubes, and passive floating inflatables are not allowed per district rules.",
+      "You must be off the water by sunset. Confirm permit purchase options and full regulations on the DuPage Forest Preserve boating page before you go.",
+    ],
+    accessKinds: ["trailered-launch", "accessible-landing"],
+    allowedCraft: [
+      "canoe",
+      "kayak",
+      "rowboat",
+      "paddle-boat",
+      "electric-trolling",
+    ],
+    restrictions: [
+      "Nongasoline-powered craft only; electric motors allowed, gas-powered not allowed",
+      "Private watercraft require a DuPage Forest Preserve daily or annual permit",
+      "Watercraft over 20 feet, float tubes, and passive floating inflatables not allowed",
+      "Off the water by sunset",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Seasonal canoe, kayak, paddleboat, and rowboat rentals at Blackwell — hours and rates are published on the official DuPage Forest Preserve boating page.",
+    seasonalAccessNote:
+      "Boat launch open March 1–Nov. 30 per DuPage Forest Preserve. Rental schedules are seasonal — confirm on the official boating page.",
+    source: {
+      name: "Forest Preserve District of DuPage County — Boating",
+      url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
+    relatedSources: [
+      {
+        name: "Forest Preserve District of DuPage County — Blackwell",
+        url: "https://www.dupageforest.org/places-to-go/forest-preserves/blackwell",
+        lastVerified: VERIFIED,
+      },
+    ],
+    isPublished: true,
+  },
+  {
+    slug: "round-meadow-lake-hidden-lake",
+    name: "Round Meadow Lake — Hidden Lake",
+    county: "DuPage",
+    agency: "dupage-fpd",
+    locationLabel: "Hidden Lake Forest Preserve",
+    summary:
+      "DuPage Forest Preserve carry-in lake for permitted nongasoline-powered private watercraft — no trailered launch; electric motors only.",
+    overview: [
+      "DuPage Forest Preserve lists Round Meadow Lake at Hidden Lake among three carry-in-only lakes for permitted private watercraft. You must manually move your craft from the parking lot to the water; if using a trailer, unhitch it and park it in its own space.",
+      "Daily or annual permits are required. Electric motors are allowed; gas motors are not. Confirm full rules on the official boating page.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Carry-in only; private watercraft permit required",
+      "Electric motors allowed; gas-powered not allowed",
+      "Off the water by sunset",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Forest Preserve District of DuPage County — Boating",
+      url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "mallard-lake-dupage",
+    name: "Mallard Lake",
+    county: "DuPage",
+    agency: "dupage-fpd",
+    locationLabel: "Mallard Lake Forest Preserve",
+    summary:
+      "DuPage Forest Preserve carry-in lake for permitted nongasoline-powered private watercraft — electric motors only.",
+    overview: [
+      "DuPage Forest Preserve lists Mallard Lake as a carry-in-only site for permitted private watercraft. Manually move craft from parking to water; unhitch trailers into their own parking space.",
+      "Permits required; electric motors allowed; gas motors not allowed. Confirm on the official boating page.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Carry-in only; private watercraft permit required",
+      "Electric motors allowed; gas-powered not allowed",
+      "Off the water by sunset",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Forest Preserve District of DuPage County — Boating",
+      url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "deep-quarry-lake-west-branch",
+    name: "Deep Quarry Lake — West Branch",
+    county: "DuPage",
+    agency: "dupage-fpd",
+    locationLabel: "West Branch Forest Preserve",
+    summary:
+      "DuPage Forest Preserve carry-in lake for permitted nongasoline-powered private watercraft, including stand-up paddleboards under district rules — electric motors only.",
+    overview: [
+      "DuPage Forest Preserve lists Deep Quarry Lake at West Branch as a carry-in-only lake for permitted private watercraft. The district’s private-watercraft rules also address stand-up paddleboarding on Silver Lake and Deep Quarry Lake — confirm current SUP rules on the official permit materials.",
+      "Permits required; electric motors allowed; gas motors not allowed. Off the water by sunset.",
+    ],
+    accessKinds: ["carry-in"],
+    allowedCraft: ["canoe", "kayak", "electric-trolling"],
+    restrictions: [
+      "Carry-in only; private watercraft permit required",
+      "Electric motors allowed; gas-powered not allowed",
+      "Off the water by sunset; confirm SUP rules on official permit materials",
+    ],
+    hasRentals: false,
+    source: {
+      name: "Forest Preserve District of DuPage County — Boating",
+      url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "herrick-lake-rentals",
+    name: "Herrick Lake Rentals",
+    county: "DuPage",
+    agency: "dupage-fpd",
+    locationLabel: "Herrick Lake Forest Preserve",
+    summary:
+      "Seasonal canoe, kayak, paddleboat, and rowboat rentals at Herrick Lake — published weekend schedule on the DuPage Forest Preserve boating page.",
+    overview: [
+      "DuPage Forest Preserve lists Herrick Lake alongside Blackwell for seasonal canoe, kayak, paddleboat, and rowboat rentals. Weekend rental hours are published on the official boating page; weekday private outing options are also noted there.",
+      "Confirm current seasonal dates, hours, and rates on the DuPage Forest Preserve boating page before you visit. Bring-your-own private craft on designated lakes requires a separate permit program.",
+    ],
+    accessKinds: ["rental-only"],
+    allowedCraft: ["canoe", "kayak", "rowboat", "paddle-boat"],
+    restrictions: [
+      "Confirm rental craft types and age/supervision rules on the official boating page",
+    ],
+    hasRentals: true,
+    rentalNotes:
+      "Seasonal rentals at Herrick Lake — hours and rates are published on the official DuPage Forest Preserve boating page.",
+    source: {
+      name: "Forest Preserve District of DuPage County — Boating",
+      url: DUPAGE_BOATING,
+      lastVerified: VERIFIED,
+    },
     isPublished: true,
   },
 ];

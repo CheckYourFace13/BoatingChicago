@@ -16,14 +16,14 @@ import type { PreserveWaterAccess } from "@/types/geo";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Forest Preserve Boating Near Chicago | Cook & Lake County Waters",
+    title: "Forest Preserve Boating Near Chicago | Cook, Lake & DuPage Waters",
     description:
-      "Verified forest-preserve launches and rental waters near Chicago — Cook County FPDCC lakes and Lake County paddling sites — from official forest-preserve sources.",
+      "Verified forest-preserve launches and rental waters near Chicago — Cook, Lake, and DuPage County preserve lakes — from official forest-preserve sources.",
     path: "/forest-preserves",
   });
 }
 
-const COUNTY_ORDER = ["Cook", "Lake"];
+const COUNTY_ORDER = ["Cook", "Lake", "DuPage"];
 
 function groupByCounty(sites: PreserveWaterAccess[]) {
   const map = new Map<string, PreserveWaterAccess[]>();
@@ -87,9 +87,10 @@ export default function ForestPreservesPage() {
             about launches and rentals. Rules are not interchangeable: Cook
             County FPDCC prohibits gasoline motors on its lakes and lists
             stand-up paddleboards among prohibited flotation devices on FPDCC
-            waterbodies, while Lake County Forest Preserves allows cartop /
+            waterbodies; Lake County Forest Preserves allows cartop /
             non-motorized craft (including paddleboards) and electric trolling
-            motors on its inland lakes.
+            on its inland lakes; DuPage requires private-watercraft permits and
+            allows electric motors only on designated lakes.
           </p>
           <p>
             Fees, hours, and seasonal closures change — use the cited source
@@ -206,7 +207,7 @@ export default function ForestPreservesPage() {
             More counties coming
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">
-            DuPage, Will, Kane, and McHenry preserve waters will be added as each
+            Will, Kane, and McHenry preserve waters will be added as each
             district&apos;s official launch and rental pages are verified the
             same way — no thin placeholders.
           </p>

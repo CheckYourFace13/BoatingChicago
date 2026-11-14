@@ -525,4 +525,116 @@ export const launches: BoatLaunch[] = [
     },
     isPublished: true,
   },
+  {
+    slug: "lincoln-boat-launch-montrose-beach-north",
+    name: "Lincoln Boat Launch — Montrose Beach North",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch listing at Montrose Beach North on the north lakefront.",
+    overview: [
+      "CPD lists Lincoln Boat Launch — Montrose Beach North at 4400 N. Jean-Baptiste Pointe DuSable Lake Shore Drive in Lincoln Park, with phone (312) 742-7726. A separate Montrose Beach South listing and the Montrose Harbor launch are published as distinct facilities — confirm which access you need.",
+      "Confirm open status on the CPD facility page and check marine weather before launching onto Lake Michigan.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Lincoln Boat Launch Montrose Beach North",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-boat-launch-montrose-beach-north",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lincoln-boat-launch-montrose-beach-south",
+    name: "Lincoln Boat Launch — Montrose Beach South",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch listing at Montrose Beach South on the north lakefront.",
+    overview: [
+      "CPD lists Lincoln Boat Launch — Montrose Beach South at 4400 N. Jean-Baptiste Pointe DuSable Lake Shore Drive in Lincoln Park, with phone (312) 742-7726. Use the South facility page when that is the access you intend.",
+      "Confirm open status on the cited page before you hitch up.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Lincoln Boat Launch Montrose Beach South",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-boat-launch-montrose-beach-south",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lincoln-boat-launch-diversey-harbor-steps",
+    name: "Lincoln Boat Launch — Diversey Harbor Steps",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District Diversey Harbor Steps launch listing in Lincoln Park — separate from the Diversey Harbor boat-launch facility page.",
+    overview: [
+      "CPD lists Lincoln Boat Launch — Diversey Harbor Steps at 2601 N. Cannon Drive in Lincoln Park, with phone (312) 742-7762. Treat this as its own facility listing alongside the Diversey Harbor launch page.",
+      "Confirm current access on the CPD page before you go.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Lincoln Boat Launch Diversey Harbor Steps",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-boat-launch-diversey-harbor-steps",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "park-no-571-boat-launch",
+    name: "Park No. 571 Boat Launch",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District launch at Park No. 571 — CPD states it is for kayaks and canoes.",
+    overview: [
+      "CPD lists Park No. 571 Boat Launch at 2828 S. Eleanor Street. The facility description states it is for kayaks and canoes — do not expect a Lake Michigan-style motorized trailer ramp here.",
+      "Confirm current access on the CPD facility page before you go.",
+    ],
+    amenityNotes:
+      "CPD facility description states: for kayaks and canoes. Address published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Park No. 571 Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/park-no-571-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "williams-bay-public-boat-launch",
+    name: "Williams Bay Public Boat Launch",
+    destinationSlug: "lake-geneva",
+    lakeSlug: "geneva-lake",
+    summary:
+      "Village of Williams Bay public boat launch on Geneva Lake. The village publishes launch fee tables and states boats may launch 24 hours, with an honor box when unstaffed.",
+    overview: [
+      "Williams Bay publishes a Boat Launch & Beach page with harbor-master contact (262-581-7889) and links to the current year’s launch-fee schedule. Location on the fee sheet: 89 East Geneva Street (east of the recreation department office).",
+      "The village’s 2026 fee schedule states boats can launch 24 hours and to use the honor box when not staffed; parking is described as approximately 45 spaces at the launch with overflow at Lions Field House. Confirm current dollars and staff hours on the official fee PDF and launch page.",
+      "Pair with the Lake Geneva destination page, Fontana public launch, Geneva Lake overview, and Lake Geneva weather.",
+    ],
+    amenityNotes:
+      "Official village pages publish harbor-master contact, fee schedules, and parking guidance — confirm on those sources before you go.",
+    seasonalAccessNote:
+      "Village materials describe seasonal staff hours and 24-hour launch access with an honor box when unstaffed. Confirm current season details on the official launch and fee pages.",
+    feesNote:
+      "Resident and non-resident launch fee tables are published by the Village of Williams Bay. Use the official 2026 Boat Launch Fees document and launch page for current amounts — we do not reprint dollar figures that go stale.",
+    source: {
+      name: "Village of Williams Bay — Boat Launch & Beach",
+      url: "https://www.williamsbay.org/1359/Boat-Launch-Beach",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
 ];
