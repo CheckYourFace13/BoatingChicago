@@ -64,6 +64,13 @@ export default function LakesPage() {
             <Link href="/destinations" className="font-semibold text-coral hover:underline">
               destinations
             </Link>
+            . Suburban Cook County preserve lakes and river landings are on the{" "}
+            <Link
+              href="/forest-preserves"
+              className="font-semibold text-coral hover:underline"
+            >
+              forest-preserves hub
+            </Link>
             .
           </p>
         </section>

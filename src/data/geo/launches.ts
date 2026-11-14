@@ -1,6 +1,12 @@
 import type { BoatLaunch } from "@/types/geo";
 
 const VERIFIED = "2026-10-07";
+const CPD_VERIFIED = "2026-11-14";
+
+const CPD_FEES =
+  "Launch fees, permits, and any residency distinctions are published by the Chicago Park District. Use the official facility page for current amounts — we do not reprint dollar figures that go stale.";
+const CPD_SEASONAL =
+  "Chicago Park District launch access follows seasonal facility schedules. Confirm current open status on the cited Park District facility page before you hitch up.";
 
 /**
  * Verified public launches only. Fees and detailed amenity lists belong on the cited official page.
@@ -121,9 +127,9 @@ export const launches: BoatLaunch[] = [
     amenityNotes:
       "Paid launch includes parking guidance for Lot No. 4 per village page. Fee schedule is on the official launch page — do not rely on third-party reprints.",
     seasonalAccessNote:
-      "Confirm seasonal ramp hours and ice/weather closures on the Waukegan Harbor official launch page before you go.",
+      "Confirm seasonal ramp hours, ice/weather closures, and honor-box procedures on the Village of Fontana launch page before you go.",
     feesNote:
-      "Daily and season pass pricing is published on the marina’s official launch-ramps page. Resident vs nonresident distinctions, if any, are defined by the operator — check that page.",
+      "Resident and non-resident fee tables are published on the Village of Fontana public launch page. Use that page for current amounts — we do not reprint dollar figures that go stale.",
     source: {
       name: "Village of Fontana — Public Boat Launch",
       url: "https://vi.fontana.wi.gov/visit-fontana/launch/",
@@ -156,6 +162,234 @@ export const launches: BoatLaunch[] = [
       name: "Milwaukee County Parks — McKinley Marina",
       url: "https://county.milwaukee.gov/EN/Parks/Explore/Lakefront/McKinley-Marina",
       lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "burnham-boat-launch-31st-street-harbor",
+    name: "Burnham Boat Launch — 31st Street Harbor",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at 31st Street Harbor in Burnham Park on the south lakefront.",
+    overview: [
+      "The Park District lists this launch at 3155 S. Jean-Baptiste Pointe DuSable Lake Shore Drive inside Burnham Park, with a published contact phone on the facility page. It is a separate CPD listing from the Burnham Harbor launch farther north at Museum Campus.",
+      "31st Street Harbor is part of the Chicago Harbors south-lakefront system — confirm basin rules and any seasonal notices on Chicago Harbors as well as the CPD facility page before you hitch up.",
+      "Pair with the Chicago destination overview, Burnham Harbor marina listing when relevant, and Chicago lakefront weather.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Burnham Boat Launch 31st Street Harbor",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/burnham-boat-launch-31st-street-harbor",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "lincoln-boat-launch-diversey-harbor",
+    name: "Lincoln Boat Launch — Diversey Harbor",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Diversey Harbor in Lincoln Park on the north lakefront.",
+    overview: [
+      "CPD lists this launch at 2601 N. Cannon Drive inside Lincoln Park, with a published contact phone. The directory also lists separate Diversey Harbor Steps access — treat each facility page as its own source of truth.",
+      "Diversey Harbor sits in a busy Lincoln Park corridor; build extra time for weekend beach and path traffic, and verify marine conditions before running onto Lake Michigan.",
+      "Continue with the Chicago destination page, nearby north-harbor marina listings, and Chicago boating weather.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Lincoln Boat Launch Diversey Harbor",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-boat-launch-diversey-harbor",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "calumet-boat-launch-north",
+    name: "Calumet Boat Launch — North",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Calumet Park on the far south lakefront (North listing).",
+    overview: [
+      "CPD publishes Calumet Boat Launch — North at 9801 S. Ave G in Calumet Park, with phone (312) 747-6039 on the facility page. A separate South listing shares the same park corridor — confirm which ramp you need on the official directory.",
+      "Far-south lakefront access puts you onto Lake Michigan near the Calumet industrial waterfront. Verify NWS marine products and any harbor or channel notices before you go.",
+      "See also: Chicago destination guide and Chicago lakefront weather.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Calumet Boat Launch North",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/calumet-boat-launch-north",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "calumet-boat-launch-south",
+    name: "Calumet Boat Launch — South",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Calumet Park on the far south lakefront (South listing).",
+    overview: [
+      "CPD publishes Calumet Boat Launch — South at 9801 S. Avenue G in Calumet Park, with phone (312) 747-6039. Use the South facility page when that is the ramp you intend — do not assume North and South are interchangeable without checking the directory.",
+      "Confirm current open status and any temporary notices on the cited CPD page, then check marine weather for the Illinois nearshore.",
+      "Related: Calumet North launch page, Chicago destination overview, weather hub.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Calumet Boat Launch South",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/calumet-boat-launch-south",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "jackson-boat-launch-63rd-street-beach",
+    name: "Jackson Boat Launch — 63rd Street Beach",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at 63rd Street Beach in Jackson Park on the south lakefront.",
+    overview: [
+      "CPD lists this launch at 6300 S. Jean-Baptiste Pointe DuSable Lake Shore Drive in Jackson Park, with phone (773) 256-0903. The district directory also lists a separate Jackson Inner Harbor launch — confirm which facility matches your trip.",
+      "63rd Street Beach is a busy south-lakefront park corridor in summer. Verify open status on the CPD page and marine conditions before launching onto Lake Michigan.",
+      "Pair with the Chicago destination page and lakefront weather.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Jackson Boat Launch 63rd Street Beach",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/jackson-boat-launch-63rd-street-beach",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "leone-beach-boat-launch",
+    name: "Leone Beach Boat Launch",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Leone Beach Park on the far north lakefront near Touhy Avenue.",
+    overview: [
+      "CPD lists Leone Beach Boat Launch at 1222 W. Touhy Ave. in Leone Beach Park, with phone (773) 262-8605. It is one of the northernmost Park District lakefront launch listings in Chicago.",
+      "Confirm current facility status on the CPD page before you tow, and check NWS marine products for the Illinois nearshore — far-north lakefront conditions can differ from downtown basins the same morning.",
+      "Continue with the Chicago destination overview and weather hub.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Leone Beach Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/leone-beach-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "rainbow-beach-boat-launch",
+    name: "Rainbow Beach Boat Launch",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at Rainbow Beach Park on the south lakefront.",
+    overview: [
+      "CPD lists Rainbow Beach Boat Launch at 3111 East 77th St. in Rainbow Beach Park, with phone (312) 745-1479. Treat the facility page as the source of truth for access and contact details.",
+      "South-lakefront launches put you onto open nearshore water quickly — verify marine forecasts and any temporary park notices before you hitch up.",
+      "See also: Chicago destination guide and Chicago boating weather.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Rainbow Beach Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "northerly-island-boat-launch-12th-street-beach",
+    name: "Northerly Island Boat Launch — 12th Street Beach",
+    destinationSlug: "chicago",
+    lakeSlug: "lake-michigan-chicago",
+    summary:
+      "Chicago Park District boat launch at 12th Street Beach on Northerly Island near Museum Campus.",
+    overview: [
+      "CPD lists this launch at 1521 S. Linn White Dr. in Northerly Island Park, with phone (312) 745-2910. It sits in the Museum Campus / Northerly Island corridor south of Adler Planetarium.",
+      "Expect park and event traffic on peak weekends. Confirm open status on the CPD facility page and check marine weather before launching onto Lake Michigan.",
+      "Related: Burnham Harbor launch and marina pages, Chicago destination overview, weather hub.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address and phone published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Northerly Island Boat Launch 12th Street Beach",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/northerly-island-boat-launch-12th-street-beach",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "clark-richard-boat-launch",
+    name: "Clark (Richard) Boat Launch",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District boat launch at Clark Park on the North Branch of the Chicago River (not a Lake Michigan lakefront ramp).",
+    overview: [
+      "CPD lists Clark (Richard) Boat Launch at 3400 N. Rockwell St. inside Clark Park. The district’s boat-launches directory covers both Lake Michigan and Chicago River sites — this one is a river access listing.",
+      "River rules, traffic, and hazards differ from open Lake Michigan. Confirm current access on the CPD facility page and use river-appropriate planning before you go.",
+      "For suburban paddling lakes with electric-only rules, see the forest-preserve hub; for lakefront ramps, use the Lake Michigan filter on the launches index.",
+    ],
+    amenityNotes:
+      "Listed on the Chicago Park District boat launches directory; address published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Clark (Richard) Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/clark-richard-boat-launch",
+      lastVerified: CPD_VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "ping-tom-boat-launch",
+    name: "Ping Tom Boat Launch",
+    destinationSlug: "chicago",
+    summary:
+      "Chicago Park District launch at Ping Tom Memorial Park on the South Branch — CPD states it is for kayaks and non-motorized boats.",
+    overview: [
+      "CPD lists Ping Tom Boat Launch at 200–322 West 18th Street in Tom (Ping) Memorial Park. The facility page description states it is for kayaks and non-motorized boats — do not trailer a motorized craft here expecting a Lake Michigan-style ramp.",
+      "Confirm current access on the CPD page before you go. For trailered Lake Michigan launches, use the lakefront listings on this site or the official CPD boat-launches directory.",
+      "Paddlers planning suburban preserve waters can also start at the forest-preserve hub.",
+    ],
+    amenityNotes:
+      "CPD facility description states: for kayaks and non-motorized boats. Address published on the facility page.",
+    seasonalAccessNote: CPD_SEASONAL,
+    feesNote: CPD_FEES,
+    source: {
+      name: "Chicago Park District — Ping Tom Boat Launch",
+      url: "https://www.chicagoparkdistrict.com/parks-facilities/ping-tom-boat-launch",
+      lastVerified: CPD_VERIFIED,
     },
     isPublished: true,
   },

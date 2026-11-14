@@ -65,7 +65,17 @@ export default async function LakePage({ params }: PageProps) {
         intro={lake.overview[0] ?? ""}
         links={[
           { label: "All lakes & waterways →", href: "/lakes" },
-          { label: "Destinations", href: "/destinations" },
+          {
+            label: "Launches on this water",
+            href: `/boat-launches?water=${
+              lake.slug === "lake-michigan-chicago"
+                ? "lake-michigan"
+                : lake.slug === "chain-o-lakes" || lake.slug === "geneva-lake"
+                  ? "inland"
+                  : "all"
+            }`,
+          },
+          { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Boating weather", href: "/weather" },
         ]}
       />
@@ -108,9 +118,17 @@ export default async function LakePage({ params }: PageProps) {
 
         {launches.length > 0 ? (
           <section>
-            <h2 className="text-2xl font-extrabold text-lake-blue mb-4">
-              Public launches on this water
-            </h2>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+              <h2 className="text-2xl font-extrabold text-lake-blue">
+                Public launches on this water
+              </h2>
+              <Link
+                href="/boat-launches"
+                className="text-sm font-bold text-coral hover:underline"
+              >
+                All launches →
+              </Link>
+            </div>
             <ul className="space-y-4">
               {launches.map((launch) => (
                 <li
