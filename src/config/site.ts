@@ -2,12 +2,12 @@ export const siteConfig = {
   name: "Boating Chicago",
   domain: "boatingchicago.com",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://boatingchicago.com",
-  tagline: "Your guide to boating Chicago & southern Lake Michigan",
+  tagline: "Your guide to boating Chicago & nearby waters",
   description:
-    "Boating information for Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within roughly 100 miles of Chicago — weather, harbors, launches, news, and guides.",
+    "Free recreational boating and paddling information for Chicago, the suburbs, southern Lake Michigan, and waters within roughly 250 driving miles — weather, harbors, launches, forest-preserve lakes, news, and guides.",
   /** Editorial coverage, not a service area or NAP. */
   coverage:
-    "Chicago, southern Lake Michigan, nearby Wisconsin and Indiana boating destinations, and selected lakes within roughly 100 miles of Chicago.",
+    "Chicago, suburban forest-preserve lakes, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected inland waters within roughly 250 driving miles of Chicago.",
   /** Public contact path only — never put recipient emails in client-visible config. */
   contactPath: "/contact",
   social: {

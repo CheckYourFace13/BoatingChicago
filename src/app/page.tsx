@@ -20,7 +20,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Chicago Boating Weather, Marinas, Launches & Guides | Boating Chicago",
   description:
-    "Your guide to boating Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within about 100 miles — weather, harbors, launches, news, and guides.",
+    "Your guide to boating and paddling Chicago, the suburbs, southern Lake Michigan, and waters within about 250 driving miles — weather, harbors, launches, forest-preserve lakes, news, and guides.",
   path: "/",
 });
 }

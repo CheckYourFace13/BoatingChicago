@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 export function GET() {
   const body = `# ${siteConfig.name}
 
-> Information-first publication for boating around Chicago, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected lakes within about 100 miles of Chicago.
+> Information-first publication for recreational boating and paddling around Chicago, suburban forest-preserve lakes, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected waters within about 250 driving miles of Chicago.
 
 BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-matching service. Editorial content, weather context, marina/launch directories, guides, news, and clearly labeled affiliate links are published for readers planning trips.
 

@@ -78,6 +78,51 @@ export default function ToolsPage() {
 
         <PartnerShoppingAds pageKey="tools" />
 
+        <section className="max-w-3xl space-y-3">
+          <h2 className="text-xl font-extrabold text-lake-blue">
+            Related planning guides
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+            Pair these worksheets with storage and winterization guides when
+            you are hauling out, and with launch pages when you are trailering
+            in for a day trip.
+          </p>
+          <ul className="grid gap-2 sm:grid-cols-2 text-sm">
+            <li>
+              <Link
+                href="/chicago-boat-storage-guide"
+                className="font-semibold text-coral hover:underline"
+              >
+                Chicago boat storage guide →
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/chicago-boat-shrink-wrap-guide"
+                className="font-semibold text-coral hover:underline"
+              >
+                Shrink-wrap guide →
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/chicago-boat-winterization"
+                className="font-semibold text-coral hover:underline"
+              >
+                Winterization hub →
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/storage"
+                className="font-semibold text-coral hover:underline"
+              >
+                Storage facilities directory →
+              </Link>
+            </li>
+          </ul>
+        </section>
+
         <ResourceCrossLinks
           links={[
             { href: "/weather", label: "Weather" },

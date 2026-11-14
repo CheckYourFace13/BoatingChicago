@@ -101,11 +101,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/llms.txt`,
-      changeFrequency: "monthly",
-      priority: 0.3,
-    },
+    // /llms.txt stays publicly reachable for AI crawlers but is omitted from
+    // the sitemap — it is a machine-readable index, not a content landing page.
     { url: `${baseUrl}/about`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/contact`, changeFrequency: "monthly", priority: 0.6 },
     {

@@ -46,7 +46,7 @@ export default function DestinationsPage() {
       <GeoHero
         eyebrow="Lake Michigan & inland lakes"
         title="Boating Destinations Near Chicago"
-        intro="Harbor towns and inland lakes across Chicago, southern Lake Michigan, nearby Wisconsin and Indiana, and selected lakes within roughly 100 miles of Chicago. Each page collects official sources, verified marinas or launches, and a marine weather link."
+        intro="Harbor towns, inland lakes, and paddling waters across Chicago, the suburbs, southern Lake Michigan, nearby Wisconsin and Indiana, and selected destinations within roughly 250 driving miles. Each page collects official sources, verified marinas or launches, and a weather link."
         links={[
           { label: "Marinas →", href: "/marinas" },
           { label: "Boat launches", href: "/boat-launches" },
