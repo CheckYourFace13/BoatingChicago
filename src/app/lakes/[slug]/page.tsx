@@ -185,30 +185,38 @@ export default async function LakePage({ params }: PageProps) {
               </Link>
             </div>
             <ul className="space-y-4">
-              {relatedPreserves.map((site) => (
-                <li
-                  key={site.slug}
-                  className="rounded-2xl border border-sky-blue/20 bg-white p-5"
-                >
-                  <h3 className="text-lg font-extrabold text-lake-blue mb-1">
-                    <Link
-                      href={`/forest-preserves/${site.slug}`}
-                      className="hover:underline"
-                    >
-                      {site.name}
-                    </Link>
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-2">
-                    {site.county} County · {site.locationLabel}
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-2">
-                    {site.summary}
-                  </p>
-                  <p className="text-sm">
-                    <SourceLink source={site.source} />
-                  </p>
-                </li>
-              ))}
+              {relatedPreserves.map((site) => {
+                const anchor =
+                  site.redirectTo?.startsWith(`/lakes/${lake.slug}#`)
+                    ? site.redirectTo.split("#")[1]
+                    : undefined;
+                const href =
+                  site.standalonePage === false && site.redirectTo
+                    ? site.redirectTo
+                    : `/forest-preserves/${site.slug}`;
+                return (
+                  <li
+                    key={site.slug}
+                    id={anchor}
+                    className="rounded-2xl border border-sky-blue/20 bg-white p-5 scroll-mt-24"
+                  >
+                    <h3 className="text-lg font-extrabold text-lake-blue mb-1">
+                      <Link href={href} className="hover:underline">
+                        {site.name}
+                      </Link>
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-2">
+                      {site.county} County · {site.locationLabel}
+                    </p>
+                    <p className="text-gray-700 leading-relaxed mb-2">
+                      {site.summary}
+                    </p>
+                    <p className="text-sm">
+                      <SourceLink source={site.source} />
+                    </p>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         ) : null}

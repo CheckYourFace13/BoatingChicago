@@ -147,6 +147,52 @@ const nextConfig: NextConfig = {
         destination: "/advertise",
         permanent: true,
       },
+      // Thin forest-preserve landings consolidated into waterway / Nippersink hubs
+      {
+        source: "/forest-preserves/allison-woods-des-plaines",
+        destination: "/lakes/des-plaines-river#allison-woods",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/irving-park-road-canoe-landing",
+        destination: "/lakes/des-plaines-river#irving-park-road",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/schuths-grove-des-plaines",
+        destination: "/lakes/des-plaines-river#schuths-grove",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/mckinley-woods-frederick-will",
+        destination: "/lakes/des-plaines-river#fredericks-grove",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/riverview-farmstead-dupage-will",
+        destination: "/lakes/dupage-river#riverview-farmstead",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/mckinley-woods-kerry-sheridan-will",
+        destination: "/lakes/dupage-river#kerry-sheridan",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/pioneer-landing-mchenry",
+        destination: "/forest-preserves/keystone-landing-mchenry#pioneer-landing",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/nippersink-canoe-base-mchenry",
+        destination: "/forest-preserves/keystone-landing-mchenry#nippersink-canoe-base",
+        permanent: true,
+      },
+      {
+        source: "/forest-preserves/fox-river-shores-kane",
+        destination: "/lakes/fox-river#fox-river-shores",
+        permanent: true,
+      },
     ];
   },
   async headers() {

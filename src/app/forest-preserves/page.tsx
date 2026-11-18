@@ -26,6 +26,13 @@ export async function generateMetadata() {
 
 const COUNTY_ORDER = ["Cook", "Lake", "DuPage", "Will", "Kane", "McHenry"];
 
+function preserveHref(site: PreserveWaterAccess): string {
+  if (site.standalonePage === false && site.redirectTo) {
+    return site.redirectTo;
+  }
+  return `/forest-preserves/${site.slug}`;
+}
+
 function groupByCounty(sites: PreserveWaterAccess[]) {
   const map = new Map<string, PreserveWaterAccess[]>();
   for (const site of sites) {
@@ -128,7 +135,7 @@ export default function ForestPreservesPage() {
                     {rentalSites.map((site) => (
                       <li key={site.slug}>
                         <Link
-                          href={`/forest-preserves/${site.slug}`}
+                          href={preserveHref(site)}
                           className="block h-full rounded-2xl border border-sky-blue/25 bg-white p-6 hover:border-sky-blue/50 hover:shadow-md transition-all"
                         >
                           <p className="text-xs font-bold uppercase tracking-widest text-coral mb-2">
@@ -166,7 +173,7 @@ export default function ForestPreservesPage() {
                           <div>
                             <h4 className="text-xl font-extrabold text-lake-blue">
                               <Link
-                                href={`/forest-preserves/${site.slug}`}
+                                href={preserveHref(site)}
                                 className="hover:underline"
                               >
                                 {site.name}
@@ -177,7 +184,7 @@ export default function ForestPreservesPage() {
                             </p>
                           </div>
                           <Link
-                            href={`/forest-preserves/${site.slug}`}
+                            href={preserveHref(site)}
                             className="text-sm font-bold text-coral hover:underline"
                           >
                             Open →

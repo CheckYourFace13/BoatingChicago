@@ -139,6 +139,7 @@ export const lakes: Lake[] = [
       },
     ],
     destinationSlugs: ["chain-o-lakes"],
+    relatedPreserveSlugs: ["fox-river-shores-kane", "jon-j-duerr-kane", "fabyan-kane"],
     isPublished: true,
   },
   {
@@ -148,8 +149,9 @@ export const lakes: Lake[] = [
     state: "IL",
     overview: [
       "The Des Plaines River is a primary paddling corridor through Cook and Will counties west and southwest of Chicago. Public canoe and kayak access is published by the Forest Preserves of Cook County (carry-in landings plus the Plank Road Meadow trailered launch at Riverside) and by the Forest Preserve District of Will County (Isle a la Cache and McKinley Woods — Frederick’s Grove).",
-      "Cook County’s boating page lists Des Plaines River landings from Allison Woods south through Stony Ford, including Maywood Grove (home of the Greater Maywood Paddling Program) and accessible landings at Maywood Grove and Schuth’s Grove. District-wide flotation-device rules — including the stand-up paddleboard prohibition on FPDCC waterbodies — still apply. Will County lists canoe/kayak river access without a launch pass at designated preserves; paddleboards and float tubes are prohibited on district waters.",
-      "River level, debris, and bridges change trip difficulty. Confirm current conditions and each landing’s launch type on the cited agency pages before you put in. Pair this waterway page with the forest-preserves hub and the inland paddling guide for county-by-county craft rules.",
+      "Cook County’s boating page lists Des Plaines River landings from Allison Woods (Milwaukee Ave & Winkleman Rd) south through Stony Ford, including Irving Park Road Canoe Landing in Schiller Park, Northwestern Woods in Des Plaines, Maywood Grove (home of the Greater Maywood Paddling Program), Schuth’s Grove near Riverside, Columbia Woods, Dam No. 2 Woods, and the Plank Road Meadow trailered launch at Ogden Ave east of 1st Ave. FPDCC lists Maywood Grove and Schuth’s Grove among accessible canoe landings with accessible parking and a paved path to a stable landing surface.",
+      "District-wide flotation-device rules — including the stand-up paddleboard prohibition on FPDCC waterbodies — still apply on Cook County preserve waters. Will County lists canoe/kayak river access without a launch pass at Isle a la Cache (Romeoville) and McKinley Woods — Frederick’s Grove (Channahon, Des Plaines River and I&M Canal); paddleboards and float tubes are prohibited on Will County forest-preserve waters, and district boat launches close October 31.",
+      "River level, debris, and bridges change trip difficulty. Confirm current conditions and each landing’s launch type on the cited agency pages before you put in. Standalone planning pages remain for Plank Road Meadow, Maywood Grove, and Isle a la Cache; other Cook/Will landings on this corridor are summarized here and on the forest-preserves hub so you can compare put-ins without thin duplicate pages.",
     ],
     officialLinks: [
       {
@@ -188,7 +190,8 @@ export const lakes: Lake[] = [
     overview: [
       "The DuPage River offers suburban canoe and kayak trips in Will County’s forest-preserve system, with published put-ins at Hammel Woods (DuPage River Access and Route 59 Access in Shorewood), Riverview Farmstead Preserve in Naperville, and McKinley Woods — Kerry Sheridan Grove in Channahon.",
       "Will County’s canoeing/kayaking page states no launch pass is required at designated forest-preserve locations, and that unless otherwise posted canoes and kayaks may launch year-round except when ice is present. District boat launches close October 31. Swimming, wading, paddleboards, and float tubes are prohibited under district rules — persons must be entirely secured in watercraft.",
-      "Upstream DuPage County forest-preserve waters are mostly inland lakes under a separate private-watercraft permit program (see Silver Lake at Blackwell and other DuPage sites on the forest-preserves hub). Use this waterway page for the river corridor itself, then confirm each Will County landing on the official paddling page before you go.",
+      "Hammel Woods is the corridor’s primary dual-access stop (two published Shorewood put-ins on the same preserve). Riverview Farmstead and Kerry Sheridan Grove extend trip options upstream and downstream; treat each landing’s parking and bank conditions as site-specific and confirm on the official Will County paddling page the day you go.",
+      "Upstream DuPage County forest-preserve waters are mostly inland lakes under a separate private-watercraft permit program (see Silver Lake at Blackwell and other DuPage sites on the forest-preserves hub). Use this waterway page for the river corridor itself; Hammel Woods keeps a standalone planning page, while Riverview and Kerry Sheridan are listed here to avoid thin duplicate pages.",
     ],
     officialLinks: [
       {

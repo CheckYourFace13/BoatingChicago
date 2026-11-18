@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import {
-  QualityDisclaimer,
   SourceAttribution,
   SourceLink,
 } from "@/components/geo/SourceAttribution";
@@ -41,7 +40,12 @@ export default async function PreserveAccessPage({ params }: PageProps) {
   if (!site || !site.isPublished) notFound();
 
   const siblings = getPublishedPreserveAccess()
-    .filter((p) => p.slug !== site.slug && p.county === site.county)
+    .filter(
+      (p) =>
+        p.slug !== site.slug &&
+        p.county === site.county &&
+        p.standalonePage !== false,
+    )
     .slice(0, 6);
 
   return (
@@ -66,11 +70,9 @@ export default async function PreserveAccessPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-10">
-        <QualityDisclaimer />
-
         <section className="max-w-3xl space-y-4">
-          {site.overview.map((para) => (
-            <p key={para.slice(0, 48)} className="text-gray-700 leading-relaxed">
+          {site.overview.map((para, i) => (
+            <p key={`${site.slug}-p-${i}`} className="text-gray-700 leading-relaxed">
               {para}
             </p>
           ))}
@@ -126,6 +128,43 @@ export default async function PreserveAccessPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        {site.slug === "keystone-landing-mchenry" ? (
+          <section className="max-w-3xl space-y-6">
+            <h2 className="text-2xl font-extrabold text-lake-blue">
+              Nippersink Creek landings
+            </h2>
+            <div
+              id="pioneer-landing"
+              className="rounded-2xl border border-sky-blue/20 bg-white p-5 scroll-mt-24"
+            >
+              <h3 className="text-lg font-extrabold text-lake-blue mb-2">
+                Pioneer Road Canoe Landing
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                McHenry County Conservation District lists Pioneer Road as a
+                canoe/kayak landing on Nippersink Creek. Use it with Keystone and
+                Nippersink Canoe Base for multi-landing trips. Confirm water
+                levels before you go — MCCD closes all Nippersink launches when
+                USGS flow is above 750 cfs or 7 feet.
+              </p>
+            </div>
+            <div
+              id="nippersink-canoe-base"
+              className="rounded-2xl border border-sky-blue/20 bg-white p-5 scroll-mt-24"
+            >
+              <h3 className="text-lg font-extrabold text-lake-blue mb-2">
+                Nippersink Canoe Base
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                MCCD lists Nippersink Canoe Base among the creek’s canoe/kayak
+                put-ins. Tubing and flotation devices are prohibited on Nippersink
+                Creek. Paddling is at your own risk; confirm high-water closures
+                and site hours (sunrise to sunset) on the official MCCD pages.
+              </p>
+            </div>
+          </section>
+        ) : null}
+
         {(site.seasonalAccessNote || site.phone || site.addressHint) && (
           <section className="max-w-3xl space-y-3 rounded-2xl bg-light-blue/40 border border-sky-blue/20 p-6">
             <h2 className="text-xl font-extrabold text-lake-blue">
@@ -151,7 +190,11 @@ export default async function PreserveAccessPage({ params }: PageProps) {
           </section>
         )}
 
-        <SourceAttribution source={site.source} />
+        <SourceAttribution
+          source={site.source}
+          title="Official source"
+          note="Confirm craft rules, hours, fees, and seasonal notices on the linked agency page before you go — we do not invent operational details."
+        />
         {site.relatedSources?.length ? (
           <ul className="text-sm space-y-1">
             {site.relatedSources.map((src) => (

@@ -150,8 +150,28 @@ export function getPreserveAccessBySlug(
   return forestPreserveAccess.find((p) => p.slug === slug);
 }
 
+/** Standalone detail pages only — excludes hub-listed landings that redirect. */
 export function getAllPublishedPreserveSlugs(): string[] {
-  return getPublishedPreserveAccess().map((p) => p.slug);
+  return getPublishedPreserveAccess()
+    .filter((p) => p.standalonePage !== false)
+    .map((p) => p.slug);
+}
+
+export function getPreserveRedirects(): {
+  source: string;
+  destination: string;
+}[] {
+  return getPublishedPreserveAccess()
+    .filter(
+      (p) =>
+        p.standalonePage === false &&
+        typeof p.redirectTo === "string" &&
+        p.redirectTo.length > 0,
+    )
+    .map((p) => ({
+      source: `/forest-preserves/${p.slug}`,
+      destination: p.redirectTo as string,
+    }));
 }
 
 export function getPreserveAccessByCounty(county: string): PreserveWaterAccess[] {

@@ -201,4 +201,12 @@ export interface PreserveWaterAccess {
   /** Secondary official pages (maps, district boating hub) */
   relatedSources?: SourceRef[];
   isPublished: boolean;
+  /**
+   * When false, the location stays on the county hub but has no standalone
+   * indexable detail page — use redirectTo for the permanent one-hop target.
+   * Defaults to true when omitted.
+   */
+  standalonePage?: boolean;
+  /** Permanent redirect target path (e.g. /lakes/des-plaines-river#allison-woods) */
+  redirectTo?: string;
 }

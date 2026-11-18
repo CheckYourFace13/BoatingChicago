@@ -39,18 +39,22 @@ export function SourceAttribution({
   source,
   title = "Source",
   note,
+  /** When true, omit the repeated “Verified from official sources…” line. */
+  hideDisclaimer = false,
 }: {
   source: SourceRef;
   title?: string;
   note?: string;
+  hideDisclaimer?: boolean;
 }) {
+  const disclaimer = note ?? QUALITY_DISCLAIMER;
   return (
     <section className="rounded-2xl border border-sky-blue/20 bg-light-blue/60 p-5 text-sm text-gray-700">
       <h2 className="font-extrabold text-lake-blue mb-2">{title}</h2>
-      <p className="mb-2">
+      <p className={hideDisclaimer && !note ? "" : "mb-2"}>
         <SourceLink source={source} />
       </p>
-      <p>{note ?? QUALITY_DISCLAIMER}</p>
+      {!hideDisclaimer || note ? <p>{disclaimer}</p> : null}
     </section>
   );
 }

@@ -1,4 +1,8 @@
 import type { PreserveWaterAccess } from "@/types/geo";
+import {
+  PRESERVE_OVERVIEW_OVERRIDES,
+  PRESERVE_SUMMARY_OVERRIDES,
+} from "./forest-preserve-overviews";
 
 /** Checked against official county forest-preserve boating / paddling pages. */
 const VERIFIED = "2026-11-14";
@@ -857,6 +861,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "fox-river-shores-kane",
+    standalonePage: false,
+    redirectTo: "/lakes/fox-river#fox-river-shores",
     name: "Fox River Shores Forest Preserve",
     county: "Kane",
     agency: "kane-fpd",
@@ -942,6 +948,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "pioneer-landing-mchenry",
+    standalonePage: false,
+    redirectTo: "/forest-preserves/keystone-landing-mchenry#pioneer-landing",
     name: "Pioneer Road Canoe Landing",
     county: "McHenry",
     agency: "mchenry-ccd",
@@ -969,6 +977,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "nippersink-canoe-base-mchenry",
+    standalonePage: false,
+    redirectTo: "/forest-preserves/keystone-landing-mchenry#nippersink-canoe-base",
     name: "Nippersink Canoe Base",
     county: "McHenry",
     agency: "mchenry-ccd",
@@ -1031,6 +1041,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "irving-park-road-canoe-landing",
+    standalonePage: false,
+    redirectTo: "/lakes/des-plaines-river#irving-park-road",
     name: "Irving Park Road Canoe Landing",
     county: "Cook",
     agency: "cook-fpdcc",
@@ -1064,6 +1076,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "schuths-grove-des-plaines",
+    standalonePage: false,
+    redirectTo: "/lakes/des-plaines-river#schuths-grove",
     name: "Schuth’s Grove — Des Plaines River",
     county: "Cook",
     agency: "cook-fpdcc",
@@ -1097,6 +1111,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "allison-woods-des-plaines",
+    standalonePage: false,
+    redirectTo: "/lakes/des-plaines-river#allison-woods",
     name: "Allison Woods — Des Plaines River",
     county: "Cook",
     agency: "cook-fpdcc",
@@ -1151,6 +1167,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "riverview-farmstead-dupage-will",
+    standalonePage: false,
+    redirectTo: "/lakes/dupage-river#riverview-farmstead",
     name: "Riverview Farmstead Preserve — DuPage River",
     county: "Will",
     agency: "will-fpdwc",
@@ -1179,6 +1197,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "mckinley-woods-frederick-will",
+    standalonePage: false,
+    redirectTo: "/lakes/des-plaines-river#fredericks-grove",
     name: "McKinley Woods — Frederick’s Grove",
     county: "Will",
     agency: "will-fpdwc",
@@ -1207,6 +1227,8 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
   },
   {
     slug: "mckinley-woods-kerry-sheridan-will",
+    standalonePage: false,
+    redirectTo: "/lakes/dupage-river#kerry-sheridan",
     name: "McKinley Woods — Kerry Sheridan Grove",
     county: "Will",
     agency: "will-fpdwc",
@@ -1234,3 +1256,11 @@ export const forestPreserveAccess: PreserveWaterAccess[] = [
     isPublished: true,
   },
 ];
+
+// Merge expanded overviews / summaries for standalone detail pages.
+for (const preserve of forestPreserveAccess) {
+  const overview = PRESERVE_OVERVIEW_OVERRIDES[preserve.slug];
+  if (overview) preserve.overview = overview;
+  const summary = PRESERVE_SUMMARY_OVERRIDES[preserve.slug];
+  if (summary) preserve.summary = summary;
+}
