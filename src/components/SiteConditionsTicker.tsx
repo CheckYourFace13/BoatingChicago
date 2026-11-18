@@ -9,6 +9,7 @@ import { ConditionsTicker } from "./ConditionsTicker";
  * Safety/alert copy comes from Chicago NWS alerts already on the weather payload.
  */
 export async function SiteConditionsTicker() {
+  let items;
   try {
     const [chicago, lakeGeneva, chain, waukegan] = await Promise.all([
       getWeatherForLocation("chicago"),
@@ -19,17 +20,17 @@ export async function SiteConditionsTicker() {
 
     const events = getPublishedEvents();
 
-    const items = buildConditionsTickerItems({
+    items = buildConditionsTickerItems({
       chicago,
       lakeGeneva,
       chain,
       waukegan,
       events,
     });
-
-    return <ConditionsTicker items={items} />;
   } catch {
     // Never break the shell if weather fetch fails
     return null;
   }
+
+  return <ConditionsTicker items={items} />;
 }

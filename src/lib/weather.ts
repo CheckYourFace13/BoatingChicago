@@ -83,7 +83,7 @@ function heatIndexF(tempF: number, humidityPct: number): number | null {
   if (tempF < 80) return tempF;
   const T = tempF;
   const R = humidityPct;
-  let hi =
+  const hi =
     -42.379 +
     2.04901523 * T +
     10.14333127 * R -

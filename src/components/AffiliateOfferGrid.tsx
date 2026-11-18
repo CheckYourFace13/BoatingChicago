@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   affiliateDisclosure,
   formatPriceFrom,
@@ -216,12 +217,12 @@ export function AffiliateOfferGrid({
         <div className="mt-5 space-y-1">
           <p className="text-xs text-gray-500 leading-relaxed">
             {affiliateDisclosure}{" "}
-            <a
+            <Link
               href="/affiliate-disclosure"
               className="underline hover:text-gray-700"
             >
               Learn more
-            </a>
+            </Link>
             .
           </p>
         </div>

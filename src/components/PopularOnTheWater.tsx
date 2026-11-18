@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   affiliateDisclosure,
   formatPriceFrom,
@@ -170,9 +171,9 @@ export function PopularOnTheWater({
       <div className="mt-5 space-y-1">
         <p className="text-xs text-gray-500">
           {affiliateDisclosure}{" "}
-          <a href="/affiliate-disclosure" className="underline">
+          <Link href="/affiliate-disclosure" className="underline">
             Learn more
-          </a>
+          </Link>
           .
         </p>
       </div>

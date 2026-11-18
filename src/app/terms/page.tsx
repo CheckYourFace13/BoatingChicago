@@ -50,9 +50,9 @@ export default function TermsPage() {
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Affiliate &amp; advertising links</h2>
         <p>
           Some links are affiliate or advertising relationships. See our{" "}
-          <a href="/affiliate-disclosure" className="text-sky-blue font-semibold hover:underline">
+          <Link href="/affiliate-disclosure" className="text-sky-blue font-semibold hover:underline">
             Affiliate Disclosure
-          </a>
+          </Link>
           . Third-party sites have their own terms.
         </p>
 

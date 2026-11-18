@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  startTransition,
   useCallback,
   useContext,
   useEffect,
@@ -34,12 +35,15 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = readStoredConsent();
-    setState(stored);
+    // Hydrate from localStorage without cascading a synchronous render update.
+    startTransition(() => {
+      setState(stored);
+      setHydrated(true);
+    });
     applyGtagConsent(stored);
-    setHydrated(true);
     const onChange = () => {
       const next = readStoredConsent();
-      setState(next);
+      startTransition(() => setState(next));
       applyGtagConsent(next);
     };
     window.addEventListener("bc-consent-change", onChange);

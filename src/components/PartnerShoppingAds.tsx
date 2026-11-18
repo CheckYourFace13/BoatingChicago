@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import {
   resolveShoppingSlots,
   type ResolvedShoppingSlot,
@@ -19,15 +19,10 @@ import { useConsent } from "./ConsentProvider";
 export function PartnerShoppingAds({ pageKey }: { pageKey: string }) {
   const { state } = useConsent();
   const advertisingOk = allowsAdvertising(state);
-  const [slots, setSlots] = useState<ResolvedShoppingSlot[] | null>(null);
-
-  useEffect(() => {
-    if (!advertisingOk) {
-      setSlots(null);
-      return;
-    }
-    setSlots(resolveShoppingSlots(pageKey, new Date()));
-  }, [advertisingOk, pageKey]);
+  const slots = useMemo(
+    () => (advertisingOk ? resolveShoppingSlots(pageKey, new Date()) : null),
+    [advertisingOk, pageKey],
+  );
 
   if (!advertisingOk) {
     return (
