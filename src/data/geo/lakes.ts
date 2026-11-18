@@ -1,6 +1,25 @@
-import type { Lake } from "@/types/geo";
+import type { Lake, SourceRef } from "@/types/geo";
 
 const VERIFIED = "2026-08-25";
+const INLAND_VERIFIED = "2026-11-18";
+
+const WI_BOAT_REGISTRATION: SourceRef = {
+  name: "Wisconsin DNR — Boat registration & operating requirements",
+  url: "https://dnr.wisconsin.gov/permits/registrations/boat/BeforeYouOperate.html",
+  lastVerified: INLAND_VERIFIED,
+};
+
+const WI_AIS_TRANSPORT: SourceRef = {
+  name: "Wisconsin DNR — Boat transportation & aquatic invasive species laws",
+  url: "https://dnr.wisconsin.gov/topic/Invasives/boat",
+  lastVerified: INLAND_VERIFIED,
+};
+
+const IL_WATERCRAFT_REGISTRATION: SourceRef = {
+  name: "IDNR — Watercraft registration FAQ",
+  url: "https://dnr.illinois.gov/boating/watercraft-frequently-asked-questions.html",
+  lastVerified: INLAND_VERIFIED,
+};
 
 export const lakes: Lake[] = [
   {
@@ -39,6 +58,13 @@ export const lakes: Lake[] = [
       "milwaukee",
       "michigan-city",
       "new-buffalo",
+      "st-joseph",
+      "south-haven",
+      "saugatuck",
+      "holland",
+      "grand-haven",
+      "port-washington",
+      "sheboygan",
     ],
     isPublished: true,
   },
@@ -216,6 +242,499 @@ export const lakes: Lake[] = [
       "riverview-farmstead-dupage-will",
       "mckinley-woods-kerry-sheridan-will",
     ],
+    isPublished: true,
+  },
+  // ---------------------------------------------------------------------------
+  // Phase 2 — inland lakes and waterways within roughly 250 driving miles.
+  // Driving distances are approximate from downtown Chicago; confirm your route.
+  // ---------------------------------------------------------------------------
+  {
+    slug: "delavan-lake",
+    name: "Delavan Lake",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Delavan Lake is a Walworth County, Wisconsin, lake roughly 90 driving miles northwest of downtown Chicago, just across the state line. The Wisconsin DNR lake profile lists it at 1,906 acres with a maximum depth of 52 feet, and notes public boat landings and a public beach. Fish the DNR lists include panfish, musky, largemouth and smallmouth bass, northern pike, and walleye.",
+      "The DNR lists four public boat landings on Delavan Lake: access at the end of Blue Gill Court, access off State Highway 50, a Shore Road access, and 400 Inlet Shore Drive. The Town of Delavan operates the main Delavan Community Park launch at 1220 South Shore Drive (corner of Highway 50 and South Shore Drive). The town publishes its launch season as April 1 through October 31, says the gate house is not staffed in winter, and welcomes ice fishing off the park in winter. Parking fees for launch vehicles and overnight parking are posted on the town’s Delavan Lake page — check it before you tow rather than relying on a figure here.",
+      "Local rules matter on Delavan Lake. The DNR’s lake page points out that boating ordinances stricter than state law can apply and that the only sure way to know is to read the sign posted at the public landing; it also lists three local lake organizations (the Delavan Lake Improvement Association, the Delavan Lake Sanitary District, and the Town of Delavan Lake Commission) as DNR contacts. Wisconsin requires registration for motorized boats (including electric trolling motors) and for sailboats over 12 feet, though a boat registered in another state may use Wisconsin waters for under 60 consecutive days. Operators born on or after January 1, 1989 need a boating safety certificate or an accepted out-of-state equivalent.",
+      "Wisconsin’s aquatic-invasive-species rules apply at every landing: inspect and remove plants and animals, drain all water from the boat, motor, and live wells, and never move live fish away from a waterbody. The DNR lists zebra mussels and Eurasian water-milfoil among the invasive species recorded in Delavan Lake, so clean-drain-dry habits matter both arriving and leaving. If you are weighing day-trip options, compare Delavan with nearby Geneva Lake and the Chain O’ Lakes before you commit to a trailer day.",
+    ],
+    officialLinks: [
+      {
+        name: "Wisconsin DNR — Delavan Lake (boat landings)",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?page=boating&wbic=793600",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Wisconsin DNR — Delavan Lake overview & facts",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=793600",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Town of Delavan — Delavan Lake launch hours & fees",
+        url: "https://www.townofdelavan.com/delavan-lake/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-koshkonong",
+    name: "Lake Koshkonong",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Lake Koshkonong is a large, shallow Rock River impoundment in south-central Wisconsin, roughly 130 driving miles from downtown Chicago. The Wisconsin DNR lake profile gives it about 10,595 acres across Jefferson, Dane, and Rock counties, with a maximum depth of just 7 feet and a mean depth of 5 feet. The DNR lists musky, panfish, largemouth and smallmouth bass, northern pike, walleye, and catfish, and describes water clarity as very low.",
+      "The DNR lists four public boat landings: access at the Koshkonong Wildlife Area on Vinnie Haha Road, access at the end of Bingham Road, an access near North Charley Bluff Road, and an unnamed Lake Koshkonong access. The DNR’s Koshkonong Wildlife Area page describes a launch to the lake at the north end of Vinnie Haha Road off Mounds Road, and a separate Rock River launch off the west end of Groeller Road. The wildlife-area page notes no bathrooms and no campground there, and that one of its lots is seasonal and closed for access in winter.",
+      "Because the lake is so shallow, plan around depth and wind rather than horsepower: check landing signs and lake-district notices for local ordinances, run conservatively in unfamiliar areas, and expect conditions to change when the wind builds across a wide, shallow basin. The Rock-Koshkonong Lake District and the Rock River-Koshkonong Association are the local lake organizations the DNR lists as contacts for lake-management questions.",
+      "Standard Wisconsin rules apply: registration for motorized boats (including electric trolling motors), boating-safety certification for operators born on or after January 1, 1989, and the state’s clean-drain requirements for aquatic invasive species. The DNR lists curly-leaf pondweed and zebra mussels in the lake. If you plan to hunt or paddle the adjacent marsh, read the DNR wildlife-area page first, and confirm each landing’s status on the day you go.",
+    ],
+    officialLinks: [
+      {
+        name: "Wisconsin DNR — Lake Koshkonong (boat landings)",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?page=boating&wbic=808700",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Wisconsin DNR — Lake Koshkonong facts & figures",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?page=facts&wbic=808700",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Wisconsin DNR — Koshkonong Wildlife Area",
+        url: "https://dnr.wisconsin.gov/topic/Lands/WildlifeAreas/kosh",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "green-lake-wisconsin",
+    name: "Green Lake (Wisconsin)",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Green Lake in Green Lake County, Wisconsin, is roughly 185 to 190 driving miles from downtown Chicago. The Wisconsin DNR lake profile lists it at 7,920 acres with a maximum depth of 236 feet, public boat landings, and public beaches, and lists panfish, largemouth and smallmouth bass, northern pike, trout, walleye, and catfish among its fish. The DNR describes the water as moderately clear.",
+      "The DNR lists eight public boat landings: Hattie Sherwood Park, Deacon Mills Park (near Park Drive), Beyers Cove, Horners Landing (near Homer Road), Canal Street, County Park Access (Dodge Memorial Park), Duering’s Landing (near Klaver Street), and Sunset Park. Operators differ. The City of Green Lake sells launch passes for its Park Drive, Canal Street, and Hattie Sherwood launches (daily and seasonal options, with resident and non-resident seasonal pricing posted on the city page). Green Lake County sells daily and annual permits for its county-owned launches, including Dodge Memorial County Park on County Road K and Sunset Park on County Road A.",
+      "The county’s boat-launch ordinance spells out rules worth knowing before you arrive: a permit is required to launch at county-owned facilities, the permit must be displayed inside the driver’s-side windshield, and power loading (using the boat’s own power to load or unload from the trailer) is prohibited at county launches. Daily permits are sold at the self-registration kiosks at the Dodge Memorial and Sunset Park launches; annual permits are sold through the county treasurer. Because fees are revised by ordinance, confirm current amounts on the county and city pages.",
+      "Standard Wisconsin rules apply on the lake — boat registration for motorized craft, boating-safety certification for operators born on or after January 1, 1989, and clean-drain AIS requirements at every landing. The DNR notes that local ordinances stricter than state law may apply and are posted at landings. Check the National Weather Service forecast for the area before towing the distance, and confirm current permit amounts on the county and city pages.",
+    ],
+    officialLinks: [
+      {
+        name: "Wisconsin DNR — Green Lake (boat landings)",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?page=boating&wbic=146100",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Wisconsin DNR — Green Lake overview",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=146100",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "City of Green Lake — Boat Launch passes",
+        url: "https://cityofgreenlake.com/boat-launch/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Green Lake County Treasurer — Boat Launch Permits",
+        url: "https://www.greenlakecountywi.gov/departments/treasurer/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Green Lake County Code — Boat Launch User Fees (Article IV)",
+        url: "https://ecode360.com/14348404",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-mendota-madison",
+    name: "Lake Mendota (Madison)",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Lake Mendota is the largest of Madison’s Yahara River chain lakes, roughly 150 driving miles northwest of downtown Chicago. Public launching is concentrated at City of Madison parks. The city’s boat-launch page lists four Lake Mendota launches: Marshall Park (2101 Allen Blvd.), Spring Harbor Park (5218 Lake Mendota Dr.), Tenney Park (1601 Sherman Ave.), and Warner Park (1201 Woodward Dr.). Marshall Park has three piers, one of them year-round, and Spring Harbor Park has a year-round pier.",
+      "The most important planning detail is the Lake Access Permit. The city states a daily or annual permit is required year-round to launch a motorboat, sailboat, iceboat, canoe, kayak, or ATV at the Madison launches on Lakes Mendota and Monona, and the permit is also valid at designated Dane County launch sites. Permits cannot be bought at the launch — buy online or call the city’s number published on the page, and display the permit inside the driver’s-side windshield. Fees and permit dates are posted by the city and change by year, so confirm them before you travel.",
+      "Dane County Parks adds that a permit is required to use or park at all Madison, Monona, and Dane County improved launch sites even if you are not launching a boat, while canoe/kayak launches that are not improved launch sites generally do not need one. Free sanitary boat pump-out stations operate May through October (weather permitting), including one at Tenney Lock on Lake Mendota. The city also notes that seasonal piers are removed in the fall, so late-season availability depends on weather and pier conditions.",
+      "Wisconsin’s statewide rules apply: motorized boat registration (out-of-state boats may use Wisconsin waters under 60 consecutive days), boating-safety certification for operators born on or after January 1, 1989, and AIS drain-and-inspect requirements at the landing. Mendota connects to Lake Monona through the Yahara River and Tenney Lock; read the companion Lake Monona guide if you plan to run both. Verify launch status, piers, and permit rules on the city page the day you go.",
+    ],
+    officialLinks: [
+      {
+        name: "City of Madison Parks — Boat Launches & Lake Access Permit",
+        url: "https://www.cityofmadison.com/parks/find-a-park/water/boat-launches",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Dane County Parks — Boat Launch Sites",
+        url: "https://www.danecountyparks.com/recreation/lake-access-boating/boat-launch-sites",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Dane County Parks — Lake Access and Boating",
+        url: "https://www.danecountyparks.com/recreation/lake-access-boating",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-monona-madison",
+    name: "Lake Monona (Madison)",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Lake Monona is Madison’s downtown-adjacent chain lake, roughly 150 driving miles northwest of downtown Chicago, linked to Lake Mendota by the Yahara River. The City of Madison lists three public Lake Monona launches: Law Park (410 S. Blair St.), Olbrich Park (3401 Atwood Ave.), and Olin Park (1156 Olin-Turville Ct.). The City of Monona’s lake-access map also lists Monona municipal launch sites (Tonyawatha Trail Park, Winnequah Park, and Lottes Park), and Dane County lists additional improved launches on the Yahara chain.",
+      "Each launch has its own quirks that the city documents. Law Park has no trailer parking and limited standard parking. Olbrich Park reaches Lake Monona from the mouth of Starkweather Creek; the city advises boaters to use caution in the narrowed channel and suggests considering Olin, Tonyawatha, or Winnequah as alternates. Olin Park has four piers. A year-round Lake Access Permit is required at the Madison launches (and valid at designated Dane County sites), and it cannot be purchased at the launch — buy ahead using the city’s online system or phone number.",
+      "Paddlers have more flexibility: Dane County Parks says no permit is needed to paddle county waters unless you use a permit-required improved launch, and it operates canoe/kayak launches without a permit on many Capitol Water Trails. The county also lists free sanitary boat pump-out stations (May through October, weather permitting) on the Yahara River between Bridge Street and Monona Drive. The city notes the Upper Yahara above Highway 113 is a designated slow/no-wake at all times.",
+      "Wisconsin registration, boating-safety certification, and AIS drain-and-inspect rules apply on Monona. If you plan to run both Monona and Mendota, read the Lake Mendota guide as well, and confirm piers, permits, and any closure notices on the city and county pages before you tow.",
+    ],
+    officialLinks: [
+      {
+        name: "City of Madison Parks — Boat Launches & Lake Access Permit",
+        url: "https://www.cityofmadison.com/parks/find-a-park/water/boat-launches",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "City of Madison Parks — Olbrich Park",
+        url: "https://www.cityofmadison.com/parks/find-a-park/olbrich",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "City of Monona — Lake Access launch map",
+        url: "https://www.mymonona.com/DocumentCenter/View/2924/LakeAccess_Map?bidId=",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Dane County Parks — Lake Access and Boating",
+        url: "https://www.danecountyparks.com/recreation/lake-access-boating",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-winnebago",
+    name: "Lake Winnebago",
+    region: "wisconsin",
+    state: "WI",
+    overview: [
+      "Lake Winnebago is Wisconsin’s largest inland lake, roughly 170 to 190 driving miles north of Chicago depending on whether you head for Fond du Lac at the south end or Oshkosh and Neenah to the west. The Wisconsin DNR lists it at about 131,939 acres across Calumet, Winnebago, and Fond du Lac counties, with a maximum depth of only 21 feet and 20 boat landings. The DNR also lists local boating ordinances here, including slow-no-wake areas, swimming areas, and waterway markers — see the DNR lake page and landing signs.",
+      "Launch access is run by the surrounding cities and counties. The City of Fond du Lac operates the Lakeside Park Marina launch (two lanes with concrete pads), Lakeside Park West (twelve launch lanes), and the Harbor View Drive launch, and publishes daily and annual permit fees. Fond du Lac County’s Columbia Park offers six launches and parking for 100 cars and trailers. Calumet County Parks operates three east-shore harbors (Calumet County Park Harbor, Stockbridge Harbor, and Brothertown Harbor), each with multiple launch lanes and a pay station. The City of Oshkosh lists six launches — Rainbow, Menominee, William Steiger, Mill Street, Fugleberg, and 24th Avenue — and requires a daily or annual pass for any trailered boat.",
+      "Fond du Lac’s city marina is the clearest official marina source: Lakeside Park Marina has 232 slips on eight docks, a harbormaster, transient and seasonal slips, a pump-out station, and fuel, according to the city page. A Tri-County season permit published by Winnebago, Calumet, and Fond du Lac counties works at county-owned Lake Winnebago launches in all three counties only — it is not valid at city-run launches, so match the permit to the launch operator.",
+      "Winnebago’s size and shallow depth deserve respect. Travel Wisconsin cautions that shallow unmarked reefs and sand bars can be hazardous near shore and around islands and that weather can change rapidly. The DNR’s fishing regulations for the Winnebago chain include special rules (for example, lake sturgeon fishing is listed as closed and bag limits are chain-wide), so anglers should read the current DNR regulation page rather than rely on a summary. Wisconsin registration, boating-safety certification, and AIS drain-and-inspect rules apply, and the DNR lists multiple invasive species in the lake — clean, drain, and dry between waters.",
+    ],
+    officialLinks: [
+      {
+        name: "Wisconsin DNR — Lake Winnebago facts & figures",
+        url: "https://apps.dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?page=facts&wbic=131100",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Wisconsin DNR — Lake Winnebago fishing regulations",
+        url: "https://apps.dnr.wi.gov/fisheriesmanagement/Public/LakeRegulation/Details?WBIC=131100&WBIC_NAME=Lake+Winnebago",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "City of Fond du Lac — Boating (Lakeside Park & marina)",
+        url: "https://www.fdl.wi.gov/parks/boating/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Fond du Lac County — Boating (Columbia Park)",
+        url: "https://www.fdlco.wi.gov/departments/departments-n-z/parks-trails/boating",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Calumet County — Boating (Lake Winnebago harbors)",
+        url: "https://www.co.calumet.wi.us/624/Boating",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Winnebago County — Permit Fees (daily & Tri-County)",
+        url: "https://www.winnebagocountywi.gov/927/Permit-Fees",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "City of Oshkosh — Boat Launches & Mooring",
+        url: "https://www.oshkoshwi.gov/Parks/BoatLaunchesMooring.aspx",
+        lastVerified: INLAND_VERIFIED,
+      },
+      WI_BOAT_REGISTRATION,
+      WI_AIS_TRANSPORT,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-shelbyville",
+    name: "Lake Shelbyville",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "Lake Shelbyville is a large U.S. Army Corps of Engineers reservoir in Shelby and Moultrie counties, central Illinois, roughly 190 driving miles south of Chicago. Illinois DNR describes the Wolf Creek State Park and Eagle Creek State Recreation Area sites, facing each other across the central part of the lake, as part of 11,100 acres of water with 250 miles of shoreline suited to boat fishing, water skiing, pontoon boating, and windsurfing. IDNR’s Wolf Creek brochure says the sites have a four-lane launching ramp.",
+      "Public ramps are spread among Corps and state sites. The Corps St. Louis District boating page lists ramps at Coon Creek, Dam West, Forrest W. “Bo” Wood, Lithia Springs, Lone Point, Opossum Creek, Whitley Creek, Wilborn Creek, Coal Shaft, Johnson’s Bluff, Bruce East, Eagle Creek, Wolf Creek, Bethany Access, and Strickland/Fishhook, with a launch fee posted for several Corps ramps and courtesy docks seasonal (closed in winter months). Fees and facility status change, so confirm on the Corps page before you go.",
+      "Three marinas are named by the Corps: Findlay Marina (mid-lake, with boat repairs, rentals, and seasonal slips), Lithia Springs Marina (south end, with slips, pump-out, a dock store, and fishing guide service), and Sullivan Marina and Campground (north end). The Corps says the marinas offer boat rental and guide service; IDNR’s brochure likewise notes rental boats and motors are available from private marinas on the lake. Pricing is set by the marinas, not by BoatingChicago.",
+      "The Corps publishes a rafting policy that matters on holiday weekends: up to five boats may raft without a special use permit, larger rafts of up to 20 boats need a free special use permit requested in advance, drones need a separate permit, and life-jacket and spacing requirements apply. Illinois registration applies to powered boats, and the Illinois boating-safety certificate requirement applies to operators of motorboats over 10 horsepower who were born on or after January 1, 1998. Temporary fall hunt closures can shut recreation areas and some ramps — check the Corps and IDNR closure pages before you tow in late autumn.",
+    ],
+    officialLinks: [
+      {
+        name: "U.S. Army Corps of Engineers — Lake Shelbyville Boating",
+        url: "https://www.mvs.usace.army.mil/Missions/Recreation/Lake-Shelbyville/Recreation/Boating/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "U.S. Army Corps of Engineers — Lake Shelbyville Plan Your Visit",
+        url: "https://www.mvs.usace.army.mil/Missions/Recreation/Lake-Shelbyville/Recreation/Plan-Your-Visit/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Wolf Creek State Park (Lake Shelbyville)",
+        url: "https://dnr.illinois.gov/parks/park.wolfcreek.html",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Wolf Creek State Park brochure",
+        url: "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/00000570.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Current site closures",
+        url: "https://dnr.illinois.gov/closures/currentclosuresofdnrsitesandareas.html",
+        lastVerified: INLAND_VERIFIED,
+      },
+      IL_WATERCRAFT_REGISTRATION,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "clinton-lake",
+    name: "Clinton Lake",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "Clinton Lake in DeWitt County, central Illinois, is roughly 140 driving miles south of Chicago. The Illinois DNR manages Clinton Lake State Recreation Area around a 4,900-acre lake that serves as the cooling lake for the Clinton power station. IDNR describes it as a busy boating lake for motorboats big and small, with sailing also popular, and as a strong crappie, catfish, striped bass, and walleye fishery.",
+      "IDNR’s boating guidance is unusually specific. The lake’s main basin has no horsepower limitation, but the upper arms are no-wake areas and portions are restricted to electric trolling motors only; the North Fork Canoe Access Area is electric-motor-only. The entire lake north of the Route 54 bridge is posted no-wake, and the area in front of the power plant from the Route 54 bridge to a line of buoys roughly one mile south is permanently closed to all boat traffic. IDNR says there are six public boat ramps and one canoe launch, and IDNR’s access guide describes Mascoutin, West Side, North Fork, Weldon, and Parnell among the launch areas.",
+      "IDNR’s access-area guide states there are no launching fees at ramps operated by the Department of Natural Resources, and that fishing tournaments need a free permit applied for through iFish Illinois. A full-service marina on Marina Road is privately operated, not run by IDNR, so contact it directly for slips, fuel, or services. IDNR’s park page says the swimming beach is open Memorial Day weekend through Labor Day weekend.",
+      "The brochure also warns that when the wind rises the lake can be very rough and that small watercraft should stay in the North Fork area of Salt Creek on rough days. Illinois registration is required for powered boats (including trolling motors); the boating-safety certificate requirement applies to operators of motorboats over 10 horsepower born on or after January 1, 1998. Because the lake has restricted and closed zones tied to the power station, read the posted bulletin boards at major access areas and the current IDNR brochure before you launch.",
+    ],
+    officialLinks: [
+      {
+        name: "IDNR — Clinton Lake State Recreation Area",
+        url: "https://dnr.illinois.gov/parks/park.clintonlake.html",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Clinton Lake State Recreation Area brochure",
+        url: "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/00000092.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Clinton Lake Access Areas and Fishing Guide",
+        url: "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/00000177.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "iFish Illinois — Clinton Lake",
+        url: "https://ifishillinois.org/Waterbodies/Details/e1f1dc02-fbc8-442c-b91a-bfd2e6191822",
+        lastVerified: INLAND_VERIFIED,
+      },
+      IL_WATERCRAFT_REGISTRATION,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-springfield",
+    name: "Lake Springfield",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "Lake Springfield is the City Water, Light and Power (CWLP) reservoir on Springfield’s south side, roughly 200 driving miles south of Chicago. CWLP states boats allowed on the lake include canoes, motorboats, pontoons, rowboats, and sailboats, and that personal watercraft are also allowed. Motorized surfboards (E-Foils or LiftFoils) have not been permitted as personal watercraft since March 10, 2023, and boats are not permitted in the vicinity of Spaulding Dam, where a line of “no boat” buoys marks the limit.",
+      "The key planning step is a Lake Springfield watercraft license in addition to Illinois registration. CWLP says all watercraft used, kept, or stored on the lake must be registered and licensed with both the City of Springfield and the State of Illinois; licenses run April 1 through March 31, applicants must supply boat length and motor horsepower, and CWLP asks you to allow one to two weeks for processing. Short-term P1 (24-hour) and P2 (60-hour) special permits exist for visitors, with limits on how many P1 permits one watercraft may receive per year. Fees depend on class, horsepower, and residency, so check the CWLP boating and registration pages for the current table.",
+      "CWLP’s lake map lists public launching ramps at Lindsay Bridge, the Sailboat Launch, Spaulding Dam, Center Park Harbor, Lake Springfield Marina, and Marine Point (sailboats and small craft). CWLP’s rules set a top speed of 35 mph, reduce the maximum to 15 mph from sunset to sunrise, and require 5 mph within 200 feet of the shoreline or under bridges, with no-wake speed within 200 feet of a public ramp or bridge. Craft with masts higher than 35 feet may be used or kept only in the central basin.",
+      "Licensing locations and hours change — the Lindsay Bridge licensing station is described as planned for Saturdays but best confirmed by phone — so do not plan a same-day launch without checking. For Chicago-area boaters, Lake Springfield is a long trip but a straightforward one on I-55; combine it with the licensing paperwork up front, and confirm the state’s boating-safety and registration rules (powered boats must be registered with Illinois DNR; operators of motorboats over 10 horsepower born on or after January 1, 1998 need a boating-safety certificate).",
+    ],
+    officialLinks: [
+      {
+        name: "CWLP — Lake Springfield Boating",
+        url: "https://cwlp.com/LakesParksHome/LakesParksInformation/Boating.aspx",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "CWLP — Lake Springfield Boating Rules",
+        url: "https://www.cwlp.com/LakesParksHome/LakesParksInformation/BoatingRules.aspx",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "CWLP — Lake Springfield Map (public launching ramps)",
+        url: "https://www.cwlp.com/LakesParksHome/LakesParksDocuments/LakeMap2024Page2.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "CWLP — 2026 Watercraft Registration Application",
+        url: "https://www.cwlp.com/LakesParksHome/LakesParksDocuments/Watercraft%20Registration%202026.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      IL_WATERCRAFT_REGISTRATION,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "illinois-river-starved-rock",
+    name: "Illinois River (Starved Rock)",
+    region: "illinois",
+    state: "IL",
+    overview: [
+      "The Illinois River at Starved Rock State Park near Utica, in LaSalle County, is roughly 90 to 100 driving miles southwest of downtown Chicago. Illinois DNR says boats may be launched from the west end of the park, off Route 178 at the west entrance, where there is a ramp and parking lot but no docks. IDNR also notes you may bring your own kayaks and canoes and launch from Lone Point shelter on Route 71 on the park’s east end.",
+      "Rentals and tours are run by concessionaires, not IDNR. IDNR’s park Q&A says Kayak Starved Rock manages all kayak rentals and tours out of Lone Point Shelter and tells visitors to call that business for hours and reservations. IDNR’s brochure adds that boat rides on the Eagle 1 are reserved through Starved Rock Lodge and that rides and kayak rentals are offered from May through October. Treat those as seasonal concessions — confirm availability before you drive.",
+      "River-specific safety matters here. IDNR’s brochure states boats are not allowed within 600 feet of the dam because of strong currents and powerful undertows, and says no one should attempt to wade or swim in the river, canyon creeks, or from any park shoreline. IDNR also warns that the lower area near the boat ramp can close to parking and picnicking when the Illinois River floods, so check the park page and closure signs; picnic tables are not set out until mid-May depending on flooding.",
+      "Anglers need a valid Illinois fishing license; IDNR lists fishing from the area west of the visitor center along the seawall and at Lone Point. The park posts seasonal hunting-season closures for parts of the broader complex (including the campground and some nature preserves) during deer seasons, and trail work may limit access in 2026, so read the current IDNR park page before a fall or winter visit. Illinois registration applies to powered boats; unpowered canoes, kayaks, and paddleboards do not need Illinois registration.",
+    ],
+    officialLinks: [
+      {
+        name: "IDNR — Starved Rock State Park",
+        url: "https://dnr.illinois.gov/parks/park.starvedrock.html",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Starved Rock Common Questions & Answers",
+        url: "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/parks/documents/starvedrock-common-park-qa.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "IDNR — Starved Rock State Park brochure",
+        url: "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/00000005.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      IL_WATERCRAFT_REGISTRATION,
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-wawasee",
+    name: "Lake Wawasee",
+    region: "indiana",
+    state: "IN",
+    overview: [
+      "Lake Wawasee near Syracuse in Kosciusko County, northern Indiana, is roughly 140 driving miles east-southeast of downtown Chicago. The Indiana DNR’s public-access program is the best official starting point for where you can launch.",
+      "Indiana DNR’s Where to Fish interactive map lists public access sites compiled by the DNR, and IDNR cautions that site locations are approximate and that users should make sure sites are open to the public before launching. In IDNR’s public-access data, the Lake Wawasee site is a DNR fishing and boating access with a boat ramp, with directions given as four miles south of Syracuse on SR 13 and then two miles east on Old Road 8 (CR 1000N). The same data records restrooms, a courtesy dock, and a fishing pier, and records no fee. Treat those details as a starting point and verify them on the map or by calling the DNR contact before you tow.",
+      "For Illinois boaters, Indiana’s registration rules are a common surprise. The Indiana BMV states all watercraft operating on Indiana waterways must be registered and display valid decals unless exempt; non-motorized canoes, rowboats, and paddleboats are exempt, while a watercraft registered in another state and used in Indiana for a combined total of not more than 60 consecutive days during a calendar year is exempt under Indiana law. Indiana Conservation Officers enforce boating rules, and the DNR points boaters to the Handbook of Indiana Boating Laws and Responsibilities.",
+      "Lake-specific speed zones, quiet-hour rules, and marina services are set by Indiana DNR, local officials, and private operators; BoatingChicago does not list private marina or rental pricing for Wawasee because no single official source covers it. Use the DNR’s Lake Depth Maps and fishing guide to plan, and check weather and wind before towing a long distance.",
+    ],
+    officialLinks: [
+      {
+        name: "Indiana DNR — Where to Fish (public access sites map)",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/fishing/where-to-fish-interactive-map",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Indiana BMV — Watercraft Registration",
+        url: "https://www.in.gov/bmv/registration-plates/boat-registration/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Indiana DNR — Boating Education & Safety",
+        url: "https://www.in.gov/dnr/law-enforcement/education/boating-education-and-safety/",
+        lastVerified: INLAND_VERIFIED,
+      },
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "lake-maxinkuckee",
+    name: "Lake Maxinkuckee",
+    region: "indiana",
+    state: "IN",
+    overview: [
+      "Lake Maxinkuckee at Culver in Marshall County, northern Indiana, is roughly 100 driving miles southeast of downtown Chicago — one of the closest Indiana inland lakes. The Culver Visitor Center describes it as over 1,800 acres of water for boating, water skiing, kayaking, and paddle boarding, with a public access point on the west shore.",
+      "Indiana DNR’s public-access data lists a Lake Maxinkuckee access site (record 197) near Culver managed by Tri-County Fish & Wildlife Area, recorded as a concrete boat ramp with restrooms, a courtesy dock, and a fishing pier, with no fee recorded. The Culver Visitor Center says the public launch is on the southwest side of the lake and that trailers can be parked at the water-tower parking lot off Lakeshore Drive, behind Papa’s. IDNR cautions that access-site locations are approximate and should be verified as open before you launch.",
+      "The Culver Visitor Center also lists businesses for those who do not own a boat: it says paddle-board gear can be rented from the Culver Marina or the Culver Park Department (park-department kayaks and paddleboards are first come, first served at the beach concession during beach hours), that pontoons can be rented at Culver Marina with reservations through that marina, and it names Culver Marina, Culver’s Portside Marina, and Jeff’s PWC & Marine. Pricing and availability are set by those private operators and the town, so contact them directly.",
+      "Illinois boaters should note Indiana’s registration rules: the Indiana BMV requires watercraft operating on Indiana waterways to be registered unless exempt, non-motorized canoes, rowboats, and paddleboats are exempt, and Indiana law exempts a watercraft registered in another state if it is used, stored, or docked in Indiana for a combined total of not more than 60 consecutive days during a calendar year. Indiana Conservation Officers enforce boating rules; review the DNR’s boating handbook and check weather before a day trip.",
+    ],
+    officialLinks: [
+      {
+        name: "Indiana DNR — Where to Fish (public access sites map)",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/fishing/where-to-fish-interactive-map",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Culver Visitor Center — Outdoor Adventures (Lake Maxinkuckee)",
+        url: "https://www.findculver.com/outdoor-adventures",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Indiana BMV — Watercraft Registration",
+        url: "https://www.in.gov/bmv/registration-plates/boat-registration/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Indiana DNR — Boating Education & Safety",
+        url: "https://www.in.gov/dnr/law-enforcement/education/boating-education-and-safety/",
+        lastVerified: INLAND_VERIFIED,
+      },
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "gull-lake-michigan",
+    name: "Gull Lake (Michigan)",
+    region: "michigan",
+    state: "MI",
+    overview: [
+      "Gull Lake in Barry and Kalamazoo counties, southwest Michigan, is roughly 160 to 170 driving miles east-northeast of downtown Chicago. Prairieville Township’s parks page lists the lake at about 2,050 acres and describes it as an all-sport lake with largemouth and smallmouth bass, perch, northern pike, lake trout, and winter smelt. Michigan DNR’s fishing materials add that Gull Lake is stocked with lake trout and is a designated Type E trout lake, so anglers should consult the Michigan Fishing Guide’s inland trout and salmon lake regulations.",
+      "The public launch most visitors use is Prairieville Township’s Gull Lake Park at 15475 S. M-43 in Hickory Corners on the north shore. The township lists hours of 6 a.m. to 11 p.m., 365 days a year, 70 trailer-parking spaces and 20 vehicle-only spaces, public restrooms, and a swim area. Michigan DNR’s publication for the site notes access through a pay-to-park gate. The township posts daily entry fees by vehicle type (with and without a trailer) and annual resident, non-resident, and commercial passes; those amounts change, so read the township page before you go.",
+      "Michigan’s boating-law basics apply. The Michigan DNR states all watercraft, unless exempt, must be registered with the Michigan Department of State and display a registration decal. Michigan’s invasive-species law requires you to remove aquatic plants from boats, equipment, and trailers before placing them in the water, and before trailering to remove drain plugs, drain bilges and live wells, and ensure the boat and trailer are free of aquatic organisms; violations are a state civil infraction with fines up to $100. Michigan’s Boating Facility Finder lists access sites and local watercraft controls.",
+      "No single official page covers marinas or rentals on Gull Lake, so BoatingChicago does not list them. Check wind and weather before launching at the north-shore ramp, and call the township if you need annual-pass or gate details.",
+    ],
+    officialLinks: [
+      {
+        name: "Prairieville Township — Parks (Gull Lake Park)",
+        url: "https://prairievilletwp-mi.gov/parks/",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Michigan DNR — Gull Lake access site brochure",
+        url: "https://www2.dnr.state.mi.us/publications/pdfs/arcgisonline/storymaps/fish_troutTrails/PDFs/TT2015044.pdf",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Michigan DNR — Boating (Boating Facility Finder)",
+        url: "https://www.michigan.gov/dnr/things-to-do/boating",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Michigan DNR — Boating rules and regulations",
+        url: "https://www.michigan.gov/dnr/things-to-do/boating/rules-and-regs",
+        lastVerified: INLAND_VERIFIED,
+      },
+      {
+        name: "Michigan — Invasive Species: Boaters and Anglers",
+        url: "https://www.michigan.gov/invasives/take-action/boaters-and-anglers",
+        lastVerified: INLAND_VERIFIED,
+      },
+    ],
+    destinationSlugs: [],
     isPublished: true,
   },
 ];

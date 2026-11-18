@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!lake || !lake.isPublished) return {};
 
   return buildManagedMetadata({
-    title: `${lake.name} Boating — Access, Destinations & Official Sources`,
+    title: `${lake.name} Boating — Launches, Rules & Official Sources`,
     description: lake.overview[0]?.slice(0, 155) ?? `${lake.name} boating access and destinations.`,
     path: `/lakes/${lake.slug}`,
   });
@@ -86,10 +86,14 @@ export default async function LakePage({ params }: PageProps) {
         intro={lake.overview[0] ?? ""}
         links={[
           { label: "All lakes & waterways →", href: "/lakes" },
-          {
-            label: "Launches on this water",
-            href: `/boat-launches?water=${waterFilterForLake(lake.slug)}`,
-          },
+          ...(waterFilterForLake(lake.slug) !== "all"
+            ? [
+                {
+                  label: "Launches on this water",
+                  href: `/boat-launches?water=${waterFilterForLake(lake.slug)}`,
+                },
+              ]
+            : []),
           { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Boating weather", href: "/weather" },

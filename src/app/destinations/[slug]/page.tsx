@@ -144,9 +144,15 @@ export default async function DestinationPage({ params }: PageProps) {
               {typeof destination.distanceFromChicagoMiles === "number"
                 ? destination.distanceFromChicagoMiles === 0
                   ? "Home port"
-                  : `About ${destination.distanceFromChicagoMiles} miles`
+                  : `About ${destination.distanceFromChicagoMiles} driving miles`
                 : "Not published"}
             </p>
+            {typeof destination.distanceFromChicagoMiles === "number" &&
+            destination.distanceFromChicagoMiles > 0 ? (
+              <p className="text-xs text-gray-500 mt-2">
+                Driving distance for trailer planning — not a boating route.
+              </p>
+            ) : null}
           </div>
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">
             <p className="font-bold text-lake-blue mb-1">Area forecast</p>

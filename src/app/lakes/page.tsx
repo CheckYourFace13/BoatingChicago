@@ -12,7 +12,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
   description:
-    "Lake Michigan, Chain O’ Lakes, Geneva Lake, Fox River, Des Plaines River, and DuPage River — Chicago-area waterways with official sources and linked launches.",
+    "Lake Michigan, Chain O’ Lakes, Geneva Lake, and Chicago-area rivers plus inland lakes within about 250 driving miles — Wisconsin, Illinois, Indiana, and Michigan guides with official launch and rules sources.",
   path: "/lakes",
 });
 }
@@ -32,7 +32,7 @@ export default function LakesPage() {
       <GeoHero
         eyebrow="Where Chicago boaters go"
         title="Lakes & Waterways"
-        intro="Lake Michigan, inland lakes, and the Fox, Des Plaines, and DuPage river corridors each carry different access rules and hazards. Start here, then follow destinations, launches, and forest-preserve landings."
+        intro="Lake Michigan, nearby inland lakes, the Fox, Des Plaines, and DuPage river corridors, and road-trip lakes within about 250 driving miles in Wisconsin, Illinois, Indiana, and Michigan each carry different access rules and hazards. Start here, then follow destinations, launches, and official agency pages."
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Forest preserves", href: "/forest-preserves" },
@@ -55,6 +55,18 @@ export default function LakesPage() {
             forest-preserve landings that sit on it. Operational details like
             fees and hours stay on the official agency pages we cite — we do not
             invent them.
+          </p>
+          <p>
+            Beyond the Chicago area, the list now includes inland lakes and
+            waterways roughly within 250 driving miles of downtown — such as
+            Delavan Lake, Lake Koshkonong, Green Lake, Madison’s Lakes Mendota
+            and Monona, and Lake Winnebago in Wisconsin; Lake Shelbyville,
+            Clinton Lake, Lake Springfield, and the Illinois River at Starved
+            Rock in Illinois; Lake Wawasee and Lake Maxinkuckee in Indiana; and
+            Gull Lake in Michigan. Driving distances in each guide are
+            approximate, and launch rules, permits, and registration
+            requirements differ by state and operator, so follow the official
+            links on each page before you tow.
           </p>
           <p>
             Checking conditions before you go? Use the{" "}

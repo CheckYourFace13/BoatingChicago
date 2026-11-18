@@ -86,6 +86,51 @@ export const weatherLocations: WeatherLocation[] = [
     lon: -86.744,
     nwsStation: "KMGC",
   },
+  // Phase 3 Lake Michigan harbors. `nwsStation` is intentionally omitted:
+  // the weather loader resolves the nearest NWS observation station from the
+  // harbor coordinates, so we do not hard-code station IDs we have not verified.
+  {
+    id: "st-joseph",
+    label: "St. Joseph Harbor (MI)",
+    lat: 42.108,
+    lon: -86.49,
+  },
+  {
+    id: "south-haven",
+    label: "South Haven Harbor (MI)",
+    lat: 42.403,
+    lon: -86.277,
+  },
+  {
+    id: "saugatuck",
+    label: "Saugatuck Harbor (MI)",
+    lat: 42.655,
+    lon: -86.209,
+  },
+  {
+    id: "holland",
+    label: "Holland / Lake Macatawa (MI)",
+    lat: 42.775,
+    lon: -86.2,
+  },
+  {
+    id: "grand-haven",
+    label: "Grand Haven Harbor (MI)",
+    lat: 43.059,
+    lon: -86.241,
+  },
+  {
+    id: "port-washington",
+    label: "Port Washington Harbor (WI)",
+    lat: 43.375,
+    lon: -87.865,
+  },
+  {
+    id: "sheboygan",
+    label: "Sheboygan Harbor (WI)",
+    lat: 43.752,
+    lon: -87.701,
+  },
 ];
 
 export function getWeatherLocationById(
