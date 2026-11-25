@@ -179,7 +179,7 @@ export const marinasExpansion: Marina[] = [
     hoursNote:
       "City DPW launch/marina supervisor contact via (231) 724-4100; operator site for slip desk hours.",
     feesNote:
-      "Slip and city launch-pass fees are published by the City of Muskegon / marina operator. Confirm current amounts before you arrive.",
+      "City launch-pass schedule and Hartshorn operator 2026 slip/mooring rate pages list current amounts (daily/seasonal launch; seasonal slips; daily/weekly/monthly mooring). Confirm on muskegon-mi.gov launch-fees page and hartshornmarina.com slip-rates before arrival — do not rely on third-party copies.",
     source: {
       name: "City of Muskegon — Hartshorn Marina",
       url: "https://muskegon-mi.gov/parks/hartshorn-marina-2/",

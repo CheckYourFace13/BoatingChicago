@@ -147,10 +147,10 @@ export const launchesExpansion: BoatLaunch[] = [
     ],
     amenityNotes: "Four ramps; restrooms; showers; fish cleaning; campground (city).",
     feesNote:
-      "Daily and annual launch-pass amounts (with residency/senior discounts at in-person locations) are published by the City of Muskegon.",
+      "City Launch Fees & Requirements page publishes daily and seasonal pass amounts with residency/senior discounts for in-person purchase. Confirm https://muskegon-mi.gov/city-services/public-works/launch-ramps-and-marina/launch-fees-requirements/ before you tow.",
     source: {
-      name: "City of Muskegon — Launch Ramps and Marina",
-      url: "https://muskegon-mi.gov/city-services/public-works/launch-ramps-and-marina/",
+      name: "City of Muskegon — Launch Fees & Requirements",
+      url: "https://muskegon-mi.gov/city-services/public-works/launch-ramps-and-marina/launch-fees-requirements/",
       lastVerified: VERIFIED,
     },
     isPublished: true,

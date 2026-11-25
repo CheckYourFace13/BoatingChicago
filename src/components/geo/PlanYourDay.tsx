@@ -46,6 +46,34 @@ export function PlanYourDay({
       label: "Conditions",
       links: [
         { href: weatherHref, label: "Local NOAA/NWS" },
+        ...(destination.slug === "oshkosh" || destination.bodyOfWater.includes("Winnebago")
+          ? [
+              {
+                href: "/lakes/lake-winnebago",
+                label: "Lake Winnebago hub",
+              },
+              {
+                href: `${weatherHref}#river-levels`,
+                label: "USGS Winnebago / Fox gages",
+              },
+            ]
+          : []),
+        ...(destination.region === "wisconsin" &&
+        (destination.slug === "door-county" ||
+          destination.slug === "sturgeon-bay" ||
+          destination.slug === "green-bay" ||
+          destination.slug === "kewaunee")
+          ? [
+              {
+                href: "/tools/fuel",
+                label: "Fuel planner",
+              },
+              {
+                href: "/tools/float-plan",
+                label: "Float plan",
+              },
+            ]
+          : []),
         { href: "/permits", label: "Rules & permits" },
       ],
     },

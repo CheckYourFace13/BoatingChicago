@@ -52,7 +52,7 @@ export function MarineAlerts({
   }
 
   return (
-    <section id="marine-alerts">
+    <section id="marine-alerts" className="relative z-40">
       <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
         Active NOAA/NWS alerts
       </h2>

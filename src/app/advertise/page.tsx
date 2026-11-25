@@ -39,6 +39,11 @@ const products = [
     detail:
       "Clearly marked sponsored placement next to experience or lesson guides. Bookable GetYourGuide and Viator cards stay separate affiliate inventory.",
   },
+  {
+    name: "Newsletter sponsorship (seasonal)",
+    detail:
+      "A labeled sponsor mention in the conditions / trip-planning newsletter when inventory and editorial calendar allow — not a purchased search ranking and not denser on-page ad clutter.",
+  },
 ];
 
 export default function AdvertisePage() {

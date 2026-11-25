@@ -164,6 +164,21 @@ html {
 }
 
 /*
+ * Keep critical planning UI above Auto ads sticky/anchor overlays where CSS
+ * stacking can help. Does not disable ads — only protects alerts, nav, maps,
+ * and calculator controls from being covered.
+ */
+#marine-alerts,
+#bridge-lock-notices,
+#weather-location-selector,
+[data-map-controls],
+.calculator-panel,
+.bc-field:focus-within {
+  position: relative;
+  z-index: 40;
+}
+
+/*
  * Sitewide form control visibility
  * Distinct white fields, clear borders, readable text/placeholders, strong focus.
  */

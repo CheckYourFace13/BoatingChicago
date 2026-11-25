@@ -26,6 +26,7 @@ import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getWeatherForLocation } from "@/lib/weather";
 import { getUsgsReadings } from "@/lib/usgs";
 import { UsgsRiverPanel } from "@/components/geo/UsgsRiverPanel";
+import { BridgeLockNotices } from "@/components/weather/BridgeLockNotices";
 
 export const revalidate = 900;
 
@@ -52,7 +53,9 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
 
   const weather = await getWeatherForLocation(requestedLocationId);
   const isChicago = weather.locationId === DEFAULT_WEATHER_LOCATION_ID;
-  const riverReadings = isChicago ? await getUsgsReadings() : [];
+  const riverReadings = await getUsgsReadings({
+    weatherLocationId: weather.locationId,
+  });
   const news = await getChicagoNews({ alerts: weather.alerts, weather });
   const tip = getSeasonalTip();
 
@@ -190,11 +193,19 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
           weather={weather}
           title={isChicago ? undefined : `Lake conditions · ${weather.locationLabel}`}
         />
-        {isChicago ? (
+        {riverReadings.length > 0 ? (
           <div id="river-levels">
-            <UsgsRiverPanel readings={riverReadings} />
+            <UsgsRiverPanel
+              readings={riverReadings}
+              title={
+                isChicago
+                  ? "USGS river observations"
+                  : `USGS observations · ${weather.locationLabel}`
+              }
+            />
           </div>
         ) : null}
+        <BridgeLockNotices showChicago={isChicago} />
         <MarineAlerts
           alerts={weather.alerts}
           alertsAvailable={weather.alertsAvailable}

@@ -87,4 +87,32 @@ export const marinasBatch3: Marina[] = [
     },
     isPublished: true,
   },
+  {
+    slug: "kewaunee-city-marina",
+    name: "Kewaunee City Marina",
+    destinationSlug: "kewaunee",
+    lakeSlug: "lake-michigan",
+    summary:
+      "Municipal marina on the north side of Kewaunee Harbor east of the Highway 42 bridge — seasonal and daily mooring, fuel, showers, fish cleaning, and launch passes listed on the City of Kewaunee marina page.",
+    amenities: [
+      { key: "transient-dockage", available: true, note: "Daily mooring (city)" },
+      { key: "fuel", available: true, note: "Gasoline (city marina page)" },
+      { key: "pump-out", available: false, note: "Not listed on city marina page — confirm locally" },
+      { key: "power-and-water", available: true, note: "Seasonal/daily mooring (confirm hookups with marina)" },
+      { key: "restrooms", available: true },
+      { key: "showers", available: true, note: "Private showers (city)" },
+      { key: "laundry", available: false, note: "Not listed on city marina page" },
+      { key: "wifi", available: false, note: "Not listed on city marina page" },
+    ],
+    seasonalAccessNote:
+      "City marina page lists marina and campground season April 15–October 15. Confirm staffed hours and winter closure before arrival.",
+    feesNote:
+      "Seasonal and daily mooring rates and launch passes (daily/annual, resident/nonresident) are published on the city marina fee schedule PDF and marina-passes page. Confirm current amounts there — do not rely on third-party copies.",
+    source: {
+      name: "City of Kewaunee — Marina",
+      url: "https://cityofkewauneewi.gov/departments/marina/",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
 ];

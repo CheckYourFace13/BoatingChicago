@@ -114,11 +114,129 @@
     },
     {
       "id": "set-3",
-      "title": "Future data-driven search, usability and revenue improvements",
-      "status": "not_started",
-      "notes": "Backlog only after Set 2 is deployed + measured. Candidates: WI DNR/MiBFF enrichment, CWV-with-ads field pass, GSC-driven Door/Green Bay/Winnebago depth, AdSense RPM by template when authorized, dining-cruise seasonal content tests if impressions stay flat into summer.",
+      "title": "Data-driven search, regional depth, CWV-with-ads, conditions and revenue",
+      "status": "implemented",
+      "baselineSha": "95af2b9",
+      "trackerOnlySha": "beaa68e",
       "productionSha": null,
-      "results": null
+      "gravyblockBaselineWindow": "2026-10-26 to 2026-11-22",
+      "notes": "Set 3 code implemented from live 95af2b9. Do not mark measured until a later comparable GSC/AdSense window. Access blockers documented — unavailable ≠ zero.",
+      "priorities": [
+        {
+          "id": "p1-real-performance-data",
+          "status": "verified",
+          "evidence": [
+            "No local .env / .env.local with GSC_SERVICE_ACCOUNT_JSON, ADSENSE_API_TOKEN, or GA4 reporting credentials",
+            "Growth pipeline scripts already gate metrics: searchConsole/adsense reported unavailable without secrets (scripts/growth/pipeline.ts)",
+            "Live site continues to load GA/AdSense scripts (presence ≠ reporting API access)",
+            "Preserved GravyBlock 28-day baseline window 2026-10-26 to 2026-11-22; subsequent windows must be comparable, not invented",
+            "PSI lab: daily quota exhausted (429); Hostinger Lighthouse path previously 403 — field lab CWV unavailable this pass"
+          ],
+          "metricsStatus": {
+            "gscClicks": "unavailable",
+            "gscImpressions": "unavailable",
+            "gscCtr": "unavailable",
+            "gscLandingPages": "unavailable",
+            "gscQueries": "unavailable",
+            "indexing": "unavailable_via_api",
+            "ga4Engagement": "unavailable",
+            "adsenseImpressions": "unavailable",
+            "adsensePageRpm": "unavailable",
+            "note": "Unavailable is not zero. Owner must authorize API secrets in CI or export dashboards offline."
+          }
+        },
+        {
+          "id": "p2-regional-coverage-depth",
+          "status": "implemented",
+          "evidence": [
+            "Added published Kewaunee destination + city marina + harbor launch from cityofkewauneewi.gov (official marina, passes, 2026 fee schedule PDF)",
+            "Completed City of Oshkosh six municipal launches per Boat Launch Locations page: Rainbow, Menominee, William Steiger, Mill Street, Fugleberg, 24th Avenue",
+            "Oshkosh destination enriched with pay-station/WebTrac/Parks office permit notes + USGS 04082500 link",
+            "Green Bay destination gained USGS Fox River 040851385 official link + nearby cross-links including oshkosh/menominee",
+            "Western MI Muskegon Hartshorn / Fisherman’s Landing fees pointed at city launch-fees-requirements and operator rate pages (no thin new URLs)",
+            "Door County corridor: Kewaunee inserted between Two Rivers and Algoma with nearbyDestination updates"
+          ],
+          "affectedUrls": [
+            "/destinations/kewaunee",
+            "/marinas/kewaunee-city-marina",
+            "/boat-launches/kewaunee-harbor-launch",
+            "/destinations/oshkosh",
+            "/boat-launches/oshkosh-menominee-park-launch",
+            "/boat-launches/oshkosh-william-steiger-park-launch",
+            "/boat-launches/oshkosh-mill-street-launch",
+            "/boat-launches/oshkosh-fugleberg-launch",
+            "/boat-launches/oshkosh-24th-avenue-launch",
+            "/destinations/green-bay",
+            "/destinations/muskegon",
+            "/marinas/hartshorn-marina"
+          ]
+        },
+        {
+          "id": "p3-mobile-performance-with-ads",
+          "status": "implemented",
+          "evidence": [
+            "Mobile browser check (~467px) on /weather: AdSense present, marine alerts present, sticky header z-50 only — no fixed bottom ad overlay among first fixed elements",
+            "Field PSI/CrUX and Hostinger Lighthouse unavailable this pass (429/403) — no invented LCP/INP/CLS numbers",
+            "Proven hardening only: reserve .adsense-block min-height; raise stacking for #marine-alerts, #bridge-lock-notices, #weather-location-selector, [data-map-controls], .calculator-panel, focused .bc-field",
+            "Preserved consent, Auto ads, and earnings potential — no ad removal"
+          ],
+          "affectedUrls": ["/weather", "/app/globals.css"]
+        },
+        {
+          "id": "p4-conditions-local-planning",
+          "status": "implemented",
+          "evidence": [
+            "USGS gauges added: Lake Winnebago at Oshkosh 04082500, Fox River at Appleton 04084445, Fox River at Green Bay 040851385; scoped to weatherLocationIds so Chicago weather stays Chicago-only",
+            "LakeConditions now links NDBC station page, observation history, and realtime text feed for the active buoy",
+            "BridgeLockNotices on Chicago /weather + Chicago Harbor Lock section on /chicago-transient-dockage citing USACE project page + USCG GovDelivery bulletin (Nov 15 2026–Apr 3 2027 closure window)",
+            "PlanYourDay cross-links Winnebago hub/USGS and Door/GB/Kewaunee fuel + float-plan tools",
+            "Embeddable /embed/conditions widget and CSP frame-ancestors protections preserved (untouched)"
+          ],
+          "affectedUrls": [
+            "/weather",
+            "/lakes/lake-winnebago",
+            "/chicago-transient-dockage",
+            "/embed/conditions"
+          ]
+        },
+        {
+          "id": "p5-measurable-revenue-growth",
+          "status": "implemented",
+          "evidence": [
+            "AdSense RPM / landing-category revenue: unavailable without ADSENSE_API_TOKEN — not fabricated",
+            "GravyBlock baseline remains the only verified search-performing URL set for protected conversion paths",
+            "/advertise gained seasonal newsletter sponsorship product (labeled, no denser on-page ads, no invented traffic claims)",
+            "Existing affiliate links, CMP/consent, and approved AdSense client preserved"
+          ],
+          "affectedUrls": ["/advertise"]
+        },
+        {
+          "id": "p6-ongoing-maintenance",
+          "status": "verified",
+          "evidence": [
+            "Friday weekly-growth-summary.yml remains sole cron `0 15 * * 5` — no duplicate schedule added",
+            "Pipeline still propose-by-default; apply only via manual workflow_dispatch",
+            "Protected eight GravyBlock URLs unchanged in structure except additive lock notice on transient dockage"
+          ]
+        }
+      ],
+      "protectedUrls": [
+        "/chicago-playpen-guide",
+        "/forest-preserves",
+        "/chicago-transient-dockage",
+        "/forest-preserves/whalon-lake-will",
+        "/forest-preserves/beck-lake-cook",
+        "/lakes/des-plaines-river",
+        "/lakes/chain-o-lakes",
+        "/boat-launches/simmons-island-public-boat-launch"
+      ],
+      "ownerActionsRequired": [
+        "Add authorized GSC_SERVICE_ACCOUNT_JSON to GitHub Actions secrets (or export GSC Performance CSV for the next comparable window after deploy)",
+        "Optionally add ADSENSE_API_TOKEN for impressions/page RPM by landing template — leave Auto ads/CMP untouched",
+        "After deploy settles, capture CrUX/PSI field LCP/INP/CLS on homepage, a guide, /weather, a map/filter page, a calculator, and /storage with ads consented",
+        "Do not treat this deploy as organic or AdSense success — wait for a measured comparison window vs GravyBlock 2026-10-26..2026-11-22"
+      ],
+      "results": "Implemented pending production deploy. Search and AdSense outcomes not claimed."
     }
   ]
 }

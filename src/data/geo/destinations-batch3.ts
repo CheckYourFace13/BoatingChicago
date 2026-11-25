@@ -16,7 +16,7 @@ export const destinationsBatch3: Destination[] = [
     summary:
       "City of Two Rivers public launches at Veterans Park and Paddlers Park on the Twin Rivers with Lake Michigan access via the harbor mouth.",
     overview: [
-      "Two Rivers sits on Lake Michigan between Manitowoc and Kewaunee where the East and West Twin Rivers meet. It is a practical Wisconsin shore trailer stop with municipal parks launches rather than a full-service Chicago-style harbor network.",
+      "Two Rivers sits on Lake Michigan between Manitowoc and Kewaunee where the East and West Twin Rivers meet. It is a practical Wisconsin shore trailer stop with municipal parks launches; Kewaunee’s city marina is the next deep-water harbor stop north when you need fuel or overnight dockage.",
       "Planning distances: about 170 driving miles from downtown Chicago (trailer planning only). Water routes from Chicago are multi-day Lake Michigan passages for most recreational boats.",
       "City of Two Rivers Parks & Recreation lists Veterans Park as the major public boat launch and fish-cleaning station on West River Street, and Paddlers Park at the end of 27th Street for kayaks, canoes, and larger pleasure boats into the East Twin River. Launch permits apply — confirm current resident, nonresident, and daily amounts on city parks materials before you tow; we do not invent rates.",
       "Use NWS Green Bay / Manitowoc-area Lake Michigan nearshore products rather than Chicago LOT forecasts for this harbor.",
@@ -44,7 +44,7 @@ export const destinationsBatch3: Destination[] = [
     coordinates: { lat: 44.153, lng: -87.569 },
     distanceFromChicagoMiles: 170,
     isPublished: true,
-    nearbyDestinationSlugs: ["manitowoc", "sheboygan", "algoma"],
+    nearbyDestinationSlugs: ["manitowoc", "kewaunee", "algoma", "sheboygan"],
   },
   {
     slug: "algoma",
@@ -78,7 +78,7 @@ export const destinationsBatch3: Destination[] = [
     coordinates: { lat: 44.608, lng: -87.433 },
     distanceFromChicagoMiles: 220,
     isPublished: true,
-    nearbyDestinationSlugs: ["two-rivers", "sturgeon-bay", "door-county"],
+    nearbyDestinationSlugs: ["kewaunee", "two-rivers", "sturgeon-bay", "door-county"],
   },
   {
     slug: "menominee",
@@ -208,14 +208,14 @@ export const destinationsBatch3: Destination[] = [
     overview: [
       "Oshkosh anchors the west shore of Lake Winnebago and complements Fond du Lac at the south end. This is inland-lake boating — not Lake Michigan coastal waters.",
       "Planning distances: about 175 driving miles from downtown Chicago.",
-      "City of Oshkosh Parks lists six launches: Rainbow Park, Menominee Park, William Steiger Park, Mill Street, Fugleberg, and 24th Avenue. Daily and annual/multi-year launch permits are sold at on-site pay stations, online, and at the Parks office — confirm current resident and nonresident amounts on the city fee schedule pages. Miller’s Bay offers sailboat mooring and kayak/canoe storage under separate city program rules (sailboat-focused).",
-      "Use inland Fond du Lac / Oshkosh point forecasts; do not apply Lake Michigan nearshore products to Winnebago.",
+      "City of Oshkosh Parks lists six launches: Rainbow Park, Menominee Park, William Steiger Park, Mill Street, Fugleberg, and 24th Avenue. Daily and annual/multi-year launch permits are sold at on-site electronic pay stations, online via WebTrac, and at the Parks office (805 Witzel Ave) — confirm current resident and nonresident amounts on the city fee schedule pages. Annual stickers must be redeemed within 14 days per city materials. Miller’s Bay offers sailboat mooring and kayak/canoe storage under separate city program rules (sailboat-focused).",
+      "Use inland Fond du Lac / Oshkosh point forecasts and the USGS Lake Winnebago at Oshkosh gage (04082500) for stage context; do not apply Lake Michigan nearshore products to Winnebago.",
     ],
     highlights: [
-      "Six city public launches",
-      "Daily and annual launch permits",
+      "Six city public launches (all listed)",
+      "Pay-station / WebTrac / Parks office permits",
       "Miller’s Bay sailboat mooring program",
-      "~175 driving miles from Chicago",
+      "USGS Winnebago gage cross-linked on weather & lake pages",
     ],
     officialLinks: [
       {
@@ -233,12 +233,62 @@ export const destinationsBatch3: Destination[] = [
         url: "https://www.oshkoshwi.gov/Parks/BoatLaunchPermitFees.aspx",
         lastVerified: VERIFIED,
       },
+      {
+        name: "USGS — Lake Winnebago at Oshkosh (04082500)",
+        url: "https://waterdata.usgs.gov/monitoring-location/04082500/",
+        lastVerified: VERIFIED,
+      },
     ],
     relatedGuideSlugs: ["lake-michigan-boating-guide"],
     weatherLocationId: "fond-du-lac",
     coordinates: { lat: 44.024, lng: -88.543 },
     distanceFromChicagoMiles: 175,
     isPublished: true,
-    nearbyDestinationSlugs: ["fond-du-lac", "green-bay"],
+    nearbyDestinationSlugs: ["fond-du-lac", "green-bay", "kewaunee"],
+  },
+  {
+    slug: "kewaunee",
+    name: "Kewaunee",
+    region: "wisconsin",
+    state: "WI",
+    bodyOfWater: "Lake Michigan / Kewaunee Harbor",
+    summary:
+      "City of Kewaunee municipal marina in a breakwater-protected deep-water harbor — seasonal and daily mooring, launch passes, fuel, and fish cleaning listed on the city marina page.",
+    overview: [
+      "Kewaunee sits on Lake Michigan between Two Rivers and Algoma / Door County approaches. The city marina is east of the State Highway 42 bridge on the north side of Kewaunee Harbor, described by the city as protected by breakwaters and the Hathaway Landing peninsula.",
+      "Planning distances: about 175 driving miles from downtown Chicago (trailer planning only).",
+      "The City of Kewaunee marina page lists seasonal and daily mooring, gasoline, supplies, private showers and restrooms, a fish cleaning station, and a boat launch that the city marks as open. Launch passes can be purchased as daily or annual (resident and nonresident) through the city’s marina-passes links. The marina and campground season is published as April 15 through October 15 — confirm staffed hours and fee schedules on the official marina and fee-schedule pages before you tow.",
+      "Transient and seasonal slip rates are published on the city’s marina fee schedule PDF. BoatingChicago points to that schedule rather than copying dollar amounts that change season to season.",
+      "Use NWS Green Bay Lake Michigan nearshore products for this harbor, not Chicago LOT as a substitute for local marine weather.",
+    ],
+    highlights: [
+      "Municipal marina with breakwater-protected harbor access",
+      "Seasonal and daily mooring + launch passes (city)",
+      "Fuel, showers/restrooms, fish cleaning (city marina page)",
+      "Season listed April 15–October 15 (confirm annually)",
+    ],
+    officialLinks: [
+      {
+        name: "City of Kewaunee — Marina",
+        url: "https://cityofkewauneewi.gov/departments/marina/",
+        lastVerified: VERIFIED,
+      },
+      {
+        name: "City of Kewaunee — Marina passes",
+        url: "https://cityofkewauneewi.gov/marina-passes/",
+        lastVerified: VERIFIED,
+      },
+      {
+        name: "City of Kewaunee — 2026 Marina/Campground fee schedule (PDF)",
+        url: "https://cdn.townweb.com/cityofkewauneewi.gov/wp-content/uploads/2026/02/2026_Fee_Schedule-Marina.pdf",
+        lastVerified: VERIFIED,
+      },
+    ],
+    relatedGuideSlugs: ["lake-michigan-boating-guide"],
+    weatherLocationId: "manitowoc",
+    coordinates: { lat: 44.458, lng: -87.503 },
+    distanceFromChicagoMiles: 175,
+    isPublished: true,
+    nearbyDestinationSlugs: ["two-rivers", "algoma", "door-county", "manitowoc"],
   },
 ];

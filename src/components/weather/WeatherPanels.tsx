@@ -138,6 +138,40 @@ export function LakeConditions({
           value={lake.buoyId || "Not currently available from source"}
         />
       </div>
+      {lake.buoyId ? (
+        <p className="text-sm text-gray-700 mt-4 space-x-3">
+          <a
+            href={`https://www.ndbc.noaa.gov/station_page.php?station=${lake.buoyId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-lake-blue hover:underline"
+          >
+            NDBC station page (charts &amp; history)
+          </a>
+          <span className="text-gray-400" aria-hidden>
+            ·
+          </span>
+          <a
+            href={`https://www.ndbc.noaa.gov/station_history.php?station=${lake.buoyId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-lake-blue hover:underline"
+          >
+            Observation history
+          </a>
+          <span className="text-gray-400" aria-hidden>
+            ·
+          </span>
+          <a
+            href={`https://www.ndbc.noaa.gov/data/realtime2/${lake.buoyId}.txt`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-lake-blue hover:underline"
+          >
+            Realtime text feed
+          </a>
+        </p>
+      ) : null}
       {lake.notes ? (
         <p className="text-sm text-gray-500 mt-3">{lake.notes}</p>
       ) : null}

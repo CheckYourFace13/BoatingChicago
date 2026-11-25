@@ -757,6 +757,13 @@ export const guidePart5: GuidePage[] = [
         ],
       },
       {
+        heading: "Chicago Harbor Lock (lake ↔ river)",
+        paragraphs: [
+          "Transient dockage at Chicago Harbors is on the Lake Michigan side of the Chicago Harbor Lock. If your plan includes the Chicago River or the inland waterway, confirm lock status separately with the U.S. Army Corps of Engineers and current U.S. Coast Guard Local Notices to Mariners — harbor slip availability does not imply the lock is open.",
+          "USACE’s Chicago Harbor Lock project page listed the 2026 recreational open window as April 15 through November 14, 2026, with winter chamber repair work continuing in subsequent off-seasons. A U.S. Coast Guard bulletin describes a closure to all navigation from November 15, 2026 through April 3, 2027 for chamber wall and floor repairs at River Mile 327. Re-check https://www.lrd.usace.army.mil/Missions/Projects/Display/Article/3638585/chicago-harbor-lock/ and USACE navigation notices before you transit — this guide is not a live lock schedule.",
+        ],
+      },
+      {
         heading: "Published daily transient rates (official, 2026 check)",
         paragraphs: [
           "The following daily transient figures appeared on both the Chicago Harbors Daily Dockage page and the Rates and Applications page when checked on October 27, 2026. They are per foot unless noted. Official footnotes: a 2- to 3-day minimum may apply for special events or holidays; star dock/mooring can and wall space have a 25-foot minimum; stalls have a 30-foot minimum. City tax and other surcharges may apply — the official sheets control.",

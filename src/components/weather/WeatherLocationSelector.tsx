@@ -18,7 +18,11 @@ export function WeatherLocationSelector({
   activeLocationId: string;
 }) {
   return (
-    <section aria-labelledby="weather-location-heading">
+    <section
+      id="weather-location-selector"
+      aria-labelledby="weather-location-heading"
+      className="relative z-40"
+    >
       <h2
         id="weather-location-heading"
         className="text-xs font-bold uppercase tracking-widest text-lake-blue/70 mb-3"
