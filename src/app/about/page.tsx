@@ -36,24 +36,37 @@ export default function AboutPage() {
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">
-          Publisher &amp; editorial standards
+          How we source information
         </h2>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            Content is produced for BoatingChicago as an original local resource —
-            not scraped full articles from other publishers.
+            Facility facts come from official agency databases and operator pages
+            (municipal harbors, state DNR access sites, park districts, USACE where
+            applicable). Each listing links to those sources with a checked date when
+            available.
           </li>
           <li>
-            Marina, launch, and fee details defer to official operator pages; we
-            mark amenities unknown when the source does not confirm them.
+            Weather and lake observations cite NOAA/NWS and NDBC products with
+            timestamps. Informational condition groupings are never a clearance to
+            boat.
           </li>
           <li>
-            Weather pages attribute NOAA/NWS products and keep safety disclaimers
-            above commercial suggestions.
+            Fees, hours, and amenities stay on the operator page when amounts change
+            often. Unknown amenities stay unknown — absence of a claim is not proof a
+            service is unavailable.
           </li>
           <li>
-            News items use original summaries with source links — never full-article
-            copies.
+            News items are short original summaries with a link to the source — not
+            republished articles. Content is written for BoatingChicago, not scraped
+            wholesale from other publishers.
+          </li>
+          <li>
+            We do not claim first-hand visits, a named human newsroom, or credentials
+            we do not have. Corrections are welcome via the{" "}
+            <Link href="/contact" className="text-sky-blue font-semibold hover:underline">
+              Contact
+            </Link>{" "}
+            form with a source URL when possible.
           </li>
         </ul>
 

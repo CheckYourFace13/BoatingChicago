@@ -55,6 +55,16 @@ export function ContactForm({
 
     const subject = String(data.get("subject") || "");
     const briefOptIn = data.get("briefOptIn") === "on";
+    const pageUrl = String(data.get("pageUrl") || "").trim();
+    const sourceUrl = String(data.get("sourceUrl") || "").trim();
+
+    if (subject === "Website Correction" && !sourceUrl) {
+      setStatus("error");
+      setErrorMsg(
+        "Corrections need an official source URL we can check before publishing.",
+      );
+      return;
+    }
 
     try {
       const res = await fetch("/api/contact", {
@@ -65,6 +75,8 @@ export function ContactForm({
           email: data.get("email"),
           subject: data.get("subject"),
           message: data.get("message"),
+          pageUrl,
+          sourceUrl,
           briefOptIn,
         }),
       });
@@ -219,6 +231,38 @@ export function ContactForm({
             </option>
           ))}
         </select>
+      </div>
+
+      <div>
+        <label htmlFor="contact-page-url" className="block text-sm font-bold text-lake-blue mb-1">
+          Page URL to correct (optional)
+        </label>
+        <input
+          id="contact-page-url"
+          name="pageUrl"
+          type="url"
+          maxLength={500}
+          placeholder="https://boatingchicago.com/..."
+          className="bc-field"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="contact-source-url" className="block text-sm font-bold text-lake-blue mb-1">
+          Official source URL (required for corrections)
+        </label>
+        <input
+          id="contact-source-url"
+          name="sourceUrl"
+          type="url"
+          maxLength={500}
+          placeholder="https://… agency or operator page"
+          className="bc-field"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Unsourced claims are not published automatically — include a primary
+          source we can verify.
+        </p>
       </div>
 
       <div>

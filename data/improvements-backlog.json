@@ -1,0 +1,56 @@
+{
+  "updated": "2026-11-25",
+  "scoring": [
+    "visitorUsefulness",
+    "verifiedSearchOpportunity",
+    "sourceAvailability",
+    "trafficPotential",
+    "revenueRelevance",
+    "implementationCost",
+    "safetyPrivacyRisk"
+  ],
+  "items": [
+    {
+      "id": "enrich-wi-dnr-ramps",
+      "title": "Enrich WI launches from DNR Boat Access layer",
+      "score": 92,
+      "status": "queued"
+    },
+    {
+      "id": "enrich-mi-bff",
+      "title": "Cross-check MI facilities vs Boating Facility Finder",
+      "score": 90,
+      "status": "queued"
+    },
+    {
+      "id": "buoy-charts-ui",
+      "title": "Regional buoy / water-temp charts with observation times",
+      "score": 78,
+      "status": "partial-weather-exists"
+    },
+    {
+      "id": "bridge-lock-directory",
+      "title": "USACE / USCG bridge and lock notice directory",
+      "score": 70,
+      "status": "planned"
+    },
+    {
+      "id": "rental-charter-compare",
+      "title": "Verified rental/charter comparison with affiliate disclosure",
+      "score": 74,
+      "status": "partial-categories-exist"
+    },
+    {
+      "id": "gsc-priority-guides",
+      "title": "GSC-driven Door County / Green Bay / Winnebago deep guides",
+      "score": 88,
+      "status": "needs-gsc-auth"
+    },
+    {
+      "id": "adsense-cwv-audit",
+      "title": "Mobile CWV with Auto ads on key templates",
+      "score": 80,
+      "status": "needs-field-measurement"
+    }
+  ]
+}

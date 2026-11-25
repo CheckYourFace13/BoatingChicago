@@ -19,6 +19,7 @@ import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import type { PreserveWaterAccess } from "@/types/geo";
 import { getUsgsReadings } from "@/lib/usgs";
 import { UsgsRiverPanel } from "@/components/geo/UsgsRiverPanel";
+import { FavoriteButton } from "@/components/geo/FavoriteButton";
 
 const RIVER_LAKE_SLUGS = new Set([
   "fox-river",
@@ -106,6 +107,18 @@ export default async function LakePage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+        <div className="flex flex-wrap items-center gap-3 -mt-4">
+          <FavoriteButton
+            kind="lake"
+            slug={lake.slug}
+            name={lake.name}
+            href={`/lakes/${lake.slug}`}
+          />
+          <p className="text-xs text-gray-500">
+            Saved only in this browser — no account required.
+          </p>
+        </div>
+
         <article className="space-y-4 max-w-4xl">
           <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue">
             About this waterway

@@ -22,6 +22,7 @@ import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
 import { getHubsForDestination } from "@/lib/geo-registry";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { PlanYourDay } from "@/components/geo/PlanYourDay";
+import { FavoriteButton } from "@/components/geo/FavoriteButton";
 import { buildDestinationPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 
@@ -123,6 +124,18 @@ export default async function DestinationPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+        <div className="flex flex-wrap items-center gap-3 -mt-4">
+          <FavoriteButton
+            kind="destination"
+            slug={destination.slug}
+            name={destination.name}
+            href={`/destinations/${destination.slug}`}
+          />
+          <p className="text-xs text-gray-500">
+            Saved only in this browser — no account required.
+          </p>
+        </div>
+
         <PlanYourDay
           destination={destination}
           marinas={marinas}

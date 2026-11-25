@@ -18,6 +18,7 @@ import { buildMarinaFaqs } from "@/lib/geo-faqs";
 import { verifiedMarinaPlaces } from "@/data/geo/place-verification";
 import { buildMarinaPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { FavoriteButton } from "@/components/geo/FavoriteButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -119,6 +120,18 @@ export default async function MarinaPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+        <div className="flex flex-wrap items-center gap-3 -mt-4">
+          <FavoriteButton
+            kind="marina"
+            slug={marina.slug}
+            name={marina.name}
+            href={`/marinas/${marina.slug}`}
+          />
+          <p className="text-xs text-gray-500">
+            Saved only in this browser — no account required.
+          </p>
+        </div>
+
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
           <div className="rounded-xl bg-white border border-sky-blue/20 p-4">
             <p className="font-bold text-lake-blue mb-1">Official website</p>

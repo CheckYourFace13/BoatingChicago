@@ -293,6 +293,8 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "winter-boat-storage-chicago": "boatStorage",
   "chicago-boat-winterization": "boatStorage",
   "chicago-transient-dockage": "marinas",
+  "aquatic-invasive-species-boater-rules": "heroBoats",
+  "fishing-licenses-great-lakes-states": "heroBoats",
   "chicago-boat-winterizing-guide": "boatStorage",
   "chicago-boat-shrink-wrap-guide": "boatStorage",
   "buying-a-boat-off-season-chicago": "boatStorage",

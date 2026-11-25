@@ -4,6 +4,7 @@ import { GeoHero } from "@/components/geo/GeoHero";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 import { TOOL_CATALOG, TOOL_GROUP_LABEL } from "@/lib/tools/catalog";
+import { FavoritesList } from "@/components/geo/FavoriteButton";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
@@ -70,6 +71,13 @@ export default function ToolsPage() {
           nautical-mile definition. Always follow current federal, state, and
           local requirements for your vessel and waters.
         </p>
+
+        <section className="rounded-2xl border border-sky-blue/20 bg-white p-5">
+          <h2 className="text-lg font-extrabold text-lake-blue mb-2">
+            Saved in this browser
+          </h2>
+          <FavoritesList />
+        </section>
 
         <ResourceCrossLinks
           links={[

@@ -29,16 +29,22 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Lakes & waterways: ${siteConfig.url}/lakes
 - Forest preserves (Cook, Lake, DuPage, Will, Kane, McHenry): ${siteConfig.url}/forest-preserves
 - Marinas: ${siteConfig.url}/marinas
+- Fuel docks (operator-confirmed fuel only): ${siteConfig.url}/fuel-docks
+- Transient slips / guest dockage: ${siteConfig.url}/transient-slips
 - Boat launches (filterable finder): ${siteConfig.url}/boat-launches
+- River paddling planner: ${siteConfig.url}/river-paddling
 - Inland paddling guide: ${siteConfig.url}/chicago-area-inland-paddling-guide
+- AIS / clean-drain-dry rules: ${siteConfig.url}/aquatic-invasive-species-boater-rules
+- Fishing license portals (four states): ${siteConfig.url}/fishing-licenses-great-lakes-states
 - Events: ${siteConfig.url}/events
 - Boat ownership: ${siteConfig.url}/boat-ownership
 - Chicago Boating Brief signup: ${siteConfig.url}/subscribe
 - Advertise / sponsorship inquiries: ${siteConfig.url}/advertise
-- Contact: ${siteConfig.url}/contact
+- Contact / corrections (source URL required): ${siteConfig.url}/contact
 - Affiliate disclosure: ${siteConfig.url}/affiliate-disclosure
 - Privacy: ${siteConfig.url}/privacy
 - Terms: ${siteConfig.url}/terms
+- Deploy health: ${siteConfig.url}/api/health
 
 ## Geographic coverage
 - Primary audience: Chicago and Chicagoland boaters

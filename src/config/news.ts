@@ -126,6 +126,9 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
     name: "Chicago Park District",
     domain: "chicagoparkdistrict.com",
     feedUrl: "https://www.chicagoparkdistrict.com/rss.xml",
+    // Feed URL returns HTTP 404 as of 2026-11 — keep disabled until a working feed is confirmed.
+    // Leaving the entry documents the source for re-enable without silent 404 noise on every build/request.
+    enabled: false,
     defaultCategory: "Events",
     includeKeywords: [
       "harbor",
@@ -152,7 +155,6 @@ export const NEWS_SOURCES: NewsSourceConfig[] = [
       "rowing",
       "sailing",
     ],
-    enabled: true,
   },
   {
     id: "nws-lot-news",

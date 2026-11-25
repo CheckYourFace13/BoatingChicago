@@ -5,8 +5,8 @@ import type { BoatLaunch } from "@/types/geo";
 import type { CategoryPage, GuidePage } from "@/types";
 
 /**
- * Planning module connecting weather → access → guides → activities → bookable options.
- * Does not invent safety conclusions from our informational weather rating.
+ * Compact planning strip: conditions → access → tools → local guides.
+ * Does not invent safety conclusions from weather snapshots.
  */
 export function PlanYourDay({
   destination,
@@ -24,108 +24,74 @@ export function PlanYourDay({
   showExperiences?: boolean;
 }) {
   const weatherHref = `/weather?location=${destination.weatherLocationId}`;
-  const steps: {
-    title: string;
-    blurb: string;
-    links: { href: string; label: string }[];
-  }[] = [
+  const accessLinks = [
+    ...marinas.slice(0, 2).map((m) => ({
+      href: `/marinas/${m.slug}`,
+      label: m.name,
+    })),
+    ...launches.slice(0, 2).map((l) => ({
+      href: `/boat-launches/${l.slug}`,
+      label: l.name,
+    })),
+  ];
+  if (accessLinks.length === 0) {
+    accessLinks.push(
+      { href: "/marinas", label: "Marinas" },
+      { href: "/boat-launches", label: "Launches" },
+    );
+  }
+
+  const rows: { label: string; links: { href: string; label: string }[] }[] = [
     {
-      title: "1. Check conditions",
-      blurb:
-        "Start with the area NOAA/NWS forecast and regional nearshore marine zone for this destination (not a harbor- or ramp-specific observation). The snapshot on the weather page is informational only — it is never a safety clearance.",
+      label: "Conditions",
       links: [
-        { href: weatherHref, label: "Local conditions →" },
-        { href: "/weather", label: "Weather hub →" },
-        { href: "/permits", label: "Rules & permits →" },
+        { href: weatherHref, label: "Local NOAA/NWS" },
+        { href: "/permits", label: "Rules & permits" },
       ],
     },
     {
-      title: "2. Choose marina or launch",
-      blurb:
-        marinas.length || launches.length
-          ? "Verified harbors and public launches for this area. Confirm fees, hours, and amenities on the official operator pages before you trailer or dock."
-          : "Browse regional marina and launch directories, then verify access rules with the operating agency.",
+      label: "Access",
       links: [
-        ...marinas.slice(0, 3).map((m) => ({
-          href: `/marinas/${m.slug}`,
-          label: m.name,
-        })),
-        ...launches.slice(0, 2).map((l) => ({
-          href: `/boat-launches/${l.slug}`,
-          label: l.name,
-        })),
-        ...(marinas.length === 0 && launches.length === 0
-          ? [
-              { href: "/marinas", label: "Marinas directory →" },
-              { href: "/boat-launches", label: "Boat launches →" },
-            ]
-          : [
-              { href: "/marinas", label: "All marinas →" },
-              { href: "/boat-launches", label: "All launches →" },
-            ]),
-        { href: "/kayak-canoe-sup", label: "Kayak, canoe & SUP →" },
+        ...accessLinks,
+        { href: "/kayak-canoe-sup", label: "Kayak & SUP" },
       ],
     },
     {
-      title: "3. Estimate fuel, time & gear",
-      blurb:
-        "Use your own vessel numbers — we never invent MPG, speed, or a safe navigable route. Worksheets stay in your browser.",
+      label: "Tools",
       links: [
-        { href: "/tools/fuel", label: "Fuel & cost →" },
-        { href: "/tools/trip-time", label: "Trip time →" },
-        { href: "/tools/anchor-scope", label: "Anchor scope →" },
-        { href: "/tools/battery", label: "Battery runtime →" },
-        { href: "/tools/towing", label: "Towing capacity →" },
-        { href: "/tools/conversions", label: "Conversions →" },
-        { href: "/tools", label: "All tools →" },
+        { href: "/tools/fuel", label: "Fuel" },
+        { href: "/tools/trip-time", label: "Trip time" },
+        { href: "/tools/trip-checklist", label: "Checklist" },
+        { href: "/tools/float-plan", label: "Float plan" },
+        { href: "/tools", label: "All 10 tools" },
       ],
     },
     {
-      title: "4. Checklist, float plan & ownership",
-      blurb:
-        guides.length > 0
-          ? "Printable trip worksheets plus harbor context and ownership quote tools when you are comparing slips or storage."
-          : "Printable trip worksheets, then ownership tools if you are comparing slips or storage.",
+      label: "Guides",
       links: [
-        { href: "/tools/trip-checklist", label: "Trip checklist →" },
-        { href: "/tools/float-plan", label: "Float plan →" },
         ...guides.slice(0, 2).map((g) => ({
           href: `/${g.slug}`,
           label: g.title,
         })),
-        { href: "/guides", label: "All guides →" },
-        { href: "/tools/slip-compare", label: "Slip compare →" },
-        { href: "/tools/ownership-cost", label: "Ownership cost →" },
-      ],
-    },
-    {
-      title: "5. Things to do",
-      blurb:
-        "Experiences, events, and on-water activities — still subject to marine conditions and operator rules.",
-      links: [
-        ...categories.slice(0, 3).map((c) => ({
-          href: `/${c.slug}`,
-          label: c.title,
-        })),
-        { href: "/events", label: "Events →" },
-        { href: "/destinations", label: "All destinations →" },
-        { href: "/regions", label: "Browse by region →" },
+        { href: "/tools/slip-compare", label: "Slip compare" },
+        { href: "/guides", label: "All guides" },
       ],
     },
   ];
 
-  if (showExperiences) {
-    steps.push({
-      title: "5. Book an experience (optional)",
-      blurb:
-        "Ticketed cruises and rentals from GetYourGuide or Viator when you want a ready-to-book outing. These are affiliate booking options — not BoatingChicago-operated trips.",
+  if (showExperiences || categories.length > 0) {
+    rows.push({
+      label: "More",
       links: [
-        { href: "#book-an-experience", label: "Popular nearby experiences ↓" },
-        {
-          href: "/chicago-architecture-cruises",
-          label: "Architecture cruises →",
-        },
-        { href: "/boat-rentals-chicago", label: "Rentals & charters hub →" },
+        ...categories.slice(0, 2).map((c) => ({
+          href: `/${c.slug}`,
+          label: c.title,
+        })),
+        ...(showExperiences
+          ? [{ href: "#book-an-experience", label: "Bookable experiences" }]
+          : []),
+        { href: "/events", label: "Events" },
+        { href: "/regions", label: "Regions" },
       ],
     });
   }
@@ -133,33 +99,41 @@ export function PlanYourDay({
   return (
     <section
       id="plan-your-day"
-      className="rounded-3xl border border-sky-blue/25 bg-gradient-to-br from-light-blue/50 via-white to-white p-6 md:p-8 scroll-mt-24"
+      className="rounded-3xl border border-sky-blue/25 bg-gradient-to-br from-light-blue/50 via-white to-white p-5 md:p-6 scroll-mt-24"
     >
-      <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
-        Plan Your Day in {destination.name}
-      </h2>
-      <p className="text-gray-600 max-w-3xl mb-6 leading-relaxed">
-        Conditions → access → guides → activities
-        {showExperiences ? " → bookable experiences" : ""}. Always verify fees,
-        hours, and marine conditions with official sources before you cast off.
-      </p>
+      <div className="flex flex-wrap items-end justify-between gap-3 mb-4">
+        <div>
+          <h2 className="text-xl md:text-2xl font-extrabold text-lake-blue">
+            Plan a day in {destination.name}
+          </h2>
+          <p className="text-sm text-gray-600 mt-1 max-w-2xl leading-relaxed">
+            Official conditions and access first. Calculators use numbers you
+            enter — they do not invent routes or a safe-to-go rating.
+          </p>
+        </div>
+        <Link
+          href="/tools"
+          className="text-sm font-bold text-coral hover:underline shrink-0"
+        >
+          Planning tools →
+        </Link>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {steps.map((step) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {rows.map((row) => (
           <div
-            key={step.title}
-            className="rounded-2xl border border-sky-blue/20 bg-white p-5"
+            key={row.label}
+            className="rounded-xl border border-sky-blue/20 bg-white px-4 py-3"
           >
-            <h3 className="font-extrabold text-lake-blue mb-2">{step.title}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed mb-3">
-              {step.blurb}
+            <p className="text-xs font-bold uppercase tracking-wide text-lake-blue/70 mb-2">
+              {row.label}
             </p>
-            <ul className="space-y-1.5">
-              {step.links.map((link) => (
+            <ul className="space-y-1">
+              {row.links.map((link) => (
                 <li key={link.href + link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm font-semibold text-coral hover:underline"
+                    className="text-sm font-semibold text-lake-blue hover:text-coral hover:underline"
                   >
                     {link.label}
                   </Link>

@@ -15,6 +15,12 @@ describe("performance / reliability safeguards (2026-10-16)", () => {
     assert.equal(gln.enabled, false);
   });
 
+  it("disables the 404 Chicago Park District RSS feed", () => {
+    const cpd = NEWS_SOURCES.find((s) => s.id === "chicago-park-district");
+    assert.ok(cpd);
+    assert.equal(cpd.enabled, false);
+  });
+
   it("keeps sitemap free of weather/news fan-out", () => {
     const src = readFileSync(
       join(process.cwd(), "src/app/sitemap.ts"),

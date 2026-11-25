@@ -8,6 +8,11 @@ import {
   getAllPublishedLaunchSlugs,
   getAllPublishedMarinaSlugs,
   getAllPublishedPreserveSlugs,
+  getDestinationBySlug,
+  getLakeBySlug,
+  getLaunchBySlug,
+  getMarinaBySlug,
+  getPreserveAccessBySlug,
 } from "@/data/geo";
 import { getAllGuideSlugs, getGuideBySlug } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
@@ -18,6 +23,16 @@ function lastModFromIso(iso: string | undefined): Date | undefined {
   if (!iso) return undefined;
   const d = new Date(`${iso}T12:00:00.000Z`);
   return Number.isNaN(d.getTime()) ? undefined : d;
+}
+
+function lastModFromSources(
+  ...isos: (string | undefined)[]
+): Date | undefined {
+  const dates = isos
+    .map((iso) => lastModFromIso(iso))
+    .filter((d): d is Date => d !== undefined)
+    .sort((a, b) => b.getTime() - a.getTime());
+  return dates[0];
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -64,6 +79,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/tools`,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/fuel-docks`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/transient-slips`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/river-paddling`,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/tools/float-plan`,
@@ -169,35 +199,64 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.88,
   }));
 
-  const destinationPages = getAllPublishedDestinationSlugs().map((slug) => ({
-    url: `${baseUrl}/destinations/${slug}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.85,
-  }));
+  const destinationPages = getAllPublishedDestinationSlugs().map((slug) => {
+    const destination = getDestinationBySlug(slug);
+    const lastModified = lastModFromSources(
+      ...((destination?.officialLinks ?? []).map((l) => l.lastVerified) ?? []),
+    );
+    return {
+      url: `${baseUrl}/destinations/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
-  const lakePages = getAllPublishedLakeSlugs().map((slug) => ({
-    url: `${baseUrl}/lakes/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const lakePages = getAllPublishedLakeSlugs().map((slug) => {
+    const lake = getLakeBySlug(slug);
+    const lastModified = lastModFromSources(
+      ...((lake?.officialLinks ?? []).map((l) => l.lastVerified) ?? []),
+    );
+    return {
+      url: `${baseUrl}/lakes/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
-  const marinaPages = getAllPublishedMarinaSlugs().map((slug) => ({
-    url: `${baseUrl}/marinas/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.75,
-  }));
+  const marinaPages = getAllPublishedMarinaSlugs().map((slug) => {
+    const marina = getMarinaBySlug(slug);
+    const lastModified = lastModFromIso(marina?.source.lastVerified);
+    return {
+      url: `${baseUrl}/marinas/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
-  const launchPages = getAllPublishedLaunchSlugs().map((slug) => ({
-    url: `${baseUrl}/boat-launches/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.75,
-  }));
+  const launchPages = getAllPublishedLaunchSlugs().map((slug) => {
+    const launch = getLaunchBySlug(slug);
+    const lastModified = lastModFromIso(launch?.source.lastVerified);
+    return {
+      url: `${baseUrl}/boat-launches/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
-  const preservePages = getAllPublishedPreserveSlugs().map((slug) => ({
-    url: `${baseUrl}/forest-preserves/${slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.75,
-  }));
+  const preservePages = getAllPublishedPreserveSlugs().map((slug) => {
+    const preserve = getPreserveAccessBySlug(slug);
+    const lastModified = lastModFromIso(preserve?.source.lastVerified);
+    return {
+      url: `${baseUrl}/forest-preserves/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
   const vendorPages = getPublishedVendors().map((v) => ({
     url: `${baseUrl}/vendors/${v.slug}`,

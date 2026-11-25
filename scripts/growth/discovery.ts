@@ -47,6 +47,32 @@ const OFFICIAL_SEED_DISCOVERIES: QueueItem[] = [
     notes: "West MI inland/nearshore — MiBFF verification needed.",
     priority: 25,
   },
+  {
+    id: "seed-wi-dnr-boat-access-enrich",
+    name: "WI DNR Boat Access inventory enrichment",
+    state: "WI",
+    status: "research",
+    notes:
+      "Use https://dnr.wisconsin.gov/topic/lands/boataccess and ArcGIS Boat Access Sites layer to enrich existing WI launches with ramp type / ADA / ownership — do not invent fees.",
+    priority: 55,
+  },
+  {
+    id: "seed-mi-bff-harbors",
+    name: "Michigan DNR Boating Facility Finder harbors",
+    state: "MI",
+    status: "research",
+    notes:
+      "Cross-check published MI marinas/launches against MiBFF for lane counts and transient reservation links.",
+    priority: 50,
+  },
+  {
+    id: "seed-usace-shelbyville-enrich",
+    name: "USACE Lake Shelbyville / Rend Lake facility details",
+    state: "IL",
+    status: "research",
+    notes: "Enrich existing reservoir pages from USACE recreation pages only.",
+    priority: 35,
+  },
 ];
 
 export function loadResearchQueue(

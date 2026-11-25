@@ -32,9 +32,11 @@ export default function ContactPage() {
     >
       <div className="space-y-8 text-gray-700 leading-relaxed">
         <p>
-          Boating Chicago is an information resource for Chicago and southern Lake
-          Michigan boaters. Use this form for questions, partnerships, advertising,
-          or corrections — we do not broker boats or manually match private charters.
+          Boating Chicago is an information resource for Chicago and Chicagoland,
+          the entire Lake Michigan shoreline, and inland waters within about 400
+          driving miles of downtown Chicago. Use this form for questions,
+          partnerships, advertising, or corrections — we do not broker boats or
+          manually match private charters.
         </p>
 
         <div className="not-prose max-w-xl relative">

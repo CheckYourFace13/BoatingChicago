@@ -17,6 +17,7 @@ import { getWeatherLocationById } from "@/config/weather-locations";
 import { buildLaunchFaqs } from "@/lib/geo-faqs";
 import { buildLaunchPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { FavoriteButton } from "@/components/geo/FavoriteButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -118,6 +119,18 @@ export default async function BoatLaunchPage({ params }: PageProps) {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+        <div className="flex flex-wrap items-center gap-3 -mt-4">
+          <FavoriteButton
+            kind="launch"
+            slug={launch.slug}
+            name={launch.name}
+            href={`/boat-launches/${launch.slug}`}
+          />
+          <p className="text-xs text-gray-500">
+            Saved only in this browser — no account required.
+          </p>
+        </div>
+
         {launch.overview && launch.overview.length > 0 ? (
           <section className="max-w-3xl space-y-4">
             <h2 className="text-2xl font-extrabold text-lake-blue">

@@ -243,7 +243,7 @@ export function briefNewsBlurb(item: NewsItem): string {
   if (!raw) return "";
   // Skip our generic template summaries
   if (
-    /boatingchicago summarizes|published an update titled|we do not republish/i.test(
+    /boatingchicago summarizes|published an update titled|we do not republish|summary only — open the source/i.test(
       raw
     )
   ) {

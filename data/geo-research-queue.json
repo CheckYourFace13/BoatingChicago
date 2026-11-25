@@ -55,6 +55,24 @@
       "state": "MI",
       "status": "research",
       "notes": "West MI inland/nearshore — MiBFF verification needed."
+    },
+    {
+      "name": "WI DNR Boat Access inventory enrichment",
+      "state": "WI",
+      "status": "research",
+      "notes": "Enrich existing WI launches from DNR Boat Access map / ArcGIS layer (ramp type, ADA, ownership). No invented fees."
+    },
+    {
+      "name": "Michigan DNR Boating Facility Finder cross-check",
+      "state": "MI",
+      "status": "research",
+      "notes": "Cross-check published MI marinas/launches for lane counts and transient reservation links."
+    },
+    {
+      "name": "USACE reservoir facility enrichment",
+      "state": "IL",
+      "status": "research",
+      "notes": "Shelbyville / Rend Lake — enrich from USACE recreation pages only."
     }
   ]
 }

@@ -7,7 +7,13 @@ const HUB_LINKS = [
   { href: "/lakes", label: "Lakes & waterways" },
   { href: "/forest-preserves", label: "Forest preserves" },
   { href: "/marinas", label: "Marinas" },
+  { href: "/fuel-docks", label: "Fuel docks" },
+  { href: "/transient-slips", label: "Transient slips" },
   { href: "/boat-launches", label: "Boat launches" },
+  { href: "/river-paddling", label: "River paddling" },
+  { href: "/tools", label: "Planning tools (10)" },
+  { href: "/weather", label: "Weather" },
+  { href: "/regions", label: "Browse by region" },
 ];
 
 const PLAN_DAY_DESTINATIONS = [

@@ -8,7 +8,10 @@ const exploreLinks = [
   { href: "/lakes", label: "Lakes & Waterways" },
   { href: "/forest-preserves", label: "Forest Preserves" },
   { href: "/kayak-canoe-sup", label: "Kayak, Canoe & SUP" },
+  { href: "/river-paddling", label: "River paddling planner" },
   { href: "/marinas", label: "Marinas" },
+  { href: "/fuel-docks", label: "Fuel docks" },
+  { href: "/transient-slips", label: "Transient slips" },
   { href: "/boat-launches", label: "Boat Launches" },
   { href: "/tools", label: "Planning Tools" },
   { href: "/weather", label: "Weather" },
@@ -18,8 +21,8 @@ const exploreLinks = [
   { href: "/events", label: "Events" },
   { href: "/guides", label: "Guides" },
   { href: "/chicago-boat-winterization", label: "Winterization" },
-  { href: "/chicago-transient-dockage", label: "Transient dockage" },
-  { href: "/tools", label: "Planning Tools" },
+  { href: "/chicago-transient-dockage", label: "Chicago transient dockage" },
+  { href: "/aquatic-invasive-species-boater-rules", label: "AIS / clean-drain-dry" },
   { href: "/chicago-boating-faq", label: "Boating FAQ" },
 ];
 
@@ -52,8 +55,8 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo className="mb-3" />
             <p className="text-sky-blue/90 text-sm leading-relaxed mb-4">
-              Chicago, Lake Michigan, and nearby inland waters — weather,
-              harbors, launches, news, and guides.
+              {siteConfig.coverage} — weather, harbors, launches, news, and
+              guides.
             </p>
             <Link
               href="/contact"

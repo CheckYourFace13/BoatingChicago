@@ -777,4 +777,253 @@ export const guidePart6: GuidePage[] = [
     lastReviewed: CHECKED,
     showLeadForm: false,
   },
+  {
+    slug: "aquatic-invasive-species-boater-rules",
+    title: "Aquatic Invasive Species Rules for Boaters (IL, WI, IN, MI)",
+    seoTitle:
+      "AIS Clean Drain Dry Rules | Illinois, Wisconsin, Indiana & Michigan",
+    seoDescription:
+      "State aquatic invasive species rules for boaters trailering between Illinois, Wisconsin, Indiana, and Michigan waters — official clean-drain-dry links, not a substitute for the statute pages.",
+    headline: "Clean, drain, dry: AIS rules when you trailer across the region",
+    intro:
+      "Moving a boat between Lake Michigan harbors and inland lakes can transport zebra mussels, Eurasian watermilfoil, and other invasives. Each state publishes its own inspection and drain rules. This page points to those official pages as checked November 25, 2026 — it is not a complete legal text.",
+    sections: [
+      {
+        heading: "What every trailer boater should do at the ramp",
+        paragraphs: [
+          "Before you leave a launch and before you enter the next waterbody, inspect the hull, trailer, live wells, bilge, and gear. Remove plants, mud, and animals. Drain all water from the boat and equipment. Dry gear when you can between waters. State agencies publish the legal requirements; the habit above is the practical baseline they promote.",
+          "Never transport live fish in water from one waterbody to another unless a state rule explicitly allows it for that species and situation. When in doubt, leave bait and water where you caught them and buy bait at the next stop.",
+        ],
+      },
+      {
+        heading: "Illinois",
+        paragraphs: [
+          "Illinois DNR and the Illinois Invasive Species pages describe boat transportation and aquatic invasive species expectations for state waters. Read the current IDNR AIS / boat transportation materials before you move between Illinois lakes and Lake Michigan harbors.",
+        ],
+      },
+      {
+        heading: "Wisconsin",
+        paragraphs: [
+          "Wisconsin DNR publishes boat transportation and aquatic invasive species laws that apply at every landing: inspect and remove plants and animals, drain water from the boat, motor, and live wells, and do not move live fish away from a waterbody except as the DNR allows. The DNR Boat Access map is also the inventory to confirm public landings statewide.",
+        ],
+      },
+      {
+        heading: "Michigan",
+        paragraphs: [
+          "Michigan’s invasive-species law requires removing aquatic plants from boats, equipment, and trailers before placing them in the water, and before trailering: remove drain plugs, drain bilges and live wells, and ensure the boat and trailer are free of aquatic organisms. Michigan DNR’s boaters and anglers invasive-species page is the current public summary; violations can be a state civil infraction.",
+        ],
+      },
+      {
+        heading: "Indiana",
+        paragraphs: [
+          "Indiana DNR publishes aquatic invasive species guidance for boaters and anglers. Confirm registration and AIS expectations on the Indiana DNR pages before you trailer between Indiana lakes and Lake Michigan ports.",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Where to verify AIS rules (official agencies)",
+      headers: ["State", "Primary agency page", "Also useful"],
+      rows: [
+        [
+          "Illinois",
+          "IDNR invasive / boating materials",
+          "Local forest-preserve launch rules",
+        ],
+        [
+          "Wisconsin",
+          "WI DNR boat transportation & AIS laws",
+          "WI DNR Boat Access map",
+        ],
+        [
+          "Michigan",
+          "MI invasives — boaters & anglers",
+          "MI DNR Boating Facility Finder",
+        ],
+        [
+          "Indiana",
+          "IN DNR aquatic invasive species",
+          "IN DNR fishing / lake access pages",
+        ],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Spring",
+        tip: "Cold water hides plants on trailers — do a slow walk-around at every ramp.",
+      },
+      {
+        season: "Fall",
+        tip: "Before haul-out and storage, drain live wells and bilges thoroughly.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "Do AIS rules apply on Lake Michigan only?",
+        answer:
+          "No. State AIS and boat-transportation rules apply at inland lakes and rivers as well as Great Lakes harbors. Always check the state you are launching in.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does BoatingChicago fine or enforce AIS rules?",
+        answer:
+          "No. We summarize and link to state agencies. Conservation officers enforce the law.",
+      },
+      {
+        question: "Where do I report an invasive species sighting?",
+        answer:
+          "Use the reporting channel on the relevant state DNR or invasive-species page linked below.",
+      },
+    ],
+    popularSearches: [
+      { label: "Boat launches", href: "/boat-launches" },
+      { label: "River paddling planner", href: "/river-paddling" },
+      { label: "Fishing licenses", href: "/fishing-licenses-great-lakes-states" },
+      { label: "Kayak & SUP", href: "/kayak-canoe-sup" },
+    ],
+    relatedSlugs: [
+      "chicago-area-inland-paddling-guide",
+      "illinois-boating-safety-certificate",
+    ],
+    sources: [
+      {
+        name: "Wisconsin DNR — Boat transportation & AIS laws",
+        url: "https://dnr.wisconsin.gov/topic/Invasives/boat",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Wisconsin DNR — Boat and shore fishing access",
+        url: "https://dnr.wisconsin.gov/topic/lands/boataccess",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Michigan — Invasives: boaters and anglers",
+        url: "https://www.michigan.gov/invasives/take-action/boaters-and-anglers",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Illinois DNR — Aquatic nuisance species",
+        url: "https://dnr.illinois.gov/conservation/fishing/aquaticnuisancespecies.html",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Indiana DNR — Aquatic invasive species",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/nongame-and-endangered-wildlife/aquatic-invasive-species/",
+        lastVerified: CHECKED,
+      },
+    ],
+    lastReviewed: CHECKED,
+    showLeadForm: false,
+  },
+  {
+    slug: "fishing-licenses-great-lakes-states",
+    title: "Fishing Licenses & Access Resources (IL, WI, IN, MI)",
+    seoTitle:
+      "Fishing Licenses Near Chicago | Illinois, Wisconsin, Indiana, Michigan",
+    seoDescription:
+      "Official fishing license and Great Lakes / inland access resources for Illinois, Wisconsin, Indiana, and Michigan — buy only through state portals; seasons stay on agency pages.",
+    headline: "Fishing licenses and access links for the four-state region",
+    intro:
+      "BoatingChicago is not a license seller. Buy Illinois, Wisconsin, Indiana, and Michigan fishing licenses only through the official state portals linked below. Seasons, bag limits, and Great Lakes rules change — read the current agency page before you fish.",
+    sections: [
+      {
+        heading: "Illinois",
+        paragraphs: [
+          "Purchase Illinois fishing licenses through the Illinois DNR / Explore More IL licensing system. Lake Michigan and inland waters can have different regulations; use the current Illinois Fishing Information booklet and Lake Michigan pages on IDNR rather than last year’s printout.",
+        ],
+      },
+      {
+        heading: "Wisconsin",
+        paragraphs: [
+          "Wisconsin fishing licenses are sold through the Wisconsin DNR Go Wild system. Winnebago chain and Lake Michigan waters have special rules called out on DNR regulation pages — do not rely on a third-party summary for sturgeon, bag limits, or closed seasons.",
+        ],
+      },
+      {
+        heading: "Michigan",
+        paragraphs: [
+          "Michigan licenses are sold through the Michigan DNR eLicense system. Great Lakes and inland regulations differ; confirm the waterbody you will fish on the Michigan Fishing Guide for the current year.",
+        ],
+      },
+      {
+        heading: "Indiana",
+        paragraphs: [
+          "Indiana fishing licenses are sold through Indiana DNR’s licensing portal. Northwest Indiana Lake Michigan and inland lake rules are published in the current Indiana fishing regulations — confirm before you wet a line.",
+        ],
+      },
+      {
+        heading: "Access is not the same as a license",
+        paragraphs: [
+          "A state fishing license does not waive local launch fees, forest-preserve permits, or harbor day-use stickers. Match the permit to the operator at each ramp (city, county, park district, or DNR).",
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: "Official license portals (verify before purchase)",
+      headers: ["State", "License portal", "Regulations"],
+      rows: [
+        [
+          "Illinois",
+          "IDNR / Explore More IL licensing",
+          "Illinois Fishing Information",
+        ],
+        ["Wisconsin", "DNR Go Wild", "WI fishing regulations"],
+        ["Michigan", "DNR eLicense", "Michigan Fishing Guide"],
+        ["Indiana", "IN DNR licensing", "Indiana fishing regulations"],
+      ],
+    },
+    seasonalTips: [
+      {
+        season: "Year-round",
+        tip: "Screenshot or print your digital license confirmation before you lose cell service on the water.",
+      },
+    ],
+    peopleAlsoAsk: [
+      {
+        question: "Can I fish Lake Michigan with one state’s license?",
+        answer:
+          "You generally need a license for the state whose waters you are fishing. Reciprocity is limited — read each state’s nonresident rules before you cross a harbor line.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does BoatingChicago sell fishing licenses?",
+        answer:
+          "No. Use the official state portals linked in the sources section.",
+      },
+    ],
+    popularSearches: [
+      { label: "Boat launches", href: "/boat-launches" },
+      { label: "AIS / clean-drain-dry", href: "/aquatic-invasive-species-boater-rules" },
+      { label: "Marinas", href: "/marinas" },
+      { label: "Events calendar", href: "/calendar" },
+    ],
+    relatedSlugs: [
+      "aquatic-invasive-species-boater-rules",
+      "illinois-boating-safety-certificate",
+    ],
+    sources: [
+      {
+        name: "Illinois DNR — Fishing",
+        url: "https://dnr.illinois.gov/fishing.html",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Wisconsin DNR — Fishing licenses",
+        url: "https://dnr.wisconsin.gov/topic/fishing/licenses",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Michigan DNR — Buy a license",
+        url: "https://www.michigan.gov/dnr/buy-and-apply",
+        lastVerified: CHECKED,
+      },
+      {
+        name: "Indiana DNR — Fishing licenses",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/licenses-and-permits/",
+        lastVerified: CHECKED,
+      },
+    ],
+    lastReviewed: CHECKED,
+    showLeadForm: false,
+  },
 ];

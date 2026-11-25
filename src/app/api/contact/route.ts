@@ -111,14 +111,16 @@ export async function POST(request: Request) {
     const name = String(body.name || "").trim();
     const email = String(body.email || "").trim();
     const subject = String(body.subject || "").trim();
-    const message = String(body.message || "").trim();
+    const rawMessage = String(body.message || "").trim();
+    const pageUrl = String(body.pageUrl || "").trim();
+    const sourceUrl = String(body.sourceUrl || "").trim();
     const briefOptIn =
       body.briefOptIn === true ||
       body.briefOptIn === "true" ||
       body.briefOptIn === "on" ||
       body.briefOptIn === 1;
 
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !subject || !rawMessage) {
       return NextResponse.json(
         { error: "Please fill in all required fields." },
         { status: 400 }
@@ -127,9 +129,33 @@ export async function POST(request: Request) {
     if (!isValidEmail(email)) {
       return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     }
-    if (name.length > 120 || email.length > 200 || subject.length > 120 || message.length > 4000) {
+    if (
+      subject === "Website Correction" &&
+      (!sourceUrl || !/^https?:\/\//i.test(sourceUrl))
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            "Website corrections require an official http(s) source URL for review.",
+        },
+        { status: 400 }
+      );
+    }
+    if (
+      name.length > 120 ||
+      email.length > 200 ||
+      subject.length > 120 ||
+      rawMessage.length > 4000 ||
+      pageUrl.length > 500 ||
+      sourceUrl.length > 500
+    ) {
       return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
     }
+
+    const messageParts = [rawMessage];
+    if (pageUrl) messageParts.unshift(`Page URL: ${pageUrl}`);
+    if (sourceUrl) messageParts.unshift(`Source URL: ${sourceUrl}`);
+    const message = messageParts.join("\n\n");
 
     // Honeypot from JSON clients
     if (String(body.company_website || body.website || "").trim()) {

@@ -60,16 +60,47 @@ check_200() {
   return 0
 }
 
+# Post-SHA responsiveness gate: catch hung Node after Hostinger process switch.
+# Deploy logs showed multiple rapid Next.js "Ready" starts; the process can accept
+# the SHA probe then stop answering. Probe /api/health with a hard timeout.
+echo "Checking post-deploy health responsiveness..."
+health_ok=0
+for i in $(seq 1 12); do
+  health_code=$(curl -sS -m 15 -o /tmp/health.json -w "%{http_code}" \
+    "${SITE}/api/health?t=$(date +%s)" || echo "000")
+  health_body=$(tr -d '\r\n' </tmp/health.json 2>/dev/null || true)
+  echo "health attempt ${i}/12: HTTP ${health_code} body=${health_body}"
+  if [ "${health_code}" = "200" ] && echo "${health_body}" | grep -q '"ok":true'; then
+    health_ok=1
+    break
+  fi
+  sleep 10
+done
+if [ "${health_ok}" != "1" ]; then
+  echo "::error::Production /api/health did not respond after SHA match — possible hung Node process."
+  echo "Action: restart the Node.js application in hPanel (or hosting_nodejs_restart-application), then re-run verify."
+  exit 1
+fi
+
 fail=0
 check_200 "/" "homepage" || fail=1
 check_200 "/sitemap.xml" "sitemap" || fail=1
 check_200 "/robots.txt" "robots.txt" || fail=1
+check_200 "/api/health" "health" || fail=1
 check_200 "/tools" "tools hub" || fail=1
 check_200 "/tools/fuel" "fuel calculator" || fail=1
 check_200 "/kayak-canoe-sup" "kayak finder" || fail=1
 check_200 "/permits" "permits" || fail=1
 check_200 "/calendar" "calendar" || fail=1
 check_200 "/boat-launches" "boat launches" || fail=1
+check_200 "/marinas" "marinas" || fail=1
+check_200 "/destinations" "destinations" || fail=1
+check_200 "/fuel-docks" "fuel docks" || fail=1
+check_200 "/transient-slips" "transient slips" || fail=1
+check_200 "/river-paddling" "river paddling" || fail=1
+check_200 "/aquatic-invasive-species-boater-rules" "AIS guide" || fail=1
+check_200 "/fishing-licenses-great-lakes-states" "fishing licenses" || fail=1
+check_200 "/about" "about" || fail=1
 
 # Canonical (no query) + cache-busted key URL
 key_code=$(curl -sS -o /tmp/indexnow-key.txt -w "%{http_code}" \

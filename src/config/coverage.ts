@@ -39,8 +39,9 @@ export const COVERAGE_SHORT =
   "Chicago & Chicagoland, all of Lake Michigan, and inland waters within about 400 driving miles";
 
 /** Longer editorial description used in site metadata and llms.txt. */
+/** No trailing period — callers add sentence punctuation. */
 export const COVERAGE_LONG =
-  "Chicago and Chicagoland (Cook, DuPage, Lake, Will, Kane, and McHenry counties), the entire Lake Michigan shoreline and harbors in Illinois, Wisconsin, Indiana, and Michigan, plus inland lakes, rivers, forest preserves, canals, and paddling waters within roughly 400 driving miles of downtown Chicago.";
+  "Chicago and Chicagoland (Cook, DuPage, Lake, Will, Kane, and McHenry counties), the entire Lake Michigan shoreline and harbors in Illinois, Wisconsin, Indiana, and Michigan, plus inland lakes, rivers, forest preserves, canals, and paddling waters within roughly 400 driving miles of downtown Chicago";
 
 export const COVERAGE_HIERARCHY_NOTE =
   "Chicago and Chicagoland stay the primary audience. Coverage expands through northern Illinois, southeastern Wisconsin, northwest Indiana, and southwest Michigan, then to the full Lake Michigan shore and qualifying inland waters farther out.";

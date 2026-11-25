@@ -31,13 +31,13 @@ export const revalidate = 900;
 
 /**
  * One indexable weather page, one canonical. Locations are a query-param view
- * of the same page, so metadata stays generic to southern Lake Michigan.
+ * of the same page, so metadata stays coverage-wide (not a per-harbor index).
  */
 export async function generateMetadata() {
   return buildManagedMetadata({
-  title: "Chicago Boating Weather & Lake Michigan Conditions",
+  title: "Boating Weather & Lake Michigan Conditions | Chicago Coverage",
   description:
-    "Live Chicago boating weather, Lake Michigan nearshore conditions, NOAA/NWS marine alerts, and an informational boating conditions summary for recreational boaters.",
+    "NWS/NOAA marine forecasts, buoy context, and harbor-area weather anchors for Chicago, Lake Michigan, and inland waters in BoatingChicago coverage — informational only, never a safe-to-boat clearance.",
   path: "/weather",
 });
 }

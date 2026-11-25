@@ -143,7 +143,7 @@ function inferCategory(
  * Uses only headline + source attribution.
  */
 function buildOriginalSummary(sourceName: string, headline: string): string {
-  return `${sourceName} published an update titled “${headline}.” BoatingChicago summarizes source headlines for local boaters and always links to the original story — we do not republish full articles.`;
+  return `${sourceName}: “${headline}.” Summary only — open the source link for the full item.`;
 }
 
 function buildWhyItMatters(category: NewsCategory, headline: string): string {
@@ -161,7 +161,7 @@ function buildWhyItMatters(category: NewsCategory, headline: string): string {
     return "Relevant to fishing conditions, regulations, or charter planning out of Chicago and nearby Lake Michigan ports.";
   }
   if (category === "Wisconsin" || category === "Indiana") {
-    return "Useful context for boaters traveling the southern Lake Michigan shoreline and nearby destinations.";
+    return "Useful context for boaters across Chicago, Lake Michigan harbors, and nearby inland destinations.";
   }
   if (category === "Lake Michigan" || category === "Great Lakes") {
     return "Broader Lake Michigan / Great Lakes conditions or policy that can influence recreational boating near Chicago.";
