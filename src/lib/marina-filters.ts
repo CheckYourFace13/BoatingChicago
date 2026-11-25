@@ -1,4 +1,4 @@
-import type { Destination, Marina } from "@/types/geo";
+import type { Destination, Marina, GeoRegion } from "@/types/geo";
 
 export const MARINA_FILTER_AMENITIES = [
   "fuel",
@@ -11,6 +11,15 @@ export const MARINA_FILTER_AMENITIES = [
 
 export type MarinaFilterAmenity = (typeof MARINA_FILTER_AMENITIES)[number];
 export type WaterKindFilter = "all" | "lake-michigan" | "inland";
+export type MarinaStateFilter = "all" | GeoRegion;
+
+export const MARINA_STATE_FILTERS: { id: MarinaStateFilter; label: string }[] = [
+  { id: "all", label: "All states" },
+  { id: "illinois", label: "Illinois" },
+  { id: "wisconsin", label: "Wisconsin" },
+  { id: "indiana", label: "Indiana" },
+  { id: "michigan", label: "Michigan" },
+];
 
 export function parseMarinaAmenity(raw: string | undefined): MarinaFilterAmenity | null {
   return MARINA_FILTER_AMENITIES.includes(raw as MarinaFilterAmenity)
@@ -20,6 +29,12 @@ export function parseMarinaAmenity(raw: string | undefined): MarinaFilterAmenity
 
 export function parseWaterKind(raw: string | undefined): WaterKindFilter {
   return raw === "lake-michigan" || raw === "inland" ? raw : "all";
+}
+
+export function parseMarinaState(raw: string | undefined): MarinaStateFilter {
+  return MARINA_STATE_FILTERS.some((f) => f.id === raw)
+    ? (raw as MarinaStateFilter)
+    : "all";
 }
 
 export function waterKind(destination: Destination): "lake-michigan" | "inland" {
@@ -35,9 +50,11 @@ export function hasConfirmedAmenity(marina: Marina, key: MarinaFilterAmenity): b
 export function marinaFilterHref(
   water: WaterKindFilter,
   amenity: MarinaFilterAmenity | null,
+  state: MarinaStateFilter = "all",
 ): string {
   const params = new URLSearchParams();
   if (water !== "all") params.set("water", water);
+  if (state !== "all") params.set("state", state);
   if (amenity) params.set("amenity", amenity);
   const q = params.toString();
   return q ? `/marinas?${q}` : "/marinas";
@@ -46,6 +63,7 @@ export function marinaFilterHref(
 export function marinaFiltersActive(
   water: WaterKindFilter,
   amenity: MarinaFilterAmenity | null,
+  state: MarinaStateFilter = "all",
 ): boolean {
-  return water !== "all" || amenity != null;
+  return water !== "all" || amenity != null || state !== "all";
 }

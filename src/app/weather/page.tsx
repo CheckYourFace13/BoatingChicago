@@ -72,7 +72,7 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
           <p className="text-sun-yellow font-bold text-sm tracking-widest uppercase mb-3">
             {isChicago
               ? "Lake Michigan · Chicago"
-              : `Southern Lake Michigan · ${weather.locationLabel}`}
+              : `Lake Michigan region · ${weather.locationLabel}`}
           </p>
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 max-w-4xl">
             Chicago Boating Weather &amp; Lake Michigan Conditions
@@ -201,14 +201,45 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
           scopeLabel={isChicago ? undefined : weather.locationLabel}
         />
 
+        {weather.nearshoreZone ? (
+          <section className="rounded-2xl border border-sky-blue/20 bg-white p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-extrabold text-lake-blue mb-2">
+              Regional nearshore marine zone
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-3">
+              This harbor sits in NWS zone{" "}
+              <span className="font-semibold">{weather.nearshoreZone.id}</span>
+              {" — "}
+              {weather.nearshoreZone.name}. That is a regional nearshore forecast
+              area (typically within about 5 nautical miles of shore), not a
+              dock- or ramp-specific observation.
+            </p>
+            <a
+              href={weather.nearshoreZone.forecastUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-lake-blue hover:underline"
+            >
+              Open NWS zone forecast for {weather.nearshoreZone.id} →
+            </a>
+            {weather.marineOffice ? (
+              <p className="text-sm text-gray-500 mt-3">
+                Coastal waters product office: NWS {weather.marineOffice}
+              </p>
+            ) : null}
+          </section>
+        ) : null}
+
         {weather.marineForecastText ? (
           <section>
             <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
-              Nearshore marine forecast (excerpt)
+              Coastal waters forecast (excerpt)
             </h2>
             <p className="text-sm text-gray-600 mb-3">
-              Official NWS coastal waters forecast product excerpt. Read the full
-              product on weather.gov before boating.
+              Official NWS coastal waters forecast product excerpt for this
+              shore. Read the full product and the zone forecast above before
+              boating — point forecasts and airport observations are not marine
+              clearance.
             </p>
             {weather.marineForecastLabel ? (
               <p className="text-sm font-semibold text-amber-800 mb-3">

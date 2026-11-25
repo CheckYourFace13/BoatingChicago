@@ -1,0 +1,27 @@
+name: Weekly growth summary
+
+# Fridays 15:00 UTC (~10:00 AM America/Chicago standard time)
+on:
+  schedule:
+    - cron: "0 15 * * 5"
+  workflow_dispatch:
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Generate inventory summary
+        run: npx tsx scripts/weekly-growth-summary.ts
+      - name: Deduplicate research queue against published inventory
+        run: npx tsx scripts/geo-discovery-check.ts
+      - name: Upload summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-growth-summary
+          path: data/weekly-growth-summary-latest.json

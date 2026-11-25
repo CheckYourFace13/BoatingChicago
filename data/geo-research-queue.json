@@ -1,0 +1,42 @@
+{
+  "updated": "2026-11-25",
+  "policy": "Incomplete facility research stays here until official source, uniqueness, safety, and SEO criteria pass. Do not auto-publish thin pages.",
+  "items": [
+    {
+      "name": "Fish Creek / Ephraim Door County marinas",
+      "state": "WI",
+      "status": "research",
+      "notes": "Need municipal or operator pages with enough distinct launch/marina detail for standalone guides."
+    },
+    {
+      "name": "Two Rivers / Kewaunee / Algoma WI",
+      "state": "WI",
+      "status": "research",
+      "notes": "Northern WI LM shore between Manitowoc and Door County."
+    },
+    {
+      "name": "Menominee / Marinette / Escanaba",
+      "state": "MI/WI",
+      "status": "research",
+      "notes": "Upper Green Bay / northern LM — verify recreational access before publishing."
+    },
+    {
+      "name": "Gun Lake / Paw Paw Lake MI inland",
+      "state": "MI",
+      "status": "enrich",
+      "notes": "Gun Lake (Barry/Allegan) lake guide published 2026-11-25. Paw Paw Lake still needs MiBFF lane/passport verification before a standalone page."
+    },
+    {
+      "name": "Tippecanoe / Webster IN access",
+      "state": "IN",
+      "status": "hub-only",
+      "notes": "Indirect DNR access — keep in northern Indiana inland hub until site-level pages are verified."
+    },
+    {
+      "name": "Oshkosh Winnebago launch network",
+      "state": "WI",
+      "status": "enrich",
+      "notes": "City launch list exists; consider destination wrapper linked to lake-winnebago."
+    }
+  ]
+}

@@ -36,32 +36,49 @@ function validCoord(lat: unknown, lng: unknown): boolean {
 }
 
 /**
- * One pin per marina that has a coordinate in verifiedMarinaPlaces
- * (OpenStreetMap place features). Marinas without a verified coordinate are
- * omitted from the map and reported via `unmapped`.
+ * One pin per marina. Prefer verifiedMarinaPlaces (OSM) coordinates; otherwise
+ * fall back to the published destination coordinate and label the pin as a
+ * harbor-area marker (not a slip GPS). Marinas with neither remain unmapped.
  */
 export function buildMarinaPoints(
   marinas: Marina[],
   destinationName: (slug: string) => string | undefined,
+  destinationCoords?: (
+    slug: string,
+  ) => { lat: number; lng: number } | undefined,
 ): { points: MapPoint[]; unmapped: Marina[] } {
   const points: MapPoint[] = [];
   const unmapped: Marina[] = [];
   for (const marina of marinas) {
     const place = verifiedMarinaPlaces[marina.slug];
-    if (!place || !validCoord(place.lat, place.lng)) {
-      unmapped.push(marina);
+    const dest = destinationCoords?.(marina.destinationSlug);
+    if (place && validCoord(place.lat, place.lng)) {
+      points.push({
+        id: `marina:${marina.slug}`,
+        kind: "marina",
+        title: marina.name,
+        subtitle: destinationName(marina.destinationSlug) ?? "Marina",
+        lat: place.lat,
+        lng: place.lng,
+        href: `/marinas/${marina.slug}`,
+        links: [],
+      });
       continue;
     }
-    points.push({
-      id: `marina:${marina.slug}`,
-      kind: "marina",
-      title: marina.name,
-      subtitle: destinationName(marina.destinationSlug) ?? "Marina",
-      lat: place.lat,
-      lng: place.lng,
-      href: `/marinas/${marina.slug}`,
-      links: [],
-    });
+    if (dest && validCoord(dest.lat, dest.lng)) {
+      points.push({
+        id: `marina:${marina.slug}`,
+        kind: "marina",
+        title: marina.name,
+        subtitle: `${destinationName(marina.destinationSlug) ?? "Harbor"} area marker (not slip GPS)`,
+        lat: dest.lat,
+        lng: dest.lng,
+        href: `/marinas/${marina.slug}`,
+        links: [],
+      });
+      continue;
+    }
+    unmapped.push(marina);
   }
   return { points, unmapped };
 }

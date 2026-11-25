@@ -32,11 +32,11 @@ export function PlanYourDay({
     {
       title: "1. Check conditions",
       blurb:
-        "Start with the area NOAA/NWS forecast for this destination (not a harbor- or ramp-specific observation). The snapshot on the weather page is informational only — it is never a safety clearance.",
+        "Start with the area NOAA/NWS forecast and regional nearshore marine zone for this destination (not a harbor- or ramp-specific observation). The snapshot on the weather page is informational only — it is never a safety clearance.",
       links: [
-        { href: weatherHref, label: "Area forecast →" },
-        { href: "/weather", label: "Full weather hub →" },
-        { href: "/tools/fuel", label: "Fuel calculator →" },
+        { href: weatherHref, label: "Local conditions →" },
+        { href: "/weather", label: "Weather hub →" },
+        { href: "/permits", label: "Rules & permits →" },
       ],
     },
     {
@@ -64,25 +64,42 @@ export function PlanYourDay({
               { href: "/boat-launches", label: "All launches →" },
             ]),
         { href: "/kayak-canoe-sup", label: "Kayak, canoe & SUP →" },
-        { href: "/permits", label: "Rules & permits →" },
       ],
     },
     {
-      title: "3. Local guide",
+      title: "3. Estimate fuel, time & gear",
+      blurb:
+        "Use your own vessel numbers — we never invent MPG, speed, or a safe navigable route. Worksheets stay in your browser.",
+      links: [
+        { href: "/tools/fuel", label: "Fuel & cost →" },
+        { href: "/tools/trip-time", label: "Trip time →" },
+        { href: "/tools/anchor-scope", label: "Anchor scope →" },
+        { href: "/tools/battery", label: "Battery runtime →" },
+        { href: "/tools/towing", label: "Towing capacity →" },
+        { href: "/tools/conversions", label: "Conversions →" },
+        { href: "/tools", label: "All tools →" },
+      ],
+    },
+    {
+      title: "4. Checklist, float plan & ownership",
       blurb:
         guides.length > 0
-          ? "Read harbor and destination context written for boaters planning this area."
-          : "Browse regional guides for harbors, safety, and local waterways.",
+          ? "Printable trip worksheets plus harbor context and ownership quote tools when you are comparing slips or storage."
+          : "Printable trip worksheets, then ownership tools if you are comparing slips or storage.",
       links: [
-        ...guides.slice(0, 3).map((g) => ({
+        { href: "/tools/trip-checklist", label: "Trip checklist →" },
+        { href: "/tools/float-plan", label: "Float plan →" },
+        ...guides.slice(0, 2).map((g) => ({
           href: `/${g.slug}`,
           label: g.title,
         })),
         { href: "/guides", label: "All guides →" },
+        { href: "/tools/slip-compare", label: "Slip compare →" },
+        { href: "/tools/ownership-cost", label: "Ownership cost →" },
       ],
     },
     {
-      title: "4. Things to do",
+      title: "5. Things to do",
       blurb:
         "Experiences, events, and on-water activities — still subject to marine conditions and operator rules.",
       links: [
@@ -92,6 +109,7 @@ export function PlanYourDay({
         })),
         { href: "/events", label: "Events →" },
         { href: "/destinations", label: "All destinations →" },
+        { href: "/regions", label: "Browse by region →" },
       ],
     },
   ];

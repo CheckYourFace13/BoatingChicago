@@ -124,12 +124,17 @@ describe("launch filters + empty state", () => {
 });
 
 describe("map points", () => {
-  it("marina pins come only from verified coordinates", () => {
-    const { points, unmapped } = buildMarinaPoints(getPublishedMarinas(), (s) => s);
+  it("marina pins use verified or destination coordinates", () => {
+    const { points, unmapped } = buildMarinaPoints(
+      getPublishedMarinas(),
+      (s) => s,
+      (slug) => getDestinationBySlug(slug)?.coordinates,
+    );
     assert.equal(points.length + unmapped.length, getPublishedMarinas().length);
+    assert.ok(points.length > 0);
     for (const p of points) {
       assert.ok(p.href.startsWith("/marinas/"));
-      assert.ok(p.lat > 40 && p.lat < 45 && p.lng < -85 && p.lng > -90);
+      assert.ok(p.lat > 40 && p.lat < 47 && p.lng < -84 && p.lng > -90);
     }
   });
 

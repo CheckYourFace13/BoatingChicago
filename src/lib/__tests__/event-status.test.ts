@@ -53,6 +53,12 @@ function weatherStub(): ChicagoWeatherPayload {
     sunsetIso: null,
     marineForecastText: null,
     marineForecastLabel: null,
+    nearshoreZone: {
+      id: "LMZ741",
+      name: "Wilmette Harbor to Northerly Island, IL",
+      forecastUrl: "https://forecast.weather.gov/shortday.php?zone=LMZ741",
+    },
+    marineOffice: "LOT",
     rating: { level: "Good", reason: "test", factors: [] },
     sources: [],
     errors: [],

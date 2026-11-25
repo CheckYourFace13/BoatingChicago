@@ -1,8 +1,9 @@
-import type { BoatLaunch, Destination } from "@/types/geo";
+import type { BoatLaunch, Destination, GeoRegion } from "@/types/geo";
 import { haversineMiles, roundMiles } from "@/lib/geo-distance";
 import { lookupZip } from "@/lib/zip-centroids";
 
 export type WaterFilter = "all" | "lake-michigan" | "inland" | "river";
+export type StateFilter = "all" | GeoRegion;
 export type AccessFilter =
   | "all"
   | "trailered"
@@ -27,6 +28,14 @@ export const WATER_FILTERS: { id: WaterFilter; label: string }[] = [
   { id: "lake-michigan", label: "Lake Michigan" },
   { id: "inland", label: "Inland lakes" },
   { id: "river", label: "Rivers" },
+];
+
+export const STATE_FILTERS: { id: StateFilter; label: string }[] = [
+  { id: "all", label: "All states" },
+  { id: "illinois", label: "Illinois" },
+  { id: "wisconsin", label: "Wisconsin" },
+  { id: "indiana", label: "Indiana" },
+  { id: "michigan", label: "Michigan" },
 ];
 
 export const ACCESS_FILTERS: { id: AccessFilter; label: string }[] = [
@@ -123,6 +132,7 @@ export function matchesNote(launch: BoatLaunch, filter: NoteFilter): boolean {
 
 export interface LaunchFilterState {
   water: WaterFilter;
+  state: StateFilter;
   access: AccessFilter;
   motor: MotorFilter;
   notes: NoteFilter;
@@ -130,30 +140,58 @@ export interface LaunchFilterState {
   zip?: string;
 }
 
+export function parseStateFilter(raw: string | undefined): StateFilter {
+  return STATE_FILTERS.some((f) => f.id === raw) ? (raw as StateFilter) : "all";
+}
+
+export function matchesState(
+  launch: BoatLaunch,
+  filter: StateFilter,
+  destinationBySlug: (slug: string) => Destination | undefined,
+): boolean {
+  if (filter === "all") return true;
+  const dest = destinationBySlug(launch.destinationSlug);
+  return dest?.region === filter;
+}
+
 export function filterLaunches(
   launches: BoatLaunch[],
   water: WaterFilter,
   access: AccessFilter,
-  extra?: Pick<LaunchFilterState, "motor" | "notes">,
+  extra?: Partial<Pick<LaunchFilterState, "motor" | "notes" | "state">> & {
+    destinationBySlug?: (slug: string) => Destination | undefined;
+  },
 ): BoatLaunch[] {
   const motor = extra?.motor ?? "all";
   const notes = extra?.notes ?? "all";
-  return launches.filter(
-    (launch) =>
-      matchesWater(launch, water) &&
-      matchesAccess(launch, access) &&
-      matchesMotor(launch, motor) &&
-      matchesNote(launch, notes),
-  );
+  const state = extra?.state ?? "all";
+  const destinationBySlug = extra?.destinationBySlug;
+  return launches.filter((launch) => {
+    if (!matchesWater(launch, water)) return false;
+    if (!matchesAccess(launch, access)) return false;
+    if (!matchesMotor(launch, motor)) return false;
+    if (!matchesNote(launch, notes)) return false;
+    if (
+      state !== "all" &&
+      destinationBySlug &&
+      !matchesState(launch, state, destinationBySlug)
+    ) {
+      return false;
+    }
+    return true;
+  });
 }
 
 export function filterHref(
   water: WaterFilter,
   access: AccessFilter,
-  extra: Partial<Pick<LaunchFilterState, "motor" | "notes" | "near" | "zip">> = {},
+  extra: Partial<
+    Pick<LaunchFilterState, "motor" | "notes" | "near" | "zip" | "state">
+  > = {},
 ): string {
   const params = new URLSearchParams();
   if (water !== "all") params.set("water", water);
+  if (extra.state && extra.state !== "all") params.set("state", extra.state);
   if (access !== "all") params.set("access", access);
   if (extra.motor && extra.motor !== "all") params.set("motor", extra.motor);
   if (extra.notes && extra.notes !== "all") params.set("notes", extra.notes);
@@ -166,6 +204,7 @@ export function filterHref(
 export function launchFiltersIndexable(state: LaunchFilterState): boolean {
   return (
     state.water === "all" &&
+    state.state === "all" &&
     state.access === "all" &&
     state.motor === "all" &&
     state.notes === "all" &&

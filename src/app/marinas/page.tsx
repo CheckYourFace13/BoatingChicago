@@ -18,6 +18,7 @@ import {
   hasConfirmedAmenity,
   marinaFiltersActive,
   parseMarinaAmenity,
+  parseMarinaState,
   parseWaterKind,
   waterKind,
 } from "@/lib/marina-filters";
@@ -25,12 +26,13 @@ import {
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: Promise<{ water?: string; amenity?: string }>;
+  searchParams: Promise<{ water?: string; amenity?: string; state?: string }>;
 }) {
   const params = await searchParams;
   const water = parseWaterKind(params.water);
   const amenity = parseMarinaAmenity(params.amenity);
-  const filtered = marinaFiltersActive(water, amenity);
+  const state = parseMarinaState(params.state);
+  const filtered = marinaFiltersActive(water, amenity, state);
   return buildManagedMetadata({
     title: "Marinas & Harbors Near Chicago | Verified Official Listings",
     description:
@@ -43,11 +45,12 @@ export async function generateMetadata({
 export default async function MarinasPage({
   searchParams,
 }: {
-  searchParams: Promise<{ water?: string; amenity?: string }>;
+  searchParams: Promise<{ water?: string; amenity?: string; state?: string }>;
 }) {
   const params = await searchParams;
   const water = parseWaterKind(params.water);
   const amenity = parseMarinaAmenity(params.amenity);
+  const stateFilter = parseMarinaState(params.state);
 
   const destinations = getPublishedDestinations()
     .slice()
@@ -69,6 +72,9 @@ export default async function MarinasPage({
 
   const groups = allGroups
     .map(({ destination, marinas }) => {
+      if (stateFilter !== "all" && destination.region !== stateFilter) {
+        return { destination, marinas: [] };
+      }
       if (water !== "all" && waterKind(destination) !== water) {
         return { destination, marinas: [] };
       }
@@ -79,12 +85,17 @@ export default async function MarinasPage({
     })
     .filter((g) => g.marinas.length > 0);
 
+  const marinasForMap =
+    stateFilter === "all" && water === "all" && !amenity
+      ? getPublishedMarinas()
+      : groups.flatMap((g) => g.marinas);
   const { points: marinaPoints, unmapped } = buildMarinaPoints(
-    getPublishedMarinas(),
+    marinasForMap,
     (slug) => {
       const d = getDestinationBySlug(slug);
       return d ? `${d.name}, ${d.state}` : undefined;
     },
+    (slug) => getDestinationBySlug(slug)?.coordinates,
   );
   const unmappedNote =
     unmapped.length > 0
@@ -139,6 +150,7 @@ export default async function MarinasPage({
             groups={groups}
             water={water}
             amenity={amenity}
+            state={stateFilter}
             totalCount={total}
           />
         )}

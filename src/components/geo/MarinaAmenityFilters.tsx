@@ -4,8 +4,10 @@ import { amenityLabel, regionLabel } from "@/lib/geo-display";
 import { SourceLink } from "@/components/geo/SourceAttribution";
 import {
   MARINA_FILTER_AMENITIES,
+  MARINA_STATE_FILTERS,
   marinaFilterHref,
   type MarinaFilterAmenity,
+  type MarinaStateFilter,
   type WaterKindFilter,
 } from "@/lib/marina-filters";
 
@@ -45,11 +47,13 @@ export function MarinaAmenityFilters({
   groups,
   water,
   amenity,
+  state = "all",
   totalCount,
 }: {
   groups: Group[];
   water: WaterKindFilter;
   amenity: MarinaFilterAmenity | null;
+  state?: MarinaStateFilter;
   totalCount: number;
 }) {
   const visibleCount = groups.reduce((n, g) => n + g.marinas.length, 0);
@@ -69,30 +73,54 @@ export function MarinaAmenityFilters({
           not indexed as separate pages.
         </p>
         <div className="flex flex-wrap gap-2 mb-3">
-          <Chip href={marinaFilterHref(water, null)} active={amenity === null}>
+          <Chip
+            href={marinaFilterHref(water, null, state)}
+            active={amenity === null}
+          >
             Any amenity
           </Chip>
           {MARINA_FILTER_AMENITIES.map((key) => (
             <Chip
               key={key}
-              href={marinaFilterHref(water, amenity === key ? null : key)}
+              href={marinaFilterHref(
+                water,
+                amenity === key ? null : key,
+                state,
+              )}
               active={amenity === key}
             >
               {amenityLabel(key)}
             </Chip>
           ))}
         </div>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {MARINA_STATE_FILTERS.map((item) => (
+            <Chip
+              key={item.id}
+              href={marinaFilterHref(water, amenity, item.id)}
+              active={state === item.id}
+            >
+              {item.label}
+            </Chip>
+          ))}
+        </div>
         <div className="flex flex-wrap gap-2">
-          <Chip href={marinaFilterHref("all", amenity)} active={water === "all"}>
+          <Chip
+            href={marinaFilterHref("all", amenity, state)}
+            active={water === "all"}
+          >
             All waters
           </Chip>
           <Chip
-            href={marinaFilterHref("lake-michigan", amenity)}
+            href={marinaFilterHref("lake-michigan", amenity, state)}
             active={water === "lake-michigan"}
           >
             Lake Michigan
           </Chip>
-          <Chip href={marinaFilterHref("inland", amenity)} active={water === "inland"}>
+          <Chip
+            href={marinaFilterHref("inland", amenity, state)}
+            active={water === "inland"}
+          >
             Inland lakes / chain
           </Chip>
         </div>

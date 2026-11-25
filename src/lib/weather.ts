@@ -14,6 +14,7 @@ import {
 import {
   DEFAULT_WEATHER_LOCATION_ID,
   getWeatherLocationById,
+  nearshoreZoneForecastUrl,
   type WeatherLocation,
 } from "@/config/weather-locations";
 import type {
@@ -121,7 +122,12 @@ export interface NwsPointResolution extends NwsGridRef {
  */
 type MarineScope = "chicago" | "lake-michigan" | "inland";
 
-const INLAND_LAKE_LOCATION_IDS = new Set(["lake-geneva", "chain-o-lakes"]);
+const INLAND_LAKE_LOCATION_IDS = new Set([
+  "lake-geneva",
+  "chain-o-lakes",
+  "fond-du-lac",
+  "shabbona-lake",
+]);
 
 function marineScopeFor(location: WeatherLocation): MarineScope {
   if (location.id === DEFAULT_WEATHER_LOCATION_ID) return "chicago";
@@ -433,12 +439,17 @@ async function fetchAlerts(
   context: LocationContext,
   errors: string[]
 ): Promise<{ alerts: WeatherAlert[]; ok: boolean }> {
-  // Chicago keeps the curated marine + Cook County zone list; other locations
-  // use a point query so we do not need a zone map for every harbor.
-  const url =
-    context.scope === "chicago"
-      ? `https://api.weather.gov/alerts/active?zone=${encodeURIComponent(NWS_ALERT_ZONES.join(","))}`
-      : `https://api.weather.gov/alerts/active?point=${context.lat},${context.lon}`;
+  // Prefer curated nearshore marine zones when configured for the harbor.
+  // Chicago falls back to the historic LOT zone list; others fall back to point.
+  const zones =
+    context.location.alertZones && context.location.alertZones.length > 0
+      ? context.location.alertZones
+      : context.scope === "chicago"
+        ? [...NWS_ALERT_ZONES]
+        : null;
+  const url = zones
+    ? `https://api.weather.gov/alerts/active?zone=${encodeURIComponent(zones.join(","))}`
+    : `https://api.weather.gov/alerts/active?point=${context.lat},${context.lon}`;
   try {
     const res = await fetchWithTimeout(url, { headers: nwsHeaders() });
     if (!res.ok) {
@@ -479,9 +490,9 @@ async function fetchAlerts(
 }
 
 async function fetchLakeConditions(
+  buoyId: string,
   errors: string[]
 ): Promise<LakeConditionsData> {
-  const buoyId = NDBC_BUOY_ID;
   const url = `https://www.ndbc.noaa.gov/data/realtime2/${buoyId}.txt`;
   try {
     const res = await fetchWithTimeout(url, {
@@ -588,15 +599,15 @@ async function fetchSunTimes(
 }
 
 async function fetchMarineForecastText(
+  office: string,
   errors: string[]
 ): Promise<string | null> {
-  // Nearshore marine forecast product for LOT
-  const listUrl =
-    "https://api.weather.gov/products?location=LOT&type=CWF&limit=1";
+  // Coastal Waters Forecast (CWF) from the regional NWS marine office
+  const listUrl = `https://api.weather.gov/products?location=${encodeURIComponent(office)}&type=CWF&limit=1`;
   try {
     const listRes = await fetchWithTimeout(listUrl, { headers: nwsHeaders() });
     if (!listRes.ok) {
-      errors.push(`NWS marine product list HTTP ${listRes.status}`);
+      errors.push(`NWS marine product list (${office}) HTTP ${listRes.status}`);
       return null;
     }
     const listJson = (await listRes.json()) as {
@@ -765,17 +776,33 @@ export async function getWeatherForLocation(
   const errors: string[] = [];
   const context = await resolveLocationContext(location, errors);
   const usesBuoy = context.scope !== "inland";
+  const buoyId = location.ndbcBuoyId || NDBC_BUOY_ID;
+  const marineOffice =
+    location.marineOffice || (context.scope === "chicago" ? "LOT" : null);
+
+  const officeHome =
+    marineOffice === "MKX"
+      ? "https://www.weather.gov/mkx"
+      : marineOffice === "GRB"
+        ? "https://www.weather.gov/grb"
+        : marineOffice === "GRR"
+          ? "https://www.weather.gov/grr"
+          : marineOffice === "APX"
+            ? "https://www.weather.gov/apx"
+            : marineOffice === "IWX"
+              ? "https://www.weather.gov/iwx"
+              : "https://www.weather.gov/lot";
 
   const sources: WeatherSourceRef[] = [
     {
       name: "National Weather Service (api.weather.gov)",
-      url: "https://www.weather.gov/lot",
+      url: officeHome,
     },
     ...(usesBuoy
       ? [
           {
             name: "NOAA National Data Buoy Center",
-            url: `https://www.ndbc.noaa.gov/station_page.php?station=${NDBC_BUOY_ID}`,
+            url: `https://www.ndbc.noaa.gov/station_page.php?station=${buoyId}`,
           },
         ]
       : []),
@@ -792,21 +819,26 @@ export async function getWeatherForLocation(
       fetchDaily(context.grid, errors),
       fetchAlerts(context, errors),
       usesBuoy
-        ? fetchLakeConditions(errors)
+        ? fetchLakeConditions(buoyId, errors)
         : Promise.resolve(inlandLakeConditions(location.label)),
       fetchSunTimes(context.lat, context.lon, errors),
-      usesBuoy ? fetchMarineForecastText(errors) : Promise.resolve(null),
+      usesBuoy && marineOffice
+        ? fetchMarineForecastText(marineOffice, errors)
+        : Promise.resolve(null),
     ]);
 
   const alerts = alertResult.alerts;
   const alertsAvailable = alertResult.ok;
 
+  const buoyLabel =
+    location.ndbcBuoyLabel ||
+    `NOAA buoy ${buoyId}`;
   const lake: LakeConditionsData =
     context.scope === "lake-michigan"
       ? {
           ...lakeRaw,
           notes: [
-            `NOAA buoy ${NDBC_BUOY_ID} sits off Chicago — treat these readings as a southern Lake Michigan reference, not a local ${location.label} observation.`,
+            `${buoyLabel}. Buoy waves/temps are open-water observations — not a harbor dock reading for ${location.label}.`,
             lakeRaw.notes,
           ]
             .filter(Boolean)
@@ -814,9 +846,19 @@ export async function getWeatherForLocation(
         }
       : lakeRaw;
 
+  const nearshoreZone = location.nearshoreZone
+    ? {
+        id: location.nearshoreZone.id,
+        name: location.nearshoreZone.name,
+        forecastUrl: nearshoreZoneForecastUrl(location.nearshoreZone.id),
+      }
+    : null;
+
   const marineForecastLabel =
-    context.scope === "lake-michigan" && marineForecastText
-      ? `NWS Chicago (LOT) nearshore product — covers Illinois and Indiana waters, not ${location.label} specifically.`
+    marineForecastText && marineOffice
+      ? context.scope === "chicago"
+        ? `NWS Chicago (LOT) coastal waters forecast — regional nearshore product, not a ramp-specific observation.`
+        : `NWS ${marineOffice} coastal waters forecast for this shore — a regional marine product. Pair it with the nearshore zone forecast${nearshoreZone ? ` (${nearshoreZone.id})` : ""} and local observations; it is not a harbor-dock reading.`
       : null;
 
   const nearTerm = hourly[0] || null;
@@ -852,6 +894,8 @@ export async function getWeatherForLocation(
     sunsetIso: sun.sunsetIso,
     marineForecastText,
     marineForecastLabel,
+    nearshoreZone,
+    marineOffice,
     rating,
     sources,
     errors,

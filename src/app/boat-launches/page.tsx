@@ -21,6 +21,7 @@ import {
   ACCESS_FILTERS,
   MOTOR_FILTERS,
   NOTE_FILTERS,
+  STATE_FILTERS,
   WATER_FILTERS,
   accessLabel,
   distanceToDestinationMiles,
@@ -31,6 +32,7 @@ import {
   parseAccessFilter,
   parseMotorFilter,
   parseNoteFilter,
+  parseStateFilter,
   parseWaterFilter,
   waterLabel,
 } from "@/lib/launch-filters";
@@ -44,6 +46,7 @@ export async function generateMetadata({
 }: {
   searchParams: Promise<{
     water?: string;
+    state?: string;
     access?: string;
     motor?: string;
     notes?: string;
@@ -54,6 +57,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const state = {
     water: parseWaterFilter(params.water),
+    state: parseStateFilter(params.state),
     access: parseAccessFilter(params.access),
     motor: parseMotorFilter(params.motor),
     notes: parseNoteFilter(params.notes),
@@ -84,6 +88,7 @@ export default async function BoatLaunchesPage({
 }: {
   searchParams: Promise<{
     water?: string;
+    state?: string;
     access?: string;
     motor?: string;
     notes?: string;
@@ -93,12 +98,14 @@ export default async function BoatLaunchesPage({
 }) {
   const params = await searchParams;
   const water = parseWaterFilter(params.water);
+  const stateFilter = parseStateFilter(params.state);
   const access = parseAccessFilter(params.access);
   const motor = parseMotorFilter(params.motor);
   const notes = parseNoteFilter(params.notes);
   const extra = {
     motor,
     notes,
+    state: stateFilter,
     near: params.near,
     zip: params.zip,
   };
@@ -110,6 +117,10 @@ export default async function BoatLaunchesPage({
         REGION_ORDER.indexOf(a.region) - REGION_ORDER.indexOf(b.region) ||
         (a.distanceFromChicagoMiles ?? Number.MAX_SAFE_INTEGER) -
           (b.distanceFromChicagoMiles ?? Number.MAX_SAFE_INTEGER),
+    )
+    .filter(
+      (destination) =>
+        stateFilter === "all" || destination.region === stateFilter,
     );
 
   const groups = destinations
@@ -119,7 +130,12 @@ export default async function BoatLaunchesPage({
         getLaunchesByDestination(destination.slug),
         water,
         access,
-        { motor, notes },
+        {
+          motor,
+          notes,
+          state: stateFilter,
+          destinationBySlug: getDestinationBySlug,
+        },
       ),
     }))
     .filter((group) => group.launches.length > 0);
@@ -146,11 +162,15 @@ export default async function BoatLaunchesPage({
   const showMarinas = water === "all" || water === "lake-michigan";
   const marinaPoints = showMarinas
     ? buildMarinaPoints(
-        getPublishedMarinas(),
+        getPublishedMarinas().filter((m) => {
+          if (stateFilter === "all") return true;
+          return getDestinationBySlug(m.destinationSlug)?.region === stateFilter;
+        }),
         (slug) => {
           const d = getDestinationBySlug(slug);
           return d ? `${d.name}, ${d.state}` : undefined;
         },
+        (slug) => getDestinationBySlug(slug)?.coordinates,
       ).points
     : [];
   const mapPoints = [...launchPoints, ...marinaPoints];
@@ -254,6 +274,25 @@ export default async function BoatLaunchesPage({
               );
             })}
           </nav>
+          <nav aria-label="Filter launches by state" className="flex flex-wrap gap-2">
+            {STATE_FILTERS.map((item) => {
+              const active = item.id === stateFilter;
+              return (
+                <Link
+                  key={item.id}
+                  href={filterHref(water, access, { ...extra, state: item.id })}
+                  className={
+                    active
+                      ? "text-sm font-bold px-3 py-1.5 rounded-full bg-lake-blue text-white"
+                      : "text-sm font-semibold px-3 py-1.5 rounded-full bg-white text-lake-blue border border-sky-blue/25 hover:bg-light-blue/60 transition-colors"
+                  }
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
           <nav aria-label="Filter launches by access type" className="flex flex-wrap gap-2">
             {ACCESS_FILTERS.map((item) => {
               const active = item.id === access;
@@ -317,6 +356,9 @@ export default async function BoatLaunchesPage({
             className="flex flex-wrap gap-3 items-end rounded-2xl border border-sky-blue/20 bg-white p-4"
           >
             {water !== "all" ? <input type="hidden" name="water" value={water} /> : null}
+            {stateFilter !== "all" ? (
+              <input type="hidden" name="state" value={stateFilter} />
+            ) : null}
             {access !== "all" ? <input type="hidden" name="access" value={access} /> : null}
             {motor !== "all" ? <input type="hidden" name="motor" value={motor} /> : null}
             {notes !== "all" ? <input type="hidden" name="notes" value={notes} /> : null}

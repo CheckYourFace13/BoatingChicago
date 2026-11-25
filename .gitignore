@@ -49,3 +49,5 @@ data/newsletter.json
 
 # IndexNow local dedupe state
 data/indexnow-state.json
+
+data/weekly-growth-summary-latest.json

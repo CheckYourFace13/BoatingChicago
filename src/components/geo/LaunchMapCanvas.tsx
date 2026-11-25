@@ -29,6 +29,17 @@ function pinIcon(kind: MapPointKind): L.DivIcon {
   });
 }
 
+function clusterIcon(count: number): L.DivIcon {
+  const size = count > 9 ? 36 : 30;
+  return L.divIcon({
+    html: `<span style="display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px;border-radius:9999px;background:#0B3D6B;color:#fff;font:700 12px/1 system-ui,sans-serif;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)">${count}</span>`,
+    className: "",
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+  });
+}
+
 function buildPopup(point: MapPoint): HTMLElement {
   const root = document.createElement("div");
   root.style.minWidth = "180px";
@@ -36,7 +47,8 @@ function buildPopup(point: MapPoint): HTMLElement {
   const title = document.createElement("a");
   title.href = point.href;
   title.textContent = point.title;
-  title.style.cssText = "font-weight:800;color:#0B3D6B;text-decoration:underline";
+  title.style.cssText =
+    "font-weight:800;color:#0B3D6B;text-decoration:underline";
   root.appendChild(title);
 
   const sub = document.createElement("div");
@@ -71,6 +83,69 @@ function buildPopup(point: MapPoint): HTMLElement {
   return root;
 }
 
+function buildClusterPopup(points: MapPoint[]): HTMLElement {
+  const root = document.createElement("div");
+  root.style.minWidth = "200px";
+  const heading = document.createElement("div");
+  heading.textContent = `${points.length} locations in this area`;
+  heading.style.cssText =
+    "font-weight:800;color:#0B3D6B;margin-bottom:6px;font-size:13px";
+  root.appendChild(heading);
+  const list = document.createElement("ul");
+  list.style.cssText = "margin:0;padding:0 0 0 16px;font-size:13px";
+  for (const point of points.slice(0, 12)) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = point.href;
+    a.textContent = point.title;
+    a.style.cssText = "color:#0B3D6B";
+    li.appendChild(a);
+    list.appendChild(li);
+  }
+  root.appendChild(list);
+  if (points.length > 12) {
+    const more = document.createElement("div");
+    more.textContent = `+${points.length - 12} more — zoom in`;
+    more.style.cssText = "font-size:12px;margin-top:4px;color:#4b5563";
+    root.appendChild(more);
+  }
+  return root;
+}
+
+/**
+ * Simple grid clustering for zoomed-out views. At higher zooms every pin
+ * renders individually so destination coords stay accurate.
+ */
+function clusterPoints(
+  points: MapPoint[],
+  zoom: number,
+): { singles: MapPoint[]; clusters: { lat: number; lng: number; points: MapPoint[] }[] } {
+  if (zoom >= 9 || points.length <= 8) {
+    return { singles: points, clusters: [] };
+  }
+  // Coarser grid when zoomed out (~0.5° at z6–7, ~0.25° at z8).
+  const cell = zoom <= 7 ? 0.55 : 0.28;
+  const buckets = new Map<string, MapPoint[]>();
+  for (const point of points) {
+    const key = `${Math.floor(point.lat / cell)}:${Math.floor(point.lng / cell)}`;
+    const list = buckets.get(key) ?? [];
+    list.push(point);
+    buckets.set(key, list);
+  }
+  const singles: MapPoint[] = [];
+  const clusters: { lat: number; lng: number; points: MapPoint[] }[] = [];
+  for (const group of buckets.values()) {
+    if (group.length === 1) {
+      singles.push(group[0]);
+      continue;
+    }
+    const lat = group.reduce((s, p) => s + p.lat, 0) / group.length;
+    const lng = group.reduce((s, p) => s + p.lng, 0) / group.length;
+    clusters.push({ lat, lng, points: group });
+  }
+  return { singles, clusters };
+}
+
 export default function LaunchMapCanvas({
   points,
   visibleKinds,
@@ -83,7 +158,52 @@ export default function LaunchMapCanvas({
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
-  const layersRef = useRef<Map<MapPointKind, L.LayerGroup>>(new Map());
+  const layersRef = useRef<L.LayerGroup | null>(null);
+  const pointsRef = useRef(points);
+  const kindsRef = useRef(visibleKinds);
+  pointsRef.current = points;
+  kindsRef.current = visibleKinds;
+
+  function renderPins(map: L.Map) {
+    layersRef.current?.clearLayers();
+    const layer = layersRef.current;
+    if (!layer) return;
+
+    const visible = pointsRef.current.filter((p) =>
+      kindsRef.current.includes(p.kind),
+    );
+    const { singles, clusters } = clusterPoints(visible, map.getZoom());
+    const bounds: L.LatLngTuple[] = [];
+
+    for (const point of singles) {
+      L.marker([point.lat, point.lng], {
+        icon: pinIcon(point.kind),
+        title: point.title,
+        alt: point.title,
+        keyboard: true,
+      })
+        .bindPopup(buildPopup(point), { maxWidth: 260 })
+        .addTo(layer);
+      bounds.push([point.lat, point.lng]);
+    }
+
+    for (const cluster of clusters) {
+      L.marker([cluster.lat, cluster.lng], {
+        icon: clusterIcon(cluster.points.length),
+        title: `${cluster.points.length} locations`,
+        alt: `${cluster.points.length} locations`,
+        keyboard: true,
+      })
+        .bindPopup(buildClusterPopup(cluster.points), { maxWidth: 280 })
+        .on("dblclick", () => {
+          map.setView([cluster.lat, cluster.lng], Math.min(map.getZoom() + 2, 12));
+        })
+        .addTo(layer);
+      bounds.push([cluster.lat, cluster.lng]);
+    }
+
+    return bounds;
+  }
 
   // Create the map once.
   useEffect(() => {
@@ -104,7 +224,7 @@ export default function LaunchMapCanvas({
     map.on("click", () => map.scrollWheelZoom.enable());
     map.on("mouseout", () => map.scrollWheelZoom.disable());
     mapRef.current = map;
-    const layers = layersRef.current;
+    layersRef.current = L.layerGroup().addTo(map);
 
     function onClick(event: MouseEvent) {
       const target = (event.target as HTMLElement | null)?.closest("a");
@@ -117,11 +237,17 @@ export default function LaunchMapCanvas({
     }
     el.addEventListener("click", onClick);
 
+    const onZoom = () => {
+      renderPins(map);
+    };
+    map.on("zoomend", onZoom);
+
     return () => {
+      map.off("zoomend", onZoom);
       el.removeEventListener("click", onClick);
       map.remove();
       mapRef.current = null;
-      layers.clear();
+      layersRef.current = null;
     };
   }, [router]);
 
@@ -129,32 +255,11 @@ export default function LaunchMapCanvas({
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    const layers = layersRef.current;
-    layers.forEach((group) => group.remove());
-    layers.clear();
-
-    const bounds: L.LatLngTuple[] = [];
-    for (const point of points) {
-      if (!visibleKinds.includes(point.kind)) continue;
-      let group = layers.get(point.kind);
-      if (!group) {
-        group = L.layerGroup().addTo(map);
-        layers.set(point.kind, group);
-      }
-      L.marker([point.lat, point.lng], {
-        icon: pinIcon(point.kind),
-        title: point.title,
-        alt: point.title,
-        keyboard: true,
-      })
-        .bindPopup(buildPopup(point), { maxWidth: 260 })
-        .addTo(group);
-      bounds.push([point.lat, point.lng]);
-    }
-
+    const bounds = renderPins(map);
+    if (!bounds || bounds.length === 0) return;
     if (bounds.length === 1) {
       map.setView(bounds[0], 11);
-    } else if (bounds.length > 1) {
+    } else {
       map.fitBounds(L.latLngBounds(bounds), { padding: [28, 28], maxZoom: 11 });
     }
   }, [points, visibleKinds]);

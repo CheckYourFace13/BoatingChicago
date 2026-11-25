@@ -9,19 +9,34 @@ import type {
 } from "@/types/geo";
 import { chicagoCalendarDate } from "@/lib/season";
 import { destinations as destinationsCore } from "./destinations";
+import { destinationsBatch2 } from "./destinations-batch2";
 import { destinationsExpansion } from "./destinations-expansion";
 import { events } from "./events";
 import { forestPreserveAccess } from "./forest-preserves";
 import { lakes } from "./lakes";
 import { launches as launchesCore } from "./launches";
+import { launchesBatch2 } from "./launches-batch2";
 import { launchesExpansion } from "./launches-expansion";
 import { marinas as marinasCore } from "./marinas";
+import { marinasBatch2 } from "./marinas-batch2";
 import { marinasExpansion } from "./marinas-expansion";
 import { storageFacilities } from "./storage-facilities";
 
-export const destinations = [...destinationsCore, ...destinationsExpansion];
-export const marinas = [...marinasCore, ...marinasExpansion];
-export const launches = [...launchesCore, ...launchesExpansion];
+export const destinations = [
+  ...destinationsCore,
+  ...destinationsExpansion,
+  ...destinationsBatch2,
+];
+export const marinas = [
+  ...marinasCore,
+  ...marinasExpansion,
+  ...marinasBatch2,
+];
+export const launches = [
+  ...launchesCore,
+  ...launchesExpansion,
+  ...launchesBatch2,
+];
 export { lakes } from "./lakes";
 export { events } from "./events";
 export { storageFacilities } from "./storage-facilities";

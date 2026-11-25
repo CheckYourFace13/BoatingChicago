@@ -159,6 +159,7 @@ describe("launch / marina filter URLs", () => {
     assert.equal(
       launchFiltersIndexable({
         water: "all",
+        state: "all",
         access: "all",
         motor: "all",
         notes: "all",
@@ -168,6 +169,17 @@ describe("launch / marina filter URLs", () => {
     assert.equal(
       launchFiltersIndexable({
         water: "river",
+        state: "all",
+        access: "all",
+        motor: "all",
+        notes: "all",
+      }),
+      false,
+    );
+    assert.equal(
+      launchFiltersIndexable({
+        water: "all",
+        state: "wisconsin",
         access: "all",
         motor: "all",
         notes: "all",
@@ -181,12 +193,14 @@ describe("launch / marina filter URLs", () => {
     const withFees = filterLaunches(launches, "all", "all", {
       motor: "all",
       notes: "fees",
+      state: "all",
     });
     assert.ok(withFees.length > 0);
     assert.ok(withFees.every((l) => l.feesNote));
     const seasonal = filterLaunches(launches, "all", "all", {
       motor: "all",
       notes: "seasonal",
+      state: "all",
     });
     assert.ok(seasonal.every((l) => l.seasonalAccessNote));
   });
@@ -194,8 +208,15 @@ describe("launch / marina filter URLs", () => {
   it("builds shareable marina filter URLs", () => {
     assert.equal(parseMarinaAmenity("fuel"), "fuel");
     assert.equal(parseMarinaAmenity("wifi"), null);
-    assert.equal(marinaFilterHref("lake-michigan", "fuel"), "/marinas?water=lake-michigan&amenity=fuel");
+    assert.equal(
+      marinaFilterHref("lake-michigan", "fuel"),
+      "/marinas?water=lake-michigan&amenity=fuel",
+    );
     assert.equal(marinaFilterHref("all", null), "/marinas");
+    assert.equal(
+      marinaFilterHref("all", "fuel", "wisconsin"),
+      "/marinas?state=wisconsin&amenity=fuel",
+    );
   });
 });
 

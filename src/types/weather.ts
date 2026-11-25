@@ -89,6 +89,17 @@ export interface ChicagoWeatherPayload {
   marineForecastText: string | null;
   /** Caveat shown with the marine product when it is not local to the selected location */
   marineForecastLabel: string | null;
+  /**
+   * Primary NWS nearshore marine zone for this harbor (regional forecast, not a
+   * ramp-specific observation). Null for inland lakes.
+   */
+  nearshoreZone: {
+    id: string;
+    name: string;
+    forecastUrl: string;
+  } | null;
+  /** NWS office that issued the coastal waters product excerpt, when available */
+  marineOffice: string | null;
   rating: BoatingConditionRating;
   sources: WeatherSourceRef[];
   errors: string[];
