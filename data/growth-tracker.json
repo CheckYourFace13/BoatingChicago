@@ -28,14 +28,14 @@
     {
       "id": "set-2",
       "title": "GravyBlock Search Console recommendations",
-      "status": "implemented",
+      "status": "deployed",
       "gscWindow": "2026-10-26 to 2026-11-22",
       "baselineSha": "dd60844",
-      "productionSha": null,
+      "productionSha": "95af2b9",
       "priorities": [
         {
           "id": "p1-storage",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "SERP intent primarily operator/provider pages with pricing & availability",
             "Ranking URLs observed: chicagoyachtworks.com/storage/, chicagoharbors.info/winter-storage/, baymarinechicago.com/storage/",
@@ -45,7 +45,7 @@
         },
         {
           "id": "p2-impression-drops",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "/chicago-dining-cruises: live 200, indexable, canonical OK — classified seasonality (Nov vs summer demand); no technical defect fix required",
             "/boat-detailing-chicago: permanent 308 to /chicago-boat-detailing-guide (intentional consolidation)",
@@ -59,7 +59,7 @@
         },
         {
           "id": "p3-social-previews",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "Live homepage/news/dining/detailing/storage already had og:* + twitter:card with 200 PNG images",
             "buildMetadata now emits absolute og/twitter image URLs; branded /opengraph-image remains fallback"
@@ -68,7 +68,7 @@
         },
         {
           "id": "p4-titles-descriptions",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "Shortened forest-preserves, storage, lakes, regions, tools metadata where clarity allowed; no keyword stuffing"
           ],
@@ -84,7 +84,7 @@
         },
         {
           "id": "p5-embed-widget",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "Added /embed/conditions HTML card + /weather/embed docs + /weather/embed-test; CSP frame-ancestors * for /embed only"
           ],
@@ -110,7 +110,7 @@
         "/lakes/chain-o-lakes",
         "/boat-launches/simmons-island-public-boat-launch"
       ],
-      "results": "Awaiting production deploy verification; GSC improvement not claimed until measured after a later comparison period."
+      "results": "Live on 95af2b9 with health OK and protected URLs 200. GSC improvement not claimed until measured after a later comparison period."
     },
     {
       "id": "set-3",
