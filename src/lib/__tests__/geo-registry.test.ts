@@ -50,9 +50,9 @@ describe("geo-registry", () => {
 
   it("reports inventory counts from published data", () => {
     const snap = getGeoInventorySnapshot();
-    assert.ok(snap.destinations >= 30);
-    assert.ok(snap.launches >= 45);
-    assert.ok(snap.marinas >= 25);
+    assert.ok(snap.destinations >= 40);
+    assert.ok(snap.launches >= 50);
+    assert.ok(snap.marinas >= 30);
     assert.equal(snap.hubs, 9);
   });
 });

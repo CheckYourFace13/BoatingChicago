@@ -1,27 +1,122 @@
 name: Weekly growth summary
 
-# Fridays 15:00 UTC (~10:00 AM America/Chicago standard time)
+# Fridays 15:00 UTC (~9:00 AM America/Chicago daylight / 10:00 AM standard)
+# Upgraded discovery → verify → enrich flags → propose (or opt-in apply).
+# Do not add a second Friday cron — extend this workflow only.
 on:
   schedule:
     - cron: "0 15 * * 5"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Pipeline mode"
+        required: true
+        default: "propose"
+        type: choice
+        options:
+          - check
+          - propose
+          - apply
+      probe_links:
+        description: "Probe official URLs (bounded)"
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: weekly-growth
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  summarize:
+  growth:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
-      - run: npm ci
-      - name: Generate inventory summary
-        run: npx tsx scripts/weekly-growth-summary.ts
-      - name: Deduplicate research queue against published inventory
-        run: npx tsx scripts/geo-discovery-check.ts
-      - name: Upload summary artifact
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit tests (including growth gates)
+        run: npm test
+
+      - name: Run growth pipeline
+        id: pipeline
+        env:
+          GROWTH_AUTO_PUBLISH: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'apply' && 'true' || '' }}
+        run: |
+          MODE="${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'propose' }}"
+          PROBE_FLAG=""
+          if [ "${{ github.event_name != 'workflow_dispatch' || inputs.probe_links }}" = "true" ]; then
+            PROBE_FLAG="--probe --limit-probes=25"
+          fi
+          npx --yes tsx scripts/growth/run-pipeline.ts --mode="$MODE" $PROBE_FLAG | tee /tmp/growth-pipeline.json
+          {
+            echo "## Weekly growth pipeline"
+            echo
+            echo "- Mode: \`$MODE\`"
+            echo "- Schedule: Fridays \`0 15 * * 5\` UTC (this workflow only)"
+            echo "- Auto-apply to main: **disabled by default**; \`apply\` is manual workflow_dispatch only"
+            echo "- GSC / AdSense / affiliate: reported only when secrets exist; otherwise marked unavailable"
+            echo
+            echo '```json'
+            # Keep summary compact for the Actions UI
+            node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/weekly-growth-summary-latest.json','utf8')); const slim={generatedAt:j.generatedAt,mode:j.mode,inventoryBefore:j.inventoryBefore,inventoryAfter:j.inventoryAfter,ready:j.ready,published:j.published,duplicatesRejected:j.duplicatesRejected,unsourcedRejected:j.unsourcedRejected,qualityRejected:j.qualityRejected,metrics:j.metrics,publication:j.publication,monitorErrors:(j.monitor||[]).filter(m=>m.severity==='error').slice(0,10),ownerActions:j.ownerActions}; console.log(JSON.stringify(slim,null,2));"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build gate (blocks publication path)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'apply' }}
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://boatingchicago.com
+
+      - name: Open review PR when apply produced changes
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'apply' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No working tree changes after apply — nothing to PR."
+            exit 0
+          fi
+          BRANCH="growth/auto-$(date -u +%Y%m%d)"
+          git config user.name "boatingchicago-growth-bot"
+          git config user.email "growth-bot@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add data/ src/data/geo/ || true
+          git commit -m "chore(growth): apply gate-passing geo candidates" || exit 0
+          git push -u origin HEAD
+          gh pr create --title "Growth pipeline: gate-passing geo candidates" --body "$(cat <<'EOF'
+          ## Summary
+          Automated growth apply from the Friday/manual pipeline.
+          Candidates already passed uniqueness, source, safety, and completeness gates; build ran in CI.
+
+          ## Test plan
+          - [ ] Review destination/lake/marina/launch copy for accuracy
+          - [ ] Confirm official links
+          - [ ] Merge only if still source-backed (no thin pages)
+          EOF
+          )" || echo "PR create skipped (may already exist)"
+
+      - name: Upload growth artifacts
         uses: actions/upload-artifact@v4
         with:
           name: weekly-growth-summary
-          path: data/weekly-growth-summary-latest.json
+          path: |
+            data/weekly-growth-summary-latest.json
+            data/growth-proposals/
+            data/geo-research-queue.json

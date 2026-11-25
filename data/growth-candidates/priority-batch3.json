@@ -1,0 +1,295 @@
+[
+  {
+    "id": "two-rivers-dest",
+    "kind": "destination",
+    "slug": "two-rivers",
+    "name": "Two Rivers",
+    "state": "WI",
+    "region": "wisconsin",
+    "bodyOfWater": "Lake Michigan / Twin Rivers",
+    "summary": "City of Two Rivers public launches at Veterans Park and Paddlers Park on the Twin Rivers with Lake Michigan access via the harbor mouth.",
+    "overview": [
+      "Two Rivers sits on Lake Michigan between Manitowoc and Kewaunee where the East and West Twin Rivers meet. It is a practical Wisconsin shore trailer stop with municipal parks launches rather than a full-service Chicago-style harbor network.",
+      "Planning distances: about 170 driving miles from downtown Chicago (trailer planning only). Water routes from Chicago are multi-day Lake Michigan passages for most recreational boats.",
+      "City of Two Rivers Parks & Recreation lists Veterans Park as the major public boat launch and fish-cleaning station on West River Street, and Paddlers Park at the end of 27th Street for kayaks, canoes, and larger pleasure boats into the East Twin River. Launch permits apply — confirm current resident, nonresident, and daily amounts on city parks materials before you tow; we do not invent rates.",
+      "Use NWS Green Bay / Manitowoc-area Lake Michigan nearshore products rather than Chicago LOT forecasts for this harbor."
+    ],
+    "highlights": [
+      "Veterans Park public launch and fish cleaning",
+      "Paddlers Park East Twin River access",
+      "City launch permits required",
+      "~170 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "City of Two Rivers — Veterans Park & Boat Launch",
+        "url": "https://www.two-rivers.org/parksrec/page/veterans-park-boat-launch",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "City of Two Rivers — Paddlers Park",
+        "url": "https://www.two-rivers.org/parksrec/page/paddlers-park",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "manitowoc",
+    "coordinates": { "lat": 44.153, "lng": -87.569 },
+    "distanceFromChicagoMiles": 170,
+    "nearbyDestinationSlugs": ["manitowoc", "sheboygan", "algoma"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "algoma-dest",
+    "kind": "destination",
+    "slug": "algoma",
+    "name": "Algoma",
+    "state": "WI",
+    "region": "wisconsin",
+    "bodyOfWater": "Lake Michigan",
+    "summary": "City of Algoma Marina at 60 Steele Street with seasonal slips, double launch ramps, fuel, and pump-out listed on the city marina page.",
+    "overview": [
+      "Algoma is a Kewaunee County Lake Michigan harbor north of Two Rivers and south of Door County. The city marina is the primary public access and transient stop documented on Algoma’s official marina page.",
+      "Planning distances: about 220 driving miles from downtown Chicago.",
+      "City of Algoma materials list the marina open May 1–October 1 with seasonal slips, double launch ramps, gasoline, sanitary pump-out, showers/restrooms, fish cleaning, and Wi‑Fi. Launch and slip fee schedules are published on the city marina page — confirm current amounts and seasonal staff hours there before arrival.",
+      "Use NWS Green Bay nearshore Lake Michigan zones for this shore rather than Chicago products."
+    ],
+    "highlights": [
+      "City marina — double launch ramps",
+      "Fuel and pump-out (city marina page)",
+      "Seasonal slips May 1–October 1",
+      "~220 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "City of Algoma — Marina",
+        "url": "https://www.algomacity.org/residents/marina/index.php",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "manitowoc",
+    "coordinates": { "lat": 44.608, "lng": -87.433 },
+    "distanceFromChicagoMiles": 220,
+    "nearbyDestinationSlugs": ["two-rivers", "sturgeon-bay", "door-county"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "menominee-dest",
+    "kind": "destination",
+    "slug": "menominee",
+    "name": "Menominee",
+    "state": "MI",
+    "region": "michigan",
+    "bodyOfWater": "Green Bay / Menominee River / Lake Michigan",
+    "summary": "Upper Peninsula harbor city with Menominee Marina and multiple city boat launches that require daily or annual launch permits.",
+    "overview": [
+      "Menominee sits at the mouth of the Menominee River on Green Bay’s west shore, paired with Marinette, Wisconsin across the river. It is a northern Lake Michigan / Green Bay trailer and cruising destination near the edge of the ~400-mile inland planning radius from Chicago.",
+      "Planning distances: about 280 driving miles from downtown Chicago.",
+      "Menominee Marina (1000 First Street) publishes marina rules, seasonal office hours, and a designated boat launch ramp with fees separate from slip rates. The City Recreation Department lists Mystery Ship, 18th Avenue, and Marina boat launches and explains daily/annual permit purchase. Confirm current permit amounts and display rules on city recreation and marina pages — dollar figures change.",
+      "Use NWS Green Bay marine zones for this harbor."
+    ],
+    "highlights": [
+      "Menominee Marina with public launch ramp",
+      "Multiple city launches with permit rules",
+      "Green Bay / Menominee River access",
+      "~280 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "Menominee Recreation — Boat Launches",
+        "url": "https://parksandrec8.wixsite.com/menomineerecreation/boat-launches",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "Menominee Marina — Rules & Launch",
+        "url": "https://menomineemarina.com/rules-regulations-policies/",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "green-bay",
+    "coordinates": { "lat": 45.108, "lng": -87.614 },
+    "distanceFromChicagoMiles": 280,
+    "nearbyDestinationSlugs": ["marinette", "green-bay", "escanaba"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "marinette-dest",
+    "kind": "destination",
+    "slug": "marinette",
+    "name": "Marinette",
+    "state": "WI",
+    "region": "wisconsin",
+    "bodyOfWater": "Green Bay / Menominee River / Lake Michigan",
+    "summary": "City of Marinette public boat launches including Menekaunee Harbor, Stephenson Island, Boom Landing, Sixth Street, and Red Arrow Park with city launch stickers.",
+    "overview": [
+      "Marinette faces Menominee, Michigan across the Menominee River at the head of Green Bay. City launches serve river and bay access for trailered boats.",
+      "Planning distances: about 280 driving miles from downtown Chicago.",
+      "The City of Marinette Boat Launches page lists Stephenson Island, Boom Landing, Sixth Street, Menekaunee Harbor, and Red Arrow Park, and describes annual stickers and daily permits sold at City Hall and listed vendors. Menekaunee Harbor transient docks are dawn-to-dusk only per city parks ordinance materials — no overnight transient dockage there. Confirm current sticker and daily fees on the city page before you tow.",
+      "Pair with Menominee, MI for the opposite shore and use NWS Green Bay marine products."
+    ],
+    "highlights": [
+      "Five city public launches",
+      "Menekaunee Harbor dawn–dusk transient docks",
+      "Annual sticker / daily permit system",
+      "~280 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "City of Marinette — Boat Launches",
+        "url": "https://marinette.wi.us/407/Boat-Launches",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "green-bay",
+    "coordinates": { "lat": 45.1, "lng": -87.631 },
+    "distanceFromChicagoMiles": 280,
+    "nearbyDestinationSlugs": ["menominee", "green-bay", "escanaba"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "escanaba-dest",
+    "kind": "destination",
+    "slug": "escanaba",
+    "name": "Escanaba",
+    "state": "MI",
+    "region": "michigan",
+    "bodyOfWater": "Little Bay de Noc / Green Bay / Lake Michigan",
+    "summary": "City of Escanaba Municipal Marina in Ludington Park plus Aronson Island and North Shore public launches with published seasonal marina dates.",
+    "overview": [
+      "Escanaba sits on Little Bay de Noc in Michigan’s Upper Peninsula — still Lake Michigan system water via Green Bay. It is a longer trailer tow from Chicago but inside full Lake Michigan shoreline coverage and near the inland 400-mile planning edge.",
+      "Planning distances: about 330 driving miles from downtown Chicago.",
+      "Escanaba Municipal Marina (city) lists seasonal and transient slips, fuel, pump-out, power/water, showers, laundry, and a small-boat launch limited to vessels up to 26 feet. The city publishes 2026 marina open dates (May 11–October 2, 2026 on the marina general-information page). Aronson Island Boat Launch west of the marina lists barrier-free skid piers, parking, restrooms, and daily/seasonal permits — confirm amounts on the city launch pages.",
+      "Use NWS Green Bay / northern Green Bay marine products; do not substitute Chicago forecasts."
+    ],
+    "highlights": [
+      "Municipal marina in Ludington Park",
+      "Aronson Island public launch",
+      "Published 2026 seasonal marina dates",
+      "~330 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "City of Escanaba — Marina",
+        "url": "https://www.escanaba.org/marina",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "City of Escanaba — Aronson Island Boat Launch",
+        "url": "https://www.escanaba.org/marina/page/aronson-island-boat-launch",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "City of Escanaba — Marina General Information (2026 season)",
+        "url": "https://www.escanaba.org/marina/page/marina-general-information-slip-rates-and-inquiries",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "green-bay",
+    "coordinates": { "lat": 45.746, "lng": -87.065 },
+    "distanceFromChicagoMiles": 330,
+    "nearbyDestinationSlugs": ["menominee", "marinette", "green-bay"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "oshkosh-dest",
+    "kind": "destination",
+    "slug": "oshkosh",
+    "name": "Oshkosh",
+    "state": "WI",
+    "region": "wisconsin",
+    "bodyOfWater": "Lake Winnebago",
+    "summary": "City of Oshkosh six public Lake Winnebago launches with daily and annual launch permits, plus Miller’s Bay sailboat mooring program.",
+    "overview": [
+      "Oshkosh anchors the west shore of Lake Winnebago and complements Fond du Lac at the south end. This is inland-lake boating — not Lake Michigan coastal waters.",
+      "Planning distances: about 175 driving miles from downtown Chicago.",
+      "City of Oshkosh Parks lists six launches: Rainbow Park, Menominee Park, William Steiger Park, Mill Street, Fugleberg, and 24th Avenue. Daily and annual/multi-year launch permits are sold at on-site pay stations, online, and at the Parks office — confirm current resident and nonresident amounts on the city fee schedule pages. Miller’s Bay offers sailboat mooring and kayak/canoe storage under separate city program rules (sailboat-focused).",
+      "Use inland Fond du Lac / Oshkosh point forecasts; do not apply Lake Michigan nearshore products to Winnebago."
+    ],
+    "highlights": [
+      "Six city public launches",
+      "Daily and annual launch permits",
+      "Miller’s Bay sailboat mooring program",
+      "~175 driving miles from Chicago"
+    ],
+    "officialLinks": [
+      {
+        "name": "City of Oshkosh — Boat Launches & Mooring",
+        "url": "https://www.oshkoshwi.gov/Parks/BoatLaunchesMooring.aspx",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "City of Oshkosh — Boat Launch Locations",
+        "url": "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "City of Oshkosh — Boat Launch Permit Fees",
+        "url": "https://www.oshkoshwi.gov/Parks/BoatLaunchPermitFees.aspx",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "weatherLocationId": "fond-du-lac",
+    "coordinates": { "lat": 44.024, "lng": -88.543 },
+    "distanceFromChicagoMiles": 175,
+    "nearbyDestinationSlugs": ["fond-du-lac", "green-bay"],
+    "relatedGuideSlugs": ["lake-michigan-boating-guide"]
+  },
+  {
+    "id": "paw-paw-lake",
+    "kind": "lake",
+    "slug": "paw-paw-lake-michigan",
+    "name": "Paw Paw Lake (Berrien County, Michigan)",
+    "state": "MI",
+    "region": "michigan",
+    "overview": [
+      "Paw Paw Lake in Berrien County, southwest Michigan, is an inland lake roughly 100 driving miles from downtown Chicago. Do not confuse it with other Michigan waters that share similar names.",
+      "Michigan DNR Boating Access Site materials describe public launches including Paw Paw Lake East (near Watervliet; two lanes, trailer parking) and Paw Paw Lake West (near Coloma; one lane, trailer parking). Hours are commonly listed around 4 a.m. to 11 p.m. — confirm on MiBFF before you tow.",
+      "Michigan Recreation Passport requirements apply for motor-vehicle entry at DNR boating access sites. Passport prices change; use the official DNR Recreation Passport page rather than memorized dollar amounts.",
+      "Michigan registration and clean-drain-dry invasive-species rules apply. Use Michigan DNR Boating Facility Finder for closures and site status."
+    ],
+    "officialLinks": [
+      {
+        "name": "Michigan DNR — Boating (Boating Facility Finder)",
+        "url": "https://www.michigan.gov/dnr/things-to-do/boating",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "Michigan DNR — Recreation Passport",
+        "url": "https://www.michigan.gov/dnr/buy-and-apply/rec-pp",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "Michigan DNR — Boating rules and regulations",
+        "url": "https://www.michigan.gov/dnr/things-to-do/boating/rules-and-regs",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "destinationSlugs": []
+  },
+  {
+    "id": "tippecanoe-lake",
+    "kind": "lake",
+    "slug": "tippecanoe-lake-indiana",
+    "name": "Tippecanoe Lake (Indiana)",
+    "state": "IN",
+    "region": "indiana",
+    "overview": [
+      "Tippecanoe Lake in Kosciusko County, northern Indiana, is roughly 140–160 driving miles from downtown Chicago. Indiana DNR lake materials describe a deep inland lake with public access directed through connected water rather than a dedicated Tippecanoe shoreline state ramp.",
+      "Indiana DNR access guidance for Tippecanoe points boaters to the Grassy Creek public access (near North Webster / Armstrong Road area) on connected water. Larger craft may be limited by bridges or channel clearance — verify on site and with current DNR fishing-access materials before assuming every trailered boat can reach the main lake basin.",
+      "Because primary public access is indirect, BoatingChicago keeps Tippecanoe as a lake guide with official DNR context rather than inventing a shoreline municipal marina network. Private resort ramps are not listed here without operator pages that stay stable.",
+      "Indiana registration and invasive-species rules apply. Confirm access status through Indiana DNR fishing access / lake pages before you tow."
+    ],
+    "officialLinks": [
+      {
+        "name": "Indiana DNR — Fishing / lake resources (start here)",
+        "url": "https://www.in.gov/dnr/fish-and-wildlife/fishing/",
+        "lastVerified": "2026-11-25"
+      },
+      {
+        "name": "Lilly Center for Lakes & Streams — Lake Tippecanoe (access note)",
+        "url": "https://lakes.grace.edu/lake/lake-tippecanoe/",
+        "lastVerified": "2026-11-25"
+      }
+    ],
+    "destinationSlugs": []
+  }
+]

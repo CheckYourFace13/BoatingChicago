@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-25",
-  "policy": "Incomplete facility research stays here until official source, uniqueness, safety, and SEO criteria pass. Do not auto-publish thin pages.",
+  "policy": "Incomplete facility research stays here until official source, uniqueness, safety, and SEO criteria pass. Do not auto-publish thin pages. Pipeline: scripts/growth/pipeline.ts",
   "items": [
     {
       "name": "Fish Creek / Ephraim Door County marinas",
@@ -11,32 +11,50 @@
     {
       "name": "Two Rivers / Kewaunee / Algoma WI",
       "state": "WI",
-      "status": "research",
-      "notes": "Northern WI LM shore between Manitowoc and Door County."
+      "status": "published-partial",
+      "notes": "Two Rivers and Algoma destinations published 2026-11-25. Kewaunee Harbor still needs verified municipal pages."
     },
     {
       "name": "Menominee / Marinette / Escanaba",
       "state": "MI/WI",
-      "status": "research",
-      "notes": "Upper Green Bay / northern LM — verify recreational access before publishing."
+      "status": "published",
+      "notes": "All three destinations + key launches/marinas published 2026-11-25 from city/operator sources."
     },
     {
       "name": "Gun Lake / Paw Paw Lake MI inland",
       "state": "MI",
-      "status": "enrich",
-      "notes": "Gun Lake (Barry/Allegan) lake guide published 2026-11-25. Paw Paw Lake still needs MiBFF lane/passport verification before a standalone page."
+      "status": "published",
+      "notes": "Gun Lake and Paw Paw Lake guides published. Continue MiBFF enrichment for lane-level launch pages if needed."
     },
     {
       "name": "Tippecanoe / Webster IN access",
       "state": "IN",
       "status": "hub-only",
-      "notes": "Indirect DNR access — keep in northern Indiana inland hub until site-level pages are verified."
+      "notes": "Lake guide published with Grassy Creek / indirect DNR access framing — no thin standalone destination."
     },
     {
       "name": "Oshkosh Winnebago launch network",
       "state": "WI",
-      "status": "enrich",
-      "notes": "City launch list exists; consider destination wrapper linked to lake-winnebago."
+      "status": "published",
+      "notes": "Oshkosh destination + representative Rainbow Park launch published 2026-11-25; remaining city launches can enrich later."
+    },
+    {
+      "name": "Kewaunee Harbor WI",
+      "state": "WI",
+      "status": "research",
+      "notes": "Between Two Rivers and Algoma — verify municipal harbor/launch pages."
+    },
+    {
+      "name": "Manistique Harbor MI",
+      "state": "MI",
+      "status": "research",
+      "notes": "Northern LM / UP — verify DNR/city marina before standalone page."
+    },
+    {
+      "name": "Portage Lake / Onekama MI",
+      "state": "MI",
+      "status": "research",
+      "notes": "West MI inland/nearshore — MiBFF verification needed."
     }
   ]
 }

@@ -494,7 +494,7 @@ export const lakes: Lake[] = [
       WI_BOAT_REGISTRATION,
       WI_AIS_TRANSPORT,
     ],
-    destinationSlugs: ["fond-du-lac"],
+    destinationSlugs: ["fond-du-lac", "oshkosh"],
     isPublished: true,
   },
   {
@@ -841,6 +841,63 @@ export const lakes: Lake[] = [
       {
         name: "Michigan — Invasive Species: Boaters and Anglers",
         url: "https://www.michigan.gov/invasives/take-action/boaters-and-anglers",
+        lastVerified: "2026-11-25",
+      },
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "paw-paw-lake-michigan",
+    name: "Paw Paw Lake (Berrien County, Michigan)",
+    region: "michigan",
+    state: "MI",
+    overview: [
+      "Paw Paw Lake in Berrien County, southwest Michigan, is an inland lake roughly 100 driving miles from downtown Chicago. Do not confuse it with other Michigan waters that share similar names.",
+      "Michigan DNR Boating Access Site materials describe public launches including Paw Paw Lake East (near Watervliet; two lanes, trailer parking) and Paw Paw Lake West (near Coloma; one lane, trailer parking). Hours are commonly listed around 4 a.m. to 11 p.m. — confirm on the Michigan Boating Facility Finder before you tow.",
+      "Michigan Recreation Passport requirements apply for motor-vehicle entry at DNR boating access sites. Passport prices change; use the official DNR Recreation Passport page rather than memorized dollar amounts.",
+      "Michigan registration and clean-drain-dry invasive-species rules apply. Use Michigan DNR Boating Facility Finder for closures and site status.",
+    ],
+    officialLinks: [
+      {
+        name: "Michigan DNR — Boating (Boating Facility Finder)",
+        url: "https://www.michigan.gov/dnr/things-to-do/boating",
+        lastVerified: "2026-11-25",
+      },
+      {
+        name: "Michigan DNR — Recreation Passport",
+        url: "https://www.michigan.gov/dnr/buy-and-apply/rec-pp",
+        lastVerified: "2026-11-25",
+      },
+      {
+        name: "Michigan DNR — Boating rules and regulations",
+        url: "https://www.michigan.gov/dnr/things-to-do/boating/rules-and-regs",
+        lastVerified: "2026-11-25",
+      },
+    ],
+    destinationSlugs: [],
+    isPublished: true,
+  },
+  {
+    slug: "tippecanoe-lake-indiana",
+    name: "Tippecanoe Lake (Indiana)",
+    region: "indiana",
+    state: "IN",
+    overview: [
+      "Tippecanoe Lake in Kosciusko County, northern Indiana, is roughly 140–160 driving miles from downtown Chicago. Indiana DNR lake materials describe a deep inland lake with public access directed through connected water rather than a dedicated Tippecanoe shoreline state ramp.",
+      "Indiana DNR access guidance for Tippecanoe points boaters to the Grassy Creek public access (near North Webster / Armstrong Road area) on connected water. Larger craft may be limited by bridges or channel clearance — verify on site and with current DNR fishing-access materials before assuming every trailered boat can reach the main lake basin.",
+      "Because primary public access is indirect, BoatingChicago keeps Tippecanoe as a lake guide with official context rather than inventing a shoreline municipal marina network. Private resort ramps are not listed here without stable operator pages.",
+      "Indiana registration and invasive-species rules apply. Confirm access status through Indiana DNR fishing access / lake pages before you tow.",
+    ],
+    officialLinks: [
+      {
+        name: "Indiana DNR — Fishing / lake resources",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/fishing/",
+        lastVerified: "2026-11-25",
+      },
+      {
+        name: "Lilly Center for Lakes & Streams — Lake Tippecanoe (access note)",
+        url: "https://lakes.grace.edu/lake/lake-tippecanoe/",
         lastVerified: "2026-11-25",
       },
     ],

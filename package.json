@@ -11,9 +11,10 @@
     "build": "next build --webpack",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "lint": "eslint",
-    "test": "npx --yes tsx --test src/lib/__tests__/tools-formulas.test.ts src/lib/__tests__/site-search.test.ts src/lib/__tests__/perf-reliability.test.ts src/lib/__tests__/geo-registry.test.ts src/lib/__tests__/weather-locations-marine.test.ts src/config/__tests__/ads-gate.test.ts src/data/guides/__tests__/ownership-planning-guides.test.ts",
+    "test": "npx --yes tsx --test src/lib/__tests__/tools-formulas.test.ts src/lib/__tests__/site-search.test.ts src/lib/__tests__/perf-reliability.test.ts src/lib/__tests__/geo-registry.test.ts src/lib/__tests__/weather-locations-marine.test.ts src/config/__tests__/ads-gate.test.ts src/data/guides/__tests__/ownership-planning-guides.test.ts scripts/growth/__tests__/pipeline.test.ts",
     "growth-summary": "npx --yes tsx scripts/weekly-growth-summary.ts",
     "geo-discovery": "npx --yes tsx scripts/geo-discovery-check.ts",
+    "growth-pipeline": "npx --yes tsx scripts/growth/run-pipeline.ts",
     "indexnow": "tsx scripts/submit-indexnow.ts"
   },
   "dependencies": {

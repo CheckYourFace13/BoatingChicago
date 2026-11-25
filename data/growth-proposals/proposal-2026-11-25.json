@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-11-25T17:27:26.089Z",
+  "readyCount": 0,
+  "ready": [],
+  "rejected": [
+    {
+      "id": "two-rivers-dest",
+      "failures": [
+        "duplicate-slug: Slug \"two-rivers\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "algoma-dest",
+      "failures": [
+        "duplicate-slug: Slug \"algoma\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "menominee-dest",
+      "failures": [
+        "duplicate-slug: Slug \"menominee\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "marinette-dest",
+      "failures": [
+        "duplicate-slug: Slug \"marinette\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "escanaba-dest",
+      "failures": [
+        "duplicate-slug: Slug \"escanaba\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "oshkosh-dest",
+      "failures": [
+        "duplicate-slug: Slug \"oshkosh\" already exists in published inventory."
+      ]
+    },
+    {
+      "id": "paw-paw-lake",
+      "failures": [
+        "duplicate-slug: Slug \"paw-paw-lake-michigan\" already exists in published inventory.",
+        "summary-thin: Summary must be at least 40 characters of useful planning copy."
+      ]
+    },
+    {
+      "id": "tippecanoe-lake",
+      "failures": [
+        "duplicate-slug: Slug \"tippecanoe-lake-indiana\" already exists in published inventory.",
+        "summary-thin: Summary must be at least 40 characters of useful planning copy."
+      ]
+    }
+  ],
+  "note": "Review ready candidates before merging. Auto-apply is opt-in."
+}
