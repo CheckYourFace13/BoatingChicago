@@ -91,7 +91,6 @@ export const marinasBatch3: Marina[] = [
     slug: "kewaunee-city-marina",
     name: "Kewaunee City Marina",
     destinationSlug: "kewaunee",
-    lakeSlug: "lake-michigan",
     summary:
       "Municipal marina on the north side of Kewaunee Harbor east of the Highway 42 bridge — seasonal and daily mooring, fuel, showers, fish cleaning, and launch passes listed on the City of Kewaunee marina page.",
     amenities: [
