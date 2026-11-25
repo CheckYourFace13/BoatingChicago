@@ -3,7 +3,14 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { QualityDisclaimer } from "@/components/geo/SourceAttribution";
 import { MarinaAmenityFilters } from "@/components/geo/MarinaAmenityFilters";
-import { getMarinasByDestination, getPublishedDestinations } from "@/data/geo";
+import { LazyLaunchMap } from "@/components/geo/LazyLaunchMap";
+import {
+  getDestinationBySlug,
+  getMarinasByDestination,
+  getPublishedDestinations,
+  getPublishedMarinas,
+} from "@/data/geo";
+import { buildMarinaPoints } from "@/lib/map-points";
 import { REGION_ORDER } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
@@ -35,6 +42,17 @@ export default function MarinasPage() {
     .filter((group) => group.marinas.length > 0);
 
   const total = groups.reduce((sum, group) => sum + group.marinas.length, 0);
+  const { points: marinaPoints, unmapped } = buildMarinaPoints(
+    getPublishedMarinas(),
+    (slug) => {
+      const d = getDestinationBySlug(slug);
+      return d ? `${d.name}, ${d.state}` : undefined;
+    },
+  );
+  const unmappedNote =
+    unmapped.length > 0
+      ? ` ${unmapped.length} listing${unmapped.length === 1 ? "" : "s"} without a verified coordinate ${unmapped.length === 1 ? "is" : "are"} not pinned but still listed below.`
+      : "";
 
   return (
     <>
@@ -59,6 +77,14 @@ export default function MarinasPage() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
         <QualityDisclaimer />
+
+        {marinaPoints.length > 0 ? (
+          <LazyLaunchMap
+            title="Marina map"
+            points={marinaPoints}
+            footnote={`Pins use verified OpenStreetMap coordinates and link to each marina listing.${unmappedNote}`}
+          />
+        ) : null}
 
         {groups.length === 0 ? (
           <p className="text-gray-700">

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { HeaderSearch } from "./HeaderSearch";
 import { Logo } from "./Logo";
 import { TrackedLink } from "./TrackedLink";
 
@@ -140,7 +141,8 @@ export function Header() {
             />
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
+            <HeaderSearch />
             <Link
               href="/destinations"
               className="hidden sm:inline-flex items-center px-5 py-2.5 bg-lake-blue text-white font-bold text-sm rounded-full hover:bg-lake-blue/90 transition-all shadow-md"

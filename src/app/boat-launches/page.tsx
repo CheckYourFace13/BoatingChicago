@@ -6,13 +6,28 @@ import {
   SourceLink,
 } from "@/components/geo/SourceAttribution";
 import {
+  getDestinationBySlug,
   getLakeBySlug,
   getLaunchesByDestination,
   getPublishedDestinations,
   getPublishedLaunches,
+  getPublishedMarinas,
 } from "@/data/geo";
+import { LaunchEmptyState } from "@/components/geo/LaunchEmptyState";
+import { LazyLaunchMap } from "@/components/geo/LazyLaunchMap";
 import { REGION_ORDER, regionLabel } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import {
+  ACCESS_FILTERS,
+  WATER_FILTERS,
+  accessLabel,
+  filterHref,
+  filterLaunches,
+  parseAccessFilter,
+  parseWaterFilter,
+  waterLabel,
+} from "@/lib/launch-filters";
+import { buildLaunchAreaPoints, buildMarinaPoints } from "@/lib/map-points";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 import type { BoatLaunch } from "@/types/geo";
 
@@ -25,72 +40,11 @@ export async function generateMetadata() {
   });
 }
 
-type WaterFilter = "all" | "lake-michigan" | "inland" | "river";
-type AccessFilter = "all" | "trailered" | "carry-in" | "non-motorized" | "steps";
-
-const RIVER_LAKE_SLUGS = new Set([
-  "fox-river",
-  "des-plaines-river",
-  "dupage-river",
-]);
-
-const INLAND_LAKE_SLUGS = new Set(["chain-o-lakes", "geneva-lake"]);
-
-const WATER_FILTERS: { id: WaterFilter; label: string }[] = [
-  { id: "all", label: "All waters" },
-  { id: "lake-michigan", label: "Lake Michigan" },
-  { id: "inland", label: "Inland lakes" },
-  { id: "river", label: "Rivers" },
-];
-
-const ACCESS_FILTERS: { id: AccessFilter; label: string }[] = [
-  { id: "all", label: "Any access" },
-  { id: "trailered", label: "Trailored" },
-  { id: "carry-in", label: "Carry-in" },
-  { id: "non-motorized", label: "Non-motorized only" },
-  { id: "steps", label: "Steps / harbor steps" },
-];
-
-function matchesWater(launch: BoatLaunch, filter: WaterFilter): boolean {
-  if (filter === "all") return true;
-  if (filter === "lake-michigan") {
-    return launch.lakeSlug === "lake-michigan-chicago";
-  }
-  if (filter === "inland") {
-    return !!launch.lakeSlug && INLAND_LAKE_SLUGS.has(launch.lakeSlug);
-  }
-  if (filter === "river") {
-    if (launch.lakeSlug && RIVER_LAKE_SLUGS.has(launch.lakeSlug)) return true;
-    // Chicago River CPD sites are destination=chicago without a lakeSlug
-    return launch.destinationSlug === "chicago" && !launch.lakeSlug;
-  }
-  return true;
-}
-
-function matchesAccess(launch: BoatLaunch, filter: AccessFilter): boolean {
-  if (filter === "all") return true;
-  if (filter === "non-motorized") {
-    return launch.nonMotorizedOnly === true || launch.accessMode === "non-motorized";
-  }
-  if (filter === "trailered") return launch.accessMode === "trailered";
-  if (filter === "carry-in") return launch.accessMode === "carry-in";
-  if (filter === "steps") return launch.accessMode === "steps";
-  return true;
-}
-
-function filterHref(water: WaterFilter, access: AccessFilter): string {
-  const params = new URLSearchParams();
-  if (water !== "all") params.set("water", water);
-  if (access !== "all") params.set("access", access);
-  const q = params.toString();
-  return q ? `/boat-launches?${q}` : "/boat-launches";
-}
-
 function accessBadge(launch: BoatLaunch): string | null {
   if (launch.nonMotorizedOnly || launch.accessMode === "non-motorized") {
     return "Non-motorized only";
   }
-  if (launch.accessMode === "trailered") return "Trailored";
+  if (launch.accessMode === "trailered") return "Trailered";
   if (launch.accessMode === "carry-in") return "Carry-in";
   if (launch.accessMode === "steps") return "Steps access";
   return null;
@@ -102,14 +56,8 @@ export default async function BoatLaunchesPage({
   searchParams: Promise<{ water?: string; access?: string }>;
 }) {
   const params = await searchParams;
-  const rawWater = params.water ?? "all";
-  const rawAccess = params.access ?? "all";
-  const water: WaterFilter = WATER_FILTERS.some((f) => f.id === rawWater)
-    ? (rawWater as WaterFilter)
-    : "all";
-  const access: AccessFilter = ACCESS_FILTERS.some((f) => f.id === rawAccess)
-    ? (rawAccess as AccessFilter)
-    : "all";
+  const water = parseWaterFilter(params.water);
+  const access = parseAccessFilter(params.access);
 
   const destinations = getPublishedDestinations()
     .slice()
@@ -123,16 +71,34 @@ export default async function BoatLaunchesPage({
   const groups = destinations
     .map((destination) => ({
       destination,
-      launches: getLaunchesByDestination(destination.slug).filter(
-        (launch) =>
-          matchesWater(launch, water) && matchesAccess(launch, access),
+      launches: filterLaunches(
+        getLaunchesByDestination(destination.slug),
+        water,
+        access,
       ),
     }))
     .filter((group) => group.launches.length > 0);
 
-  const totalPublished = getPublishedLaunches().length;
+  const allLaunches = getPublishedLaunches();
+  const totalPublished = allLaunches.length;
   const total = groups.reduce((sum, group) => sum + group.launches.length, 0);
-  const taggedAccess = getPublishedLaunches().filter((l) => l.accessMode).length;
+  const taggedAccess = allLaunches.filter((l) => l.accessMode).length;
+
+  // Map pins follow the active filters. Launches have no per-ramp coordinates,
+  // so they are shown as destination-level "area" pins; marinas use the
+  // verified OpenStreetMap coordinates and only appear for Lake Michigan views.
+  const launchPoints = buildLaunchAreaPoints(groups);
+  const showMarinas = water === "all" || water === "lake-michigan";
+  const marinaPoints = showMarinas
+    ? buildMarinaPoints(
+        getPublishedMarinas(),
+        (slug) => {
+          const d = getDestinationBySlug(slug);
+          return d ? `${d.name}, ${d.state}` : undefined;
+        },
+      ).points
+    : [];
+  const mapPoints = [...launchPoints, ...marinaPoints];
 
   return (
     <>
@@ -257,13 +223,24 @@ export default async function BoatLaunchesPage({
         <p className="text-sm text-gray-600">
           Showing {total} of {totalPublished} verified launches
           {water !== "all"
-            ? ` · ${WATER_FILTERS.find((f) => f.id === water)?.label}`
+            ? ` · ${waterLabel(water)}`
             : ""}
           {access !== "all"
-            ? ` · ${ACCESS_FILTERS.find((f) => f.id === access)?.label}`
+            ? ` · ${accessLabel(access)}`
             : ""}
           .
         </p>
+
+        {groups.length === 0 ? (
+          <LaunchEmptyState launches={allLaunches} water={water} access={access} />
+        ) : (
+          <LazyLaunchMap
+            title="Launch & marina map"
+            points={mapPoints}
+            defaultKinds={["launch-area", "marina"]}
+            footnote="Launch pins are area markers at each destination’s published coordinates — open a pin to jump to the exact launch listing and official source. Marina pins use verified OpenStreetMap coordinates. Launch pins follow your filters above."
+          />
+        )}
 
         {groups.map(({ destination, launches }) => (
           <section key={destination.slug} id={destination.slug}>
@@ -343,25 +320,7 @@ export default async function BoatLaunchesPage({
           </section>
         ))}
 
-        {groups.length === 0 ? (
-          <p className="text-gray-700">
-            No launches match these filters.{" "}
-            <Link
-              href="/boat-launches"
-              className="font-semibold text-coral hover:underline"
-            >
-              Reset filters
-            </Link>{" "}
-            or browse{" "}
-            <Link
-              href="/forest-preserves"
-              className="font-semibold text-coral hover:underline"
-            >
-              forest-preserve waters
-            </Link>
-            .
-          </p>
-        ) : null}
+
 
         <ResourceCrossLinks
           links={[
