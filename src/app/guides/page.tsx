@@ -38,7 +38,7 @@ export default function GuidesPage() {
       <GeoHero
         eyebrow={`${sorted.length} Chicago boating guides`}
         title="Chicago Boating Guides"
-        intro="Long-form planning guides for Chicago, southern Lake Michigan, and nearby Wisconsin and Indiana water — how to get on the water, which harbor fits a trip, and how to read conditions before you go."
+        intro="Long-form planning guides for Chicago & Chicagoland, all of Lake Michigan, and inland waters within about 400 driving miles — how to get on the water, which harbor fits a trip, and how to read conditions before you go."
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Marinas", href: "/marinas" },

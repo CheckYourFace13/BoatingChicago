@@ -26,7 +26,7 @@ export default function SubscribePage() {
       <GeoHero
         eyebrow={siteConfig.name}
         title="Chicago Boating Brief"
-        intro="A free weekly email for boaters planning around Chicago and southern Lake Michigan — conditions context, alerts when the feed has them, events, and guide picks. Not a broker. Not a marketplace."
+        intro="A free weekly email for boaters planning around Chicago, Lake Michigan, and nearby inland waters — conditions context, alerts when the feed has them, events, and guide picks. Not a broker. Not a marketplace."
         links={[
           { label: "Weather", href: "/weather" },
           { label: "Guides", href: "/guides" },

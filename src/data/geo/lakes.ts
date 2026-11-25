@@ -245,7 +245,7 @@ export const lakes: Lake[] = [
     isPublished: true,
   },
   // ---------------------------------------------------------------------------
-  // Phase 2 — inland lakes and waterways within roughly 250 driving miles.
+  // Inland lakes and waterways within roughly 400 driving miles (expand as verified).
   // Driving distances are approximate from downtown Chicago; confirm your route.
   // ---------------------------------------------------------------------------
   {

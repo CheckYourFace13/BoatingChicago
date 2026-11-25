@@ -45,7 +45,7 @@ export function WhyBoatingChicago() {
             Why Use Boating Chicago?
           </h2>
           <p className="text-white/80 mb-10 text-center max-w-2xl mx-auto">
-            An information-first guide to Chicago and southern Lake Michigan boating —
+            An information-first guide to Chicago, Lake Michigan, and nearby inland waters —
             conditions, harbors, and curated experiences when you&apos;re ready.
           </p>
         </Reveal>

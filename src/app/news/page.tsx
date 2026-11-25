@@ -26,7 +26,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Chicago & Lake Michigan Boating News",
   description:
-    "Chicago and southern Lake Michigan boating news — marine alerts, harbor updates, fishing notes, and Great Lakes coverage with links to original sources.",
+    "Chicago and Lake Michigan boating news — marine alerts, harbor updates, fishing notes, and Great Lakes coverage with links to original sources.",
   path: "/news",
 });
 }
@@ -81,7 +81,7 @@ export default async function NewsPage() {
       <section className="relative bg-gradient-to-br from-lake-blue via-lake-blue to-sky-blue text-white">
         <div className="relative mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8 py-14 md:py-16">
           <p className="text-sun-yellow font-bold text-sm tracking-widest uppercase mb-3">
-            Chicago · Southern Lake Michigan
+            Chicago · Lake Michigan
           </p>
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 max-w-4xl">
             Chicago &amp; Lake Michigan Boating News

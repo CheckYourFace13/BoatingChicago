@@ -4,7 +4,7 @@ const ACTIONS = [
   {
     href: "/marinas",
     title: "Find a Marina",
-    blurb: "Chicago harbors and southern Lake Michigan marinas with official links.",
+    blurb: "Chicago harbors and Lake Michigan marinas with official links.",
   },
   {
     href: "/boat-launches",

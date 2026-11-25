@@ -1,13 +1,13 @@
+import { COVERAGE_LONG, COVERAGE_SHORT } from "@/config/coverage";
+
 export const siteConfig = {
   name: "Boating Chicago",
   domain: "boatingchicago.com",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://boatingchicago.com",
-  tagline: "Your guide to boating Chicago & nearby waters",
-  description:
-    "Free recreational boating and paddling information for Chicago, the suburbs, southern Lake Michigan, and waters within roughly 250 driving miles — weather, harbors, launches, forest-preserve lakes, news, and guides.",
+  tagline: "Your guide to boating Chicago, Lake Michigan & nearby waters",
+  description: `Free recreational boating and paddling information for ${COVERAGE_SHORT.toLowerCase()} — weather, harbors, launches, forest-preserve lakes, news, and guides.`,
   /** Editorial coverage, not a service area or NAP. */
-  coverage:
-    "Chicago, suburban forest-preserve lakes, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected inland waters within roughly 250 driving miles of Chicago.",
+  coverage: COVERAGE_LONG,
   /** Public contact path only — never put recipient emails in client-visible config. */
   contactPath: "/contact",
   social: {

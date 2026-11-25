@@ -29,7 +29,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} | Chicago & Southern Lake Michigan Boating Guide`,
+    default: `${siteConfig.name} | Chicago, Lake Michigan & Nearby Waters`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,

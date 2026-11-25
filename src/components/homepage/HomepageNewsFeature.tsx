@@ -30,7 +30,7 @@ export function HomepageNewsFeature({
             Latest Boating News
           </h2>
           <p className="text-gray-600 max-w-2xl">
-            Source-cited updates for Chicago and southern Lake Michigan boaters —
+            Source-cited updates for Chicago and Lake Michigan boaters —
             original summaries, never full-article copies.
           </p>
         </div>

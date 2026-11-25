@@ -11,7 +11,7 @@ export function RegionalDiscovery() {
         </h2>
         <p className="text-gray-600 mb-8 max-w-2xl">
           Boating destinations within reach of Chicago — from the lakefront to
-          inland lakes and southern Lake Michigan harbors in Wisconsin, Indiana,
+          inland lakes and Lake Michigan harbors in Wisconsin, Indiana,
           and southwest Michigan. Every listing links back to the official source.
         </p>
       </Reveal>

@@ -12,7 +12,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
   description:
-    "Lake Michigan, Chain O’ Lakes, Geneva Lake, and Chicago-area rivers plus inland lakes within about 250 driving miles — Wisconsin, Illinois, Indiana, and Michigan guides with official launch and rules sources.",
+    "Lake Michigan, Chain O’ Lakes, Geneva Lake, and Chicago-area rivers plus inland lakes within about 400 driving miles — Wisconsin, Illinois, Indiana, and Michigan guides with official launch and rules sources.",
   path: "/lakes",
 });
 }
@@ -32,7 +32,7 @@ export default function LakesPage() {
       <GeoHero
         eyebrow="Where Chicago boaters go"
         title="Lakes & Waterways"
-        intro="Lake Michigan, nearby inland lakes, the Fox, Des Plaines, and DuPage river corridors, and road-trip lakes within about 250 driving miles in Wisconsin, Illinois, Indiana, and Michigan each carry different access rules and hazards. Start here, then follow destinations, launches, and official agency pages."
+        intro="Lake Michigan end-to-end, nearby inland lakes, the Fox, Des Plaines, and DuPage river corridors, and road-trip lakes within about 400 driving miles in Wisconsin, Illinois, Indiana, and Michigan each carry different access rules and hazards. Start here, then follow destinations, launches, and official agency pages."
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Forest preserves", href: "/forest-preserves" },
@@ -58,12 +58,13 @@ export default function LakesPage() {
           </p>
           <p>
             Beyond the Chicago area, the list now includes inland lakes and
-            waterways roughly within 250 driving miles of downtown — such as
+            waterways within about 400 driving miles of downtown — such as
             Delavan Lake, Lake Koshkonong, Green Lake, Madison’s Lakes Mendota
             and Monona, and Lake Winnebago in Wisconsin; Lake Shelbyville,
             Clinton Lake, Lake Springfield, and the Illinois River at Starved
             Rock in Illinois; Lake Wawasee and Lake Maxinkuckee in Indiana; and
-            Gull Lake in Michigan. Driving distances in each guide are
+            Gull Lake in Michigan — with room to add more verified waters
+            across the full coverage area. Driving distances in each guide are
             approximate, and launch rules, permits, and registration
             requirements differ by state and operator, so follow the official
             links on each page before you tow.
@@ -73,8 +74,8 @@ export default function LakesPage() {
             <Link href="/weather" className="font-semibold text-coral hover:underline">
               weather location selector
             </Link>{" "}
-            for Chicago, the Chain, Lake Geneva, and southern Lake Michigan
-            harbors. Looking for a town or harbor first? Start at{" "}
+            for Chicago, the Chain, Lake Geneva, and Lake Michigan harbors.
+            Looking for a town or harbor first? Start at{" "}
             <Link href="/destinations" className="font-semibold text-coral hover:underline">
               destinations
             </Link>

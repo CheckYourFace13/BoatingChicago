@@ -7,7 +7,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "About Boating Chicago",
   description:
-    "BoatingChicago.com is an original information resource for Chicago and southern Lake Michigan boating — weather, harbors, launches, news, guides, and curated experiences.",
+    "BoatingChicago.com is an original information resource for Chicago, all of Lake Michigan, and inland waters within about 400 driving miles — weather, harbors, launches, news, guides, and curated experiences.",
   path: "/about",
 });
 }

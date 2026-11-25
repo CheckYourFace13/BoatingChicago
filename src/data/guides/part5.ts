@@ -877,7 +877,7 @@ export const guidePart5: GuidePage[] = [
       {
         heading: "Start with the water body, then the agency",
         paragraphs: [
-          "Within roughly 250 driving miles of Chicago you will find three overlapping systems: (1) Lake Michigan harbors and Park District launches, (2) inland chains and municipal lakes such as the Fox Waterway / Chain O’ Lakes and Geneva Lake, and (3) county forest-preserve and conservation-district waters. Each system publishes its own craft, motor, and seasonal rules.",
+          "Within roughly 400 driving miles of Chicago you will find overlapping systems: (1) Lake Michigan harbors and Park District launches along the full lake, (2) inland chains and municipal lakes such as the Fox Waterway / Chain O’ Lakes and Geneva Lake, (3) county forest-preserve and conservation-district waters, and (4) farther inland reservoirs and state park lakes. Each system publishes its own craft, motor, and seasonal rules.",
           "Use BoatingChicago’s forest-preserves hub and the kayak, canoe & SUP finder for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, rivers (Chicago River, Fox, Des Plaines, DuPage), and non-motorized-only access when the agency is explicit.",
         ],
       },
@@ -897,7 +897,7 @@ export const guidePart5: GuidePage[] = [
         ],
       },
       {
-        heading: "Road-trip lakes within about 250 driving miles",
+        heading: "Road-trip lakes within about 400 driving miles",
         paragraphs: [
           "Beyond the Chicago-area waters above, BoatingChicago publishes official-source guides for inland lakes you can reach in a long day or a weekend: Delavan Lake, Lake Koshkonong, Green Lake, Lake Mendota, Lake Monona, and Lake Winnebago in Wisconsin; Clinton Lake, Lake Shelbyville, Lake Springfield, and the Illinois River at Starved Rock in Illinois; Lake Wawasee and Lake Maxinkuckee in Indiana; and Gull Lake in Michigan. Driving distances on those pages are approximate.",
           "Rules change at the state line: Wisconsin, Indiana, and Michigan each publish their own registration, invasive-species, and launch requirements, and many municipal or county launches (for example Madison’s Lake Access Permit or Lake Springfield’s CWLP watercraft license) require advance paperwork. Read the official links on each lake page before you tow, and confirm current fees there rather than on third-party sites.",

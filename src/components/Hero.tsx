@@ -20,7 +20,7 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold leading-[1.08] tracking-tight mb-4 animate-fade-up"
             style={{ animationDelay: "140ms" }}
           >
-            Your Guide to Boating Chicago &amp; Southern Lake Michigan
+            Your Guide to Boating Chicago, Lake Michigan & Nearby Waters
           </h1>
 
           <p
