@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
+import { usePathname } from "next/navigation";
 import {
   getAdSenseClient,
   getSlotConfig,
+  isAdSensePathExcluded,
   isSlotEnabled,
   type AdSlotKey,
 } from "@/config/ads";
@@ -24,21 +25,24 @@ declare global {
 }
 
 /**
- * Reusable AdSense unit. Renders nothing when AdSense is disabled,
- * the page slot is off, or no AdSense slot ID is configured.
+ * Optional manual AdSense unit. Renders nothing when AdSense is disabled,
+ * the path is excluded, the slot has no unit ID, or advertising consent
+ * is not granted. Prefer Auto ads; use this only when slot IDs exist.
  *
- * The adsbygoogle.js loader is mounted only with a live unit — never from the
- * root layout — so error pages, forms, and other non-ad routes do not request
- * the AdSense script even after advertising consent.
+ * The adsbygoogle.js loader lives in AdSenseLoader (root layout) — this
+ * component only mounts the reserved <ins> and pushes once.
  *
  * Usage: <AdSenseBlock slot="homepage-top" />
  */
 export function AdSenseBlock({ slot, className = "" }: AdSenseBlockProps) {
   const pushed = useRef(false);
+  const pathname = usePathname();
   const config = getSlotConfig(slot);
   const client = getAdSenseClient();
   const { state } = useConsent();
-  const enabled = isSlotEnabled(slot) && allowsAdvertising(state);
+  const pathOk = !isAdSensePathExcluded(pathname);
+  const enabled =
+    pathOk && isSlotEnabled(slot) && allowsAdvertising(state);
 
   useEffect(() => {
     if (!enabled || !client || !config?.adsenseSlotId || pushed.current) return;
@@ -54,30 +58,22 @@ export function AdSenseBlock({ slot, className = "" }: AdSenseBlockProps) {
   if (!enabled || !client || !config?.adsenseSlotId) return null;
 
   return (
-    <>
-      <Script
-        id="adsbygoogle-loader"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
-        strategy="afterInteractive"
-        crossOrigin="anonymous"
+    <aside
+      className={`adsense-block w-full overflow-hidden ${className}`}
+      aria-label="Advertisement"
+      data-ad-slot-key={slot}
+    >
+      <ins
+        className="adsbygoogle"
+        style={{
+          display: "block",
+          minHeight: config.minHeightPx,
+        }}
+        data-ad-client={client}
+        data-ad-slot={config.adsenseSlotId}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
       />
-      <aside
-        className={`adsense-block w-full overflow-hidden ${className}`}
-        aria-label="Advertisement"
-        data-ad-slot-key={slot}
-      >
-        <ins
-          className="adsbygoogle"
-          style={{
-            display: "block",
-            minHeight: config.minHeightPx,
-          }}
-          data-ad-client={client}
-          data-ad-slot={config.adsenseSlotId}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </aside>
-    </>
+    </aside>
   );
 }

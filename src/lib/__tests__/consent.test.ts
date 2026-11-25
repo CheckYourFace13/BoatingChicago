@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import {
   allowsAdvertising,
   allowsAnalytics,
+  consentFromGoogleCmp,
   parseConsent,
   UNDECIDED_CONSENT,
 } from "../consent";
@@ -34,4 +35,28 @@ describe("consent store", () => {
       true,
     );
   });
+
+  it("maps Google CMP consent mode values without inventing grants", () => {
+    assert.equal(consentFromGoogleCmp(null), null);
+    const denied = consentFromGoogleCmp({
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+    assert.equal(denied?.decided, true);
+    assert.equal(denied?.analytics, false);
+    assert.equal(denied?.advertising, false);
+    assert.equal(denied?.source, "google-cmp");
+
+    const granted = consentFromGoogleCmp({
+      analytics_storage: "granted",
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "denied",
+    });
+    assert.equal(granted?.analytics, true);
+    assert.equal(granted?.advertising, true);
+  });
 });
+

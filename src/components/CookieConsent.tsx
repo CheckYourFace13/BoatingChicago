@@ -6,12 +6,20 @@ import { allowsAdvertising, allowsAnalytics } from "@/lib/consent";
 import { useConsent } from "./ConsentProvider";
 
 export function CookieConsent() {
-  const { state, settingsOpen, setConsent, closeSettings } = useConsent();
+  const {
+    state,
+    settingsOpen,
+    googleCmpHandlesUi,
+    setConsent,
+    closeSettings,
+  } = useConsent();
   const [analytics, setAnalytics] = useState(false);
   const [advertising, setAdvertising] = useState(false);
   const [customize, setCustomize] = useState(false);
 
-  const showBanner = !state.decided || settingsOpen;
+  // Google Privacy & messaging owns the UI for regulated visitors — avoid a second banner.
+  const showBanner =
+    (!googleCmpHandlesUi && !state.decided) || settingsOpen;
   if (!showBanner) return null;
 
   const applyCustom = () => {
@@ -38,9 +46,10 @@ export function CookieConsent() {
         </h2>
         <p className="text-sm text-gray-700 leading-relaxed mb-3">
           Weather, guides, bookings, contact, and the newsletter work without
-          extra cookies. Google Analytics and labeled shopping-partner ads
-          (including Impact impression tags) load only if you allow them. This
-          site does not use a Google-certified CMP.{" "}
+          extra cookies. Google Analytics, AdSense ads, and labeled
+          shopping-partner creatives load only if you allow them. In the EEA,
+          UK, and Switzerland, Google&apos;s Privacy &amp; messaging CMP may
+          ask instead of this banner.{" "}
           <Link href="/privacy" className="font-semibold text-sky-blue hover:underline">
             Privacy policy
           </Link>
@@ -77,9 +86,9 @@ export function CookieConsent() {
                 }}
               />
               <span>
-                <span className="font-semibold">Advertising</span> — shopping-partner
-                creatives and Impact impression pixels. AdSense display units stay
-                off unless separately enabled.
+                <span className="font-semibold">Advertising</span> — Google AdSense
+                and shopping-partner creatives (including Impact impression pixels).
+                Personalized ads stay off unless you allow this.
               </span>
             </label>
           </fieldset>

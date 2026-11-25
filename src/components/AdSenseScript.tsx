@@ -4,9 +4,9 @@ import {
 } from "@/config/ads";
 
 /**
- * Server-rendered AdSense account meta only (site verification).
- * Executable adsbygoogle.js is loaded only from AdSenseBlock when a display
- * unit is actually mounted — never from the root layout.
+ * Server-rendered AdSense account meta (site verification).
+ * Executable adsbygoogle.js loads from AdSenseLoader when display ads
+ * are enabled — once per page, never duplicated from manual units.
  */
 export function AdSenseScript() {
   const client = getAdSenseClient();
@@ -14,7 +14,7 @@ export function AdSenseScript() {
   return <meta name="google-adsense-account" content={client} />;
 }
 
-/** True only when a page may mount display units (not verification alone). */
+/** True when display ads / Auto ads script may load (not verification alone). */
 export function shouldLoadAdSenseScript(): boolean {
   return Boolean(getAdSenseClient()) && areAdSenseDisplayUnitsEnabled();
 }

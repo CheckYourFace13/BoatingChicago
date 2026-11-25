@@ -29,27 +29,64 @@ function envFlag(key: string): string | undefined {
   return value || undefined;
 }
 
+/** Approved AdSense publisher client (ca-pub-…). Single source for meta, script, and units. */
+export const ADSENSE_PUBLISHER_ID = "ca-pub-9572509189594279";
+
 /** AdSense publisher client (ca-pub-…). Single source for meta, script, and units. */
 export function getAdSenseClient(): string | undefined {
   // Direct NEXT_PUBLIC_ access so Next can inline at build time when set.
-  return process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim() || undefined;
+  const fromEnv = process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.trim();
+  if (fromEnv) return fromEnv;
+  // Fallback matches live ads.txt / approved publisher so builds still verify.
+  return ADSENSE_PUBLISHER_ID;
 }
 
 /**
- * Display units and adsbygoogle.js stay off until both are true:
- * 1) NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS is explicitly enabled, and
- * 2) the visitor has granted advertising consent.
- * NEXT_PUBLIC_ADSENSE_CLIENT plus ads.txt / the verification meta tag only
- * identify the publisher account. They do not mean Auto ads are approved or
- * authorized. Do not load Auto ads from this flag remaining unset.
+ * Display ads + adsbygoogle.js (Auto ads / Privacy & messaging).
+ *
+ * Emergency kill switch: set NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS to
+ * false / 0 / off / no and rebuild. Explicit true still enables.
+ * After AdSense approval, default is ON whenever a client ID is available.
  */
 export function areAdSenseDisplayUnitsEnabled(): boolean {
   const flag = process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_UNITS?.trim().toLowerCase();
-  return flag === "1" || flag === "true" || flag === "yes";
+  if (flag === "0" || flag === "false" || flag === "no" || flag === "off") {
+    return false;
+  }
+  if (flag === "1" || flag === "true" || flag === "yes") {
+    return true;
+  }
+  return Boolean(getAdSenseClient());
 }
 
 export function isAdSenseEnabled(): boolean {
   return Boolean(getAdSenseClient()) && areAdSenseDisplayUnitsEnabled();
+}
+
+/**
+ * Routes where AdSense script / Auto ads must not run (legal, forms,
+ * conversion, printable utilities). Also exclude from dashboard page
+ * exclusions once Auto ads are turned on.
+ */
+export const ADSENSE_EXCLUDED_PATHS = [
+  "/privacy",
+  "/terms",
+  "/contact",
+  "/subscribe",
+  "/advertise",
+  "/affiliate-disclosure",
+  "/list-your-business",
+  "/tools/float-plan",
+  "/tools/trip-checklist",
+] as const;
+
+export function isAdSensePathExcluded(pathname: string | null | undefined): boolean {
+  if (!pathname) return false;
+  const path = pathname.split("?")[0]?.split("#")[0] || pathname;
+  if (path === "/not-found") return true;
+  return ADSENSE_EXCLUDED_PATHS.some(
+    (excluded) => path === excluded || path.startsWith(`${excluded}/`),
+  );
 }
 
 /** Provider toggles — only AdSense can be live today */
@@ -78,8 +115,8 @@ export const adProviders: Record<
 
 /**
  * Logical AdSense slots. Slot IDs come from env when units are created in AdSense.
- * Without a slot ID, AdSenseBlock renders nothing. The loader also stays off
- * unless display units are explicitly enabled and consent is granted.
+ * Without a slot ID, AdSenseBlock renders nothing. Prefer Auto ads first;
+ * manual units are optional and stay off until slot IDs are configured.
  */
 export const adSlots: Record<AdSlotKey, AdSlotConfig> = {
   "homepage-top": {
@@ -103,7 +140,6 @@ export const adSlots: Record<AdSlotKey, AdSlotConfig> = {
     minHeightPx: 100,
     label: "Long guide — near bottom",
   },
-  /** Future rail / article slots — disabled until display units are approved. */
   desktop_left_rail: {
     key: "desktop_left_rail",
     provider: "adsense",

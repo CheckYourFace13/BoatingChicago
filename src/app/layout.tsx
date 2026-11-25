@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { AdSenseScript } from "@/components/AdSenseScript";
 import { ConsentDefaultsScript } from "@/components/ConsentDefaultsScript";
 import { ConsentProvider } from "@/components/ConsentProvider";
@@ -65,8 +66,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        {/* Prefetch AdSense host only when display units are explicitly enabled.
-            Verification meta alone must not imply ads load on every route. */}
+        {/* Prefetch AdSense host when display ads are enabled (Auto ads / CMP). */}
         {areAdSenseDisplayUnitsEnabled() ? (
           <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         ) : null}
@@ -106,6 +106,7 @@ export default function RootLayout({
           </Suspense>
           <main className="flex-1">{children}</main>
           <Footer />
+          <AdSenseLoader />
           <CookieConsent />
         </ConsentProvider>
       </body>

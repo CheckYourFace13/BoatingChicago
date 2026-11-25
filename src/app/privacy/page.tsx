@@ -20,7 +20,7 @@ export default function PrivacyPage() {
       path="/privacy"
     >
       <div className="space-y-6 text-gray-700 leading-relaxed">
-        <p className="text-sm text-gray-500">Last updated: October 27, 2026</p>
+        <p className="text-sm text-gray-500">Last updated: November 25, 2026</p>
         <p>
           This Privacy Policy describes how {siteConfig.name} (&quot;we,&quot; &quot;us,&quot; or
           &quot;our&quot;) handles information when you visit {siteConfig.domain}, submit forms, or
@@ -64,18 +64,21 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Cookies &amp; tracking</h2>
         <p>
           Essential cookies or local storage keep the site working (for example remembering your
-          optional-cookie choice). Google Analytics, labeled shopping-partner ads, and Impact
-          impression tags are optional. They stay off until you accept them in the cookie banner
-          or Cookie settings. Rejecting them does not block weather, guides, booking links,
-          contact, or the newsletter form.
+          optional-cookie choice). Google Analytics, Google AdSense, labeled shopping-partner ads,
+          and Impact impression tags are optional. Consent Mode v2 defaults keep analytics and
+          advertising storage denied until you choose Accept / Customize in our cookie banner, or
+          until Google&apos;s Privacy &amp; messaging CMP records a choice for regulated traffic.
+          Rejecting optional cookies does not block weather, guides, booking links, contact, or
+          the newsletter form.
         </p>
         <p>
-          Google&apos;s EU user consent policy and Consent Mode v2 apply to end users in the EEA
-          (and, for some publisher advertising products, the UK and Switzerland). We do not run a
-          Google-certified IAB CMP such as Funding Choices, and this site does not look up your
-          country at the edge. Optional tags therefore stay denied for every visitor until you
-          choose. That is not a certified-CMP or AdSense-approval claim. If display ads are later
-          turned on for EEA traffic, a certified CMP would still be required for that product.
+          For visitors in the EEA, UK, and Switzerland, we use Google&apos;s certified Privacy
+          &amp; messaging (Funding Choices) CMP when those messages are published in AdSense.
+          That CMP can update Consent Mode for advertising and analytics. Our first-party banner
+          is suppressed when Google&apos;s CMP is handling the request so you do not see two
+          competing consent UIs. US state privacy messages from the same Privacy &amp; messaging
+          product may also apply where configured. A browser Global Privacy Control (GPC) signal
+          is treated as an advertising opt-out.
         </p>
         <p>
           Google and other third-party vendors may use cookies to serve ads based on your prior
@@ -89,7 +92,8 @@ export default function PrivacyPage() {
           >
             Google&apos;s Ad Settings / My Ad Center
           </a>
-          . Browser settings also let you block or delete cookies.
+          , reopen Cookie settings in the site footer, or use Google&apos;s CMP revocation entry
+          when it is shown. Browser settings also let you block or delete cookies.
         </p>
 
         <h2 className="text-xl font-extrabold text-lake-blue pt-2">Third-party links</h2>
