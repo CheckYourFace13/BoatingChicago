@@ -31,6 +31,7 @@ import {
   SourceLinkList,
 } from "./geo/SourceAttribution";
 import { BoatUsMembershipNote } from "./ownership/OwnershipLinks";
+import { StorageProviderCompare } from "./geo/StorageProviderCompare";
 
 /**
  * Guides where a BoatUS membership note is editorially relevant. The note
@@ -424,6 +425,38 @@ export function GuideLanding({ guide }: GuideLandingProps) {
         </article>
 
         <AdSenseBlock slot="guide-mid" />
+
+        {guide.slug === "chicago-boat-storage-guide" ? (
+          <StorageProviderCompare />
+        ) : null}
+
+        {guide.slug === "chicago-boat-detailing-guide" ? (
+          <section className="rounded-2xl border border-sky-blue/20 bg-light-blue/40 p-6 max-w-4xl space-y-3">
+            <h2 className="text-xl font-extrabold text-lake-blue">
+              Looking for a detailing operator?
+            </h2>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              BoatingChicago does not operate a boat-matching or detailing
+              booking desk. Ask your marina for approved contractors, compare
+              marine service yards in our{" "}
+              <Link
+                href="/storage"
+                className="font-semibold text-sky-blue hover:underline"
+              >
+                storage &amp; haul-out directory
+              </Link>
+              , or send a{" "}
+              <Link
+                href="/contact"
+                className="font-semibold text-sky-blue hover:underline"
+              >
+                sourced correction or listing tip
+              </Link>{" "}
+              (include an official business URL). We do not invent prices or
+              claim we will match you with a detailer.
+            </p>
+          </section>
+        ) : null}
 
         {/* Comparison Table */}
         <section>

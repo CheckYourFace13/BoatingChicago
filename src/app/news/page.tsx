@@ -91,6 +91,11 @@ export default async function NewsPage() {
             and Great Lakes coverage. We summarize headlines with original
             BoatingChicago context and always link to the original story.
           </p>
+          <p className="text-white/75 text-sm max-w-3xl leading-relaxed mt-3">
+            This feed mixes dated agency/operator notices with summarized
+            third-party headlines. It is not a daily blog of filler posts —
+            we publish when there is a real boating change worth citing.
+          </p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
             <Link href="/weather" className="text-sun-yellow hover:underline">
               Boating weather →

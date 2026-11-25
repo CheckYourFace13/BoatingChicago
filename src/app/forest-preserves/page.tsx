@@ -16,10 +16,9 @@ import type { PreserveWaterAccess } from "@/types/geo";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title:
-      "Forest Preserve Boating Near Chicago | Cook, Lake, DuPage, Will, Kane & McHenry",
+    title: "Forest Preserve Boating Near Chicago | Six-County Access",
     description:
-      "Verified forest-preserve launches and rental waters near Chicago across Cook, Lake, DuPage, Will, Kane, and McHenry counties — from official district sources.",
+      "Verified forest-preserve launches and rental waters across Cook, Lake, DuPage, Will, Kane, and McHenry — from official district sources.",
     path: "/forest-preserves",
   });
 }

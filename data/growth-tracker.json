@@ -1,0 +1,124 @@
+{
+  "updated": "2026-11-25",
+  "policy": "Never mark a set complete only because code was committed. Status values: not_started | verified | implemented | deployed | measured. Measured requires a later GSC comparison window.",
+  "sets": [
+    {
+      "id": "set-1",
+      "title": "Comprehensive competitor audit, reliability, SEO and regional discovery",
+      "status": "deployed",
+      "baselineSha": "30b3061",
+      "productionSha": "dd60844",
+      "notes": "Deployed and health-verified on 2026-11-25. Subject to ongoing verification; GSC impact not yet measured.",
+      "evidence": [
+        "Live /api/deploy-info matched dd60844 with /api/health ok",
+        "Inventory consistency tests; fuel/transient/river hubs; favorites; About double-period fix"
+      ],
+      "affectedUrls": [
+        "/api/health",
+        "/fuel-docks",
+        "/transient-slips",
+        "/river-paddling",
+        "/aquatic-invasive-species-boater-rules",
+        "/fishing-licenses-great-lakes-states",
+        "/about",
+        "/tools"
+      ],
+      "results": "Production healthy on dd60844. Organic traffic change not claimed."
+    },
+    {
+      "id": "set-2",
+      "title": "GravyBlock Search Console recommendations",
+      "status": "implemented",
+      "gscWindow": "2026-10-26 to 2026-11-22",
+      "baselineSha": "dd60844",
+      "productionSha": null,
+      "priorities": [
+        {
+          "id": "p1-storage",
+          "status": "implemented",
+          "evidence": [
+            "SERP intent primarily operator/provider pages with pricing & availability",
+            "Ranking URLs observed: chicagoyachtworks.com/storage/, chicagoharbors.info/winter-storage/, baymarinechicago.com/storage/",
+            "Strengthened /chicago-boat-storage-guide with verified provider table; expanded /storage facilities"
+          ],
+          "affectedUrls": ["/chicago-boat-storage-guide", "/storage"]
+        },
+        {
+          "id": "p2-impression-drops",
+          "status": "implemented",
+          "evidence": [
+            "/chicago-dining-cruises: live 200, indexable, canonical OK — classified seasonality (Nov vs summer demand); no technical defect fix required",
+            "/boat-detailing-chicago: permanent 308 to /chicago-boat-detailing-guide (intentional consolidation)",
+            "External Find-a-Boat charter form NOT present on live detailing guide; removed unsupported $ ranges from retired category FAQs; added non-matching service CTA"
+          ],
+          "affectedUrls": [
+            "/chicago-dining-cruises",
+            "/boat-detailing-chicago",
+            "/chicago-boat-detailing-guide"
+          ]
+        },
+        {
+          "id": "p3-social-previews",
+          "status": "implemented",
+          "evidence": [
+            "Live homepage/news/dining/detailing/storage already had og:* + twitter:card with 200 PNG images",
+            "buildMetadata now emits absolute og/twitter image URLs; branded /opengraph-image remains fallback"
+          ],
+          "affectedUrls": ["/", "/news", "/chicago-boat-storage-guide", "/storage"]
+        },
+        {
+          "id": "p4-titles-descriptions",
+          "status": "implemented",
+          "evidence": [
+            "Shortened forest-preserves, storage, lakes, regions, tools metadata where clarity allowed; no keyword stuffing"
+          ],
+          "affectedUrls": [
+            "/forest-preserves",
+            "/tools",
+            "/storage",
+            "/lakes",
+            "/regions",
+            "/chicago-boat-storage-guide",
+            "/chicago-boat-detailing-guide"
+          ]
+        },
+        {
+          "id": "p5-embed-widget",
+          "status": "implemented",
+          "evidence": [
+            "Added /embed/conditions HTML card + /weather/embed docs + /weather/embed-test; CSP frame-ancestors * for /embed only"
+          ],
+          "affectedUrls": ["/embed/conditions", "/weather/embed", "/weather/embed-test"]
+        },
+        {
+          "id": "p6-editorial-cadence",
+          "status": "verified",
+          "evidence": [
+            "GravyBlock 'zero dated posts' overstates gap: /news publishes dated source-cited summaries + official on-water updates; guides use lastReviewed; calendar/events carry dated items",
+            "Clarified /news hero that feed is not a daily filler blog; no generic daily article mill added"
+          ],
+          "affectedUrls": ["/news", "/calendar", "/events"]
+        }
+      ],
+      "protectedUrls": [
+        "/chicago-playpen-guide",
+        "/forest-preserves",
+        "/chicago-transient-dockage",
+        "/forest-preserves/whalon-lake-will",
+        "/forest-preserves/beck-lake-cook",
+        "/lakes/des-plaines-river",
+        "/lakes/chain-o-lakes",
+        "/boat-launches/simmons-island-public-boat-launch"
+      ],
+      "results": "Awaiting production deploy verification; GSC improvement not claimed until measured after a later comparison period."
+    },
+    {
+      "id": "set-3",
+      "title": "Future data-driven search, usability and revenue improvements",
+      "status": "not_started",
+      "notes": "Backlog only after Set 2 is deployed + measured. Candidates: WI DNR/MiBFF enrichment, CWV-with-ads field pass, GSC-driven Door/Green Bay/Winnebago depth, AdSense RPM by template when authorized, dining-cruise seasonal content tests if impressions stay flat into summer.",
+      "productionSha": null,
+      "results": null
+    }
+  ]
+}

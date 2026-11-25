@@ -12,7 +12,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
   title: "Lakes & Waterways for Chicago-Area Boating",
   description:
-    "Lake Michigan, Chain O’ Lakes, Geneva Lake, and Chicago-area rivers plus inland lakes within about 400 driving miles — Wisconsin, Illinois, Indiana, and Michigan guides with official launch and rules sources.",
+    "Lake Michigan, Chain O’ Lakes, Geneva Lake, area rivers, and inland lakes within about 400 driving miles — with official launch and rules sources.",
   path: "/lakes",
 });
 }

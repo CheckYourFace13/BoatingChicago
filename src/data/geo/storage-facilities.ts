@@ -1,7 +1,7 @@
 import type { StorageFacility } from "@/types/geo";
 
 /** Last day these official storage pages were re-checked for this directory. */
-const VERIFIED = "2026-10-11";
+const VERIFIED = "2026-11-25";
 
 /**
  * Chicago-area winter storage and haul-out operators with official-site confirmation.
@@ -91,6 +91,70 @@ export const storageFacilities: StorageFacility[] = [
     source: {
       name: "Southport Marina — Slip Rentals / Winter Storage",
       url: "https://www.spmarina.net/slip-rentals",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "chicago-yacht-works-calumet",
+    name: "Chicago Yacht Works",
+    location: "13620 S. Hoxie Avenue, Chicago, IL (Calumet River)",
+    serviceArea:
+      "Calumet River / south Chicago access toward Lake Michigan via Thomas O’Brien Locks",
+    summary:
+      "Official storage page describes heated indoor storage (including rack options) and outdoor storage at a Calumet River yard with travel lifts and security cameras. The operator publishes seasonal pricing structures on that page and notes indoor requests may be waitlisted — confirm current rates, deposits, and space directly with the yard.",
+    confirmedServices: [
+      "Heated indoor storage (building and rack options described on operator page)",
+      "Outdoor storage",
+      "Haul / power-wash placement described on operator storage page",
+      "Travel lifts (operator lists multiple lifts including a large south-side capacity)",
+    ],
+    officialWebsite: "https://www.chicagoyachtworks.com/storage/",
+    source: {
+      name: "Chicago Yacht Works — Storage",
+      url: "https://www.chicagoyachtworks.com/storage/",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "bay-marine-chicago-waukegan",
+    name: "Bay Marine Chicago",
+    location: "3 East Madison Street, Waukegan, IL",
+    serviceArea: "Waukegan / northern Illinois Lake Michigan service & storage",
+    summary:
+      "Official storage page describes indoor heated and outdoor storage, haul-out capability stated up to 80 tons, shrink-wrapping, winter access during business hours, and in-season storage/launch programs. The operator asks customers to contact them for storage, haul-out, and winterizing pricing — we do not republish quotes.",
+    confirmedServices: [
+      "Indoor heated storage",
+      "Outdoor storage with shrink-wrapping (per operator page)",
+      "Haul-out / launch coordination",
+      "On-site service while stored (per operator page)",
+    ],
+    officialWebsite: "https://www.baymarinechicago.com/storage/",
+    source: {
+      name: "Bay Marine Chicago — Storage",
+      url: "https://www.baymarinechicago.com/storage/",
+      lastVerified: VERIFIED,
+    },
+    isPublished: true,
+  },
+  {
+    slug: "pier-11-marina-chicago",
+    name: "Pier 11 Marina",
+    location: "826 E 138th Street, Chicago, IL",
+    serviceArea: "Southeast Chicago / Calumet area Lake Michigan access",
+    summary:
+      "Official storage page describes outdoor yard storage with a 60-ton lift and heated indoor storage partnered via Paoli Storage in Rockford for qualifying trailered boats under a stated height limit. As of the 2026-11-25 check, the operator’s page stated winter storage 2026–27 was full unless the boat is on a trailer — treat that as a dated snapshot and reconfirm with the marina.",
+    confirmedServices: [
+      "Outdoor winter storage (operator asks callers for pricing)",
+      "Heated indoor option via partner facility for qualifying trailered boats (per operator page)",
+      "Travel lift capacity listed at 60 tons",
+      "Wet slips described separately on the same operator site",
+    ],
+    officialWebsite: "https://www.pier11marina.com/storage",
+    source: {
+      name: "Pier 11 Marina — Storage",
+      url: "https://www.pier11marina.com/storage",
       lastVerified: VERIFIED,
     },
     isPublished: true,

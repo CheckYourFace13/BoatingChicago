@@ -101,6 +101,13 @@ check_200 "/river-paddling" "river paddling" || fail=1
 check_200 "/aquatic-invasive-species-boater-rules" "AIS guide" || fail=1
 check_200 "/fishing-licenses-great-lakes-states" "fishing licenses" || fail=1
 check_200 "/about" "about" || fail=1
+check_200 "/chicago-boat-storage-guide" "storage guide" || fail=1
+check_200 "/chicago-boat-detailing-guide" "detailing guide" || fail=1
+check_200 "/chicago-dining-cruises" "dining cruises" || fail=1
+check_200 "/weather/embed" "conditions embed docs" || fail=1
+check_200 "/embed/conditions?location=chicago" "conditions embed card" || fail=1
+check_200 "/chicago-playpen-guide" "protected playpen guide" || fail=1
+check_200 "/chicago-transient-dockage" "protected transient dockage" || fail=1
 
 # Canonical (no query) + cache-busted key URL
 key_code=$(curl -sS -o /tmp/indexnow-key.txt -w "%{http_code}" \

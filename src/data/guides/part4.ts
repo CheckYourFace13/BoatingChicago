@@ -115,12 +115,12 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "chicago-boat-storage-guide",
     title: "Chicago Boat Storage Guide",
-    seoTitle: "Boat Storage Chicago 2026 | Indoor, Outdoor & Winter Options",
+    seoTitle: "Boat Storage Chicago | Indoor, Outdoor & Winter Yards",
     seoDescription:
-      "Boat storage Chicago for Lake Michigan boats: indoor and outdoor winter storage, shrink wrap, and how heated indoor differs from unheated space. Confirm dates with each yard — see the haul-out directory.",
-    headline: "Chicago Boat Storage: Complete Guide to Winter Storage",
+      "Boat storage Chicago: compare verified indoor and outdoor yards, haul-out and shrink-wrap services, with official operator links. Confirm fees and space on each yard’s page.",
+    headline: "Chicago Boat Storage: Indoor, Outdoor & Winter Planning",
     intro:
-      "Chicago winters are no place for an unprotected boat. From late October through April, proper boat storage is the difference between arriving at the marina in spring with a boat in excellent condition and spending the season on repairs from freeze damage. This guide covers Chicago-area boat storage options, what to look for in a storage facility, and how to prepare your boat for winter.",
+      "People searching for boat storage in Chicago usually need a yard that can haul, store, and launch a Lake Michigan boat — plus clarity on indoor vs outdoor options. This guide explains storage types and winterization context, then links a verified operator comparison drawn from official storage pages. Fees, waitlists, and boat-size limits belong on the operator site; we do not invent quotes or availability.",
     sections: [
       {
         heading: "Types of Boat Storage in Chicago",
@@ -187,18 +187,18 @@ export const guidePart4: GuidePage[] = [
       { season: "Winter (Nov–Apr)", tip: "Check on your boat periodically if it's outdoor storage — inspect the shrink wrap after heavy snow or ice events for tears." },
     ],
     peopleAlsoAsk: [
-      { question: "How much does boat storage cost in Chicago?", answer: "Costs vary by facility, storage type, and boat size. Outdoor storage is typically less expensive than indoor. Get quotes from multiple facilities for your specific boat length." },
-      { question: "When should I pull my boat out for winter in Chicago?", answer: "Most Chicago-area boaters haul out in October, with the latest reasonable window being early November before freeze risk becomes significant." },
-      { question: "What does winterization include for a boat in Chicago?", answer: "Standard winterization includes engine fogging, antifreeze flushing, fuel stabilizer treatment, battery maintenance, and shrink wrapping. Full winterization packages vary by service provider." },
-      { question: "Is indoor boat storage worth it in Chicago?", answer: "For high-value boats and those concerned about UV damage, ice loading, or security, indoor storage is worth the premium cost. For basic fiberglass boats with proper winterization, outdoor storage is typically sufficient." },
-      { question: "Where can I store a boat in Chicago?", answer: "Multiple marine facilities in and around Chicago offer boat storage. Chicago Harbors facilities offer some storage; private marine businesses in the area provide additional options." },
+      { question: "How much does boat storage cost in Chicago?", answer: "Operators publish different rates by indoor/outdoor type and boat size. Chicago Harbors and some private yards post current structures on their official storage pages — confirm there rather than relying on a third-party summary." },
+      { question: "When should I pull my boat out for winter in Chicago?", answer: "Chicago Harbors describes haul-out typically in October with launching beginning in April. Individual yards set their own windows — confirm with your operator." },
+      { question: "What does winterization include for a boat in Chicago?", answer: "Common packages include engine fogging, antifreeze flushing, fuel stabilizer, battery care, and optional shrink wrap. Exact scope is set by the service vendor — get it in writing." },
+      { question: "Is indoor boat storage worth it in Chicago?", answer: "Heated indoor space is limited and often waitlisted. Ask whether a building is merely enclosed or heated, and whether shrink wrap is still required." },
+      { question: "Where can I store a boat in Chicago?", answer: "Start with the verified comparison in this guide and the /storage directory: Chicago Harbors (31st Street and Montrose), Calumet River yards, and North Shore / Waukegan operators with official storage pages." },
     ],
     faqs: [
       { question: "Can I winterize my own boat in Chicago?", answer: "If you have the mechanical skill and appropriate equipment, yes. Many boaters do their own winterization. For first-timers or complex inboard engines, professional winterization is worth the cost." },
       { question: "Is shrink wrap necessary for winter boat storage?", answer: "Shrink wrap is the most effective protection against winter precipitation and UV. It's not strictly required but is strongly recommended for outdoor storage in Chicago." },
       { question: "What happens to a boat that isn't winterized in Chicago?", answer: "Improperly winterized boats risk cracked engine blocks, damaged raw water systems, and hull delamination from freeze-thaw cycles. The repair cost typically far exceeds the cost of professional winterization." },
       { question: "Can I leave my boat in the water over winter in Chicago?", answer: "In-water winter storage at protected facilities is possible but uncommon in Chicago. Most Chicago-area boaters pull their boats for winter storage to avoid ice damage." },
-      { question: "How do I find boat storage near me in Chicago?", answer: "Search for marine service facilities in your Chicago area neighborhood or the neighborhood near your marina. Some Chicago Harbors facilities offer storage; private facilities are also available throughout the area." },
+      { question: "How do I find boat storage near me in Chicago?", answer: "Use the verified operator table on this page and /storage, then open each official storage URL for contracts, size limits, and current availability." },
     ],
     popularSearches: [
       { label: "Storage & haul-out directory", href: "/storage" },
@@ -212,11 +212,13 @@ export const guidePart4: GuidePage[] = [
     relatedSlugs: [
       "winter-boat-storage-chicago",
       "chicago-boat-winterization",
+      "chicago-boat-shrink-wrap-guide",
       "spring-boat-launch-checklist-chicago",
       "chicago-marina-guide",
       "chicago-boat-insurance-guide",
       "boat-financing-ownership-costs-chicago",
     ],
+    lastReviewed: "2026-11-25",
     affiliateOffersFromSlug: "boat-rentals-chicago",
     showLeadForm: false,
   },
@@ -333,12 +335,12 @@ export const guidePart4: GuidePage[] = [
   {
     slug: "chicago-boat-detailing-guide",
     title: "Chicago Boat Detailing Guide",
-    seoTitle: "Chicago Boat Detailing Guide 2026 | Mobile Boat Wash & Detailing Services",
+    seoTitle: "Chicago Boat Detailing | Mobile Wash, Wax & Gelcoat Care",
     seoDescription:
-      "Find the best boat detailing services in Chicago — mobile boat wash, wax, interior cleaning, and full detail packages at Chicago area marinas.",
-    headline: "Boat Detailing in Chicago: What to Expect and How to Find the Right Service",
+      "Chicago boat detailing for Lake Michigan boats: wash, wax, full detail, and marina contractor tips. No invented prices — ask operators for quotes.",
+    headline: "Boat Detailing in Chicago: What to Expect and How to Hire Carefully",
     intro:
-      "Lake Michigan's mineral-rich water, intense summer UV, and occasional bird traffic make regular boat detailing both important for aesthetics and for protecting your investment. Chicago-area boat detailing services range from quick wash-and-wax packages to comprehensive full-boat details that restore gelcoat, deep-clean upholstery, and polish every surface. This guide covers what's available and what to look for.",
+      "Lake Michigan's mineral-rich water, intense summer UV, and harbor bird traffic make regular detailing important for gelcoat and upholstery. This guide explains service levels and marina contractor rules. BoatingChicago does not run a detailing booking desk or match owners to vendors, and we do not publish unverified price ranges.",
     sections: [
       {
         heading: "What Chicago Boat Detailing Services Include",
@@ -405,23 +407,23 @@ export const guidePart4: GuidePage[] = [
       { season: "Winter", tip: "No mobile detailing typically available at marinas. Use this time to identify a detailer and book a spring commissioning appointment." },
     ],
     peopleAlsoAsk: [
-      { question: "How much does boat detailing cost in Chicago?", answer: "Costs vary by service level and boat size. Basic washes are affordable; full detail packages are more substantial investments. Get quotes from multiple detailers for your specific boat." },
-      { question: "Do Chicago boat detailers come to the marina?", answer: "Yes — mobile detailing is the standard model. Most detailers come to your slip. Confirm your marina's policy on outside service providers." },
-      { question: "How often should I detail my boat in Chicago?", answer: "A full detail at the start of the season, regular wash and wax every 4–6 weeks during use, and a detail before winter storage is the recommended cadence for Lake Michigan boats." },
-      { question: "What is gelcoat oxidation and how do I fix it?", answer: "Gelcoat oxidation occurs when the outer surface layer of fiberglass fades and chalks from UV exposure. Professional compounding and polishing restores the surface — a good boat detailer handles this routinely." },
-      { question: "Can boat detailing remove water spots from Lake Michigan?", answer: "Yes — Lake Michigan's mineral-rich water leaves stubborn water spots. Detailing with appropriate mineral deposit removers and polish can address these effectively." },
+      { question: "How much does boat detailing cost in Chicago?", answer: "Pricing depends on boat size, oxidation level, and whether you need a wash, wash-and-wax, or full compound/polish. Ask detailers for written quotes — BoatingChicago does not publish dollar ranges we cannot source." },
+      { question: "Do Chicago boat detailers come to the marina?", answer: "Mobile detailing is the usual model. Confirm your marina’s outside-contractor and insurance rules before scheduling." },
+      { question: "How often should I detail my boat in Chicago?", answer: "Many Lake Michigan owners do a spring full detail, rinse/wash during the season as mineral spots appear, and a pre-storage clean in fall — adjust to how hard you use the boat." },
+      { question: "What is gelcoat oxidation and how do I fix it?", answer: "Gelcoat oxidation is UV chalking and fading of the outer fiberglass surface. Compounding and polishing by a marine detailer can restore gloss when the laminate is still sound." },
+      { question: "Can boat detailing remove water spots from Lake Michigan?", answer: "Mineral deposits from lake water often need dedicated removers and polish; untreated spots can etch gelcoat and glass." },
     ],
     faqs: [
       { question: "Is boat detailing the same as auto detailing?", answer: "Similar in concept but different in materials and technique. Marine gelcoat, vinyl upholstery, and stainless fittings require marine-specific products and methods." },
       { question: "Can I detail my own boat?", answer: "Yes — many boat owners do basic washing themselves and hire professionals for compound polishing and full details. The right products are available at marine supply stores." },
       { question: "What is anti-fouling paint and does boat detailing include it?", answer: "Anti-fouling paint is applied to the bottom of the hull to prevent marine growth. Bottom paint application is typically a separate service from cosmetic detailing." },
-      { question: "How do I find a boat detailer near my Chicago marina?", answer: "Ask your marina or fellow slip holders for recommendations. Some marinas have preferred service providers. Boating Chicago's vendor listings are another resource." },
+      { question: "How do I find a boat detailer near my Chicago marina?", answer: "Ask the harbor office or neighboring slip holders for contractors they already allow on the docks. Send BoatingChicago a sourced tip via /contact if you want an official operator URL reviewed for editorial listing — we do not match customers to vendors." },
       { question: "Should I detail my boat before or after winter storage?", answer: "Ideally both — a fall detail before storage removes contaminants that can stain over winter, and a spring detail after haul-out addresses anything that developed in storage." },
     ],
     popularSearches: [
       { label: "Chicago Boat Repair Guide", href: "/chicago-boat-repair-guide" },
       { label: "Chicago Boat Storage Guide", href: "/chicago-boat-storage-guide" },
-      { label: "Boat Detailing Chicago", href: "/chicago-boat-detailing-guide" },
+      { label: "Storage & haul-out directory", href: "/storage" },
       { label: "Chicago Marina Guide", href: "/chicago-marina-guide" },
       { label: "Winter Boat Storage Chicago", href: "/winter-boat-storage-chicago" },
       { label: "Monroe Harbor Guide", href: "/monroe-harbor-guide" },
@@ -429,12 +431,13 @@ export const guidePart4: GuidePage[] = [
     relatedSlugs: [
       "chicago-boat-repair-guide",
       "chicago-boat-storage-guide",
-      "boat-detailing-chicago",
       "chicago-marina-guide",
       "winter-boat-storage-chicago",
-      "chicago-marinas",
+      "monroe-harbor-guide",
+      "burnham-harbor-guide",
     ],
     affiliateOffersFromSlug: "boat-rentals-chicago",
+    lastReviewed: "2026-11-25",
     showLeadForm: false,
   },
   {

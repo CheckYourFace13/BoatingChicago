@@ -469,6 +469,10 @@ export function getWeatherLocationById(
   return weatherLocations.find((loc) => loc.id === id);
 }
 
+export function listWeatherLocations(): WeatherLocation[] {
+  return weatherLocations;
+}
+
 /** Public NWS nearshore forecast page for a marine zone UGC. */
 export function nearshoreZoneForecastUrl(zoneId: string): string {
   return `https://forecast.weather.gov/shortday.php?zone=${encodeURIComponent(zoneId)}`;

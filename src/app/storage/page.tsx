@@ -11,9 +11,9 @@ import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Chicago Boat Storage & Haul-Out Directory | Verified Operators",
+    title: "Chicago Boat Storage & Haul-Out Directory",
     description:
-      "Chicago-area winter storage and haul-out operators confirmed from each yard’s official website — services, locations, and source links. Ask operators for current quotes and availability.",
+      "Verified Chicago-area winter storage and haul-out operators with official links for services and locations. Ask each yard for current quotes and space.",
     path: "/storage",
   });
 }

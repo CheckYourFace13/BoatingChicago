@@ -13,10 +13,9 @@ import {
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title:
-      "Boating Regions Near Chicago | Lake Michigan & Inland Waters by State",
+    title: "Boating Regions Near Chicago | Lake Michigan & Inland",
     description:
-      "Browse BoatingChicago by region — Chicago & Chicagoland, Illinois inland waters, Wisconsin and Michigan Lake Michigan shores, Indiana south shore, inland lakes, and the full Lake Michigan shoreline.",
+      "Browse by region: Chicago & Chicagoland, Illinois inland waters, Wisconsin and Michigan shores, Indiana south shore, and the full Lake Michigan shoreline.",
     path: "/regions",
   });
 }

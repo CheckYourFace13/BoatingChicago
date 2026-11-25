@@ -39,8 +39,12 @@ export function buildMetadata({
   noIndex?: boolean;
 }): Metadata {
   const url = `${siteConfig.url}${path}`;
+  const imagePath = socialImagePath(path);
+  const imageUrl = imagePath.startsWith("http")
+    ? imagePath
+    : `${siteConfig.url}${imagePath}`;
   const image = {
-    url: socialImagePath(path),
+    url: imageUrl,
     width: 1200,
     height: 630,
     alt: `${title} — ${siteConfig.name}`,
@@ -64,7 +68,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [image.url],
+      images: [imageUrl],
     },
   };
 }

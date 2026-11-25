@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return buildManagedMetadata({
     title: "Boating Planning Tools | Calculators, Float Plan & Checklists",
     description:
-      "Free Chicago-area boating tools: fuel and trip-time calculators, ownership cost worksheets, slip-quote comparison, float plan, and unit conversions. Inputs stay in your browser.",
+      "Free boating tools: fuel and trip-time calculators, ownership cost worksheets, slip comparison, float plan, and conversions. Inputs stay in your browser.",
     path: "/tools",
   });
 }

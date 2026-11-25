@@ -320,7 +320,7 @@ export const categories: CategoryPage[] = [
     relatedSlugs: ["chicago-marinas", "boat-repair-chicago", "boat-detailing-chicago"],
     faqs: [
       { question: "When should I pull my boat for winter in Chicago?", answer: "Most Chicago boaters winterize and store boats by mid-October through early November before the first hard freeze." },
-      { question: "How much does boat storage cost in Chicago?", answer: "Outdoor rack storage runs $800–$2,000+ per season. Indoor storage costs more. Shrink wrapping and winterization are typically additional." },
+      { question: "How much does boat storage cost in Chicago?", answer: "Rates vary by yard, indoor vs outdoor, and boat size. Confirm current contracts on each operator’s official storage page — see /storage and /chicago-boat-storage-guide." },
       { question: "What's included in winterization?", answer: "Standard winterization includes engine fogging, antifreeze, fuel stabilizer, and battery maintenance. Shrink wrapping protects the hull and deck." },
     ],
     vendors: ["sample-chicago-marina-partner"],
@@ -330,10 +330,10 @@ export const categories: CategoryPage[] = [
     title: "Boat Detailing Chicago",
     seoTitle: "Boat Detailing Chicago | Mobile Boat Wash & Detailing Services",
     seoDescription:
-      "Professional boat detailing in Chicago — wash, wax, interior cleaning & full detail packages. Mobile services at your marina or home port.",
+      "Chicago boat detailing context for wash, wax, and full detail work at area marinas. Canonical guide: /chicago-boat-detailing-guide.",
     headline: "Boat Detailing Services in Chicago",
     intro:
-      "Keep your boat looking sharp with professional detailing services across Chicago's harbors. Mobile detailers come to your slip for wash, wax, interior cleaning, and full detail packages — perfect for spring commissioning or pre-sale prep. Browse local service providers and request quotes through Boating Chicago.",
+      "This category slug permanently redirects to the Chicago boat detailing guide. BoatingChicago does not match owners to detailers or publish unsourced price ranges.",
     bestFor: [
       { title: "Spring commissioning", description: "Start the season with a fresh, protected hull", icon: "🌸" },
       { title: "Pre-event prep", description: "Look your best for parties and charters", icon: "✨" },
@@ -343,11 +343,23 @@ export const categories: CategoryPage[] = [
     affiliates: ["getyourguide"],
     relatedSlugs: ["boat-repair-chicago", "boat-storage-chicago", "chicago-marinas"],
     faqs: [
-      { question: "How much does boat detailing cost in Chicago?", answer: "Basic wash and wax runs $150–$300. Full detail packages range from $400–$800+ depending on boat size and condition." },
-      { question: "Do detailers come to my marina?", answer: "Most Chicago boat detailers are mobile and service boats at their slip. Confirm marina access policies with your harbor office." },
-      { question: "How often should I detail my boat?", answer: "A full detail once or twice per season plus regular washes keeps gelcoat and upholstery in top shape, especially with Lake Michigan's mineral content." },
+      {
+        question: "How much does boat detailing cost in Chicago?",
+        answer:
+          "Costs vary by boat size and service level. Ask detailers for written quotes — BoatingChicago does not publish unsourced dollar ranges.",
+      },
+      {
+        question: "Do detailers come to my marina?",
+        answer:
+          "Many Chicago-area detailers are mobile. Confirm marina access and insurance rules with your harbor office before scheduling.",
+      },
+      {
+        question: "How often should I detail my boat?",
+        answer:
+          "A spring full detail plus washes during the season helps with Lake Michigan mineral spots; exact cadence depends on use and finish condition.",
+      },
     ],
-    vendors: ["sample-chicago-detailing-partner"],
+    vendors: [],
   },
   {
     slug: "boat-repair-chicago",
