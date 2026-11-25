@@ -33,8 +33,9 @@ export default function BoatOwnershipPage() {
       <GeoHero
         eyebrow={siteConfig.coverage}
         title="Boat Ownership Around Chicago"
-        intro="An editorial planning guide for people who want their own boat on southern Lake Michigan or a nearby inland lake. This is not a marketplace, a loan offer, or legal advice."
+        intro="An editorial planning guide for people who want their own boat on Lake Michigan or a nearby inland lake within about 400 driving miles of Chicago. This is not a marketplace, a loan offer, or legal advice."
         links={[
+          { label: "Ownership calculator", href: "/tools/ownership-cost" },
           { label: "Marinas", href: "/marinas" },
           { label: "Boat launches", href: "/boat-launches" },
           { label: "Storage & haul-out", href: "/storage" },

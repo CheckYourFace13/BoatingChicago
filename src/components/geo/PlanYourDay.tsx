@@ -32,10 +32,11 @@ export function PlanYourDay({
     {
       title: "1. Check conditions",
       blurb:
-        "Start with the area NOAA/NWS forecast for this destination (not a harbor- or ramp-specific observation). A “Good” rating on this site is informational only — it is never a safety clearance.",
+        "Start with the area NOAA/NWS forecast for this destination (not a harbor- or ramp-specific observation). The snapshot on the weather page is informational only — it is never a safety clearance.",
       links: [
         { href: weatherHref, label: "Area forecast →" },
         { href: "/weather", label: "Full weather hub →" },
+        { href: "/tools/fuel", label: "Fuel calculator →" },
       ],
     },
     {
@@ -62,6 +63,8 @@ export function PlanYourDay({
               { href: "/marinas", label: "All marinas →" },
               { href: "/boat-launches", label: "All launches →" },
             ]),
+        { href: "/kayak-canoe-sup", label: "Kayak, canoe & SUP →" },
+        { href: "/permits", label: "Rules & permits →" },
       ],
     },
     {

@@ -3,31 +3,18 @@ import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { GeoHero } from "@/components/geo/GeoHero";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
-import { PartnerShoppingAds } from "@/components/PartnerShoppingAds";
+import { TOOL_CATALOG, TOOL_GROUP_LABEL } from "@/lib/tools/catalog";
 
 export async function generateMetadata() {
   return buildManagedMetadata({
-    title: "Boating Planning Tools | Float Plan & Trip Checklist",
+    title: "Boating Planning Tools | Calculators, Float Plan & Checklists",
     description:
-      "Printable float-plan worksheet and trip checklist for Chicago-area recreational boaters, based on U.S. Coast Guard float-plan guidance. Nothing entered here is submitted to authorities.",
+      "Free Chicago-area boating tools: fuel and trip-time calculators, ownership cost worksheets, slip-quote comparison, float plan, and unit conversions. Inputs stay in your browser.",
     path: "/tools",
   });
 }
 
-const TOOLS = [
-  {
-    href: "/tools/float-plan",
-    title: "Float plan worksheet",
-    blurb:
-      "A printable plan you fill out, leave with a trusted contact, update if plans change, and close when you return — not an online filing system.",
-  },
-  {
-    href: "/tools/trip-checklist",
-    title: "Pre-departure trip checklist",
-    blurb:
-      "A compact gear and paperwork checklist for day trips on Lake Michigan and inland waters near Chicago.",
-  },
-] as const;
+const GROUPS = ["worksheets", "trip", "ownership", "reference"] as const;
 
 export default function ToolsPage() {
   return (
@@ -39,114 +26,59 @@ export default function ToolsPage() {
         ]}
       />
       <GeoHero
-        eyebrow="Planning worksheets"
+        eyebrow="Free planning tools"
         title="Boating Planning Tools"
-        intro="Small printable worksheets for recreational trips. Completing them on this site does not notify the Coast Guard or any agency — share a filled copy with someone ashore, then close the plan when you return."
+        intro="Original calculators and printable worksheets for recreational trips on Lake Michigan and inland waters near Chicago. Completing them does not notify the Coast Guard or any agency. None of the calculators invent fuel prices, slip fees, or a safe-to-go rating."
         links={[
-          { label: "Boating weather →", href: "/weather" },
-          { label: "Boat launches", href: "/boat-launches" },
-          { label: "Forest preserves", href: "/forest-preserves" },
-          { label: "Winterization", href: "/chicago-boat-winterization" },
+          { label: "Boat launches →", href: "/boat-launches" },
+          { label: "Kayak & SUP finder", href: "/kayak-canoe-sup" },
+          { label: "Marinas", href: "/marinas" },
+          { label: "Boating weather", href: "/weather" },
         ]}
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-10">
-        <ul className="grid gap-4 md:grid-cols-2">
-          {TOOLS.map((tool) => (
-            <li key={tool.href}>
-              <Link
-                href={tool.href}
-                className="block h-full rounded-2xl border border-sky-blue/25 bg-white p-6 hover:border-sky-blue/50 hover:shadow-md transition-all"
-              >
-                <h2 className="text-xl font-extrabold text-lake-blue mb-2">
-                  {tool.title}
-                </h2>
-                <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                  {tool.blurb}
-                </p>
-                <p className="mt-4 text-sm font-bold text-coral">Open →</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+        {GROUPS.map((group) => (
+          <section key={group}>
+            <h2 className="text-2xl font-extrabold text-lake-blue mb-4">
+              {TOOL_GROUP_LABEL[group]}
+            </h2>
+            <ul className="grid gap-4 md:grid-cols-2">
+              {TOOL_CATALOG.filter((tool) => tool.group === group).map((tool) => (
+                <li key={tool.href}>
+                  <Link
+                    href={tool.href}
+                    className="block h-full rounded-2xl border border-sky-blue/25 bg-white p-6 hover:border-sky-blue/50 hover:shadow-md transition-all"
+                  >
+                    <h3 className="text-xl font-extrabold text-lake-blue mb-2">
+                      {tool.title}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                      {tool.blurb}
+                    </p>
+                    <p className="mt-4 text-sm font-bold text-coral">Open →</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
         <p className="text-sm text-gray-600 max-w-3xl leading-relaxed">
-          Guidance is adapted from public U.S. Coast Guard recreational boating
-          safety materials on float plans and pre-departure checks. Always follow
-          current federal, state, and local requirements for your vessel and
-          waters.
+          Worksheets are adapted from public U.S. Coast Guard recreational
+          boating safety materials. Unit conversions follow NOAA’s published
+          nautical-mile definition. Always follow current federal, state, and
+          local requirements for your vessel and waters.
         </p>
-
-        <PartnerShoppingAds pageKey="tools" />
-
-        <section className="max-w-3xl space-y-3">
-          <h2 className="text-xl font-extrabold text-lake-blue">
-            Related planning guides
-          </h2>
-          <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-            Pair these worksheets with storage and winterization guides when
-            you are hauling out, and with launch pages when you are trailering
-            in for a day trip.
-          </p>
-          <ul className="grid gap-2 sm:grid-cols-2 text-sm">
-            <li>
-              <Link
-                href="/chicago-boat-storage-guide"
-                className="font-semibold text-coral hover:underline"
-              >
-                Chicago boat storage guide →
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/chicago-boat-shrink-wrap-guide"
-                className="font-semibold text-coral hover:underline"
-              >
-                Shrink-wrap guide →
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/chicago-boat-winterization"
-                className="font-semibold text-coral hover:underline"
-              >
-                Winterization hub →
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/storage"
-                className="font-semibold text-coral hover:underline"
-              >
-                Storage facilities directory →
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/chicago-area-inland-paddling-guide"
-                className="font-semibold text-coral hover:underline"
-              >
-                Inland paddling guide →
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/forest-preserves"
-                className="font-semibold text-coral hover:underline"
-              >
-                Forest-preserve waters →
-              </Link>
-            </li>
-          </ul>
-        </section>
 
         <ResourceCrossLinks
           links={[
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
-            { href: "/forest-preserves", label: "Forest preserves" },
-            { href: "/chicago-boat-winterization", label: "Winterization" },
-            { href: "/spring-boat-launch-checklist-chicago", label: "Spring checklist" },
+            { href: "/kayak-canoe-sup", label: "Kayak, canoe & SUP" },
+            { href: "/permits", label: "Rules & permits" },
+            { href: "/boat-financing-ownership-costs-chicago", label: "Ownership costs guide" },
+            { href: "/chicago-area-inland-paddling-guide", label: "Inland paddling guide" },
             { href: "/guides", label: "All guides" },
           ]}
         />

@@ -14,17 +14,41 @@ import { buildMarinaPoints } from "@/lib/map-points";
 import { REGION_ORDER } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import {
+  hasConfirmedAmenity,
+  marinaFiltersActive,
+  parseMarinaAmenity,
+  parseWaterKind,
+  waterKind,
+} from "@/lib/marina-filters";
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ water?: string; amenity?: string }>;
+}) {
+  const params = await searchParams;
+  const water = parseWaterKind(params.water);
+  const amenity = parseMarinaAmenity(params.amenity);
+  const filtered = marinaFiltersActive(water, amenity);
   return buildManagedMetadata({
     title: "Marinas & Harbors Near Chicago | Verified Official Listings",
     description:
       "Chicago-area marinas and harbors on Lake Michigan and inland lakes, each listed from the operator's own official page with amenities confirmed by the source.",
     path: "/marinas",
+    noIndex: filtered,
   });
 }
 
-export default function MarinasPage() {
+export default async function MarinasPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ water?: string; amenity?: string }>;
+}) {
+  const params = await searchParams;
+  const water = parseWaterKind(params.water);
+  const amenity = parseMarinaAmenity(params.amenity);
+
   const destinations = getPublishedDestinations()
     .slice()
     .sort(
@@ -34,14 +58,27 @@ export default function MarinasPage() {
           (b.distanceFromChicagoMiles ?? Number.MAX_SAFE_INTEGER),
     );
 
-  const groups = destinations
+  const allGroups = destinations
     .map((destination) => ({
       destination,
       marinas: getMarinasByDestination(destination.slug),
     }))
     .filter((group) => group.marinas.length > 0);
 
-  const total = groups.reduce((sum, group) => sum + group.marinas.length, 0);
+  const total = allGroups.reduce((sum, group) => sum + group.marinas.length, 0);
+
+  const groups = allGroups
+    .map(({ destination, marinas }) => {
+      if (water !== "all" && waterKind(destination) !== water) {
+        return { destination, marinas: [] };
+      }
+      const next = amenity
+        ? marinas.filter((m) => hasConfirmedAmenity(m, amenity))
+        : marinas;
+      return { destination, marinas: next };
+    })
+    .filter((g) => g.marinas.length > 0);
+
   const { points: marinaPoints, unmapped } = buildMarinaPoints(
     getPublishedMarinas(),
     (slug) => {
@@ -66,12 +103,12 @@ export default function MarinasPage() {
       <GeoHero
         eyebrow={`${total} verified marinas & harbors`}
         title="Marinas & Harbors Near Chicago"
-        intro="Public and full-service marinas from the Chicago lakefront to Wisconsin, Indiana, and Michigan. Amenities come straight from each operator's official page — slip rates, fees, and hours stay on the source where they are kept current."
+        intro="Public and full-service marinas from the Chicago lakefront to Wisconsin, Indiana, and Michigan. Amenities come straight from each operator's official page — slip rates, fees, and hours stay on the source where they are kept current. Compare quotes you collect in the slip calculator."
         links={[
           { label: "Destinations →", href: "/destinations" },
           { label: "Boat launches", href: "/boat-launches" },
+          { label: "Compare quotes", href: "/tools/slip-compare" },
           { label: "Storage & haul-out", href: "/storage" },
-          { label: "Area weather forecast", href: "/weather" },
         ]}
       />
 
@@ -86,7 +123,7 @@ export default function MarinasPage() {
           />
         ) : null}
 
-        {groups.length === 0 ? (
+        {allGroups.length === 0 ? (
           <p className="text-gray-700">
             No marinas are published yet. Check the{" "}
             <Link
@@ -98,15 +135,20 @@ export default function MarinasPage() {
             for official harbor links.
           </p>
         ) : (
-          <MarinaAmenityFilters groups={groups} />
+          <MarinaAmenityFilters
+            groups={groups}
+            water={water}
+            amenity={amenity}
+            totalCount={total}
+          />
         )}
 
         <ResourceCrossLinks
           links={[
             { href: "/boat-ownership", label: "Boat ownership" },
+            { href: "/tools/ownership-cost", label: "Ownership cost calculator" },
             { href: "/chicago-harbors-seasonal-slips-guide", label: "Harbor slips & waitlists" },
             { href: "/chicago-transient-dockage", label: "Transient dockage" },
-            { href: "/chicago-boat-insurance-guide", label: "Boat insurance planning" },
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
             { href: "/destinations", label: "Destinations" },

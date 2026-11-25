@@ -72,7 +72,8 @@ export default function EventsPage() {
         title="Chicago Boating Events & Season Dates"
         intro="Lakefront events boaters plan around, plus published harbor and marina season windows. Dates come from the organizer or agency — confirm on the official page before you build a trip around one. Published season dates are not a claim that every facility is operating or available."
         links={[
-          { label: "Boating weather →", href: "/weather" },
+          { label: "Season calendar →", href: "/calendar" },
+          { label: "Boating weather", href: "/weather" },
           { label: "Boat launches", href: "/boat-launches" },
           { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Winterization", href: "/chicago-boat-winterization" },

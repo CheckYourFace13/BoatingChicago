@@ -76,7 +76,8 @@ export default function ForestPreservesPage() {
         title="Forest Preserve Boating Near Chicago"
         intro="Suburban lakes and river landings managed by county forest-preserve districts — Cook County rentals and launches, plus Lake County paddling lakes. Agency rules differ by district; confirm craft limits on the official page before you go."
         links={[
-          { label: "Boat launches →", href: "/boat-launches" },
+          { label: "Kayak, canoe & SUP →", href: "/kayak-canoe-sup" },
+          { label: "Boat launches", href: "/boat-launches" },
           { label: "Lakes & waterways", href: "/lakes" },
           { label: "Destinations", href: "/destinations" },
           { label: "Boating weather", href: "/weather" },
@@ -226,6 +227,7 @@ export default function ForestPreservesPage() {
 
         <ResourceCrossLinks
           links={[
+            { href: "/kayak-canoe-sup", label: "Kayak, canoe & SUP finder" },
             { href: "/boat-launches", label: "Lakefront & municipal launches" },
             { href: "/lakes", label: "Lakes & waterways" },
             { href: "/destinations/chain-o-lakes", label: "Chain O' Lakes" },

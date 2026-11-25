@@ -878,7 +878,7 @@ export const guidePart5: GuidePage[] = [
         heading: "Start with the water body, then the agency",
         paragraphs: [
           "Within roughly 250 driving miles of Chicago you will find three overlapping systems: (1) Lake Michigan harbors and Park District launches, (2) inland chains and municipal lakes such as the Fox Waterway / Chain O’ Lakes and Geneva Lake, and (3) county forest-preserve and conservation-district waters. Each system publishes its own craft, motor, and seasonal rules.",
-          "Use BoatingChicago’s forest-preserves hub for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, rivers (Chicago River, Fox, Des Plaines, DuPage), and non-motorized-only access when the agency is explicit.",
+          "Use BoatingChicago’s forest-preserves hub and the kayak, canoe & SUP finder for Cook, Lake, DuPage, Will, Kane, and McHenry sites verified against district pages. Use the boat-launch finder for trailered and municipal ramps, including filters for Lake Michigan, inland lakes, rivers (Chicago River, Fox, Des Plaines, DuPage), and non-motorized-only access when the agency is explicit.",
         ],
       },
       {
@@ -1028,6 +1028,7 @@ export const guidePart5: GuidePage[] = [
     ],
     popularSearches: [
       { label: "Forest preserves", href: "/forest-preserves" },
+      { label: "Kayak, canoe & SUP finder", href: "/kayak-canoe-sup" },
       { label: "Boat launch finder", href: "/boat-launches" },
       { label: "Des Plaines River", href: "/lakes/des-plaines-river" },
       { label: "DuPage River", href: "/lakes/dupage-river" },

@@ -24,7 +24,7 @@ const TOOLS = [
   {
     href: "/weather",
     label: "Weather",
-    blurb: "Live conditions for Chicago and southern Lake Michigan.",
+    blurb: "Live conditions for Chicago and Lake Michigan harbors.",
   },
   {
     href: "/news",
@@ -44,7 +44,12 @@ const TOOLS = [
   {
     href: "/tools",
     label: "Tools",
-    blurb: "Printable float plan and pre-departure checklist worksheets.",
+    blurb: "Fuel, ownership cost, trip time, float plan, and other local-only calculators.",
+  },
+  {
+    href: "/kayak-canoe-sup",
+    label: "Kayak & SUP",
+    blurb: "Forest-preserve rentals, carry-in lakes, and pedal-boat listings.",
   },
 ] as const;
 

@@ -10,6 +10,7 @@ import {
 import { guides } from "@/data/guides";
 import { regionLabel } from "@/lib/geo-display";
 import type { SearchEntry } from "@/lib/site-search-core";
+import { TOOL_CATALOG } from "@/lib/tools/catalog";
 
 function slugWords(slug: string): string {
   return slug.replace(/-/g, " ");
@@ -97,6 +98,24 @@ export function buildSearchIndex(): SearchEntry[] {
         .join(" ")}`,
     });
   }
+
+  for (const tool of TOOL_CATALOG) {
+    entries.push({
+      t: "tool",
+      n: tool.title,
+      h: tool.href,
+      s: "Planning tool",
+      k: `calculator ${slugWords(tool.href)}`,
+    });
+  }
+
+  entries.push({
+    t: "tool",
+    n: "Kayak, canoe and SUP finder",
+    h: "/kayak-canoe-sup",
+    s: "Paddling discovery",
+    k: "kayak canoe sup paddle rental forest preserve",
+  });
 
   return entries;
 }

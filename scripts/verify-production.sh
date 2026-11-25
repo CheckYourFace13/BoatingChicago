@@ -64,6 +64,12 @@ fail=0
 check_200 "/" "homepage" || fail=1
 check_200 "/sitemap.xml" "sitemap" || fail=1
 check_200 "/robots.txt" "robots.txt" || fail=1
+check_200 "/tools" "tools hub" || fail=1
+check_200 "/tools/fuel" "fuel calculator" || fail=1
+check_200 "/kayak-canoe-sup" "kayak finder" || fail=1
+check_200 "/permits" "permits" || fail=1
+check_200 "/calendar" "calendar" || fail=1
+check_200 "/boat-launches" "boat launches" || fail=1
 
 # Canonical (no query) + cache-busted key URL
 key_code=$(curl -sS -o /tmp/indexnow-key.txt -w "%{http_code}" \

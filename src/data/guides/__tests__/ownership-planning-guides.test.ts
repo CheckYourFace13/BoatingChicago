@@ -66,6 +66,8 @@ describe("ownership planning guides (priority 3)", () => {
       "/boat-launches",
       "/boat-rentals-chicago",
       "/guides",
+      "/tools/ownership-cost",
+      "/tools/slip-compare",
     ]);
     for (const slug of OWNERSHIP_PLANNING_GUIDE_SLUGS) {
       const g = getGuideBySlug(slug)!;

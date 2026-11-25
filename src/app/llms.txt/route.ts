@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 export function GET() {
   const body = `# ${siteConfig.name}
 
-> Information-first publication for recreational boating and paddling around Chicago, suburban forest-preserve lakes, southern Lake Michigan, nearby Wisconsin and Indiana destinations, and selected waters within about 250 driving miles of Chicago.
+> Information-first publication for recreational boating and paddling across Chicago & Chicagoland, the entire Lake Michigan shoreline (Illinois, Wisconsin, Indiana, Michigan), and inland lakes, rivers, forest preserves, and paddling waters within about 400 driving miles of downtown Chicago.
 
 BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-matching service. Editorial content, weather context, marina/launch directories, guides, news, and clearly labeled affiliate links are published for readers planning trips.
 
@@ -18,7 +18,12 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Weather & marine conditions: ${siteConfig.url}/weather
 - News: ${siteConfig.url}/news
 - Guides index: ${siteConfig.url}/guides
-- Planning tools (float plan / checklist): ${siteConfig.url}/tools
+- Planning tools (calculators, float plan, checklist): ${siteConfig.url}/tools
+- Fuel calculator: ${siteConfig.url}/tools/fuel
+- Ownership cost calculator: ${siteConfig.url}/tools/ownership-cost
+- Kayak, canoe & SUP finder: ${siteConfig.url}/kayak-canoe-sup
+- Rules & permits: ${siteConfig.url}/permits
+- Season calendar: ${siteConfig.url}/calendar
 - Destinations: ${siteConfig.url}/destinations
 - Lakes & waterways: ${siteConfig.url}/lakes
 - Forest preserves (Cook, Lake, DuPage, Will, Kane, McHenry): ${siteConfig.url}/forest-preserves
@@ -34,6 +39,12 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Privacy: ${siteConfig.url}/privacy
 - Terms: ${siteConfig.url}/terms
 
+## Geographic coverage
+- Primary audience: Chicago and Chicagoland boaters
+- Lake Michigan: entire shoreline and harbors in Illinois, Wisconsin, Indiana, and Michigan (not limited by the inland driving radius)
+- Inland: lakes, rivers, forest preserves, canals, and paddling waters within roughly 400 driving miles of downtown Chicago
+- Driving miles are for trailer/road planning; water-route distances are labeled separately and never invented as navigable routes
+
 ## Official sources & safety
 - National Weather Service Chicago (LOT): https://www.weather.gov/lot
 - NOAA National Data Buoy Center: https://www.ndbc.noaa.gov/
@@ -42,7 +53,7 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Illinois DNR boating: https://dnr.illinois.gov/boating.html
 - U.S. Coast Guard (emergencies / Channel 16): use official USCG channels for distress
 
-Weather ratings and “no alerts” messaging on this site are informational only and never a safety clearance. Always verify marine forecasts, harbor rules, fees, and hours on operator or agency pages before you go.
+Weather snapshots and “no alerts” messaging on this site are informational only and never a safety clearance. Always verify marine forecasts, harbor rules, fees, and hours on operator or agency pages before you go.
 
 ## Winter & spring ownership planning (seasonal)
 - Winterization hub: ${siteConfig.url}/chicago-boat-winterization
@@ -61,7 +72,7 @@ Weather ratings and “no alerts” messaging on this site are informational onl
 - Illinois boating safety certificate: ${siteConfig.url}/illinois-boating-safety-certificate
 
 ## Monetization notes
-Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun, Awin BLUETTI, Impact shopping partners, CJ Peet's Coffee) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning worksheets live at /tools (float plan and trip checklist); they do not submit data to authorities.
+Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun, Awin BLUETTI, Impact shopping partners, CJ Peet's Coffee) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning tools at /tools keep inputs in the browser; they do not submit data to authorities and do not invent fees or a safe-to-boat rating.
 
 ## Do not treat as authoritative for
 - Live fees, slip availability, or hours without checking the cited operator page

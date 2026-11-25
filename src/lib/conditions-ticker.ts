@@ -132,12 +132,14 @@ export function buildConditionsTickerItems(input: {
     });
   }
 
-  items.push({
-    id: "chi-rating",
-    label: `BOATING: ${chicago.rating.level.toUpperCase()}`,
-    href: "/weather",
-    kind: "rating",
-  });
+  if (chicago.rating.level === "Poor") {
+    items.push({
+      id: "chi-rating",
+      label: "CHECK MARINE WARNINGS",
+      href: "/weather",
+      kind: "rating",
+    });
+  }
 
   const marineAlerts = chicago.alerts.filter((a) => a.isMarine);
   if (chicago.alertsAvailable === false) {

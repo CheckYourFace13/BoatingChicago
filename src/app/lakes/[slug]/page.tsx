@@ -17,6 +17,8 @@ import {
 import { getLaunchesByLake, regionLabel } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import type { PreserveWaterAccess } from "@/types/geo";
+import { getUsgsReadings } from "@/lib/usgs";
+import { UsgsRiverPanel } from "@/components/geo/UsgsRiverPanel";
 
 const RIVER_LAKE_SLUGS = new Set([
   "fox-river",
@@ -36,6 +38,7 @@ interface PageProps {
 }
 
 export const dynamicParams = false;
+export const revalidate = 1800;
 
 export function generateStaticParams() {
   return getAllPublishedLakeSlugs().map((slug) => ({ slug }));
@@ -57,6 +60,7 @@ export default async function LakePage({ params }: PageProps) {
   const { slug } = await params;
   const lake = getLakeBySlug(slug);
   if (!lake || !lake.isPublished) notFound();
+  const riverReadings = await getUsgsReadings(lake.slug);
 
   const destinations = lake.destinationSlugs
     .map((s) => getDestinationBySlug(s))
@@ -94,6 +98,7 @@ export default async function LakePage({ params }: PageProps) {
                 },
               ]
             : []),
+          { label: "Kayak & SUP finder", href: "/kayak-canoe-sup" },
           { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Boating weather", href: "/weather" },
@@ -223,6 +228,13 @@ export default async function LakePage({ params }: PageProps) {
               })}
             </ul>
           </section>
+        ) : null}
+
+        {riverReadings.length > 0 ? (
+          <UsgsRiverPanel
+            readings={riverReadings}
+            title={`USGS observations · ${lake.name}`}
+          />
         ) : null}
 
         <SourceLinkList

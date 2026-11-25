@@ -41,6 +41,7 @@ const BROWSE_LINKS: { href: string; label: string; type: SearchEntryType }[] = [
   { href: "/lakes", label: "Browse lakes & waterways", type: "lake" },
   { href: "/destinations", label: "Browse destinations", type: "destination" },
   { href: "/guides", label: "Browse all guides", type: "guide" },
+  { href: "/tools", label: "Browse planning tools", type: "tool" },
 ];
 
 const SUGGESTED_QUERIES = [

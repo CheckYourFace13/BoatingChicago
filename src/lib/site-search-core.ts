@@ -9,7 +9,8 @@ export type SearchEntryType =
   | "preserve"
   | "lake"
   | "destination"
-  | "guide";
+  | "guide"
+  | "tool";
 
 /** Compact on purpose: this shape is serialized to /api/search-index. */
 export interface SearchEntry {
@@ -32,6 +33,7 @@ export const SEARCH_TYPE_ORDER: SearchEntryType[] = [
   "lake",
   "destination",
   "guide",
+  "tool",
 ];
 
 export const SEARCH_TYPE_LABELS: Record<
@@ -44,6 +46,7 @@ export const SEARCH_TYPE_LABELS: Record<
   lake: { singular: "Lake / waterway", plural: "Lakes & waterways" },
   destination: { singular: "Destination", plural: "Destinations" },
   guide: { singular: "Guide", plural: "Guides" },
+  tool: { singular: "Tool", plural: "Planning tools" },
 };
 
 export function isSearchEntryType(value: unknown): value is SearchEntryType {

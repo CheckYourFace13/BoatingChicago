@@ -29,7 +29,10 @@ export type AnalyticsEventName =
   | "homepage_weather_click"
   | "homepage_news_click"
   | "homepage_destination_click"
-  | "homepage_resource_click";
+  | "homepage_resource_click"
+  | "tool_view"
+  | "tool_calculate"
+  | "tool_share";
 
 declare global {
   interface Window {

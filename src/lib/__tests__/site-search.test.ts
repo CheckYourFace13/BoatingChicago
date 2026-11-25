@@ -61,7 +61,7 @@ describe("site search index (real data)", () => {
 
   it("covers every requested content type from published data", () => {
     const types = new Set(index.map((e) => e.t));
-    for (const t of ["launch", "marina", "preserve", "lake", "destination", "guide"]) {
+    for (const t of ["launch", "marina", "preserve", "lake", "destination", "guide", "tool"]) {
       assert.ok(types.has(t as SearchEntry["t"]), `missing ${t}`);
     }
     assert.equal(

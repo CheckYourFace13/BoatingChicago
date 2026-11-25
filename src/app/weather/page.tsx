@@ -24,6 +24,8 @@ import { DEFAULT_WEATHER_LOCATION_ID } from "@/config/weather-locations";
 import { getSeasonalTip, getChicagoNews } from "@/lib/news";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { getWeatherForLocation } from "@/lib/weather";
+import { getUsgsReadings } from "@/lib/usgs";
+import { UsgsRiverPanel } from "@/components/geo/UsgsRiverPanel";
 
 export const revalidate = 900;
 
@@ -49,9 +51,10 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
   const requestedLocationId = Array.isArray(location) ? location[0] : location;
 
   const weather = await getWeatherForLocation(requestedLocationId);
+  const isChicago = weather.locationId === DEFAULT_WEATHER_LOCATION_ID;
+  const riverReadings = isChicago ? await getUsgsReadings() : [];
   const news = await getChicagoNews({ alerts: weather.alerts, weather });
   const tip = getSeasonalTip();
-  const isChicago = weather.locationId === DEFAULT_WEATHER_LOCATION_ID;
 
   return (
     <>
@@ -92,6 +95,9 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
             </Link>
             <Link href="/boat-launches" className="text-white/90 hover:underline">
               Boat launches
+            </Link>
+            <Link href="/kayak-canoe-sup" className="text-white/90 hover:underline">
+              Kayak &amp; SUP
             </Link>
             <Link href="/destinations" className="text-white/90 hover:underline">
               Destinations
@@ -148,8 +154,8 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
               from open nearshore bands; always compare the latest full product.
             </li>
             <li>
-              The Good / Caution / Poor card is an informational summary only —
-              not a go/no-go clearance for any vessel or trip.
+              The snapshot card groups those factors. It is not a green light
+              or a go/no-go clearance for any vessel or trip.
             </li>
           </ul>
         </section>
@@ -184,6 +190,11 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
           weather={weather}
           title={isChicago ? undefined : `Lake conditions · ${weather.locationLabel}`}
         />
+        {isChicago ? (
+          <div id="river-levels">
+            <UsgsRiverPanel readings={riverReadings} />
+          </div>
+        ) : null}
         <MarineAlerts
           alerts={weather.alerts}
           alertsAvailable={weather.alertsAvailable}
@@ -234,9 +245,9 @@ export default async function WeatherPage({ searchParams }: WeatherPageProps) {
               prepared.
             </p>
             <p>
-              This site&apos;s Good / Caution / Poor summary is informational
-              only. Official NOAA/NWS marine forecasts and a qualified captain&apos;s
-              judgment always come first.
+              Official NOAA/NWS marine forecasts and a qualified skipper&apos;s
+              judgment always come first. This site never issues a safe-to-boat
+              clearance.
             </p>
           </div>
         </section>

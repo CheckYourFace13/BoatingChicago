@@ -42,6 +42,8 @@ describe("AdSense gate safety", () => {
     assert.equal(isAdSensePathExcluded("/"), false);
     assert.equal(isAdSensePathExcluded("/boat-launches"), false);
     assert.equal(isAdSensePathExcluded("/guides"), false);
+    assert.equal(isAdSensePathExcluded("/tools"), true);
+    assert.equal(isAdSensePathExcluded("/tools/fuel"), true);
   });
 
   it("does not hard-code Auto ads page-level enable flags in source", () => {

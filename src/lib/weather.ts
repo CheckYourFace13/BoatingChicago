@@ -656,7 +656,7 @@ export function computeBoatingRating(input: {
     return {
       level: "Caution",
       reason:
-        "Caution — current wind, wave, and near-term forecast observations are incomplete from NOAA/NWS sources. Check weather.gov before boating.",
+        "Current wind, wave, and near-term forecast observations are incomplete from NOAA/NWS sources. Check weather.gov before boating.",
       factors: [
         "Incomplete observation data from NOAA/NWS sources",
         "Do not treat a missing feed as favorable conditions",
@@ -737,8 +737,8 @@ export function computeBoatingRating(input: {
 
   const reason =
     level === "Good"
-      ? `Good — ${factors[0]}.`
-      : `${level} — ${factors.join("; ")}.`;
+      ? `${factors[0]}.`
+      : `${factors.join("; ")}.`;
 
   return { level, reason, factors };
 }

@@ -521,6 +521,8 @@ export const guidePart6: GuidePage[] = [
       { label: "Harbor slips & moorings", href: "/chicago-harbors-seasonal-slips-guide" },
       { label: "Storage directory", href: "/storage" },
       { label: "Winterization hub", href: "/chicago-boat-winterization" },
+      { label: "Ownership cost calculator", href: "/tools/ownership-cost" },
+      { label: "Compare slip quotes", href: "/tools/slip-compare" },
     ],
     relatedSlugs: [
       "chicago-boat-insurance-guide",

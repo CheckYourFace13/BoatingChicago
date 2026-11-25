@@ -13,14 +13,18 @@ const exploreLinks: NavItem[] = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & Waterways" },
   { href: "/forest-preserves", label: "Forest Preserves" },
+  { href: "/kayak-canoe-sup", label: "Kayak, Canoe & SUP" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
+  { href: "/tools", label: "Planning Tools" },
   { href: "/boat-ownership", label: "Boat Ownership" },
 ];
 
 const conditionsLinks: NavItem[] = [
   { href: "/weather", label: "Weather & Lake Conditions" },
   { href: "/weather#marine-alerts", label: "Marine Alerts" },
+  { href: "/calendar", label: "Season Calendar" },
+  { href: "/permits", label: "Rules & Permits" },
   { href: "/events", label: "Events" },
 ];
 

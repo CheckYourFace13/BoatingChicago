@@ -7,9 +7,13 @@ const exploreLinks = [
   { href: "/destinations", label: "Destinations" },
   { href: "/lakes", label: "Lakes & Waterways" },
   { href: "/forest-preserves", label: "Forest Preserves" },
+  { href: "/kayak-canoe-sup", label: "Kayak, Canoe & SUP" },
   { href: "/marinas", label: "Marinas" },
   { href: "/boat-launches", label: "Boat Launches" },
+  { href: "/tools", label: "Planning Tools" },
   { href: "/weather", label: "Weather" },
+  { href: "/permits", label: "Rules & Permits" },
+  { href: "/calendar", label: "Season Calendar" },
   { href: "/news", label: "News" },
   { href: "/events", label: "Events" },
   { href: "/guides", label: "Guides" },
@@ -48,7 +52,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo className="mb-3" />
             <p className="text-sky-blue/90 text-sm leading-relaxed mb-4">
-              Chicago and southern Lake Michigan boating information — weather,
+              Chicago, Lake Michigan, and nearby inland waters — weather,
               harbors, launches, news, and guides.
             </p>
             <Link

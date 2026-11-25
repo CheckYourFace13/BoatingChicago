@@ -76,8 +76,7 @@ export const ADSENSE_EXCLUDED_PATHS = [
   "/advertise",
   "/affiliate-disclosure",
   "/list-your-business",
-  "/tools/float-plan",
-  "/tools/trip-checklist",
+  "/tools",
 ] as const;
 
 export function isAdSensePathExcluded(pathname: string | null | undefined): boolean {

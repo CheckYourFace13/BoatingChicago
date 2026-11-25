@@ -1,5 +1,5 @@
 import type { ChicagoWeatherPayload } from "@/types/weather";
-import { formatMph, formatTemp } from "@/lib/weather";
+import { formatMph, formatTemp, isObservationStale } from "@/lib/weather";
 
 function Metric({
   label,
@@ -30,9 +30,10 @@ export function CurrentBoatingConditions({
         Current conditions
       </h2>
       <p className="text-gray-600 mb-6 max-w-3xl">
-        Observed near {weather.locationLabel} for recreational boaters. On-water
-        conditions can differ from land station readings — always cross-check the
-        nearshore marine forecast before you leave the harbor.
+        Observed near {weather.locationLabel} for recreational boaters. NWS
+        stations whose identifiers start with K (for example KMDW) are land /
+        airport observations — not a harbor-mouth sensor. On-water conditions
+        can differ; cross-check the nearshore marine forecast before you leave.
       </p>
       {!c ? (
         <p className="text-gray-600">
@@ -42,6 +43,9 @@ export function CurrentBoatingConditions({
         <>
           <p className="text-sm text-gray-500 mb-4">
             {c.stationName || c.stationId}
+            {c.stationId.startsWith("K")
+              ? " · land/airport observation, not a marine buoy"
+              : ""}
             {c.observedAt
               ? ` · Observed ${new Date(c.observedAt).toLocaleString("en-US", {
                   timeZone: "America/Chicago",
@@ -95,6 +99,7 @@ export function LakeConditions({
   title?: string;
 }) {
   const lake = weather.lake;
+  const lakeStale = isObservationStale(null, lake.observedAt);
   return (
     <section>
       <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
@@ -102,14 +107,20 @@ export function LakeConditions({
       </h2>
       <p className="text-gray-600 mb-6 max-w-3xl">
         Wave and water readings come from NOAA buoy data when the station reports
-        them. Missing values mean the buoy did not report that field — we never
-        invent lake numbers.
+        them. Missing or stale values are not filled in from airport air
+        temperature. We never invent lake numbers.
       </p>
+      {lakeStale ? (
+        <p className="text-sm text-amber-800 mb-4">
+          Buoy timestamp is older than 3 hours — water temperature and waves
+          below are not presented as current.
+        </p>
+      ) : null}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <Metric
           label="Water temperature"
           value={
-            lake.waterTempF == null
+            lake.waterTempF == null || lakeStale
               ? "Not currently available from source"
               : `${lake.waterTempF}°F`
           }
@@ -117,7 +128,7 @@ export function LakeConditions({
         <Metric
           label="Wave height"
           value={
-            lake.waveHeightFt == null
+            lake.waveHeightFt == null || lakeStale
               ? "Not currently available from source"
               : `~${lake.waveHeightFt} ft`
           }
