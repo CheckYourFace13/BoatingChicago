@@ -4,6 +4,7 @@ import { guidePart2 } from "./part2";
 import { guidePart3 } from "./part3";
 import { guidePart4 } from "./part4";
 import { guidePart5 } from "./part5";
+import { guidePart6 } from "./part6";
 
 export const guides: GuidePage[] = [
   ...guidePart1,
@@ -11,7 +12,16 @@ export const guides: GuidePage[] = [
   ...guidePart3,
   ...guidePart4,
   ...guidePart5,
+  ...guidePart6,
 ];
+
+/** Ownership planning guides linked from /boat-ownership and /guides. */
+export const OWNERSHIP_PLANNING_GUIDE_SLUGS = [
+  "illinois-boating-safety-certificate",
+  "chicago-harbors-seasonal-slips-guide",
+  "chicago-boat-insurance-guide",
+  "boat-financing-ownership-costs-chicago",
+] as const;
 
 /** Compact seasonal collection for homepage / guides hub. */
 export const WINTER_GUIDE_SLUGS = [

@@ -80,7 +80,7 @@ export const guidePart1: GuidePage[] = [
     ],
     peopleAlsoAsk: [
       { question: "What is the cheapest boat rental in Chicago?", answer: "Kayak rentals are among the most affordable water experiences in Chicago, typically starting under $30/hour. For full boat rentals, pontoon half-days are generally the most budget-friendly motorized option." },
-      { question: "Do you need a license to rent a boat in Chicago?", answer: "Illinois requires a boating safety certificate for operators born after January 1, 1998. Many rental operators include a licensed captain so renters don't need their own license." },
+      { question: "Do you need a license to rent a boat in Chicago?", answer: "Illinois requires a boating safety certificate for operators born on or after January 1, 1998. Many rental operators include a licensed captain so renters don't need their own license." },
       { question: "How early should I book a boat in Chicago?", answer: "For peak summer weekends, book at least 2–4 weeks ahead. July 4th, the Air & Water Show, and Navy Pier fireworks weekends warrant 6–8 weeks or more of lead time." },
       { question: "Where do boats depart in Chicago?", answer: "Most rentals depart from Monroe Harbor, Burnham Harbor, 31st Street Harbor, Montrose Harbor, or Diversey Harbor. Your booking confirmation will include exact slip details." },
       { question: "What is the Playpen in Chicago?", answer: "The Playpen is an informal anchorage zone near Oak Street Beach where hundreds of boats gather on summer weekends. It's Chicago's most iconic boating social scene." },

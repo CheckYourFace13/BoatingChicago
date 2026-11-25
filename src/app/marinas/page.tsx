@@ -104,6 +104,9 @@ export default function MarinasPage() {
         <ResourceCrossLinks
           links={[
             { href: "/boat-ownership", label: "Boat ownership" },
+            { href: "/chicago-harbors-seasonal-slips-guide", label: "Harbor slips & waitlists" },
+            { href: "/chicago-transient-dockage", label: "Transient dockage" },
+            { href: "/chicago-boat-insurance-guide", label: "Boat insurance planning" },
             { href: "/weather", label: "Weather" },
             { href: "/boat-launches", label: "Boat launches" },
             { href: "/destinations", label: "Destinations" },

@@ -859,6 +859,7 @@ export const guidePart5: GuidePage[] = [
       "dusable-harbor-guide",
       "lake-michigan-boating-guide",
       "chicago-boat-winterization",
+      "chicago-harbors-seasonal-slips-guide",
     ],
     showLeadForm: false,
   },

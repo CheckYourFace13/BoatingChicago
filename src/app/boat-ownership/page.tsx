@@ -119,7 +119,22 @@ export default function BoatOwnershipPage() {
             Park District system. Other owners keep boats at North Shore and
             Wisconsin harbors, Indiana ports such as Michigan City, or on a
             trailer at home and use a public launch. Fees, waitlists, and guest
-            rules are published by the operator, not by BoatingChicago.
+            rules are published by the operator, not by BoatingChicago. Our{" "}
+            <Link
+              href="/chicago-harbors-seasonal-slips-guide"
+              className="font-semibold text-coral hover:underline"
+            >
+              Chicago Harbors seasonal slips, moorings, and waitlists guide
+            </Link>{" "}
+            explains the application, transfer, and renewal process as the
+            official pages describe it, and our{" "}
+            <Link
+              href="/chicago-transient-dockage"
+              className="font-semibold text-coral hover:underline"
+            >
+              transient dockage guide
+            </Link>{" "}
+            covers visiting-boater requests.
           </p>
           <p className="mt-3">
             Use the{" "}
@@ -163,7 +178,15 @@ export default function BoatOwnershipPage() {
               spring launch checklist
             </Link>{" "}
             cover planning questions. Insurance and on-water towing are
-            separate contracts from the marina. Membership organizations such
+            separate contracts from the marina; start with our{" "}
+            <Link
+              href="/chicago-boat-insurance-guide"
+              className="font-semibold text-coral hover:underline"
+            >
+              boat insurance planning guide
+            </Link>
+            , which also covers Illinois&apos;s new liability-insurance law and
+            Chicago Harbors permit requirements. Membership organizations such
             as BoatUS sell towing and membership products; compare the contract,
             the service area, and the boat you actually own.
           </p>
@@ -200,6 +223,24 @@ export default function BoatOwnershipPage() {
             Illinois Department of Natural Resources. Wisconsin, Indiana, and
             Michigan boats follow those states&apos; rules if the boat is
             principally used there.
+          </p>
+          <p className="mt-3">
+            See{" "}
+            <Link
+              href="/boat-financing-ownership-costs-chicago"
+              className="font-semibold text-coral hover:underline"
+            >
+              boat financing and true ownership costs
+            </Link>{" "}
+            for a category framework (no quotes or rates), and{" "}
+            <Link
+              href="/illinois-boating-safety-certificate"
+              className="font-semibold text-coral hover:underline"
+            >
+              the Illinois boating safety certificate guide
+            </Link>{" "}
+            for who needs a certificate, the free instructor-led and paid online
+            courses, and statutory exemptions.
           </p>
           <p className="mt-3">
             <a

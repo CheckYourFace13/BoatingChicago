@@ -26,6 +26,17 @@ import {
   type ResourceLink,
 } from "./ExploreResources";
 import { buildArticleSchema } from "@/lib/schema";
+import {
+  QualityDisclaimer,
+  SourceLinkList,
+} from "./geo/SourceAttribution";
+import { BoatUsMembershipNote } from "./ownership/OwnershipLinks";
+
+/**
+ * Guides where a BoatUS membership note is editorially relevant. The note
+ * renders nothing unless BOATUS_AFFILIATE_URL is set to an approved https URL.
+ */
+const BOATUS_NOTE_SLUGS = new Set(["chicago-boat-insurance-guide"]);
 
 interface GuideLandingProps {
   guide: GuidePage;
@@ -106,6 +117,34 @@ const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/storage", label: "Storage & haul-out directory" },
     { href: "/chicago-boat-show-buyer-guide", label: "Boat show buyer prep" },
     { href: "/spring-boat-launch-checklist-chicago", label: "Spring launch checklist" },
+  ],
+  "illinois-boating-safety-certificate": [
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/beginners-guide-boating-chicago", label: "Beginner’s guide" },
+    { href: "/chicago-boat-insurance-guide", label: "Boat insurance planning" },
+    { href: "/chicago-boating-faq", label: "Boating FAQ" },
+    { href: "/guides", label: "All guides" },
+  ],
+  "chicago-boat-insurance-guide": [
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/chicago-harbors-seasonal-slips-guide", label: "Harbor slips & moorings" },
+    { href: "/boat-financing-ownership-costs-chicago", label: "Ownership costs" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/illinois-boating-safety-certificate", label: "Safety certificate" },
+  ],
+  "boat-financing-ownership-costs-chicago": [
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/chicago-boat-insurance-guide", label: "Boat insurance planning" },
+    { href: "/chicago-harbors-seasonal-slips-guide", label: "Harbor slips & moorings" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/marinas", label: "Marinas" },
+  ],
+  "chicago-harbors-seasonal-slips-guide": [
+    { href: "/marinas", label: "Marinas directory" },
+    { href: "/chicago-transient-dockage", label: "Transient dockage" },
+    { href: "/storage", label: "Storage & haul-out directory" },
+    { href: "/boat-ownership", label: "Boat ownership" },
+    { href: "/chicago-boat-insurance-guide", label: "Boat insurance planning" },
   ],
   "chicago-boat-show-buyer-guide": [
     { href: "/boat-ownership", label: "Boat ownership" },
@@ -315,6 +354,9 @@ export function GuideLanding({ guide }: GuideLandingProps) {
               title: guide.seoTitle || guide.title,
               description: guide.seoDescription,
               path: `/${guide.slug}`,
+              ...(guide.lastReviewed
+                ? { dateModified: guide.lastReviewed }
+                : {}),
             })
           ),
         }}
@@ -434,6 +476,20 @@ export function GuideLanding({ guide }: GuideLandingProps) {
             ))}
           </div>
         </section>
+
+        {/* Official sources (guides that cite agency / statute pages) */}
+        {guide.sources && guide.sources.length > 0 ? (
+          <div className="space-y-4 max-w-4xl">
+            <QualityDisclaimer />
+            <SourceLinkList
+              sources={guide.sources}
+              title="Official sources for this guide"
+              description="Rules, fees, and availability change. Confirm on the agency or operator page before you rely on anything here."
+            />
+          </div>
+        ) : null}
+
+        {BOATUS_NOTE_SLUGS.has(guide.slug) ? <BoatUsMembershipNote /> : null}
 
         {/* Map Embed */}
         {guide.mapEmbed && (

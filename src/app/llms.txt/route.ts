@@ -55,6 +55,10 @@ Weather ratings and “no alerts” messaging on this site are informational onl
 - Spring launch checklist: ${siteConfig.url}/spring-boat-launch-checklist-chicago
 - Buying a boat off-season: ${siteConfig.url}/buying-a-boat-off-season-chicago
 - Chicago Boat Show buyer prep: ${siteConfig.url}/chicago-boat-show-buyer-guide
+- Chicago Harbors seasonal slips, moorings & waitlists: ${siteConfig.url}/chicago-harbors-seasonal-slips-guide
+- Boat insurance planning (Illinois law, harbor requirements): ${siteConfig.url}/chicago-boat-insurance-guide
+- Boat financing & ownership cost framework: ${siteConfig.url}/boat-financing-ownership-costs-chicago
+- Illinois boating safety certificate: ${siteConfig.url}/illinois-boating-safety-certificate
 
 ## Monetization notes
 Affiliate links (GetYourGuide, Viator, Amazon Associates, Awin Boat Trader, Awin Giraffe Tools, Awin Piscifun, Awin BLUETTI, Impact shopping partners, CJ Peet's Coffee) are labeled. Sponsored/featured placements for local businesses are labeled separately from editorial rankings. BoatUS affiliate links remain inactive until approved. Planning worksheets live at /tools (float plan and trip checklist); they do not submit data to authorities.
