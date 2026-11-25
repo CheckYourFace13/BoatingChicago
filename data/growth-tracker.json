@@ -115,12 +115,13 @@
     {
       "id": "set-3",
       "title": "Data-driven search, regional depth, CWV-with-ads, conditions and revenue",
-      "status": "implemented",
+      "status": "deployed",
       "baselineSha": "95af2b9",
       "trackerOnlySha": "beaa68e",
-      "productionSha": null,
+      "productionSha": "37b22e1",
+      "set3Commits": ["b717946", "37b22e1"],
       "gravyblockBaselineWindow": "2026-10-26 to 2026-11-22",
-      "notes": "Set 3 code implemented from live 95af2b9. Do not mark measured until a later comparable GSC/AdSense window. Access blockers documented — unavailable ≠ zero.",
+      "notes": "Set 3 deployed on 37b22e1 (rollback: beaa68e / 95af2b9). Do not mark measured until a later comparable GSC/AdSense window. Access blockers documented — unavailable ≠ zero. Deploy success ≠ organic/revenue success.",
       "priorities": [
         {
           "id": "p1-real-performance-data",
@@ -147,7 +148,7 @@
         },
         {
           "id": "p2-regional-coverage-depth",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "Added published Kewaunee destination + city marina + harbor launch from cityofkewauneewi.gov (official marina, passes, 2026 fee schedule PDF)",
             "Completed City of Oshkosh six municipal launches per Boat Launch Locations page: Rainbow, Menominee, William Steiger, Mill Street, Fugleberg, 24th Avenue",
@@ -173,7 +174,7 @@
         },
         {
           "id": "p3-mobile-performance-with-ads",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "Mobile browser check (~467px) on /weather: AdSense present, marine alerts present, sticky header z-50 only — no fixed bottom ad overlay among first fixed elements",
             "Field PSI/CrUX and Hostinger Lighthouse unavailable this pass (429/403) — no invented LCP/INP/CLS numbers",
@@ -184,7 +185,7 @@
         },
         {
           "id": "p4-conditions-local-planning",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "USGS gauges added: Lake Winnebago at Oshkosh 04082500, Fox River at Appleton 04084445, Fox River at Green Bay 040851385; scoped to weatherLocationIds so Chicago weather stays Chicago-only",
             "LakeConditions now links NDBC station page, observation history, and realtime text feed for the active buoy",
@@ -201,7 +202,7 @@
         },
         {
           "id": "p5-measurable-revenue-growth",
-          "status": "implemented",
+          "status": "deployed",
           "evidence": [
             "AdSense RPM / landing-category revenue: unavailable without ADSENSE_API_TOKEN — not fabricated",
             "GravyBlock baseline remains the only verified search-performing URL set for protected conversion paths",
@@ -236,7 +237,7 @@
         "After deploy settles, capture CrUX/PSI field LCP/INP/CLS on homepage, a guide, /weather, a map/filter page, a calculator, and /storage with ads consented",
         "Do not treat this deploy as organic or AdSense success — wait for a measured comparison window vs GravyBlock 2026-10-26..2026-11-22"
       ],
-      "results": "Implemented pending production deploy. Search and AdSense outcomes not claimed."
+      "results": "Production healthy on 37b22e1 with Set 3 URLs 200. Organic traffic and AdSense revenue change not claimed — awaiting authorized metrics + later comparison window vs GravyBlock 2026-10-26..2026-11-22."
     }
   ]
 }
