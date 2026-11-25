@@ -212,9 +212,9 @@ export const destinationsBatch3: Destination[] = [
       "Use inland Fond du Lac / Oshkosh point forecasts and the USGS Lake Winnebago at Oshkosh gage (04082500) for stage context; do not apply Lake Michigan nearshore products to Winnebago.",
     ],
     highlights: [
-      "Six city public launches (all listed)",
+      "Six city launches named on one official locations page",
+      "One published launch URL (Rainbow) — siblings stay on this hub",
       "Pay-station / WebTrac / Parks office permits",
-      "Miller’s Bay sailboat mooring program",
       "USGS Winnebago gage cross-linked on weather & lake pages",
     ],
     officialLinks: [

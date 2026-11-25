@@ -4,6 +4,10 @@
  */
 import { mkdirSync, writeFileSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  getPublishedLaunches,
+  getPublishedMarinas,
+} from "../../src/data/geo";
 import type { GrowthCandidate } from "./types";
 import { evaluateCandidate } from "./quality-gates";
 import { loadPublishedSlugSet } from "./registry";
@@ -122,14 +126,35 @@ export function planPublish(
   let qualityRejected = 0;
   let duplicatesRejected = 0;
 
+  const publishedFacilities = [
+    ...getPublishedMarinas().map((m) => ({
+      slug: m.slug,
+      destinationSlug: m.destinationSlug,
+      summary: m.summary,
+      sourceUrl: m.source.url,
+    })),
+    ...getPublishedLaunches().map((l) => ({
+      slug: l.slug,
+      destinationSlug: l.destinationSlug,
+      summary: l.summary,
+      sourceUrl: l.source.url,
+    })),
+  ];
+
   for (const c of candidates) {
-    const gate = evaluateCandidate(c, existingSlugs);
+    const gate = evaluateCandidate(c, existingSlugs, { publishedFacilities });
     if (!gate.ok) {
       const codes = gate.failures.map((f) => f.code);
       if (codes.includes("unsourced") || codes.includes("source-not-https")) {
         unsourcedRejected += 1;
       }
-      if (codes.includes("duplicate-slug")) duplicatesRejected += 1;
+      if (
+        codes.includes("duplicate-slug") ||
+        codes.includes("near-duplicate-facility") ||
+        codes.includes("ai-hint-spam")
+      ) {
+        duplicatesRejected += 1;
+      }
       qualityRejected += 1;
       rejected.push({
         id: c.id || c.slug,
@@ -139,6 +164,14 @@ export function planPublish(
     }
     ready.push(c);
     existingSlugs.add(c.slug);
+    if (c.kind === "launch" || c.kind === "marina") {
+      publishedFacilities.push({
+        slug: c.slug,
+        destinationSlug: c.destinationSlug,
+        summary: c.summary,
+        sourceUrl: c.officialLinks?.[0]?.url,
+      });
+    }
   }
 
   return {

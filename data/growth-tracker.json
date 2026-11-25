@@ -151,22 +151,19 @@
           "status": "deployed",
           "evidence": [
             "Added published Kewaunee destination + city marina + harbor launch from cityofkewauneewi.gov (official marina, passes, 2026 fee schedule PDF)",
-            "Completed City of Oshkosh six municipal launches per Boat Launch Locations page: Rainbow, Menominee, William Steiger, Mill Street, Fugleberg, 24th Avenue",
+            "Oshkosh: all six municipal launches named on destination hub; only Rainbow Park kept as published launch URL — siblings unpublished + 308 to /destinations/oshkosh to avoid thin duplicate pages",
             "Oshkosh destination enriched with pay-station/WebTrac/Parks office permit notes + USGS 04082500 link",
             "Green Bay destination gained USGS Fox River 040851385 official link + nearby cross-links including oshkosh/menominee",
             "Western MI Muskegon Hartshorn / Fisherman’s Landing fees pointed at city launch-fees-requirements and operator rate pages (no thin new URLs)",
-            "Door County corridor: Kewaunee inserted between Two Rivers and Algoma with nearbyDestination updates"
+            "Door County corridor: Kewaunee inserted between Two Rivers and Algoma with nearbyDestination updates",
+            "Guards added: near-duplicate-facility + ai-hint-spam quality gates; inventory uniqueness tests; research-queue policy bans AI-bait and clone facility URLs"
           ],
           "affectedUrls": [
             "/destinations/kewaunee",
             "/marinas/kewaunee-city-marina",
             "/boat-launches/kewaunee-harbor-launch",
             "/destinations/oshkosh",
-            "/boat-launches/oshkosh-menominee-park-launch",
-            "/boat-launches/oshkosh-william-steiger-park-launch",
-            "/boat-launches/oshkosh-mill-street-launch",
-            "/boat-launches/oshkosh-fugleberg-launch",
-            "/boat-launches/oshkosh-24th-avenue-launch",
+            "/boat-launches/oshkosh-rainbow-park-launch",
             "/destinations/green-bay",
             "/destinations/muskegon",
             "/marinas/hartshorn-marina"

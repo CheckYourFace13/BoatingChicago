@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-25",
-  "policy": "Incomplete facility research stays here until official source, uniqueness, safety, and SEO criteria pass. Do not auto-publish thin pages. Pipeline: scripts/growth/pipeline.ts",
+  "policy": "Incomplete facility research stays here until official source, uniqueness, safety, and SEO criteria pass. Do not auto-publish thin pages, near-duplicate facility URLs that share the same official source/fees, or AI-search bait / generative-hint copy. Prefer destination hubs until each facility has distinct verified detail. Pipeline: scripts/growth/pipeline.ts",
   "items": [
     {
       "name": "Fish Creek / Ephraim Door County marinas",

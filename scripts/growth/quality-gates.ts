@@ -1,5 +1,6 @@
 /**
  * Publication quality gates — reject thin, unsourced, unsafe, or duplicate content.
+ * Also reject AI-bait / generative-search “hint” spam and near-duplicate facility URLs.
  */
 import type { GrowthCandidate, GateFailure, GateResult } from "./types";
 
@@ -10,6 +11,61 @@ const BANNED_PHRASES = [
   /guaranteed calm/i,
   /all clear for launching/i,
 ];
+
+/** Phrases that signal AI-search bait rather than boater planning value. */
+const AI_HINT_SPAM = [
+  /optimized for (ai|chatgpt|perplexity|gemini)/i,
+  /\bai overview(s)?\b.*\b(keyword|rank|snippet)\b/i,
+  /\bas an ai\b/i,
+  /\bkey takeaways for (llms|language models)\b/i,
+  /\bfor (ai|llm) crawlers?:/i,
+];
+
+const STOP_TOKENS = new Set([
+  "the",
+  "a",
+  "an",
+  "and",
+  "or",
+  "of",
+  "to",
+  "for",
+  "on",
+  "at",
+  "in",
+  "with",
+  "city",
+  "public",
+  "boat",
+  "launch",
+  "launches",
+  "marina",
+  "park",
+  "required",
+  "permit",
+  "listed",
+  "page",
+  "official",
+  "confirm",
+]);
+
+/** Token Jaccard similarity on summaries — used to catch templated thin clones. */
+export function summarySimilarity(a: string, b: string): number {
+  const tokenize = (s: string) =>
+    new Set(
+      s
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .filter((t) => t.length > 2 && !STOP_TOKENS.has(t)),
+    );
+  const fa = tokenize(a);
+  const fb = tokenize(b);
+  if (fa.size === 0 || fb.size === 0) return 0;
+  let overlap = 0;
+  for (const t of fa) if (fb.has(t)) overlap += 1;
+  return overlap / new Set([...fa, ...fb]).size;
+}
 
 const FEE_INVENTION =
   /\$\d+(\.\d{2})?\s*(per\s+)?(day|daily|season|annual|hour)/i;
@@ -27,7 +83,15 @@ export function slugifyName(name: string): string {
 export function evaluateCandidate(
   candidate: GrowthCandidate,
   existingSlugs: Set<string>,
-  options: { allowFeeDollarsInFeesNote?: boolean } = {},
+  options: {
+    allowFeeDollarsInFeesNote?: boolean;
+    publishedFacilities?: {
+      slug: string;
+      destinationSlug?: string;
+      summary: string;
+      sourceUrl?: string;
+    }[];
+  } = {},
 ): GateResult {
   const failures: GateFailure[] = [];
   const warnings: string[] = [];
@@ -122,6 +186,17 @@ export function evaluateCandidate(
     }
   }
 
+  for (const re of AI_HINT_SPAM) {
+    if (re.test(blob) || re.test(candidate.name ?? "")) {
+      failures.push({
+        code: "ai-hint-spam",
+        message:
+          "Reject AI-search bait / generative-hint copy. Publish boater-useful, source-backed pages only — no special AI markup or ranking hints.",
+      });
+      break;
+    }
+  }
+
   // Dollar fees belong only in feesNote pointing readers to confirm on-source —
   // never invent in summary/overview as current rates without "confirm" framing.
   if (FEE_INVENTION.test(candidate.summary) || FEE_INVENTION.test(blob)) {
@@ -172,6 +247,41 @@ export function evaluateCandidate(
         code: "destination-missing",
         message: `${candidate.kind} requires destinationSlug.`,
       });
+    }
+  }
+
+  /**
+   * Optional inventory of already-published facility summaries. When provided,
+   * reject near-clone launches/marinas that share destination + source URL
+   * without unique overview depth (Door County hub policy).
+   */
+  const publishedFacilities = options.publishedFacilities;
+  if (
+    publishedFacilities?.length &&
+    (candidate.kind === "launch" || candidate.kind === "marina") &&
+    candidate.destinationSlug
+  ) {
+    const sourceUrl = candidate.officialLinks?.[0]?.url;
+    const overviewWords = (candidate.overview ?? [])
+      .join(" ")
+      .split(/\s+/)
+      .filter(Boolean).length;
+    for (const existing of publishedFacilities) {
+      if (existing.slug === candidate.slug) continue;
+      if (existing.destinationSlug !== candidate.destinationSlug) continue;
+      const sameSource =
+        Boolean(sourceUrl) &&
+        Boolean(existing.sourceUrl) &&
+        sourceUrl === existing.sourceUrl;
+      const similar =
+        summarySimilarity(candidate.summary, existing.summary) >= 0.65;
+      if (sameSource && similar && overviewWords < 60) {
+        failures.push({
+          code: "near-duplicate-facility",
+          message: `Near-duplicate of published "${existing.slug}" (same destination/source, similar summary). Keep siblings on the destination hub until unique facility detail exists.`,
+        });
+        break;
+      }
     }
   }
 

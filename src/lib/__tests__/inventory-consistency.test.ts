@@ -16,6 +16,7 @@ import {
 import { TOOL_CATALOG } from "@/lib/tools/catalog";
 import { listGeoHubs } from "@/lib/geo-registry";
 import { COVERAGE_LONG, INLAND_DRIVING_MILES_APPROX } from "@/config/coverage";
+import { summarySimilarity } from "../../../scripts/growth/quality-gates";
 
 describe("inventory consistency", () => {
   it("publishes expected directory sizes from merged geo batches", () => {
@@ -26,6 +27,51 @@ describe("inventory consistency", () => {
     assert.ok(getPublishedPreserveAccess().length >= 38);
     assert.equal(listGeoHubs().length, 9);
     assert.equal(TOOL_CATALOG.length, 10);
+  });
+
+  it("keeps unique published slugs within each directory type", () => {
+    const groups = [
+      getPublishedDestinations().map((d) => d.slug),
+      getPublishedLakes().map((l) => l.slug),
+      getPublishedMarinas().map((m) => m.slug),
+      getPublishedLaunches().map((x) => x.slug),
+      getPublishedPreserveAccess().map((p) => p.slug),
+    ];
+    for (const slugs of groups) {
+      assert.equal(slugs.length, new Set(slugs).size, "duplicate slug in type");
+    }
+    // Destination/lake may share a slug (e.g. chain-o-lakes) because routes differ.
+    // Marinas and launches must not collide with each other on the same path prefix.
+    const marinaLaunch = [
+      ...getPublishedMarinas().map((m) => m.slug),
+      ...getPublishedLaunches().map((x) => x.slug),
+    ];
+    assert.equal(
+      marinaLaunch.length,
+      new Set(marinaLaunch).size,
+      "marina/launch slug collision",
+    );
+  });
+
+  it("does not publish near-clone facility pages that share destination + source", () => {
+    const launches = getPublishedLaunches();
+    for (let i = 0; i < launches.length; i++) {
+      for (let j = i + 1; j < launches.length; j++) {
+        const a = launches[i]!;
+        const b = launches[j]!;
+        if (a.destinationSlug !== b.destinationSlug) continue;
+        if (a.source.url !== b.source.url) continue;
+        const sim = summarySimilarity(a.summary, b.summary);
+        const aWords = (a.overview ?? []).join(" ").split(/\s+/).filter(Boolean)
+          .length;
+        const bWords = (b.overview ?? []).join(" ").split(/\s+/).filter(Boolean)
+          .length;
+        assert.ok(
+          sim < 0.65 || aWords >= 60 || bWords >= 60,
+          `near-duplicate launches ${a.slug} vs ${b.slug} (sim=${sim.toFixed(2)})`,
+        );
+      }
+    }
   });
 
   it("keeps directory pages wired to published getters (not hard-coded stale counts)", () => {

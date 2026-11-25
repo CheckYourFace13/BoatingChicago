@@ -5,6 +5,8 @@ export const dynamic = "force-static";
 
 /**
  * Discoverability aid for LLM crawlers — concise, accurate, no credentials.
+ * Not an AI-ranking hint file and not a substitute for indexed HTML pages.
+ * Do not add generative-search bait, keyword dumps, or duplicate facility URLs here.
  */
 export function GET() {
   const body = `# ${siteConfig.name}

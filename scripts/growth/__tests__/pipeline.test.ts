@@ -86,6 +86,51 @@ describe("growth quality gates", () => {
     assert.ok(gate.failures.some((f) => f.code === "overview-short"));
   });
 
+  it("rejects AI-hint / generative-search bait copy", () => {
+    const c = {
+      ...baseDest(),
+      slug: "ai-bait-harbor",
+      summary: "Optimized for AI Overviews and ChatGPT keyword snippets about harbors.",
+      id: "ai-bait",
+    };
+    const gate = evaluateCandidate(c, existing);
+    assert.equal(gate.ok, false);
+    assert.ok(gate.failures.some((f) => f.code === "ai-hint-spam"));
+  });
+
+  it("rejects near-duplicate facility pages sharing destination and source", () => {
+    const c = {
+      ...baseDest(),
+      kind: "launch" as const,
+      slug: "oshkosh-clone-launch",
+      destinationSlug: "oshkosh",
+      summary:
+        "City of Oshkosh public Lake Winnebago launch — permit required for trailered motorized craft.",
+      overview: ["Short clone.", "Still thin for uniqueness."],
+      officialLinks: [
+        {
+          name: "City",
+          url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
+          lastVerified: "2026-11-25",
+        },
+      ],
+      id: "clone",
+    };
+    const gate = evaluateCandidate(c, existing, {
+      publishedFacilities: [
+        {
+          slug: "oshkosh-rainbow-park-launch",
+          destinationSlug: "oshkosh",
+          summary:
+            "City of Oshkosh public Lake Winnebago launch — permit required for trailered motorized craft at pay stations.",
+          sourceUrl: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
+        },
+      ],
+    });
+    assert.equal(gate.ok, false);
+    assert.ok(gate.failures.some((f) => f.code === "near-duplicate-facility"));
+  });
+
   it("accepts a complete source-backed destination", () => {
     const gate = evaluateCandidate(baseDest(), existing);
     assert.equal(gate.ok, true, JSON.stringify(gate.failures));

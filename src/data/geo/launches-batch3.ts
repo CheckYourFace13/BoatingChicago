@@ -119,7 +119,11 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "One of six City of Oshkosh public Lake Winnebago launches — electronic pay stations on site; daily or annual launch permit required for trailered motorized craft.",
+      "City of Oshkosh Rainbow Park launch on Lake Winnebago — one of six municipal sites that share the same city permit system (pay stations, WebTrac, Parks office).",
+    overview: [
+      "Use this page for Rainbow Park access notes. The City of Oshkosh Boat Launch Locations page also lists Menominee Park, William Steiger Park, Mill Street, Fugleberg, and 24th Avenue as the other five municipal launches — they are not given separate BoatingChicago URLs because they share the same official source, fees, and permit rules.",
+      "Plan the trip from the Oshkosh destination guide and the city fee / locations pages. Confirm which ramp is open and where pay stations are posted before you tow.",
+    ],
     feesNote:
       "Daily/annual permits at electronic pay stations, online via City WebTrac, or Parks office (805 Witzel Ave). Confirm current resident/nonresident amounts on the city fee schedule.",
     source: {
@@ -129,6 +133,8 @@ export const launchesBatch3: BoatLaunch[] = [
     },
     isPublished: true,
   },
+  // Sibling Oshkosh municipal launches stay unpublished hub notes only.
+  // Same city source + fees + near-identical copy would create thin duplicate URLs.
   {
     slug: "oshkosh-menominee-park-launch",
     name: "Menominee Park Boat Launch (Oshkosh)",
@@ -136,15 +142,15 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "City of Oshkosh public Lake Winnebago launch at Menominee Park — listed on the city’s Boat Launch Locations page among the six municipal launches; electronic pay stations on site; permit required for trailered motorized craft.",
+      "City of Oshkosh Menominee Park launch — covered on the Oshkosh destination hub and Rainbow Park launch page; not a separate thin URL.",
     feesNote:
-      "Daily/annual permits available at electronic pay stations, online via City WebTrac, or at the Parks office (805 Witzel Ave). Annual sticker must be redeemed within 14 days per city materials — confirm current amounts there.",
+      "Same City of Oshkosh launch-permit system as other municipal sites — confirm on the city fee schedule.",
     source: {
       name: "City of Oshkosh — Boat Launch Locations",
       url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
       lastVerified: VERIFIED,
     },
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "oshkosh-william-steiger-park-launch",
@@ -153,15 +159,15 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "City of Oshkosh public Lake Winnebago launch at William Steiger Park — named on the city’s Boat Launch Locations page and launch map alt text; permit required for trailered motorized craft.",
+      "City of Oshkosh William Steiger Park launch — listed on the city map; keep on destination hub until distinct facility detail exists.",
     feesNote:
-      "Daily/annual permits available at electronic pay stations, online via City WebTrac, or at the Parks office. Confirm current resident/nonresident amounts on city materials.",
+      "Same City of Oshkosh launch-permit system as other municipal sites — confirm on the city fee schedule.",
     source: {
       name: "City of Oshkosh — Boat Launch Locations",
       url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
       lastVerified: VERIFIED,
     },
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "oshkosh-mill-street-launch",
@@ -170,15 +176,15 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "City of Oshkosh public Lake Winnebago launch at Mill Street — named on the city’s launch map as one of six municipal sites; permit required for trailered motorized craft.",
+      "City of Oshkosh Mill Street launch — listed on the city map; keep on destination hub until distinct facility detail exists.",
     feesNote:
-      "Daily/annual permits available at electronic pay stations, online via City WebTrac, or at the Parks office. Confirm current amounts on city materials.",
+      "Same City of Oshkosh launch-permit system as other municipal sites — confirm on the city fee schedule.",
     source: {
       name: "City of Oshkosh — Boat Launch Locations",
       url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
       lastVerified: VERIFIED,
     },
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "oshkosh-fugleberg-launch",
@@ -187,15 +193,15 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "City of Oshkosh public Lake Winnebago launch at Fugleberg — named on the city’s launch map as one of six municipal sites; permit required for trailered motorized craft.",
+      "City of Oshkosh Fugleberg launch — listed on the city map; keep on destination hub until distinct facility detail exists.",
     feesNote:
-      "Daily/annual permits available at electronic pay stations, online via City WebTrac, or at the Parks office. Confirm current amounts on city materials.",
+      "Same City of Oshkosh launch-permit system as other municipal sites — confirm on the city fee schedule.",
     source: {
       name: "City of Oshkosh — Boat Launch Locations",
       url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
       lastVerified: VERIFIED,
     },
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "oshkosh-24th-avenue-launch",
@@ -204,15 +210,15 @@ export const launchesBatch3: BoatLaunch[] = [
     lakeSlug: "lake-winnebago",
     accessMode: "trailered",
     summary:
-      "City of Oshkosh public Lake Winnebago launch at 24th Avenue — named on the city’s launch map as one of six municipal sites; permit required for trailered motorized craft.",
+      "City of Oshkosh 24th Avenue launch — listed on the city map; keep on destination hub until distinct facility detail exists.",
     feesNote:
-      "Daily/annual permits available at electronic pay stations, online via City WebTrac, or at the Parks office. Confirm current amounts on city materials.",
+      "Same City of Oshkosh launch-permit system as other municipal sites — confirm on the city fee schedule.",
     source: {
       name: "City of Oshkosh — Boat Launch Locations",
       url: "https://www.oshkoshwi.gov/Parks/BoatLaunchLocations.aspx",
       lastVerified: VERIFIED,
     },
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "kewaunee-harbor-launch",

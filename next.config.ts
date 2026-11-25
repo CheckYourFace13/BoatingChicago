@@ -74,6 +74,32 @@ const nextConfig: NextConfig = {
         destination: "/chicago-boat-detailing-guide",
         permanent: true,
       },
+      // Thin Set 3 Oshkosh sibling launches consolidated to destination hub
+      {
+        source: "/boat-launches/oshkosh-menominee-park-launch",
+        destination: "/destinations/oshkosh",
+        permanent: true,
+      },
+      {
+        source: "/boat-launches/oshkosh-william-steiger-park-launch",
+        destination: "/destinations/oshkosh",
+        permanent: true,
+      },
+      {
+        source: "/boat-launches/oshkosh-mill-street-launch",
+        destination: "/destinations/oshkosh",
+        permanent: true,
+      },
+      {
+        source: "/boat-launches/oshkosh-fugleberg-launch",
+        destination: "/destinations/oshkosh",
+        permanent: true,
+      },
+      {
+        source: "/boat-launches/oshkosh-24th-avenue-launch",
+        destination: "/destinations/oshkosh",
+        permanent: true,
+      },
       {
         source: "/boat-repair-chicago",
         destination: "/chicago-boat-repair-guide",
