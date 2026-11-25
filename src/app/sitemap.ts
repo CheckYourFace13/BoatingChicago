@@ -8,9 +8,16 @@ import {
   getAllPublishedMarinaSlugs,
   getAllPublishedPreserveSlugs,
 } from "@/data/geo";
-import { getAllGuideSlugs } from "@/data/guides";
+import { getAllGuideSlugs, getGuideBySlug } from "@/data/guides";
 import { getPublishedVendors } from "@/data/vendors";
 import { shouldIndexCategorySlug } from "@/config/quality";
+
+/** Only emit lastmod when we have a real content review/modification date. */
+function lastModFromIso(iso: string | undefined): Date | undefined {
+  if (!iso) return undefined;
+  const d = new Date(`${iso}T12:00:00.000Z`);
+  return Number.isNaN(d.getTime()) ? undefined : d;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
@@ -128,11 +135,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     }));
 
-  const guidePages = getAllGuideSlugs().map((slug) => ({
-    url: `${baseUrl}/${slug}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.85,
-  }));
+  const guidePages = getAllGuideSlugs().map((slug) => {
+    const guide = getGuideBySlug(slug);
+    const lastModified = lastModFromIso(guide?.lastReviewed);
+    return {
+      url: `${baseUrl}/${slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
   const destinationPages = getAllPublishedDestinationSlugs().map((slug) => ({
     url: `${baseUrl}/destinations/${slug}`,

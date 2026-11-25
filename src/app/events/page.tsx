@@ -11,6 +11,7 @@ import { formatEventDates } from "@/lib/geo-display";
 import { seasonalStatusLabel } from "@/lib/event-status";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
 import { ResourceCrossLinks } from "@/components/ResourceCrossLinks";
+import { buildEventSchema } from "@/lib/schema";
 
 /** Expired events drop off the list, so refresh the static render hourly. */
 export const revalidate = 3600;
@@ -46,6 +47,25 @@ export default function EventsPage() {
           { name: "Events", path: "/events" },
         ]}
       />
+      {events.map((event) => (
+        <script
+          key={`event-schema-${event.slug}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildEventSchema({
+                name: event.title,
+                description: event.summary,
+                startDate: event.startDate,
+                endDate: event.endDate,
+                locationName: event.location,
+                officialUrl: event.source.url,
+                organizerName: event.source.name,
+              }),
+            ),
+          }}
+        />
+      ))}
 
       <GeoHero
         eyebrow="On the water this season"

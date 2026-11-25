@@ -113,6 +113,50 @@ export function buildBreadcrumbSchema(
   };
 }
 
+/** Event schema for dated listings with an official source URL. */
+export function buildEventSchema({
+  name,
+  description,
+  startDate,
+  endDate,
+  locationName,
+  officialUrl,
+  organizerName,
+}: {
+  name: string;
+  description: string;
+  startDate: string;
+  endDate?: string;
+  locationName: string;
+  officialUrl: string;
+  organizerName?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name,
+    description,
+    startDate,
+    ...(endDate ? { endDate } : {}),
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: locationName,
+    },
+    ...(organizerName
+      ? {
+          organizer: {
+            "@type": "Organization",
+            name: organizerName,
+            url: officialUrl,
+          },
+        }
+      : {}),
+    url: officialUrl,
+  };
+}
+
 export function buildArticleSchema({
   title,
   description,

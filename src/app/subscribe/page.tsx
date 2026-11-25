@@ -44,7 +44,23 @@ export default function SubscribePage() {
               A Thursday Brief aimed at America/Chicago — weather and alert
               context drawn from NOAA/NWS products when available
             </li>
-            <li>Upcoming events and useful guide links for planning</li>
+            <li>
+              Spring launch planning links, including the{" "}
+              <Link
+                href="/spring-boat-launch-checklist-chicago"
+                className="font-semibold text-sky-blue hover:underline"
+              >
+                spring boat launch checklist
+              </Link>{" "}
+              and Chicago boat show dates when they are confirmed on{" "}
+              <Link
+                href="/events"
+                className="font-semibold text-sky-blue hover:underline"
+              >
+                /events
+              </Link>
+            </li>
+            <li>Ownership and harbor planning guides as the season turns</li>
             <li>
               Occasional product or experience links that are clearly labeled as
               affiliate / paid links
