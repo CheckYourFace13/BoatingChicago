@@ -869,7 +869,7 @@ export const guidePart5: GuidePage[] = [
     seoTitle:
       "Inland Kayak, Canoe & Paddle Waters Near Chicago | Forest Preserves & Rivers",
     seoDescription:
-      "Plan kayak, canoe, paddleboard, and electric-only trips on forest-preserve lakes and rivers within about 250 miles of Chicago — Cook, Lake, DuPage, Will, Kane, and McHenry rules linked to official sources.",
+      "Plan kayak, canoe, paddleboard, and electric-only trips on forest-preserve lakes and rivers within about 400 driving miles of Chicago — Cook, Lake, DuPage, Will, Kane, and McHenry rules linked to official sources.",
     headline: "Inland Paddling Near Chicago: Lakes, Rivers & Preserve Rules",
     intro:
       "Lake Michigan gets the headlines, but Chicago-area paddlers and small-boat owners spend as many weekends on forest-preserve lakes, the Fox River chain, Nippersink Creek, and municipal inland ramps. This guide points you to verified hubs — and the agency rules that differ by county — so you do not trailer a gas motor or SUP to a water that prohibits them.",
