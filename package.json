@@ -11,7 +11,7 @@
     "build": "next build --webpack",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "lint": "eslint",
-    "test": "npx --yes tsx --test src/lib/__tests__/tools-formulas.test.ts src/lib/__tests__/site-search.test.ts src/lib/__tests__/perf-reliability.test.ts src/config/__tests__/ads-gate.test.ts src/data/guides/__tests__/ownership-planning-guides.test.ts",
+    "test": "npx --yes tsx --test src/lib/__tests__/tools-formulas.test.ts src/lib/__tests__/site-search.test.ts src/lib/__tests__/perf-reliability.test.ts src/lib/__tests__/geo-registry.test.ts src/config/__tests__/ads-gate.test.ts src/data/guides/__tests__/ownership-planning-guides.test.ts",
     "indexnow": "tsx scripts/submit-indexnow.ts"
   },
   "dependencies": {

@@ -10,9 +10,10 @@ export function RegionalDiscovery() {
           Explore Boating Around Chicago
         </h2>
         <p className="text-gray-600 mb-8 max-w-2xl">
-          Boating destinations within reach of Chicago — from the lakefront to
-          inland lakes and Lake Michigan harbors in Wisconsin, Indiana,
-          and southwest Michigan. Every listing links back to the official source.
+          From the Chicago lakefront to Green Bay, Door County, Indiana’s south
+          shore, and Michigan harbors through Traverse City — plus inland waters
+          within about 400 driving miles. Every listing links back to official
+          sources.
         </p>
       </Reveal>
 
@@ -22,6 +23,7 @@ export function RegionalDiscovery() {
 
       <div className="mt-6 flex flex-wrap gap-3">
         {[
+          { href: "/regions", label: "Browse by region" },
           { href: "/destinations", label: "All destinations" },
           { href: "/marinas", label: "Marinas" },
           { href: "/boat-launches", label: "Boat launches" },

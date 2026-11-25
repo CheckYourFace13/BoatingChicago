@@ -705,7 +705,7 @@ export const destinations: Destination[] = [
     coordinates: { lat: 43.059, lng: -86.241 },
     distanceFromChicagoMiles: 175,
     isPublished: true,
-    nearbyDestinationSlugs: ["holland", "saugatuck", "south-haven"],
+    nearbyDestinationSlugs: ["holland", "saugatuck", "south-haven", "muskegon"],
   },
   {
     slug: "port-washington",
@@ -798,6 +798,11 @@ export const destinations: Destination[] = [
     coordinates: { lat: 43.752, lng: -87.701 },
     distanceFromChicagoMiles: 140,
     isPublished: true,
-    nearbyDestinationSlugs: ["port-washington", "milwaukee", "racine"],
+    nearbyDestinationSlugs: [
+      "port-washington",
+      "milwaukee",
+      "manitowoc",
+      "racine",
+    ],
   },
 ];

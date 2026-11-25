@@ -19,6 +19,7 @@ import {
 import { getGuideBySlug } from "@/data/guides";
 import { getWeatherLocationById } from "@/config/weather-locations";
 import { getLakesForDestination, regionLabel } from "@/lib/geo-display";
+import { getHubsForDestination } from "@/lib/geo-registry";
 import { PopularOnTheWater } from "@/components/PopularOnTheWater";
 import { PlanYourDay } from "@/components/geo/PlanYourDay";
 import { buildDestinationPlaceSchema } from "@/lib/schema";
@@ -55,6 +56,7 @@ export default async function DestinationPage({ params }: PageProps) {
   const launches = getLaunchesByDestination(destination.slug);
   const lakes = getLakesForDestination(destination.slug);
   const weatherLocation = getWeatherLocationById(destination.weatherLocationId);
+  const primaryHub = getHubsForDestination(destination)[0];
 
   const nearby = (destination.nearbyDestinationSlugs ?? [])
     .map((s) => getDestinationBySlug(s))
@@ -109,6 +111,9 @@ export default async function DestinationPage({ params }: PageProps) {
               : "Area forecast →",
             href: `/weather?location=${destination.weatherLocationId}`,
           },
+          ...(primaryHub
+            ? [{ label: primaryHub.shortName, href: `/regions/${primaryHub.slug}` }]
+            : []),
           { label: "All destinations", href: "/destinations" },
           ...(marinas.length ? [{ label: "Marinas", href: "/marinas" }] : []),
           ...(launches.length

@@ -25,6 +25,7 @@ BoatingChicago is NOT a boat rental broker, captain marketplace, or manual boat-
 - Rules & permits: ${siteConfig.url}/permits
 - Season calendar: ${siteConfig.url}/calendar
 - Destinations: ${siteConfig.url}/destinations
+- Regions (state / shore hubs): ${siteConfig.url}/regions
 - Lakes & waterways: ${siteConfig.url}/lakes
 - Forest preserves (Cook, Lake, DuPage, Will, Kane, McHenry): ${siteConfig.url}/forest-preserves
 - Marinas: ${siteConfig.url}/marinas

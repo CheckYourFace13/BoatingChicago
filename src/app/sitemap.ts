@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { getAllCategorySlugs } from "@/data/categories";
+import { getAllGeoHubSlugs } from "@/config/geo-hierarchy";
 import {
   getAllPublishedDestinationSlugs,
   getAllPublishedLakeSlugs,
@@ -26,6 +27,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, changeFrequency: "weekly", priority: 1 },
     {
       url: `${baseUrl}/destinations`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/regions`,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -157,6 +163,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
+  const regionPages = getAllGeoHubSlugs().map((slug) => ({
+    url: `${baseUrl}/regions/${slug}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.88,
+  }));
+
   const destinationPages = getAllPublishedDestinationSlugs().map((slug) => ({
     url: `${baseUrl}/destinations/${slug}`,
     changeFrequency: "weekly" as const,
@@ -200,6 +212,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...categoryPages,
     ...guidePages,
+    ...regionPages,
     ...destinationPages,
     ...lakePages,
     ...marinaPages,

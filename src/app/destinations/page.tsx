@@ -48,8 +48,8 @@ export default function DestinationsPage() {
         title="Boating Destinations Near Chicago"
         intro="Harbor towns, inland lakes, and paddling waters across Chicago & Chicagoland, Lake Michigan harbors along the Illinois, Wisconsin, Indiana, and Michigan shores, and inland destinations within roughly 400 driving miles. Each page collects official sources, verified marinas or launches, and a weather link. Mileage shown from Chicago is driving distance for trailer planning — see each guide for water-route distances."
         links={[
-          { label: "Marinas →", href: "/marinas" },
-          { label: "Forest preserves", href: "/forest-preserves" },
+          { label: "Browse by region →", href: "/regions" },
+          { label: "Marinas", href: "/marinas" },
           { label: "Boat launches", href: "/boat-launches" },
           { label: "Boating weather", href: "/weather" },
         ]}

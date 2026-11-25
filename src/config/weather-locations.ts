@@ -131,6 +131,48 @@ export const weatherLocations: WeatherLocation[] = [
     lat: 43.752,
     lon: -87.701,
   },
+  {
+    id: "manitowoc",
+    label: "Manitowoc Harbor (WI)",
+    lat: 44.092,
+    lon: -87.655,
+  },
+  {
+    id: "green-bay",
+    label: "Green Bay / Fox River mouth (WI)",
+    lat: 44.529,
+    lon: -88.005,
+  },
+  {
+    id: "sturgeon-bay",
+    label: "Sturgeon Bay / Door County (WI)",
+    lat: 44.834,
+    lon: -87.377,
+  },
+  {
+    id: "hammond",
+    label: "Hammond Marina (IN)",
+    lat: 41.698,
+    lon: -87.511,
+  },
+  {
+    id: "muskegon",
+    label: "Muskegon Lake / Harbor (MI)",
+    lat: 43.231,
+    lon: -86.27,
+  },
+  {
+    id: "ludington",
+    label: "Ludington Harbor (MI)",
+    lat: 43.953,
+    lon: -86.452,
+  },
+  {
+    id: "traverse-city",
+    label: "Traverse City / Grand Traverse Bay (MI)",
+    lat: 44.763,
+    lon: -85.622,
+  },
 ];
 
 export function getWeatherLocationById(
