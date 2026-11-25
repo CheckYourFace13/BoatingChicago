@@ -5,6 +5,7 @@ import {
   guides,
   WINTER_GUIDE_SLUGS,
   SPRING_GUIDE_SLUGS,
+  OWNERSHIP_PLANNING_GUIDE_SLUGS,
   getGuideBySlug,
 } from "@/data/guides";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
@@ -101,6 +102,52 @@ export default function GuidesPage() {
                 className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
               >
                 Storage &amp; haul-out directory
+              </Link>
+            </li>
+          </ul>
+        </section>
+
+        <section
+          id="ownership-planning-guides"
+          className="rounded-2xl border border-sky-blue/25 bg-light-blue/30 p-5 sm:p-6"
+        >
+          <h2 className="text-xl font-extrabold text-lake-blue mb-2">
+            Boat ownership planning
+          </h2>
+          <p className="text-sm text-gray-700 mb-4 max-w-3xl">
+            Thinking about owning a boat on Lake Michigan? These guides cite
+            Illinois DNR, the Illinois General Assembly, and Chicago Harbors
+            pages and do not publish quotes, rates, or waitlist lengths. See
+            also the{" "}
+            <Link
+              href="/boat-ownership"
+              className="font-semibold text-coral hover:underline"
+            >
+              boat ownership hub
+            </Link>
+            .
+          </p>
+          <ul className="flex flex-wrap gap-2">
+            {OWNERSHIP_PLANNING_GUIDE_SLUGS.map((slug) => {
+              const g = getGuideBySlug(slug);
+              if (!g) return null;
+              return (
+                <li key={slug}>
+                  <Link
+                    href={`/${slug}`}
+                    className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
+                  >
+                    {g.title}
+                  </Link>
+                </li>
+              );
+            })}
+            <li>
+              <Link
+                href="/boat-ownership"
+                className="inline-flex min-h-[44px] items-center px-4 py-2 bg-white border border-sky-blue/30 text-lake-blue font-semibold text-sm rounded-full hover:bg-white/90"
+              >
+                Boat ownership hub
               </Link>
             </li>
           </ul>

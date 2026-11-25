@@ -1,4 +1,5 @@
 import type { AffiliatePartner } from "@/config/affiliates";
+import type { SourceRef } from "@/types/geo";
 
 export interface Lead {
   id: string;
@@ -114,5 +115,9 @@ export interface GuidePage {
   relatedSlugs: string[];
   mapEmbed?: GuideMapEmbed;
   affiliateOffersFromSlug?: string;
+  /** Official sources cited by the guide; rendered with SourceLink patterns. */
+  sources?: SourceRef[];
+  /** ISO date (YYYY-MM-DD) editorial facts were last checked; used as Article dateModified. */
+  lastReviewed?: string;
   showLeadForm: boolean;
 }

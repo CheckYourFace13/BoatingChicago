@@ -307,6 +307,10 @@ export const categoryImageMap: Record<string, SiteImageKey> = {
   "beginners-guide-boating-chicago": "heroBoats",
   "essential-boating-gear-chicago": "heroBoats",
   "chicago-boating-faq": "heroBoats",
+  "illinois-boating-safety-certificate": "heroBoats",
+  "chicago-boat-insurance-guide": "boatStorage",
+  "boat-financing-ownership-costs-chicago": "heroBoats",
+  "chicago-harbors-seasonal-slips-guide": "marinas",
 };
 
 /** Homepage popular category grid */

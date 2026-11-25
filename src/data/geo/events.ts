@@ -41,6 +41,22 @@ export const events: EventItem[] = [
     category: "fireworks",
   },
   {
+    slug: "discover-boating-chicago-boat-show-2027",
+    title: "Discover Boating Chicago Boat Show",
+    startDate: "2027-02-03",
+    endDate: "2027-02-07",
+    location: "Donald E. Stephens Convention & Conference Center, 5555 N. River Road, Rosemont, IL 60018",
+    summary:
+      "The 95th annual Discover Boating Chicago Boat Show is listed by the organizer for Wednesday–Sunday, February 3–7, 2027, at the Donald E. Stephens Convention & Conference Center in Rosemont, Illinois — not McCormick Place. The organizer publishes daily hours, and says tickets are sold online only at chicagoboatshow.com. Confirm dates, hours, and ticket details on the official site before you travel.",
+    source: {
+      name: "Chicago Boat Show — Show Info/FAQ",
+      url: "https://www.chicagoboatshow.com/about",
+      lastVerified: "2026-11-25",
+    },
+    isPublished: true,
+    category: "other",
+  },
+  {
     slug: "chicago-harbor-season",
     title: "Chicago Harbors Mooring Season",
     startDate: "2026-05-01",

@@ -30,6 +30,10 @@ export function OwnershipNextLinks() {
   return (
     <ul className="flex flex-wrap gap-2">
       {[
+        ["/chicago-harbors-seasonal-slips-guide", "Harbor slips & waitlists"],
+        ["/chicago-boat-insurance-guide", "Boat insurance planning"],
+        ["/boat-financing-ownership-costs-chicago", "Financing & ownership costs"],
+        ["/illinois-boating-safety-certificate", "Boating safety certificate"],
         ["/marinas", "Marinas & harbors"],
         ["/boat-launches", "Public launches"],
         ["/storage", "Storage & haul-out directory"],
