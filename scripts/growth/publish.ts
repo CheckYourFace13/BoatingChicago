@@ -164,7 +164,10 @@ export function planPublish(
     }
     ready.push(c);
     existingSlugs.add(c.slug);
-    if (c.kind === "launch" || c.kind === "marina") {
+    if (
+      (c.kind === "launch" || c.kind === "marina") &&
+      c.destinationSlug
+    ) {
       publishedFacilities.push({
         slug: c.slug,
         destinationSlug: c.destinationSlug,
