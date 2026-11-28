@@ -187,7 +187,7 @@ const FAMILY_CAPS: Partial<Record<OfferFamily, number>> = {
   dining: 1,
   speedboat: 1,
   "sailing-shared": 1,
-  "private-charter": 2,
+  "private-charter": 4,
   other: 3,
 };
 
@@ -428,7 +428,6 @@ export const affiliateOffers: AffiliateOffer[] = [
     category: "dining-cruise",
     relatedPageSlugs: [
       "chicago-dining-cruises",
-      "yacht-rentals-chicago",
       "corporate-yacht-charters-chicago",
       "romantic-boat-cruises-chicago",
     ],
@@ -1285,7 +1284,9 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 3,
   },
   "yacht-rentals-chicago": {
-    tags: ["sailing", "lake-michigan"],
+    // Empty tags: do not score ticketed dining/fireworks via overlapping "sailing" tags.
+    // preferIds are all private-charter; family cap 2 would otherwise drop the rest and refill with shared cruises.
+    tags: [],
     preferIds: [
       "viator-private-yacht-charter",
       "viator-navy-pier-private-sail",

@@ -57,7 +57,10 @@ describe("Set 6 ads, search quality, conversion", () => {
   it("keeps yacht page booking cards on private charter products", () => {
     const ids = getOffersForPage("yacht-rentals-chicago").map((o) => o.id);
     assert.ok(ids.includes("viator-private-yacht-charter"));
+    assert.ok(ids.includes("viator-navy-pier-private-sail"));
     assert.ok(!ids.includes("gyg-386902"), "shared sunset cruise should not lead yacht page");
+    assert.ok(!ids.includes("gyg-233082"), "dining cruise should not appear as yacht rental");
+    assert.ok(!ids.includes("viator-fireworks-sail"), "ticketed fireworks should not appear as yacht rental");
   });
 
   it("hides empty Local Vendor Listings placeholder in CategoryLanding", () => {
