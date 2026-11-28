@@ -22,12 +22,12 @@ export const categories: CategoryPage[] = [
   {
     slug: "boat-rentals-chicago",
     title: "Boat Rentals Chicago",
-    seoTitle: "Boat Rentals Chicago | Lake Michigan Boat Rental Guide 2026",
+    seoTitle: "Boat Rentals Chicago | Book Lake Michigan Rentals & Charters",
     seoDescription:
-      "Compare the best boat rentals in Chicago on Lake Michigan. Pontoons, speedboats, sailboats & more. Browse trusted partners and local options.",
+      "Chicago boat rentals and charters on Lake Michigan — pontoons, speedboats, sailboats, and party boats. Browse bookable options and local rental categories.",
     headline: "Boat Rentals in Chicago on Lake Michigan",
     intro:
-      "Chicago's lakefront is built for boating — from Monroe Harbor to Burnham and beyond. Whether you want a pontoon for a lazy Playpen afternoon or a speedboat to cruise the skyline, Boating Chicago helps you compare rental and experience options on Lake Michigan. Browse affiliate partners, category guides, and future local vendor listings.",
+      "Use this page to find and book Chicago boat rentals on Lake Michigan — from Monroe Harbor and Burnham to North Side harbors. Instant-booking listings cover charters and ticketed experiences; related category pages cover party boats, yachts, and Playpen-focused rentals. For a side-by-side look at rental types, captain requirements, group sizes, and departure points, see the boat rentals comparison guide.",
     bestFor: [
       { title: "First-time renters", description: "Easy captained options with no license required", icon: "🚤" },
       { title: "Playpen days", description: "Pontoons and party-friendly boats for anchoring out", icon: "⚓" },
@@ -35,7 +35,12 @@ export const categories: CategoryPage[] = [
       { title: "Small groups", description: "Boats for 2–12 people at every budget level", icon: "👥" },
     ],
     affiliates: ["getyourguide"],
-    relatedSlugs: ["party-boat-rentals-chicago", "yacht-rentals-chicago", "chicago-playpen-boat-rentals"],
+    relatedSlugs: [
+      "best-boat-rentals-chicago",
+      "party-boat-rentals-chicago",
+      "yacht-rentals-chicago",
+      "chicago-playpen-boat-rentals",
+    ],
     faqs: [
       sharedFaqs.booking,
       { question: "Where do Chicago boat rentals depart from?", answer: "Most rentals leave from Monroe Harbor, Burnham Harbor, 31st Street Harbor, Montrose Harbor, and DuSable Harbor. Your booking confirmation will include the exact marina and slip details." },
@@ -490,10 +495,10 @@ export const categories: CategoryPage[] = [
     title: "Chicago Dining Cruises",
     seoTitle: "Chicago Dinner Cruise | Brunch, Lunch & Dining River Cruises",
     seoDescription:
-      "Chicago dinner cruise and brunch or lunch river cruises with downtown architecture views. Ticketed dining boats — not private yacht charters. Confirm menu and boarding on the listing.",
+      "Chicago dinner cruise and brunch or lunch river cruises with downtown views. Ticketed dining boats only — not architecture tours, sunset sails, or private yacht charters. Confirm menu and boarding on the listing.",
     headline: "Chicago Brunch, Lunch & Dinner River Cruises",
     intro:
-      "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — perfect for celebrations and visitors. They are not private yacht charters. Want a private yacht with custom catering? Use related category pages and instant-booking listings.",
+      "Combine a meal with the Chicago skyline on a brunch, lunch, or dinner river cruise. These are ticketed dining experiences on scheduled boats — not architecture sightseeing cruises, sunset lake cruises, or private yacht charters. Want skyline sightseeing without a meal? See architecture cruises. Prefer a tiki party cruise with a bar onboard? See tiki cruises. For a private yacht with custom catering, use yacht rental pages.",
     bestFor: [
       { title: "Celebrations", description: "Birthdays, anniversaries, and special dinners", icon: "🥂" },
       { title: "Visitors", description: "Sightseeing and a meal in one outing", icon: "🍽️" },
@@ -501,10 +506,16 @@ export const categories: CategoryPage[] = [
       { title: "Easy booking", description: "Choose a seating and reserve online", icon: "✅" },
     ],
     affiliates: ["getyourguide"],
-    relatedSlugs: ["chicago-architecture-cruises", "yacht-rentals-chicago", "corporate-yacht-charters-chicago"],
+    relatedSlugs: [
+      "chicago-architecture-cruises",
+      "chicago-tiki-cruises",
+      "chicago-sunset-cruises",
+      "yacht-rentals-chicago",
+    ],
     faqs: [
       { question: "What is included on a Chicago dining cruise?", answer: "Most dining cruises include a meal service and the cruise itself. Drinks, upgrades, and dietary options vary — check the booking details." },
-      { question: "Is a dining cruise a private yacht rental?", answer: "No. Dining cruises are shared, ticketed experiences. Private yacht charters are arranged separately through instant-booking charter options on related category pages." },
+      { question: "Is a dining cruise the same as an architecture or sunset cruise?", answer: "No. Dining cruises are ticketed meal sailings. Architecture cruises focus on guided sightseeing; sunset cruises focus on golden-hour timing. Book the product that matches the experience you want." },
+      { question: "Is a dining cruise a private yacht rental?", answer: "No. Dining cruises are shared, ticketed experiences. Private yacht charters are arranged separately through yacht rental and charter category pages." },
       { question: "How long is a brunch or dinner cruise?", answer: "Typical Chicago dining cruises run about 1.5–3 hours depending on the meal service and route." },
       sharedFaqs.booking,
     ],
@@ -515,10 +526,10 @@ export const categories: CategoryPage[] = [
     title: "Chicago Tiki Cruises",
     seoTitle: "Chicago Tiki Bar Cruise | River & Lake Michigan Party Cruise",
     seoDescription:
-      "Book the Chicago Tiki Bar Cruise on the Chicago River or Lake Michigan. A ticketed party cruise experience — not a private party boat rental.",
+      "Book the Chicago Tiki Bar Cruise on the Chicago River or Lake Michigan. Tropical cocktails available for purchase onboard; drinks are not included. Ticketed party cruise — not a private party boat.",
     headline: "Chicago Tiki Bar Cruises",
     intro:
-      "Tropical vibes on the Chicago River or Lake Michigan — the Tiki Bar Cruise is a ticketed party cruise with drinks, music, and skyline scenery. It’s a ready-to-book group experience, not a private party boat you control end-to-end. For a private party boat rental, browse instant-booking options on this page.",
+      "The Chicago Tiki Bar Cruise (Island Party Boat) is a ticketed party cruise on the Chicago River or Lake Michigan with music, a climate-controlled lounge, and an onboard bar. Per the GetYourGuide listing, tropical cocktails, beer, wine, and non-alcoholic drinks are available for purchase — drinks are not included in the ticket, and outside food or beverages are not allowed. It is not a private party boat you control end-to-end. For a private party boat rental, use party boat rental pages. For a meal cruise instead, see dining cruises.",
     bestFor: [
       { title: "Group hangouts", description: "Friends, birthdays, and casual celebrations", icon: "🍹" },
       { title: "Bachelorette add-ons", description: "A fun ticketed cruise for the squad", icon: "💃" },
@@ -526,11 +537,17 @@ export const categories: CategoryPage[] = [
       { title: "Instant booking", description: "Reserve seats online without arranging a charter", icon: "📲" },
     ],
     affiliates: ["getyourguide"],
-    relatedSlugs: ["party-boat-rentals-chicago", "bachelorette-boat-rentals-chicago", "birthday-boat-rentals-chicago"],
+    relatedSlugs: [
+      "party-boat-rentals-chicago",
+      "chicago-dining-cruises",
+      "bachelorette-boat-rentals-chicago",
+      "birthday-boat-rentals-chicago",
+    ],
     faqs: [
-      { question: "Is the Tiki Bar Cruise a private party boat?", answer: "No. It is a ticketed public party cruise. Private party boat rentals are available via instant-booking options on related category pages." },
-      { question: "Does the cruise go on the river or the lake?", answer: "Depending on the sailing, routes may include the Chicago River and/or Lake Michigan. Confirm details on the booking page." },
-      { question: "Can we bring our own drinks?", answer: "Policies vary by operator. Most ticketed tiki cruises have onboard bars — check the listing before you book." },
+      { question: "Is the Tiki Bar Cruise a private party boat?", answer: "No. It is a ticketed public party cruise. Private party boat rentals are available on related party boat category pages." },
+      { question: "Are cocktails included in the ticket?", answer: "No. The operator’s GetYourGuide listing states drinks are not included. Tropical cocktails, beer, wine, and non-alcoholic beverages are available for purchase onboard." },
+      { question: "Does the cruise go on the river or the lake?", answer: "Depending on the sailing, routes may include the Chicago River and/or Lake Michigan. Confirm details on the booking page. Boarding is listed at Dock 12 / Island Party Hut on the Chicago Riverwalk." },
+      { question: "Can we bring our own drinks?", answer: "No. The GetYourGuide listing states no outside food or beverages. Plan to purchase drinks from the onboard bar if you want them." },
       sharedFaqs.weather,
     ],
     vendors: [],
@@ -585,12 +602,12 @@ export const categories: CategoryPage[] = [
   {
     slug: "chicago-sunset-cruises",
     title: "Chicago Sunset Cruises",
-    seoTitle: "Sunset Cruise Chicago | Lake Michigan Golden-Hour Boat Tours",
+    seoTitle: "Sunset Cruise Chicago | Book Lake Michigan Golden-Hour Cruises",
     seoDescription:
-      "Sunset cruise Chicago on Lake Michigan: ticketed golden-hour skyline cruises and private sunset sailing charters. Shared cruises are not private yacht rentals — confirm departure time on the listing.",
+      "Book a Chicago sunset cruise on Lake Michigan: ticketed golden-hour skyline cruises and private sunset sailing charters. Confirm departure time and boarding on each listing.",
     headline: "Chicago Sunset Cruises & Sunset Sailing",
     intro:
-      "Golden hour on Lake Michigan turns the Chicago skyline into a postcard — warm light, calm water, and downtown glowing as the sun drops. Sunset options include ticketed sunset cruises and private sunset sailing charters. Ticketed cruises are shared experiences with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request — browse related category pages if you need a tailored charter.",
+      "This is the booking hub for Chicago sunset cruises on Lake Michigan — ticketed golden-hour skyline sailings and private sunset sailing charters. Ticketed cruises are shared with set times; private sunset sails are reserved for your group. Neither replaces a custom private yacht request. To compare ticketed versus private options, boarding areas, and booking policies side by side, use the sunset cruise comparison guide.",
     bestFor: [
       { title: "Date nights", description: "Golden-hour skyline views from the water", icon: "💕" },
       { title: "Visitors", description: "A classic Chicago summer evening on the lake", icon: "🌆" },
@@ -599,6 +616,7 @@ export const categories: CategoryPage[] = [
     ],
     affiliates: ["getyourguide", "viator"],
     relatedSlugs: [
+      "best-chicago-sunset-cruises",
       "chicago-sailing-charters",
       "chicago-dining-cruises",
       "yacht-rentals-chicago",

@@ -44,6 +44,20 @@ interface GuideLandingProps {
 }
 
 const GUIDE_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
+  "best-boat-rentals-chicago": [
+    { href: "/boat-rentals-chicago", label: "Book Chicago boat rentals" },
+    { href: "/party-boat-rentals-chicago", label: "Party boat rentals" },
+    { href: "/yacht-rentals-chicago", label: "Yacht rentals" },
+    { href: "/chicago-playpen-guide", label: "Playpen guide" },
+    { href: "/weather", label: "Boating weather" },
+  ],
+  "best-chicago-sunset-cruises": [
+    { href: "/chicago-sunset-cruises", label: "Book sunset cruises" },
+    { href: "/chicago-sailing-charters", label: "Sailing charters" },
+    { href: "/chicago-dining-cruises", label: "Dining cruises" },
+    { href: "/chicago-fireworks-cruises", label: "Fireworks cruises" },
+    { href: "/weather", label: "Boating weather" },
+  ],
   "chicago-playpen-guide": [
     { href: "/chicago-playpen-boat-rentals", label: "Playpen boat rentals" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },

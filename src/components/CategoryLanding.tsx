@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CategoryPage } from "@/types";
 import { getCategoryBySlug } from "@/data/categories";
+import { getGuideBySlug } from "@/data/guides";
 import { getVendorsBySlugs } from "@/data/vendors";
 import { getCategoryImage } from "@/data/images";
 import { getOffersForPage } from "@/data/affiliate-offers";
@@ -153,13 +154,13 @@ const offerSectionCopy: Record<
   "chicago-dining-cruises": {
     title: "Book a Chicago Dining Cruise",
     subtitle:
-      "Brunch, lunch, or dinner river cruises with downtown architecture as your backdrop.",
+      "Ticketed brunch, lunch, or dinner river cruises only. Architecture sightseeing and sunset cruises are separate — use related pages if that is what you want.",
     beforeForm: true,
   },
   "chicago-tiki-cruises": {
     title: "Book a Chicago Tiki Bar Cruise",
     subtitle:
-      "A tropical-themed tiki bar cruise on the Chicago River or Lake Michigan.",
+      "Ticketed Island Party Boat tiki cruise on the Chicago River or Lake Michigan. Tropical cocktails, beer, and wine are available for purchase onboard — drinks are not included in the ticket.",
     beforeForm: true,
   },
   "chicago-sailing-charters": {
@@ -211,11 +212,21 @@ const experienceSlugs = new Set([
   "chicago-sunset-cruises",
 ]);
 
+function resolveRelatedLink(
+  slug: string
+): { slug: string; title: string } | null {
+  const cat = getCategoryBySlug(slug);
+  if (cat) return { slug: cat.slug, title: cat.title };
+  const guide = getGuideBySlug(slug);
+  if (guide) return { slug: guide.slug, title: guide.title };
+  return null;
+}
+
 export function CategoryLanding({ category }: CategoryLandingProps) {
   const vendors = getVendorsBySlugs(category.vendors);
   const related = category.relatedSlugs
-    .map((slug) => getCategoryBySlug(slug))
-    .filter(Boolean);
+    .map((slug) => resolveRelatedLink(slug))
+    .filter((link): link is { slug: string; title: string } => Boolean(link));
   const heroImage = getCategoryImage(category.slug);
   const adrenaline = CATEGORY_ADRENALINE[category.slug];
   const pageOffers = getOffersForPage(category.slug);
@@ -405,18 +416,15 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
           <section>
             <h2 className="text-2xl font-extrabold text-lake-blue mb-4">Related Chicago Boating Guides</h2>
             <div className="flex flex-wrap gap-3">
-              {related.map(
-                (cat) =>
-                  cat && (
-                    <Link
-                      key={cat.slug}
-                      href={`/${cat.slug}`}
-                      className="px-4 py-2 bg-light-blue text-lake-blue font-semibold text-sm rounded-full hover:bg-sky-blue/20 transition-colors"
-                    >
-                      {cat.title}
-                    </Link>
-                  )
-              )}
+              {related.map((link) => (
+                <Link
+                  key={link.slug}
+                  href={`/${link.slug}`}
+                  className="px-4 py-2 bg-light-blue text-lake-blue font-semibold text-sm rounded-full hover:bg-sky-blue/20 transition-colors"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </div>
           </section>
         )}

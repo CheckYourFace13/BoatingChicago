@@ -235,6 +235,92 @@
         "Do not treat this deploy as organic or AdSense success — wait for a measured comparison window vs GravyBlock 2026-10-26..2026-11-22"
       ],
       "results": "Production healthy on 37b22e1 with Set 3 URLs 200. Organic traffic and AdSense revenue change not claimed — awaiting authorized metrics + later comparison window vs GravyBlock 2026-10-26..2026-11-22."
+    },
+    {
+      "id": "set-4",
+      "title": "Reliability hardening, thin-clone guards, production typecheck isolation",
+      "status": "deployed",
+      "baselineSha": "37b22e1",
+      "productionSha": "f6467f8",
+      "notes": "Post–Set 3 reliability: near-duplicate facility + AI-hint spam gates, Oshkosh sibling unpublish/308, scripts excluded from Next production typecheck. Deployed on f6467f8 before Set 5. Not measured for SEO.",
+      "evidence": [
+        "Live /api/deploy-info matched f6467f8 with /api/health 200 at Set 5 start",
+        "Quality gates near-duplicate-facility and ai-hint-spam in scripts/growth",
+        "tsconfig excludes scripts/** so Hostinger builds are not blocked by script-only typing"
+      ],
+      "affectedUrls": [
+        "/destinations/oshkosh",
+        "/api/health",
+        "/api/deploy-info"
+      ],
+      "results": "Production healthy on f6467f8. Organic impact not claimed."
+    },
+    {
+      "id": "set-5",
+      "title": "Search intent differentiation and internal linking (sunset, rentals, tiki/dining)",
+      "status": "deployed",
+      "baselineSha": "f6467f8",
+      "productionSha": "PENDING_DEPLOY",
+      "notes": "Deployed not measured. Differentiated existing URLs only — no new pages, redirects, noindex, or canonical changes. GSC unavailable without secrets; SEO improvement must wait for a later comparison window.",
+      "priorities": [
+        {
+          "id": "p1-sunset-intent",
+          "status": "deployed",
+          "evidence": [
+            "/chicago-sunset-cruises kept as primary booking hub for chicago sunset cruise",
+            "/best-chicago-sunset-cruises retitled as ticketed vs private comparison — no invented rankings/prices/firsthand claims",
+            "Two-way relatedSlugs + ExploreResources links between the pair"
+          ],
+          "affectedUrls": ["/chicago-sunset-cruises", "/best-chicago-sunset-cruises"]
+        },
+        {
+          "id": "p2-boat-rental-intent",
+          "status": "deployed",
+          "evidence": [
+            "/boat-rentals-chicago kept as primary discovery/booking page",
+            "/best-boat-rentals-chicago differentiated as types/captain/group/departure comparison",
+            "Affiliate offers continue via affiliateOffersFromSlug boat-rentals-chicago"
+          ],
+          "affectedUrls": ["/boat-rentals-chicago", "/best-boat-rentals-chicago"]
+        },
+        {
+          "id": "p3-tiki-dining-accuracy",
+          "status": "deployed",
+          "evidence": [
+            "GYG Tiki Bar Cruise 994332 verified: tropical cocktails available for purchase; drinks not included",
+            "Dining PAGE_OFFER_INTENT limited to gyg-233082 only — architecture/sunset cards removed from dining page",
+            "Tiki PAGE_OFFER_INTENT limited to gyg-994332; Adrenaline dining CTA preserved on dining page"
+          ],
+          "affectedUrls": ["/chicago-tiki-cruises", "/chicago-dining-cruises"]
+        },
+        {
+          "id": "p4-seo-quality",
+          "status": "deployed",
+          "evidence": [
+            "Protected GravyBlock URLs untouched",
+            "set5-search-intent.test.ts + full npm test pass; next build pass",
+            "CategoryLanding related links resolve guides as well as categories for SSR cross-links"
+          ]
+        }
+      ],
+      "protectedUrls": [
+        "/lakes/des-plaines-river",
+        "/chicago-playpen-guide",
+        "/yacht-rentals-chicago",
+        "/chicago-boating-faq",
+        "/forest-preserves",
+        "/events",
+        "/forest-preserves/whalon-lake-will",
+        "/chicago-transient-dockage",
+        "/lakes/chain-o-lakes",
+        "/forest-preserves/beck-lake-cook",
+        "/boat-launches/simmons-island-public-boat-launch"
+      ],
+      "ownerActionsRequired": [
+        "Authorize GSC_SERVICE_ACCOUNT_JSON (or export Performance CSV) for a post–Set 5 comparison window",
+        "Do not treat this deploy as organic success — mark measured only after GSC evidence"
+      ],
+      "results": "PENDING live SHA confirmation after Hostinger deploy. Organic traffic change not claimed."
     }
   ]
 }

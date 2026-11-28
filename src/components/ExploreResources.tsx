@@ -8,12 +8,34 @@ export interface ResourceLink {
 /** Priority category → useful internal resources (geo, conditions, guides). */
 export const CATEGORY_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
   "boat-rentals-chicago": [
+    { href: "/best-boat-rentals-chicago", label: "Rental types compared" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/weather", label: "Boating weather" },
     { href: "/marinas", label: "Marinas directory" },
     { href: "/boat-launches", label: "Boat launches" },
     { href: "/chicago-playpen-guide", label: "Playpen guide" },
     { href: "/lake-michigan-boating-guide", label: "Lake Michigan guide" },
+  ],
+  "chicago-sunset-cruises": [
+    { href: "/best-chicago-sunset-cruises", label: "Ticketed vs private compared" },
+    { href: "/chicago-sailing-charters", label: "Sailing charters" },
+    { href: "/chicago-dining-cruises", label: "Dining cruises" },
+    { href: "/weather", label: "Boating weather" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+  ],
+  "chicago-dining-cruises": [
+    { href: "/chicago-architecture-cruises", label: "Architecture cruises" },
+    { href: "/chicago-tiki-cruises", label: "Tiki bar cruise" },
+    { href: "/chicago-sunset-cruises", label: "Sunset cruises" },
+    { href: "/yacht-rentals-chicago", label: "Private yacht charters" },
+    { href: "/weather", label: "Boating weather" },
+  ],
+  "chicago-tiki-cruises": [
+    { href: "/party-boat-rentals-chicago", label: "Private party boats" },
+    { href: "/chicago-dining-cruises", label: "Dining cruises" },
+    { href: "/destinations/chicago", label: "Boating in Chicago" },
+    { href: "/weather", label: "Boating weather" },
+    { href: "/events", label: "Boating events" },
   ],
   "yacht-rentals-chicago": [
     { href: "/destinations/chicago", label: "Boating in Chicago" },

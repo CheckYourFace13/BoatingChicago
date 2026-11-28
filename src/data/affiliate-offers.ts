@@ -352,7 +352,7 @@ export const affiliateOffers: AffiliateOffer[] = [
     title: "Chicago: Tiki Bar Cruise on Chicago River or Lake Michigan",
     shortTitle: "Tiki Bar Cruise",
     shortDescription:
-      "Tropical-themed tiki bar cruise — music, drinks, and skyline views on the river or lake.",
+      "Tropical-themed tiki bar cruise with music and skyline views. Tropical cocktails, beer, and wine available for purchase — drinks not included.",
     url: buildGygUrl(
       "994332",
       "chicago-tiki-bar-cruise-on-chicago-river-or-lake-michigan"
@@ -1321,14 +1321,14 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 3,
   },
   "chicago-dining-cruises": {
-    tags: ["dining", "cruise", "architecture"],
-    preferIds: ["gyg-233082", "gyg-290485", "gyg-386902"],
-    limit: 3,
+    tags: ["dining"],
+    preferIds: ["gyg-233082"],
+    limit: 1,
   },
   "chicago-tiki-cruises": {
-    tags: ["party", "cruise", "lake-michigan"],
-    preferIds: ["gyg-994332", "gyg-24790", "gyg-466163"],
-    limit: 3,
+    tags: ["party"],
+    preferIds: ["gyg-994332"],
+    limit: 1,
   },
   "chicago-sailing-charters": {
     tags: ["sailing", "sunset", "lake-michigan"],
