@@ -8,6 +8,39 @@ export function resolveMetadataTitle(title: string): Metadata["title"] {
   return title.includes(siteConfig.name) ? { absolute: title } : title;
 }
 
+/**
+ * Truncate meta descriptions at a sentence or word boundary.
+ * Avoids mid-word cuts from naive `.slice(0, 155)` call sites.
+ */
+export function truncateMetaDescription(
+  text: string,
+  maxLength = 155
+): string {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  if (normalized.length <= maxLength) return normalized;
+
+  const budget = Math.max(40, maxLength);
+  const window = normalized.slice(0, budget + 1);
+
+  const sentenceEnd = Math.max(
+    window.lastIndexOf(". "),
+    window.lastIndexOf("! "),
+    window.lastIndexOf("? ")
+  );
+  if (sentenceEnd >= Math.floor(budget * 0.55)) {
+    return normalized.slice(0, sentenceEnd + 1).trim();
+  }
+
+  const truncated = normalized.slice(0, budget);
+  const lastSpace = truncated.lastIndexOf(" ");
+  const atWord =
+    lastSpace >= Math.floor(budget * 0.6)
+      ? truncated.slice(0, lastSpace)
+      : truncated;
+  return atWord.replace(/[.,;:]+$/u, "").trim();
+}
+
 /** File-based OG routes plus a sitewide branded fallback. */
 export function socialImagePath(path: string): string {
   const normalized = !path || path === "/" ? "/" : path;

@@ -17,6 +17,7 @@ import { getWeatherLocationById } from "@/config/weather-locations";
 import { buildLaunchFaqs } from "@/lib/geo-faqs";
 import { buildLaunchPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 import { FavoriteButton } from "@/components/geo/FavoriteButton";
 
 interface PageProps {
@@ -36,7 +37,10 @@ export async function generateMetadata({ params }: PageProps) {
 
   return buildManagedMetadata({
     title: launch.seoTitle || `${launch.name} | Public Boat Launch Access`,
-    description: (launch.seoDescription || launch.summary).slice(0, 160),
+    description: truncateMetaDescription(
+      launch.seoDescription || launch.summary,
+      160
+    ),
     path: `/boat-launches/${launch.slug}`,
   });
 }

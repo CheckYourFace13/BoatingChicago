@@ -16,10 +16,15 @@ import {
 } from "@/data/geo";
 import { getLaunchesByLake, regionLabel } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 import type { PreserveWaterAccess } from "@/types/geo";
 import { getUsgsReadings } from "@/lib/usgs";
 import { UsgsRiverPanel } from "@/components/geo/UsgsRiverPanel";
 import { FavoriteButton } from "@/components/geo/FavoriteButton";
+import { EmailSignup } from "@/components/EmailSignup";
+import { FAQ } from "@/components/FAQ";
+import { FAQSchema } from "@/components/FAQSchema";
+import { buildLakeBodyOfWaterSchema } from "@/lib/schema";
 
 const RIVER_LAKE_SLUGS = new Set([
   "fox-river",
@@ -50,9 +55,15 @@ export async function generateMetadata({ params }: PageProps) {
   const lake = getLakeBySlug(slug);
   if (!lake || !lake.isPublished) return {};
 
+  const description =
+    lake.seoDescription ||
+    truncateMetaDescription(
+      lake.overview[0] ?? `${lake.name} boating access and destinations.`
+    );
+
   return buildManagedMetadata({
-    title: `${lake.name} Boating — Launches, Rules & Official Sources`,
-    description: lake.overview[0]?.slice(0, 155) ?? `${lake.name} boating access and destinations.`,
+    title: lake.seoTitle || `${lake.name} Boating — Launches, Rules & Official Sources`,
+    description,
     path: `/lakes/${lake.slug}`,
   });
 }
@@ -75,6 +86,15 @@ export default async function LakePage({ params }: PageProps) {
         p !== undefined && p.isPublished,
     );
 
+  const aboutParagraphs =
+    lake.overview.length > 1 ? lake.overview.slice(1) : [];
+  const lakeFaqs = lake.faqs ?? [];
+  const lakeSchemaDescription =
+    lake.seoDescription ||
+    truncateMetaDescription(
+      lake.overview[0] ?? `${lake.name} boating access and destinations.`
+    );
+
   return (
     <>
       <BreadcrumbSchema
@@ -84,6 +104,25 @@ export default async function LakePage({ params }: PageProps) {
           { name: lake.name, path: `/lakes/${lake.slug}` },
         ]}
       />
+      {lakeFaqs.length > 0 ? <FAQSchema faqs={lakeFaqs} /> : null}
+      {lake.coordinates ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildLakeBodyOfWaterSchema({
+                name: lake.name,
+                description: lakeSchemaDescription,
+                path: `/lakes/${lake.slug}`,
+                addressRegion: lake.state,
+                lat: lake.coordinates.lat,
+                lng: lake.coordinates.lng,
+                sameAs: lake.officialLinks.slice(0, 3).map((l) => l.url),
+              })
+            ),
+          }}
+        />
+      ) : null}
 
       <GeoHero
         eyebrow={`${regionLabel(lake.region)} · ${lake.state}`}
@@ -100,6 +139,7 @@ export default async function LakePage({ params }: PageProps) {
               ]
             : []),
           { label: "Kayak & SUP finder", href: "/kayak-canoe-sup" },
+          { label: "AIS / clean-drain-dry", href: "/aquatic-invasive-species-boater-rules" },
           { label: "Forest preserves", href: "/forest-preserves" },
           { label: "Inland paddling guide", href: "/chicago-area-inland-paddling-guide" },
           { label: "Boating weather", href: "/weather" },
@@ -119,16 +159,57 @@ export default async function LakePage({ params }: PageProps) {
           </p>
         </div>
 
-        <article className="space-y-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue">
-            About this waterway
-          </h2>
-          {lake.overview.map((paragraph, i) => (
-            <p key={i} className="text-gray-700 leading-relaxed">
-              {paragraph}
+        {aboutParagraphs.length > 0 ? (
+          <article className="space-y-4 max-w-4xl">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue">
+              About this waterway
+            </h2>
+            {aboutParagraphs.map((paragraph, i) => (
+              <p key={i} className="text-gray-700 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+            <p className="text-sm text-gray-600">
+              <Link
+                href="/aquatic-invasive-species-boater-rules"
+                className="font-bold text-coral hover:underline"
+              >
+                Aquatic invasive species rules for boaters →
+              </Link>
             </p>
-          ))}
-        </article>
+          </article>
+        ) : null}
+
+        {lake.lakeFacts && lake.lakeFacts.length > 0 ? (
+          <section className="max-w-4xl">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-lake-blue mb-2">
+              Lake facts
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Survey and agency figures below are dated. They are not a live
+              conditions report — confirm current access, rules, and fishing
+              regulations before you go.
+            </p>
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {lake.lakeFacts.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="rounded-2xl border border-sky-blue/20 bg-white p-4"
+                >
+                  <dt className="text-xs font-bold uppercase tracking-wide text-gray-500">
+                    {fact.label}
+                  </dt>
+                  <dd className="text-lake-blue font-extrabold mt-1">
+                    {fact.value}
+                  </dd>
+                  {fact.asOf ? (
+                    <dd className="text-xs text-gray-500 mt-1">{fact.asOf}</dd>
+                  ) : null}
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
 
         {destinations.length > 0 ? (
           <section>
@@ -253,10 +334,14 @@ export default async function LakePage({ params }: PageProps) {
         <SourceLinkList
           sources={lake.officialLinks}
           title="Official sources"
-          description="Access rules, stickers, permits, and season dates are published by the agencies and municipalities below."
+          description="Access rules, stickers, permits, and season dates are published by the agencies and municipalities below. Contour / public-access map tools are linked when the agency provides them."
         />
 
+        {lakeFaqs.length > 0 ? <FAQ faqs={lakeFaqs} /> : null}
+
         <QualityDisclaimer />
+
+        <EmailSignup source={`lake:${lake.slug}`} />
 
         <p>
           <Link href="/lakes" className="font-bold text-coral hover:underline">

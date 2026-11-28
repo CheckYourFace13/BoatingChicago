@@ -29,6 +29,9 @@ export function AdSenseLoader() {
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
       strategy="afterInteractive"
       crossOrigin="anonymous"
+      // Official AdSense override: bottom-only anchors so top overlays do not
+      // cover sticky header / H1 / nav on mobile (support.google.com/adsense/answer/7478225).
+      data-overlays="bottom"
     />
   );
 }

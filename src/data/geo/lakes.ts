@@ -706,32 +706,89 @@ export const lakes: Lake[] = [
     name: "Lake Maxinkuckee",
     region: "indiana",
     state: "IN",
+    seoTitle: "Lake Maxinkuckee Boating — Culver Access, Fishing & DNR Sources",
+    seoDescription:
+      "Lake Maxinkuckee near Culver, Indiana: public ramp access, 2020 DNR survey facts, fishing species, AIS notes, rentals, and Indiana registration rules for Chicago-area day trips.",
+    coordinates: { lat: 41.19666, lng: -86.41645 },
+    lakeFacts: [
+      { label: "Surface area", value: "1,854 acres", asOf: "2020 Indiana DNR survey" },
+      { label: "Maximum depth", value: "88 feet", asOf: "2020 Indiana DNR survey" },
+      { label: "Public access", value: "Public access ramp", asOf: "2020 Indiana DNR survey" },
+      {
+        label: "Outboard motor restrictions (survey)",
+        value: "None recorded",
+        asOf: "2020 Indiana DNR survey",
+      },
+      {
+        label: "Listed fishing species (survey)",
+        value: "Bluegill, rock bass, smallmouth bass, walleye, yellow perch",
+        asOf: "2020 Indiana DNR survey",
+      },
+      {
+        label: "Starry stonewort",
+        value: "Documented at 18% of vegetation sample sites",
+        asOf: "2020 Indiana DNR survey",
+      },
+    ],
     overview: [
-      "Lake Maxinkuckee at Culver in Marshall County, northern Indiana, is roughly 100 driving miles southeast of downtown Chicago — one of the closest Indiana inland lakes. The Culver Visitor Center describes it as over 1,800 acres of water for boating, water skiing, kayaking, and paddle boarding, with a public access point on the west shore.",
-      "Indiana DNR’s public-access data lists a Lake Maxinkuckee access site (record 197) near Culver managed by Tri-County Fish & Wildlife Area, recorded as a concrete boat ramp with restrooms, a courtesy dock, and a fishing pier, with no fee recorded. The Culver Visitor Center says the public launch is on the southwest side of the lake and that trailers can be parked at the water-tower parking lot off Lakeshore Drive, behind Papa’s. IDNR cautions that access-site locations are approximate and should be verified as open before you launch.",
-      "The Culver Visitor Center also lists businesses for those who do not own a boat: it says paddle-board gear can be rented from the Culver Marina or the Culver Park Department (park-department kayaks and paddleboards are first come, first served at the beach concession during beach hours), that pontoons can be rented at Culver Marina with reservations through that marina, and it names Culver Marina, Culver’s Portside Marina, and Jeff’s PWC & Marine. Pricing and availability are set by those private operators and the town, so contact them directly.",
-      "Illinois boaters should note Indiana’s registration rules: the Indiana BMV requires watercraft operating on Indiana waterways to be registered unless exempt, non-motorized canoes, rowboats, and paddleboats are exempt, and Indiana law exempts a watercraft registered in another state if it is used, stored, or docked in Indiana for a combined total of not more than 60 consecutive days during a calendar year. Indiana Conservation Officers enforce boating rules; review the DNR’s boating handbook and check weather before a day trip.",
+      "Lake Maxinkuckee at Culver in Marshall County, northern Indiana, is roughly 100 driving miles southeast of downtown Chicago — one of the closest large Indiana inland lakes for a Chicago-area day trip. The Culver Visitor Center describes more than 1,800 acres for boating, skiing, kayaking, and paddle boarding, with a public access point on the west / southwest shore.",
+      "Indiana DNR’s June 2020 General Fish Survey listed 1,854 acres, 88-foot maximum depth, a public access ramp, and no special outboard motor restrictions in that survey document. Survey “best fishing” species included bluegill, rock bass, smallmouth bass, walleye, and yellow perch. Starry stonewort was documented for the first time on that survey (about 18% of sample sites). Those figures describe the 2020 survey — not a live conditions report. Confirm current rules, access status, and AIS guidance before you launch.",
+      "Indiana DNR public-access data lists Lake Maxinkuckee access site record 197 near Culver (Tri-County Fish & Wildlife Area): concrete ramp, restrooms, courtesy dock, and fishing pier, with no fee recorded in that dataset. The Culver Visitor Center places the public launch on the southwest side and says trailers can park at the water-tower lot off Lakeshore Drive behind Papa’s. IDNR notes access coordinates are approximate — verify the site is open before you tow.",
+      "If you are not trailering your own boat, the Culver Visitor Center points to Culver Marina and the Culver Park Department for paddleboards/kayaks (park inventory is first come, first served at the beach concession during beach hours), pontoon rentals via Culver Marina reservations, and names Culver Marina, Culver’s Portside Marina, and Jeff’s PWC & Marine. Prices and availability are set by those operators — contact them directly.",
+      "Because starry stonewort appears in the 2020 survey, treat Maxinkuckee like any Indiana inland water for aquatic invasive species: clean, drain, and dry boats, trailers, and gear. Follow current Indiana DNR guidance and the regional AIS rules summarized on BoatingChicago’s aquatic invasive species page. Illinois-registered craft: Indiana BMV registration applies on Indiana waters unless an exemption fits — non-motorized canoes, rowboats, and paddleboats are exempt, and out-of-state registered craft have a limited consecutive-day exemption (confirm the current BMV wording). Indiana Conservation Officers enforce boating rules; review the DNR boating handbook and check weather before you go.",
+    ],
+    faqs: [
+      {
+        question: "How big and deep is Lake Maxinkuckee?",
+        answer:
+          "Indiana DNR’s 2020 General Fish Survey listed 1,854 acres and an 88-foot maximum depth. Treat those as survey findings from that year, not a substitute for current charts or local knowledge.",
+      },
+      {
+        question: "Where is the public boat launch?",
+        answer:
+          "Indiana DNR lists public access site record 197 (Tri-County Fish & Wildlife Area) with a concrete ramp, restrooms, courtesy dock, and fishing pier. The Culver Visitor Center describes the public launch on the southwest side of the lake and trailer parking at the water-tower lot off Lakeshore Drive behind Papa’s. Confirm the site is open before arrival — DNR access locations are approximate.",
+      },
+      {
+        question: "Are there special outboard motor restrictions?",
+        answer:
+          "The 2020 Indiana DNR survey recorded no special outboard motor restrictions. Rules can change — verify current Indiana DNR and local ordinances before you launch.",
+      },
+      {
+        question: "What fish did the DNR survey highlight?",
+        answer:
+          "The 2020 survey’s listed fishing species included bluegill, rock bass, smallmouth bass, walleye, and yellow perch. Indiana fishing licenses and seasons still apply — check current DNR regulations.",
+      },
+      {
+        question: "Do Illinois boaters need Indiana registration?",
+        answer:
+          "The Indiana BMV requires watercraft on Indiana waterways to be registered unless exempt. Non-motorized canoes, rowboats, and paddleboats are exempt. Craft registered in another state may qualify for a limited consecutive-day exemption — read the current BMV watercraft registration page before you trailer across the state line.",
+      },
     ],
     officialLinks: [
       {
-        name: "Indiana DNR — Where to Fish (public access sites map)",
+        name: "Indiana DNR — Lake Maxinkuckee 2020 General Fish Survey (PDF)",
+        url: "https://www.in.gov/dnr/fish-and-wildlife/files/fmp/fw-LakeMaxinkuckee_Marshall_FMR_2020.pdf",
+        lastVerified: "2026-11-28",
+      },
+      {
+        name: "Indiana DNR — Where to Fish (public access / contour map tools)",
         url: "https://www.in.gov/dnr/fish-and-wildlife/fishing/where-to-fish-interactive-map",
-        lastVerified: INLAND_VERIFIED,
+        lastVerified: "2026-11-28",
       },
       {
         name: "Culver Visitor Center — Outdoor Adventures (Lake Maxinkuckee)",
         url: "https://www.findculver.com/outdoor-adventures",
-        lastVerified: INLAND_VERIFIED,
+        lastVerified: "2026-11-28",
       },
       {
         name: "Indiana BMV — Watercraft Registration",
         url: "https://www.in.gov/bmv/registration-plates/boat-registration/",
-        lastVerified: INLAND_VERIFIED,
+        lastVerified: "2026-11-28",
       },
       {
         name: "Indiana DNR — Boating Education & Safety",
         url: "https://www.in.gov/dnr/law-enforcement/education/boating-education-and-safety/",
-        lastVerified: INLAND_VERIFIED,
+        lastVerified: "2026-11-28",
       },
     ],
     destinationSlugs: [],

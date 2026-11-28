@@ -26,6 +26,7 @@ describe("AdSense gate safety", () => {
       "utf8",
     );
     assert.match(loader, /adsbygoogle\.js\?client=/);
+    assert.match(loader, /data-overlays=["']bottom["']/);
     const block = readFileSync(
       join(process.cwd(), "src/components/AdSenseBlock.tsx"),
       "utf8",

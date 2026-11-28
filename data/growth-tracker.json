@@ -323,6 +323,104 @@
         "Do not treat this deploy as organic success — mark measured only after GSC evidence"
       ],
       "results": "Production healthy on 6a0e215 (content 5f816fe; rollback f6467f8). Set 5 URLs 200 with differentiated titles/H1s and verified tiki drink wording. Organic traffic change not claimed — awaiting later GSC window."
+    },
+    {
+      "id": "set-6",
+      "title": "Ads, search quality and conversion fixes (Grok Nov 28 audit)",
+      "status": "deployed",
+      "baselineSha": "b389e14",
+      "productionSha": "PENDING_DEPLOY",
+      "updated": "2026-11-28",
+      "notes": "Deployed not measured. Set 5 remains deployed not measured. Rollback: b389e14. Scope: verified Grok defects only; 400-mile / all Lake Michigan preserved; protected URLs unchanged.",
+      "priorities": [
+        {
+          "id": "p1-mobile-adsense-anchor",
+          "status": "deployed",
+          "evidence": [
+            "Live mobile check observed top-fixed adsbygoogle INS ~69px at top:0 with z-index above sticky header",
+            "Added official data-overlays=bottom on single AdSenseLoader script (Google AdSense help 7478225)",
+            "No second script; CMP/consent untouched; Auto ads formats otherwise unchanged",
+            "Post-deploy: re-check bottom anchor; if fill missing, document limitation rather than claim visual success"
+          ],
+          "affectedUrls": ["/", "/yacht-rentals-chicago", "/lakes/lake-maxinkuckee"]
+        },
+        {
+          "id": "p2-lake-maxinkuckee",
+          "status": "deployed",
+          "evidence": [
+            "Sourced Indiana DNR 2020 General Fish Survey PDF (1854 acres, 88 ft, public ramp, no special outboard restrictions in survey, listed species, starry stonewort)",
+            "Fixed duplicated overview[0] by rendering About as overview.slice(1)",
+            "Added Lake Facts, FAQs, LakeBodyOfWater JSON-LD with DNR coordinates, AIS internal link",
+            "Launch detail page intentionally not created: no Culver destination hub; access covered on waterway page (avoid thin Oshkosh-style clone)"
+          ],
+          "affectedUrls": ["/lakes/lake-maxinkuckee"]
+        },
+        {
+          "id": "p3-yacht-conversion",
+          "status": "deployed",
+          "evidence": [
+            "Rewrote intro/meta to private charter vs ticketed cruise distinction",
+            "Removed unsupported $1,200–$5,000+ FAQ pricing; point to live listings",
+            "PAGE_OFFER_INTENT prefers private Viator charters; removed shared sunset gyg-386902 from yacht preferIds",
+            "Cross-links to luxury-yacht-charters-chicago and corporate-yacht-charters-chicago"
+          ],
+          "affectedUrls": ["/yacht-rentals-chicago"]
+        },
+        {
+          "id": "p4-meta-truncation",
+          "status": "deployed",
+          "evidence": [
+            "Confirmed call-site .slice(0,155/160) on lakes/destinations/marinas/regions/news/launches",
+            "Added truncateMetaDescription() word/sentence boundary helper in seo.ts and wired call sites"
+          ]
+        },
+        {
+          "id": "p5-crawler-rate-limits",
+          "status": "verified",
+          "evidence": [
+            "GPTBot: 429 on / and /lakes/lake-maxinkuckee; 200 on /llms.txt",
+            "OAI-SearchBot, ChatGPT-User, Googlebot, Bingbot: 200 on /, /llms.txt, /lakes/lake-maxinkuckee",
+            "No app middleware rate-limit by UA; Hostinger/edge likely GPTBot training throttle",
+            "No change: search crawlers not blocked; do not weaken global bot protection for GPTBot training"
+          ]
+        },
+        {
+          "id": "p6-empty-vendor-sections",
+          "status": "deployed",
+          "evidence": [
+            "CategoryLanding hides empty Local Vendor Listings / onboarding placeholder when vendors.length===0",
+            "Featured listings, affiliate cards, /advertise footer paths preserved"
+          ]
+        },
+        {
+          "id": "p7-newsletter-lakes-preserves",
+          "status": "deployed",
+          "evidence": [
+            "EmailSignup added below main content on lakes/[slug] and forest-preserves/[slug]",
+            "Reuses existing component + /api/newsletter; single form per page",
+            "Live subscribe not executed against production list in this pass — verify SSR form presence post-deploy"
+          ]
+        }
+      ],
+      "protectedUrls": [
+        "/lakes/des-plaines-river",
+        "/chicago-playpen-guide",
+        "/yacht-rentals-chicago",
+        "/chicago-boating-faq",
+        "/forest-preserves",
+        "/events",
+        "/forest-preserves/whalon-lake-will",
+        "/chicago-transient-dockage",
+        "/lakes/chain-o-lakes",
+        "/forest-preserves/beck-lake-cook",
+        "/boat-launches/simmons-island-public-boat-launch"
+      ],
+      "ownerActionsRequired": [
+        "After deploy, confirm mobile bottom-only anchors with consented ads on /, /yacht-rentals-chicago, /lakes/lake-maxinkuckee",
+        "Optional: AdSense dashboard Overlay formats → Bottom only (code override already set)",
+        "Do not mark Set 5 or Set 6 measured without GSC/AdSense comparison windows"
+      ],
+      "results": "PENDING live SHA after Hostinger deploy. Organic/revenue change not claimed."
     }
   ]
 }

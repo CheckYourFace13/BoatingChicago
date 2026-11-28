@@ -12,6 +12,7 @@ import {
   getMarinasByDestination,
 } from "@/data/geo";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 import {
   getHubDestinations,
   getHubLakes,
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!hub) return {};
   return buildManagedMetadata({
     title: `${hub.name} Boating Guide | Launches, Marinas & Destinations`,
-    description: hub.summary.slice(0, 155),
+    description: truncateMetaDescription(hub.summary),
     path: `/regions/${hub.slug}`,
   });
 }

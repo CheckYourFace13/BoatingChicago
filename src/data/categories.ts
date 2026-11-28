@@ -55,22 +55,40 @@ export const categories: CategoryPage[] = [
     title: "Yacht Rentals Chicago",
     seoTitle: "Yacht Rental Chicago | Private Lake Michigan Yacht Charters",
     seoDescription:
-      "Yacht rental Chicago and private yacht charters on Lake Michigan — celebrations, corporate groups, and sunset cruises. Confirm live price, crew, and inclusions on each booking listing.",
+      "Private yacht charters on Lake Michigan — your group, captain, and vessel. Not a shared ticketed skyline cruise. Compare live booking listings and related luxury or corporate charter guides.",
     headline: "Luxury Yacht Rentals & Charters in Chicago",
     intro:
-      "Nothing beats a Chicago summer on a yacht — champagne on the deck, the skyline rolling by, and Lake Michigan stretching to the horizon. From intimate sunset sails to full-deck corporate events, yacht charters are the ultimate Chicago boating experience. Use the guides and bookable listings on this page to compare vessels, crew options, and price points.",
+      "This page is for private yacht charters on Lake Michigan: your guest list on a reserved vessel with a captain, not a shared ticketed skyline or architecture cruise. Use the instant-booking listings below for private yacht and sailing charter products, then confirm live price, duration, departure marina, capacity, and inclusions on each operator page. For editorial planning on larger celebrations, see the luxury yacht charters guide; for company outings, see corporate yacht charters. Ticketed dining or sunset cruises are separate category pages.",
     bestFor: [
-      { title: "Luxury celebrations", description: "Birthdays, anniversaries, and milestone moments", icon: "🥂" },
-      { title: "Corporate entertaining", description: "Impress clients with a private yacht experience", icon: "💼" },
-      { title: "Sunset cruises", description: "Golden-hour skyline views from the water", icon: "🌅" },
-      { title: "Large groups", description: "Yachts accommodating 20–100+ guests", icon: "🛥️" },
+      { title: "Private celebrations", description: "Birthdays, anniversaries, and milestone groups on a reserved yacht", icon: "🥂" },
+      { title: "Corporate entertaining", description: "Client or team events with a private vessel and crew", icon: "💼" },
+      { title: "Private sunset sails", description: "Golden-hour charters reserved for your group", icon: "🌅" },
+      { title: "Larger private groups", description: "Match vessel capacity to headcount on the booking listing", icon: "🛥️" },
     ],
     affiliates: ["getyourguide"],
-    relatedSlugs: ["corporate-yacht-charters-chicago", "birthday-boat-rentals-chicago", "boat-rentals-chicago"],
+    relatedSlugs: [
+      "luxury-yacht-charters-chicago",
+      "corporate-yacht-charters-chicago",
+      "birthday-boat-rentals-chicago",
+      "boat-rentals-chicago",
+    ],
     faqs: [
       sharedFaqs.booking,
-      { question: "What's included in a Chicago yacht charter?", answer: "Most charters include the vessel, captain, and crew. Catering, bar packages, decorations, and entertainment are often add-ons. Confirm inclusions before booking." },
-      { question: "How much does a yacht rental cost in Chicago?", answer: "Chicago yacht charters typically range from $1,200 for a small yacht (2–4 hours) to $5,000+ for luxury vessels and full-day events. Peak summer weekends command premium pricing." },
+      {
+        question: "Is a Chicago yacht rental the same as a ticketed skyline cruise?",
+        answer:
+          "No. Private yacht charters reserve the vessel for your group. Ticketed skyline, architecture, dining, and sunset cruises are shared sailings with individual seats — book those on their own category pages.",
+      },
+      {
+        question: "What's included in a Chicago yacht charter?",
+        answer:
+          "Many private listings include the vessel and captain; crew, catering, bar packages, decorations, and entertainment are often add-ons. Confirm inclusions and passenger limits on the live booking page before you pay.",
+      },
+      {
+        question: "How much does a yacht rental cost in Chicago?",
+        answer:
+          "Charter prices change by vessel, season, duration, and date. BoatingChicago does not publish a fixed dollar range. Open a live listing on this page (or related luxury/corporate guides) and confirm the current quote on the operator booking page.",
+      },
       sharedFaqs.captain,
       sharedFaqs.weather,
     ],

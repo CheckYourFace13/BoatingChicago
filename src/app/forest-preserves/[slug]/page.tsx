@@ -16,6 +16,7 @@ import {
   preserveCraftLabel,
 } from "@/lib/geo-display";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { EmailSignup } from "@/components/EmailSignup";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -223,6 +224,8 @@ export default async function PreserveAccessPage({ params }: PageProps) {
             </div>
           </section>
         ) : null}
+
+        <EmailSignup source={`forest-preserve:${site.slug}`} />
 
         <p>
           <Link

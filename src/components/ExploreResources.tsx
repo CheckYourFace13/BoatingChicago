@@ -38,11 +38,12 @@ export const CATEGORY_RESOURCE_LINKS: Record<string, ResourceLink[]> = {
     { href: "/events", label: "Boating events" },
   ],
   "yacht-rentals-chicago": [
+    { href: "/luxury-yacht-charters-chicago", label: "Luxury yacht guide" },
+    { href: "/corporate-yacht-charters-chicago", label: "Corporate yacht charters" },
     { href: "/destinations/chicago", label: "Boating in Chicago" },
     { href: "/marinas", label: "Marinas directory" },
     { href: "/weather", label: "Boating weather" },
     { href: "/chicago-marina-guide", label: "Chicago marina guide" },
-    { href: "/guides", label: "All guides" },
   ],
   "party-boat-rentals-chicago": [
     { href: "/chicago-playpen-guide", label: "Playpen guide" },

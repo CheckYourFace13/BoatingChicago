@@ -18,6 +18,7 @@ import { buildMarinaFaqs } from "@/lib/geo-faqs";
 import { verifiedMarinaPlaces } from "@/data/geo/place-verification";
 import { buildMarinaPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 import { FavoriteButton } from "@/components/geo/FavoriteButton";
 
 interface PageProps {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return buildManagedMetadata({
     title: `${marina.name} | Amenities, Contact & Official Source`,
-    description: marina.summary.slice(0, 155),
+    description: truncateMetaDescription(marina.summary),
     path: `/marinas/${marina.slug}`,
   });
 }

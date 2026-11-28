@@ -25,6 +25,7 @@ import { PlanYourDay } from "@/components/geo/PlanYourDay";
 import { FavoriteButton } from "@/components/geo/FavoriteButton";
 import { buildDestinationPlaceSchema } from "@/lib/schema";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return buildManagedMetadata({
     title: `Boating in ${destination.name}, ${destination.state} | Marinas, Launches & Conditions`,
-    description: destination.summary.slice(0, 155),
+    description: truncateMetaDescription(destination.summary),
     path: `/destinations/${destination.slug}`,
   });
 }

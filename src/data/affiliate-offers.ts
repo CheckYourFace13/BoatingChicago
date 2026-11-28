@@ -1285,12 +1285,12 @@ export const PAGE_OFFER_INTENT: Record<
     limit: 3,
   },
   "yacht-rentals-chicago": {
-    tags: ["sailing", "cruise", "lake-michigan"],
+    tags: ["sailing", "lake-michigan"],
     preferIds: [
       "viator-private-yacht-charter",
       "viator-navy-pier-private-sail",
       "viator-private-sunset-sailing",
-      "gyg-386902",
+      "viator-private-day-sailing",
     ],
     limit: 4,
   },

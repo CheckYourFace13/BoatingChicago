@@ -6,6 +6,7 @@ import {
   getNewsItemBySlug,
 } from "@/lib/news";
 import { buildManagedMetadata } from "@/lib/gravyblock-managed";
+import { truncateMetaDescription } from "@/lib/seo";
 import { getChicagoWeather } from "@/lib/weather";
 import { siteConfig } from "@/config/site";
 
@@ -31,7 +32,7 @@ export async function generateMetadata({
   }
   return buildManagedMetadata({
     title: item.headline,
-    description: item.whyItMatters.slice(0, 155),
+    description: truncateMetaDescription(item.whyItMatters),
     path: `/news/${item.slug}`,
   });
 }

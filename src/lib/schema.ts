@@ -370,3 +370,55 @@ export function buildLaunchPlaceSchema({
     isPartOf: { "@id": WEBSITE_ID },
   };
 }
+
+/**
+ * LakeBodyOfWater JSON-LD for lake pages with verified coordinates.
+ * Only include geo / area / depth when an official source supplies them —
+ * this does not claim a Google lake rich-result enhancement.
+ */
+export function buildLakeBodyOfWaterSchema({
+  name,
+  description,
+  path,
+  addressLocality,
+  addressRegion,
+  lat,
+  lng,
+  sameAs,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  addressLocality?: string;
+  addressRegion: string;
+  lat?: number;
+  lng?: number;
+  sameAs?: string[];
+}) {
+  const url = `${siteConfig.url}${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "LakeBodyOfWater",
+    "@id": `${url}#lake`,
+    name,
+    description,
+    url,
+    ...(sameAs && sameAs.length ? { sameAs } : {}),
+    address: {
+      "@type": "PostalAddress",
+      ...(addressLocality ? { addressLocality } : {}),
+      addressRegion,
+      addressCountry: "US",
+    },
+    ...(lat != null && lng != null
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: lat,
+            longitude: lng,
+          },
+        }
+      : {}),
+    isPartOf: { "@id": WEBSITE_ID },
+  };
+}

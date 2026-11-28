@@ -25,6 +25,13 @@ export interface Destination {
   nearbyDestinationSlugs?: string[];
 }
 
+export interface LakeFact {
+  label: string;
+  value: string;
+  /** Year or label clarifying when the fact was recorded (e.g. "2020 DNR survey") */
+  asOf?: string;
+}
+
 export interface Lake {
   slug: string;
   name: string;
@@ -35,6 +42,15 @@ export interface Lake {
   destinationSlugs: string[];
   /** Forest-preserve / conservation landings on this waterway (optional cross-links) */
   relatedPreserveSlugs?: string[];
+  /** Optional page-specific search title — do not invent access or fees. */
+  seoTitle?: string;
+  seoDescription?: string;
+  /** Verified survey / agency facts for a Lake Facts table */
+  lakeFacts?: LakeFact[];
+  /** Optional FAQs answered only from cited official sources */
+  faqs?: { question: string; answer: string }[];
+  /** WGS84 when an official source publishes coordinates */
+  coordinates?: { lat: number; lng: number };
   isPublished: boolean;
 }
 

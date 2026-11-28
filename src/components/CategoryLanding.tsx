@@ -18,7 +18,6 @@ import {
   CATEGORY_RESOURCE_LINKS,
   ExploreResources,
 } from "./ExploreResources";
-import { TrackedLink } from "./TrackedLink";
 import { AdrenalineExperienceCta } from "./experiences/AdrenalineExperienceCta";
 import type { AdrenalineItem } from "./experiences/AdrenalineExperienceCta";
 import { siteConfig } from "@/config/site";
@@ -111,7 +110,7 @@ const offerSectionCopy: Record<
   "yacht-rentals-chicago": {
     title: "Instant-Booking Private Yacht & Sailing Charters",
     subtitle:
-      "Private yacht and sailboat charter options you can book online. These are instant-booking alternatives — not the only way to charter. For more private yacht charter options, browse related rental and charter category pages. Dining cruises are ticketed shared experiences, not private yachts.",
+      "Private yacht and sailboat charter products you can book online — reserved for your group, not shared ticketed skyline cruises. Confirm capacity, duration, departure, captain, and price on each listing. Dining and sunset cruises are separate ticketed experiences.",
     beforeForm: false,
   },
   "bachelorette-boat-rentals-chicago": {
@@ -384,25 +383,7 @@ export function CategoryLanding({ category }: CategoryLandingProps) {
               ))}
             </div>
           </section>
-        ) : (
-          <section className="bg-light-blue/50 rounded-3xl p-8 md:p-10 text-center">
-            <h2 className="text-xl font-extrabold text-lake-blue mb-2">
-              Local Vendor Listings
-            </h2>
-            <p className="text-gray-600 mb-4 max-w-lg mx-auto">
-              We&apos;re onboarding Chicago boating partners. Browse ticketed experiences above, or
-              explore related category pages for rentals and charters.
-            </p>
-            <TrackedLink
-              href="/advertise"
-              track="list_business_click"
-              trackParams={{ page: category.slug }}
-              className="inline-flex text-sky-blue font-bold hover:underline"
-            >
-              List your boating business →
-            </TrackedLink>
-          </section>
-        )}
+        ) : null}
 
         <FAQ faqs={category.faqs} />
 
