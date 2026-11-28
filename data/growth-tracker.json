@@ -260,8 +260,9 @@
       "title": "Search intent differentiation and internal linking (sunset, rentals, tiki/dining)",
       "status": "deployed",
       "baselineSha": "f6467f8",
-      "productionSha": "PENDING_DEPLOY",
-      "notes": "Deployed not measured. Differentiated existing URLs only — no new pages, redirects, noindex, or canonical changes. GSC unavailable without secrets; SEO improvement must wait for a later comparison window.",
+      "productionSha": "5f816fe",
+      "updated": "2026-11-27",
+      "notes": "Deployed not measured. Differentiated existing URLs only — no new pages, redirects, noindex, or canonical changes. GSC unavailable without secrets; SEO improvement must wait for a later comparison window. Rollback: f6467f8.",
       "priorities": [
         {
           "id": "p1-sunset-intent",
@@ -320,7 +321,7 @@
         "Authorize GSC_SERVICE_ACCOUNT_JSON (or export Performance CSV) for a post–Set 5 comparison window",
         "Do not treat this deploy as organic success — mark measured only after GSC evidence"
       ],
-      "results": "PENDING live SHA confirmation after Hostinger deploy. Organic traffic change not claimed."
+      "results": "Set 5 committed as 5f816fe (baseline/rollback f6467f8). Organic traffic change not claimed — awaiting later GSC window."
     }
   ]
 }
