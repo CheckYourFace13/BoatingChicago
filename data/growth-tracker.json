@@ -329,9 +329,10 @@
       "title": "Ads, search quality and conversion fixes (Grok Nov 28 audit)",
       "status": "deployed",
       "baselineSha": "b389e14",
-      "productionSha": "c6ed0d3",
+      "productionSha": "366c7e8",
+      "contentSha": "c6ed0d3",
       "updated": "2026-11-28",
-      "notes": "Deployed not measured. Set 5 remains deployed not measured. Rollback: b389e14. Scope: verified Grok defects only; 400-mile / all Lake Michigan preserved; protected URLs unchanged.",
+      "notes": "Deployed not measured. Set 5 remains deployed not measured. Rollback: b389e14. Live tip 366c7e8 includes yacht private-card follow-up; main Set 6 content c6ed0d3. Scope: verified Grok defects only; 400-mile / all Lake Michigan preserved; protected URLs unchanged.",
       "priorities": [
         {
           "id": "p1-mobile-adsense-anchor",
@@ -420,7 +421,7 @@
         "Optional: AdSense dashboard Overlay formats → Bottom only (code override already set)",
         "Do not mark Set 5 or Set 6 measured without GSC/AdSense comparison windows"
       ],
-      "results": "Set 6 content on c6ed0d3 (rollback b389e14). Organic/revenue change not claimed — awaiting later measurement window."
+      "results": "Production healthy on 366c7e8 (content c6ed0d3; rollback b389e14). Set 6 URLs verified live. Organic/revenue change not claimed."
     }
   ]
 }
